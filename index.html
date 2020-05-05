@@ -350,7 +350,7 @@
 </fieldset>
 <!-- Field type: "short" id: "1284324650" -->
 
-	<div id="restodelform">
+	<div id="restodelform" style="display:none;">
 <fieldset style="background-color:lightyellow;"><legend for="1471599855" style="font-size:16px;"><br />
 TALLES-MODELOS SELECCIONADOS:</legend>
 
@@ -969,7 +969,8 @@ var val = "";
 var theval = $("#1471599855");
 
 $("#todoslosmodelos select").change(function(){
-  val = $.each($(this).children("option:selected"), ()=> {
+  $("#restodelform").show();
+	val = $.each($(this).children("option:selected"), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
