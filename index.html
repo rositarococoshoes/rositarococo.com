@@ -1597,6 +1597,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
+var fbclidpedido = getUrlParameter('fbclid');
+$("#1209868979").replaceWith(fbclidpedido);  
+
 var modeload = getUrlParameter('modeload');
 // $('#' + modeload).insertBefore("#modeload-modelo-40"); //
 $('#' + modeload).insertBefore("#tituloh4");
@@ -1607,7 +1610,6 @@ $('#bootstrapForm').submit(function (event) {
   
   $('#botoncomprar').attr('value', 'Espere...');
 	$('#botoncomprar').attr('disabled', 'true');
-    $('#1209868979').val(window.location.href);
     event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
