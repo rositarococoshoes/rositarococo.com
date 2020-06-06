@@ -1607,7 +1607,7 @@ $('#bootstrapForm').submit(function (event) {
   
   $('#botoncomprar').attr('value', 'Espere...');
 	$('#botoncomprar').attr('disabled', 'true');
-    $('#1209868979').val(window.location);
+    $('#1209868979').val(window.location.href);
     event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
