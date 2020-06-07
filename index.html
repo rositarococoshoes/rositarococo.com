@@ -1597,7 +1597,8 @@ var getUrlParameter = function getUrlParameter(sParam) {
     }
 };
 
-var fbclidpedido = getUrlParameter('fbclid');
+
+var fbclidpedido = document.cookie.substring(41);
 $("#1209868979").val(fbclidpedido);  
 
 var modeload = getUrlParameter('modeload');
