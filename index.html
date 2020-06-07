@@ -1608,6 +1608,9 @@ $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
   
+  var dnidelpedido = $("#541001873").val();
+  localStorage.setItem('order_id', dnidelpedido);
+  
   $('#botoncomprar').attr('value', 'Espere...');
 	$('#botoncomprar').attr('disabled', 'true');
     event.preventDefault()
