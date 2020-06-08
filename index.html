@@ -1598,7 +1598,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
-var fbclidpedido = document.cookie.substring(41);
+var fbclidpedido = window.location.href;
 $("#1209868979").val(fbclidpedido);  
 
 var modeload = getUrlParameter('modeload');
@@ -1611,6 +1611,7 @@ $('#bootstrapForm').submit(function (event) {
   
   var dnidelpedido = $("#541001873").val();
   localStorage.setItem('order_id', dnidelpedido);
+  localStorage.setItem('event_id', dnidelpedido);
   
   $('#botoncomprar').attr('value', 'Espere...');
 	$('#botoncomprar').attr('disabled', 'true');
