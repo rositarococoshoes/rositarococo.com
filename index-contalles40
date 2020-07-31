@@ -91,7 +91,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <span style="font-size:12px;"><em><span style="background-color:#FFFF00;">Pod&eacute;s pedir diferentes modelos en tu mismo pedido.</span></em></span></h6>
 
 <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENV&Iacute;O GRATIS</span>:&nbsp; con seguimiento online a tu domicilio mediante Correo Argentino.</small></span><br />
-📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: REALES del 35 al 39. Tabla de talles con medida de plantilla debajo de cada modelo. </small></span><br />
+📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: REALES del 35 al 40. Tabla de talles con medida de plantilla debajo de cada modelo. </small></span><br />
 ✔️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><strong>CAMBIOS:</strong> GRATIS dentro de los 30 d&iacute;as.</small></span><br />
 💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta&nbsp;, MercadoPago, PagoF&aacute;cil/Rapipago.</small></span><br />
 ⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DEMORA</span>: 15 &nbsp;d&iacute;as aprox. por cuarentena.</small></span><br />
@@ -151,7 +151,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -160,15 +163,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-paris-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-paris-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-paris-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-paris-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option><option value="40-paris-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-paris-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option><option value="40-paris-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-paris-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-negras">35</option><option value="36-paris-negras">36</option><option value="37-paris-negras">37</option><option value="38-paris-negras">38</option><option value="39-paris-negras">39</option><option value="40-paris-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -220,7 +223,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -229,15 +235,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-paris-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-paris-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-paris-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-paris-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option><option value="40-paris-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-paris-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option><option value="40-paris-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-paris-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-paris-suela">35</option><option value="36-paris-suela">36</option><option value="37-paris-suela">37</option><option value="38-paris-suela">38</option><option value="39-paris-suela">39</option><option value="40-paris-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -292,7 +298,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
- 
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -301,15 +310,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-berlin-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-berlin-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-berlin-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-berlin-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option><option value="40-berlin-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-berlin-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option><option value="40-berlin-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-berlin-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-negras">35</option><option value="36-berlin-negras">36</option><option value="37-berlin-negras">37</option><option value="38-berlin-negras">38</option><option value="39-berlin-negras">39</option><option value="40-berlin-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -361,7 +370,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -370,15 +382,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-berlin-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-berlin-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-berlin-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-berlin-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option><option value="40-berlin-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-berlin-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option><option value="40-berlin-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-berlin-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-berlin-suela">35</option><option value="36-berlin-suela">36</option><option value="37-berlin-suela">37</option><option value="38-berlin-suela">38</option><option value="39-berlin-suela">39</option><option value="40-berlin-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -429,7 +441,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
- 
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -438,15 +453,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-madrid-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-madrid-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-madrid-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-madrid-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option><option value="40-madrid-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-madrid-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option><option value="40-madrid-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-madrid-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-negras">35</option><option value="36-madrid-negras">36</option><option value="37-madrid-negras">37</option><option value="38-madrid-negras">38</option><option value="39-madrid-negras">39</option><option value="40-madrid-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -498,7 +513,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -507,20 +525,20 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-madrid-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-madrid-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-madrid-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-madrid-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option><option value="40-madrid-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-madrid-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option><option value="40-madrid-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-madrid-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-madrid-suela">35</option><option value="36-madrid-suela">36</option><option value="37-madrid-suela">37</option><option value="38-madrid-suela">38</option><option value="39-madrid-suela">39</option><option value="40-madrid-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
 	
-<div style="display:none;" class="contorno" id="modeload-londres-negras">
+<div class="contorno" id="modeload-londres-negras">
 <div class="single-item">
 <div><label for="londres-negras"><img alt="" src="londres-negras-1.jpg"/></label></div>
 <div><label for="londres-negras"><img alt="" data-lazy="londres-negras-2.jpg"/></label></div>
@@ -535,20 +553,20 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-londres-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-londres-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-londres-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-londres-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option><option value="40-londres-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-londres-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option><option value="40-londres-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-londres-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-negras">35</option><option value="36-londres-negras">36</option><option value="37-londres-negras">37</option><option value="38-londres-negras">38</option><option value="39-londres-negras">39</option><option value="40-londres-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
 	
-<div style="display:none;" class="contorno" id="modeload-londres-suela">
+<div class="contorno" id="modeload-londres-suela">
 <div class="single-item">
 <div><label for="londres-suela"><img alt="" src="londres-suela-1.jpg"/></label></div>
 <div><label for="londres-suela"><img alt="" data-lazy="londres-suela-2.jpg"/></label></div>
@@ -563,20 +581,20 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-londres-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-londres-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-londres-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-londres-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option><option value="40-londres-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-londres-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option><option value="40-londres-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-londres-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-londres-suela">35</option><option value="36-londres-suela">36</option><option value="37-londres-suela">37</option><option value="38-londres-suela">38</option><option value="39-londres-suela">39</option><option value="40-londres-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
 
-<div style="display:none;" class="contorno" id="modeload-pantus-negras">
+<div class="contorno" id="modeload-pantus-negras">
 <div class="single-item">
 <div><label for="pantus-negras"><img alt="" src="pantus-negras-1.jpg"  /></label></div>
 <div><label for="pantus-negras"><img alt="" data-lazy="pantus-negras-2.jpg"  /></label></div>
@@ -622,7 +640,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -631,20 +652,20 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-pantus-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-pantus-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-pantus-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-pantus-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option><option value="40-pantus-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-pantus-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option><option value="40-pantus-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-pantus-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-negras">35</option><option value="36-pantus-negras">36</option><option value="37-pantus-negras">37</option><option value="38-pantus-negras">38</option><option value="39-pantus-negras">39</option><option value="40-pantus-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
 	
-<div style="display:none;" class="contorno" id="modeload-pantus-suela">
+<div class="contorno" id="modeload-pantus-suela">
 <div class="single-item">
 <div><label for="pantus-suela"><img alt="" src="pantus-suela-1.jpg"  /></label></div>
 <div><label for="pantus-suela"><img alt="" data-lazy="pantus-suela-2.jpg"  /></label></div>
@@ -690,7 +711,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -699,15 +723,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-pantus-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-pantus-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-pantus-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-pantus-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option><option value="40-pantus-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-pantus-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option><option value="40-pantus-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-pantus-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-pantus-suela">35</option><option value="36-pantus-suela">36</option><option value="37-pantus-suela">37</option><option value="38-pantus-suela">38</option><option value="39-pantus-suela">39</option><option value="40-pantus-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -760,7 +784,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -769,15 +796,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-roma-negras" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-roma-negras" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-roma-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option><option value="40-roma-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option><option value="40-roma-negras">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-roma-negras-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-negras">35</option><option value="36-roma-negras">36</option><option value="37-roma-negras">37</option><option value="38-roma-negras">38</option><option value="39-roma-negras">39</option><option value="40-roma-negras">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -830,7 +857,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     <td>39</td>
     <td>25 cm</td>
   </tr>
-  
+  <tr>
+    <td>40</td>
+    <td>26 cm</td>
+  </tr>
 </tbody></table>
 
 </div>
@@ -839,15 +869,15 @@ tr:nth-child(even) {  background-color: #dddddd;}
 <label>1 <input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-roma-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-roma-suela" type="radio" value="3" /></label></div>
 
 <fieldset id="hwA-roma-suela-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option><option value="40-roma-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option><option value="40-roma-suela">40</option></select></div>
 </fieldset>
 
 <fieldset class="fieldsetstalles" id="hwA-roma-suela-3">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option></select></div>
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-roma-suela">35</option><option value="36-roma-suela">36</option><option value="37-roma-suela">37</option><option value="38-roma-suela">38</option><option value="39-roma-suela">39</option><option value="40-roma-suela">40</option></select></div>
 </fieldset>
 </div>
 </div>
@@ -876,7 +906,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 </div>
 
 <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENV&Iacute;O GRATIS</span>:&nbsp; con seguimiento online a tu domicilio mediante Correo Argentino.</small></span><br />
-📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: REALES del 35 al 39. Tabla de talles con medida de plantilla debajo de cada modelo.</small></span><br />
+📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: REALES del 35 al 40. Tabla de talles con medida de plantilla debajo de cada modelo.</small></span><br />
 ✔️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><strong>CAMBIOS:</strong> GRATIS dentro de los 30 d&iacute;as.</small></span><br />
 💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta&nbsp;, MercadoPago, PagoF&aacute;cil/Rapipago.</small></span><br />
 ⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DEMORA</span>: 15 &nbsp;d&iacute;as aprox. por cuarentena.</small></span></p>
