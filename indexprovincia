@@ -1226,7 +1226,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 							<option value="Santa Cruz">Santa Cruz</option>
 							<option value="Santa Fé">Santa Fé</option>
 							<option value="Santiago del Estero">Santiago del Estero</option>
-							<option value="Tucumán">Tucumán</option></select>
+							<option value="Tucumán">Tucumán</option>
 						    <option value="Tierra del Fuego">Tierra del Fuego</option></select></div>
 </fieldset>
 
