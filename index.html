@@ -1925,6 +1925,7 @@ var theval = $("#1471599855");
 $("#todoslosmodelos select").change(function(){
   $("#restodelform").show();
   $("#avisoform").hide();
+  $("#help-modelostallesseleccionados").html($("#1471599855").val());
 	val = $.each($(this).children("option:selected"), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
