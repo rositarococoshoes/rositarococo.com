@@ -1925,28 +1925,31 @@ var theval = $("#1471599855");
 $("#todoslosmodelos select").change(function(){
   $("#restodelform").show();
   $("#avisoform").hide();
-  $("#help-modelostallesseleccionados").html($("#1471599855").val());
+  
 	val = $.each($(this).children("option:selected"), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
   	if(before_change && before_change.length>0) {
     	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
-      $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
+      $("#help-modelostallesseleccionados").html($("#1471599855").val());
+	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
       $("#text").css("display", "block");
     $( "#text" ).delay(3000).fadeOut( "slow" );
     
    
     } else {
     theval.val(theval.val() + value + ", ");
-     $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
+     $("#help-modelostallesseleccionados").html($("#1471599855").val());
+	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
       $("#text").css("display", "block");
     $( "#text" ).delay(3000).fadeOut( "slow" );
 
     } 
   }
   if(value.length==0){
-    theval.val(theval.val().replace(before_change + ", ", ""));
+    $("#help-modelostallesseleccionados").html($("#1471599855").val());
+	theval.val(theval.val().replace(before_change + ", ", ""));
     $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
       $("#text").css("display", "block");
    $( "#text" ).delay(3000).fadeOut( "slow" );
