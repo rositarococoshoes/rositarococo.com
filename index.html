@@ -1982,6 +1982,24 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-eta-1-'+i).hide();
         }
     })
+	        $('input[name="hwA-qty-praga-negras"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-praga-negras-'+i).show();
+           else $('fieldset#hwA-praga-negras-'+i).hide();
+        }
+    })
+	        $('input[name="hwA-qty-praga-blancas"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-praga-blancas-'+i).show();
+           else $('fieldset#hwA-praga-blancas-'+i).hide();
+        }
+    })
               
                          $('input[name="hwA-qty-eta-2"]').click(function(){
          
