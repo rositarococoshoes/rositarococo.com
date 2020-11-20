@@ -1576,6 +1576,25 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-bahamas-negras-'+i).hide();
         }
     })
+	
+	 $('input[name="hwA-qty-lima-negras"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-lima-negras-'+i).show();
+           else $('fieldset#hwA-lima-negras-'+i).hide();
+        }
+    })
+		 $('input[name="hwA-qty-lima-suela"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-lima-suela-'+i).show();
+           else $('fieldset#hwA-lima-suela-'+i).hide();
+        }
+    })
 		 $('input[name="hwA-qty-bahamas-blancas"]').click(function(){
          
         var selected = $(this).val();
