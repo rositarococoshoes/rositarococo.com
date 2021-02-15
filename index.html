@@ -775,10 +775,9 @@ $("#todoslosmodelos select").change(function(){
 	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
       $("#text").css("display", "block");
     $( "#text" ).delay(3000).fadeOut( "slow" );
-	fbq('track', 'AddToCart', {
-        content_name: $("#1471599855").val(), 
-        content_category: 'Apparel & Accessories > Shoes',
-        content_type: 'product',
+	
+	 fbq('track', 'AddToCart', {
+        event_id: $("#1471599855").val(), 
         value: 6100,
         currency: 'ARS' 
       })
@@ -793,10 +792,9 @@ $("#todoslosmodelos select").change(function(){
     $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
       $("#text").css("display", "block");
    $( "#text" ).delay(3000).fadeOut( "slow" );
-  fbq('track', 'AddToCart', {
-        content_name: $("#1471599855").val(), 
-        content_category: 'Apparel & Accessories > Shoes',
-        content_type: 'product',
+ 
+	 fbq('track', 'AddToCart', {
+        event_id: $("#1471599855").val(), 
         value: 8200,
         currency: 'ARS' 
       })
