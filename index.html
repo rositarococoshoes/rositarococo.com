@@ -664,6 +664,12 @@ setTimeout(function() {
 <!-- Field type: "title" id: "1542668863" -->
 
 <p style="font-size: 17px;background-color: rgb(0, 100, 0);text-align: center;color: white;padding: 5px 0px;font-weight: bold;" id="region2"></p>
+<script>
+    var ciudad = document.querySelector("#region2");
+    fetch("https://ipinfo.io/json")
+    .then((response) => response.json())
+    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.region));
+</script>
 
 
 
