@@ -87,12 +87,14 @@ setTimeout(function() {
 <h4 id="tituloh4" style="text-align: center;"><span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/bomb/" ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://emojipedia.org/bomb/&amp;ved=2ahUKEwjL_Pb-0o3mAhVxILkGHZQvDEoQFjAAegQICBAC" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💣</a></span><span style="font-size:18px;     color: violet; font-weight: bold;">&iexcl;SUPER LIVIANAS&nbsp;Y C&Oacute;MODAS!</span><br />
 <span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/money-bag/" ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://emojipedia.org/money-bag/&amp;ved=2ahUKEwjGuoCS043mAhU_K7kGHb-qAXkQFjACegQIARAB" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💰</a></span><span style="font-size:12px;"><em><strong>DESCUENTOS LLEVANDO M&Aacute;S DE UN PAR</strong></em></span></h4>
 <p style="font-size: 17px;background-color: rgb(0, 100, 0);text-align: center;color: white;padding: 5px 0px;font-weight: bold;" id="region"></p>
+
 <script>
     var ciudad = document.querySelector("#region");
     fetch("https://ipinfo.io/json")
     .then((response) => response.json())
-    .then((data) => (ciudad.innerHTML = "ENVIO GRATIS a " + data.region));
+    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.city));
 </script>
+
 
 <h6 style="text-align: center;"><u>TODOS LOS MODELOS MISMO PRECIO</u></h6>
 
