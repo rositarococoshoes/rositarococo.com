@@ -88,7 +88,7 @@ setTimeout(function() {
 <span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/money-bag/" ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://emojipedia.org/money-bag/&amp;ved=2ahUKEwjGuoCS043mAhU_K7kGHb-qAXkQFjACegQIARAB" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💰</a></span><span style="font-size:12px;"><em><strong>DESCUENTOS LLEVANDO M&Aacute;S DE UN PAR</strong></em></span></h4>
 <p style="font-size: 17px;background-color: rgb(0, 100, 0);text-align: center;color: white;padding: 5px 0px;font-weight: bold;" id="region1"></p>
 <script>
-    var ciudad = document.querySelectorAll("#region1,#region2");
+    var ciudad = document.querySelector("#region1");
     fetch("https://ipinfo.io/json")
     .then((response) => response.json())
     .then((data) => (ciudad.innerHTML = "ENVIO GRATIS a " + data.region));
@@ -664,6 +664,12 @@ setTimeout(function() {
 <!-- Field type: "title" id: "1542668863" -->
 
 <p style="font-size: 17px;background-color: rgb(0, 100, 0);text-align: center;color: white;padding: 5px 0px;font-weight: bold;" id="region2"></p>
+<script>
+    var ciudad = document.querySelector("#region2");
+    fetch("https://ipinfo.io/json")
+    .then((response) => response.json())
+    .then((data) => (ciudad.innerHTML = "ENVIO GRATIS a " + data.region));
+</script>
 
 
 <h6 style="text-align: center;"><u>TODOS LOS MODELOS MISMO PRECIO</u></h6>
