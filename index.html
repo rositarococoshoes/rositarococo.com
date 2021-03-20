@@ -1044,7 +1044,7 @@ $('#bootstrapForm').submit(function (event) {
   
   </script>
   <script>
-    var ciudad = document.querySelector(".region");
+    var ciudad = document.querySelector("#region");
     fetch("https://ipinfo.io/json")
     .then((response) => response.json())
     .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.region));
