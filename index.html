@@ -1039,9 +1039,9 @@ $('#bootstrapForm').submit(function (event) {
   <script>
   $( document ).ready(function() {
     var ciudad = document.querySelector("#region");
-    fetch("https://ipinfo.io/json")
+    fetch("http://ip-api.com/json")
     .then((response) => response.json())
-    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.region));
+    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.city));
 		});
 </script>
   
