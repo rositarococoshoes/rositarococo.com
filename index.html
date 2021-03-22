@@ -1041,7 +1041,7 @@ $('#bootstrapForm').submit(function (event) {
     var ciudad = document.querySelector("#region");
     fetch("https://ipapi.co/json")
     .then((response) => response.json())
-    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a " + data.city));
+    .then((data) => (ciudad.innerHTML = "ENVÍO GRATIS a todo" + data.region));
 		});
 </script>
   
