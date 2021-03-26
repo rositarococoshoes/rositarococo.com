@@ -834,7 +834,7 @@ $("#todoslosmodelos select").change(function(){
   	if(before_change && before_change.length>0) {
     	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
       $("#help-modelostallesseleccionados").html($("#1471599855").val());
-	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
+	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(30000).fadeOut( "slow" );
 	
@@ -846,7 +846,7 @@ $("#todoslosmodelos select").change(function(){
     } else {
     theval.val(theval.val() + value + ", ");
      $("#help-modelostallesseleccionados").html($("#1471599855").val());
-	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
+	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(30000).fadeOut( "slow" );
 	
@@ -862,7 +862,7 @@ $("#todoslosmodelos select").change(function(){
   if(value.length==0){
     $("#help-modelostallesseleccionados").html($("#1471599855").val());
 	theval.val(theval.val().replace(before_change + ", ", ""));
-    $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span><br><i>Llevando dos o tres pares tenés descuentos</i>.<br>Completá el formulario más abajo ↓↓↓");
+    $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
    $( "#text" ).delay(30000).fadeOut( "slow" );
  
