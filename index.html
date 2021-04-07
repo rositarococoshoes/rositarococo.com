@@ -975,8 +975,8 @@ $('#bootstrapForm').submit(function (event) {
 	fetch("https://ipapi.co/json")
     .then((response) => response.json())
     .then((data) => (ciudad.innerHTML = "🚚 "+data.region+": ENVÍO GRATIS + DESCUENTOS"));
-	}, 10000);
-   $("#region").slideDown();	
+	$("#region").slideDown();}, 10000);
+   	
    });
 </script>
   
