@@ -973,11 +973,9 @@ $('#bootstrapForm').submit(function (event) {
     async function precioslocales() {
     const response = await fetch('https://api.ipregistry.co/?key=s76nloely98bwb&fields=location.city');
     const json = await response.json();
-var ciudad = document.querySelector("#region");
+var region = document.querySelector("#region");
 var ciudadip = json.location.city;
-  region.innerHTML = provincia;
-ciudad.innerHTML = "🚚 "+ciudadip+": ENVÍO GRATIS + DESCUENTOS"
- jQuery("#regionip").show();
+region.innerHTML = "🚚 "+ciudadip+": ENVÍO GRATIS + DESCUENTOS";
 }
 
 precioslocales()
