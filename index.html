@@ -970,12 +970,19 @@ $('#bootstrapForm').submit(function (event) {
   </script>
   <script>
   $( document ).ready(function() {
-    var ciudad = document.querySelector("#region");
-    setTimeout(function() {
-	fetch("https://ipapi.co/json")
-    .then((response) => response.json())
-    .then((data) => (ciudad.innerHTML = "🚚 "+data.region+": ENVÍO GRATIS + DESCUENTOS"));
-	$("#region").slideDown();}, 10000);
+    async function precioslocales() {
+    const response = await fetch('https://api.ipregistry.co/?key=s76nloely98bwb&fields=location.city');
+    const json = await response.json();
+var ciudad = document.querySelector("#region");
+var ciudadip = json.location.city;
+  region.innerHTML = provincia;
+ciudad.innerHTML = "🚚 "+ciudadip+": ENVÍO GRATIS + DESCUENTOS"
+ jQuery("#regionip").show();
+}
+
+precioslocales()
+	
+$("#region").slideDown();
    	
    });
 </script>
