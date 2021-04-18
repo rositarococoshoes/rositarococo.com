@@ -1562,7 +1562,7 @@ $("#todoslosmodelos select").change(function(){
   $("#region").hide(); 
   $("#restodelform").show();
   $("#avisoform").hide(); 
-  $( '<p style="margin-top:20px;font-size:13px;line-height:22px;color:rgb(0, 100, 0);font-weight:bold;">¡AGREGADO! MÁS ABAJO PODRÁS COMPLETAR DATOS DE ENVÍO</p>' ).insertAfter( ".talle" ).fadeOut(3000);
+  $( '<p style="margin-top:20px;font-size:15px;line-height:22px;color:rgb(0, 100, 0);font-weight:bold;">¡AGREGADO!<br>MÁS ABAJO PODRÁS COMPLETAR DATOS DE ENVÍO</p>' ).insertAfter( ".talle" ).fadeOut(5000);
 	val = $.each($(this).children("option:selected"), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
