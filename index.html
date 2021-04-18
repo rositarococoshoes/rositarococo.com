@@ -88,7 +88,7 @@ setTimeout(function() {
 <span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/money-bag/" ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://emojipedia.org/money-bag/&amp;ved=2ahUKEwjGuoCS043mAhU_K7kGHb-qAXkQFjACegQIARAB" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💰</a></span><span style="font-size:12px;"><em><strong>DESCUENTOS LLEVANDO M&Aacute;S DE UN PAR</strong></em></span></h4>
 
 <h6 style="text-align: center;"><u>TODOS LOS MODELOS MISMO PRECIO</u></h6>
-<p style="color: white;background-color: violet;padding: 5px 10px;font-weight: bold;text-align: center;font-size: 15px;">3 CUOTAS SIN INTERÉS HOY <span id="fechahoy"></span></p>
+<p id="fechahoy" style="color: white;background-color: violet;padding: 5px 10px;font-weight: bold;text-align: center;font-size: 15px;"></p>
 <h6><span style="font-size: 20px;text-align: center;line-height: 30px;margin: auto;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: rgb(255, 0, 0);  padding: 0px 5px;">1 par:&nbsp; &nbsp; &nbsp;🔥 $3950</span><br>
 <span style="color: rgb(255, 0, 0);  padding: 0px 5px;">2 pares: 🔥 $6100</span><span>($3050 c/par)</span><br>
 <span style="/* font-size: 15px; */font-weight: 700;color: rgb(255, 0, 0);padding: 0px 5px;">3 pares&nbsp; 🔥 $8200</span><span>($2733 c/par)</span></span></span><br>
@@ -1747,7 +1747,19 @@ $("#whatsapp").slideUp( 300 ).delay( 20000 ).fadeIn( 400 );
 var d = new Date();
 var strDate =  d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();
 var fechahoy = document.querySelector("#fechahoy");
-fechahoy.innerHTML = strDate;
+
+var i = 0;
+var txt = '3 CUOTAS SIN INTERÉS HOY ' + strDate; /* The text */
+var speed = 50; /* The speed/duration of the effect in milliseconds */
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("fechahoy").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+typeWriter();
    	
    });
 </script>
