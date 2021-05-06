@@ -1057,10 +1057,7 @@ $("#todoslosmodelos select").change(function(){
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
-	 fbq('track', 'AddToCart', {
-        value: 3300,
-        currency: 'ARS' 
-      })
+	 fbq('track', 'AddToCart');
    
     } else {
     theval.val(theval.val() + value + ", ");
@@ -1069,13 +1066,8 @@ $("#todoslosmodelos select").change(function(){
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
-	 fbq('track', 'AddToCart', {
-        value: 6100,
-        currency: 'ARS' 
-      })
-	
-	
-
+	 fbq('track', 'AddToCart');
+	 
     } 
   }
   if(value.length==0){
@@ -1085,10 +1077,7 @@ $("#todoslosmodelos select").change(function(){
       $("#text").css("display", "block");
    $( "#text" ).delay(9930000).fadeOut( "slow" );
  
-	 fbq('track', 'AddToCart', {
-        value: 8200,
-        currency: 'ARS' 
-      })
+	 fbq('track', 'AddToCart');
   
   }
   $(this).data('pre', $(this).val());
