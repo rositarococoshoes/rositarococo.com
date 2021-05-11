@@ -1043,6 +1043,8 @@ var val = "";
 var theval = $("#1471599855");
 
 $("#todoslosmodelos select").change(function(){
+  $(this).prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
+  $('.avisoagregado').fadeOut(10000);
   $("#region").hide(); 
   $("#restodelform").show();
   $("#avisoform").hide(); 
