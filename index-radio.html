@@ -1055,7 +1055,8 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
         We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:50px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
    	$(document).ready(function(){
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	
@@ -1154,7 +1155,7 @@ $(".radiocss input[type='radio']").change(function(){
   $("#restodelform").show();
   $("#avisoform").hide(); 
   $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;width: 100%;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
-	val = $.each($(this).children("input[type='radio']:checked"), ()=> {
+	val = $.each($(this), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
