@@ -246,22 +246,22 @@ setTimeout(function() {
 <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
 <div class="form-group"><div class="radiocss">
 				<p>Seleccione su talle</p>
-				<input type="radio" name="hwA-qty-roma-negras" id="35">
+				<input type="radio" name="hwA-qty-roma-negras" value="35-roma-negras">
 				<label for="35">35</label>
 		
-				<input type="radio" name="hwA-qty-roma-negras" id="36">
+				<input type="radio" name="hwA-qty-roma-negras" value="36-roma-negras">
 				<label for="36">36</label>
 		
-				<input type="radio" name="hwA-qty-roma-negras" id="37">
+				<input type="radio" name="hwA-qty-roma-negras" value="37-roma-negras">
 				<label for="37">37</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="38">
+				<input type="radio" name="hwA-qty-roma-negras" value="38-roma-negras">
 				<label for="38">38</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="39">
+				<input type="radio" name="hwA-qty-roma-negras" value="39-roma-negras">
 				<label for="39">39</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="40">
+				<input type="radio" name="hwA-qty-roma-negras" value="40-roma-negras">
 				<label for="40">40</label>
 			</div>
 			</div>
@@ -270,22 +270,22 @@ setTimeout(function() {
 <fieldset class="fieldsetstalles" id="hwA-roma-negras-3">
 <div class="form-group"><div class="radiocss">
 				<p>Seleccione su talle</p>
-				<input type="radio" name="hwA-qty-roma-negras" id="35">
+				<input type="radio" name="hwA-qty-roma-negras" value="35-roma-negras">
 				<label for="35">35</label>
 		
-				<input type="radio" name="hwA-qty-roma-negras" id="36">
+				<input type="radio" name="hwA-qty-roma-negras" value="36-roma-negras">
 				<label for="36">36</label>
 		
-				<input type="radio" name="hwA-qty-roma-negras" id="37">
+				<input type="radio" name="hwA-qty-roma-negras" value="37-roma-negras">
 				<label for="37">37</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="38">
+				<input type="radio" name="hwA-qty-roma-negras" value="38-roma-negras">
 				<label for="38">38</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="39">
+				<input type="radio" name="hwA-qty-roma-negras" value="39-roma-negras">
 				<label for="39">39</label>
 
-				<input type="radio" name="hwA-qty-roma-negras" id="40">
+				<input type="radio" name="hwA-qty-roma-negras" value="40-roma-negras">
 				<label for="40">40</label>
 			</div>
 			</div>
@@ -1154,7 +1154,7 @@ $(".radiocss input[type='radio']").change(function(){
   $("#restodelform").show();
   $("#avisoform").hide(); 
   $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;width: 100%;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
-	val = $.each($(this).val(), ()=> {
+	val = $.each($(this), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
