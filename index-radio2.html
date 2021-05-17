@@ -1063,7 +1063,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 var val = "";
 var theval = $("#1471599855");
 
-$(".customselect-list-input").change(function(){
+$("#todoslosmodelos input.customselect-list-input").change(function(){
   $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
   $('.avisoagregado').fadeOut(10000);
   $("#region").hide(); 
