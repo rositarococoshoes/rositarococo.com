@@ -1070,7 +1070,7 @@ $("#todoslosmodelos input.customselect-list-input").change(function(){
   $("#restodelform").show();
   $("#avisoform").hide(); 
   $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;width: 100%;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
-	val = $.each($(this), ()=> {
+	val = $.each($(this).val(), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
