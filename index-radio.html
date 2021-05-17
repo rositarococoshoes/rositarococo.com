@@ -1056,6 +1056,26 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:50px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://www.jqueryscript.net/demo/custom-select-checkbox-radio/dist/jquery.customselect.js?v3"></script>
+	<script>
+    //Defaults
+    jQuery('body').customselect({
+        labelPosition: 'wrap', // after | before | wrap
+        style: 'list', // list | none
+        dropdown: false, // true | false
+        classList: '', // string
+        targetTypes: ['select-multiple', 'select-one'], // select-multiple | select-one
+        parentNode: null, // null | selector
+        observe: true, // true | false
+        selectedLimit: 3, // number
+        selectedDelimiter: ' | ', // string
+        emptyText: 'Nothing selected', // string
+        selectedText: 'selected', // string
+        allSelectedText: 'All selected', // string
+        search: false,
+    });
+    </script>
 <script>
    	$(document).ready(function(){
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
