@@ -1354,13 +1354,13 @@ function remove(el) {
 </script>
 <script>
 $(document).ready( function() {
-    var topOfOthDiv = $("#finalizarpedido").offset().top;
+    var topOfOthDiv = $("#restodelform").offset().top;
     $(window).scroll(function() {
         if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
-            $("#dvid").hide(); //reached the desired point -- hide div
+            $("#finalizarpedido").hide(); //reached the desired point -- hide div
         }
         else{
-            $("#dvid").show(); //else above the desired point -- hide div
+            $("#finalizarpedido").show(); //else above the desired point -- hide div
         }
     });
 });
