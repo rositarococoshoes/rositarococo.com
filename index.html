@@ -1266,7 +1266,7 @@ else if(words.length > 4){
      
         
 }
-$("#text").append('<a id="finalizarpedido" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR PEDIDO</a>');
+$("#text").append('<a id="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR PEDIDO</a>');
 
 });
       
@@ -1347,9 +1347,10 @@ $('#bootstrapForm').submit(function (event) {
   
   </script>
  <script>
- $("#finalizarpedido").click(function(){
-  $("finalizarpedido").hide();
-});
+function remove(el) {
+  var element = el;
+  element.remove();
+}
 </script> 
   <script>
   $( document ).ready(function() {
