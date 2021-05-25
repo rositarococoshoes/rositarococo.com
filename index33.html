@@ -1267,7 +1267,15 @@ else if(words.length > 4){
         
 }
 $("#text").append('<a id="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR PEDIDO</a>');
-
+ var topOfOthDiv = $("#restodelform").offset().top;
+    $(window).scroll(function() {
+        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
+            $("#finalizarpedido").hide(); //reached the desired point -- hide div
+        }
+        else{
+            $("#finalizarpedido").show(); //else above the desired point -- hide div
+        }
+    });
 });
       
 
@@ -1352,19 +1360,6 @@ function remove(el) {
   element.remove();
 }
 </script>
-<script>
-$(document).ready( function() {
-    var topOfOthDiv = $("#restodelform").offset().top;
-    $(window).scroll(function() {
-        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
-            $("#finalizarpedido").hide(); //reached the desired point -- hide div
-        }
-        else{
-            $("#finalizarpedido").show(); //else above the desired point -- hide div
-        }
-    });
-});
-</script> 
   <script>
   $( document ).ready(function() {
     async function precioslocales() {
