@@ -1802,6 +1802,14 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            if(i<=selected)$('fieldset#hwA-lima-blancas-'+i).show();
            else $('fieldset#hwA-lima-blancas-'+i).hide();
         }
+		$('input[name="hwA-qty-lima-nude"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-lima-nude-'+i).show();
+           else $('fieldset#hwA-lima-nude-'+i).hide();
+        }
     })
 		 $('input[name="hwA-qty-florida-oro"]').click(function(){
          
