@@ -475,6 +475,81 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 </div>
 
+<div class="contorno" id="modeload-gamma-suela">
+<div class="single-item">
+<div><label for="gamma-suela"><img alt="" src="gamma-suela-1.jpg"  /></label></div>
+<div><label for="gamma-suela"><img alt="" data-lazy="gamma-suela-2.jpg"  /></label></div>
+<div><label for="gamma-suela"><img alt="" data-lazy="gamma-suela-3.jpg"  /></label></div>
+<div><label for="gamma-suela"><img alt="" data-lazy="gamma-suela-4.jpg"  /></label></div>
+</div>
+
+<div class="novisible" id="talles-gamma-suela">
+<div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);">&nbsp;</span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">MATERIAL</span>: Cuero PU. Suela:</small></span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;">&nbsp;<em>PVC.</em></small></span></div>
+
+<div style="margin-bottom: 115px;">
+<table>
+  <tbody><tr>
+    <th>Talle</th>
+    <th>Plantilla interna</th>
+  </tr>
+  <tr>
+    <td>35</td>
+    <td>23,2 cm</td>
+  </tr>
+  <tr>
+    <td>36</td>
+    <td>23,5 cm</td>
+  </tr>
+  <tr>
+    <td>37</td>
+    <td>24,5 cm</td>
+  </tr>
+  
+  
+</tbody></table>
+	
+	<table>
+  <tbody><tr>
+    <th>Talle</th>
+    <th>Plantilla interna</th>
+  </tr>
+
+  <tr>
+    <td>38</td>
+    <td>25 cm</td>
+  </tr>
+  <tr>
+    <td>39</td>
+    <td>26,2 cm</td>
+  </tr>
+   <tr>
+    <td>40</td>
+    <td>26,5 cm</td>
+  </tr>
+  
+</tbody></table>
+
+</div>
+
+<div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par:&nbsp;🔥 $4750 | </span><span style="color: #ff00dc;">2 pares: 🔥 $8250 | </span><span style="font-weight: 700; color: #ff00dc;">3 pares&nbsp;🔥 $9900</span></span></span>
+<br>
+<span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
+<label>1 <input checked="checked" name="hwA-qty-gamma-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-gamma-suela" type="radio" value="2" /></label> <label>3 <input name="hwA-qty-gamma-suela" type="radio" value="3" /></label></div>
+
+<fieldset id="hwA-gamma-suela-1">
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-gamma-suela">35</option><option value="36-gamma-suela">36</option><option value="37-gamma-suela">37</option><option value="38-gamma-suela">38</option><option value="39-gamma-suela">39</option><option value="40-gamma-suela">40</option></select></div>
+</fieldset>
+
+<fieldset class="fieldsetstalles" id="hwA-gamma-suela-2">
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-gamma-suela">35</option><option value="36-gamma-suela">36</option><option value="37-gamma-suela">37</option><option value="38-gamma-suela">38</option><option value="39-gamma-suela">39</option><option value="40-gamma-suela">40</option></select></div>
+</fieldset> 
+
+<fieldset class="fieldsetstalles" id="hwA-gamma-suela-3">
+<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione TALLE Para Agregar Al Pedido --</option><option value="35-gamma-suela">35</option><option value="36-gamma-suela">36</option><option value="37-gamma-suela">37</option><option value="38-gamma-suela">38</option><option value="39-gamma-suela">39</option><option value="40-gamma-suela">40</option></select></div>
+</fieldset>
+</div>
+</div>
+
 <div class="contorno" id="modeload-florida-plata">
 <div class="single-item">
 <div><label for="florida-plata"><img alt="" src="florida-plata.jpg"  /></label></div>
@@ -1813,6 +1888,15 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         for(i=1;i<=3;i++){
            if(i<=selected)$('fieldset#hwA-lima-nude-'+i).show();
            else $('fieldset#hwA-lima-nude-'+i).hide();
+        }
+    })
+			$('input[name="hwA-qty-gamma-suela"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-gamma-suela-'+i).show();
+           else $('fieldset#hwA-gamma-suela-'+i).hide();
         }
     })
 		 $('input[name="hwA-qty-florida-oro"]').click(function(){
