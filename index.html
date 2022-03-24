@@ -1151,11 +1151,12 @@ function remove(el) {
   <script>
   $( document ).ready(function() {
     async function precioslocales() {
-    const response = await fetch('https://api.ipregistry.co/?key=ytj9a1amj1kefj&fields=location.city');
+    const response = await fetch('https://api.ipregistry.co/?key=ytj9a1amj1kefj&fields=location.city,location.region');
     const json = await response.json();
 var region = document.querySelector("#region");
 var ciudadip = json.location.city;
-region.innerHTML = "🚚 "+ciudadip+": Envío GRATIS";
+var provinciaip = json.location.region;
+region.innerHTML = "🚚 "+ciudadip+" y todo "+provinciaip+": Envío GRATIS HOY";
 }
 
 precioslocales()
