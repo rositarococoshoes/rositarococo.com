@@ -1129,21 +1129,21 @@ $('#bootstrapForm').submit(function (event) {
 			
 var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
-    
+    var queryString = $('#1471599855').serialize();
     if(words.length === 2){
-        window.location = 'http://www.rositarococo.com/gracias-1par.html'
+        window.location = 'http://www.rositarococo.com/gracias-1par.html'+queryString
        
     }
  if(words.length === 3){
-        window.location = 'http://www.rositarococo.com/gracias-2pares.html'
+        window.location = 'http://www.rositarococo.com/gracias-2pares.html'+queryString
         
     }
  if(words.length === 4){
-       window.location = 'http://www.rositarococo.com/gracias-3pares.html'
+       window.location = 'http://www.rositarococo.com/gracias-3pares.html'+queryString
        
     }
 else if(words.length > 4){
-        window.location = 'http://www.rositarococo.com/gracias-3pares.html'
+        window.location = 'http://www.rositarococo.com/gracias-3pares.html'+queryString
         
     }
              
