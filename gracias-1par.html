@@ -125,5 +125,24 @@ Tipo y número de documento: DNI - 29410535</p>
 Whatsapp aqu&iacute; =&gt; <a href="http://bit.ly/wspb-rosita" style="background-color: rgb(252, 252, 252);">http://bit.ly/wspb-rosita</a></p>
 
 </div>
+<script>
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+var talleselegidos = getUrlParameter('entry.1471599855');
+$("#talleselegidos").replaceWith(talleselegidos);  
+</script>
 </body>
 </html>
