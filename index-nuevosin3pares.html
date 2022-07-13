@@ -1242,11 +1242,8 @@ $("#todoslosmodelos select").change(function(){
 
   if(words.length === 2){ $("#preciototal,#preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $9500 x 1 par +&nbsp;</span><span style='color: rgb(0, 100, 0);'>ENV&Iacute;O GRATIS</span>"); }
  if(words.length === 3){ $("#preciototal,#preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $14500 x 2 pares +&nbsp;</span><span style='color: rgb(0, 100, 0);'>ENV&Iacute;O GRATIS</span>"); }
- if(words.length === 4){ $("#preciototal,#preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $15500 x 3 pares +&nbsp;</span><span style='color: rgb(0, 100, 0);'>ENV&Iacute;O GRATIS</span>"); }
-else if(words.length > 4){
-     
-        
-}
+ if(words.length > 3){ $("#preciototal,#preciototal2").html("Sólo puede agregar 2 pares máximo a su pedido"); }
+
 $("#text").append('<a id="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR COMPRA</a>');
  var topOfOthDiv = $("#restodelform").offset().top;
     $(window).scroll(function() {
