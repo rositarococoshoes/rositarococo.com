@@ -1294,7 +1294,7 @@ $('#' + modeload).insertBefore("#tituloh4");
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
    if ($("#hontrap").val() != '') { 
-    event.preventDefault() 
+    e.stopImmediatePropagation(); 
     }
  
   var dnidelpedido = $("#541001873").val();
@@ -1307,7 +1307,7 @@ $('#bootstrapForm').submit(function (event) {
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
         if ($("#hontrap").val() != '') { 
-    event.preventDefault() 
+    e.stopImmediatePropagation(); 
     }
         data: extraData,
         dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
