@@ -1294,7 +1294,7 @@ $('#' + modeload).insertBefore("#tituloh4");
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
    if ($("#hontrap").val() != '') { 
-     event.preventDefault(); 
+     e.stopImmediatePropagation(); 
     }
  
   var dnidelpedido = $("#541001873").val();
