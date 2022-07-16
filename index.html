@@ -1293,10 +1293,10 @@ $('#' + modeload).insertBefore("#tituloh4");
 });   
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
-  
-  if (!document.getElementById('1209868979').value.startsWith('http')) {
-  event.preventDefault();
-}
+   if ($("#hontrap").val() != '') { 
+     event.preventDefault(); 
+    }
+ 
   var dnidelpedido = $("#541001873").val();
   localStorage.setItem('order_id', dnidelpedido);
   localStorage.setItem('event_id', dnidelpedido);
