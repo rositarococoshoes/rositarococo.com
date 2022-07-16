@@ -1292,9 +1292,10 @@ $('#' + modeload).insertBefore("#tituloh4");
 });   
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
- //  if ($('#hontrap').val() != '') { 
- //   e.stopImmediatePropagation(); 
-//    }
+
+   if (!$('#1209868979').val().startsWith("https")) { 
+    event.preventDefault()
+    }
  
   
   $('#botoncomprar').attr('value', 'Espere...');
@@ -1302,9 +1303,10 @@ $('#bootstrapForm').submit(function (event) {
    event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
- //       if ($('#hontrap').val() != '') { 
- //   e.stopImmediatePropagation(); 
- //   }
+
+   if (!$('#1209868979').val().startsWith("https")) { 
+    event.preventDefault()
+    }
         data: extraData,
         dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
         error: function () {
