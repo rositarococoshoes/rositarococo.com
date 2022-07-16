@@ -951,7 +951,6 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <!-- Field type: "paragraph" id: "1877226420" -->
 
 <fieldset><legend for="1877226420">Calle y Altura (aclarar casa o piso y depto.)</legend>
-<input style="display:none;" id="hontrap" />
 <div class="form-group"><input class="form-control" id="951592426" name="entry.951592426" required=""/></div>
 </fieldset>
 
@@ -1293,22 +1292,19 @@ $('#' + modeload).insertBefore("#tituloh4");
 });   
 </script><script>
 $('#bootstrapForm').submit(function (event) {  
-   if ($('#hontrap').val() != '') { 
-    e.stopImmediatePropagation(); 
-    }
+ //  if ($('#hontrap').val() != '') { 
+ //   e.stopImmediatePropagation(); 
+//    }
  
-  var dnidelpedido = $("#541001873").val();
-  localStorage.setItem('order_id', dnidelpedido);
-  localStorage.setItem('event_id', dnidelpedido);
   
   $('#botoncomprar').attr('value', 'Espere...');
 	$('#botoncomprar').attr('disabled', 'true');
-    event.preventDefault()
+ //   event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
-        if ($('#hontrap').val() != '') { 
-    e.stopImmediatePropagation(); 
-    }
+ //       if ($('#hontrap').val() != '') { 
+ //   e.stopImmediatePropagation(); 
+ //   }
         data: extraData,
         dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
         error: function () {
