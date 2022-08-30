@@ -945,6 +945,24 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-sofia-blancas-'+i).hide();
         }
     })
+		 $('input[name="hwA-qty-sofia-nude"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-sofia-nude-'+i).show();
+           else $('fieldset#hwA-sofia-nude-'+i).hide();
+        }
+    })
+			 $('input[name="hwA-qty-sofia-plata"]').click(function(){
+         
+        var selected = $(this).val();
+
+        for(i=1;i<=3;i++){
+           if(i<=selected)$('fieldset#hwA-sofia-plata-'+i).show();
+           else $('fieldset#hwA-sofia-plata-'+i).hide();
+        }
+    })
 	 $('input[name="hwA-qty-parma"]').click(function(){
          
         var selected = $(this).val();
