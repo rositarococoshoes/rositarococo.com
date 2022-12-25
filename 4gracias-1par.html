@@ -77,6 +77,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 
+<!-- Incluye el archivo JavaScript del SDK -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body style="cursor: auto;background-color:white;">
 <!-- Google Tag Manager (noscript) -->
@@ -152,8 +154,6 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 
 
-<!-- Incluye el archivo JavaScript del SDK -->
-<script src="https://sdk.mercadopago.com/js/v2"></script>
 
 <!-- Crea un formulario de pago -->
 <form id="form-payment" method="post">
@@ -161,12 +161,13 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </form>
 
 <script>
+window.onload = function() {
   // Inicializa el SDK de MercadoPago utilizando el access token
   const mp = new MercadoPago("APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598");
 
  // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
   mp.payments.post({
-    external_reference: "MI_EXTERNAL_REFERENCE",
+    external_reference: "6765567776567",
     // Otros campos de la preferencia de pago
   }, function(status, response) {
     if (status != 201) {
@@ -177,6 +178,7 @@ $("#talleselegidos").replaceWith(talleselegidos);
       window.location.href = paymentUrl;
     }
   });
+  };
 </script>
 
 </body>
