@@ -96,9 +96,83 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p style="text-align: center; font-size: 13px;">3 y 6 cuotas sin interés sólo con <u>tarjetas bancarias</u>.</p>
 <p><span style="color:#000000;"><span style="font-size:14px;"><u><strong>Tarjeta de crédito/débito:</strong></u></span></span></p>
 
-<form id="payment-form">
-<button id="payment-button">Comprar</button>
-</form>
+  <form action="/process_payment" method="post" id="paymentForm">
+    <h3>Detalhe do comprador</h3>
+    <div>
+      <div>
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="text" value="test@test.com" />
+      </div>
+      <div>
+        <label for="docType">Tipo de documento</label>
+        <select id="docType" name="docType" data-checkout="docType" type="text"></select>
+      </div>
+      <div>
+        <label for="docNumber">Número do documento</label>
+        <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text" value='77882564044' />
+      </div>
+    </div>
+    <h3>Detalhes do cartão</h3>
+    <div>
+      <div>
+        <label for="cardholderName">Titular do cartão</label>
+        <input id="cardholderName" data-checkout="cardholderName" type="text" value='APRO'>
+      </div>
+
+      <!-- substituição dos inputs de data de vencimento por divs -->
+      <!-- <div>
+        <label for="">Data de vencimento</label>
+        <div>
+          <input type="text" placeholder="MM" value='11' id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+            onselectstart="return false" onpaste="return false" oncopy="return false" oncut="return false"
+            ondrag="return false" ondrop="return false" autocomplete=off>
+          <span class="date-separator">/</span>
+          <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
+            onselectstart="return false" onpaste="return false" oncopy="return false" oncut="return false" value='25'
+            ondrag="return false" ondrop="return false" autocomplete=off>
+        </div>
+      </div> -->
+      <label for="">Data de vencimento</label>
+      <div id="cardExpirationDate"></div>
+
+      <!-- substituição do input de card number por divs -->
+      <!-- <div>
+        <label for="cardNumber">Número do cartão</label>
+        <input type="text" id="cardNumber" data-checkout="cardNumber" />
+      </div> -->
+
+      <label>Número do cartão</label>
+      <div id="cardNumber"></div>
+
+      <!-- substituição do input de código de segurança por divs -->
+      <!-- <label for="securityCode">Código de segurança</label>
+      <div>
+        <input id="securityCode" value='123' data-checkout="securityCode" type="text" onselectstart="return false"
+          onpaste="return false" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false"
+          autocomplete=off>
+      </div> -->
+
+      <label>Código de segurança</label>
+      <div id="securityCode"> </div>
+
+      <div id="issuerInput">
+        <label for="issuer">Banco emissor</label>
+        <select id="issuer" name="issuer" data-checkout="issuer"></select>
+      </div>
+      <div>
+        <label for="installments">Parcelas</label>
+        <select type="text" id="installments" name="installments"></select>
+      </div>
+      <div>
+        <input type="hidden" name="transactionAmount" id="transactionAmount" value="100" />
+        <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+        <input type="hidden" name="description" id="description" value="description" />
+        <br>
+        <button type="submit">Pagar</button>
+        <br>
+      </div>
+    </div>
+  </form>
 </p>
 
 <p>Toc&aacute;&nbsp;el bot&oacute;n azul&nbsp;arriba para ir a pagar con cualquier tarjeta de cr&eacute;dito o d&eacute;bito en la plataforma segura de Mercadopago.&nbsp; Podr&aacute;s elegir 1 pago o en cuotas sin interés. Luego de pagar recibir&aacute;s un email desde Mercadopago confirmando tu pago.</p>
@@ -146,36 +220,146 @@ var talleselegidos = getUrlParameter('entry.1471599855');
 $("#talleselegidos").replaceWith(talleselegidos);  
 </script>
 
-<script>
-// Establece tu clave pública
- 
+  <script>
 
-  // Crea una instancia de MercadoPago
-const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+    // Atualização da intânciação do mercadopago
+    // window.Mercadopago.setPublishableKey("");
+    const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
 
-  function showPaymentButton() {
-    mp.createToken('payment-button', {
-      preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
-      external_reference: '2022998650'
-    }).then(function(response) {
-      if (response.error) {
-        // El usuario no completó correctamente el formulario de pago
-        console.log(response.error);
-      } else {
-        // Envía el token a tu servidor para crear la orden de pago
-        var form = document.getElementById('payment-form');
-        var token = document.createElement('input');
-        token.setAttribute('type', 'hidden');
-        token.setAttribute('name', 'token');
-        token.setAttribute('value', response.id);
-        form.appendChild(token);
-        form.submit();
+    //montando campos PCI nas divs correspondentes
+    const cardNumberElement = mp.fields.create('cardNumber', {
+      placeholder: "Número do cartão"
+    }).mount('cardNumber');
+    const expirationDateElement = mp.fields.create('expirationDate', {
+      placeholder: "MM/YY",
+    }).mount('cardExpirationDate');
+    const securityCodeElement = mp.fields.create('securityCode', {
+      placeholder: "Código de segurança"
+    }).mount('securityCode');
+
+    // Atualização da obtenção dos identificationTypes
+    // window.Mercadopago.getIdentificationTypes();
+    (async function getIdentificationTypes() {
+      try {
+        const identificationTypes = await mp.getIdentificationTypes();
+        const identificationTypeElement = document.getElementById('docType');
+        createSelectOptions(identificationTypeElement, identificationTypes);
+      } catch (e) {
+        return console.error('Error getting identificationTypes: ', e);
       }
-    });
-  }
+    })();
 
-  document.getElementById('payment-button').addEventListener('click', showPaymentButton);
-</script>
+    function createSelectOptions(elem, options, labelsAndKeys = { label: "name", value: "id" }) {
+      const { label, value } = labelsAndKeys;
+
+      elem.options.length = 0;
+
+      const tempOptions = document.createDocumentFragment();
+
+      options.forEach(option => {
+        const optValue = option[value];
+        const optLabel = option[label];
+
+        const opt = document.createElement('option');
+        opt.value = optValue;
+        opt.textContent = optLabel;
+
+        tempOptions.appendChild(opt);
+      });
+
+      elem.appendChild(tempOptions);
+    }
+
+    // Exemplo de como obter o bin do iframe de cardNumber
+    // document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
+    cardNumberElement.on('binChange', guessPaymentMethod);
+
+
+    async function guessPaymentMethod(data) {
+      const { bin } = data;
+      const { results } = await mp.getPaymentMethods({ bin });
+      await setPaymentMethod(results[0].id, bin)
+    };
+
+    async function setPaymentMethod(paymentMethodId, bin) {
+      document.getElementById('paymentMethodId').value = paymentMethodId;
+
+      await getIssuers(paymentMethodId, bin);
+    }
+
+
+    async function getIssuers(paymentMethodId, bin) {
+      const issuesr = await mp.getIssuers({ paymentMethodId, bin });
+
+      setIssuers(issuesr, bin)
+    }
+
+
+
+    function setIssuers(issuers, bin) {
+      let issuerSelect = document.getElementById('issuer');
+      issuers.forEach(issuer => {
+        let opt = document.createElement('option');
+        opt.text = issuer.name;
+        opt.value = issuer.id;
+        issuerSelect.appendChild(opt);
+      });
+
+      getInstallments(bin);
+    }
+
+
+    async function getInstallments(bin) {
+      const installments = await mp.getInstallments({
+          amount: document.getElementById('transactionAmount').value,
+          bin,
+          paymentTypeId: 'credit_card'
+        });
+
+        setInstallments(installments)
+    }
+
+
+    function setInstallments(installments) {
+      document.getElementById('installments').options.length = 0;
+      installments[0].payer_costs.forEach(payerCost => {
+        let opt = document.createElement('option');
+        opt.text = payerCost.recommended_message;
+        opt.value = payerCost.installments;
+        document.getElementById('installments').appendChild(opt);
+      });
+    }
+    
+
+    doSubmit = false;
+    document.getElementById('paymentForm').addEventListener('submit', getCardToken);
+
+
+    async function getCardToken(event) {
+      event.preventDefault();
+      if (!doSubmit) {
+        let $form = document.getElementById('paymentForm');
+        const token = await mp.fields.createCardToken({
+            cardholderName: document.getElementById('cardholderName').value,
+            identificationType: document.getElementById('docType').value,
+            identificationNumber: document.getElementById('docNumber').value,
+          })
+          setCardTokenAndPay(token.id)
+      }
+    };
+
+
+    function setCardTokenAndPay(token) {
+      let form = document.getElementById('paymentForm');
+      let card = document.createElement('input');
+      card.setAttribute('name', 'token');
+      card.setAttribute('type', 'hidden');
+      card.setAttribute('value', token);
+      form.appendChild(card);
+      doSubmit = true;
+      form.submit();
+    };
+  </script>
 
  
 
