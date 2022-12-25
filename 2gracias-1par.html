@@ -148,10 +148,10 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 <script>
 // Establece tu clave pública
-  MercadoPago.setPublishableKey('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+ 
 
   // Crea una instancia de MercadoPago
-  const mp = new MercadoPago();
+const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
 
   function showPaymentButton() {
     mp.createToken('payment-button', {
