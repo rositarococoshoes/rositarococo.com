@@ -158,10 +158,11 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </script>
 
 
-
-
-<!-- Crea un botón que ejecute la función de pago al hacer click -->
-<button onclick="pay()">Pagar</button>
+<form id="form-payment" method="post">
+  <input type="hidden" name="external_reference" value="MI_EXTERNAL_REFERENCE">
+  <!-- Otros campos del formulario -->
+  <button type="submit">Pagar con MercadoPago</button>
+</form>
 
 
 
@@ -179,22 +180,17 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 <!-- Modifica el external_reference del botón -->
 <script>
- function pay() {
-    // Establece la referencia externa
-    mp.setExternalReference("MI_REFERENCIA_EXTERNA");
-
-    // Crea la preferencia de pago y redirige al usuario a la plataforma de MercadoPago
-    mp.createPaymentPreference({
-      // Otros campos de la preferencia de pago
-    }, function(status, response) {
-      if (status != 200 && status != 201) {
-        // Mostrar mensaje de error al usuario
-      } else {
-        // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
-        var paymentUrl = response.response.init_point;
-        window.location.href = paymentUrl;
-      }
-    });
-  }
+document.getElementById("form-payment").addEventListener("submit", function(event) {
+  event.preventDefault();
+  MercadoPago.createToken(form, function(status, response) {
+    if (status != 200 && status != 201) {
+      // Mostrar mensaje de error al usuario
+    } else {
+      // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
+      var paymentUrl = "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + response.id;
+      window.location.href = paymentUrl;
+    }
+  });
+});
 </script>
 </html>
