@@ -153,7 +153,7 @@ const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09'); // R
   // Creo la función para mostrar el botón de pago
   function showPaymentButton() {
     // Creo el token de pago
-    MercadoPago.createToken('payment-form', {
+   mp.createToken('payment-form', {
       preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
       external_reference: '2022998650'
     }).then(function(response) {
