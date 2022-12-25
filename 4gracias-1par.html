@@ -98,7 +98,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p style="text-align: center; font-size: 13px;">3 y 6 cuotas sin interés sólo con <u>tarjetas bancarias</u>.</p>
 <p><span style="color:#000000;"><span style="font-size:14px;"><u><strong>Tarjeta de crédito/débito:</strong></u></span></span></p>
   <!-- Incluye el archivo JavaScript del SDK -->
- <script src="https://sdk.mercadopago.com/js/v2"></script>
+<script src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"></script>
 
 
 
@@ -150,12 +150,7 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </script>
 
 
-<form id="form-payment" method="post">
-  <input type="hidden" name="external_reference" value="MI_EXTERNAL_REFERENCE">
-  <!-- Otros campos del formulario -->
-  <button type="submit">Pagar con MercadoPago</button>
-</form>
-
+<button id="pay-button">Pagar</button>
 
 
 
@@ -166,23 +161,13 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </body>
 <!-- Inicializa el SDK de MercadoPago -->
 <script>
-  // Inicializa el SDK de MercadoPago utilizando el access token
-  const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
-</script>
-
-<!-- Modifica el external_reference del botón -->
-<script>
-document.getElementById("form-payment").addEventListener("submit", function(event) {
-  event.preventDefault();
-  MercadoPago.createToken(form, function(status, response) {
-    if (status != 200 && status != 201) {
-      // Mostrar mensaje de error al usuario
-    } else {
-      // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
-      var paymentUrl = "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + response.id;
-      window.location.href = paymentUrl;
-    }
+  document.getElementById('pay-button').addEventListener('click', function() {
+    window.MPC.openCheckout({
+      external_reference: 'YOUR_EXTERNAL_REFERENCE',
+      preference_id: '270831598-2a869dc7-3f33-47e9-9e78-3f0121fa6d8d'
+    }, function(response) {
+      // aquí puedes manejar la respuesta de la apertura del checkout
+    });
   });
-});
 </script>
 </html>
