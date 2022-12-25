@@ -148,9 +148,9 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 <script>
 function inicializarSDK() {
-  MercadoPago.setPublishableKey('APP_USR-27a934a4-2904-48c7-a313-c07949940a2b');
-  MercadoPago.setAccessToken('APP_USR-5781351877687308-122512-eb996ef7d09fc5bb5992d0451bc2b340-270831598');
-
+ // MercadoPago.setPublishableKey('APP_USR-27a934a4-2904-48c7-a313-c07949940a2b');
+//  MercadoPago.setAccessToken('APP_USR-5781351877687308-122512-eb996ef7d09fc5bb5992d0451bc2b340-270831598');
+ const mp = new MercadoPago("APP_USR-27a934a4-2904-48c7-a313-c07949940a2b"); 
   document.getElementById('payButton').addEventListener('click', function(event) {
     // Crea el objeto de preferencia con los datos del pago
     var preference = {
