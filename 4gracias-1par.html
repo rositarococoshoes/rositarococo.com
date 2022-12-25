@@ -155,6 +155,7 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 // Inicializar formulario de pago y generar token de pago
 <script>
+window.onload = function() {
 const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09"); 
   Mercadopago.setExternalReference("2209088734");
   Mercadopago.createToken(form, function(status, response) {
@@ -166,6 +167,7 @@ const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
       window.location.href = paymentUrl;
     }
   });
+  };
 </script>
 </body>
 </html>
