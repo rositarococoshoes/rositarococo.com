@@ -151,36 +151,28 @@ $("#talleselegidos").replaceWith(talleselegidos);
 const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09'); // Reemplaza "TU_PUBLIC_KEY" con tu public key
  
   // Creo la función para mostrar el botón de pago
-  function showPaymentButton() {
-    // Creo el token de pago
-   mp.createToken('payment-form', {
-      preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
-      external_reference: '2022998650'
-    }).then(function(response) {
-      if (response.error) {
-        // El usuario no completó correctamente el formulario de pago
-        console.log(response.error);
-      } else {
-        // Envía el token a tu servidor para crear la orden de pago
-        var form = document.getElementById('payment-form');
-        var token = document.createElement('input');
-        token.setAttribute('type', 'hidden');
-        token.setAttribute('name', 'token');
-        token.setAttribute('value', response.id);
-        form.appendChild(token);
-        form.submit();
-      }
-    });
-  }
+function showPaymentButton() {
+  mp.createToken('payment-button', {
+    preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
+    external_reference: '2022998650'
+  }).then(function(response) {
+    if (response.error) {
+      // El usuario no completó correctamente el formulario de pago
+      console.log(response.error);
+    } else {
+      // Envía el token a tu servidor para crear la orden de pago
+      var form = document.getElementById('payment-form');
+      var token = document.createElement('input');
+      token.setAttribute('type', 'hidden');
+      token.setAttribute('name', 'token');
+      token.setAttribute('value', response.id);
+      form.appendChild(token);
+      form.submit();
+    }
+  });
+}
 
-  // Asocio la función al evento click del botón de pago
- document.getElementById('payment-button').addEventListener('click', () => {
-  try {
-    showPaymentButton();
-  } catch (error) {
-    console.error(error);
-  }
-});
+document.getElementById('payment-button').addEventListener('click', showPaymentButton);
 </script>
 </body>
 </html>
