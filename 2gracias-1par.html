@@ -174,7 +174,13 @@ const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09'); // R
   }
 
   // Asocio la función al evento click del botón de pago
-  document.getElementById('payment-button').addEventListener('click', showPaymentButton);
+ document.getElementById('payment-button').addEventListener('click', () => {
+  try {
+    showPaymentButton();
+  } catch (error) {
+    console.error(error);
+  }
+});
 </script>
 </body>
 </html>
