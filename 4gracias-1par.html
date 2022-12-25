@@ -100,10 +100,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Incluye el archivo JavaScript del SDK -->
  <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-<!-- Crea un formulario de pago -->
-<form id="form-payment" method="post">
-  <!-- Otros campos del formulario -->
-</form>
+<!-- Crea un botón de pago -->
+<button id="pay-button"
+        class="mercadopago-button"
+        data-external-reference="MI_EXTERNAL_REFERENCE"
+        data-amount="1000"
+        data-description="Mi producto"
+        data-site-id="MLA">
+  Pago
+</button>
 
 
 
@@ -160,43 +165,23 @@ $("#talleselegidos").replaceWith(talleselegidos);
   <!-- Otros campos del formulario -->
 </form>
 
-<script>
-window.onload = function() {
-  // Inicializa el SDK de MercadoPago utilizando el access token
-  const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
 
- 
-  // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
-  mp.payments.post({
-    external_reference: "MI_EXTERNAL_REFERENCE",
-    payer: {
-      email: "comprador@gmail.com",
-      name: "Juan Pérez"
-    },
-    items: [
-      {
-        title: "Producto 1",
-        quantity: 2,
-        unit_price: 100
-      },
-      {
-        title: "Producto 2",
-        quantity: 1,
-        unit_price: 50
-      }
-    ],
-    auto_return: "approved"
-  }, function(status, response) {
-    if (status != 201) {
-      // Mostrar mensaje de error al usuario
-    } else {
-      // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
-      var paymentUrl = response.response.init_point;
-      window.location.href = paymentUrl;
-    }
-  });
-  };
-</script>
+
+
+
+
+
+
 
 </body>
+<!-- Inicializa el SDK de MercadoPago -->
+<script>
+  // Inicializa el SDK de MercadoPago utilizando el access token
+  const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
+</script>
+
+<!-- Modifica el external_reference del botón -->
+<script>
+  document.getElementById("pay-button").setAttribute("data-external-reference", "NUEVO_EXTERNAL_REFERENCE");
+</script>
 </html>
