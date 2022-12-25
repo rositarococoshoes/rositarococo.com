@@ -76,7 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
-<script src="https://sdk.mercadopago.com/js/v2"></script>
+
 </head>
 <body style="cursor: auto;background-color:white;">
 <!-- Google Tag Manager (noscript) -->
@@ -98,7 +98,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <button id="payButton">Pagar</button>
-
+  <!-- Incluye el archivo JavaScript del SDK -->
+ <script src="https://sdk.mercadopago.com/js/v2"></script>
 
 
 <p>Toc&aacute;&nbsp;el bot&oacute;n azul&nbsp;arriba para ir a pagar con cualquier tarjeta de cr&eacute;dito o d&eacute;bito en la plataforma segura de Mercadopago.&nbsp; Podr&aacute;s elegir 1 pago o en cuotas sin interés. Luego de pagar recibir&aacute;s un email desde Mercadopago confirmando tu pago.</p>
@@ -198,6 +199,41 @@ function inicializarSDK() {
 
 inicializarSDK();
 </script>
+
+<script>
+    function inicializarSDK() {
+	const mp = new MercadoPago("APP_USR-27a934a4-2904-48c7-a313-c07949940a2b"); 
+ //     MercadoPago.setPublishableKey('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+ //     MercadoPago.setAccessToken('APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598');
+
+      document.getElementById('payButton').addEventListener('click', function(event) {
+        // Muestra el botón de pago en la página
+        MercadoPago.renderButton({
+          // Obtiene la URL del botón de pago a partir de la respuesta de la API
+          button: document.getElementById('payButton'),
+          payment_methods: {
+excluded_payment_methods: [
+{
+id: "oxxo"
+}
+]
+},
+preference_id: "270831598-2a869dc7-3f33-47e9-9e78-3f0121fa6d8d",
+// Se ejecuta cuando el usuario completa el pago
+onPayment: function(data) {
+// Obtiene el ID del pago y redirige al usuario a la página de éxito o de error
+var paymentId = data.id;
+if (paymentId) {
+window.location.href = '/success.html';
+} else {
+window.location.href = '/error.html';
+}
+}
+});
+});
+}
+inicializarSDK();
+  </script>
 
 </body>
 </html>
