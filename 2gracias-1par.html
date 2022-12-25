@@ -148,8 +148,8 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 <script>
   // Establezco mi public key
-  MercadoPago.setPublishableKey('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
-
+const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09'); // Reemplaza "TU_PUBLIC_KEY" con tu public key
+ 
   // Creo la función para mostrar el botón de pago
   function showPaymentButton() {
     // Creo el token de pago
