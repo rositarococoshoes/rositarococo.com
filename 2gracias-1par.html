@@ -146,15 +146,14 @@ var talleselegidos = getUrlParameter('entry.1471599855');
 $("#talleselegidos").replaceWith(talleselegidos);  
 </script>
 <script>
-const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
-  MercadoPago.createToken('payment-button', {
-    preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
-    external_reference: '2022998650'
-  });
+  const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09'); // Reemplaza "TU_PUBLIC_KEY" con tu public key
+
   function showPaymentButton() {
-    MercadoPago.createToken('payment-button', {
-      preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
-      external_reference: '2022998650'
+    const externalReference = '202233233434'; // Obtiene el valor del input con id "external-reference-input"
+
+    mp.createToken('payment-button', {
+      preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0', // Reemplaza "TU_PREFERENCE_ID" con tu preference id
+      external_reference: externalReference
     }).then(function(response) {
       if (response.error) {
         // El usuario no completó correctamente el formulario de pago
@@ -171,6 +170,7 @@ const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
       }
     });
   }
+
   document.getElementById('payment-button').addEventListener('click', showPaymentButton);
 </script>
 </body>
