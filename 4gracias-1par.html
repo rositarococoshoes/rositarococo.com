@@ -160,15 +160,8 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 
 
-<!-- Crea un botón de pago -->
-<button id="pay-button"
-        class="mercadopago-button"
-        data-external-reference="MI_EXTERNAL_REFERENCE"
-        data-amount="1000"
-        data-description="Mi producto"
-        data-site-id="MLA">
-  Pago
-</button>
+<!-- Crea un botón que ejecute la función de pago al hacer click -->
+<button onclick="pay()">Pagar</button>
 
 
 
@@ -186,6 +179,22 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 <!-- Modifica el external_reference del botón -->
 <script>
-  document.getElementById("pay-button").setAttribute("data-external-reference", "NUEVO_EXTERNAL_REFERENCE");
+ function pay() {
+    // Establece la referencia externa
+    mp.setExternalReference("MI_REFERENCIA_EXTERNA");
+
+    // Crea la preferencia de pago y redirige al usuario a la plataforma de MercadoPago
+    mp.createPaymentPreference({
+      // Otros campos de la preferencia de pago
+    }, function(status, response) {
+      if (status != 200 && status != 201) {
+        // Mostrar mensaje de error al usuario
+      } else {
+        // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
+        var paymentUrl = response.response.init_point;
+        window.location.href = paymentUrl;
+      }
+    });
+  }
 </script>
 </html>
