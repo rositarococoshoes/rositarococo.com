@@ -164,12 +164,12 @@ $("#talleselegidos").replaceWith(talleselegidos);
   // Inicializa el SDK de MercadoPago utilizando el access token
   const mp = new MercadoPago("APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598");
 
-  // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
-  mp.createPreference({
-    external_reference: "20225251558847",
+ // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
+  mp.payments.post({
+    external_reference: "MI_EXTERNAL_REFERENCE",
     // Otros campos de la preferencia de pago
   }, function(status, response) {
-    if (status != 200 && status != 201) {
+    if (status != 201) {
       // Mostrar mensaje de error al usuario
     } else {
       // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
