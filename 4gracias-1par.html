@@ -165,10 +165,27 @@ window.onload = function() {
   // Inicializa el SDK de MercadoPago utilizando el access token
   const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
 
- // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
+ 
+  // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
   mp.payments.post({
-    external_reference: "6765567776567",
-    // Otros campos de la preferencia de pago
+    external_reference: "MI_EXTERNAL_REFERENCE",
+    payer: {
+      email: "comprador@gmail.com",
+      name: "Juan Pérez"
+    },
+    items: [
+      {
+        title: "Producto 1",
+        quantity: 2,
+        unit_price: 100
+      },
+      {
+        title: "Producto 2",
+        quantity: 1,
+        unit_price: 50
+      }
+    ],
+    auto_return: "approved"
   }, function(status, response) {
     if (status != 201) {
       // Mostrar mensaje de error al usuario
