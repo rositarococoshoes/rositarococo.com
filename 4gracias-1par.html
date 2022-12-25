@@ -98,9 +98,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- Incluye el archivo JavaScript del SDK -->
  <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-// Crear formulario de pago y establecer external_reference
+<!-- Crea un formulario de pago -->
 <form id="form-payment" method="post">
-  <input type="hidden" name="external_reference" value="MI_EXTERNAL_REFERENCE">
   <!-- Otros campos del formulario -->
 </form>
 
@@ -153,21 +152,32 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 
 
-// Inicializar formulario de pago y generar token de pago
+<!-- Incluye el archivo JavaScript del SDK -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<!-- Crea un formulario de pago -->
+<form id="form-payment" method="post">
+  <!-- Otros campos del formulario -->
+</form>
+
 <script>
-window.onload = function() {
-const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09"); 
-  Mercadopago.setExternalReference("2209088734");
-  Mercadopago.createToken(form, function(status, response) {
+  // Inicializa el SDK de MercadoPago utilizando el access token
+  const mp = new MercadoPago("APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598");
+
+  // Crea una preferencia de pago y obtiene una URL para redirigir al usuario
+  mp.createPreference({
+    external_reference: "20225251558847",
+    // Otros campos de la preferencia de pago
+  }, function(status, response) {
     if (status != 200 && status != 201) {
       // Mostrar mensaje de error al usuario
     } else {
       // Redirigir al usuario a la plataforma de MercadoPago para completar la transacción
-      var paymentUrl = "https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=" + response.id;
+      var paymentUrl = response.response.init_point;
       window.location.href = paymentUrl;
     }
   });
-  };
 </script>
+
 </body>
 </html>
