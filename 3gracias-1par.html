@@ -147,51 +147,56 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </script>
 
 <script>
-  const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+function inicializarSDK() {
+  MercadoPago.setPublishableKey('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+  MercadoPago.setAccessToken('APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598');
 
   document.getElementById('payButton').addEventListener('click', function(event) {
-  // Crea el objeto de preferencia con los datos del pago
-  var preference = {
-    external_reference: "2012990483",
-    items: [
-      {
-        title: "1 par promo con envío gratis",
-        quantity: 1,
-        currency_id: "ARS",
-		amount: 9950
-}
-]
+    // Crea el objeto de preferencia con los datos del pago
+    var preference = {
+      external_reference: "2012990483",
+      items: [
+        {
+          title: "1 par promo con envío gratis",
+          quantity: 1,
+          currency_id: "ARS",
+          amount: 9950
+        }
+      ]
+    }
+
+    // Realiza la llamada a la API de MercadoPago para crear la preferencia de pago
+    MercadoPago.createPreference(preference, function(response) {
+      // Muestra el botón de pago en la página
+      MercadoPago.renderButton({
+        // Obtiene la URL del botón de pago a partir de la respuesta de la API
+        button: document.getElementById('payButton'),
+        payment_methods: {
+          excluded_payment_methods: [
+            {
+              id: "oxxo"
+            }
+          ]
+        },
+        preference_id: response.id,
+        // Se ejecuta cuando el usuario ha completado el pago
+        onsuccess: function(response) {
+          // Realiza alguna acción al completar el pago, como mostrar un mensaje de éxito o redirigir a otra página
+          alert("Pago realizado con éxito");
+        },
+        // Se ejecuta si el usuario cancela el pago
+        oncancel: function() {
+          // Realiza alguna acción al cancelar el pago, como mostrar un mensaje de error o volver a mostrar el botón de pago
+          alert("Pago cancelado");
+        }
+      });
+    }, function(error) {
+      console.log(error);
+    });
+  });
 }
 
-// Realiza la llamada a la API de MercadoPago para crear la preferencia de pago
-MercadoPago.createPreference(preference, function(response) {
-// Muestra el botón de pago en la página
-MercadoPago.renderButton({
-// Obtiene la URL del botón de pago a partir de la respuesta de la API
-button: document.getElementById('payButton'),
-payment_methods: {
-excluded_payment_methods: [
-{
-id: "oxxo"
-}
-]
-},
-preference_id: response.id,
-// Se ejecuta cuando el usuario ha completado el pago
-onsuccess: function(response) {
-// Realiza alguna acción al completar el pago, como mostrar un mensaje de éxito o redirigir a otra página
-alert("Pago realizado con éxito");
-},
-// Se ejecuta si el usuario cancela el pago
-oncancel: function() {
-// Realiza alguna acción al cancelar el pago, como mostrar un mensaje de error o volver a mostrar el botón de pago
-alert("Pago cancelado");
-}
-});
-}, function(error) {
-console.log(error);
-});
-});
+inicializarSDK();
 </script>
 
 </body>
