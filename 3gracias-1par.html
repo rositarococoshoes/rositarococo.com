@@ -97,9 +97,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><span style="color:#000000;"><span style="font-size:14px;"><u><strong>Tarjeta de crédito/débito:</strong></u></span></span></p>
 
 
- <form id="payment-form">
-  <button id="payment-button">Realizar pago</button>
-</form>
+<button id="payButton">Pagar</button>
 
 
 
@@ -151,27 +149,49 @@ $("#talleselegidos").replaceWith(talleselegidos);
 <script>
   const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
 
-  function showPaymentButton() {
-    mp.createToken('payment-form', {
-      preference_id: '270831598-c6019262-cd98-4280-99de-77357c69aac0',
-      external_reference: '2022998650'
-    }).then(function(response) {
-      if (response.error) {
-        // El usuario no completó correctamente el formulario de pago
-        console.log(response.error);
-      } else {
-        // Envía el token a tu servidor para crear la orden de pago
-        var form = document.getElementById('payment-form');
-        var token = document.createElement('input');
-        token.setAttribute('type', 'hidden');
-        token.setAttribute('name', 'token');
-        token.setAttribute('value', response.id);
-        form.appendChild(token);
-        form.submit();
-      }
-    });
-  }
-  document.getElementById('payment-button').addEventListener('click', showPaymentButton);
+  document.getElementById('payButton').addEventListener('click', function(event) {
+  // Crea el objeto de preferencia con los datos del pago
+  var preference = {
+    external_reference: "2012990483",
+    items: [
+      {
+        title: "1 par promo con envío gratis",
+        quantity: 1,
+        currency_id: "ARS",
+		amount: 9950
+}
+]
+}
+
+// Realiza la llamada a la API de MercadoPago para crear la preferencia de pago
+MercadoPago.createPreference(preference, function(response) {
+// Muestra el botón de pago en la página
+MercadoPago.renderButton({
+// Obtiene la URL del botón de pago a partir de la respuesta de la API
+button: document.getElementById('payButton'),
+payment_methods: {
+excluded_payment_methods: [
+{
+id: "oxxo"
+}
+]
+},
+preference_id: response.id,
+// Se ejecuta cuando el usuario ha completado el pago
+onsuccess: function(response) {
+// Realiza alguna acción al completar el pago, como mostrar un mensaje de éxito o redirigir a otra página
+alert("Pago realizado con éxito");
+},
+// Se ejecuta si el usuario cancela el pago
+oncancel: function() {
+// Realiza alguna acción al cancelar el pago, como mostrar un mensaje de error o volver a mostrar el botón de pago
+alert("Pago cancelado");
+}
+});
+}, function(error) {
+console.log(error);
+});
+});
 </script>
 
 </body>
