@@ -1819,6 +1819,7 @@ function toggleFieldsets(name, max) {
     var selected = $(this).val();
 
     for(i=1;i<=max;i++){
+      console.log('Mostrando/ocultando elemento fieldset ' + i);
       if(i<=selected)$('fieldset#' + name + '-' + i).show();
       else $('fieldset#' + name + '-' + i).hide();
     }
