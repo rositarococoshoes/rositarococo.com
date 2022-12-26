@@ -1815,7 +1815,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	
 function toggleFieldsets(name, max) {
-  $('input[name="' + name + '"]').click(function(){
+  $(document).on('click', 'input[name="' + name + '"]', function(){
     var selected = $(this).val();
 
     for(i=1;i<=max;i++){
@@ -1826,7 +1826,7 @@ function toggleFieldsets(name, max) {
 }
 
 toggleFieldsets('hwA-qty-dakar-suela', 2);
-toggleFieldsets('hwA-qty-dakar-oro-rosa', 2);
+toggleFieldsets('hwA-qty-roma-suela', 2);
 toggleFieldsets('hwA-qty-venecia-negras', 2);
 toggleFieldsets('hwA-qty-venecia-suela', 2);
 toggleFieldsets('hwA-qty-boston-negras', 2);
