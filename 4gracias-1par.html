@@ -145,6 +145,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 var talleselegidos = getUrlParameter('entry.1471599855');
+var externalref = getUrlParameter('externalreference');
 $("#talleselegidos").replaceWith(talleselegidos);  
 </script>
 
@@ -158,34 +159,22 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 
 </body>
-<!-- Inicializa el SDK de MercadoPago -->
-<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-    // Inicializa el botón de pago de MercadoPago
-	const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
-
-    // Crea una "Preference" dinámicamente cada vez que se clickea el botón de pago
-    document.getElementById("pay-button").addEventListener("click", function() {
-      // Genera un "external_reference" aleatorio de máximo 6 dígitos
-      var externalReference = Math.floor(Math.random() * 1000000);
-
-      // Crea una "Preference" dinámicamente con el "external_reference" y la configuración especificada
-      mp.createPreference({
-        title: "1 par PROMO + ENVÍO GRATIS",
-        external_reference: externalReference,
-        currency_id: "ARS",
-        unit_price: 9950,
-        quantity: 1
-      }).then(function(response) {
-        // Abre la página de pago de MercadoPago con la "Preference" creada dinámicamente
-        mp.Checkout.open({
-          preference_id: response.data.id
-        });
-      }).catch(function(error) {
-        // Maneja el error
-      });
-    });
+   fetch('https://api.mercadopago.com/checkout/preferences/270831598-2a869dc7-3f33-47e9-9e78-3f0121fa6d8d', {
+  method: 'PUT',
+  body: JSON.stringify({
+    external_reference: externalref
+  }),
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598'
+  }
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
   });
 </script>
 </html>
