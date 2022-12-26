@@ -1818,13 +1818,18 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	
 function toggleFieldsets(name, max) {
-  $(document).on('click', 'input[name="' + name + '"]', function(){
-    var selected = $(this).val();
+  $('input[name="' + name + '"]').click(function(){
+    var selected = 0;
 
+    // Sumar valores de elementos input seleccionados
+    $('input[name="' + name + '"]:checked').each(function() {
+      selected += parseInt($(this).val(), 10);
+    });
+
+    // Mostrar o ocultar elementos fieldset según suma de valores
     for(i=1;i<=max;i++){
-      console.log('Mostrando/ocultando elemento fieldset ' + i);
-      if(i<=selected)$('fieldset#hwA-' + name + '-' + i).show();
-      else $('fieldset#hwA-' + name + '-' + i).hide();
+      if(i<=selected) $('fieldset#' + name + '-' + i).show();
+      else $('fieldset#' + name + '-' + i).hide();
     }
   });
 }
