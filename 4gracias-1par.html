@@ -149,7 +149,7 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </script>
 
 
-<button id="pay-button">Pagar</button>
+<button id="pay-button">Pagar con MercadoPago</button
 
 
 
@@ -159,13 +159,32 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 </body>
 <!-- Inicializa el SDK de MercadoPago -->
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 <script>
-  document.getElementById('pay-button').addEventListener('click', function() {
-    window.MPC.openCheckout({
-      external_reference: 'YOUR_EXTERNAL_REFERENCE',
-      preference_id: '270831598-2a869dc7-3f33-47e9-9e78-3f0121fa6d8d'
-    }, function(response) {
-      // aquí puedes manejar la respuesta de la apertura del checkout
+  document.addEventListener("DOMContentLoaded", function() {
+    // Inicializa el botón de pago de MercadoPago
+    Mercadopago.setPublishableKey("APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598");
+
+    // Crea una "Preference" dinámicamente cada vez que se clickea el botón de pago
+    document.getElementById("pay-button").addEventListener("click", function() {
+      // Genera un "external_reference" aleatorio de máximo 6 dígitos
+      var externalReference = Math.floor(Math.random() * 1000000);
+
+      // Crea una "Preference" dinámicamente con el "external_reference" y la configuración especificada
+      Mercadopago.createPreference({
+        title: "1 par PROMO + ENVÍO GRATIS",
+        external_reference: externalReference,
+        currency_id: "ARS",
+        unit_price: 9950,
+        quantity: 1
+      }).then(function(response) {
+        // Abre la página de pago de MercadoPago con la "Preference" creada dinámicamente
+        Mercadopago.Checkout.open({
+          preference_id: response.data.id
+        });
+      }).catch(function(error) {
+        // Maneja el error
+      });
     });
   });
 </script>
