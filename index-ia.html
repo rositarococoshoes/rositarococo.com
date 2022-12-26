@@ -1819,12 +1819,14 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 	
 function toggleFieldsets(name, max) {
   $('input[name="' + name + '"]').click(function(){
-    var selected = parseInt($(this).val(), 10);
+    var selected = $(this).val();
 
-    // Mostrar o ocultar elementos fieldset según valor del radio button seleccionado
+    // Mostrar elemento fieldset con índice igual al valor del input seleccionado
+    $('fieldset#' + name + '-' + selected).show();
+
+    // Ocultar todos los demás elementos fieldset
     for(i=1;i<=max;i++){
-      if(i<=selected) $('fieldset#' + name + '-' + i).show();
-      else $('fieldset#' + name + '-' + i).hide();
+      if(i != selected) $('fieldset#' + name + '-' + i).hide();
     }
   });
 }
@@ -1832,7 +1834,7 @@ function toggleFieldsets(name, max) {
 
 toggleFieldsets('hwA-qty-dakar-suela', 2);
 toggleFieldsets('hwA-qty-dakar-oro-rosa', 2);
-toggleFieldsets('hwA-qty-venecia-negras', 2);
+toggleFieldsets('hwA-qty-dakar-negras-', 2);
 toggleFieldsets('hwA-qty-venecia-suela', 2);
 toggleFieldsets('hwA-qty-boston-negras', 2);
 toggleFieldsets('hwA-qty-boston-blancas', 2);
