@@ -159,11 +159,11 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 </body>
 <!-- Inicializa el SDK de MercadoPago -->
-<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+<script src="https://sdk.mercadopago.com/js/v2"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Inicializa el botón de pago de MercadoPago
-    Mercadopago.setPublishableKey("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09");
+	const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
 
     // Crea una "Preference" dinámicamente cada vez que se clickea el botón de pago
     document.getElementById("pay-button").addEventListener("click", function() {
