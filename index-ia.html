@@ -1818,18 +1818,18 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	
 function toggleFieldsets(name, max) {
-$('input[name="' + name + '"]').click(function(){
-var selected = $(this).val();
-// Mostrar o ocultar elementos fieldset según valor del radio button seleccionado
-for(i=1;i<=max;i++){
-  if(i<=selected) $('fieldset#' + name + '-' + i).show();
-  else $('fieldset#' + name + '-' + i).hide();
+  // Ocultar todos los fieldset al cargar la página
+  for(i=1;i<=max;i++){
+    $('fieldset#' + name + '-' + i).hide();
+  }
+  // Mostrar fieldset al seleccionar un radio button
+  $('input[name="' + name + '"]').click(function(){
+    var selected = $(this).val();
+    $('fieldset#' + name + '-' + selected).show();
+  });
 }
 
-});
-}
-
-toggleFieldsets('hwA-qty-dakar-suela', 3);
+toggleFieldsets('hwA-qty-dakar-suela', 2);
 toggleFieldsets('hwA-qty-dakar-oro-rosa', 2);
 toggleFieldsets('hwA-qty-venecia-negras', 2);
 toggleFieldsets('hwA-qty-venecia-suela', 2);
