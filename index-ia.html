@@ -1818,20 +1818,15 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	
 function toggleFieldsets(name, max) {
-  $('input[name="' + name + '"]').click(function(){
-    var selected = 0;
+$('input[name="' + name + '"]').click(function(){
+var selected = $(this).val();
+// Mostrar o ocultar elementos fieldset según valor del radio button seleccionado
+for(i=1;i<=max;i++){
+  if(i<=selected) $('fieldset#' + name + '-' + i).show();
+  else $('fieldset#' + name + '-' + i).hide();
+}
 
-    // Sumar valores de elementos input seleccionados
-    $('input[name="' + name + '"]:checked').each(function() {
-      selected += parseInt($(this).val(), 10);
-    });
-
-    // Mostrar o ocultar elementos fieldset según suma de valores
-    for(i=1;i<=max;i++){
-      if(i<=selected) $('fieldset#' + name + '-' + i).show();
-      else $('fieldset#' + name + '-' + i).hide();
-    }
-  });
+});
 }
 
 toggleFieldsets('hwA-qty-dakar-suela', 3);
