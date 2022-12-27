@@ -186,7 +186,7 @@ document.getElementById('payButton').addEventListener('click', function() {
   Mercadopago.createToken(paymentPreference, function(status, response) {
     if (status != 200 && status != 201) {
       // Mostrar un mensaje de error al usuario
-      alert('Error al procesar el pago');
+      alert('Error al procesar el pago: ' + response.cause[0].description);
     } else {
       // Redirigir al usuario a la página de gracias
       window.location.href = '/gracias';
