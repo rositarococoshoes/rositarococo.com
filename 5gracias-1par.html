@@ -182,11 +182,15 @@ document.getElementById('payButton').addEventListener('click', function() {
     ]
   };
 
-  // Abre la ventana emergente de Checkout Pro para realizar el pago
-  Mercadopago.createToken(paymentPreference, function(status, response) {
+  // Abre el Checkout Pro en un modal
+  Mercadopago.openCheckout({
+    url: '/procesar-pago',
+    mode: 'modal',
+    payment_preference: paymentPreference
+  }, function(status, response) {
     if (status != 200 && status != 201) {
       // Mostrar un mensaje de error al usuario
-      alert('Error al procesar el pago: ' + response.cause[0].description);
+      alert('Error al procesar el pago');
     } else {
       // Redirigir al usuario a la página de gracias
       window.location.href = '/gracias';
