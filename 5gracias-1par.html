@@ -170,17 +170,17 @@ $("#talleselegidos").replaceWith(talleselegidos);
     Mercadopago.setPublishableKey('APP_USR-228877a4-04e7-4412-a5bb-9532660c30f1');
 
     // Crea un objeto de preferencia de pago con el precio y el ID del par de zapatos
-    var paymentPreference = {
-      external_reference: shoeId,
-      items: [
-        {
-          title: 'Zapatos',
-          quantity: 1,
-          currency_id: 'ARS',
-          unit_price: price
-        }
-      ]
-    };
+var paymentPreference = {
+  external_reference: shoeId,
+  items: [
+    {
+      title: '1 par promo con envío gratis',
+      quantity: 1,
+      currency_id: 'ARS',
+      unit_price: 9950
+    }
+  ]
+};
 
     // Abre la ventana emergente de Checkout Pro para realizar el pago
     Mercadopago.createToken(paymentPreference, function(status, response) {
