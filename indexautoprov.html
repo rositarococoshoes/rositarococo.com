@@ -2451,15 +2451,16 @@ $(document).ready(() => {
 
       console.log('Visitor\'s province:', visitorProvince);
 
-           // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
+      // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
       let closestMatch = null;
       let smallestDistance = Infinity;
       $selectElement.find('option').each((index, option) => {
-        const distance = option.value.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
-        console.log(`Distance between ${option.value} and ${visitorProvince}:`, distance);
+        const optionValue = $(option).val();
+        const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
+        console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
         if (distance < smallestDistance) {
           smallestDistance = distance;
-          closestMatch = option.value;
+          closestMatch = optionValue;
         }
       });
 
@@ -2473,6 +2474,7 @@ $(document).ready(() => {
     });
   });
 });
+
 
 
 </script>
