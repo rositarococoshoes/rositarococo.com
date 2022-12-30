@@ -2449,22 +2449,25 @@ $(document).ready(() => {
       // You can access the province by looking at the 'state' property of the result object.
       const visitorProvince = result.address.state;
 
-      // Now that you have the visitor's province, you can use jQuery to
-  // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
-  let closestMatch = null;
-  let smallestDistance = Infinity;
-  $selectElement.find('option').each((index, option) => {
-    const distance = $.levenshtein(option.value.toLowerCase(), visitorProvince.toLowerCase());
-    if (distance < smallestDistance) {
-      smallestDistance = distance;
-      closestMatch = option.value;
-    }
-  });
+      // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
+      let closestMatch = null;
+      let smallestDistance = Infinity;
+      $selectElement.find('option').each((index, option) => {
+        const distance = $.levenshtein(option.value.toLowerCase(), visitorProvince.toLowerCase());
+        if (distance < smallestDistance) {
+          smallestDistance = distance;
+          closestMatch = option.value;
+        }
+      });
 
-  // If a match was found, select it:
-  if (closestMatch) {
-    $selectElement.val(closestMatch);
-  }
+      // If a match was found, select it:
+      if (closestMatch) {
+        $selectElement.val(closestMatch);
+      }
+    }); // Close the callback function for the $.getJSON() method.
+  }); // Close the callback function for the navigator.geolocation.getCurrentPosition() method.
+}); // Close the document ready function.
+
 </script>
   
   </body>
