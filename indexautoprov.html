@@ -2455,7 +2455,7 @@ $(document).ready(() => {
       let closestMatch = null;
       let smallestDistance = Infinity;
       $selectElement.find('option').each((index, option) => {
-        const optionValue = $(option).val();
+        const optionValue = $(option).text();
         const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
         console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
         if (distance < smallestDistance) {
