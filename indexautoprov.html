@@ -2435,6 +2435,7 @@ $(function () {
 $(document).ready(() => {
   // Use the $() function to get a hold of the select element:
   const $selectElement = $('#59648134');
+  const $inputLocalidad = $('#1743418466');
 
   // Use the navigator.geolocation.getCurrentPosition() method to get the visitor's location:
   navigator.geolocation.getCurrentPosition((position) => {
@@ -2471,13 +2472,14 @@ $(document).ready(() => {
       // If a match was found, select it:
       if (closestMatch) {
         $selectElement.val(closestMatch);
+		$inputLocalidad.val(visitorLocalidad);
       }
       console.log('Selected option:', $selectElement.val());
     });
   });
 });
 
-
+$inputLocalidad
 
 </script>
   
