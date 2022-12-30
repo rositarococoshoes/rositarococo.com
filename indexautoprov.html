@@ -2453,7 +2453,7 @@ $(document).ready(() => {
       let closestMatch = null;
       let smallestDistance = Infinity;
       $selectElement.find('option').each((index, option) => {
-        const distance = $.levenshtein(option.value.toLowerCase(), visitorProvince.toLowerCase());
+        const distance = option.value.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
         if (distance < smallestDistance) {
           smallestDistance = distance;
           closestMatch = option.value;
@@ -2464,9 +2464,9 @@ $(document).ready(() => {
       if (closestMatch) {
         $selectElement.val(closestMatch);
       }
-    }); // Close the callback function for the $.getJSON() method.
-  }); // Close the callback function for the navigator.geolocation.getCurrentPosition() method.
-}); // Close the document ready function.
+    });
+  });
+});
 
 </script>
   
