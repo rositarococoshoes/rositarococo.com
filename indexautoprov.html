@@ -2450,9 +2450,11 @@ $(document).ready(() => {
       // You can access the province by looking at the 'state' property of the result object.
       const visitorProvince = result.address.state;
 	  const visitorLocalidad = result.address.city;
+	  const visitorpostcode = result.address.postcode;
 
       console.log('Visitor\'s province:', visitorProvince);
 	  console.log('Visitor\'s localidad:', visitorLocalidad);
+	   console.log('Visitor\'s postcode:', visitorpostcode);
 
       // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
       let closestMatch = null;
