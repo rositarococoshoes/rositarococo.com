@@ -2436,7 +2436,9 @@ $(document).ready(() => {
   // Use the $() function to get a hold of the select element:
   const $selectElement = $('#59648134');
   const $inputLocalidad = $('#1743418466');
-const $inputpostcode = $('#1005165410');
+  const $inputpostcode = $('#1005165410');
+  const $inputcalle = $('#951592426');
+
 
   // Use the navigator.geolocation.getCurrentPosition() method to get the visitor's location:
   navigator.geolocation.getCurrentPosition((position) => {
@@ -2452,6 +2454,7 @@ const $inputpostcode = $('#1005165410');
       const visitorProvince = result.address.state;
 	  const visitorLocalidad = result.address.city;
 	  const visitorpostcode = result.address.postcode;
+	  const visitorcalle = result.address.road;
 
       console.log('Visitor\'s province:', visitorProvince);
 	  console.log('Visitor\'s localidad:', visitorLocalidad);
@@ -2480,6 +2483,7 @@ const $inputpostcode = $('#1005165410');
         $selectElement.val(closestMatch);
 		$inputLocalidad.val(visitorLocalidad);
 		$inputpostcode.val(visitorpostcode.replace(/[^0-9]/g,''));
+		$inputcalle.val(visitorcalle+" ");		
 		
       }
       console.log('Selected option:', $selectElement.val());
