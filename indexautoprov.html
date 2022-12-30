@@ -2456,6 +2456,8 @@ const $inputpostcode = $('#1005165410');
       console.log('Visitor\'s province:', visitorProvince);
 	  console.log('Visitor\'s localidad:', visitorLocalidad);
 	   console.log('Visitor\'s postcode:', visitorpostcode);
+	      console.log('Visitor\'s postcode digitos:', visitorpostcode.replace(/[^0-9]/g,''));
+	 
 
       // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
       let closestMatch = null;
