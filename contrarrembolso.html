@@ -2496,19 +2496,19 @@ $(document).ready(() => {
 $(document).ready(function() {
   $('#todoslosmodelos select').change(function() {
     var value = $('#1471599855').val();
-    var pairs = value.split(',');
+    var pairs = value.split(', '); // split the input by ", " (comma and space)
 
     // store the values in an array
     var values = [];
     for (var i = 0; i < pairs.length; i++) {
       var parts = pairs[i].split('-');
-      if (parts.length !== 3) {
+      if (parts.length < 3) {
         // the input is not properly formatted, skip this pair
         continue;
       }
-      var talla = parts[0];
+      var talla = parts[0].trim(); // remove leading and trailing spaces from the size value
       var modelo = parts[1];
-      var color = parts[2];
+      var color = parts.slice(2).join(' '); // use all the words as the color
 
       var modeloId;
       switch(modelo) {
@@ -2530,12 +2530,13 @@ $(document).ready(function() {
     }
 
     // join the array elements with the desired separator
-    var output = values.join(' || ');
+    var output = values.join(' || '); // use " || " as the separator between pairs
 
     $('#541001873').val(output);   
     console.log(output);
   });
 });
+
 
 </script>
   
