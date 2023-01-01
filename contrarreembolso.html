@@ -2464,10 +2464,12 @@ $(document).ready(function() {
   });
 
   // Ocultar pop-over al hacer clic en cualquier lugar de la pantalla
-  $("body").on("click", function() {
-    $("#instructions-popover").hide(); // Ocultar pop-over
+  $("body").on("click", function(event) {
+    // Si el elemento que ha disparado el evento no es el pop-over ni el enlace, entonces ocultar el pop-over
+    if (!$(event.target).closest("#instructions-link, #instructions-popover").length) {
+      $("#instructions-popover").hide(); // Ocultar pop-over
+    }
   });
-});
 </script>
 </body>
 </html>
