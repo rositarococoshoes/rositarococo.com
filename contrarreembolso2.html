@@ -1259,6 +1259,9 @@ $(document).ready(function() {
     var value = $('#286442883').val();
     var pairs = value.split(', '); // split the input by ", " (comma and space)
 
+    // remove empty elements from the array
+    pairs = pairs.filter(Boolean);
+
     // store the values in an array
     var values = [];
     var montoacobrar;
@@ -1278,7 +1281,7 @@ $(document).ready(function() {
       switch(modelo) {
         case 'dakar':
           modeloId = '#3950';
-          costo = 2990;
+          costo = 2950;
           break;
         case 'lima':
           modeloId = '#3952';
@@ -1318,6 +1321,7 @@ $(document).ready(function() {
     $('#736134777').val(costodepares);
   });
 });
+
 </script>
 <script>
 $(document).ready(function() {
