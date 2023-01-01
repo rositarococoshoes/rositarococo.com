@@ -2467,4 +2467,17 @@ $(document).ready(function() {
 
 
 </script>
+<script>
+$(document).ready(function() {
+  $('#instructions-link').on('click', function(e) {
+    e.preventDefault();
+    $('#instructions-popover').show();
+  });
+
+  $('#close-button, #instructions-popover').on('click', function(e) {
+    e.stopPropagation();
+    $('#instructions-popover').hide();
+  });
+});
+</<script>
 </html>
