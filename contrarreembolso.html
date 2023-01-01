@@ -136,6 +136,16 @@ tr:nth-child(even) {  background-color: #dddddd;}
   /* Otros estilos */
   padding: 10px 20px 10px 20px;
 }
+/* Estilo de la capa transparente */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
+  z-index: 1; /* Mostrar por encima de otros elementos */
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -1883,7 +1893,12 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
         We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
+<p><a href="#" id="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
+
 <div id="instructions-popover" style="display: none;">
+  <!-- Capa transparente que cubre toda la pantalla -->
+  <div id="overlay"></div>
+
   <!-- Contenido del pop-over -->
   <div>
     <h2 style="font-size: 1.1em;font-weight: bold;margin-bottom: 20px;">INSTRUCCIONES IMPORTANTES</h2>
@@ -1892,7 +1907,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
     <p style="text-align: left;">3) No se puede abrir el paquete ni hacer pruebas de talle en la puerta. La moto llega, entrega, cobra y se va ya que es un servicio de delivery externo a nosotros.</p>
     <p style="text-align: left;">4) Los pedidos confirmados antes de las 14 hs pueden enviarse el mismo día.</p>
   </div>
-</div>  
+</div> 
 
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
@@ -2463,12 +2478,9 @@ $(document).ready(function() {
     $("#instructions-popover").show(); // Mostrar pop-over
   });
 
-  // Ocultar pop-over al hacer clic en cualquier lugar de la pantalla
-  $("body").on("click", function(event) {
-    // Si el elemento que ha disparado el evento no es el pop-over ni el enlace, entonces ocultar el pop-over
-    if (!$(event.target).closest("#instructions-link, #instructions-popover").length) {
-      $("#instructions-popover").hide(); // Ocultar pop-over
-    }
+  // Ocultar pop-over al hacer clic en la capa transparente
+  $("#overlay").on("click", function() {
+    $("#instructions-popover").hide(); // Ocultar pop-over
   });
 });
 </script>
