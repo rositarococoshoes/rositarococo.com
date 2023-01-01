@@ -15,6 +15,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<link href="https://stefano.brilli.me/google-forms-html-exporter/styles/main.css" rel="stylesheet" />
 	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
 	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous">
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -65,6 +66,76 @@ tr:nth-child(even) {  background-color: #dddddd;}
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
+	
+	   /* Estilos para el enlace */
+    #instructions-link {
+      color: blue;
+      text-decoration: underline;
+      font-size: 15px;
+      text-align: center;
+    }
+#instructions-link i {
+  font-size: 1.1em;
+}
+
+    /* Estilos para el pop-over */
+    #instructions-popover {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      z-index: 2;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+    }
+
+    /* Estilos para el contenido del pop-over */
+    #instructions-popover > div {
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      /* width: 100%; */
+      max-width: 400px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Estilos para el botón de cierre */
+    #close-button {
+      position: relative;
+      top: 49px !important;
+      /* right: 39px !important; */
+      color: black;
+      padding-right: 15px;
+      border: none;
+      text-align: right;
+      background-color: transparent;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+#instructions-popover h2 {
+  background-color: #f1c40f;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+#close-button {
+  /* Otros estilos */
+  top: 10px;
+  left: 10px;
+}
+
+#instructions-popover > div {
+  /* Otros estilos */
+  padding: 10px 20px 10px 20px;
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -105,6 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span style="font-size:14px;"><strong><em><span style="color: #ff00dc;">1. Eleg&iacute; los talles de cada modelo.</span></em></strong></span><br />
 <span style="font-size:14px;"><strong><em><span style="color: #ff00dc;">2. Complet&aacute; m&aacute;s abajo tus datos de env&iacute;o.</span></em></strong></span></p>
 <p>Podés agregar un máximo de 2 pares en tu pedido y podés elegir pares surtidos.</p>
+<p><a href="#" id="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 </fieldset>
 
 <fieldset id="todoslosmodelos">
@@ -1811,66 +1883,34 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
         We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
+	<div id="instructions-popover" style="display: none;">
+  <!-- Botón de cierre -->
+   
+
+
+  <!-- Contenido del pop-over -->
+  <div>
+    <h2 style="font-size: 1.1em;font-weight: bold;margin-bottom: 20px;">INSTRUCCIONES IMPORTANTES</h2>
+    <p style="
+    text-align: left;
+">1) Apenas realices tu pedido te contactaremos por Whatsapp para confirmar el día y hora de entrega. Debes confirmar para que lo enviemos.</p>
+    <p style="
+    text-align: left;
+">2) Procura ya tener el efectivo disponible al momento de llegar la moto para pagar en la puerta de tu domicilio indicado rápidamente.</p>
+    <p style="
+    text-align: left;
+">3) No se puede abrir el paquete ni hacer pruebas de talle en la puerta. La moto llega, entrega, cobra y se va ya que es un servicio de delivery externo a nosotros.</p>
+    <p style="
+    text-align: left;
+">4) Los pedidos confirmados antes de las 14 hs pueden enviarse el mismo día.</p>
+  </div>
+</div>  
+  </body>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
+	   
 	
-     $('input[name="hwA-qty-roma-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-roma-negras-'+i).show();
-           else $('fieldset#hwA-roma-negras-'+i).hide();
-        }
-    })
-	
-	 $('input[name="hwA-qty-roma-suela"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-roma-suela-'+i).show();
-           else $('fieldset#hwA-roma-suela-'+i).hide();
-        }
-    })
-                    
-      $('input[name="hwA-qty-venecia-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-venecia-negras-'+i).show();
-           else $('fieldset#hwA-venecia-negras-'+i).hide();
-        }
-    })
-	  $('input[name="hwA-qty-venecia-suela"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-venecia-suela-'+i).show();
-           else $('fieldset#hwA-venecia-suela-'+i).hide();
-        }
-    })
-	$('input[name="hwA-qty-boston-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-boston-negras-'+i).show();
-           else $('fieldset#hwA-boston-negras-'+i).hide();
-        }
-    })
-	$('input[name="hwA-qty-boston-blancas"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-boston-blancas-'+i).show();
-           else $('fieldset#hwA-boston-blancas-'+i).hide();
-        }
-    })
 	$('input[name="hwA-qty-medellin-negras"]').click(function(){
          
         var selected = $(this).val();
@@ -1887,15 +1927,6 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         for(i=1;i<=3;i++){
            if(i<=selected)$('fieldset#hwA-medellin-blancas-'+i).show();
            else $('fieldset#hwA-medellin-blancas-'+i).hide();
-        }
-    })
-	$('input[name="hwA-qty-paris-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-paris-negras-'+i).show();
-           else $('fieldset#hwA-paris-negras-'+i).hide();
         }
     })
 	$('input[name="hwA-qty-dakar-suela"]').click(function(){
@@ -1916,24 +1947,8 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-dakar-negras-'+i).hide();
         }
     })
-	$('input[name="hwA-qty-amsterdam"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-amsterdam-'+i).show();
-           else $('fieldset#hwA-amsterdam-'+i).hide();
-        }
-    })
-	$('input[name="hwA-qty-paris-suela"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-paris-suela-'+i).show();
-           else $('fieldset#hwA-paris-suela-'+i).hide();
-        }
-    })
+	
+	
 	 $('input[name="hwA-qty-lima-negras"]').click(function(){
          
         var selected = $(this).val();
@@ -1943,15 +1958,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-lima-negras-'+i).hide();
         }
     })
-	 $('input[name="hwA-qty-sofia-blancas"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-sofia-blancas-'+i).show();
-           else $('fieldset#hwA-sofia-blancas-'+i).hide();
-        }
-    })
+	
 	 $('input[name="hwA-qty-malaga-blancas"]').click(function(){
          
         var selected = $(this).val();
@@ -1970,42 +1977,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-malaga-negras-'+i).hide();
         }
     })
-		 $('input[name="hwA-qty-sofia-nude"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-sofia-nude-'+i).show();
-           else $('fieldset#hwA-sofia-nude-'+i).hide();
-        }
-    })
-			 $('input[name="hwA-qty-sofia-plata"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-sofia-plata-'+i).show();
-           else $('fieldset#hwA-sofia-plata-'+i).hide();
-        }
-    })
-	 $('input[name="hwA-qty-viena-plata"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-viena-plata-'+i).show();
-           else $('fieldset#hwA-viena-plata-'+i).hide();
-        }
-    })
-	 $('input[name="hwA-qty-viena-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-viena-negras-'+i).show();
-           else $('fieldset#hwA-viena-negras-'+i).hide();
-        }
-    })
+	
 	
 	 $('input[name="hwA-qty-cartagena-blancas"]').click(function(){
          
@@ -2025,15 +1997,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
            else $('fieldset#hwA-cartagena-negras-'+i).hide();
         }
     })
-	 $('input[name="hwA-qty-cuzco"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-cuzco-'+i).show();
-           else $('fieldset#hwA-cuzco-'+i).hide();
-        }
-    })
+	
 		 $('input[name="hwA-qty-monaco"]').click(function(){
          
         var selected = $(this).val();
@@ -2140,42 +2104,6 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         for(i=1;i<=3;i++){
            if(i<=selected)$('fieldset#hwA-lima-'+i).show();
            else $('fieldset#hwA-lima-'+i).hide();
-        }
-    })
-			 $('input[name="hwA-qty-pantubotas-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-pantubotas-negras-'+i).show();
-           else $('fieldset#hwA-pantubotas-negras-'+i).hide();
-        }
-    })
-$('input[name="hwA-qty-berlin-negras"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-berlin-negras-'+i).show();
-           else $('fieldset#hwA-berlin-negras-'+i).hide();
-        }
-    })		
-	$('input[name="hwA-qty-berlin-suela"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-berlin-suela-'+i).show();
-           else $('fieldset#hwA-berlin-suela-'+i).hide();
-        }
-    })
-	$('input[name="hwA-qty-pantubotas-suela"]').click(function(){
-         
-        var selected = $(this).val();
-
-        for(i=1;i<=3;i++){
-           if(i<=selected)$('fieldset#hwA-pantubotas-suela-'+i).show();
-           else $('fieldset#hwA-pantubotas-suela-'+i).hide();
         }
     })
 	
@@ -2539,6 +2467,4 @@ $(document).ready(function() {
 
 
 </script>
-  
-  </body>
 </html>
