@@ -1303,7 +1303,9 @@ $(document).ready(function() {
     $('#1885918612').val(output);
 
     // calcular monto a cobrar
-    if (pairs.length == 1) {
+    if (pairs.length == 0) {
+      montoacobrar = 0;
+    } else if (pairs.length == 1) {
       montoacobrar = 8950;
     } else if (pairs.length == 2) {
       montoacobrar = 16450;
@@ -1316,9 +1318,6 @@ $(document).ready(function() {
     $('#736134777').val(costodepares);
   });
 });
-
-
-
 </script>
 <script>
 $(document).ready(function() {
