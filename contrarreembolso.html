@@ -2469,15 +2469,17 @@ $(document).ready(function() {
 </script>
 <script>
 $(document).ready(function() {
-  $('#instructions-link').on('click', function(e) {
-    e.preventDefault();
-    $('#instructions-popover').show();
+  // Mostrar pop-over al hacer clic en el enlace
+  $("#instructions-link").on("click", function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
+    $("#instructions-popover").show(); // Mostrar pop-over
   });
 
-  $('#instructions-popover').on('click', function(e) {
-    e.stopPropagation();
-    $('#instructions-popover').hide();
+  // Ocultar pop-over al hacer clic en cualquier lugar de la pantalla
+  $("body").on("click", function() {
+    $("#instructions-popover").hide(); // Ocultar pop-over
   });
 });
+
 </<script>
 </html>
