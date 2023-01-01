@@ -68,13 +68,13 @@ tr:nth-child(even) {  background-color: #dddddd;}
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
 	
 	   /* Estilos para el enlace */
-    #instructions-link {
+    .instructions-link {
       color: blue;
       text-decoration: underline;
       font-size: 15px;
       text-align: center;
     }
-#instructions-link i {
+.instructions-link i {
   font-size: 1.1em;
 }
 
@@ -187,7 +187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span style="font-size:14px;"><strong><em><span style="color: #ff00dc;">2. Complet&aacute; m&aacute;s abajo tus datos de env&iacute;o.</span></em></strong></span>
 </p>
 <p>Podés agregar un máximo de 2 pares en tu pedido y podés elegir pares surtidos.</p>
-<p><a href="#" id="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
+<p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 </fieldset>
 
 <fieldset id="todoslosmodelos">
@@ -1765,6 +1765,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <p style="font-size: 12px;">Estos son los talles-modelos&nbsp;que seleccionaste arriba.</p>
 
 <div class="form-group"><input class="form-control" id="1471599855" name="entry.1471599855" readonly="readonly" type="text" /></div>
+<p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 </fieldset>
 <!-- Field type: "short" id: "1234675908" -->
 
@@ -1849,14 +1850,14 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <div class="form-group"><input class="form-control" id="951592426" name="entry.951592426" placeholder="ingresa tu calle seguido de la altura" required=""/></div>
 </fieldset>
 
-<fieldset><legend for="1945027933">D.N.I</legend>
+<fieldset><legend for="1945027933">DNI</legend>
 
 <div class="form-group"><input class="form-control" id="541001873" name="entry.541001873" required="" type="text" /></div>
 </fieldset>
 <!-- Field type: "dropdown" id: "2315500325" -->
 
-<fieldset><legend for="2315500325">ENVÍO: se hace al domicilio indicado arriba. El cartero visitará el domicilio una vez y si no encuentra a nadie dejará tu encomienda en la sucursal más cercana. </legend>
-
+<fieldset><legend for="2315500325">ENVÍO: se hace al domicilio indicado arriba. Vamos a contactarte para confirmar día y hora. El pago es en efectivo en un solo pago y en la puerta al entregar tu pedido.</legend>
+<p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 <div style="display:none;" class="form-group"><select class="form-control" id="2315500325" name="entry.17650825"><option value="A DOMICILIO">A DOMICILIO</option></select></div>
 </fieldset>
 <!-- Field type: "title" id: "2088281134" -->
@@ -2474,7 +2475,7 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
   // Mostrar pop-over al hacer clic en el enlace
-  $("#instructions-link").on("click", function(event) {
+  $(".instructions-link").on("click", function(event) {
     event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
     $("#instructions-popover").show(); // Mostrar pop-over
   });
