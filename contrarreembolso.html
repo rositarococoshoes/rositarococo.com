@@ -2474,7 +2474,7 @@ $(document).ready(function() {
     $('#instructions-popover').show();
   });
 
-  $('#close-button, #instructions-popover').on('click', function(e) {
+  $('#instructions-popover').on('click', function(e) {
     e.stopPropagation();
     $('#instructions-popover').hide();
   });
