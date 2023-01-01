@@ -1758,12 +1758,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- Field type: "short" id: "1284324650" -->
 
 	<div id="restodelform" style="display:none;">
-<fieldset style="background-color:lightyellow;margin-bottom: 20px;"><legend for="1756027935" style="font-size:16px;"><br />
+<fieldset style="background-color:lightyellow;margin-bottom: 20px;"><legend for="286442883" style="font-size:16px;"><br />
 TALLES-MODELOS SELECCIONADOS:</legend>
 
 <p style="font-size: 12px;">Estos son los talles-modelos&nbsp;que seleccionaste arriba.</p>
 
-<div class="form-group"><input class="form-control" id="1756027935" name="entry.1756027935" readonly="readonly" type="text" /><input class="form-control" id="1885918612" name="entry.1885918612" type="hidden" /></div>
+<div class="form-group"><input class="form-control" id="286442883" name="entry.286442883" readonly="readonly" type="text" /><input class="form-control" id="1885918612" name="entry.1885918612" type="hidden" /></div>
 <p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 </fieldset>
 <!-- Field type: "short" id: "1234675908" -->
@@ -1829,9 +1829,9 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <div class="form-group"><input class="form-control" id="394819614" name="entry.394819614" placeholder="ingresa tu calle seguido de la altura" required=""/></div>
 </fieldset>
 
-<fieldset><legend for="394819614">DNI</legend>
+<fieldset><legend for="423544000">DNI</legend>
 
-<div class="form-group"><input class="form-control" id="394819614" name="entry.394819614" required="" type="text" /></div>
+<div class="form-group"><input class="form-control" id="423544000" name="entry.423544000" required="" type="text" /></div>
 </fieldset>
 
 <fieldset><legend for="423544000">Día y Hora estimada para entregar</legend>
@@ -1911,7 +1911,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 	
       
 var val = "";
-var theval = $("#1756027935");
+var theval = $("#286442883");
 
 $("#todoslosmodelos select").change(function(){
   $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
@@ -1927,8 +1927,8 @@ $("#todoslosmodelos select").change(function(){
   if(value.length>0) {
   	if(before_change && before_change.length>0) {
     	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
-      $("#help-modelostallesseleccionados").html($("#1756027935").val());
-	  $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+      $("#help-modelostallesseleccionados").html($("#286442883").val());
+	  $("#text").html("PEDIDO: <b>" + $("#286442883").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
@@ -1936,8 +1936,8 @@ $("#todoslosmodelos select").change(function(){
    
     } else {
     theval.val(theval.val() + value + ", ");
-     $("#help-modelostallesseleccionados").html($("#1756027935").val());
-	 $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+     $("#help-modelostallesseleccionados").html($("#286442883").val());
+	 $("#text").html("PEDIDO: <b>" + $("#286442883").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
@@ -1946,9 +1946,9 @@ $("#todoslosmodelos select").change(function(){
     } 
   }
   if(value.length==0){
-    $("#help-modelostallesseleccionados").html($("#1756027935").val());
+    $("#help-modelostallesseleccionados").html($("#286442883").val());
 	theval.val(theval.val().replace(before_change + ", ", ""));
-    $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+    $("#text").html("PEDIDO: <b>" + $("#286442883").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
    $( "#text" ).delay(9930000).fadeOut( "slow" );
  
@@ -1956,11 +1956,11 @@ $("#todoslosmodelos select").change(function(){
   
   }
   $(this).data('pre', $(this).val());
-  $("#help-modelostallesseleccionados").html($("#1756027935").val());
+  $("#help-modelostallesseleccionados").html($("#286442883").val());
   });
   console.log(theval.val())
   
-  var value2 = $("#1756027935").val().replace(" ", "");
+  var value2 = $("#286442883").val().replace(" ", "");
     var words = value2.split(",");
  var remuevapares = words.length-3;
   if(words.length === 2){ $("#preciototal,#preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $9950 x 1 par +&nbsp;</span><span style='color: rgb(0, 100, 0);'>ENV&Iacute;O GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Si agregas otro par te llevas cada uno a sólo $9225.</p"); $("#restodelform").show(); }
@@ -2037,11 +2037,11 @@ $('#bootstrapForm').submit(function (event) {
             // does not support it, so this is handled as a failure.
            
             // You can also redirect the user to a custom thank-you page:
-             var talleselegidos = $('#1756027935').val();
+             var talleselegidos = $('#286442883').val();
 			
 var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
-    var queryString = $('#1756027935').serialize();
+    var queryString = $('#286442883').serialize();
     if(words.length === 2){
         window.location = 'http://www.rositarococo.com/gracias-1par.html?'+queryString
        
@@ -2065,7 +2065,7 @@ else if(words.length > 4){
   </script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
- $("#help-modelostallesseleccionados").html($("#1756027935").val());
+ $("#help-modelostallesseleccionados").html($("#286442883").val());
       $("#help-nombre").html($("#1460904554").val());
       $("#help-wapp").html($("#53830725").val());   
        $("#help-email").html($("#1465946249").val());
@@ -2225,7 +2225,7 @@ $(document).ready(() => {
 <script>
 $(document).ready(function() {
   $('#todoslosmodelos select').change(function() {
-    var value = $('#1756027935').val();
+    var value = $('#286442883').val();
     var pairs = value.split(', '); // split the input by ", " (comma and space)
 
     // store the values in an array
