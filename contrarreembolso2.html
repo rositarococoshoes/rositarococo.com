@@ -1763,7 +1763,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <p style="font-size: 12px;">Estos son los talles-modelos&nbsp;que seleccionaste arriba.</p>
 
-<div class="form-group"><input class="form-control" id="1756027935" name="entry.1756027935" readonly="readonly" type="text" /><input class="form-control" id="1885918612" name="entry.1885918612" type="hiden" /></div>
+<div class="form-group"><input class="form-control" id="1756027935" name="entry.1756027935" readonly="readonly" type="text" /><input class="form-control" id="1885918612" name="entry.1885918612" type="hidden" /></div>
 <p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrarreembolso?</a></p>
 </fieldset>
 <!-- Field type: "short" id: "1234675908" -->
@@ -1911,7 +1911,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 	
       
 var val = "";
-var theval = $("#1471599855");
+var theval = $("#1756027935");
 
 $("#todoslosmodelos select").change(function(){
   $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
@@ -1927,8 +1927,8 @@ $("#todoslosmodelos select").change(function(){
   if(value.length>0) {
   	if(before_change && before_change.length>0) {
     	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
-      $("#help-modelostallesseleccionados").html($("#1471599855").val());
-	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+      $("#help-modelostallesseleccionados").html($("#1756027935").val());
+	  $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
@@ -1936,8 +1936,8 @@ $("#todoslosmodelos select").change(function(){
    
     } else {
     theval.val(theval.val() + value + ", ");
-     $("#help-modelostallesseleccionados").html($("#1471599855").val());
-	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+     $("#help-modelostallesseleccionados").html($("#1756027935").val());
+	 $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
     $( "#text" ).delay(9930000).fadeOut( "slow" );
 	
@@ -1946,9 +1946,9 @@ $("#todoslosmodelos select").change(function(){
     } 
   }
   if(value.length==0){
-    $("#help-modelostallesseleccionados").html($("#1471599855").val());
+    $("#help-modelostallesseleccionados").html($("#1756027935").val());
 	theval.val(theval.val().replace(before_change + ", ", ""));
-    $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
+    $("#text").html("PEDIDO: <b>" + $("#1756027935").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccion&aacute; Modelos/Talles arriba</span>");
       $("#text").css("display", "block");
    $( "#text" ).delay(9930000).fadeOut( "slow" );
  
@@ -1956,11 +1956,11 @@ $("#todoslosmodelos select").change(function(){
   
   }
   $(this).data('pre', $(this).val());
-  $("#help-modelostallesseleccionados").html($("#1471599855").val());
+  $("#help-modelostallesseleccionados").html($("#1756027935").val());
   });
   console.log(theval.val())
   
-  var value2 = $("#1471599855").val().replace(" ", "");
+  var value2 = $("#1756027935").val().replace(" ", "");
     var words = value2.split(",");
  var remuevapares = words.length-3;
   if(words.length === 2){ $("#preciototal,#preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $9950 x 1 par +&nbsp;</span><span style='color: rgb(0, 100, 0);'>ENV&Iacute;O GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Si agregas otro par te llevas cada uno a sólo $9225.</p"); $("#restodelform").show(); }
