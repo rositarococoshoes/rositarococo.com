@@ -147,54 +147,59 @@ tr:nth-child(even) {  background-color: #dddddd;}
   z-index: 1; /* Mostrar por encima de otros elementos */
 }
 .notification {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px;
-    padding: 15px;
-    background-color: #fafafa;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+}
 
-  .notification img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
+.notification img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
 
-  .notification .order-info {
-    margin-left: 10px;
-  }
+.notification .order-info {
+  display: flex;
+  flex-direction: column;
+}
 
-  .notification .order-info h3 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-  }
+.notification .order-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
 
-  .notification .order-info p {
-    margin: 5px 0;
-    font-size: 14px;
-  }
+.notification .order-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #a0a0a0;
+}
 
-  .notification .close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #ccc;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: 600;
-    text-align: center;
-  }
+.notification .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0a0a0;
+  cursor: pointer;
+}
+
+.notification .close:hover {
+  color: #707070;
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -1376,21 +1381,6 @@ $(document).ready(function() {
 
 </script>
 <script>
-$(document).ready(function() {
-  // Mostrar pop-over al hacer clic en el enlace
-  $(".instructions-link").on("click", function(event) {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
-    $("#instructions-popover").show(); // Mostrar pop-over
-  });
-
-  // Ocultar pop-over al hacer clic en la capa transparente
-  $("#overlay").on("click", function() {
-    $("#instructions-popover").hide(); // Ocultar pop-over
-  });
-});
-</script>
-<!-- Script para mostrar las notificaciones -->
-<script>
 // Índice de la notificación actual
 let currentNotificationIndex = 0;
 
@@ -1424,17 +1414,40 @@ function showNotification() {
 const currentNotification = salesData[currentNotificationIndex];
 
 // Creamos el elemento de la notificación
-const notificationElement = document.createElement('div');
-notificationElement.classList.add('notification');
-notificationElement.innerHTML = `<img src="${currentNotification.imageUrl}"> <div class="order-info"> <h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p> </div> <div class="close">X</div>`;
+const notificationElement = $('<div>', {
+class: 'notification'
+});
+notificationElement.append($('<img>', {
+src: currentNotification.imageUrl
+}));
+const orderInfo = $('<div>', {
+class: 'order-info'
+});
+orderInfo.append($('<h3>', {
+text: currentNotification.customerName
+}));
+orderInfo.append($('<p>', {
+text: currentNotification.city
+}));
+orderInfo.append($('<p>', {
+text: Recién compró ${currentNotification.order}
+}));
+orderInfo.append($('<p>', {
+text: currentNotification.timeSincePurchase
+}));
+notificationElement.append(orderInfo);
+notificationElement.append($('<div>', {
+class: 'close',
+text: 'X'
+}));
 
 // Agregamos la notificación al contenedor
-document.getElementById('notification-container').appendChild(notificationElement);
+$('#notification-container').append(notificationElement);
 
 // Mostramos la notificación por 4 segundos y luego la eliminamos
 setTimeout(() => {
 notificationElement.remove();
-}, 44000);
+}, 4000);
 }
 
 // Mostramos la primera notificación inmediatamente
@@ -1445,11 +1458,11 @@ setInterval(() => {
 // Mostramos la notificación
 showNotification();
 
-// Pasamos a la siguiente notificación
-currentNotificationIndex++;
-if (currentNotificationIndex >= salesData.length) {
-currentNotificationIndex = 0;
-}
+  // Pasamos a la siguiente notificación
+  currentNotificationIndex++;
+  if (currentNotificationIndex >= salesData.length) {
+    currentNotificationIndex = 0;
+  }
 }, 15000);
 </script>
 </body>
