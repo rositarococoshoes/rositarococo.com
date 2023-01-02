@@ -1307,6 +1307,85 @@ $(document).ready(() => {
       console.log('Selected option:', $selectElement.val());
     });
   });
+  
+// Índice de la notificación actual
+let currentNotificationIndex = 0;
+
+// Datos de las notificaciones de ventas
+const salesData = [
+{
+customerName: '✅ María Pérez',
+city: visitorLocalidad,
+order: '37-dakar-suela, 40-dakar-negras',
+timeSincePurchase: 'hace 20 minutos',
+imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
+},
+{
+customerName: '✅ Sofía Pérez',
+city: 'Mendoza',
+order: '39-dakar-oro-rosa, 37-siena-negras',
+timeSincePurchase: 'hace 2 horas',
+imageUrl: 'https://www.rositarococo.com/dakar-oro-rosa.jpg',
+},
+{
+customerName: '✅ Rocío Martínez',
+city: 'Santa Fé',
+order: '40-lima-negras, 40-dakar-suela',
+timeSincePurchase: 'hace 3 horas',
+imageUrl: 'https://www.rositarococo.com/lima-negras.jpg',
+}
+];
+
+let shownNotifications = [];
+
+function showNotification() {
+  // Obtenemos la notificación actual
+  let currentNotification = salesData[currentNotificationIndex];
+
+  // Verificamos si la notificación ya fue mostrada
+  while (shownNotifications.includes(currentNotification)) {
+    // Pasamos a la siguiente notificación
+    currentNotificationIndex++;
+    if (currentNotificationIndex >= salesData.length) {
+      currentNotificationIndex = 0;
+    }
+    currentNotification = salesData[currentNotificationIndex];
+  }
+
+  // Creamos el elemento de la notificación
+  const notificationElement = $('<div>', { class: 'notification' });
+  notificationElement.append($('<img>', { src: currentNotification.imageUrl }));
+  notificationElement.append($('<div>', { class: 'order-info' }).html( `<h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p>` ));
+  notificationElement.append($('<div>', { class: 'close' }).text('X'));
+
+  // Agregamos la notificación al contenedor
+  $('#notification-container').append(notificationElement);
+
+  // Agregamos la notificación a la lista de notificaciones ya mostradas
+  shownNotifications.push(currentNotification);
+
+  // Mostramos la notificación por 4 segundos y luego la eliminamos
+  setTimeout(() => {
+    notificationElement.remove();
+  }, 4000);
+}
+
+// Mostramos la primera notificación inmediatamente
+showNotification();
+
+// Establecemos un intervalo de tiempo para actualizar la notificación
+setInterval(() => {
+  // Mostramos la notificación
+  showNotification();
+
+  // Pasamos a la siguiente notificación
+  currentNotificationIndex++;
+  if (currentNotificationIndex >= salesData.length) {
+    currentNotificationIndex = 0;
+  }
+}, 15000);  
+  
+  
 });
 
 </script>
@@ -1378,86 +1457,6 @@ $(document).ready(function() {
     $('#736134777').val(costodepares);
   });
 });
-
-</script>
-<script>
-// Índice de la notificación actual
-let currentNotificationIndex = 0;
-
-// Datos de las notificaciones de ventas
-const salesData = [
-{
-customerName: '✅ María Pérez',
-city: 'Buenos Aires',
-order: '37-dakar-suela, 40-dakar-negras',
-timeSincePurchase: 'hace 20 minutos',
-imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
-},
-{
-customerName: '✅ Sofía Pérez',
-city: 'Mendoza',
-order: '39-dakar-oro-rosa, 37-siena-negras',
-timeSincePurchase: 'hace 2 horas',
-imageUrl: 'https://www.rositarococo.com/dakar-oro-rosa.jpg',
-},
-{
-customerName: '✅ Rocío Martínez',
-city: 'Santa Fé',
-order: '40-lima-negras, 40-dakar-suela',
-timeSincePurchase: 'hace 3 horas',
-imageUrl: 'https://www.rositarococo.com/lima-negras.jpg',
-}
-];
-
-let shownNotifications = [];
-
-function showNotification() {
-  // Obtenemos la notificación actual
-  let currentNotification = salesData[currentNotificationIndex];
-
-  // Verificamos si la notificación ya fue mostrada
-  while (shownNotifications.includes(currentNotification)) {
-    // Pasamos a la siguiente notificación
-    currentNotificationIndex++;
-    if (currentNotificationIndex >= salesData.length) {
-      currentNotificationIndex = 0;
-    }
-    currentNotification = salesData[currentNotificationIndex];
-  }
-
-  // Creamos el elemento de la notificación
-  const notificationElement = $('<div>', { class: 'notification' });
-  notificationElement.append($('<img>', { src: currentNotification.imageUrl }));
-  notificationElement.append($('<div>', { class: 'order-info' }).html( `<h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p>` ));
-  notificationElement.append($('<div>', { class: 'close' }).text('X'));
-
-  // Agregamos la notificación al contenedor
-  $('#notification-container').append(notificationElement);
-
-  // Agregamos la notificación a la lista de notificaciones ya mostradas
-  shownNotifications.push(currentNotification);
-
-  // Mostramos la notificación por 4 segundos y luego la eliminamos
-  setTimeout(() => {
-    notificationElement.remove();
-  }, 4000);
-}
-
-// Mostramos la primera notificación inmediatamente
-showNotification();
-
-// Establecemos un intervalo de tiempo para actualizar la notificación
-setInterval(() => {
-  // Mostramos la notificación
-  showNotification();
-
-  // Pasamos a la siguiente notificación
-  currentNotificationIndex++;
-  if (currentNotificationIndex >= salesData.length) {
-    currentNotificationIndex = 0;
-  }
-}, 15000);
-
 
 </script>
 </body>
