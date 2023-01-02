@@ -1414,32 +1414,10 @@ function showNotification() {
 const currentNotification = salesData[currentNotificationIndex];
 
 // Creamos el elemento de la notificación
-const notificationElement = $('<div>', {
-class: 'notification'
-});
-notificationElement.append($('<img>', {
-src: currentNotification.imageUrl
-}));
-const orderInfo = $('<div>', {
-class: 'order-info'
-});
-orderInfo.append($('<h3>', {
-text: currentNotification.customerName
-}));
-orderInfo.append($('<p>', {
-text: currentNotification.city
-}));
-orderInfo.append($('<p>', {
-text: Recién compró ${currentNotification.order}
-}));
-orderInfo.append($('<p>', {
-text: currentNotification.timeSincePurchase
-}));
-notificationElement.append(orderInfo);
-notificationElement.append($('<div>', {
-class: 'close',
-text: 'X'
-}));
+const notificationElement = $('<div>', { class: 'notification' });
+notificationElement.append($(<img src="${currentNotification.imageUrl}">));
+notificationElement.append($('<div>', { class: 'order-info' }).html( <h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p> ));
+notificationElement.append($('<div>', { class: 'close' }).text('X'));
 
 // Agregamos la notificación al contenedor
 $('#notification-container').append(notificationElement);
@@ -1458,12 +1436,12 @@ setInterval(() => {
 // Mostramos la notificación
 showNotification();
 
-  // Pasamos a la siguiente notificación
-  currentNotificationIndex++;
-  if (currentNotificationIndex >= salesData.length) {
-    currentNotificationIndex = 0;
-  }
-}, 15000);
+// Pasamos a la siguiente notificación
+currentNotificationIndex++;
+if (currentNotificationIndex >= salesData.length) {
+currentNotificationIndex = 0;
+}
+}, 15000
 </script>
 </body>
 </html>
