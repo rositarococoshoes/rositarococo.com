@@ -200,6 +200,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .notification .close:hover {
   color: #707070;
 }
+.notification .order-info .customer-info {
+  display: flex;
+  align-items: center;
+}
+
+.notification .order-info .customer-info .city {
+  margin-left: auto;
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -1353,10 +1361,14 @@ function showNotification() {
     currentNotification = salesData[currentNotificationIndex];
   }
 
-  // Creamos el elemento de la notificación
+    // Creamos el elemento de la notificación
   const notificationElement = $('<div>', { class: 'notification' });
   notificationElement.append($('<img>', { src: currentNotification.imageUrl }));
-  notificationElement.append($('<div>', { class: 'order-info' }).html( `<h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p>` ));
+  const orderInfoElement = $('<div>', { class: 'order-info' });
+  orderInfoElement.append($('<div>', { class: 'customer-info' }).html( `<h3>${currentNotification.customerName}</h3> <p class="city">${currentNotification.city}</p>` ));
+  orderInfoElement.append($('<p>', { class: 'order' }).text(`Recién compró ${currentNotification.order}`));
+  orderInfoElement.append($('<p>', { class: 'time-since-purchase' }).text(currentNotification.timeSincePurchase));
+  notificationElement.append(orderInfoElement);
   notificationElement.append($('<div>', { class: 'close' }).text('X'));
 
   // Agregamos la notificación al contenedor
