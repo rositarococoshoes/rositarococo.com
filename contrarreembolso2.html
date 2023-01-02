@@ -1350,7 +1350,7 @@ function showNotification() {
     if (currentNotificationIndex >= salesData.length) {
             // Si hemos llegado al final del array, reseteamos el índice y detenemos el intervalo
       currentNotificationIndex = 0;
-      clearInterval(notificationInterval);
+     // clearInterval(notificationInterval);
       return;
     }
     currentNotification = salesData[currentNotificationIndex];
