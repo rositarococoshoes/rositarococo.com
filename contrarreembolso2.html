@@ -1348,7 +1348,10 @@ function showNotification() {
     // Pasamos a la siguiente notificación
     currentNotificationIndex++;
     if (currentNotificationIndex >= salesData.length) {
+            // Si hemos llegado al final del array, reseteamos el índice y detenemos el intervalo
       currentNotificationIndex = 0;
+      clearInterval(notificationInterval);
+      return;
     }
     currentNotification = salesData[currentNotificationIndex];
   }
@@ -1385,6 +1388,18 @@ setInterval(() => {
     currentNotificationIndex = 0;
   }
 }, 15000);  
+
+
+  // Mostrar pop-over al hacer clic en el enlace
+  $("#instructions-link").on("click", function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
+    $("#instructions-popover").show(); // Mostrar pop-over
+  });
+
+  // Ocultar pop-over al hacer clic en la capa transparente
+  $("#overlay").on("click", function() {
+    $("#instructions-popover").hide(); // Ocultar pop-over
+  });
   
   
 });
