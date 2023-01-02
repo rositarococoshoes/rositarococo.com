@@ -1425,7 +1425,7 @@ $('#notification-container').append(notificationElement);
 // Mostramos la notificación por 4 segundos y luego la eliminamos
 setTimeout(() => {
 notificationElement.remove();
-}, 4000);
+}, 5000);
 }
 
 // Mostramos la primera notificación inmediatamente
@@ -1441,7 +1441,7 @@ currentNotificationIndex++;
 if (currentNotificationIndex >= salesData.length) {
 currentNotificationIndex = 0;
 }
-}, 15000);
+}, 10000);
 </script>
 </body>
 </html>
