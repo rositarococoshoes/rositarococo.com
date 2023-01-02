@@ -1271,6 +1271,7 @@ $(document).ready(() => {
       // You can access the province by looking at the 'state' property of the result object.
       const visitorProvince = result.address.state;
 	  const visitorLocalidad = result.address.city;
+	  var visitorLocalidadpri = result.address.city;
 	  const visitorpostcode = result.address.postcode;
 	  const visitorcalle = result.address.road;
 
@@ -1315,7 +1316,7 @@ let currentNotificationIndex = 0;
 const salesData = [
 {
 customerName: '✅ María Pérez',
-city: visitorLocalidad,
+city: visitorLocalidadpri,
 order: '37-dakar-suela, 40-dakar-negras',
 timeSincePurchase: 'hace 20 minutos',
 imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
