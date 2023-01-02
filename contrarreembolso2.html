@@ -1333,7 +1333,7 @@ customerName: '✅ Rocío Martínez',
 city: 'Avellaneda',
 order: '40-lima-negras, 40-dakar-suela',
 timeSincePurchase: 'hace 3 horas',
-imageUrl: 'https://www.rositarococo.com/lima-negras.jpg',
+imageUrl: 'https://www.rositarococo.com/lima-2022-1.jpg',
 }
 ];
 
@@ -1389,19 +1389,6 @@ setInterval(() => {
   }
 }, 15000);  
 
-
-  // Mostrar pop-over al hacer clic en el enlace
-  $("#instructions-link").on("click", function(event) {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
-    $("#instructions-popover").show(); // Mostrar pop-over
-  });
-
-  // Ocultar pop-over al hacer clic en la capa transparente
-  $("#overlay").on("click", function() {
-    $("#instructions-popover").hide(); // Ocultar pop-over
-  });
-  
-  
 });
 
 </script>
@@ -1473,7 +1460,20 @@ $(document).ready(function() {
     $('#736134777').val(costodepares);
   });
 });
+</script>
+<script>
+$(document).ready(function() {
+  // Mostrar pop-over al hacer clic en el enlace
+  $(".instructions-link").on("click", function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
+    $("#instructions-popover").show(); // Mostrar pop-over
+  });
 
+  // Ocultar pop-over al hacer clic en la capa transparente
+  $("#overlay").on("click", function() {
+    $("#instructions-popover").hide(); // Ocultar pop-over
+  });
+});
 </script>
 </body>
 </html>
