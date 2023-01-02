@@ -1391,71 +1391,66 @@ $(document).ready(function() {
 </script>
 <!-- Script para mostrar las notificaciones -->
 <script>
-  // Índice de la notificación actual
-  let currentNotificationIndex = 0;
+// Índice de la notificación actual
+let currentNotificationIndex = 0;
 
-  // Datos de las notificaciones de ventas
-  const salesData = [
-    {
-      customerName: '✅ María Pérez',
-      city: 'Buenos Aires',
-      order: '37-dakar-suela, 40-dakar-negras',
-      timeSincePurchase: 'hace 20 minutos',
-      imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
-    },
-    {
-      customerName: '✅ Sofía Pérez',
-      city: 'Mendoza',
-      order: '39-dakar-oro-rosa, 37-siena-negras',
-      timeSincePurchase: 'hace 2 horas',
-      imageUrl: 'https://www.rositarococo.com/dakar-oro-rosa.jpg',
-    },
-    {
-      customerName: '✅ Rocío Martínez',
-      city: 'Santa Fé',
-      order: '40-lima-negras, 40-dakar-suela',
-      timeSincePurchase: 'hace 3 horas',
-      imageUrl: 'https://www.rositarococo.com/lima-negras.jpg',
-    }
-  ];
+// Datos de las notificaciones de ventas
+const salesData = [
+{
+customerName: '✅ María Pérez',
+city: 'Buenos Aires',
+order: '37-dakar-suela, 40-dakar-negras',
+timeSincePurchase: 'hace 20 minutos',
+imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
+},
+{
+customerName: '✅ Sofía Pérez',
+city: 'Mendoza',
+order: '39-dakar-oro-rosa, 37-siena-negras',
+timeSincePurchase: 'hace 2 horas',
+imageUrl: 'https://www.rositarococo.com/dakar-oro-rosa.jpg',
+},
+{
+customerName: '✅ Rocío Martínez',
+city: 'Santa Fé',
+order: '40-lima-negras, 40-dakar-suela',
+timeSincePurchase: 'hace 3 horas',
+imageUrl: 'https://www.rositarococo.com/lima-negras.jpg',
+}
+];
 
-  function showNotification() {
-    // Obtenemos la notificación actual
-    const currentNotification = salesData[currentNotificationIndex];
+function showNotification() {
+// Obtenemos la notificación actual
+const currentNotification = salesData[currentNotificationIndex];
 
-    // Creamos el elemento de la notificación
-    const notificationElement = document.createElement('div');
-    notificationElement.classList.add('notification');
-    notificationElement.innerHTML = `
-      <img src="${currentNotification.imageUrl}">
-      <div class="order-info">
-        <h3>${currentNotification.customerName}</h3>
-        <p>${currentNotification.city}</p>
-        <p>Recién compró ${currentNotification.order}</p>
-        <p>${currentNotification.timeSincePurchase}</p>
-      </div>
-      <div class="close">X</div>
-    `;
-    
-    // Agregamos la notificación al contenedor
-    document.getElementById('notification-container').appendChild(notificationElement);
+// Creamos el elemento de la notificación
+const notificationElement = document.createElement('div');
+notificationElement.classList.add('notification');
+notificationElement.innerHTML = <img src="${currentNotification.imageUrl}"> <div class="order-info"> <h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p> </div> <div class="close">X</div> ;
 
-    // Mostramos la notificación por 4 segundos y luego la eliminamos
-    setTimeout(() => {
-      notificationElement.remove();
-    }, 44000);
-  }
-  
-  setInterval(() => {
-    // Mostramos la notificación
-    showNotification();
+// Agregamos la notificación al contenedor
+document.getElementById('notification-container').appendChild(notificationElement);
 
-    // Pasamos a la siguiente notificación
-    currentNotificationIndex++;
-    if (currentNotificationIndex >= salesData.length) {
-      currentNotificationIndex = 0;
-    }
-  }, 15000);
+// Mostramos la notificación por 4 segundos y luego la eliminamos
+setTimeout(() => {
+notificationElement.remove();
+}, 4000);
+}
+
+// Mostramos la primera notificación inmediatamente
+showNotification();
+
+// Establecemos un intervalo de tiempo para actualizar la notificación
+setInterval(() => {
+// Mostramos la notificación
+showNotification();
+
+// Pasamos a la siguiente notificación
+currentNotificationIndex++;
+if (currentNotificationIndex >= salesData.length) {
+currentNotificationIndex = 0;
+}
+}, 15000);
 </script>
 </body>
 </html>
