@@ -1426,7 +1426,7 @@ const currentNotification = salesData[currentNotificationIndex];
 // Creamos el elemento de la notificación
 const notificationElement = document.createElement('div');
 notificationElement.classList.add('notification');
-notificationElement.innerHTML = <img src="${currentNotification.imageUrl}"> <div class="order-info"> <h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p> </div> <div class="close">X</div> ;
+notificationElement.innerHTML = `<img src="${currentNotification.imageUrl}"> <div class="order-info"> <h3>${currentNotification.customerName}</h3> <p>${currentNotification.city}</p> <p>Recién compró ${currentNotification.order}</p> <p>${currentNotification.timeSincePurchase}</p> </div> <div class="close">X</div>`;
 
 // Agregamos la notificación al contenedor
 document.getElementById('notification-container').appendChild(notificationElement);
