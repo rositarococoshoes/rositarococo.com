@@ -65,6 +65,148 @@ tr:nth-child(even) {  background-color: #dddddd;}
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
+		   /* Estilos para el enlace */
+    .instructions-link {
+      color: blue;
+      text-decoration: underline;
+      font-size: 15px;
+      text-align: center;
+    }
+.instructions-link i {
+  font-size: 1.1em;
+}
+
+    /* Estilos para el pop-over */
+    #instructions-popover {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      z-index: 2;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+    }
+
+    /* Estilos para el contenido del pop-over */
+    #instructions-popover > div {
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      /* width: 100%; */
+     /*  max-width: 400px; */
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Estilos para el botón de cierre */
+    #close-button {
+      position: relative;
+      top: 49px !important;
+      /* right: 39px !important; */
+      color: black;
+      padding-right: 15px;
+      border: none;
+      text-align: right;
+      background-color: transparent;
+      font-size: 32px;
+      cursor: pointer;
+    }
+
+#instructions-popover h2 {
+  background-color: #f1c40f;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+#close-button {
+  /* Otros estilos */
+  top: 10px;
+  left: 10px;
+}
+
+#instructions-popover > div {
+  /* Otros estilos */
+  padding: 10px 20px 10px 20px;
+}
+/* Estilo de la capa transparente */
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0) !important; /* Color de fondo semi-transparente */
+  z-index: 1; /* Mostrar por encima de otros elementos */
+}
+.notification {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+  z-index:999999999999999995;
+}
+
+.notification img {
+  height: 105px;
+  border-radius: 0;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.notification .order-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.notification .order-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.notification .order-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.notification .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a0a0a0;
+  cursor: pointer;
+}
+
+.notification .close:hover {
+  color: #707070;
+}
+.notification .order-info .customer-info {
+  display: flex;
+  align-items: center;
+}
+
+.notification .order-info .customer-info .city {
+  margin-left: auto;
+  padding-right:5px;
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -1810,6 +1952,8 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
         Keep this in mind if you plan to change this code to recreate any sort of multipage-feature in your exported form.
         We're setting this to the total number of pages in this form because we're sending all fields from all the section together.
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
+	<!-- Contenedor para las notificaciones -->
+<div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
@@ -2141,6 +2285,19 @@ $(document).ready(() => {
 });
 
 </script>
-  
-  </body>
+<script>
+$(document).ready(function() {
+  // Mostrar pop-over al hacer clic en el enlace
+  $(".instructions-link").on("click", function(event) {
+    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
+    $("#instructions-popover").show(); // Mostrar pop-over
+  });
+
+  // Ocultar pop-over al hacer clic en la capa transparente
+  $("#overlay").on("click", function() {
+    $("#instructions-popover").hide(); // Ocultar pop-over
+  });
+});
+</script>  
+</body>
 </html>
