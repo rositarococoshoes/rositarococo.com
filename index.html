@@ -2287,16 +2287,89 @@ $(document).ready(() => {
 </script>
 <script>
 $(document).ready(function() {
-  // Mostrar pop-over al hacer clic en el enlace
-  $(".instructions-link").on("click", function(event) {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace (ir a la URL)
-    $("#instructions-popover").show(); // Mostrar pop-over
-  });
+// Índice de la notificación actual
+let currentNotificationIndex = 0;
 
-  // Ocultar pop-over al hacer clic en la capa transparente
-  $("#overlay").on("click", function() {
-    $("#instructions-popover").hide(); // Ocultar pop-over
-  });
+// Datos de las notificaciones de ventas
+const salesData = [
+{
+customerName: '✅ María Pérez',
+city: '📍 CABA',
+order: '37-dakar-suela, 40-dakar-negras',
+timeSincePurchase: 'hace 20 minutos',
+imageUrl: 'https://www.rositarococo.com/dakar-suela-1.jpg',
+},
+{
+customerName: '✅ Sofía Pérez',
+city: '📍 Ramos Mejía',
+order: '39-dakar-oro-rosa, 37-siena-negras',
+timeSincePurchase: 'hace 2 horas',
+imageUrl: 'https://www.rositarococo.com/dakar-oro-rosa.jpg',
+},
+{
+customerName: '✅ Rocío Martínez',
+city: '📍 Avellaneda',
+order: '40-lima-negras, 40-dakar-suela',
+timeSincePurchase: 'hace 3 horas',
+imageUrl: 'https://www.rositarococo.com/lima-2022-1.jpg',
+}
+];
+
+let shownNotifications = [];
+
+function showNotification() {
+  // Obtenemos la notificación actual
+  let currentNotification = salesData[currentNotificationIndex];
+
+  // Verificamos si la notificación ya fue mostrada
+  while (shownNotifications.includes(currentNotification)) {
+    // Pasamos a la siguiente notificación
+    currentNotificationIndex++;
+    if (currentNotificationIndex >= salesData.length) {
+            // Si hemos llegado al final del array, reseteamos el índice y detenemos el intervalo
+      currentNotificationIndex = 0;
+     // clearInterval(notificationInterval);
+      return;
+    }
+    currentNotification = salesData[currentNotificationIndex];
+  }
+
+    // Creamos el elemento de la notificación
+  const notificationElement = $('<div>', { class: 'notification' });
+  notificationElement.append($('<img>', { src: currentNotification.imageUrl }));
+  const orderInfoElement = $('<div>', { class: 'order-info' });
+  orderInfoElement.append($('<div>', { class: 'customer-info' }).html( `<h3>${currentNotification.customerName}</h3> <p class="city">${currentNotification.city}</p>` ));
+  orderInfoElement.append($('<p>', { class: 'order' }).text(`Recién compró ${currentNotification.order}`));
+  orderInfoElement.append($('<p>', { class: 'time-since-purchase' }).text(currentNotification.timeSincePurchase));
+  notificationElement.append(orderInfoElement);
+  notificationElement.append($('<div>', { class: 'close' }).text('X'));
+
+  // Agregamos la notificación al contenedor
+  $('#notification-container').append(notificationElement);
+
+  // Agregamos la notificación a la lista de notificaciones ya mostradas
+  shownNotifications.push(currentNotification);
+
+  // Mostramos la notificación por 4 segundos y luego la eliminamos
+  setTimeout(() => {
+    notificationElement.remove();
+  }, 5000);
+}
+
+// Mostramos la primera notificación inmediatamente
+showNotification();
+
+// Establecemos un intervalo de tiempo para actualizar la notificación
+setInterval(() => {
+  // Mostramos la notificación
+  showNotification();
+
+  // Pasamos a la siguiente notificación
+  currentNotificationIndex++;
+  if (currentNotificationIndex >= salesData.length) {
+    currentNotificationIndex = 0;
+  }
+}, 15000); 
 });
 </script>  
 </body>
