@@ -2089,7 +2089,6 @@ $('#bootstrapForm').submit(function (event) {
    event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
-// $('#1465946249').val($('#1465946249').val().trim().toLowerCase());
  //  if (!$('#1209868979').val().startsWith("https")) { 
  //   event.preventDefault()
  //   }
@@ -2372,5 +2371,13 @@ setInterval(() => {
 }, 15000); 
 });
 </script>  
+<script>
+$('#1465946249').on('input', function() {
+  // elimina espacios en blanco al principio y al final
+  $(this).val($(this).val().trim());
+  // convierte a minúsculas
+  $(this).val($(this).val().toLowerCase());
+});
+</script>
 </body>
 </html>
