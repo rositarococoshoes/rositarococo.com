@@ -2377,6 +2377,24 @@ $('#1465946249').on('input', function() {
   $(this).val($(this).val().trim());
   // convierte a minúsculas
   $(this).val($(this).val().toLowerCase());
+
+  // Corrige errores ortográficos en los dominios de correo electrónico
+  const email = $(this).val();
+  if (!email.endsWith("com.ar") && (email.endsWith("hotmail.con") || email.endsWith("hotmail.cm") || email.endsWith("hotmail.co") || email.endsWith("hotmail.ocm") || email.endsWith("hotmail.cmo"))) {
+    $(this).val(email.replace(/.con|.cm|.co|.ocm|.cmo$/, ".com"));
+  }
+  if (!email.endsWith("com.ar") && (email.endsWith("outloo.com") || email.endsWith("outlook.co"))) {
+    $(this).val(email.replace(/outloo\.com|outlook\.co$/, "outlook.com"));
+  }
+  if (!email.endsWith("com.ar") && email.endsWith("lve.com")) {
+    $(this).val(email.replace(/lve\.com$/, "live.com"));
+  }
+  if (!email.endsWith("com.ar") && (email.endsWith("gmail.co") || email.endsWith("gmail.cm") || email.endsWith("gmail.con") || email.endsWith("gamil") || email.endsWith("gmel") || email.endsWith("gmal") || email.endsWith("googlemail") || email.endsWith("googelmail") || email.endsWith("googmail") || email.endsWith("gmai.com") || email.endsWith("gmail.ocm") || email.endsWith("gmail.cmo"))) {
+    $(this).val(email.replace(/gmail\.co|gmail\.cm|gmail\.con|gamil|gmel|gmal|googlemail|googelmail|googmail|gmai\.com|gmail\.ocm|gmail\.cmo$/, "gmail.com"));
+  }
+  if (!email.endsWith("com.ar") && (email.endsWith("yahoo.ocm") || email.endsWith("yahoo.cmo") || email.endsWith("yahoo.co") || email.endsWith("yhoo.com") || email.endsWith("yaho.com"))) {
+    $(this).val(email.replace(/yahoo\.ocm|yahoo\.cmo|yahoo\.co|yhoo\.com|yaho\.com$/, "yahoo.com"));
+  }
 });
 </script>
 </body>
