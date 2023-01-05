@@ -1412,7 +1412,7 @@ $('#541001873').on('input keyup', function() {
   $(this).val($(this).val().replace(/\s/g, '').replace(/\./g, ''));
 });
 
-$('#53830725').on('input keyup', function() {
+$('#53830725').on('input keyup', function(event) {
   // elimina espacios en blanco al principio y al final
   $(this).val($(this).val().trim());
   // convierte a minúsculas
