@@ -1412,17 +1412,13 @@ $('#541001873').on('input keyup', function() {
   $(this).val($(this).val().replace(/\s/g, '').replace(/\./g, ''));
 });
 
-$('#53830725').on('input keyup', function(event) {
+$('#53830725').on('input keyup', function() {
   // elimina espacios en blanco al principio y al final
   $(this).val($(this).val().trim());
   // convierte a minúsculas
   $(this).val($(this).val().toLowerCase());
   // cancela la acción predeterminada si se ha introducido un espacio o un guión
-  if ($(this).val().includes(' ') || $(this).val().includes('-')) {
-    event.preventDefault();
-  }
-  // cancela la acción predeterminada si el primer caracter es un cero
-  if ($(this).val().startsWith('0')) {
+  if ($(this).val().includes(' ') || $(this).val().includes('-') || $(this).val().startsWith('0')) {
     event.preventDefault();
   }
 });
