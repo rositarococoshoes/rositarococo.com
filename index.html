@@ -1400,11 +1400,16 @@ setInterval(() => {
 });
 </script>  
 <script>
-$('#1465946249').on('input', function() {
+$('#1465946249').on('input keyup', function() {
   // elimina espacios en blanco al principio y al final
   $(this).val($(this).val().trim());
   // convierte a minúsculas
   $(this).val($(this).val().toLowerCase());
+});
+
+$('#541001873').on('input keyup', function() {
+  // elimina espacios en blanco y puntos
+  $(this).val($(this).val().replace(/\s/g, '').replace(/\./g, ''));
 });
 </script>
 </body>
