@@ -966,16 +966,6 @@ PROVINCIA: <span id="help-provincia" style="color:black;">-</span><br />
 C&Oacute;DIGO POSTAL: <span id="help-cp" style="color:black;">-</span><br />
 DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 
-<fieldset><legend for="comoabona">¿Cómo querés pagar?</legend>
-
-<div class="form-group"><select class="form-control" id="comoabona" name="comoabona" required="" type="text">
-                                <option value="">-- Selecciona forma de pago --</option>
-                            <option value="tarjeta">Tarjeta de Cédito o Débito</option>
-							<option value="mercadopago">Saldo MercadoPago</option>
-							<option value="cbu">Transferencia Bancaria</option>
-</select></div>
-</fieldset>
-
 <p class="help-block"><font color="#ff0000"><b><span id="preciototal" style="color:black; font-size:14px;">Seleccion&aacute; Modelos/Talles arriba</span></b></font></p>
 
 <p class="help-block"><font color="#ff0000"><b><span style="color:black;">&nbsp;</span></b></font><br />
@@ -1114,18 +1104,8 @@ var modeload = getUrlParameter('modeload');
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');   
 });   
-</script>
-<script>
+</script><script>
 $('#bootstrapForm').submit(function (event) {  
-   event.preventDefault();
-   $('#botoncomprar').attr('value', 'Espere...');
-   $('#botoncomprar').attr('disabled', 'true');
-   
-   var talleselegidos = $('#1471599855').val();
-   var value2 = (talleselegidos).replace(" ", "");
-   var words = value2.split(",");
-   var formaPago = $('#comoabona').val();
-
 
  //  if (!$('#1209868979').val().startsWith("https")) { 
   //  event.preventDefault()
@@ -1148,32 +1128,31 @@ $('#bootstrapForm').submit(function (event) {
            
             // You can also redirect the user to a custom thank-you page:
              var talleselegidos = $('#1471599855').val();
-			var formaPago = $('#comoabona').val();
+			
 var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
     var queryString = $('#1471599855').serialize();
-fbq('track', 'InitiateCheckout');
-setTimeout(() => {
-if (words.length === 2) {
-if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-window.location = 'https://mpago.la/33S3vt7';
-} else if (formaPago === "cbu") {
-window.location = 'https://rositarococo.com/transferenciacbu-1par.html';
-}
-} else if (words.length === 3) {
-if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-window.location = 'https://mpago.la/21iC4A5';
-} else if (formaPago === "cbu") {
-window.location = 'https://rositarococo.com/transferenciacbu-2pares.html';
-}
-}
-}, 2000);
+    if(words.length === 2){
+        window.location = 'http://www.rositarococo.com/gracias-1par.html?'+queryString
+       
+    }
+ if(words.length === 3){
+        window.location = 'http://www.rositarococo.com/gracias-2pares.html?'+queryString
+        
+    }
+ if(words.length === 4){
+       window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
+       
+    }
+else if(words.length > 4){
+        window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
+        
+    }
              
         }
     })
 }) 
-
-</script><script>
+  </script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
  $("#help-modelostallesseleccionados").html($("#1471599855").val());
