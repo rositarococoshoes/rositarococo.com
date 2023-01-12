@@ -1152,7 +1152,7 @@ $('#bootstrapForm').submit(function (event) {
 var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
     var queryString = $('#1471599855').serialize();
-
+fbq('track', 'InitiateCheckout');
 setTimeout(() => {
 if (words.length === 2) {
 if (formaPago === "tarjeta" || formaPago === "mercadopago") {
