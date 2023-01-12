@@ -969,8 +969,8 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 <fieldset><legend for="comoabona">¿Cómo querés pagar?</legend>
 
 <div class="form-group"><select class="form-control" id="comoabona" name="comoabona" required="" type="text">
-                                <option value="">Selecciona forma de pago</option>
-                            <option value="tarjeta">Tarjeta de crédito o débito</option>
+                                <option value="">-- Selecciona forma de pago --</option>
+                            <option value="tarjeta">Tarjeta de Cédito o Débito</option>
 							<option value="mercadopago">Saldo MercadoPago</option>
 							<option value="cbu">Transferencia Bancaria</option>
 </select></div>
@@ -1114,8 +1114,18 @@ var modeload = getUrlParameter('modeload');
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');   
 });   
-</script><script>
+</script>
+<script>
 $('#bootstrapForm').submit(function (event) {  
+   event.preventDefault();
+   $('#botoncomprar').attr('value', 'Espere...');
+   $('#botoncomprar').attr('disabled', 'true');
+   
+   var talleselegidos = $('#1471599855').val();
+   var value2 = (talleselegidos).replace(" ", "");
+   var words = value2.split(",");
+   var formaPago = $('#comoabona').val();
+
 
  //  if (!$('#1209868979').val().startsWith("https")) { 
   //  event.preventDefault()
@@ -1143,26 +1153,27 @@ var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
     var queryString = $('#1471599855').serialize();
 
-   fbq('track', 'InitiateCheckout').then(() => {
-      if (words.length === 2) {
-         if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-            window.location = 'https://mpago.la/33S3vt7';
-         } else if (formaPago === "cbu") {
-            window.location = 'https://rositarococo.com/transferenciacbu-1par.html';
-         }
-      } else if (words.length === 3) {
-         if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-            window.location = 'https://mpago.la/21iC4A5';
-         } else if (formaPago === "cbu") {
-            window.location = 'https://rositarococo.com/transferenciacbu-2pares.html';
-         }
-      }
-   });
+setTimeout(() => {
+if (words.length === 2) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+window.location = 'https://mpago.la/33S3vt7';
+} else if (formaPago === "cbu") {
+window.location = 'https://rositarococo.com/transferenciacbu-1par.html';
+}
+} else if (words.length === 3) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+window.location = 'https://mpago.la/21iC4A5';
+} else if (formaPago === "cbu") {
+window.location = 'https://rositarococo.com/transferenciacbu-2pares.html';
+}
+}
+}, 2000);
              
         }
     })
 }) 
-  </script><script>
+
+</script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
  $("#help-modelostallesseleccionados").html($("#1471599855").val());
