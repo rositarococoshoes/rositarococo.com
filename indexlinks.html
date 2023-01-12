@@ -1114,25 +1114,41 @@ var modeload = getUrlParameter('modeload');
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');   
 });   
-</script>
-<script>
+</script><script>
 $('#bootstrapForm').submit(function (event) {  
-   event.preventDefault();
-   $('#botoncomprar').attr('value', 'Espere...');
-   $('#botoncomprar').attr('disabled', 'true');
-   
-   var talleselegidos = $('#1471599855').val();
-   var value2 = (talleselegidos).replace(" ", "");
-   var words = value2.split(",");
-   var formaPago = $('#comoabona').val();
 
-   if (words.length === 2) {
+ //  if (!$('#1209868979').val().startsWith("https")) { 
+  //  event.preventDefault()
+ //   }
+ 
+  
+  $('#botoncomprar').attr('value', 'Espere...');
+	$('#botoncomprar').attr('disabled', 'true');
+   event.preventDefault()
+    var extraData = {}
+    $('#bootstrapForm').ajaxSubmit({
+ //  if (!$('#1209868979').val().startsWith("https")) { 
+ //   event.preventDefault()
+ //   }
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+            // Submit of form should be successful but JSONP callback will fail because Google Forms
+            // does not support it, so this is handled as a failure.
+           
+            // You can also redirect the user to a custom thank-you page:
+             var talleselegidos = $('#1471599855').val();
+			var formaPago = $('#comoabona').val();
+var value2 = (talleselegidos).replace(" ", "");
+    var words = value2.split(",");
+    var queryString = $('#1471599855').serialize();
+  if (words.length === 2) {
       if (formaPago === "tarjeta" || formaPago === "mercadopago") {
          fbq('track', 'InitiateCheckout');
          window.location = 'https://mpago.la/33S3vt7';
       } else if (formaPago === "cbu") {
          fbq('track', 'InitiateCheckout');
-         window.location = 'https://rositarococo.com/transferenciacbu-1par.html'+queryString;
+         window.location = 'https://rositarococo.com/transferenciacbu-1par.html';
       }
    } else if (words.length === 3) {
       if (formaPago === "tarjeta" || formaPago === "mercadopago") {
@@ -1140,11 +1156,13 @@ $('#bootstrapForm').submit(function (event) {
          window.location = 'https://mpago.la/21iC4A5';
       } else if (formaPago === "cbu") {
          fbq('track', 'InitiateCheckout');
-         window.location = 'https://rositarococo.com/transferenciacbu-2pares.html'+queryString;
+         window.location = 'https://rositarococo.com/transferenciacbu-2pares.html';
       }
    }
-});
- 
+             
+        }
+    })
+}) 
   </script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
