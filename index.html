@@ -1297,11 +1297,11 @@ $(document).ready(() => {
 	  const visitorpostcode = result.address.postcode;
 	  const visitorcalle = result.address.road;
 
-      console.log('Visitor\'s province:', visitorProvince);
-	  console.log('Visitor\'s localidad:', visitorLocalidad);
-	   console.log('Visitor\'s postcode:', visitorpostcode);
-	      console.log('Visitor\'s postcode digitos:', visitorpostcode.replace(/[^0-9]/g,''));
-		  console.log('Visitor\'s address:', result.address);
+  //    console.log('Visitor\'s province:', visitorProvince);
+//	  console.log('Visitor\'s localidad:', visitorLocalidad);
+//	   console.log('Visitor\'s postcode:', visitorpostcode);
+//	      console.log('Visitor\'s postcode digitos:', visitorpostcode.replace(/[^0-9]/g,''));
+//		  console.log('Visitor\'s address:', result.address);
 	 
 
       // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
@@ -1310,14 +1310,14 @@ $(document).ready(() => {
       $selectElement.find('option').each((index, option) => {
         const optionValue = $(option).text();
         const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
-        console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
+  //      console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
         if (distance < smallestDistance) {
           smallestDistance = distance;
           closestMatch = optionValue;
         }
       });
 
-      console.log('Closest match:', closestMatch); 
+  //    console.log('Closest match:', closestMatch); 
 
       // If a match was found, select it:
       if (closestMatch) {
