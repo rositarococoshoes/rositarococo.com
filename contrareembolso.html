@@ -530,11 +530,11 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <div class="form-group"><input class="form-control" id="501094818" name="entry.501094818" placeholder="Poné tu WHATSAPP sin 0 ni 15, ejemplo: 1156357659" required="" type="text" /></div>
 </fieldset>
 
-<fieldset><legend for="1214200077">Email</legend>
+<fieldset style="display:none;"><legend for="1214200077">Email</legend>
 
 <p style="font-size:11px;">pon&eacute; el mismo email que uses para pagar en Mercadopago en el siguiente paso. Vamos a usarlo para enviarte la confirmaci&oacute;n de tu pago y el seguimiento al despachar.</p>
 
-<div class="form-group"><input class="form-control" id="1214200077" name="entry.1214200077" placeholder="chequeá que ingreses el email correctamente" required="" type="text" /></div>
+<div class="form-group"><input class="form-control" id="1214200077" name="entry.1214200077" placeholder="chequeá que ingreses el email correctamente"  type="text" /></div>
 </fieldset>
 <!-- Field type: "dropdown" id: "1194024040" -->
 
@@ -612,7 +612,6 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <p class="help-block"><font color="#ff0000"><b>TALLES-MODELOS: </b></font> <span id="help-modelostallesseleccionados" style="color:black;">-</span><br />
 <font color="#ff0000"><b>NOMBRE: <span id="help-nombre" style="color:black;">-</span><br />
 WHATSAPP: <span id="help-wapp" style="color:black;">-</span><br />
-EMAIL: <span id="help-email" style="color:black;">-</span><br />
 CALLE Y ALTURA: <span id="help-calleyaltura" style="color:black;">-</span><br />
 LOCALIDAD: <span id="help-localidad" style="color:black;">-</span><br />
 PROVINCIA: <span id="help-provincia" style="color:black;">-</span><br />
@@ -1102,7 +1101,7 @@ $(document).ready(function() {
           costo = 4000;
           break;
         case 'detroit':
-          modeloId = '#3911';
+          modeloId = '#EMMA';
           costo = 3800;
           break;
         default:
