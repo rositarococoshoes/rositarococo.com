@@ -1247,7 +1247,7 @@ $(document).ready(function() {
     if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
-        value: deliveryDate.format('YYYY-MM-DD')
+        value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
       }).text(function() {
         var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
         var words = dateStr.split(' ');
@@ -1260,7 +1260,6 @@ $(document).ready(function() {
     }
   }
 });
-
 </script>
 </body>
 </html>
