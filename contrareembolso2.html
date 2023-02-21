@@ -1239,22 +1239,20 @@ $(document).ready(function() {
   // Agregar opciones al selector de fecha de entrega
   var deliverySelect = $('#1756027935');
   var deliveryCount = 0;
-for (var i = 0; i < maxDays; i++) {
-  var deliveryDate = now.clone().add(i, 'days').startOf('day');
-  if (deliveryDays.includes(deliveryDate.format('dddd')) &&
-      deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
-    var option = $('<option>', {
-      value: deliveryDate.format('YYYY-MM-DD'),
-      text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-    });
-    console.log(option); // Agregue este console.log()
-    deliverySelect.append(option);
-    deliveryCount++;
+  for (var i = 0; i < maxDays; i++) {
+    var deliveryDate = now.clone().add(i, 'days').startOf('day');
+    if (deliveryDays.includes(deliveryDate.format('dddd')) &&
+        deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
+      var option = $('<option>', {
+        value: deliveryDate.format('YYYY-MM-DD'),
+        text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+      });
+      console.log(option);
+      deliverySelect.append(option);
+      deliveryCount++;
+    }
   }
-}
 });
-
-
 
 </script>
 </body>
