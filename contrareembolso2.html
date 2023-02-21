@@ -213,6 +213,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
 	
 
 	
@@ -1229,11 +1230,10 @@ $(document).ready(function() {
   });
 });
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
+
 <script>
 $(document).ready(function() {
   var now = moment(); // Obtener la fecha y hora actual
-  console.log(now);
   var maxDays = 28; // Máximo de días a mostrar
   var deliveryDays = ['Martes', 'Miércoles', 'Viernes']; // Días de entrega disponibles
   var cutoffTime = moment().hour(14).minute(0).second(0); // Hora límite para pedidos
@@ -1244,6 +1244,7 @@ $(document).ready(function() {
   var deliveryCount = 0;
   for (var i = 0; i < maxDays; i++) {
     var deliveryDate = now.clone().add(i, 'days').startOf('day');
+	console.log(deliveryDate);
     if (deliveryDays.includes(deliveryDate.format('dddd')) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
