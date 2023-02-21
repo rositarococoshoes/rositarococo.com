@@ -1230,20 +1230,28 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
   var now = moment(); // Obtener la fecha y hora actual
-  var maxDays = 3; // Máximo de días a mostrar
+  var maxDays = 7; // Máximo de días a mostrar
   var deliveryDays = ['Tuesday', 'Wednesday', 'Friday']; // Días de entrega disponibles
   var cutoffTime = moment().hour(14).minute(0).second(0); // Hora límite para pedidos
+  var minDaysBetweenOrderAndDelivery = 2; // Mínimo de días entre el pedido y la entrega
 
   // Agregar opciones al selector de fecha de entrega
   var deliverySelect = $('#1756027935');
+  var deliveryDates = [];
   for (var i = 0; i < maxDays; i++) {
     var deliveryDate = now.clone().add(i, 'days').startOf('day');
-    if (deliveryDays.includes(deliveryDate.format('dddd')) && deliveryDate.isAfter(cutoffTime)) {
-      var option = $('<option>', { value: deliveryDate.format('YYYY-MM-DD'), text: deliveryDate.format('dddd, MMMM D') });
-      deliverySelect.append(option);
+    if (deliveryDays.includes(deliveryDate.format('dddd')) && deliveryDate.isAfter(cutoffTime) &&
+        deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery) {
+      deliveryDates.push(deliveryDate);
     }
   }
+  deliveryDates = deliveryDates.slice(0, 3);
+  deliveryDates.forEach(function(deliveryDate) {
+    var option = $('<option>', { value: deliveryDate.format('YYYY-MM-DD'), text: deliveryDate.format('dddd, MMMM D') });
+    deliverySelect.append(option);
+  });
 });
+
 </script>
 </body>
 </html>
