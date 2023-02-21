@@ -1247,18 +1247,20 @@ $(document).ready(function() {
     if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
-        value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-          .toLowerCase()
-          .replace(/^(.)|\s(.)/g, function ($1) {
-            return $1.toUpperCase();
-          })
+        value: deliveryDate.format('YYYY-MM-DD')
+      }).text(function() {
+        var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
+        var words = dateStr.split(' ');
+        words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+        words[2] = words[2].charAt(0).toUpperCase() + words[2].slice(1);
+        return words.join(' ') + ' de 14hs a 19hs';
       });
       deliverySelect.append(option);
       deliveryCount++;
     }
   }
 });
+
 </script>
 </body>
 </html>
