@@ -1243,9 +1243,9 @@ $(document).ready(function() {
     if (deliveryDays.includes(deliveryDate.format('dddd')) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
-        value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-      });
+  value: deliveryDate.format('YYYY-MM-DD'),
+  text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+});
       deliverySelect.append(option);
       deliveryCount++;
     }
