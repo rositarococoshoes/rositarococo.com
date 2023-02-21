@@ -1242,7 +1242,7 @@ $(document).ready(function() {
     var deliveryDate = now.clone().add(i, 'days').startOf('day');
     if (deliveryDays.includes(deliveryDate.format('dddd')) && deliveryDate.isAfter(cutoffTime) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
-      var option = $('<option>', { value: deliveryDate.format('YYYY-MM-DD'), text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs' });
+      var option = $('<option>', { value: deliveryDate.format('YYYY-MM-DD'), text: deliveryDate.locale('es').format('dddd D [de] MMMM') });
       deliverySelect.append(option);
       deliveryCount++;
     }
