@@ -1248,14 +1248,16 @@ $(document).ready(function() {
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
         value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').format('dddd D [de] MMMM [de]') + ' 14hs a 19hs'
+        text: deliveryDate.locale('es').startOf('day').format('LLLL').replace(/^\w|\s\w/g, function (letter) {
+          return letter.toUpperCase();
+        }) + ' de 14hs a 19hs'
       });
-      option.text(option.text().replace(/\b\w/g, function(l){ return l.toUpperCase() }))
       deliverySelect.append(option);
       deliveryCount++;
     }
   }
 });
+
 </script>
 </body>
 </html>
