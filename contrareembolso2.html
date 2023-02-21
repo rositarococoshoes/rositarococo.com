@@ -1230,7 +1230,7 @@ $(document).ready(function() {
 <script>
 $(document).ready(function() {
   var now = moment(); // Obtener la fecha y hora actual
-  var maxDays = 28; // Máximo de días a mostrar
+  var maxDays = 7; // Máximo de días a mostrar
   var deliveryDays = ['Martes', 'Miércoles', 'Viernes']; // Días de entrega disponibles
   var cutoffTime = moment().hour(14).minute(0).second(0); // Hora límite para pedidos
   var minDaysBetweenOrderAndDelivery = 2; // Mínimo de días entre el pedido y la entrega
@@ -1240,14 +1240,18 @@ $(document).ready(function() {
   var deliveryCount = 0;
   for (var i = 0; i < maxDays; i++) {
     var deliveryDate = now.clone().add(i, 'days').startOf('day');
-    if (deliveryDays.includes(deliveryDate.format('dddd')) && deliveryDate.isAfter(cutoffTime) &&
+    if (deliveryDays.includes(deliveryDate.format('dddd')) && now.isBefore(cutoffTime) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
-      var option = $('<option>', { value: deliveryDate.format('YYYY-MM-DD'), text: deliveryDate.format('dddd, MMMM D') + ' de 14hs a 19hs' });
+      var option = $('<option>', {
+        value: deliveryDate.format('YYYY-MM-DD'),
+        text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+      });
       deliverySelect.append(option);
       deliveryCount++;
     }
   }
 });
+
 
 
 </script>
