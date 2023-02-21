@@ -1250,8 +1250,8 @@ $(document).ready(function() {
         value: deliveryDate.format('YYYY-MM-DD'),
         text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
           .toLowerCase()
-          .replace(/(^|\s)\S/g, function (letter) {
-            return letter.toUpperCase();
+          .replace(/^(.)|\s(.)/g, function ($1) {
+            return $1.toUpperCase();
           })
       });
       deliverySelect.append(option);
@@ -1259,8 +1259,6 @@ $(document).ready(function() {
     }
   }
 });
-
-
 </script>
 </body>
 </html>
