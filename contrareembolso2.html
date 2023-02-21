@@ -1250,18 +1250,12 @@ $(document).ready(function() {
         value: deliveryDate.format('YYYY-MM-DD'),
         text: deliveryDate.locale('es').format('dddd D [de] MMMM [de] YYYY') + ' de 14hs a 19hs'
       });
-      // Concatenar la fecha y hora formateada y agregar como opción
-      var formattedOption = option.text().replace(/\b\w/g, function(l){ return l.toUpperCase() }); // Mayúsculas en la primera letra de cada palabra
-      formattedOption = formattedOption.replace(/,(?=\s)/g, ""); // Eliminar la coma antes del número del día
-      formattedOption = formattedOption.replace(/\s\d{4}/, ""); // Eliminar el año al final
-      deliverySelect.append($('<option>', {
-        value: option.val(),
-        text: formattedOption
-      }));
+      deliverySelect.append(option);
       deliveryCount++;
     }
   }
 });
+
 </script>
 </body>
 </html>
