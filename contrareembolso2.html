@@ -1248,16 +1248,20 @@ $(document).ready(function() {
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
         value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').startOf('day').format('LLLL').replace(/^\w|\s\w/g, function (letter) {
-          return letter.toUpperCase();
-        }) + ' de 14hs a 19hs'
+        text: deliveryDate.locale('es').format('dddd D [de] MMMM [de] YYYY') + ' de 14hs a 19hs'
       });
-      deliverySelect.append(option);
+      // Concatenar la fecha y hora formateada y agregar como opción
+      var formattedOption = option.text().replace(/\b\w/g, function(l){ return l.toUpperCase() }); // Mayúsculas en la primera letra de cada palabra
+      formattedOption = formattedOption.replace(/,(?=\s)/g, ""); // Eliminar la coma antes del número del día
+      formattedOption = formattedOption.replace(/\s\d{4}/, ""); // Eliminar el año al final
+      deliverySelect.append($('<option>', {
+        value: option.val(),
+        text: formattedOption
+      }));
       deliveryCount++;
     }
   }
 });
-
 </script>
 </body>
 </html>
