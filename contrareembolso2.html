@@ -1248,7 +1248,7 @@ $(document).ready(function() {
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
         value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').format('dddd D [de] MMMM [de] h[h] a h[h]') + 's'
+        text: deliveryDate.locale('es').format('dddd D [de] MMMM [de] 14hs a 19hs') + 's'
       });
       option.text(option.text().replace(/^./, function(str) { return str.toUpperCase(); }));
       deliverySelect.append(option);
