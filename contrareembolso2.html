@@ -1244,17 +1244,22 @@ $(document).ready(function() {
   var deliveryCount = 0;
   for (var i = 0; i < maxDays; i++) {
     var deliveryDate = now.clone().add(i, 'days').startOf('day');
-    if (deliveryDays.includes(deliveryDate.format('dddd')) &&
+    if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
         deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
       var option = $('<option>', {
         value: deliveryDate.format('YYYY-MM-DD'),
-        text: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+        text: deliveryDate.locale('es').format('dddd Do [de] MMMM') + ' de 14hs a 19hs'
+          .toLowerCase()
+          .replace(/(^|\s)\S/g, function (letter) {
+            return letter.toUpperCase();
+          })
       });
       deliverySelect.append(option);
       deliveryCount++;
     }
   }
 });
+
 
 </script>
 </body>
