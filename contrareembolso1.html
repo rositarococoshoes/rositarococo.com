@@ -212,10 +212,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
-	
-
 	
 </head>
 <body>
@@ -670,8 +666,9 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <div class="form-group"><select class="form-control" id="1756027935" name="entry.1756027935" required="" type="text" title="diayhora">
                                <option value="">Seleccione día para recibir</option>
-							
-                           
+                            <option value="Lunes 14hs a 19hs">Lunes 14hs a 19hs</option>
+							<option value="Miércoles 14hs a 19hs">Miércoles 14hs a 19hs</option>
+							<option value="Viernes 14hs a 19hs">Viernes 14hs a 19hs</option>
 </select>
 </div>
 </fieldset>
@@ -797,6 +794,7 @@ $("#todoslosmodelos select").change(function(){
   $(this).data('pre', $(this).val());
   $("#help-modelostallesseleccionados").html($("#286442883").val());
   });
+  console.log(theval.val())
   
   var value2 = $("#286442883").val().replace(" ", "");
     var words = value2.split(",");
@@ -1023,7 +1021,14 @@ $(document).ready(() => {
 	  const visitorLocalidad = result.address.city;
 	  var visitorLocalidadpri = result.address.city;
 	  const visitorpostcode = result.address.postcode;
-	  const visitorcalle = result.address.road;	 
+	  const visitorcalle = result.address.road;
+
+      console.log('Visitor\'s province:', visitorProvince);
+	  console.log('Visitor\'s localidad:', visitorLocalidad);
+	   console.log('Visitor\'s postcode:', visitorpostcode);
+	      console.log('Visitor\'s postcode digitos:', visitorpostcode.replace(/[^0-9]/g,''));
+		  console.log('Visitor\'s address:', result.address);
+	 
 
       // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
       let closestMatch = null;
@@ -1031,11 +1036,14 @@ $(document).ready(() => {
       $selectElement.find('option').each((index, option) => {
         const optionValue = $(option).text();
         const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
+        console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
         if (distance < smallestDistance) {
           smallestDistance = distance;
           closestMatch = optionValue;
         }
       });
+
+      console.log('Closest match:', closestMatch); 
 
       // If a match was found, select it:
       if (closestMatch) {
@@ -1045,6 +1053,7 @@ $(document).ready(() => {
 		$inputcalle.val(visitorcalle+" ");		
 		
       }
+      console.log('Selected option:', $selectElement.val());
     });
   });
   
@@ -1216,37 +1225,6 @@ $(document).ready(function() {
   $("#overlay").on("click", function() {
     $("#instructions-popover").hide(); // Ocultar pop-over
   });
-});
-</script>
-
-<script>
-$(document).ready(function() {
-  var now = moment(); // Obtener la fecha y hora actual
-  var maxDays = 28; // Máximo de días a mostrar
-  var deliveryDays = ['martes', 'miércoles', 'viernes']; // Días de entrega disponibles
-  var cutoffTime = moment().hour(14).minute(0).second(0); // Hora límite para pedidos
-  var minDaysBetweenOrderAndDelivery = 2; // Mínimo de días entre el pedido y la entrega
-
-  // Agregar opciones al selector de fecha de entrega
-  var deliverySelect = $('#1756027935');
-  var deliveryCount = 0;
-  for (var i = 0; i < maxDays; i++) {
-    var deliveryDate = now.clone().add(i, 'days').startOf('day');
-    if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
-        deliveryDate.diff(now, 'days') >= minDaysBetweenOrderAndDelivery && deliveryCount < 3) {
-      var option = $('<option>', {
-        value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-      }).text(function() {
-        var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
-        var words = dateStr.split(' ');
-        words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
-        words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
-        return words.join(' ') + ' de 14hs a 19hs';
-      });
-      deliverySelect.append(option);
-      deliveryCount++;
-    }
-  }
 });
 </script>
 </body>
