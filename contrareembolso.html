@@ -1232,27 +1232,32 @@ var deliverySelect = $('#1756027935');
 var deliveryCount = 0;
 for (var i = 0; i < maxDays; i++) {
   var deliveryDate = now.clone().startOf('day').add(i, 'days');
-  if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase())) {
-    var cutoffDate = deliveryDate.clone().hour(14).minute(0).second(0);
-    if (now.diff(cutoffDate, 'hours') < 0) {
-      deliveryDate = cutoffDate;
-    } else {
-      deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
-    }
-    var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
-    if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
-      var option = $('<option>', {
-        value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-      }).text(function() {
-        var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
-        var words = dateStr.split(' ');
-        words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
-        words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
-        return words.join(' ') + ' de 14hs a 19hs';
-      });
-      deliverySelect.append(option);
-      deliveryCount++;
-    }
+  var deliveryDay = deliveryDate.format('dddd').toLowerCase();
+  if (!deliveryDays.includes(deliveryDay)) {
+    continue; // Salta al siguiente día si no es martes, miércoles o viernes
+  }
+  if (now.diff(deliveryDate, 'hours') >= 0) {
+    continue; // Salta al siguiente día si la entrega ya pasó
+  }
+  var cutoffDate = deliveryDate.clone().hour(14).minute(0).second(0);
+  if (now.diff(cutoffDate, 'hours') < 0) {
+    deliveryDate = cutoffDate;
+  } else {
+    deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
+  }
+  var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
+  if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
+    var option = $('<option>', {
+      value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+    }).text(function() {
+      var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
+      var words = dateStr.split(' ');
+      words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+      words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
+      return words.join(' ') + ' de 14hs a 19hs';
+    });
+    deliverySelect.append(option);
+    deliveryCount++;
   }
 }
 
