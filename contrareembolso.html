@@ -1232,9 +1232,10 @@ var minHoursBetweenOrderAndDelivery = 48; // Mínimo de horas entre el pedido y 
 var deliverySelect = $('#1756027935');
 var deliveryCount = 0;
 for (var i = 0; i < maxDays; i++) {
-  var deliveryDate = now.clone().add(i, 'days').startOf('day');
+  var deliveryDate = now.clone().startOf('day').add(1, 'days').add(i, 'days');
+  var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
   if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
-      deliveryDate.diff(now, 'hours') >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
+      hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
     var option = $('<option>', {
       value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
     }).text(function() {
@@ -1248,6 +1249,7 @@ for (var i = 0; i < maxDays; i++) {
     deliveryCount++;
   }
 }
+
 
   
 // Obtener el segundo valor del select
