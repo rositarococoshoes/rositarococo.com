@@ -1252,9 +1252,13 @@ for (var i = 0; i < maxDays; i++) {
       });
       deliverySelect.append(option);
       deliveryCount++;
+      if (deliveryCount === 1) {
+        break; // Termina el ciclo si ya se agregó la primera opción
+      }
     }
   }
 }
+
 
 
 
