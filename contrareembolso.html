@@ -1231,24 +1231,32 @@ var minHoursBetweenOrderAndDelivery = 48; // Mínimo de horas entre el pedido y 
 // Agregar opciones al selector de fecha de entrega
 var deliverySelect = $('#1756027935');
 var deliveryCount = 0;
+var lastDeliveryDate = null;
 for (var i = 0; i < maxDays; i++) {
   var deliveryDate = now.clone().startOf('day').add(1, 'days').add(i, 'days');
   var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
   if (deliveryDays.includes(deliveryDate.format('dddd').toLowerCase()) &&
-      hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
-    var option = $('<option>', {
-      value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
-    }).text(function() {
-      var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
-      var words = dateStr.split(' ');
-      words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
-      words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
-      return words.join(' ') + ' de 14hs a 19hs';
-    });
-    deliverySelect.append(option);
-    deliveryCount++;
+      hoursUntilDelivery >= minHoursBetweenOrderAndDelivery) {
+    if (lastDeliveryDate == null || deliveryDate.diff(lastDeliveryDate, 'days') > 0) {
+      var option = $('<option>', {
+        value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
+      }).text(function() {
+        var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
+        var words = dateStr.split(' ');
+        words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
+        words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
+        return words.join(' ') + ' de 14hs a 19hs';
+      });
+      deliverySelect.append(option);
+      deliveryCount++;
+      lastDeliveryDate = deliveryDate.clone();
+    }
+    if (deliveryCount == 3) {
+      break;
+    }
   }
 }
+
 
 
   
