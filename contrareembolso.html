@@ -1226,7 +1226,6 @@ var now = moment(); // Obtener la fecha y hora actual
 var maxDays = 28; // Máximo de días a mostrar
 var deliveryDays = ['martes', 'miércoles', 'viernes']; // Días de entrega disponibles
 var minHoursBetweenOrderAndDelivery = 48; // Mínimo de horas entre el pedido y la entrega
-var workHours = [9, 14]; // Horario laboral de 9 a 14
 
 // Agregar opciones al selector de fecha de entrega
 var deliverySelect = $('#1756027935');
@@ -1237,36 +1236,30 @@ for (var i = 0; i < maxDays; i++) {
   if (!deliveryDays.includes(deliveryDay)) {
     continue; // Salta al siguiente día si no es martes, miércoles o viernes
   }
-  if (deliveryDate.diff(now, 'hours') <= workHours[1]) {
-    continue; // Salta al siguiente día si la entrega ya pasó el horario laboral
+  if (now.diff(deliveryDate, 'hours') >= 0) {
+    continue; // Salta al siguiente día si la entrega ya pasó
   }
-  var cutoffDate = deliveryDate.clone().hour(workHours[1]).minute(0).second(0);
+  var cutoffDate = deliveryDate.clone().hour(14).minute(0).second(0);
   if (now.diff(cutoffDate, 'hours') < 0) {
     deliveryDate = cutoffDate;
   } else {
-    deliveryDate = deliveryDate.add(1, 'days').hour(workHours[0]).minute(0).second(0);
-    if (deliveryDate.diff(now, 'hours') <= workHours[1]) {
-      deliveryDate = deliveryDate.add(1, 'days').hour(workHours[0]).minute(0).second(0);
-    }
+    deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
   }
-  var workDayHours = (workHours[1] - workHours[0]) + 24; // horas laborales de un dia, considerando el cambio de dia
   var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
-  var workHoursUntilDelivery = (workHours[1] - now.hour()) + ((deliveryDate.diff(now, 'days') - 1) * workDayHours) + (deliveryDate.hour() - workHours[0]);
-  if (workHoursUntilDelivery >= (minHoursBetweenOrderAndDelivery / workDayHours) && deliveryCount < 3) {
+  if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
     var option = $('<option>', {
-      value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de ' + workHours[0] + 'hs a ' + workHours[1] + 'hs'
+      value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
     }).text(function() {
       var dateStr = deliveryDate.locale('es').format('dddd D [de] MMMM');
       var words = dateStr.split(' ');
       words[0] = words[0].charAt(0).toUpperCase() + words[0].slice(1);
       words[3] = words[3].charAt(0).toUpperCase() + words[3].slice(1);
-      return words.join(' ') + ' de ' + workHours[0] + 'hs a ' + workHours[1] + 'hs';
+      return words.join(' ') + ' de 14hs a 19hs';
     });
     deliverySelect.append(option);
     deliveryCount++;
   }
 }
-
 
 
 
