@@ -1236,6 +1236,9 @@ for (var i = 0; i < maxDays; i++) {
   if (!deliveryDays.includes(deliveryDay)) {
     continue; // Salta al siguiente día si no es martes, miércoles o viernes
   }
+  if (deliveryDay === 'martes' && now.diff(deliveryDate, 'hours') < minHoursBetweenOrderAndDelivery) {
+    continue; // Salta al siguiente día si no se cumplen las horas mínimas entre el pedido y la entrega el martes
+  }
   if (now.diff(deliveryDate, 'hours') >= 0) {
     continue; // Salta al siguiente día si la entrega ya pasó
   }
@@ -1269,6 +1272,7 @@ for (var i = 0; i < maxDays; i++) {
     deliveryCount++;
   }
 }
+
 
 
 
