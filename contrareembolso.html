@@ -1239,12 +1239,21 @@ for (var i = 0; i < maxDays; i++) {
   if (now.diff(deliveryDate, 'hours') >= 0) {
     continue; // Salta al siguiente día si la entrega ya pasó
   }
-  var cutoffDate = deliveryDate.clone().hour(14).minute(0).second(0);
-  if (now.diff(cutoffDate, 'hours') < 0) {
-    deliveryDate = cutoffDate;
+  
+  // Agregar un día adicional al corte si la fecha de entrega cae en fin de semana
+  if (deliveryDay === 'sábado') {
+    deliveryDate = deliveryDate.add(2, 'days').hour(14).minute(0).second(0);
+  } else if (deliveryDay === 'domingo') {
+    deliveryDate = deliveryDate.add(1, 'days').hour(14).minute(0).second(0);
   } else {
-    deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
+    var cutoffDate = deliveryDate.clone().hour(14).minute(0).second(0);
+    if (now.diff(cutoffDate, 'hours') < 0) {
+      deliveryDate = cutoffDate;
+    } else {
+      deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
+    }
   }
+  
   var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
   if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
     var option = $('<option>', {
