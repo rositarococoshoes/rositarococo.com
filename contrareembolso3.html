@@ -1229,7 +1229,6 @@ $(document).ready(function() {
   var diasSumar = 0;
   switch (fechaPedido.day()) {
     case 0: // Domingo
-    case 6: // Sábado
       diasSumar = 3;
       break;
     case 1: // Lunes
@@ -1246,6 +1245,9 @@ $(document).ready(function() {
       break;
     case 5: // Viernes
       diasSumar = horaPedido < "14:00" ? 7 : 10;
+      break;
+    case 6: // Sábado
+      diasSumar = 4;
       break;
   }
 
