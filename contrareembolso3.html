@@ -1270,7 +1270,7 @@ if (todayNum == 1) {
 
 // Agregar las opciones al selector de fechas
 $.each(availableDates, function(index, value) {
-  var option = $("<option></option>").attr("value", value.format("DD-MM-YYYY")).text(value.format("dddd DD [de] MMMM"));
+  var option = $("<option></option>").attr("value", value.format("DD-MM-YYYY")).text(value.format("dddd D [de] MMMM"));
   $("#1756027935").append(option);
 });
 
