@@ -1222,148 +1222,40 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
-  var today = moment();
-  var cutoff = moment().hour(14).minute(0).second(0); // Cutoff time: 2pm
-  var nextTuesday = today.clone().startOf('week').add(2, 'days');
-  var nextWednesday = today.clone().startOf('week').add(3, 'days');
-  var nextFriday = today.clone().startOf('week').add(5, 'days');
-  var options = [];
-  
-  switch(today.day()) {
-    case 1: // Monday
-      if(today.isBefore(cutoff)) {
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(today.clone().format('dddd, MMMM D'));
-      } else {
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(today.clone().format('dddd, MMMM D'));
-      }
+  var fechaPedido = moment();
+  var horaPedido = moment().format('HH:mm');
+
+  // Suma días según el día de la semana del pedido
+  var diasSumar = 0;
+  switch (fechaPedido.day()) {
+    case 0: // Domingo
+    case 6: // Sábado
+      diasSumar = 3;
       break;
-      
-    case 2: // Tuesday
-      if(today.isBefore(cutoff)) {
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(today.clone().format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-      } else {
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-      }
+    case 1: // Lunes
+      diasSumar = horaPedido < "14:00" ? 2 : 3;
       break;
-      
-    case 3: // Wednesday
-      if(today.isBefore(cutoff)) {
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-      } else {
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-      }
+    case 2: // Martes
+      diasSumar = horaPedido < "14:00" ? 2 : 3;
       break;
-      
-    case 4: // Thursday
-      if(today.isBefore(cutoff)) {
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-      } else {
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-      }
+    case 3: // Miércoles
+      diasSumar = horaPedido < "14:00" ? 2 : 7;
       break;
-      
-    case 5: // Friday
-      if(today.isBefore(cutoff)) {
-        options.push(nextTuesday.format('dddd, MMMM D'));
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-      } else {
-        options.push(nextWednesday.format('dddd, MMMM D'));
-        options.push(nextFriday.format('dddd, MMMM D'));
-        options.push(nextTuesday.clone().add(1, 'week').format('dddd, MMMM D'));
-      }
+    case 4: // Jueves
+      diasSumar = horaPedido < "14:00" ? 7 : 9;
       break;
-      
-    default: // Saturday or Sunday
-      options.push(nextWednesday.format('dddd, MMMM D'));
-      options.push(nextFriday.format('dddd, MMMM D'));
-      options.push(nextTuesday.clone().add(1, 'week').format('dddd, MMMM D'));
+    case 5: // Viernes
+      diasSumar = horaPedido < "14:00" ? 7 : 10;
       break;
   }
-  
-$.each(options, function(index, value) {
-  var dayOfWeek = moment(value).day();
-  var cutoffTime = moment().startOf('day').add(14, 'hours');
-  var optionText = moment(value).format('dddd, D MMMM');
-  
-  if (dayOfWeek === 1) { // Monday
-    if (moment().isBefore(cutoffTime)) {
-      if (index === 0) {
-        $(optionSelector).append('<option value="' + value + '" selected>' + optionText + '</option>');
-      } else if (index === 1) {
-        $(optionSelector).append('<option value="' + value + '">' + optionText + '</option>');
-      } else if (index === 2) {
-        $(optionSelector).append('<option value="' + value + '">' + optionText + '</option>');
-      }
-    } else {
-      if (index === 0) {
-        $(optionSelector).append('<option value="' + options[2] + '">' + moment(options[2]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 1) {
-        $(optionSelector).append('<option value="' + options[0] + '">' + moment(options[0]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 2) {
-        $(optionSelector).append('<option value="' + options[1] + '">' + moment(options[1]).format('dddd, D MMMM') + '</option>');
-      }
-    }
-  } else if (dayOfWeek === 2) { // Tuesday
-    if (moment().isBefore(cutoffTime)) {
-      if (index === 0) {
-        $(optionSelector).append('<option value="' + options[1] + '">' + moment(options[1]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 1) {
-        $(optionSelector).append('<option value="' + options[2] + '">' + moment(options[2]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 2) {
-        $(optionSelector).append('<option value="' + value + '" selected>' + optionText + '</option>');
-      }
-    } else {
-      if (index === 0) {
-        $(optionSelector).append('<option value="' + options[2] + '">' + moment(options[2]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 1) {
-        $(optionSelector).append('<option value="' + options[0] + '">' + moment(options[0]).format('dddd, D MMMM') + '</option>');
-      } else if (index === 2) {
-        $(optionSelector).append('<option value="' + options[1] + '">' + moment(options[1]).format('dddd, D MMMM') + '</option>');
-      }
-    }
-} else if (dayOfWeek === 3 || dayOfWeek === 4) { // Wednesday or Thursday
-if (time <= 14) {
-// show Friday of same week, and Tuesday and Wednesday of next week
-options.push(moment().weekday(5).format("dddd, MMMM D")); // Friday of same week
-options.push(moment().weekday(2).add(1, "week").format("dddd, MMMM D")); // Tuesday of next week
-options.push(moment().weekday(3).add(1, "week").format("dddd, MMMM D")); // Wednesday of next week
-} else {
-// show Tuesday, Wednesday, and Friday of next week
-options.push(moment().weekday(2).add(1, "week").format("dddd, MMMM D")); // Tuesday of next week
-options.push(moment().weekday(3).add(1, "week").format("dddd, MMMM D")); // Wednesday of next week
-options.push(moment().weekday(5).add(1, "week").format("dddd, MMMM D")); // Friday of next week
-}
-} else { // Friday, Saturday, or Sunday
-// show Tuesday, Wednesday, and Friday of next week
-options.push(moment().weekday(2).add(1, "week").format("dddd, MMMM D")); // Tuesday of next week
-options.push(moment().weekday(3).add(1, "week").format("dddd, MMMM D")); // Wednesday of next week
-options.push(moment().weekday(5).add(1, "week").format("dddd, MMMM D")); // Friday of next week
-}
 
-// add the options to the select element
-var select = $("#1756027935");
-$.each(options, function(index, value) {
-var option = $("<option></option>").attr("value", value).text(value);
-select.append(option);
+  // Agrega las opciones al selector
+  for (var i = 0; i < 3; i++) {
+    var fechaEntrega = moment().add(diasSumar + i, 'days');
+    var opcion = '<option value="' + fechaEntrega.format('YYYY-MM-DD') + '">' + fechaEntrega.format('dddd D [de] MMMM') + '</option>';
+    $('#1756027935').append(opcion);
+  }
 });
-}
 </script>
 </body>
 </html>
