@@ -1222,52 +1222,57 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
-// obtener la fecha actual y la hora actual
-let currentDate = moment();
-let currentHour = currentDate.hours();
-let currentDay = currentDate.day();
+// Obtener el día actual y la hora actual
+var today = moment();
+var currentTime = moment().format("HH:mm");
 
-// establecer los días disponibles en base al día actual y la hora actual
-let options = [];
+// Obtener el día de la semana actual en formato numérico
+var todayNum = today.isoWeekday();
 
-if (currentDay == 1) {
-  if (currentHour < 14) {
-    options = ['Miércoles', 'Viernes', 'Martes'];
+// Definir las fechas disponibles según el día y la hora actual
+var availableDates = [];
+
+if (todayNum == 1) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(4, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
   } else {
-    options = ['Viernes', 'Martes', 'Miércoles'];
+    availableDates.push(today.clone().add(4, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   }
-} else if (currentDay == 2) {
-  if (currentHour < 14) {
-    options = ['Viernes', 'Martes', 'Miércoles'];
+} else if (todayNum == 2) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   } else {
-    options = ['Viernes', 'Martes', 'Miércoles'];
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   }
-} else if (currentDay == 3) {
-  if (currentHour < 14) {
-    options = ['Viernes', 'Martes', 'Miércoles'];
+} else if (todayNum == 3 || todayNum == 4 || todayNum == 5) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   } else {
-    options = ['Martes', 'Miércoles', 'Viernes'];
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   }
-} else if (currentDay == 4) {
-  options = ['Martes', 'Miércoles', 'Viernes'];
-} else if (currentDay == 5) {
-  options = ['Martes', 'Miércoles', 'Viernes'];
-} else if (currentDay == 6) {
-  options = ['Miércoles', 'Viernes', 'Martes'];
 } else {
-  options = ['Miércoles', 'Viernes', 'Martes'];
+  availableDates.push(today.clone().add(3, "days"));
+  availableDates.push(today.clone().add(5, "days"));
+  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
 }
 
-// agregar las opciones al selector de fecha
-$('#1756027935').html('');
-for (let i = 0; i < options.length; i++) {
-  let dayOffset = i * 2;
-  let optionDate = currentDate.clone().add(dayOffset, 'days').format('D [de] MMMM').replace(/^0+/, '');
-  $('#1756027935').append($('<option>', {
-    value: optionDate,
-    text: options[i] + ' ' + optionDate
-  }));
-}
+// Agregar las opciones al selector de fechas
+$.each(availableDates, function(index, value) {
+  var option = $("<option></option>").attr("value", value.format("DD-MM-YYYY")).text(value.format("dddd DD [de] MMMM"));
+  $("#1756027935").append(option);
+});
 
 // establecer el estilo uppercase para las opciones
 $('#1756027935 option').css('text-transform', 'uppercase');
