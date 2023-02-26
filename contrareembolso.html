@@ -1236,13 +1236,12 @@ for (var i = 0; i < maxDays; i++) {
   if (!deliveryDays.includes(deliveryDay)) {
     continue; // Salta al siguiente día si no es martes, miércoles o viernes
   }
-  if (deliveryDay === 'martes' && now.diff(deliveryDate, 'hours') < minHoursBetweenOrderAndDelivery) {
-    continue; // Salta al siguiente día si no se cumplen las horas mínimas entre el pedido y la entrega el martes
-  }
-  if (now.diff(deliveryDate, 'hours') >= 0) {
+  if (deliveryDay === 'martes' && now.diff(deliveryDate, 'hours') >= minHoursBetweenOrderAndDelivery) {
+    // Incluye el martes si han pasado las horas mínimas entre el pedido y la entrega
+  } else if (now.diff(deliveryDate, 'hours') >= 0) {
     continue; // Salta al siguiente día si la entrega ya pasó
   }
-
+  
   // Agregar un día adicional al corte si la fecha de entrega cae en fin de semana
   if (deliveryDay === 'sábado') {
     deliveryDate = deliveryDate.add(2, 'days').hour(14).minute(0).second(0);
@@ -1256,9 +1255,9 @@ for (var i = 0; i < maxDays; i++) {
       deliveryDate = deliveryDate.add(1, 'week').hour(14).minute(0).second(0);
     }
   }
-
+  
   var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
-  if ((deliveryDay === 'martes' && hoursUntilDelivery >= minHoursBetweenOrderAndDelivery) || (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3)) {
+  if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
     var option = $('<option>', {
       value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
     }).text(function() {
