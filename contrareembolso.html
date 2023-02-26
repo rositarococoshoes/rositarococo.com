@@ -1258,7 +1258,7 @@ for (var i = 0; i < maxDays; i++) {
   }
   
   var hoursUntilDelivery = deliveryDate.diff(now, 'hours');
-  if (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3) {
+  if (deliveryDay === 'martes' || (hoursUntilDelivery >= minHoursBetweenOrderAndDelivery && deliveryCount < 3)) {
     var option = $('<option>', {
       value: deliveryDate.locale('es').format('dddd D [de] MMMM') + ' de 14hs a 19hs'
     }).text(function() {
@@ -1272,6 +1272,7 @@ for (var i = 0; i < maxDays; i++) {
     deliveryCount++;
   }
 }
+
 
 
 
