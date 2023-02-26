@@ -1232,7 +1232,7 @@ var todayNum = today.isoWeekday();
 // Definir las fechas disponibles según el día y la hora actual
 var availableDates = [];
 
-  if (todayNum == 1) {
+ if (todayNum == 1) {
     if (currentTime < "14:00") {
       availableDates.push(today.clone().add(2, "days"));
       availableDates.push(today.clone().add(4, "days"));
@@ -1263,11 +1263,13 @@ var availableDates = [];
       availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
     }
   } else {
-    availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(4, "days"));
+    availableDates.push(today.clone().add(3, "days"));
+    availableDates.push(today.clone().add(5, "days"));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
   }
-  
+
 // Agregar las opciones al selector de fechas
 $.each(availableDates, function(index, value) {
   var optionText = value.format("dddd D [de] MMMM") + " de 14hs a 19hs";
