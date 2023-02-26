@@ -1222,41 +1222,38 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
-  var fechaPedido = moment();
-  var horaPedido = moment().format('HH:mm');
+//obtenemos el día de la semana actual y la hora actual
+var today = moment();
+var dayOfWeek = today.day(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+var hour = today.hour();
+var cutoffHour = 14; //cutoffHour es la hora límite para pedidos del día actual
 
-  // Suma días según el día de la semana del pedido
-  var diasSumar = 0;
-  switch (fechaPedido.day()) {
-    case 0: // Domingo
-      diasSumar = 3;
-      break;
-    case 1: // Lunes
-      diasSumar = horaPedido < "14:00" ? 2 : 3;
-      break;
-    case 2: // Martes
-      diasSumar = horaPedido < "14:00" ? 2 : 3;
-      break;
-    case 3: // Miércoles
-      diasSumar = horaPedido < "14:00" ? 2 : 7;
-      break;
-    case 4: // Jueves
-      diasSumar = horaPedido < "14:00" ? 7 : 9;
-      break;
-    case 5: // Viernes
-      diasSumar = horaPedido < "14:00" ? 7 : 10;
-      break;
-    case 6: // Sábado
-      diasSumar = 4;
-      break;
-  }
+//calculamos la cantidad de días que deben pasar para el primer día de envío
+var daysToAdd = 0; 
+if(dayOfWeek === 0) { //Domingo
+    daysToAdd = 2; //se añaden dos días hábiles para llegar al Miércoles
+} else if(dayOfWeek === 1 || dayOfWeek === 2 || dayOfWeek === 3) { //Lunes, Martes o Miércoles
+    if(hour < cutoffHour) { //antes de las 14hs
+        daysToAdd = (dayOfWeek === 1) ? 2 : 1; //si es Lunes se añaden dos días hábiles, si es Martes o Miércoles se añade uno
+    } else { //después de las 14hs
+        daysToAdd = (dayOfWeek === 1) ? 4 : 3; //si es Lunes se añaden cuatro días hábiles, si es Martes o Miércoles se añaden tres
+    }
+} else { //Jueves, Viernes, Sábado
+    daysToAdd = (dayOfWeek === 6) ? 4 : 3; //si es Sábado se añaden cuatro días hábiles, si es Jueves o Viernes se añaden tres
+}
 
-  // Agrega las opciones al selector
-  for (var i = 0; i < 3; i++) {
-    var fechaEntrega = moment().add(diasSumar + i, 'days');
-    var opcion = '<option value="' + fechaEntrega.format('YYYY-MM-DD') + '">' + fechaEntrega.format('dddd D [de] MMMM') + '</option>';
-    $('#1756027935').append(opcion);
-  }
+//generamos las opciones de envío
+var options = "";
+for(var i = 0; i < 3; i++) {
+    var date = moment().add(daysToAdd, 'days').isoWeekday(i === 0 ? 2 : i === 1 ? 4 : 3); //2 = Martes, 4 = Jueves, 3 = Miércoles
+    if(i === 1 && (date.diff(today, 'days') < 2 || date.day() === 0 || date.day() === 6)) { //si es la segunda opción, y la fecha está a menos de 48 horas hábiles de distancia o cae en fin de semana, la opción no se agrega
+        continue;
+    }
+    options += "<option value='" + date.format('YYYY-MM-DD') + "'>" + date.format('dddd D [de] MMMM') + "</option>";
+}
+
+//agregamos las opciones al selector
+$('#1756027935').html(options);
 });
 </script>
 </body>
