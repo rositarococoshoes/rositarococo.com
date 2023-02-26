@@ -1222,38 +1222,57 @@ $(document).ready(function() {
 
 <script>
 $(document).ready(function() {
-//obtenemos el día de la semana actual y la hora actual
+// Obtener el día actual y la hora actual
 var today = moment();
-var dayOfWeek = today.day(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-var hour = today.hour();
-var cutoffHour = 14; //cutoffHour es la hora límite para pedidos del día actual
+var currentTime = moment().format("HH:mm");
 
-//calculamos la cantidad de días que deben pasar para el primer día de envío
-var daysToAdd = 0; 
-if(dayOfWeek === 0) { //Domingo
-    daysToAdd = 2; //se añaden dos días hábiles para llegar al Miércoles
-} else if(dayOfWeek === 1 || dayOfWeek === 2 || dayOfWeek === 3) { //Lunes, Martes o Miércoles
-    if(hour < cutoffHour) { //antes de las 14hs
-        daysToAdd = (dayOfWeek === 1) ? 2 : 1; //si es Lunes se añaden dos días hábiles, si es Martes o Miércoles se añade uno
-    } else { //después de las 14hs
-        daysToAdd = (dayOfWeek === 1) ? 4 : 3; //si es Lunes se añaden cuatro días hábiles, si es Martes o Miércoles se añaden tres
-    }
-} else { //Jueves, Viernes, Sábado
-    daysToAdd = (dayOfWeek === 6) ? 4 : 3; //si es Sábado se añaden cuatro días hábiles, si es Jueves o Viernes se añaden tres
+// Obtener el día de la semana actual en formato numérico
+var todayNum = today.isoWeekday();
+
+// Definir las fechas disponibles según el día y la hora actual
+var availableDates = [];
+
+if (todayNum == 1) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(4, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+  } else {
+    availableDates.push(today.clone().add(4, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+  }
+} else if (todayNum == 2) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+  } else {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+  }
+} else if (todayNum == 3 || todayNum == 4 || todayNum == 5) {
+  if (currentTime < "14:00") {
+    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+  } else {
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
+  }
+} else {
+  availableDates.push(today.clone().add(3, "days"));
+  availableDates.push(today.clone().add(5, "days"));
+  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
 }
 
-//generamos las opciones de envío
-var options = "";
-for(var i = 0; i < 3; i++) {
-    var date = moment().add(daysToAdd, 'days').isoWeekday(i === 0 ? 2 : i === 1 ? 4 : 3); //2 = Martes, 4 = Jueves, 3 = Miércoles
-    if(i === 1 && (date.diff(today, 'days') < 2 || date.day() === 0 || date.day() === 6)) { //si es la segunda opción, y la fecha está a menos de 48 horas hábiles de distancia o cae en fin de semana, la opción no se agrega
-        continue;
-    }
-    options += "<option value='" + date.format('YYYY-MM-DD') + "'>" + date.format('dddd D [de] MMMM') + "</option>";
-}
-
-//agregamos las opciones al selector
-$('#1756027935').html(options);
+// Agregar las opciones al selector de fechas
+$.each(availableDates, function(index, value) {
+  var option = $("<option></option>").attr("value", value.format("DD-MM-YYYY")).text(value.format("dddd DD [de] MMMM"));
+  $("#1756027935").append(option);
+});
 });
 </script>
 </body>
