@@ -1232,41 +1232,41 @@ var todayNum = today.isoWeekday();
 // Definir las fechas disponibles según el día y la hora actual
 var availableDates = [];
 
-if (todayNum == 1) {
-  if (currentTime < "14:00") {
-    availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(4, "days"));
+  if (todayNum == 6 || todayNum == 7) { // Sábado o domingo
+    availableDates.push(today.clone().add(3, "days"));
+    availableDates.push(today.clone().add(5, "days"));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-  } else {
-    availableDates.push(today.clone().add(4, "days"));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+  } else if (todayNum == 1) { // Lunes
+    if (currentTime < "14:00") {
+      availableDates.push(today.clone().add(2, "days"));
+      availableDates.push(today.clone().add(4, "days"));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+    } else {
+      availableDates.push(today.clone().add(4, "days"));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    }
+  } else if (todayNum == 2) { // Martes
+    if (currentTime < "14:00") {
+      availableDates.push(today.clone().add(2, "days"));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    } else {
+      availableDates.push(today.clone().add(2, "days"));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    }
+  } else if (todayNum == 3 || todayNum == 4 || todayNum == 5) { // Miércoles, Jueves o Viernes
+    if (currentTime < "14:00") {
+      availableDates.push(today.clone().add(2, "days"));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    } else {
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+      availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
+    }
   }
-} else if (todayNum == 2) {
-  if (currentTime < "14:00") {
-    availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
-  } else {
-    availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
-  }
-} else if (todayNum == 3 || todayNum == 4 || todayNum == 5) {
-  if (currentTime < "14:00") {
-    availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
-  } else {
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
-  }
-} else {
-  availableDates.push(today.clone().add(3, "days"));
-  availableDates.push(today.clone().add(5, "days"));
-  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
-}
 
 // Agregar las opciones al selector de fechas
 $.each(availableDates, function(index, value) {
