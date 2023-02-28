@@ -1244,7 +1244,7 @@ if (todayNum == 1) {
   }
 } else if (todayNum == 2) {
   if (currentTime < "14:00") {
-    availableDates.push(today.clone().add(2, "days"));
+    availableDates.push(today.clone().add(3, "days"));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   } else {
