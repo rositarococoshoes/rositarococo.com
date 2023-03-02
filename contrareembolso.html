@@ -1262,16 +1262,16 @@ if (todayNum == 1) {
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   }
-    } else if (todayNum == 4) {
+} else if (todayNum == 4) {
   if (currentTime < "14:00") {
-    availableDates.push(today.clone().add(5, "days"):
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   } else {
     availableDates.push(today.clone().add(3, "days"));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
-  }
+  }  
 } else {
   availableDates.push(today.clone().add(3, "days"));
   availableDates.push(today.clone().add(5, "days"));
