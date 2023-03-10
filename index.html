@@ -894,15 +894,15 @@ fbq('track', 'InitiateCheckout');
 setTimeout(() => {
 if (words.length === 2) {
 if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-window.location = 'https://mpago.la/1NagFSL';
+window.location.href = 'https://mpago.la/1NagFSL';
 } else if (formaPago === "cbu") {
-window.location = 'https://rositarococo.com/transferenciacbu-1par.html?'+queryString;
+window.location.href = 'https://rositarococo.com/transferenciacbu-1par.html?'+queryString;
 }
 } else if (words.length === 3) {
 if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-window.location = 'https://mpago.la/14Jqvkf';
+window.location.href = 'https://mpago.la/14Jqvkf';
 } else if (formaPago === "cbu") {
-window.location = 'https://rositarococo.com/transferenciacbu-2pares.html?'+queryString;
+window.location.href = 'https://rositarococo.com/transferenciacbu-2pares.html?'+queryString;
 }
 }
 }, 2000);
