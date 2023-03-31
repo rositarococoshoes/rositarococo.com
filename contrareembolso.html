@@ -886,7 +886,7 @@ DÍA Y HORA DE ENTREGA: <span id="help-diayhora" style="color:black;">-</span></
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
 	   
 	
-  var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela'];
+  var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena', 'verona'];
   fieldsets.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selected = $(this).val();
@@ -1324,6 +1324,14 @@ $(document).ready(function() {
         case 'detroit':
           modeloId = '#EMMA';
           costo = 3800;
+          break;
+		 case 'siena':
+          modeloId = '#SIENA';
+          costo = 3700;
+          break;
+		 case 'verona':
+          modeloId = '#VERONA';
+          costo = 3700;
           break;
         default:
           modeloId = 'desconocido';
