@@ -1475,5 +1475,29 @@ $('.entregamasrapida').text(segundoValor).css({ 'text-transform': 'uppercase', '
 
 });
 </script>
+<script>
+$('#1465946249').on('input keyup', function() {
+  // elimina espacios en blanco al principio y al final
+  $(this).val($(this).val().trim());
+  // convierte a minúsculas
+  $(this).val($(this).val().toLowerCase());
+});
+
+$('#541001873').on('input keyup', function() {
+  // elimina espacios en blanco y puntos
+  $(this).val($(this).val().replace(/\s/g, '').replace(/\./g, ''));
+});
+
+$('#53830725').on('input keyup', function() {
+  // elimina espacios en blanco al principio y al final
+  $(this).val($(this).val().trim());
+  // elimina espacios en blanco y guiones
+  $(this).val($(this).val().replace(/\s/g, '').replace(/-/g, ''));
+  // elimina ceros al principio
+  $(this).val($(this).val().replace(/^0+/, ''));
+  // convierte a minúsculas
+  $(this).val($(this).val().toLowerCase());
+});
+</script>
 </body>
 </html>
