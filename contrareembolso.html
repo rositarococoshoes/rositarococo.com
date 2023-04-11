@@ -1003,56 +1003,51 @@ var modeload = getUrlParameter('modeload');
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');   
 });   
-</script><script>
+</script>
+
+<script>
 $('#bootstrapForm').submit(function (event) {  
+    var $form = $(this);
+    var $submitButton = $form.find('#botoncomprar');
 
- //  if (!$('#1209868979').val().startsWith("https")) { 
-  //  event.preventDefault()
- //   }
- 
-  
-  $('#botoncomprar').attr('value', 'Espere...');
-	$('#botoncomprar').attr('disabled', 'true');
-   event.preventDefault()
-    var extraData = {}
-    $('#bootstrapForm').ajaxSubmit({
+    $submitButton.attr('value', 'Espere...');
+    $submitButton.attr('disabled', 'true');
 
- //  if (!$('#1209868979').val().startsWith("https")) { 
- //   event.preventDefault()
- //   }
-        data: extraData,
-        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
-        error: function () {
-            // Submit of form should be successful but JSONP callback will fail because Google Forms
-            // does not support it, so this is handled as a failure.
-           
-            // You can also redirect the user to a custom thank-you page:
-             var talleselegidos = $('#286442883').val();
-			
-var value2 = (talleselegidos).replace(" ", "");
-    var words = value2.split(",");
-    var queryString = $('#286442883').serialize();
-    if(words.length === 2){
-        window.location = 'http://www.rositarococo.com/gracias-1par-c.html?'+queryString
-       
-    }
- if(words.length === 3){
-        window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?'+queryString
-        
-    }
- if(words.length === 4){
-       window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
-       
-    }
-else if(words.length > 4){
-        window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
-        
-    }
-             
+    event.preventDefault();
+
+    var request = $.ajax({
+        url: $form.attr('action'),
+        type: $form.attr('method'),
+        data: $form.serialize(),
+    });
+
+    request.done(function (response, textStatus, jqXHR) {
+        var talleselegidos = $('#286442883').val();
+        var value2 = (talleselegidos).replace(" ", "");
+        var words = value2.split(",");
+        var queryString = $('#286442883').serialize();
+
+        if(words.length === 2){
+            window.location = 'http://www.rositarococo.com/gracias-1par-c.html?'+queryString
         }
-    })
-}) 
-  </script><script>
+        else if(words.length === 3){
+            window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?'+queryString
+        }
+        else if(words.length === 4){
+            window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
+        }
+        else if(words.length > 4){
+            window.location = 'http://www.rositarococo.com/gracias-3pares.html?'+queryString
+        }
+    });
+
+    request.fail(function (jqXHR, textStatus, errorThrown) {
+        // handle error
+    });
+});
+</script>
+  
+  <script>
 
  $( "#1211347450,#501094818,#1214200077,#394819614,#2081271241,#1440375758,#183290493,#423544000,#1756027935" ).keyup(function() {
  $("#help-modelostallesseleccionados").html($("#286442883").val());
