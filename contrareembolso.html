@@ -829,7 +829,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 </fieldset>
 <!-- Field type: "dropdown" id: "2315500325" -->
 
-<fieldset><legend for="2315500325">ENVÍO: selecciona uno de los días presentados en las opciones para recibir y asegurate que si vos no estás haya alguien para recibir y abonar la compra en el horario de 11hs a 20hs.<br><br> El pago es <u>sólo en efectivo</u> y debes contar con todo el dinero. Vamos a contactarte por Whatsapp para confirmar el envío y debes respondernos para confirmarlo o no se envía.</legend>
+<fieldset><legend for="2315500325">ENVÍO: selecciona uno de los días presentados en las opciones para recibir y asegurate que si vos no estás haya alguien para recibir y abonar la compra en el horario de 11hs a 21hs.<br><br> El pago es <u>sólo en efectivo</u> y debes contar con todo el dinero. Vamos a contactarte por Whatsapp para confirmar el envío y debes respondernos para confirmarlo o no se envía.</legend>
 <p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrareembolso?</a></p>
 </fieldset>
 <!-- Field type: "title" id: "2088281134" -->
@@ -1164,45 +1164,6 @@ $(document).ready(() => {
   const $inputcalle = $('#394819614');
 
 
-  // Use the navigator.geolocation.getCurrentPosition() method to get the visitor's location:
-  navigator.geolocation.getCurrentPosition((position) => {
-    // Once you have the visitor's location, you can use it to reverse geocode the location and get the province:
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-
-    // Use the $.getJSON() function to send a request to the reverse geocode API:
-    $.getJSON(reverseGeocodeUrl, (result) => {
-      // The result object contains information about the reverse geocoded location, including the province.
-      // You can access the province by looking at the 'state' property of the result object.
-      const visitorProvince = result.address.state;
-	  const visitorLocalidad = result.address.city;
-	  var visitorLocalidadpri = result.address.city;
-	  const visitorpostcode = result.address.postcode;
-	  const visitorcalle = result.address.road;	 
-
-      // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
-      let closestMatch = null;
-      let smallestDistance = Infinity;
-      $selectElement.find('option').each((index, option) => {
-        const optionValue = $(option).text();
-        const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
-        if (distance < smallestDistance) {
-          smallestDistance = distance;
-          closestMatch = optionValue;
-        }
-      });
-
-      // If a match was found, select it:
-      if (closestMatch) {
-        $selectElement.val(closestMatch);
-		$inputLocalidad.val(visitorLocalidad);
-		$inputpostcode.val(visitorpostcode.replace(/[^0-9]/g,''));
-		$inputcalle.val(visitorcalle+" ");		
-		
-      }
-    });
-  });
   
 // Índice de la notificación actual
 let currentNotificationIndex = 0;
@@ -1463,7 +1424,7 @@ if (todayNum == 1) {
 
 // Agregar las opciones al selector de fechas
 $.each(availableDates, function(index, value) {
-  var optionText = value.format("dddd D [de] MMMM") + " de 11hs a 20hs";
+  var optionText = value.format("dddd D [de] MMMM") + " de 11hs a 21hs";
   var option = $("<option></option>").attr("value", optionText).text(optionText);
   $("#1756027935").append(option);
 });
