@@ -1383,31 +1383,31 @@ if (todayNum == 1) {
 } else if (todayNum == 3) {
   if (currentTime < "23:59") {
     availableDates.push(today.clone().add(2, "days"));
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+//    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
   availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
 
   } else {
-  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+//  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
 	 availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   }
 } else if (todayNum == 4) {
   if (currentTime < "23:59") {
-     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+  //   availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
      availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
 	 availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   } else {
-    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+ //   availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
 	 availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
   } 
 } else if (todayNum == 5) {
   if (currentTime < "23:59") {
-  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
+//  availableDates.push(today.clone().add(1, "weeks").isoWeekday(2));
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(3));
 	availableDates.push(today.clone().add(1, "weeks").isoWeekday(4));
   availableDates.push(today.clone().add(1, "weeks").isoWeekday(5));
