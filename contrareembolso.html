@@ -1504,7 +1504,7 @@ var allowedPostalCodes = [
     '1855', '1856', '1859', '1860', '1867', '1876', '1877', '1878', 
     '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', 
     '1887', '1888', '1889', '1890', '1891'
-]; 
+];
 
 // Agregamos los códigos postales para CABA
 for (var i = 1000; i <= 1599; i++) {
@@ -1519,13 +1519,18 @@ $('#183290493').blur(function() {
     // Verifica si el código postal ingresado está en la lista de códigos postales permitidos
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
         // Si no está en la lista, muestra un mensaje de error
-        $(this).after('<p id="error-message" style="color:red;">NO enviamos a tu código postal</p>');
+        $(this).after('<p id="error-message" style="color:red;">NO enviamos a tu zona</p>');
     }
 }).focus(function() {
     // Cuando el usuario vuelve a enfocar el campo de entrada del código postal, se elimina el mensaje de error
     $('#error-message').remove();
+}).keypress(function(e) {
+    // Verifica si la tecla presionada es un número
+    if (e.which < 48 || e.which > 57) {
+        // Si no es un número, previene la entrada
+        return false;
+    }
 });
-
 </script>
 </body>
 </html>
