@@ -1517,7 +1517,7 @@ $('#183290493').blur(function() {
     var enteredPostalCode = $(this).val().replace(/\s/g, '').replace(/\./g, '');
 
     // Verifica si el código postal ingresado está vacío
-    if (enteredPostalCode.length === 0) {
+    if (enteredPostalCode === '') {
         return;
     }
 
