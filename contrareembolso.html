@@ -1524,7 +1524,7 @@ $('#183290493').blur(function() {
     // Check if the entered postal code is in the list of allowed postal codes
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
         // If it's not in the list, show an error message
-        $(this).after('<p id="error-message" style="color:red;"><b>NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo.</p>');
+        $(this).after('<p id="error-message" style="color:red;font-size:17px;"><b>NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo.</p>');
     }
 }).focus(function() {
     // When the user focuses the postal code input field again, remove the error message
