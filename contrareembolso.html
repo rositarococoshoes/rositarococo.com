@@ -1516,6 +1516,11 @@ $('#183290493').blur(function() {
     // Obtén el valor ingresado y elimina los espacios en blanco y los puntos
     var enteredPostalCode = $(this).val().replace(/\s/g, '').replace(/\./g, '');
 
+    // Verifica si el código postal ingresado está vacío
+    if (enteredPostalCode.length === 0) {
+        return;
+    }
+
     // Verifica si el código postal ingresado está en la lista de códigos postales permitidos
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
         // Si no está en la lista, muestra un mensaje de error
