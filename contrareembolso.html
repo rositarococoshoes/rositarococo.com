@@ -1524,7 +1524,7 @@ $('#183290493').blur(function() {
     // Verifica si el código postal ingresado está en la lista de códigos postales permitidos
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
         // Si no está en la lista, muestra un mensaje de error
-        $(this).after('<p id="error-message" style="color:red;">NO enviamos a tu zona</p>');
+        $(this).after('<p id="error-message" style="color:red;">NO enviamos a tu código postal.</p>');
     }
 }).focus(function() {
     // Cuando el usuario vuelve a enfocar el campo de entrada del código postal, se elimina el mensaje de error
