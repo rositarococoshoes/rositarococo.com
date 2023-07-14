@@ -1511,28 +1511,28 @@ for (var i = 1000; i <= 1599; i++) {
     allowedPostalCodes.push(i.toString());
 }
 
-// Cuando el usuario deje de enfocar el campo de entrada del código postal
+// When the user blurs the postal code input field
 $('#183290493').blur(function() {
-    // Obtén el valor ingresado y elimina los espacios en blanco y los puntos
+    // Get the entered value and remove any white spaces and dots
     var enteredPostalCode = $(this).val().replace(/\s/g, '').replace(/\./g, '');
 
-    // Verifica si el código postal ingresado está vacío
+    // Check if the entered postal code is empty
     if (enteredPostalCode === '') {
         return;
     }
 
-    // Verifica si el código postal ingresado está en la lista de códigos postales permitidos
+    // Check if the entered postal code is in the list of allowed postal codes
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
-        // Si no está en la lista, muestra un mensaje de error
-        $(this).after('<p id="error-message" style="color:red;">NO enviamos a tu código postal.</p>');
+        // If it's not in the list, show an error message
+        $(this).after('<p id="error-message" style="color:red;"><b>NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo.</p>');
     }
 }).focus(function() {
-    // Cuando el usuario vuelve a enfocar el campo de entrada del código postal, se elimina el mensaje de error
+    // When the user focuses the postal code input field again, remove the error message
     $('#error-message').remove();
 }).keypress(function(e) {
-    // Verifica si la tecla presionada es un número
+    // Check if the pressed key is a number
     if (e.which < 48 || e.which > 57) {
-        // Si no es un número, previene la entrada
+        // If it's not a number, prevent the input
         return false;
     }
 });
