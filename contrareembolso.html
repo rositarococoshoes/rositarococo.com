@@ -1524,11 +1524,18 @@ $('#183290493').blur(function() {
     // Check if the entered postal code is in the list of allowed postal codes
     if (!allowedPostalCodes.includes(enteredPostalCode)) {
         // If it's not in the list, show an error message
-        $(this).after('<p id="error-message" style="color:red;font-size:17px;"><b>NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo.</p>');
+        $(this).after('<p id="error-message" style="color:red;font-size:17px;"><b>⚠️NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo. Si tienes otra dirección en otro código postal dónde puedas recibirlo y abonarlo cambia el CP arriba para continuar. </p>');	
+        // Disable the input field with id #2081271241
+        $('#2081271241').prop('disabled', true);
+	} else {
+        // If it's in the list, enable the input field with id #2081271241
+        $('#2081271241').prop('disabled', false);
     }
 }).focus(function() {
     // When the user focuses the postal code input field again, remove the error message
     $('#error-message').remove();
+    // Enable the input field with id #2081271241
+    $('#2081271241').prop('disabled', false);
 }).keypress(function(e) {
     // Check if the pressed key is a number
     if (e.which < 48 || e.which > 57) {
