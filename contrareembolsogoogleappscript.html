@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none;position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado%20contrareembolso" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLScsk7hShikpk807MoXOogzJQe-HZ37Itl-8eN_ox3omL9r1ig/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
+<form id="bootstrapForm" action="https://script.google.com/macros/s/AKfycbyzVUeEOQyIj_iXCDQycDxG4jpZ5WwJEMMIjwq0uqxlaOjMxBRjQeIcOlRdPg_s_GM_gg/exec" method="post">
 <p><img alt="" src="rosita-form.png" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
@@ -1015,34 +1015,26 @@ $('#' + modeload).insertBefore("#tituloh4");
 $('#bootstrapForm').submit(function (event) {  
   $('#botoncomprar').attr('value', 'Espere...');
   $('#botoncomprar').attr('disabled', 'true');
-  event.preventDefault();
   
-  var extraData = {}
-  
-  $('#bootstrapForm').ajaxSubmit({
-    url: 'https://script.google.com/macros/s/AKfycbyzVUeEOQyIj_iXCDQycDxG4jpZ5WwJEMMIjwq0uqxlaOjMxBRjQeIcOlRdPg_s_GM_gg/exec', // replace this with the URL of your Google Apps Script
-    data: extraData,
-    type: 'POST', // specify the request type
-    dataType: 'jsonp',
-    error: function () {
-        var talleselegidos = $('#286442883').val();
-        var value2 = (talleselegidos).replace(" ", "");
-        var words = value2.split(",");
-        var queryString = $('#286442883').serialize();
+  // No necesitamos prevenir el comportamiento por defecto del formulario
+  // ni hacer una solicitud AJAX, por lo que eliminamos ese código
+
+  var talleselegidos = $('#286442883').val();
+  var value2 = (talleselegidos).replace(" ", "");
+  var words = value2.split(",");
+  var queryString = $('#286442883').serialize();
         
-        setTimeout(function() {
-          if(words.length === 2){
-              window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString
-          }
-          else if(words.length === 3){
-              window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString
-          }
-          else if(words.length >= 4){
-              window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString
-          }
-        }, 2000); // Wait for 2 seconds before redirecting
+  setTimeout(function() {
+    if(words.length === 2){
+        window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
     }
-  })
+    else if(words.length === 3){
+        window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+    }
+    else if(words.length >= 4){
+        window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+    }
+  }, 2000); // Wait for 2 seconds before redirecting
 })
 </script>
 
