@@ -1013,29 +1013,32 @@ $('#' + modeload).insertBefore("#tituloh4");
 
 <script>
 $('#bootstrapForm').submit(function (event) {  
+  event.preventDefault(); // prevent the form from submitting normally
   $('#botoncomprar').attr('value', 'Espere...');
   $('#botoncomprar').attr('disabled', 'true');
   
-  // No necesitamos prevenir el comportamiento por defecto del formulario
-  // ni hacer una solicitud AJAX, por lo que eliminamos ese código
-
   var talleselegidos = $('#286442883').val();
   var value2 = (talleselegidos).replace(" ", "");
   var words = value2.split(",");
   var queryString = $('#286442883').serialize();
-        
-  setTimeout(function() {
-    if(words.length === 2){
-        window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
-    }
-    else if(words.length === 3){
-        window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
-    }
-    else if(words.length >= 4){
-        window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
-    }
-  }, 2000); // Wait for 2 seconds before redirecting
-})
+  var formData = $(this).serialize(); // get all the form data
+
+  // send the form data to the server
+  $.post('https://script.google.com/macros/s/AKfycbywDRUV9Vnz8zci6i8pdbqIBBr0UmjEujHzG0euzF7Mf0pAkEIiMRDzz8NZwlZluDfjLg/exec', formData)
+    .done(function() {
+      // once the data has been sent, redirect to the new URL
+      if(words.length === 2){
+          window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+      }
+      else if(words.length === 3){
+          window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+      }
+      else if(words.length >= 4){
+          window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+      }
+    });
+});
+
 </script>
 
 
