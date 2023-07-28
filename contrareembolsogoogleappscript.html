@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none;position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado%20contrareembolso" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<form id="bootstrapForm" action="https://script.google.com/macros/s/AKfycbyTbNdSF1hrVTdovvpNpjP1SPW_e_eb_W_8Fs-llRq97tK_kVyKdYtqBRJ1iuExdULgDw/exec" method="post">
+<form id="bootstrapForm" action="https://script.google.com/macros/s/AKfycbwc74-tLphgitxSE-LO_CtIJxpEnjPmGc7UuDNdGSSysBopWBAgpcUa-Fbwng4u5gRvUQ/exec" method="post">
 <p><img alt="" src="rosita-form.png" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
@@ -1024,7 +1024,7 @@ $('#bootstrapForm').submit(function (event) {
   var formData = $(this).serialize(); // get all the form data
 
   // send the form data to the server
-  $.post('https://script.google.com/macros/s/AKfycbyTbNdSF1hrVTdovvpNpjP1SPW_e_eb_W_8Fs-llRq97tK_kVyKdYtqBRJ1iuExdULgDw/exec', formData)
+  $.post('https://script.google.com/macros/s/AKfycbwc74-tLphgitxSE-LO_CtIJxpEnjPmGc7UuDNdGSSysBopWBAgpcUa-Fbwng4u5gRvUQ/exec', formData)
     .done(function() {
       // once the data has been sent, redirect to the new URL
       if(words.length === 2){
