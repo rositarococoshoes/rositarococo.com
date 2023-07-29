@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none;position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado%20contrareembolso" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLScsk7hShikpk807MoXOogzJQe-HZ37Itl-8eN_ox3omL9r1ig/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
+<form id="bootstrapForm" action="https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec" method="post">
 <p><img alt="" src="rosita-form.png" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
@@ -1013,36 +1013,34 @@ $('#' + modeload).insertBefore("#tituloh4");
 
 <script>
 $('#bootstrapForm').submit(function (event) {  
+  event.preventDefault(); // prevent the form from submitting normally
   $('#botoncomprar').attr('value', 'Espere...');
   $('#botoncomprar').attr('disabled', 'true');
-  event.preventDefault();
   
-  var extraData = {}
-  
-  $('#bootstrapForm').ajaxSubmit({
-    data: extraData,
-    dataType: 'jsonp',
-    error: function () {
-        var talleselegidos = $('#286442883').val();
-        var value2 = (talleselegidos).replace(" ", "");
-        var words = value2.split(",");
-        var queryString = $('#286442883').serialize();
-        
-        setTimeout(function() {
-          if(words.length === 2){
-              window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString
-          }
-          else if(words.length === 3){
-              window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString
-          }
-          else if(words.length >= 4){
-              window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString
-          }
-        }, 2000); // Wait for 2 seconds before redirecting
-    }
-  })
-})
+  var talleselegidos = $('#286442883').val();
+  var value2 = (talleselegidos).replace(" ", "");
+  var words = value2.split(",");
+  var queryString = $('#286442883').serialize();
+  var formData = $(this).serialize(); // get all the form data
+
+  // send the form data to the server
+  $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
+    .done(function() {
+      // once the data has been sent, redirect to the new URL
+      if(words.length === 2){
+          window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+      }
+      else if(words.length === 3){
+          window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+      }
+      else if(words.length >= 4){
+          window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+      }
+    });
+});
+
 </script>
+
 
   
 <script>
