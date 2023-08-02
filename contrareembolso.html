@@ -1525,5 +1525,26 @@ $('#183290493').blur(function() {
     }
 });
 </script>
+<script>
+jQuery(document).ready(function() {
+  jQuery('#1211347450').on('blur', function(e) {
+    var nombreCompleto = jQuery(this).val().trim();
+    var partes = nombreCompleto.split(' ');
+
+    // Eliminar el mensaje de error existente, si lo hay
+    jQuery('#error-nombre').remove();
+
+    // Verificar si hay al menos dos partes (nombre y apellido)
+    if (partes.length < 2 || partes[0] === '' || partes[1] === '') {
+      // Añadir un mensaje de error en rojo debajo del campo de entrada
+      jQuery(this).after('<div id="error-nombre" style="color: red;">Complete su apellido también para continuar</div>');
+
+      // Prevenir el desenfoque del campo
+      e.preventDefault();
+      jQuery(this).focus(); // Mantener el foco en el campo
+    }
+  });
+});
+</script>
 </body>
 </html>
