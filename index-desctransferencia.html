@@ -1842,5 +1842,37 @@ $('#53830725').on('input keyup', function() {
   $(this).val($(this).val().toLowerCase());
 });
 </script>
+  <script>
+    $(document).ready(function() {
+      // Captura el evento de cambio en el select con id "comoabona"
+      $("#comoabona").change(function() {
+        // Obtiene el valor seleccionado en el select
+        var selectedValue = $(this).val();
+        
+        // Verifica si el valor seleccionado es "cbu"
+        if (selectedValue === "cbu") {
+          // Reemplaza los valores de los elementos con clase ".preciototalaobservar"
+          $(".preciototalaobservar").each(function() {
+            var currentValue = parseInt($(this).text());
+            if (currentValue === 35000) {
+              $(this).text(28000);
+            } else if (currentValue === 52000) {
+              $(this).text(41600);
+            }
+          });
+        } else {
+          // Si el valor seleccionado no es "cbu", revierte los cambios
+          $(".preciototalaobservar").each(function() {
+            var currentValue = parseInt($(this).text());
+            if (currentValue === 28000) {
+              $(this).text(35000);
+            } else if (currentValue === 41600) {
+              $(this).text(52000);
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
