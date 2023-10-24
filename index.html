@@ -1852,36 +1852,36 @@ $('#53830725').on('input keyup', function() {
 });
 </script>
   <script>
-    $(document).ready(function() {
-      // Captura el evento de cambio en el select con id "comoabona"
-      $("#comoabona").change(function() {
-        // Obtiene el valor seleccionado en el select
-        var selectedValue = $(this).val();
-        
-        // Verifica si el valor seleccionado es "cbu"
-        if (selectedValue === "cbu") {
-          // Reemplaza los valores de los elementos con clase ".preciototalaobservar"
-          $(".preciototalaobservar").each(function() {
-            var currentValue = parseInt($(this).text());
-            if (currentValue === 55.000) {
-              $(this).text(44000);
-            } else if (currentValue === 69.000) {
-              $(this).text(55200);
-            }
-          });
-        } else {
-          // Si el valor seleccionado no es "cbu", revierte los cambios
-          $(".preciototalaobservar").each(function() {
-            var currentValue = parseInt($(this).text());
-            if (currentValue === 44000) {
-              $(this).text(55000);
-            } else if (currentValue === 55200) {
-              $(this).text(69000);
-            }
-          });
+$(document).ready(function() {
+  // Captura el evento de cambio en el select con id "comoabona"
+  $("#comoabona").change(function() {
+    // Obtiene el valor seleccionado en el select
+    var selectedValue = $(this).val();
+    
+    // Verifica si el valor seleccionado es "cbu"
+    if (selectedValue === "cbu") {
+      // Reemplaza los valores de los elementos con clase ".preciototalaobservar"
+      $(".preciototalaobservar").each(function() {
+        var currentValue = parseFloat($(this).text().replace(',', '.')); // Reemplaza la coma por el punto y parsea como número flotante
+        if (currentValue === 55.000) {
+          $(this).text("44.000");
+        } else if (currentValue === 69.000) {
+          $(this).text("55.200");
         }
       });
-    });
+    } else {
+      // Si el valor seleccionado no es "cbu", revierte los cambios
+      $(".preciototalaobservar").each(function() {
+        var currentValue = parseFloat($(this).text().replace(',', '.')); // Reemplaza la coma por el punto y parsea como número flotante
+        if (currentValue === 44.000) {
+          $(this).text("55.000");
+        } else if (currentValue === 55.200) {
+          $(this).text("69.000");
+        }
+      });
+    }
+  });
+});
   </script>
 </body>
 </html>
