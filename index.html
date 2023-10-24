@@ -1864,19 +1864,19 @@ $('#53830725').on('input keyup', function() {
           $(".preciototalaobservar").each(function() {
             var currentValue = parseInt($(this).text());
             if (currentValue === 55.000) {
-              $(this).text(44.000);
+              $(this).text(44000);
             } else if (currentValue === 69.000) {
-              $(this).text(55.200);
+              $(this).text(55200);
             }
           });
         } else {
           // Si el valor seleccionado no es "cbu", revierte los cambios
           $(".preciototalaobservar").each(function() {
             var currentValue = parseInt($(this).text());
-            if (currentValue === 44.000) {
+            if (currentValue === 44000) {
               $(this).text(55.000);
             } else if (currentValue === 55.200) {
-              $(this).text(69.000);
+              $(this).text(69000);
             }
           });
         }
