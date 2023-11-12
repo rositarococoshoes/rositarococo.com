@@ -1864,7 +1864,7 @@ $(document).ready(function() {
       $(".preciototalaobservar").each(function() {
         var currentValue = parseFloat($(this).text().replace(',', '.')); // Reemplaza la coma por el punto y parsea como número flotante
         if (currentValue === 45.000) {
-          $(this).text("44.000");
+          $(this).text("36.000");
         } else if (currentValue === 69.000) {
           $(this).text("55.200");
         }
@@ -1873,7 +1873,7 @@ $(document).ready(function() {
       // Si el valor seleccionado no es "cbu", revierte los cambios
       $(".preciototalaobservar").each(function() {
         var currentValue = parseFloat($(this).text().replace(',', '.')); // Reemplaza la coma por el punto y parsea como número flotante
-        if (currentValue === 44.000) {
+        if (currentValue === 36.000) {
           $(this).text("45.000");
         } else if (currentValue === 55.200) {
           $(this).text("69.000");
