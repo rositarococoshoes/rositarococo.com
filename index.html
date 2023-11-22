@@ -916,67 +916,6 @@ $(function () {
 </script>
 
 <script>
-$(document).ready(() => {
-  // Use the $() function to get a hold of the select element:
-  const $selectElement = $('#59648134');
-  const $inputLocalidad = $('#1743418466');
-  const $inputpostcode = $('#1005165410');
-  const $inputcalle = $('#951592426');
-
-
-  // Use the navigator.geolocation.getCurrentPosition() method to get the visitor's location:
-  navigator.geolocation.getCurrentPosition((position) => {
-    // Once you have the visitor's location, you can use it to reverse geocode the location and get the province:
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
-
-    // Use the $.getJSON() function to send a request to the reverse geocode API:
-    $.getJSON(reverseGeocodeUrl, (result) => {
-      // The result object contains information about the reverse geocoded location, including the province.
-      // You can access the province by looking at the 'state' property of the result object.
-      const visitorProvince = result.address.state;
-	  const visitorLocalidad = result.address.city;
-	  const visitorpostcode = result.address.postcode;
-	  const visitorcalle = result.address.road;
-
-  //    console.log('Visitor\'s province:', visitorProvince);
-//	  console.log('Visitor\'s localidad:', visitorLocalidad);
-//	   console.log('Visitor\'s postcode:', visitorpostcode);
-//	      console.log('Visitor\'s postcode digitos:', visitorpostcode.replace(/[^0-9]/g,''));
-//		  console.log('Visitor\'s address:', result.address);
-	 
-
-      // Now that you have the visitor's province, you can use jQuery to find the option that is the closest match:
-      let closestMatch = null;
-      let smallestDistance = Infinity;
-      $selectElement.find('option').each((index, option) => {
-        const optionValue = $(option).text();
-        const distance = optionValue.localeCompare(visitorProvince, undefined, { sensitivity: 'base' });
-  //      console.log(`Distance between ${optionValue} and ${visitorProvince}:`, distance);
-        if (distance < smallestDistance) {
-          smallestDistance = distance;
-          closestMatch = optionValue;
-        }
-      });
-
-  //    console.log('Closest match:', closestMatch); 
-
-      // If a match was found, select it:
-      if (closestMatch) {
-        $selectElement.val(closestMatch);
-		$inputLocalidad.val(visitorLocalidad);
-		$inputpostcode.val(visitorpostcode.replace(/[^0-9]/g,''));
-		$inputcalle.val(visitorcalle+" ");		
-		
-      }
-      console.log('Selected option:', $selectElement.val());
-    });
-  });
-});
-
-</script>
-<script>
 $(document).ready(function() {
 // Índice de la notificación actual
 let currentNotificationIndex = 0;
