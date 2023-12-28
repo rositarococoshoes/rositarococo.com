@@ -160,42 +160,5 @@ $("#talleselegidos").replaceWith(talleselegidos);
 
 </body>
 
-<script>
-document.getElementById('payButton').addEventListener('click', function() {
-  // Obtén el precio y el ID del producto a través de JavaScript (por ejemplo, almacenados en variables)
-  var price = 9950; // Precio en dólares
-  var productId = 123; // ID del producto
-  
-  // Ingresa tu clave de acceso de MercadoPago
-  Mercadopago.setPublishableKey('APP_USR-228877a4-04e7-4412-a5bb-9532660c30f1');
 
-  // Crea un objeto de preferencia de pago con el precio y el ID del producto
-  var paymentPreference = {
-    external_reference: productId,
-    items: [
-      {
-        title: 'Producto',
-        quantity: 1,
-        currency_id: 'ARS',
-        unit_price: price
-      }
-    ]
-  };
-
-  // Abre el Checkout Pro en un modal
-  Mercadopago.openCheckout({
-    url: '/procesar-pago',
-    mode: 'modal',
-    payment_preference: paymentPreference
-  }, function(status, response) {
-    if (status != 200 && status != 201) {
-      // Mostrar un mensaje de error al usuario
-      alert('Error al procesar el pago');
-    } else {
-      // Redirigir al usuario a la página de gracias
-      window.location.href = '/gracias';
-    }
-  });
-});
-</script>
 </html>

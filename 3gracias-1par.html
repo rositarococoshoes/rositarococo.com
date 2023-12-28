@@ -148,40 +148,5 @@ $("#talleselegidos").replaceWith(talleselegidos);
 </script>
 
 
-<script>
-    function inicializarSDK() {
-	const mp = new MercadoPago("APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09"); 
- //     MercadoPago.setPublishableKey('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
- //     MercadoPago.setAccessToken('APP_USR-7641393791309669-082521-8426042efc7686ae9bff4b13ff53dffa-270831598');
-
-      document.getElementById('payButton').addEventListener('click', function(event) {
-        // Muestra el botón de pago en la página
-        MercadoPago.renderButton({
-          // Obtiene la URL del botón de pago a partir de la respuesta de la API
-          button: document.getElementById('payButton'),
-          payment_methods: {
-excluded_payment_methods: [
-{
-id: "oxxo"
-}
-]
-},
-preference_id: "270831598-2a869dc7-3f33-47e9-9e78-3f0121fa6d8d",
-// Se ejecuta cuando el usuario completa el pago
-onPayment: function(data) {
-// Obtiene el ID del pago y redirige al usuario a la página de éxito o de error
-var paymentId = data.id;
-if (paymentId) {
-window.location.href = '/success.html';
-} else {
-window.location.href = '/error.html';
-}
-}
-});
-});
-}
-inicializarSDK();
-  </script>
-
 </body>
 </html>
