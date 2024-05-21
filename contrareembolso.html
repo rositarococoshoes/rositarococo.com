@@ -433,6 +433,10 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <div class="form-group"><input class="form-control" id="394819614" name="entry.394819614" placeholder="ingresa tu calle seguido de la altura" required=""/></div>
 </fieldset>
 
+<fieldset> <legend for="entre-calles">Entre calles (obligatorio)</legend>
+<div class="form-group"><input class="form-control" id="entre-calles" name="entry.entreCalles" type="text" required=""/></div>
+</fieldset>
+
 <fieldset style="display:none;"><legend for="423544000">DNI</legend>
 
 <div class="form-group"><input class="form-control" id="423544000" name="entry.423544000" type="text" /></div>
@@ -636,6 +640,15 @@ $('#bootstrapForm').submit(function (event) {
   var value2 = (talleselegidos).replace(" ", "");
   var words = value2.split(",");
   var queryString = $('#286442883').serialize();
+  
+  // Concatenar valores de dirección
+  var calleAltura = $('#394819614').val();
+  var entreCalles = $('#entre-calles').val();
+  var direccionCompleta = calleAltura + " entre calles " + entreCalles;
+
+  // Actualiza el valor del campo "Calle y Altura" con la dirección completa
+  $('#394819614').val(direccionCompleta);
+  
   var formData = $(this).serialize(); // get all the form data
 
   // send the form data to the server
