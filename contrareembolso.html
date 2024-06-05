@@ -528,8 +528,8 @@ var val = "";
 var theval = $("#286442883");
 
 $("#todoslosmodelos select").change(function(){
-  $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
-  $('.avisoagregado').fadeOut(10000);
+  $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b></p>');
+  $('.avisoagregado').fadeOut(3000);
   $("#region").hide(); 
   $("#restodelform").show();
   $("#avisoform").hide(); 
@@ -1080,72 +1080,72 @@ $('#501094818').on('input keyup', function() {
 
 <script>
 // Lista de códigos postales permitidos
-var allowedPostalCodes = [
-    '1602', '1603', '1604', '1605', '1606', '1607', '1609', '1636', 
-    '1637', '1637', '1638', '1639', '1640', '1641', '1642', '1643', 
-    '1644', '1645', '1646', '1647', '1650', '1650', '1650', '1650', 
-    '1650', '1651', '1652', '1653', '1655', '1657', '1657', '1657', 
-    '1662', '1672', '1674', '1675', '1676', '1678', '1682', '1682', 
-    '1683', '1684', '1684', '1685', '1685', '1686', '1686', '1687', 
-    '1688', '1688', '1689', '1689', '1701', '1702', '1703', '1704', 
-    '1706', '1707', '1708', '1710', '1712', '1713', '1714', '1715', 
-    '1751', '1752', '1753', '1754', '1766', '1768', '1768', '1770', 
-    '1770', '1771', '1772', '1776', '1778', '1785', '1821', '1822', 
-    '1822', '1822', '1823', '1824', '1825', '1826', '1827', '1828', 
-    '1829', '1831', '1832', '1834', '1835', '1835', '1868', '1869', 
-    '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1876', 
-    '1608', '1610', '1611', '1612', '1613', '1614', '1615', '1616', 
-    '1617', '1618', '1621', '1623', '1624', '1648', '1649', '1650', 
-    '1660', '1661', '1663', '1664', '1665', '1666', '1667', '1669', 
-    '1670', '1690', '1691', '1692', '1716', '1717', '1718', '1721', 
-    '1722', '1736', '1740', '1742', '1743', '1744', '1745', '1746', 
-    '1755', '1756', '1757', '1758', '1759', '1761', '1763', '1764', 
-    '1765', '1773', '1774', '1776', '1801', '1802', '1804', '1805', 
-    '1806', '1807', '1812', '1813', '1833', '1836', '1837', '1838', 
-    '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', 
-    '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', 
-    '1855', '1856', '1859', '1860', '1867', '1876', '1877', '1878', 
-    '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', 
-    '1887', '1888', '1889', '1890', '1891'
-];
+// var allowedPostalCodes = [
+//     '1602', '1603', '1604', '1605', '1606', '1607', '1609', '1636', 
+//     '1637', '1637', '1638', '1639', '1640', '1641', '1642', '1643', 
+//      '1644', '1645', '1646', '1647', '1650', '1650', '1650', '1650', 
+//     '1650', '1651', '1652', '1653', '1655', '1657', '1657', '1657', 
+//     '1662', '1672', '1674', '1675', '1676', '1678', '1682', '1682', 
+//     '1683', '1684', '1684', '1685', '1685', '1686', '1686', '1687', 
+//     '1688', '1688', '1689', '1689', '1701', '1702', '1703', '1704', 
+//     '1706', '1707', '1708', '1710', '1712', '1713', '1714', '1715', 
+//     '1751', '1752', '1753', '1754', '1766', '1768', '1768', '1770', 
+//     '1770', '1771', '1772', '1776', '1778', '1785', '1821', '1822', 
+//     '1822', '1822', '1823', '1824', '1825', '1826', '1827', '1828', 
+//     '1829', '1831', '1832', '1834', '1835', '1835', '1868', '1869', 
+//     '1870', '1871', '1872', '1873', '1874', '1875', '1876', '1876', 
+//     '1608', '1610', '1611', '1612', '1613', '1614', '1615', '1616', 
+//     '1617', '1618', '1621', '1623', '1624', '1648', '1649', '1650', 
+//     '1660', '1661', '1663', '1664', '1665', '1666', '1667', '1669', 
+//     '1670', '1690', '1691', '1692', '1716', '1717', '1718', '1721', 
+//     '1722', '1736', '1740', '1742', '1743', '1744', '1745', '1746', 
+//     '1755', '1756', '1757', '1758', '1759', '1761', '1763', '1764', 
+//     '1765', '1773', '1774', '1776', '1801', '1802', '1804', '1805', 
+//     '1806', '1807', '1812', '1813', '1833', '1836', '1837', '1838', 
+//     '1839', '1840', '1841', '1842', '1843', '1844', '1845', '1846', 
+//     '1847', '1848', '1849', '1850', '1851', '1852', '1853', '1854', 
+//     '1855', '1856', '1859', '1860', '1867', '1876', '1877', '1878', 
+//     '1879', '1880', '1881', '1882', '1883', '1884', '1885', '1886', 
+//     '1887', '1888', '1889', '1890', '1891'
+// ];
 
 // Agregamos los códigos postales para CABA
-for (var i = 1000; i <= 1599; i++) {
-    allowedPostalCodes.push(i.toString());
-}
+// for (var i = 1000; i <= 1599; i++) {
+//     allowedPostalCodes.push(i.toString());
+// }
 
 // When the user blurs the postal code input field
-$('#183290493').blur(function() {
+// $('#183290493').blur(function() {
     // Get the entered value and remove any white spaces and dots
-    var enteredPostalCode = $(this).val().replace(/\s/g, '').replace(/\./g, '');
+//     var enteredPostalCode = $(this).val().replace(/\s/g, '').replace(/\./g, '');
 
     // Check if the entered postal code is empty
-    if (enteredPostalCode === '') {
-        return;
-    }
-
-    // Check if the entered postal code is in the list of allowed postal codes
-    if (!allowedPostalCodes.includes(enteredPostalCode)) {
-        // If it's not in the list, show an error message
-        $(this).after('<p id="error-message" style="color:red;font-size:17px;"><b>⚠️NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo. Si tienes otra dirección en otro código postal dónde puedas recibirlo y abonarlo cambia el CP arriba para continuar. </p>');	
-        // Disable the input field with id #2081271241
-        $('#2081271241, #394819614, #1756027935, #botoncomprar').prop('disabled', true);
-	} else {
-        // If it's in the list, enable the input field with id #2081271241
-        $('#2081271241, #394819614, #1756027935, #botoncomprar').prop('disabled', false);
-    }
-}).focus(function() {
-    // When the user focuses the postal code input field again, remove the error message
-    $('#error-message').remove();
-    // Enable the input field with id #2081271241
-    $('#2081271241').prop('disabled', false);
-}).keypress(function(e) {
-    // Check if the pressed key is a number
-    if (e.which < 48 || e.which > 57) {
-        // If it's not a number, prevent the input
-        return false;
-    }
-});
+//     if (enteredPostalCode === '') {
+//         return;
+//     }
+// 
+//     // Check if the entered postal code is in the list of allowed postal codes
+//     if (!allowedPostalCodes.includes(enteredPostalCode)) {
+//         // If it's not in the list, show an error message
+//         $(this).after('<p id="error-message" style="color:red;font-size:17px;"><b>⚠️NO enviamos a tu código postal</b>. No envíes el pedido si <b>' + enteredPostalCode + '</b> es el único código postal en dónde puedes recibirlo. Si tienes otra dirección en otro código postal dónde puedas recibirlo y abonarlo cambia el CP arriba para continuar. </p>');	
+//         // Disable the input field with id #2081271241
+//         $('#2081271241, #394819614, #1756027935, #botoncomprar').prop('disabled', true);
+// 	} else {
+//         // If it's in the list, enable the input field with id #2081271241
+//         $('#2081271241, #394819614, #1756027935, #botoncomprar').prop('disabled', false);
+//     }
+// }).focus(function() {
+//     // When the user focuses the postal code input field again, remove the error message
+//     $('#error-message').remove();
+//     // Enable the input field with id #2081271241
+//     $('#2081271241').prop('disabled', false);
+// }).keypress(function(e) {
+//     // Check if the pressed key is a number
+//     if (e.which < 48 || e.which > 57) {
+//         // If it's not a number, prevent the input
+//         return false;
+//     }
+// });
 </script>
 <script>
 jQuery(document).ready(function() {
