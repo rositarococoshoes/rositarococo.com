@@ -222,7 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&amp;text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<form action="https://script.google.com/macros/s/AKfycbxFS4q8HBxwkvbFBQr4fdadm_E9Y9QvL1h-FZGbl7d3f8GECVpsQODemZC8cf8iHxDT/exec" id="bootstrapForm" method="POST" target="_self" validate="">
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
 <p><img alt="" src="rosita-form.webp" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
@@ -874,66 +874,83 @@ $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');   
 });   
 </script>
-<script>   
-
- $('#bootstrapForm').submit(function (event) {
-        event.preventDefault();
-        $('#botoncomprar').attr('value', 'Espere...');
-        $('#botoncomprar').attr('disabled', 'true');
-
-        var talleselegidos = $('#1471599855').val();
-        var formaPago = $('#comoabona').val(); // Get the payment method
-        var value2 = (talleselegidos).replace(" ", "");
-        var words = value2.split(",");
-
-        var formData = {
-            'entry.1471599855': talleselegidos,
-            'entry.1460904554': $('#1460904554').val(),
-            'entry.1465946249': $('#1465946249').val(),
-            'entry.53830725': $('#53830725').val(),
-            'entry.59648134': $('#59648134').val(),
-            'entry.1743418466': $('#1743418466').val(),
-            'entry.1005165410': $('#1005165410').val(),
-            'entry.951592426': $('#951592426').val(),
-            'entry.541001873': $('#541001873').val(),
-            'entry.1209868979': $('#1209868979').val()
-            // 'comoabona': formaPago  <-- Removed this line
-        };
-
-        // Simulate a success (since a direct POST will trigger the CORS error)
-         setTimeout(() => {
-             let redirectUrl;
-
-             if (words.length === 2) {
-                redirectUrl = (formaPago === "tarjeta" || formaPago === "mercadopago") ?
-                     'https://mpago.la/1FigNnC' : 'https://rositarococo.com/transferenciacbu-1par.html?' + $('#bootstrapForm').serialize();
-             } else if (words.length === 3) {
-                redirectUrl = (formaPago === "tarjeta" || formaPago === "mercadopago") ?
-                      'https://mpago.la/2gYRoZX' : 'https://rositarococo.com/transferenciacbu-2pares.html?' + $('#bootstrapForm').serialize();
-              } else {
-                 // Handle other cases, for example:
-                 alert("Por favor, selecciona un máximo de 2 pares.");
-                 redirectUrl = ""; //  Or redirect to an error page
-             }
-
-            if(redirectUrl){ //Only redirect if a valid url was set
-                window.location.href = redirectUrl;
-            }
-
-            // Restore the button
-            $('#botoncomprar').attr('value', 'COMPRAR 🛒');
-            $('#botoncomprar').removeAttr('disabled');
-         }, 2000); // Optional delay
+<script>
+$('#bootstrapForm').submit(function (event) {  
+   event.preventDefault();
+   $('#botoncomprar').attr('value', 'Espere...');
+   $('#botoncomprar').attr('disabled', 'true');
+   
+   var talleselegidos = $('#1471599855').val();
+   var value2 = (talleselegidos).replace(" ", "");
+   var words = value2.split(",");
+   var formaPago = $('#comoabona').val();
 
 
-        $.ajax({  // This AJAX call will likely error due to CORS, but we're handling the redirect above
-            url: 'https://script.google.com/macros/s/AKfycbxFS4q8HBxwkvbFBQr4fdadm_E9Y9QvL1h-FZGbl7d3f8GECVpsQODemZC8cf8iHxDT/exec',
-            type: 'POST',
-            data: formData,
-            dataType: 'json'
-            // No need for success or error callbacks here unless you have other error handling
-        });
-    });  
+ //  if (!$('#1209868979').val().startsWith("https")) { 
+  //  event.preventDefault()
+ //   }
+ 
+  
+  $('#botoncomprar').attr('value', 'Espere...');
+	$('#botoncomprar').attr('disabled', 'true');
+   event.preventDefault()
+    var extraData = {}
+    $('#bootstrapForm').ajaxSubmit({
+ //  if (!$('#1209868979').val().startsWith("https")) { 
+ //   event.preventDefault()
+ //   }
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+            // Submit of form should be successful but JSONP callback will fail because Google Forms
+            // does not support it, so this is handled as a failure.
+           
+            // You can also redirect the user to a custom thank-you page:
+             var talleselegidos = $('#1471599855').val();
+			var formaPago = $('#comoabona').val();
+var value2 = (talleselegidos).replace(" ", "");
+    var words = value2.split(",");
+    var queryString = $('#1471599855').serialize();
+fbq('track', 'InitiateCheckout');
+setTimeout(() => {
+if (words.length === 2) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+ window.location.href = 'https://mpago.la/1FigNnC';
+// window.location.href = 'https://fresapagos.com/p/commerce/item/CS73zKHHm';
+
+} else if (formaPago === "cbu") {
+window.location.href = 'https://rositarococo.com/transferenciacbu-1par.html?'+queryString;
+}
+} else if (words.length === 3) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+ window.location.href = 'https://mpago.la/2gYRoZX';
+// window.location.href = 'https://fresapagos.com/p/commerce/item/KxeOaOzPi';
+} else if (formaPago === "cbu") {
+window.location.href = 'https://rositarococo.com/transferenciacbu-2pares.html?'+queryString;
+}
+}
+}, 2000);
+             
+        }
+    })
+}) 
+
+</script><script>
+
+ $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
+ $("#help-modelostallesseleccionados").html($("#1471599855").val());
+      $("#help-nombre").html($("#1460904554").val());
+      $("#help-wapp").html($("#53830725").val());   
+       $("#help-email").html($("#1465946249").val());
+      $("#help-calleyaltura").html($("#951592426").val());
+      $("#help-localidad").html($("#1743418466").val());
+      $("#help-provincia").html($("#59648134").val());
+      $("#help-cp").html($("#1005165410").val());
+      $("#help-dni").html($("#541001873").val());  
+   
+});
+   
+  
   </script>
  <script>
 function remove(el) {
