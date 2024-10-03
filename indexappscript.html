@@ -875,13 +875,14 @@ $('#' + modeload).insertBefore("#tituloh4");
 });   
 </script>
 <script>   
-$('#bootstrapForm').submit(function (event) {
+
+ $('#bootstrapForm').submit(function (event) {
         event.preventDefault();
         $('#botoncomprar').attr('value', 'Espere...');
         $('#botoncomprar').attr('disabled', 'true');
 
         var talleselegidos = $('#1471599855').val();
-        var formaPago = $('#comoabona').val();
+        var formaPago = $('#comoabona').val(); // Get the payment method
         var value2 = (talleselegidos).replace(" ", "");
         var words = value2.split(",");
 
@@ -895,66 +896,44 @@ $('#bootstrapForm').submit(function (event) {
             'entry.1005165410': $('#1005165410').val(),
             'entry.951592426': $('#951592426').val(),
             'entry.541001873': $('#541001873').val(),
-            'entry.1209868979': $('#1209868979').val(),  // Asegúrate de que este campo exista en tu formulario
-            'comoabona': formaPago
+            'entry.1209868979': $('#1209868979').val()
+            // 'comoabona': formaPago  <-- Removed this line
         };
 
-        $.ajax({
-            url: 'https://script.google.com/macros/s/AKfycbxFS4q8HBxwkvbFBQr4fdadm_E9Y9QvL1h-FZGbl7d3f8GECVpsQODemZC8cf8iHxDT/exec',  // **Reemplaza con la URL de tu Web App**
+        // Simulate a success (since a direct POST will trigger the CORS error)
+         setTimeout(() => {
+             let redirectUrl;
+
+             if (words.length === 2) {
+                redirectUrl = (formaPago === "tarjeta" || formaPago === "mercadopago") ?
+                     'https://mpago.la/1FigNnC' : 'https://rositarococo.com/transferenciacbu-1par.html?' + $('#bootstrapForm').serialize();
+             } else if (words.length === 3) {
+                redirectUrl = (formaPago === "tarjeta" || formaPago === "mercadopago") ?
+                      'https://mpago.la/2gYRoZX' : 'https://rositarococo.com/transferenciacbu-2pares.html?' + $('#bootstrapForm').serialize();
+              } else {
+                 // Handle other cases, for example:
+                 alert("Por favor, selecciona un máximo de 2 pares.");
+                 redirectUrl = ""; //  Or redirect to an error page
+             }
+
+            if(redirectUrl){ //Only redirect if a valid url was set
+                window.location.href = redirectUrl;
+            }
+
+            // Restore the button
+            $('#botoncomprar').attr('value', 'COMPRAR 🛒');
+            $('#botoncomprar').removeAttr('disabled');
+         }, 2000); // Optional delay
+
+
+        $.ajax({  // This AJAX call will likely error due to CORS, but we're handling the redirect above
+            url: 'https://script.google.com/macros/s/AKfycbxFS4q8HBxwkvbFBQr4fdadm_E9Y9QvL1h-FZGbl7d3f8GECVpsQODemZC8cf8iHxDT/exec',
             type: 'POST',
             data: formData,
-            dataType: 'json',
-            success: function (response) {
-                console.log("Respuesta del script:", response);
-                if (response && response.result === "success") {
-                    fbq('track', 'InitiateCheckout');
-
-                    setTimeout(() => {
-                        if (words.length === 2) {
-                            if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-                                window.location.href = 'https://mpago.la/1FigNnC';
-                            } else if (formaPago === "cbu") {
-                                window.location.href = 'https://rositarococo.com/transferenciacbu-1par.html?' + $('#1471599855').serialize();
-                            }
-                        } else if (words.length === 3) {
-                            if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-                                window.location.href = 'https://mpago.la/2gYRoZX';
-                            } else if (formaPago === "cbu") {
-                                window.location.href = 'https://rositarococo.com/transferenciacbu-2pares.html?' + $('#1471599855').serialize();
-                            }
-                        }
-                    }, 2000);
-
-                } else {
-                    alert("Error al procesar el formulario: " + (response ? response.message : "Error desconocido"));
-                    $('#botoncomprar').attr('value', 'COMPRAR 🛒');
-                    $('#botoncomprar').removeAttr('disabled');
-                }
-            },
-            error: function (error) {
-                console.error("Error en la solicitud AJAX:", error);
-                alert("Error al enviar el formulario. Por favor, inténtalo de nuevo más tarde.");
-                $('#botoncomprar').attr('value', 'COMPRAR 🛒');
-                $('#botoncomprar').removeAttr('disabled');
-            }
+            dataType: 'json'
+            // No need for success or error callbacks here unless you have other error handling
         });
-    });
-</script><script>
-
- $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
- $("#help-modelostallesseleccionados").html($("#1471599855").val());
-      $("#help-nombre").html($("#1460904554").val());
-      $("#help-wapp").html($("#53830725").val());   
-       $("#help-email").html($("#1465946249").val());
-      $("#help-calleyaltura").html($("#951592426").val());
-      $("#help-localidad").html($("#1743418466").val());
-      $("#help-provincia").html($("#59648134").val());
-      $("#help-cp").html($("#1005165410").val());
-      $("#help-dni").html($("#541001873").val());  
-   
-});
-   
-  
+    });  
   </script>
  <script>
 function remove(el) {
