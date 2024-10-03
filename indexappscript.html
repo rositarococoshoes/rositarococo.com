@@ -222,7 +222,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&amp;text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<form action="https://script.google.com/macros/s/AKfycbw2xPWY7ECFspjeRF5DDmlwuUSOQqw0p6TgqsYEYOdL2YrPB3YfPuAVvapIlCkqOG70Wg/exec" id="bootstrapForm" method="POST" target="_self" validate="">
+<form action="https://script.google.com/macros/s/AKfycbyhHVUGNGT5FbMou65wmhTNfWyK3TgTRdp5JMwZgKC1APZkIhMxIEHDntUdmL790CXMOg/exec" id="bootstrapForm" method="POST" target="_self" validate="">
 <p><img alt="" src="rosita-form.webp" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
@@ -884,57 +884,47 @@ $('#bootstrapForm').submit(function (event) {
    var value2 = (talleselegidos).replace(" ", "");
    var words = value2.split(",");
    var formaPago = $('#comoabona').val();
+   var queryString = $('#1471599855').serialize();
 
+   var redirectUrl;
+   if (words.length === 2) {
+       if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+           redirectUrl = 'https://mpago.la/1FigNnC';
+       } else if (formaPago === "cbu") {
+           redirectUrl = 'https://rositarococo.com/transferenciacbu-1par.html?' + queryString;
+       }
+   } else if (words.length === 3) {
+       if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+           redirectUrl = 'https://mpago.la/2gYRoZX';
+       } else if (formaPago === "cbu") {
+           redirectUrl = 'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
+       }
+   }
 
- //  if (!$('#1209868979').val().startsWith("https")) { 
-  //  event.preventDefault()
- //   }
- 
-  
-  $('#botoncomprar').attr('value', 'Espere...');
-	$('#botoncomprar').attr('disabled', 'true');
-   event.preventDefault()
     var extraData = {}
     $('#bootstrapForm').ajaxSubmit({
- //  if (!$('#1209868979').val().startsWith("https")) { 
- //   event.preventDefault()
- //   }
         data: extraData,
-        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        method: 'POST',
         error: function () {
-            // Submit of form should be successful but JSONP callback will fail because Google Forms
-            // does not support it, so this is handled as a failure.
-           
-            // You can also redirect the user to a custom thank-you page:
-             var talleselegidos = $('#1471599855').val();
-			var formaPago = $('#comoabona').val();
-var value2 = (talleselegidos).replace(" ", "");
-    var words = value2.split(",");
-    var queryString = $('#1471599855').serialize();
-fbq('track', 'InitiateCheckout');
-setTimeout(() => {
-if (words.length === 2) {
-if (formaPago === "tarjeta" || formaPago === "mercadopago") {
- window.location.href = 'https://mpago.la/1FigNnC';
-// window.location.href = 'https://fresapagos.com/p/commerce/item/CS73zKHHm';
-
-} else if (formaPago === "cbu") {
-window.location.href = 'https://rositarococo.com/transferenciacbu-1par.html?'+queryString;
-}
-} else if (words.length === 3) {
-if (formaPago === "tarjeta" || formaPago === "mercadopago") {
- window.location.href = 'https://mpago.la/2gYRoZX';
-// window.location.href = 'https://fresapagos.com/p/commerce/item/KxeOaOzPi';
-} else if (formaPago === "cbu") {
-window.location.href = 'https://rositarococo.com/transferenciacbu-2pares.html?'+queryString;
-}
-}
-}, 2000);
-             
+            console.error("Error al enviar el formulario");
+            $('#botoncomprar').attr('value', 'Error');
+            $('#botoncomprar').removeAttr('disabled');
+        },
+        success: function () {
+            console.log("Formulario enviado con éxito.");
+            if (redirectUrl) {
+                fbq('track', 'InitiateCheckout');
+                setTimeout(() => {
+                    window.location.href = redirectUrl;
+                }, 2000);
+            } else {
+                console.error("URL de redirección no válida.");
+                $('#botoncomprar').attr('value', 'Error');
+                $('#botoncomprar').removeAttr('disabled');
+            }
         }
-    })
-}) 
-
+    });
+});
 </script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
