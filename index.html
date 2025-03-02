@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Cómo comprar?</title>
-    <!-- Vendor CSS (normalize, etc. if needed by vendor.css) -->
+    <!-- Vendor CSS -->
     <link href="https://stefano.brilli.me/google-forms-html-exporter/styles/vendor.css" rel="stylesheet" />
     <!-- Main CSS -->
     <link href="https://stefano.brilli.me/google-forms-html-exporter/styles/main.css" rel="stylesheet" />
@@ -50,16 +50,16 @@
         form { max-width: 400px; }
         .form-control { font-size: 12px; }
         .fieldsetstalles { display: none; }
-        fieldset { margin-bottom: 15px; padding:10px; border: 1px solid lightgrey; } /* More margin and padding for better readability */
-        legend { font-size: 16px; font-weight: bold;} /*  Bigger legend */
-        #restodelform { padding: 10px; } /* Padding for the form section */
+        fieldset { margin-bottom: 15px; padding:10px; border: 1px solid lightgrey; }
+        legend { font-size: 16px; font-weight: bold;}
+        #restodelform { padding: 10px; }
         .contorno {
-            margin-bottom: 20px; /* Reduced margin */
-            width: 100%; /* Responsive width */
+            margin-bottom: 20px;
+            width: 100%;
             border: 1px solid lightgrey;
             background-color: #f9f6f6;
             position: relative;
-            overflow: hidden; /* Clear floats inside */
+            overflow: hidden;
         }
         .novisible {
             text-align: center;
@@ -74,8 +74,8 @@
         button, html input[type=button], input[type=reset], input[type=submit] {
             margin-bottom: 10px;
             font-size: 18px;
-            width: 100%; /* Full width buttons */
-            padding: 10px; /* Add padding to buttons */
+            width: 100%;
+            padding: 10px;
         }
         .checkbox label, .radio label { padding-left: 0px; }
         .checkbox-inline input[type=checkbox], .checkbox input[type=checkbox], .radio-inline input[type=radio], .radio input[type=radio] {
@@ -115,8 +115,8 @@
             text-decoration: underline;
             font-size: 15px;
             text-align: center;
-            display: block; /* Make it a block element for better spacing */
-            margin-top: 10px; /* Add some space above */
+            display: block;
+            margin-top: 10px;
         }
         .instructions-link i { font-size: 1.1em; }
 
@@ -127,27 +127,27 @@
             bottom: 0;
             left: 0;
             display: flex;
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
+            align-items: center;
+            justify-content: center;
             background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
-            z-index: 1000; /* High z-index for popover */
+            z-index: 1000;
         }
         #instructions-popover > div {
             background-color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 500px; /* Increased max-width for content */
-            width: 95%; /* Responsive width within popover */
+            max-width: 500px;
+            width: 95%;
             padding: 20px;
             text-align: center;
-            position: relative; /* For close button positioning */
+            position: relative;
         }
         #instructions-popover h2 {
             background-color: #f1c40f;
             color: white;
             padding: 10px;
             text-align: center;
-            margin-top: 0; /* Remove top margin */
+            margin-top: 0;
         }
         #close-button {
             position: absolute;
@@ -156,11 +156,11 @@
             color: black;
             border: none;
             background-color: transparent;
-            font-size: 24px; /* Slightly smaller close button */
+            font-size: 24px;
             cursor: pointer;
         }
 
-        /* Overlay for Popover (if needed) */
+        /* Overlay for Popover */
         #overlay {
             position: fixed;
             top: 0;
@@ -175,7 +175,7 @@
         .notification {
             display: flex;
             align-items: center;
-            padding: 10px; /* Increased padding */
+            padding: 10px;
             position: fixed;
             bottom: 0;
             left: 0;
@@ -183,21 +183,21 @@
             background-color: white;
             box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
             z-index: 995;
-            justify-content: space-between; /* Space out content and close button */
+            justify-content: space-between;
         }
         .notification img {
-            height: 70px; /* Slightly smaller image */
+            height: 70px;
             border-radius: 0;
             object-fit: cover;
-            margin-right: 10px; /* Reduced margin */
+            margin-right: 10px;
         }
         .notification .order-info {
             display: flex;
             flex-direction: column;
-            flex-grow: 1; /* Allow order info to take available space */
+            flex-grow: 1;
         }
         .notification .order-info h3 {
-            margin: 0 0 5px 0; /* Reduced bottom margin */
+            margin: 0 0 5px 0;
             font-size: 14px;
             font-weight: 600;
         }
@@ -215,7 +215,7 @@
             font-weight: 600;
             color: #a0a0a0;
             cursor: pointer;
-            margin-left: 10px; /* Add margin to separate from text */
+            margin-left: 10px;
         }
         .notification .close:hover { color: #707070; }
         .notification .order-info .customer-info {
@@ -230,20 +230,20 @@
         /* Carousel Image Styles */
         .single-item img {
             width: 100% !important;
-            height: auto !important; /*  Let height adjust automatically */
+            height: auto !important;
             object-fit: cover;
             image-rendering: crisp-edges;
         }
         /* Carousel Container Styles */
         .single-item, .single-item div {
-            width: 100% !important; /* Responsive width for carousel */
-            max-width: 400px; /* Maximum width of carousel */
-            height: auto !important; /*  Adjust height automatically */
-            max-height: 356px; /* Maximum height of carousel */
+            width: 100% !important;
+            max-width: 400px;
+            height: auto !important;
+            max-height: 356px;
             margin: 0 auto;
         }
 
-        /* Talles Section (already defined correctly in original code) */
+        /* Talles Section */
         .novisible {
             padding: 15px;
             margin-top: 10px;
@@ -252,7 +252,7 @@
             z-index: 1;
         }
 
-        /* Ensure active slide is interactive (already defined correctly in original code) */
+        /* Ensure active slide is interactive */
         .slick-slide:not([aria-hidden="true"]) * {
             visibility: visible;
             pointer-events: auto;
@@ -260,10 +260,10 @@
 
         /* Responsive adjustments */
         @media (max-width: 480px) {
-            table { width: 100%; float: none; margin-left: 0; } /* Full width tables on small screens */
-            .single-item, .single-item div { width: 95% !important; } /* Smaller carousel on very small screens */
-            .notification { flex-direction: column; align-items: flex-start;} /* Stack notification elements on small screens */
-            .notification img { margin-bottom: 10px; margin-right: 0;} /* Adjust image margin in stacked notification */
+            table { width: 100%; float: none; margin-left: 0; }
+            .single-item, .single-item div { width: 95% !important; }
+            .notification { flex-direction: column; align-items: flex-start;}
+            .notification img { margin-bottom: 10px; margin-right: 0;}
         }
     </style>
     <!-- jQuery and jQuery UI -->
@@ -286,7 +286,7 @@
         </a>
     </div>
 
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" novalidate> <!-- Added novalidate to prevent browser default validation -->
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" novalidate>
         <p><img src="rosita-form.webp" alt="" /></p>
 
         <fieldset style="margin-bottom:0px !important;">
@@ -567,7 +567,7 @@
             <fieldset>
                 <legend for="1145718766">Email</legend>
                 <p style="font-size:11px;">poné el mismo email que uses para pagar en Mercadopago en el siguiente paso. Vamos a usarlo para enviarte la confirmación de tu pago y el seguimiento al despachar.</p>
-                <div class="form-group"><input class="form-control" id="1465946249" name="entry.1465946249" placeholder="chequeá que ingreses el email correctamente" required type="email" /></div> <!-- Changed type to email -->
+                <div class="form-group"><input class="form-control" id="1465946249" name="entry.1465946249" placeholder="chequeá que ingreses el email correctamente" required type="email" /></div>
             </fieldset>
 
             <fieldset>
@@ -578,7 +578,7 @@
             <fieldset>
                 <legend for="1145718766">WhatsApp<br /><span style="font-size:11px;">sin 0 ni 15 <em>Ejemplo</em>: 1156457057</span> </legend>
                 <p style="font-size:11px;">Chequeá que lo ingreses correctamente para poder enviarte el seguimiento online de tu pedido.</p>
-                <div class="form-group"><input class="form-control" id="53830725" name="entry.53830725" placeholder="Poné tu WHATSAPP sin 0 ni 15, ejemplo: 1156357659" required type="tel" pattern="[0-9]+" title="Ingrese solo números" /></div> <!-- Changed type to tel and added pattern for numbers only -->
+                <div class="form-group"><input class="form-control" id="53830725" name="entry.53830725" placeholder="Poné tu WHATSAPP sin 0 ni 15, ejemplo: 1156357659" required type="tel" pattern="[0-9]+" title="Ingrese solo números" /></div>
             </fieldset>
 
             <fieldset><legend for="1194024040">DIRECCIÓN DE ENVÍO</legend></fieldset>
@@ -626,7 +626,7 @@
 
             <fieldset>
                 <legend for="1056197367">Código Postal</legend>
-                <div class="form-group"><input class="form-control" id="1005165410" name="entry.1005165410" required type="text" pattern="[0-9]*" title="Ingrese solo números" /></div> <!-- Added pattern for numbers only -->
+                <div class="form-group"><input class="form-control" id="1005165410" name="entry.1005165410" required type="text" pattern="[0-9]*" title="Ingrese solo números" /></div>
             </fieldset>
 
             <fieldset>
@@ -636,7 +636,7 @@
 
             <fieldset>
                 <legend for="1945027933">D.N.I</legend>
-                <div class="form-group"><input class="form-control" id="541001873" name="entry.541001873" required type="text" pattern="[0-9]*" title="Ingrese solo números" /></div> <!-- Added pattern for numbers only -->
+                <div class="form-group"><input class="form-control" id="541001873" name="entry.541001873" required type="text" pattern="[0-9]*" title="Ingrese solo números" /></div>
             </fieldset>
 
             <fieldset>
@@ -673,7 +673,7 @@
                             <legend for="comoabona">¿Cómo querés pagar?</legend>
                             <p>Si seleccionas Transferencia Bancaria tienes 10% de descuento adicional.</p>
                             <div class="form-group">
-                                <select style="background-color:lightyellow;" class="form-control" id="comoabona" name="comoabona" required> <!-- Removed type="text" from select -->
+                                <select style="background-color:lightyellow;" class="form-control" id="comoabona" name="comoabona" required>
                                     <option value="">-- Selecciona forma de pago --</option>
                                     <option value="tarjeta">Tarjeta de Cédito o Débito</option>
                                     <option value="mercadopago">Saldo MercadoPago</option>
@@ -718,7 +718,6 @@
                 cssEase: 'linear',
                 lazyLoad: 'progressive',
                 adaptiveHeight: false,
-                accessibility: true,
                 arrows: true,
                 prevArrow: '<button type="button" class="slick-prev">Previous</button>',
                 nextArrow: '<button type="button" class="slick-next">Next</button>'
@@ -820,6 +819,13 @@
                         $("#finalizarpedido").show();
                     }
                 });
+
+                // Smooth scroll to form
+                if ($("#restodelform").is(":visible")) {
+                    $('html, body').animate({
+                        scrollTop: $("#restodelform").offset().top
+                    }, 1000);
+                }
             });
         });
     </script>
