@@ -56,15 +56,18 @@ tr:nth-child(even) {  background-color: #dddddd;}
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #777;
 }
-      .slick-prev {
-    margin-left: 40px;
-     z-index:1000;
-  }
+.slick-prev, 
+.slick-next {
+    z-index: 1000;
+    width: 30px;
+    height: 30px;
+}
 
-  .slick-next {
-    margin-right: 40px;
-    z-index:1000;
-  }
+.slick-prev:before, 
+.slick-next:before {
+    font-size: 30px;
+    color: #000;
+}
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
@@ -230,12 +233,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
     position: relative; 
     z-index: 1; /* Asegura que esté sobre el carrusel si hay solapamiento */
 }
-/* Deshabilita el foco en elementos de diapositivas inactivas */
-.slick-slide[aria-hidden="true"] * {
-    visibility: hidden !important;
-    pointer-events: none !important;
-    tabindex: -1 !important;
-}
+
 
 /* Asegura que solo la diapositiva activa sea interactiva */
 .slick-slide:not([aria-hidden="true"]) * {
@@ -293,13 +291,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="contorno" id="modeload-roma-negras">
 <div class="single-item">
-<div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-1a.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-5a.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-2a.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-3a.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-4a.jpg"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-2.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1a.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2a.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-3a.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-4a.jpg"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2.jpg"  /></label></div>
 </div>
 
 <div class="novisible" id="talles-roma-negras">
@@ -323,10 +321,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="contorno" id="modeload-roma-suela">
 <div class="single-item">
-<div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg"  /></label></div>
-<div><label for="roma-suela"><img alt="" src="roma-suela-2a.jpg"  /></label></div>
-<div><label for="roma-suela"><img alt="" src="roma-suela-1.jpg"  /></label></div>
-<div><label for="roma-suela"><img alt="" src="roma-suela-2.jpg"  /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1a.jpg"  /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg"  /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg"  /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2.jpg"  /></label></div>
 </div>
 
 <div class="novisible" id="talles-roma-suela">
@@ -350,8 +348,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="contorno" id="modeload-siena2025">
 <div class="single-item">
-<div><label for="siena2025"><img alt="" src="siena2025-1.webp"  /></label></div>
-<div><label for="siena2025"><img alt="" src="siena2025-2.webp"  /></label></div>
+<div><label for="siena2025"><img alt="" data-lazy="siena2025-1.webp"  /></label></div>
+<div><label for="siena2025"><img alt="" data-lazy="siena2025-2.webp"  /></label></div>
 </div>
 
 <div class="novisible" id="talles-siena2025">
@@ -569,13 +567,16 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
     --> <input name="pageHistory" type="hidden" value="0" /> <input  style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" /></div>&nbsp;</form>
 	<!-- Contenedor para las notificaciones -->
 <div id="notification-container"></div>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
   $(document).on('init afterChange', '.single-item', function(event, slick) {
     // Añade "inert" a las diapositivas inactivas
     $('.slick-slide:not(.slick-active)').attr('inert', 'inert');
     // Remueve "inert" de la diapositiva activa
     $('.slick-active').removeAttr('inert');
 });
+
+
 
   $(document).ready(function(){
 $('.single-item').slick({
@@ -584,14 +585,17 @@ $('.single-item').slick({
     speed: 500,
     fade: true,
     cssEase: 'linear',
-    lazyLoad: 'ondemand',
+    lazyLoad: 'progressive', // Cambiar a progressive
     adaptiveHeight: false,
-    // ---> Añadir estas opciones <---
-    accessibility: true,       // Habilita accesibilidad
-    focusOnSelect: false,      // Evita foco al seleccionar
-    focusOnChange: false,      // Evita foco al cambiar diapositiva
-    waitForAnimate: true       // Mejora el control de animaciones
-});  
+    accessibility: true,
+    arrows: true,
+    prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+    nextArrow: '<button type="button" class="slick-next">Next</button>'
+});
+
+    $('.single-item').slick().on('lazyLoaded', function(event, slick, image, imageSource){
+        $(image).attr('src', imageSource);
+    });
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras','siena2025', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia'];
   fieldsets.forEach(function(fieldset) {
