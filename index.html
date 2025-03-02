@@ -31,7 +31,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
       fieldset { margin-bottom: 0px; padding:0px 5px; }
       legend {font-size: 13px;}
 	  #restodelform {padding: 0px 5px;}
-      .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6;}
+      .contorno {  margin-bottom: 30px; 
+    border: 1px solid lightgrey;
+    background-color: #f9f6f6;
+    position: relative; /* Asegura que los hijos respeten el flujo */}
       .novisible {  text-align: center; font-size: 12px; }
       input[type=radio] { width: 20px; height: 20px;}
       button, html input[type=button], input[type=reset], input[type=submit] {margin-bottom: 10px; font-size: 18px; width: 99%;}
@@ -213,14 +216,21 @@ tr:nth-child(even) {  background-color: #dddddd;}
     object-fit: cover; /* Mantiene relación de aspecto sin espacios vacíos */
     image-rendering: crisp-edges; /* Mejora nitidez en escalado */
 }
-/* Contenedor principal */
-.contorno, .single-item, .single-item div {
-    width: 400px !important; 
+/* Carrusel */
+.single-item, .single-item div {
+    width: 400px !important;
     height: 356px !important;
-    margin: 0 auto; /* Centrar en dispositivos móviles */
+    margin: 0 auto;
+}
+/* Sección de talles */
+.novisible {
+    padding: 15px; /* Espacio interno */
+    margin-top: 10px; /* Separa del carrusel */
+    background-color: white;
+    position: relative; 
+    z-index: 1; /* Asegura que esté sobre el carrusel si hay solapamiento */
 }
 
-/* Imágenes dentro del carrusel */
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
