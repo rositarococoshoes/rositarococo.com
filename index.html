@@ -230,6 +230,18 @@ tr:nth-child(even) {  background-color: #dddddd;}
     position: relative; 
     z-index: 1; /* Asegura que esté sobre el carrusel si hay solapamiento */
 }
+/* Deshabilita el foco en elementos de diapositivas inactivas */
+.slick-slide[aria-hidden="true"] * {
+    visibility: hidden !important;
+    pointer-events: none !important;
+    tabindex: -1 !important;
+}
+
+/* Asegura que solo la diapositiva activa sea interactiva */
+.slick-slide:not([aria-hidden="true"]) * {
+    visibility: visible;
+    pointer-events: auto;
+}
 
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
@@ -558,22 +570,28 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 	<!-- Contenedor para las notificaciones -->
 <div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
-   	$(document).ready(function(){
- $('.single-item').slick({
+  $(document).on('init afterChange', '.single-item', function(event, slick) {
+    // Añade "inert" a las diapositivas inactivas
+    $('.slick-slide:not(.slick-active)').attr('inert', 'inert');
+    // Remueve "inert" de la diapositiva activa
+    $('.slick-active').removeAttr('inert');
+});
+
+  $(document).ready(function(){
+$('.single-item').slick({
     dots: true,
     infinite: true,
     speed: 500,
     fade: true,
     cssEase: 'linear',
     lazyLoad: 'ondemand',
-    adaptiveHeight: false, // Evita cambios de altura
-    responsive: [{ 
-        breakpoint: 400,
-        settings: {
-            arrows: false // Oculta flechas en móviles
-        }
-    }]
-});	  
+    adaptiveHeight: false,
+    // ---> Añadir estas opciones <---
+    accessibility: true,       // Habilita accesibilidad
+    focusOnSelect: false,      // Evita foco al seleccionar
+    focusOnChange: false,      // Evita foco al cambiar diapositiva
+    waitForAnimate: true       // Mejora el control de animaciones
+});  
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras','siena2025', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia'];
   fieldsets.forEach(function(fieldset) {
