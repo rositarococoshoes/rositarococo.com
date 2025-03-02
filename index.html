@@ -207,6 +207,17 @@ tr:nth-child(even) {  background-color: #dddddd;}
   margin-left: auto;
   padding-right:5px;
 }
+.single-item img {
+    width: 400px;       /* Tamaño intrínseco de la imagen */
+    height: 356px;
+    object-fit: contain; /* Mantiene la relación de aspecto sin recortar */
+	  image-rendering: -webkit-optimize-contrast; /* Chrome */
+    image-rendering: crisp-edges; /* Firefox */
+}
+.contorno, .single-item, .single-item div {
+    width: 400px !important; 
+    height: 356px !important;
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -535,7 +546,7 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 <div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
-  $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
+  $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand', adaptiveHeight: false}); 	  
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras','siena2025', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia'];
   fieldsets.forEach(function(fieldset) {
