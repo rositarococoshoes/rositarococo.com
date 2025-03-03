@@ -86,7 +86,9 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel .slick-slide {
     padding: 0;
     margin: 0;
-    line-height: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
 .model-carousel .slick-slide img {
@@ -98,6 +100,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     display: block !important;
     max-width: none;
+    max-height: 800px; /* Ajustar según el tamaño máximo deseado */
 }
 
 /* Remove any extra spacing from slick carousel */
@@ -109,6 +112,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel .slick-track {
     display: flex !important;
     align-items: center !important; /* Volvemos a centrar verticalmente */
+    margin: 0 auto !important; /* Centrar las diapositivas horizontalmente */
 }
 
 /* Apply same fixes to testimonials carousel */
@@ -117,6 +121,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
     max-width: 900px; /* Aumentado para consistencia */
     margin: 20px auto;
     overflow: hidden;
+}
+
+.testimonials-carousel .slick-slide {
+    padding: 0;
+    margin: 0;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
 
 .testimonials-carousel .slick-slide img {
@@ -128,6 +140,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     display: block !important;
     max-width: none;
+    max-height: 800px;
 }
 
 /*  Make sure the label is displayed */
@@ -140,6 +153,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel img[data-lazy] {
     opacity: 1; /* Start with full opacity */
     transition: opacity 0.3s ease;
+}
+
+.slick-slider {
+    margin-bottom: 0 !important;
+}
+
+.slick-dots {
+    bottom: 10px !important;
 }
 
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
@@ -804,7 +825,7 @@ var fbclidpedido = window.location.href;
 $("#1209868979").val(fbclidpedido);
 
 var modeload = getUrlParameter('modeload');
-// $('#' + modeload).insertBefore("#modeload-modelo-40"); //
+// $('#' + modeload).insertBefore("#modelo-40"); //
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');
 });
