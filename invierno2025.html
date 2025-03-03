@@ -1089,7 +1089,7 @@ $('#' + modeload).insertBefore("#tituloh4");
 <script>
 $('#bootstrapForm').submit(function (event) {
     event.preventDefault();
-    console.log('Formulario enviado');
+    console.log('Iniciando envío del formulario');
     
     $('#botoncomprar').attr('value', 'Espere...');
     $('#botoncomprar').attr('disabled', 'true');
@@ -1103,6 +1103,7 @@ $('#bootstrapForm').submit(function (event) {
         const comprador = $('#1460904554').val();
         const monto = words.length === 2 ? "59000" : "89000";
 
+        console.log('Obteniendo link de MercadoPago...');
         fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
             method: 'POST',
             headers: {
@@ -1115,10 +1116,9 @@ $('#bootstrapForm').submit(function (event) {
         })
         .then(response => response.text())
         .then(responseText => {
-            // Parsear la respuesta JSON
             const responseData = JSON.parse(responseText);
             const mpLink = responseData.linkpersonalizadomp;
-            console.log('Link de MercadoPago extraído:', mpLink);
+            console.log('Link de MercadoPago obtenido:', mpLink);
 
             // Agregar el link al formulario
             $('<input>').attr({
@@ -1127,18 +1127,33 @@ $('#bootstrapForm').submit(function (event) {
                 value: mpLink
             }).appendTo('#bootstrapForm');
 
-            // Enviar el formulario a Google Forms
-            $('#bootstrapForm').ajaxSubmit({
-                data: {},
+            // Enviar el formulario usando POST directamente
+            var formData = $('#bootstrapForm').serialize();
+            var formAction = $('#bootstrapForm').attr('action');
+
+            console.log('Enviando formulario a Google Forms...');
+            $.ajax({
+                url: formAction,
+                data: formData,
+                type: 'POST',
                 dataType: 'jsonp',
-                error: function () {
-                    // Este error es esperado debido a JSONP
-                    console.log('Formulario enviado correctamente');
+                complete: function() {
+                    console.log('Formulario enviado exitosamente');
                     fbq('track', 'InitiateCheckout');
                     
-                    // Redirigir al link de MercadoPago
+                    // Redirigir a MercadoPago
                     setTimeout(() => {
-                        console.log('Redirigiendo a MercadoPago:', mpLink);
+                        console.log('Redirigiendo a:', mpLink);
+                        window.location.href = mpLink;
+                    }, 2000);
+                },
+                error: function() {
+                    // Este error es esperado debido a JSONP
+                    console.log('Error JSONP esperado - continuando con el proceso');
+                    fbq('track', 'InitiateCheckout');
+                    
+                    setTimeout(() => {
+                        console.log('Redirigiendo a MercadoPago después de error JSONP');
                         window.location.href = mpLink;
                     }, 2000);
                 }
@@ -1151,23 +1166,29 @@ $('#bootstrapForm').submit(function (event) {
             alert('Error procesando el pago. Por favor, intenta nuevamente.');
         });
     } else {
-        // Comportamiento normal para otros métodos de pago
-        $('#bootstrapForm').ajaxSubmit({
-            data: {},
+        // Para otros métodos de pago
+        console.log('Procesando otro método de pago:', formaPago);
+        var formData = $('#bootstrapForm').serialize();
+        var formAction = $('#bootstrapForm').attr('action');
+
+        $.ajax({
+            url: formAction,
+            data: formData,
+            type: 'POST',
             dataType: 'jsonp',
-            error: function () {
-                console.log('Formulario enviado correctamente');
+            complete: function() {
+                console.log('Formulario enviado exitosamente');
                 fbq('track', 'InitiateCheckout');
                 
-                setTimeout(() => {
-                    if (formaPago === "cbu") {
+                if (formaPago === "cbu") {
+                    setTimeout(() => {
                         var queryString = $('#1471599855').serialize();
                         var redirectUrl = words.length === 2 ? 
                             'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
                             'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
                         window.location.href = redirectUrl;
-                    }
-                }, 2000);
+                    }, 2000);
+                }
             }
         });
     }
