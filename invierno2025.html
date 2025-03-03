@@ -81,6 +81,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
     max-width: 900px; /* Aumentado para permitir imágenes más grandes */
     margin: 0 auto;
     overflow: hidden;
+    line-height: 0; /* Elimina espacio entre imágenes */
 }
 
 .model-carousel .slick-slide {
@@ -98,9 +99,32 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     display: block !important;
     max-width: none;
+    vertical-align: top; /* Elimina espacio debajo de las imágenes */
 }
 
-/* Remove any extra spacing from slick carousel */
+/* Ajustes para las flechas del carrusel */
+.slick-prev, 
+.slick-next {
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+.slick-prev:before, 
+.slick-next:before {
+    font-size: 40px;
+    opacity: 0.75;
+}
+
+/* Eliminar espacios adicionales */
 .model-carousel .slick-list {
     margin: 0 !important;
     padding: 0 !important;
@@ -109,6 +133,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel .slick-track {
     display: flex !important;
     align-items: center !important; /* Volvemos a centrar verticalmente */
+    margin: 0 !important;
 }
 
 /* Apply same fixes to testimonials carousel */
