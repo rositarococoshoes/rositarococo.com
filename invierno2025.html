@@ -89,12 +89,17 @@ tr:nth-child(even) {  background-color: #dddddd;}
     display: flex !important;
     align-items: center;
     justify-content: center;
+    text-align: center;      /* Centra el contenido */
+    height: auto;           /* Altura automática */
 }
 
 .model-carousel .slick-slide img {
-    width: 100%;
-    height: auto !important; /* Cambiado para mantener proporción */
-    object-fit: contain;
+    width: auto;              /* Cambiado de 100% a auto */
+    max-width: 100%;          /* Asegura que no desborde el contenedor */
+    height: auto !important;  
+    margin: 0 auto;          /* Centra la imagen horizontalmente */
+    display: block !important;
+    object-fit: contain;     /* Mantiene la proporción */
     border: 1px solid #ddd;
     border-radius: 4px;
     margin: 0 auto;
@@ -680,10 +685,11 @@ $(document).ready(function(){
     fade: false,
     cssEase: 'linear',
     lazyLoad: 'ondemand',
-    adaptiveHeight: false,
+    adaptiveHeight: true,    // Cambiado a true
     slidesToShow: 1,
     centerMode: false, //  Turn off centerMode
     variableWidth: false, //  Turn off variableWidth
+    responsive: true         // Agregado para mejor respuesta
   });
 
   $('.testimonials-carousel').slick({
