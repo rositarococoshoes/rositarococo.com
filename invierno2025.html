@@ -81,12 +81,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
     padding: 0 15px;
 }
 
-.model-carousel img {
+.model-carousel .slick-slide img {  /*  Ajuste importante aquí */
     width: 100%;
-    height: auto;
+    height: auto; /* Important:  Let the height adjust proportionally */
+    object-fit: contain; /*  Crucial:  How the image scales */
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 0 10px;
+    margin: 0 auto;  /* Center horizontally within the slide */
+    display: block; /*  Important:  Remove extra spacing */
 }
 
 /* Carrusel de testimonios */
@@ -99,9 +101,24 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .testimonials-carousel img {
     width: 100%;
     height: auto;
+    object-fit: contain;  /*  Apply object-fit here too */
     border: 1px solid #ddd;
     border-radius: 4px;
     margin: 0 10px;
+    display: block; /* And here! */
+}
+
+/*  Hide the image label  */
+.model-carousel label[for] {
+   display: block; /*  Ensure it's a block-level element */
+   cursor: pointer; /*  Optional:  Show a pointer */
+}
+
+
+/*  Make sure your lazy-loaded images work */
+.model-carousel img[data-lazy] {
+    opacity: 1; /* Start with full opacity (adjust as needed) */
+    transition: opacity 0.3s ease; /* Optional: Add a smooth transition */
 }
 
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
