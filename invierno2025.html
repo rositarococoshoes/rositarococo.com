@@ -88,6 +88,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
     padding: 0;
     margin: 0;
     line-height: 0;
+    font-size: 0; /* Elimina espacio extra */
+}
+
+.model-carousel .slick-slide label {
+    margin: 0;
+    padding: 0;
+    display: block;
+    line-height: 0;
 }
 
 .model-carousel .slick-slide img {
@@ -99,7 +107,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     display: block !important;
     max-width: none;
-    vertical-align: top; /* Elimina espacio debajo de las imágenes */
 }
 
 /* Ajustes para las flechas del carrusel */
@@ -352,14 +359,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 ❇️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">STOCK</span>: de todos los modelos que ves aquí.</small></span><br /><br />
 
 <span style="color: rgb(68, 68, 68); font-size: 17.5px;">¿CÓMO COMPRAR FÁCIL Y RÁPIDO?</span><br />
-<span style="font-size:14px;"><strong><em><span style="color: #ff00dc;">1. Elegí los talles de cada modelo.</span></em></strong></span><br />
-<span style="font-size:14px;"><strong><em><span style="color: #ff00dc;">2. Completá más abajo tus datos de envío.</span></em></strong></span></p>
-<p>Podés agregar un máximo de 2 pares en tu pedido y podés elegir pares surtidos.</p>
-</fieldset>
-
-<fieldset id="todoslosmodelos">
-<div class="form-group">
-
 
 <div class="contorno" id="modeload-roma-negras">
 <div class="model-carousel">
@@ -526,6 +525,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<div id="restodelform" style="display:none;">
 <fieldset style="background-color:lightyellow;"><legend for="1471599855" style="font-size:16px;"><br />
+TALLES-MODELOS SELECCIONADOS:</legend>
+
+<p style="font-size: 12px;">Estos son los talles-modelos que seleccionaste arriba.</p>
+
+<div class="form-group"><input class="form-control" id="1471599855" name="entry.1471599855" readonly="readonly" type="text" /></div>
+</fieldset>
+<!-- Field type: "short" id: "1234675908" -->
+<fieldset><legend for="1145718766" style="font-size:16px;"><br />
 TALLES-MODELOS SELECCIONADOS:</legend>
 
 <p style="font-size: 12px;">Estos son los talles-modelos que seleccionaste arriba.</p>
@@ -728,6 +735,7 @@ $("#todoslosmodelos select").change(function(){
   $('.avisoagregado').fadeOut(10000);
   $("#region").hide();
   $("#restodelform").show();
+  $("#avisoform").hide();
   $("#avisoform").hide();
   $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;max-width: 400px;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
 
