@@ -1114,14 +1114,20 @@ $('#541001873').on('input keyup', function() {
 });
 
 $('#53830725').on('input keyup', function() {
-  // elimina espacios en blanco al principio y al final
-  $(this).val($(this).val().trim());
-  // elimina espacios en blanco y guiones
-  $(this).val($(this).val().replace(/\s/g, '').replace(/-/g, ''));
-  // elimina ceros al principio
-  $(this).val($(this).val().replace(/^0+/, ''));
-  // convierte a minúsculas
-  $(this).val($(this).val().toLowerCase());
+    // Obtener el valor actual
+    let value = $(this).val();
+    
+    // Eliminar espacios, guiones y el signo +
+    value = value.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
+    
+    // Eliminar 54 o 549 al inicio
+    value = value.replace(/^(?:54|549)/, '');
+    
+    // Eliminar ceros al inicio
+    value = value.replace(/^0+/, '');
+    
+    // Convertir a minúsculas y actualizar el valor
+    $(this).val(value.toLowerCase());
 });
 </script>
   <script>
