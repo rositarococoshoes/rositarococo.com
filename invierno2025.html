@@ -63,9 +63,23 @@ tr:nth-child(even) {  background-color: #dddddd;}
     z-index:1000;
   }
   .single-item img {
-    width: 400px;       /* Tamaño intrínseco de la imagen */
+    width: 400px;
     height: 356px;
-    object-fit: contain; /* Mantiene la relación de aspecto sin recortar */
+    object-fit: contain;
+    margin: 0 auto;
+}
+.single-item {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.slick-list, .slick-track {
+    width: 400px !important;
+}
+
+.slick-slide {
+    width: 400px !important;
+    float: none !important;
 }
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
