@@ -523,6 +523,37 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     object-position: center;
 }
+
+/* MODIFICACIONES para hacer el carrusel responsivo */
+.model-carousel {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: auto !important;
+    max-height: 356px !important;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.model-carousel .slick-slide {
+    width: 100% !important; 
+    max-width: 400px !important;
+    height: auto !important;
+    max-height: 356px !important;
+    flex: 0 0 auto;
+}
+
+.model-carousel .slick-slide img {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: auto !important;
+    max-height: 356px !important;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* Asegurar que las flechas estén siempre visibles */
+.slick-prev { left: 5px !important; }
+.slick-next { right: 5px !important; }
 	</style>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
