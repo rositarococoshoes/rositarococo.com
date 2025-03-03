@@ -62,28 +62,36 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin-right: 40px;
     z-index:1000;
   }
-  .single-item img {
-    width: 400px;
+  
+.single-item img {
+    width: auto !important;
+    max-width: 100%;
     height: 356px;
     object-fit: contain;
-    margin: 0 auto;
 }
+
 .single-item {
+    width: 100%;
     max-width: 400px;
     margin: 0 auto;
 }
 
 .slick-list {
-  height: 356px !important; /* Altura fija igual a la imagen */
-  margin: 0 auto;
+    width: 100% !important;
+    height: 356px !important;
 }
 
 .slick-track {
-  height: 356px !important; /* Altura fija para el track */
+    height: 356px !important;
 }
 
 .slick-slide {
-  height: 356px !important; /* Altura fija para cada slide */
+    width: 400px !important;
+    height: 356px !important;
+    float: none;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
 }
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
@@ -590,15 +598,17 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 <div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
- $('.single-item').slick({
+  $('.single-item').slick({
     dots: true,
     infinite: true,
     speed: 500,
-    fade: true,
+    fade: false, // Cambiar a false
     cssEase: 'linear',
     lazyLoad: 'ondemand',
-    adaptiveHeight: false // Añade esta línea
-  });	  
+    adaptiveHeight: false,
+    slidesToShow: 1,
+    centerMode: true // Añadir esto
+  });  
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
   fieldsets.forEach(function(fieldset) {
