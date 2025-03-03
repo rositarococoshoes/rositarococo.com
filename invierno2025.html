@@ -1089,6 +1089,8 @@ $('#' + modeload).insertBefore("#tituloh4");
 <script>
 $('#bootstrapForm').submit(function (event) {
    event.preventDefault();
+   console.log('Formulario enviado');
+   
    $('#botoncomprar').attr('value', 'Espere...');
    $('#botoncomprar').attr('disabled', 'true');
 
@@ -1096,12 +1098,17 @@ $('#bootstrapForm').submit(function (event) {
    var value2 = (talleselegidos).replace(" ", "");
    var words = value2.split(",");
    var formaPago = $('#comoabona').val();
-   var extraData = {};
+   
+   console.log('Método de pago:', formaPago);
+   console.log('Talles elegidos:', talleselegidos);
 
    // Si el método de pago es mercadopago o tarjeta
    if (formaPago === "tarjeta" || formaPago === "mercadopago") {
        const comprador = $('#1460904554').val();
        const monto = words.length === 2 ? "59000" : "89000";
+       
+       console.log('Llamando al endpoint de MercadoPago');
+       console.log('Datos:', { comprador, monto });
 
        // Llamada al endpoint para obtener link de pago
        fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
@@ -1114,8 +1121,13 @@ $('#bootstrapForm').submit(function (event) {
                monto: monto
            })
        })
-       .then(response => response.text())
+       .then(response => {
+           console.log('Respuesta del servidor:', response);
+           return response.text();
+       })
        .then(mpLink => {
+           console.log('Link de MercadoPago recibido:', mpLink);
+           
            // Agregar el link al formulario como campo oculto
            $('<input>').attr({
                type: 'hidden',
@@ -1123,48 +1135,57 @@ $('#bootstrapForm').submit(function (event) {
                value: mpLink
            }).appendTo('#bootstrapForm');
 
+           console.log('Enviando formulario a Google Forms');
+           
            // Enviar el formulario
            $('#bootstrapForm').ajaxSubmit({
-               data: extraData,
+               data: {},
                dataType: 'jsonp',
-               error: function () {
+               error: function (xhr, status, error) {
+                   console.log('Formulario enviado (error esperado por JSONP)');
+                   console.log('Status:', status);
                    fbq('track', 'InitiateCheckout');
+                   
                    setTimeout(() => {
-                       // Redireccionar al link personalizado
+                       console.log('Redirigiendo a:', mpLink);
                        window.location.href = mpLink;
                    }, 2000);
+               },
+               success: function(response) {
+                   console.log('Respuesta del formulario:', response);
                }
            });
        })
        .catch(error => {
-           console.error('Error:', error);
-           // Fallback a links predeterminados
-           $('#bootstrapForm').ajaxSubmit({
-               data: extraData,
-               dataType: 'jsonp',
-               error: function () {
-                   fbq('track', 'InitiateCheckout');
-                   setTimeout(() => {
-                       window.location.href = words.length === 2 ? 
-                           'https://mpago.la/1FigNnC' : 
-                           'https://mpago.la/2gYRoZX';
-                   }, 2000);
-               }
-           });
+           console.error('Error en la llamada al endpoint:', error);
+           
+           // Habilitar el botón nuevamente en caso de error
+           $('#botoncomprar').attr('value', 'COMPRAR 🛒');
+           $('#botoncomprar').removeAttr('disabled');
+           
+           alert('Hubo un error procesando el pago. Por favor, intenta nuevamente.');
        });
    } else {
+       console.log('Procesando otro método de pago:', formaPago);
+       
        // Comportamiento normal para otros métodos de pago
        $('#bootstrapForm').ajaxSubmit({
-           data: extraData,
+           data: {},
            dataType: 'jsonp',
-           error: function () {
+           error: function (xhr, status, error) {
+               console.log('Formulario enviado (error esperado por JSONP)');
+               console.log('Status:', status);
                fbq('track', 'InitiateCheckout');
+               
                setTimeout(() => {
                    if (formaPago === "cbu") {
                        var queryString = $('#1471599855').serialize();
-                       window.location.href = words.length === 2 ? 
+                       var redirectUrl = words.length === 2 ? 
                            'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
                            'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
+                       
+                       console.log('Redirigiendo a:', redirectUrl);
+                       window.location.href = redirectUrl;
                    }
                }, 2000);
            }
