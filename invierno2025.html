@@ -31,7 +31,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
       fieldset { margin-bottom: 0px; padding:0px 5px; }
       legend {font-size: 13px;}
 	  #restodelform {padding: 0px 5px;}
-      .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6;}
+      .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6; overflow: hidden; /* Previene espacios fantasma */ margin-bottom: 15px; /* Reduce el margen inferior */}
       .novisible {  text-align: center; font-size: 12px; }
       input[type=radio] { width: 20px; height: 20px;}
       button, html input[type=button], input[type=reset], input[type=submit] {margin-bottom: 10px; font-size: 18px; width: 99%;}
@@ -73,13 +73,17 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
 }
 
-.slick-list, .slick-track {
-    width: 400px !important;
+.slick-list {
+  height: 356px !important; /* Altura fija igual a la imagen */
+  margin: 0 auto;
+}
+
+.slick-track {
+  height: 356px !important; /* Altura fija para el track */
 }
 
 .slick-slide {
-    width: 400px !important;
-    float: none !important;
+  height: 356px !important; /* Altura fija para cada slide */
 }
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
@@ -586,7 +590,15 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 <div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
-  $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
+ $('.single-item').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
+    lazyLoad: 'ondemand',
+    adaptiveHeight: false // Añade esta línea
+  });	  
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
   fieldsets.forEach(function(fieldset) {
