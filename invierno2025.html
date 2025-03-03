@@ -53,39 +53,55 @@ tr:nth-child(even) {  background-color: #dddddd;}
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #777;
 }
-      .slick-prev {
-    margin-left: 40px;
-     z-index:1000;
-  }
 
-  .slick-next {
-    margin-right: 40px;
-    z-index:1000;
-  }
-  
-.single-item img {
-    width: auto !important;
-    max-width: 100%;
-    height: 356px;
-    object-fit: contain;
+.slick-prev {
+    margin-left: 15px;
+    z-index: 1000;
 }
 
-.single-item {
+.slick-next {
+    margin-right: 15px;
+    z-index: 1000;
+}
+
+.slick-track {
+    display: flex;
+    align-items: center;
+}
+
+/* Carrusel de modelos */
+.model-carousel {
     width: 100%;
-    max-width: 400px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
-
-
-.slick-slide {
-    width: 400px !important;
-    height: 356px !important;
-    float: none;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
+.model-carousel .slick-slide {
+    padding: 0 15px;
 }
+
+.model-carousel img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* Carrusel de testimonios */
+.testimonials-carousel {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.testimonials-carousel img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 0 10px;
+}
+
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
@@ -280,7 +296,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <div class="contorno" id="modeload-roma-negras">
-<div class="single-item">
+<div class="model-carousel">
 <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1.jpg"  /></label></div>
 <div><label for="roma-negras"><img alt="" src="roma-negras-1a.jpg"  /></label></div>
 <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg"  /></label></div>
@@ -310,7 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="contorno" id="modeload-roma-suela">
-<div class="single-item">
+<div class="model-carousel">
 <div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg"  /></label></div>
 <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg"  /></label></div>
 <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg"  /></label></div>
@@ -337,7 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
                 <div class="contorno" id="modeload-siena2025">
-                    <div class="single-item">
+                    <div class="model-carousel">
                         <div><label for="siena2025"><img src="siena2025-1.webp" data-lazy="siena2025-1.webp" alt="Siena 2025 1" /></label></div>
                         <div><label for="siena2025"><img src="siena2025-2.webp" data-lazy="siena2025-2.webp" alt="Siena 2025 2" /></label></div>
                     </div>
@@ -397,7 +413,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 	<p>😊REFERENCIAS DE CLIENTAS😊</p>
 	
-	<div class="single-item">
+	<div class="testimonials-carousel">
 <div><img alt="" data-lazy="comentariorecibi1.webp"  /></div>
 <div><img alt="" data-lazy="comentariorecibi2.webp"  /></div>
 <div><img alt="" data-lazy="comentariorecibi4.webp"  /></div>
@@ -407,12 +423,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div><img alt="" data-lazy="comentariorecibi8.webp"  /></div>
 </div>
 
-<div class="single-item">
+<div class="testimonials-carousel">
 <div><label for="comentarios"><img src="comentariosig.webp"></label></div>
 <div><label for="comentarios"><img src="comentariosig2.webp"></label></div>
 </div>
 	
-<div class="single-item">
+<div class="testimonials-carousel">
 <div><label for="referencias"><img alt="" src="comentario1-min.webp" /></label></div>
 <div><label for="referencias"><img alt="" data-lazy="comentario2-min.webp" /></label></div>
 <div><label for="referencias"><img alt="" data-lazy="comentario3-min.webp" /></label></div>
@@ -591,17 +607,26 @@ DNI: <span id="help-dni" style="color:black;">-</span></b></font></p>
 <div id="notification-container"></div>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
-  $('.single-item').slick({
+  $('.model-carousel').slick({
     dots: true,
     infinite: true,
     speed: 500,
-    fade: false, // Cambiar a false
+    fade: false,
     cssEase: 'linear',
     lazyLoad: 'ondemand',
     adaptiveHeight: false,
     slidesToShow: 1,
-    centerMode: true // Añadir esto
-  });  
+    centerMode: true
+  });
+
+  $('.testimonials-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000
+  });
 	
 var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
   fieldsets.forEach(function(fieldset) {
