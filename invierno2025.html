@@ -91,6 +91,25 @@ tr:nth-child(even) {  background-color: #dddddd;}
     justify-content: center;
     text-align: center;      /* Centra el contenido */
     height: auto;           /* Altura automática */
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+}
+
+.model-carousel .slick-slide.slick-active {
+    visibility: visible;
+}
+
+.model-carousel:focus {
+    outline: none;
+}
+
+.model-carousel .slick-slide:focus {
+    outline: none;
+}
+
+.model-carousel .slick-slide label:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
 }
 
 .model-carousel .slick-slide img {
@@ -106,6 +125,12 @@ tr:nth-child(even) {  background-color: #dddddd;}
     display: block !important;
     max-width: none;
     max-height: 800px; /* Ajustar según el tamaño máximo deseado */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.model-carousel .slick-active img {
+    opacity: 1;
 }
 
 /* Remove any extra spacing from slick carousel */
@@ -682,14 +707,27 @@ $(document).ready(function(){
     dots: true,
     infinite: true,
     speed: 500,
-    fade: false,
+    fade: true,           // Cambiado a true para transiciones más suaves
     cssEase: 'linear',
     lazyLoad: 'ondemand',
     adaptiveHeight: true,    // Cambiado a true
     slidesToShow: 1,
     centerMode: false, //  Turn off centerMode
     variableWidth: false, //  Turn off variableWidth
-    responsive: true         // Agregado para mejor respuesta
+    responsive: true,         // Agregado para mejor respuesta
+    accessibility: true,  // Habilitar características de accesibilidad
+    focusOnSelect: false, // Evitar problemas con el foco
+    focusOnChange: false, // Evitar problemas con el foco
+    swipeToSlide: true,   // Mejor manejo del deslizamiento
+    touchThreshold: 10,   // Hacer el deslizamiento más sensible
+    waitForAnimate: true, // Esperar a que termine la animación
+    // Manejar el foco apropiadamente
+    beforeChange: function(slick, currentSlide, nextSlide) {
+      $(slick.$slides).removeAttr('aria-hidden').removeClass('slick-active');
+    },
+    afterChange: function(slick, currentSlide) {
+      $(slick.$slides.get(currentSlide)).attr('tabindex', '0').focus();
+    }
   });
 
   $('.testimonials-carousel').slick({
