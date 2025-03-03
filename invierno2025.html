@@ -31,7 +31,8 @@ tr:nth-child(even) {  background-color: #dddddd;}
       fieldset { margin-bottom: 0px; padding:0px 5px; }
       legend {font-size: 13px;}
 	  #restodelform {padding: 0px 5px;}
-      .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6; overflow: hidden; /* Previene espacios fantasma */ margin-bottom: 15px; /* Reduce el margen inferior */}
+      .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6; overflow: hidden; /* Previene espacios fantasma */ margin-bottom: 15px; /* Reduce el margen inferior */     margin: 20px auto; /* Controla el espacio vertical entre modelos */
+    max-width: 900px; /* Ancho máximo para mejor legibilidad */}
       .novisible {  text-align: center; font-size: 12px; }
       input[type=radio] { width: 20px; height: 20px;}
       button, html input[type=button], input[type=reset], input[type=submit] {margin-bottom: 10px; font-size: 18px; width: 99%;}
@@ -81,10 +82,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: contain;
+ //   object-fit: contain;
     margin: 0 auto;
+	width:	400px !important;
+	height: 356px !important:
 }
 
 /* Carrusel de testimonios */
