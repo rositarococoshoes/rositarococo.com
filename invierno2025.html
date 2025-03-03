@@ -338,6 +338,49 @@ tr:nth-child(even) {  background-color: #dddddd;}
   margin-left: auto;
   padding-right:5px;
 }
+
+/* Estilos para las flechas de navegación del carrusel */
+.slick-prev,
+.slick-next {
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    opacity: 0.8;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.slick-prev {
+    left: 10px;
+}
+
+.slick-next {
+    right: 10px;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 1);
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #ff00dc; /* Color rosa para las flechas */
+    font-size: 24px;
+    opacity: 1;
+}
+
+/* Asegurarse que las flechas sean visibles en móviles */
+@media (max-width: 768px) {
+    .slick-prev {
+        left: 5px;
+    }
+    .slick-next {
+        right: 5px;
+    }
+}
 	</style>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
