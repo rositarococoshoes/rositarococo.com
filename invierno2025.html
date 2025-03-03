@@ -1068,7 +1068,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
         i;
 
     for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+        sParameterName = i.sURLVariables[i].split('=');
 
         if (sParameterName[0] === sParam) {
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
@@ -1088,109 +1088,89 @@ $('#' + modeload).insertBefore("#tituloh4");
 </script>
 <script>
 $('#bootstrapForm').submit(function (event) {
-   event.preventDefault();
-   console.log('Formulario enviado');
-   
-   $('#botoncomprar').attr('value', 'Espere...');
-   $('#botoncomprar').attr('disabled', 'true');
+    event.preventDefault();
+    console.log('Formulario enviado');
+    
+    $('#botoncomprar').attr('value', 'Espere...');
+    $('#botoncomprar').attr('disabled', 'true');
 
-   var talleselegidos = $('#1471599855').val();
-   var value2 = (talleselegidos).replace(" ", "");
-   var words = value2.split(",");
-   var formaPago = $('#comoabona').val();
-   
-   console.log('Método de pago:', formaPago);
-   console.log('Talles elegidos:', talleselegidos);
+    var talleselegidos = $('#1471599855').val();
+    var value2 = (talleselegidos).replace(" ", "");
+    var words = value2.split(",");
+    var formaPago = $('#comoabona').val();
 
-   // Si el método de pago es mercadopago o tarjeta
-   if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-       const comprador = $('#1460904554').val();
-       const monto = words.length === 2 ? "59000" : "89000";
-       
-       console.log('Llamando al endpoint de MercadoPago');
-       console.log('Datos:', { comprador, monto });
+    if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+        const comprador = $('#1460904554').val();
+        const monto = words.length === 2 ? "59000" : "89000";
 
-       // Llamada al endpoint para obtener link de pago
-       fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
-           method: 'POST',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           body: JSON.stringify({
-               comprador: comprador,
-               monto: monto
-           })
-       })
-       .then(response => {
-           console.log('Respuesta del servidor:', response);
-           return response.text();
-       })
-       .then(mpLink => {
-           console.log('Link de MercadoPago recibido:', mpLink);
-           
-           // Agregar el link al formulario como campo oculto
-           $('<input>').attr({
-               type: 'hidden',
-               name: 'entry.978809450',
-               value: mpLink
-           }).appendTo('#bootstrapForm');
+        fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                comprador: comprador,
+                monto: monto
+            })
+        })
+        .then(response => response.text())
+        .then(responseText => {
+            // Parsear la respuesta JSON
+            const responseData = JSON.parse(responseText);
+            const mpLink = responseData.linkpersonalizadomp;
+            console.log('Link de MercadoPago extraído:', mpLink);
 
-           console.log('Enviando formulario a Google Forms');
-           
-           // Enviar el formulario
-           $('#bootstrapForm').ajaxSubmit({
-               data: {},
-               dataType: 'jsonp',
-               error: function (xhr, status, error) {
-                   console.log('Formulario enviado (error esperado por JSONP)');
-                   console.log('Status:', status);
-                   fbq('track', 'InitiateCheckout');
-                   
-                   setTimeout(() => {
-                       console.log('Redirigiendo a:', mpLink);
-                       window.location.href = mpLink;
-                   }, 2000);
-               },
-               success: function(response) {
-                   console.log('Respuesta del formulario:', response);
-               }
-           });
-       })
-       .catch(error => {
-           console.error('Error en la llamada al endpoint:', error);
-           
-           // Habilitar el botón nuevamente en caso de error
-           $('#botoncomprar').attr('value', 'COMPRAR 🛒');
-           $('#botoncomprar').removeAttr('disabled');
-           
-           alert('Hubo un error procesando el pago. Por favor, intenta nuevamente.');
-       });
-   } else {
-       console.log('Procesando otro método de pago:', formaPago);
-       
-       // Comportamiento normal para otros métodos de pago
-       $('#bootstrapForm').ajaxSubmit({
-           data: {},
-           dataType: 'jsonp',
-           error: function (xhr, status, error) {
-               console.log('Formulario enviado (error esperado por JSONP)');
-               console.log('Status:', status);
-               fbq('track', 'InitiateCheckout');
-               
-               setTimeout(() => {
-                   if (formaPago === "cbu") {
-                       var queryString = $('#1471599855').serialize();
-                       var redirectUrl = words.length === 2 ? 
-                           'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
-                           'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
-                       
-                       console.log('Redirigiendo a:', redirectUrl);
-                       window.location.href = redirectUrl;
-                   }
-               }, 2000);
-           }
-       });
-   }
+            // Agregar el link al formulario
+            $('<input>').attr({
+                type: 'hidden',
+                name: 'entry.978809450',
+                value: mpLink
+            }).appendTo('#bootstrapForm');
+
+            // Enviar el formulario a Google Forms
+            $('#bootstrapForm').ajaxSubmit({
+                data: {},
+                dataType: 'jsonp',
+                error: function () {
+                    // Este error es esperado debido a JSONP
+                    console.log('Formulario enviado correctamente');
+                    fbq('track', 'InitiateCheckout');
+                    
+                    // Redirigir al link de MercadoPago
+                    setTimeout(() => {
+                        console.log('Redirigiendo a MercadoPago:', mpLink);
+                        window.location.href = mpLink;
+                    }, 2000);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            $('#botoncomprar').attr('value', 'COMPRAR 🛒');
+            $('#botoncomprar').removeAttr('disabled');
+            alert('Error procesando el pago. Por favor, intenta nuevamente.');
+        });
+    } else {
+        // Comportamiento normal para otros métodos de pago
+        $('#bootstrapForm').ajaxSubmit({
+            data: {},
+            dataType: 'jsonp',
+            error: function () {
+                console.log('Formulario enviado correctamente');
+                fbq('track', 'InitiateCheckout');
+                
+                setTimeout(() => {
+                    if (formaPago === "cbu") {
+                        var queryString = $('#1471599855').serialize();
+                        var redirectUrl = words.length === 2 ? 
+                            'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
+                            'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
+                        window.location.href = redirectUrl;
+                    }
+                }, 2000);
+            }
+        });
+    }
 });
 </script><script>
 
