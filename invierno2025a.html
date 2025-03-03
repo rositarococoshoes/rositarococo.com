@@ -1096,81 +1096,57 @@ $('#bootstrapForm').submit(function (event) {
    var value2 = (talleselegidos).replace(" ", "");
    var words = value2.split(",");
    var formaPago = $('#comoabona').val();
-   var extraData = {};
 
-   // Si el método de pago es mercadopago o tarjeta
-   if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-       const comprador = $('#1460904554').val();
-       const monto = words.length === 2 ? "59000" : "89000";
 
-       // Llamada al endpoint para obtener link de pago
-       fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
-           method: 'POST',
-           headers: {
-               'Content-Type': 'application/json'
-           },
-           body: JSON.stringify({
-               comprador: comprador,
-               monto: monto
-           })
-       })
-       .then(response => response.text())
-       .then(mpLink => {
-           // Agregar el link al formulario como campo oculto
-           $('<input>').attr({
-               type: 'hidden',
-               name: 'entry.978809450',
-               value: mpLink
-           }).appendTo('#bootstrapForm');
+ //  if (!$('#1209868979').val().startsWith("https")) {
+  //  event.preventDefault()
+ //   }
 
-           // Enviar el formulario
-           $('#bootstrapForm').ajaxSubmit({
-               data: extraData,
-               dataType: 'jsonp',
-               error: function () {
-                   fbq('track', 'InitiateCheckout');
-                   setTimeout(() => {
-                       // Redireccionar al link personalizado
-                       window.location.href = mpLink;
-                   }, 2000);
-               }
-           });
-       })
-       .catch(error => {
-           console.error('Error:', error);
-           // Fallback a links predeterminados
-           $('#bootstrapForm').ajaxSubmit({
-               data: extraData,
-               dataType: 'jsonp',
-               error: function () {
-                   fbq('track', 'InitiateCheckout');
-                   setTimeout(() => {
-                       window.location.href = words.length === 2 ? 
-                           'https://mpago.la/1FigNnC' : 
-                           'https://mpago.la/2gYRoZX';
-                   }, 2000);
-               }
-           });
-       });
-   } else {
-       // Comportamiento normal para otros métodos de pago
-       $('#bootstrapForm').ajaxSubmit({
-           data: extraData,
-           dataType: 'jsonp',
-           error: function () {
-               fbq('track', 'InitiateCheckout');
-               setTimeout(() => {
-                   if (formaPago === "cbu") {
-                       var queryString = $('#1471599855').serialize();
-                       window.location.href = words.length === 2 ? 
-                           'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
-                           'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
-                   }
-               }, 2000);
-           }
-       });
-   }
-});
+
+  $('#botoncomprar').attr('value', 'Espere...');
+	$('#botoncomprar').attr('disabled', 'true');
+   event.preventDefault()
+    var extraData = {}
+    $('#bootstrapForm').ajaxSubmit({
+ //  if (!$('#1209868979').val().startsWith("https")) {
+ //   event.preventDefault()
+ //   }
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+            // Submit of form should be successful but JSONP callback will fail because Google Forms
+            // does not support it, so this is handled as a failure.
+
+            // You can also redirect the user to a custom thank-you page:
+             var talleselegidos = $('#1471599855').val();
+			var formaPago = $('#comoabona').val();
+var value2 = (talleselegidos).replace(" ", "");
+    var words = value2.split(",");
+    var queryString = $('#1471599855').serialize();
+fbq('track', 'InitiateCheckout');
+setTimeout(() => {
+if (words.length === 2) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+ window.location.href = 'https://mpago.la/1FigNnC';
+// window.location.href = 'https://fresapagos.com/p/commerce/item/CS73zKHHm';
+
+} else if (formaPago === "cbu") {
+window.location.href = 'https://rositarococo.com/transferenciacbu-1par.html?'+queryString;
+}
+} else if (words.length === 3) {
+if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+ window.location.href = 'https://mpago.la/2gYRoZX';
+// window.location.href = 'https://fresapagos.com/p/commerce/item/KxeOaOzPi';
+} else if (formaPago === "cbu") {
+window.location.href = 'https://rositarococo.com/transferenciacbu-2pares.html?'+queryString;
+}
+}
+}, 2000);
+
+        }
+    })
+})
+
 </script><script>
 
  $( "#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873" ).keyup(function() {
