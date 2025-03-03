@@ -80,40 +80,60 @@ tr:nth-child(even) {  background-color: #dddddd;}
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
+    overflow: hidden; /* Prevent any overflow */
 }
 
 .model-carousel .slick-slide {
-    padding: 0px;
-    margin: 0; /* Remove any extra margin */
+    padding: 0;
+    margin: 0;
+    line-height: 0; /* Remove extra space from line height */
 }
 
-/*  CRUCIAL: Override Slick's inline styles with !important */
 .model-carousel .slick-slide img {
-    width: 100% !important;  /* Force full width */
-    height: auto !important; /*  Let height adjust */
-    object-fit: contain;   /* Scale proportionally */
+    width: 100% !important;
+    height: 100% !important; /* Force full height */
+    object-fit: contain;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 0 auto;        /* Center horizontally */
-    display: block !important; /* Remove extra space */
-    max-width: none !important; /*  Allow full size, undo any max-width */
+    margin: 0 auto;
+    display: block !important;
+    max-width: none !important;
+    aspect-ratio: 400/356; /* Match the intrinsic aspect ratio */
 }
 
-/* Carrusel de testimonios */
+/* Remove any extra spacing from slick carousel */
+.model-carousel .slick-list {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.model-carousel .slick-track {
+    display: flex !important;
+    align-items: flex-start !important; /* Align to top instead of center */
+}
+
+/* Apply same fixes to testimonials carousel */
 .testimonials-carousel {
     width: 100%;
     max-width: 600px;
     margin: 20px auto;
+    overflow: hidden;
+}
+
+.testimonials-carousel .slick-slide {
+    padding: 0;
+    margin: 0;
+    line-height: 0;
 }
 
 .testimonials-carousel img {
-     width: 100% !important;  /*  Force full width */
-    height: auto !important; /*  Let height adjust */
-    object-fit: contain;   /* Scale proportionally */
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
     border: 1px solid #ddd;
     border-radius: 4px;
-    margin: 0 auto;        /* Center horizontally */
-    display: block !important; /* Remove extra space */
+    margin: 0 auto;
+    display: block !important;
     max-width: none !important;
 }
 
