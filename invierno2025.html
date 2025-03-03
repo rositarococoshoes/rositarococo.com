@@ -75,10 +75,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     align-items: center;
 }
 
-/* Carrusel de modelos */
+/* Carrusel de modelos - Ajustes para el renderizado correcto */
 .model-carousel {
     width: 100%;
-    max-width: 900px; /* Aumentado para permitir imágenes más grandes */
+    max-width: 900px;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -86,63 +86,35 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel .slick-slide {
     padding: 0;
     margin: 0;
+    width: 100% !important; /* Forzar ancho completo */
     display: flex !important;
     align-items: center;
     justify-content: center;
-    text-align: center;      /* Centra el contenido */
-    height: auto;           /* Altura automática */
-    visibility: hidden;
-    transition: visibility 0.3s ease;
-}
-
-.model-carousel .slick-slide.slick-active {
-    visibility: visible;
-}
-
-.model-carousel:focus {
-    outline: none;
-}
-
-.model-carousel .slick-slide:focus {
-    outline: none;
-}
-
-.model-carousel .slick-slide label:focus {
-    outline: 2px solid #007bff;
-    outline-offset: 2px;
+    text-align: center;
 }
 
 .model-carousel .slick-slide img {
-    width: auto;              /* Cambiado de 100% a auto */
-    max-width: 100%;          /* Asegura que no desborde el contenedor */
-    height: auto !important;  
-    margin: 0 auto;          /* Centra la imagen horizontalmente */
-    display: block !important;
-    object-fit: contain;     /* Mantiene la proporción */
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: auto;
+    max-width: 100%;
+    height: auto !important;
     margin: 0 auto;
     display: block !important;
-    max-width: none;
-    max-height: 800px; /* Ajustar según el tamaño máximo deseado */
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 800px;
 }
 
-.model-carousel .slick-active img {
-    opacity: 1;
-}
-
-/* Remove any extra spacing from slick carousel */
-.model-carousel .slick-list {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
+/* Asegurar que el contenedor no deforme las imágenes */
+.model-carousel .slick-list,
 .model-carousel .slick-track {
-    display: flex !important;
-    align-items: center !important; /* Volvemos a centrar verticalmente */
-    margin: 0 auto !important; /* Centrar las diapositivas horizontalmente */
+    width: 100% !important;
+    transform: none !important;
+}
+
+.model-carousel .slick-slide label {
+    width: 100%;
+    display: block;
 }
 
 /* Apply same fixes to testimonials carousel */
