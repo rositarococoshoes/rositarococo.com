@@ -31,7 +31,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
       form {max-width:400px;}
       .form-control {font-size: 12px;}
      .fieldsetstalles { display: none; }
-      fieldset { margin-bottom: 0px;  }
+      fieldset { margin-bottom: 0px; padding:0px 5px; }
       legend {font-size: 13px;}
 	  #restodelform {padding: 0px 5px;}
       .contorno {margin-bottom: 30px; border: 1px solid lightgrey; background-color: #f9f6f6; overflow: hidden; /* Previene espacios fantasma */ margin-bottom: 15px; /* Reduce el margen inferior */     margin: 20px auto; /* Controla el espacio vertical entre modelos */
@@ -75,10 +75,10 @@ tr:nth-child(even) {  background-color: #dddddd;}
     align-items: center;
 }
 
-/* Carrusel de modelos - Ajustes para el renderizado correcto */
+/* Carrusel de modelos */
 .model-carousel {
     width: 100%;
-    max-width: 900px;
+    max-width: 900px; /* Aumentado para permitir imágenes más grandes */
     margin: 0 auto;
     overflow: hidden;
 }
@@ -86,34 +86,29 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel .slick-slide {
     padding: 0;
     margin: 0;
-    width: 100% !important; /* Forzar ancho completo */
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    line-height: 0;
 }
 
 .model-carousel .slick-slide img {
-    width: auto;
-    max-width: 100%;
-    height: auto !important;
+    width: 100%;
+    height: auto !important; /* Cambiado para mantener proporción */
+    object-fit: contain;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     margin: 0 auto;
     display: block !important;
-    object-fit: contain;
-    border-radius: 2px;
-    max-height: 800px;
+    max-width: none;
 }
 
-/* Asegurar que el contenedor no deforme las imágenes */
-.model-carousel .slick-list,
+/* Remove any extra spacing from slick carousel */
+.model-carousel .slick-list {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .model-carousel .slick-track {
-    width: 100% !important;
-    transform: none !important;
-}
-
-.model-carousel .slick-slide label {
-    width: 100%;
-    display: block;
+    display: flex !important;
+    align-items: center !important; /* Volvemos a centrar verticalmente */
 }
 
 /* Apply same fixes to testimonials carousel */
@@ -122,14 +117,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
     max-width: 900px; /* Aumentado para consistencia */
     margin: 20px auto;
     overflow: hidden;
-}
-
-.testimonials-carousel .slick-slide {
-    padding: 0;
-    margin: 0;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
 }
 
 .testimonials-carousel .slick-slide img {
@@ -141,7 +128,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0 auto;
     display: block !important;
     max-width: none;
-    max-height: 800px;
 }
 
 /*  Make sure the label is displayed */
@@ -154,14 +140,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel img[data-lazy] {
     opacity: 1; /* Start with full opacity */
     transition: opacity 0.3s ease;
-}
-
-.slick-slider {
-    margin-bottom: 0 !important;
-}
-
-.slick-dots {
-    bottom: 10px !important;
 }
 
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
@@ -309,251 +287,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
   margin-left: auto;
   padding-right:5px;
 }
-
-/* Estilos para las flechas de navegación del carrusel */
-.slick-prev,
-.slick-next {
-    width: 25px;
-    height: 25px;
-    z-index: 10;
-    opacity: 0.8;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.slick-prev {
-    left: 10px;
-}
-
-.slick-next {
-    right: 10px;
-}
-
-.slick-prev:hover,
-.slick-next:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 1);
-}
-
-.slick-prev:before,
-.slick-next:before {
-    color: #ff00dc; /* Color rosa para las flechas */
-    font-size: 24px;
-    opacity: 1;
-}
-
-/* Asegurarse que las flechas sean visibles en móviles */
-@media (max-width: 768px) {
-    .slick-prev {
-        left: 5px;
-    }
-    .slick-next {
-        right: 5px;
-    }
-}
-
-/* Carrusel de modelos - Ajustes para tamaño correcto */
-.model-carousel {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.model-carousel .slick-slide {
-    width: 100% !important;
-    height: auto !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
-
-.model-carousel .slick-list {
-    height: auto !important;
-    padding: 0 !important;
-}
-
-.model-carousel .slick-track {
-    display: flex !important;
-    align-items: center;
-    height: auto !important;
-    transform: none !important;
-}
-
-.model-carousel .slick-slide label {
-    width: 100%;
-    display: block;
-    text-align: center; /* Asegura que el contenido esté centrado */
-}
-
-.model-carousel .slick-slide img {
-    width: auto !important;
-    max-width: 100%;
-    height: auto !important;
-    max-height: 80vh;
-    margin: 0 auto;
-    display: block !important;
-    object-fit: contain;
-}
-
-/* Asegurar que los slides mantienen proporción */
-.slick-slider {
-    margin-bottom: 30px;
-}
-
-.slick-list {
-    overflow: hidden;
-}
-
-/* Ajustar altura del contenedor */
-.contorno {
-    min-height: 400px;
-}
-
-/* Eliminar estilos inline de Slick */
-.slick-slide {
-    float: none !important;
-}
-
-/* NUEVAS MODIFICACIONES para imágenes de carrusel de modelos */
-.model-carousel {
-    width: 400px !important;
-    height: 356px !important;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.model-carousel .slick-slide {
-    width: 400px !important;
-    height: 356px !important;
-    flex: 0 0 auto;  /* Evita que se reduzcan o expandan */
-}
-
-.model-carousel .slick-slide img {
-    width: 400px !important;
-    height: 356px !important;
-    object-fit: contain;
-}
-
-/* NUEVAS MODIFICACIONES para que el borde forme parte de las medidas */
-.model-carousel,
-.model-carousel .slick-slide,
-.model-carousel .slick-slide img {
-    box-sizing: border-box;
-}
-
-/* Se mantienen las dimensiones forzadas */
-.model-carousel {
-    width: 400px !important;
-    height: 356px !important;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.model-carousel .slick-slide {
-    width: 400px !important;
-    height: 356px !important;
-    flex: 0 0 auto;
-}
-
-.model-carousel .slick-slide img {
-    width: 400px !important;
-    height: 356px !important;
-    object-fit: contain;
-}
-
-/* NUEVAS MODIFICACIONES para las flechas del carrusel */
-.slick-prev,
-.slick-next {
-    width: 20px !important;
-    height: 20px !important;
-    opacity: 0.7;
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border-radius: 50%;
-    box-shadow: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.slick-prev {
-    left: 5px;
-}
-
-.slick-next {
-    right: 5px;
-}
-
-.slick-prev:before,
-.slick-next:before {
-    font-size: 16px !important;
-    opacity: 1;
-}
-
-/* NUEVAS MODIFICACIONES para las flechas del carrusel y la imagen */
-.slick-prev,
-.slick-next {
-    width: 20px !important;
-    height: 20px !important;
-    opacity: 0.8;
-    background: white;
-    color: white;
-    border-radius: 50%;
-    box-shadow: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;  /* Asegura que se vea sobre la imagen */
-}
-
-.slick-prev { left: 10px; }
-.slick-next { right: 15px; }
-
-.slick-prev:before,
-.slick-next:before {
-    font-size: 20px !important;
-    opacity: 1;
-}
-
-/* Asegurar que la imagen se centre correctamente */
-.model-carousel .slick-slide img {
-    display: block;
-    margin: 0 auto;
-    object-position: center;
-}
-
-/* MODIFICACIONES para hacer el carrusel responsivo */
-.model-carousel {
-    width: 100% !important;
-    max-width: 400px !important;
-    height: auto !important;
-    max-height: 356px !important;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.model-carousel .slick-slide {
-    width: 100% !important; 
-    max-width: 400px !important;
-    height: auto !important;
-    max-height: 356px !important;
-    flex: 0 0 auto;
-}
-
-.model-carousel .slick-slide img {
-    width: 100% !important;
-    max-width: 400px !important;
-    height: auto !important;
-    max-height: 356px !important;
-    object-fit: contain;
-    margin: 0 auto;
-}
-
-/* Asegurar que las flechas estén siempre visibles */
-.slick-prev { left: 5px !important; }
-.slick-next { right: 5px !important; }
 	</style>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
@@ -605,13 +338,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="contorno" id="modeload-roma-negras">
 <div class="model-carousel">
-<div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg" width="400" height="356"  ></label></div>
-<div><label for="roma-negras"><img alt=""  data-lazy="roma-negras-1a.jpg" width="400" height="356"   ></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg" width="400" height="356"   ></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2a.jpg" width="400" height="356"  ></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-3a.jpg" width="400" height="356"  ></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-4a.jpg" width="400" height="356" ></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2.jpg" width="400" height="356"  ></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" src="roma-negras-1a.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2a.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-3a.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-4a.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2.jpg" width="600" height="800"  /></label></div>
 </div>
 
 <div class="novisible" id="talles-roma-negras">
@@ -635,10 +368,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="contorno" id="modeload-roma-suela">
 <div class="model-carousel">
-<div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg" width="400" height="356"  ></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg" width="400" height="356" ></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg" width="400" height="356"   ></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2.jpg"width="400" height="356"  ></label></div>
+<div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg" width="600" height="800" /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg" width="600" height="800" /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg" width="600" height="800"  /></label></div>
+<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2.jpg" width="600" height="800" /></label></div>
 </div>
 
 <div class="novisible" id="talles-roma-suela">
@@ -662,8 +395,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <div class="contorno" id="modeload-siena2025">
                     <div class="model-carousel">
-                        <div><label for="siena2025"><img src="siena2025-1.webp" data-lazy="siena2025-1.webp" alt="Siena 2025 1" width="400" height="356"  ></label></div>
-                        <div><label for="siena2025"><img data-lazy="siena2025-2.webp" data-lazy="siena2025-2.webp" alt="Siena 2025 2"width="400" height="356" ></label></div>
+                        <div><label for="siena2025"><img src="siena2025-1.webp" data-lazy="siena2025-1.webp" alt="Siena 2025 1" width="600" height="400" /></label></div>
+                        <div><label for="siena2025"><img src="siena2025-2.webp" data-lazy="siena2025-2.webp" alt="Siena 2025 2" width="600" height="400"/></label></div>
                     </div>
 
                     <div class="novisible" id="talles-siena2025">
@@ -734,6 +467,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="testimonials-carousel">
 <div><label for="comentarios"><img src="comentariosig.webp"  width="600" height="400" ></label></div>
+<div><label for="comentarios"><img src="comentariosig2.webp" width="600" height="400"  ></label></div>
+</div>
+
+	<div class="testimonials-carousel">
+<div><label for="referencias"><img alt="" src="comentario1-min.webp" width="600" height="400" /></label></div>
+<div><label for="referencias"><img alt="" data-lazy="comentario2-min.webp" width="600" height="400"  /></label></div>
 <div><label for="referencias"><img alt="" data-lazy="comentario3-min.webp" width="600" height="400" /></label></div>
 <div><label for="referencias"><img alt="" data-lazy="comentario4-min.webp" width="600" height="400"  /></label></div>
 <div><label for="referencias"><img alt="" data-lazy="comentario5-min.webp" width="600" height="400"  /></label></div>
@@ -769,20 +508,20 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 <div class="form-group"><input class="form-control" id="1471599855" name="entry.1471599855" readonly="readonly" type="text" /></div>
 </fieldset>
 <!-- Field type: "short" id: "1234675908" -->
-<fieldset><legend for="1145718766" style="font-size:16px;">Email</legend>
+<fieldset><legend for="1145718766">Email</legend>
 
 <p style="font-size:11px;">poné el mismo email que uses para pagar en Mercadopago en el siguiente paso. Vamos a usarlo para enviarte la confirmación de tu pago y el seguimiento al despachar.</p>
 
 <div class="form-group"><input class="form-control" id="1465946249" name="entry.1465946249" placeholder="chequeá que ingreses el email correctamente" required="" type="text" /></div>
 </fieldset>
 
-<fieldset><legend for="1234675908" style="font-size:16px;">Nombre y Apellido</legend>
+<fieldset><legend for="1234675908">Nombre y Apellido</legend>
 
 <div class="form-group"><input class="form-control" id="1460904554" name="entry.1460904554" required="" type="text" /></div>
 </fieldset>
 <!-- Field type: "short" id: "1145718766" -->
 
-<fieldset><legend for="1145718766" style="font-size:16px;">WhatsApp<br />
+<fieldset><legend for="1145718766">WhatsApp<br />
 <span style="font-size:11px;">sin 0 ni 15 <em>Ejemplo</em>: 1156457057</span> </legend>
 
 <p style="font-size:11px;">Chequeá que lo ingreses correctamente para poder enviarte el seguimiento online de tu pedido.</p>
@@ -792,7 +531,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <!-- Field type: "dropdown" id: "1194024040" -->
 
-<fieldset><legend for="1194024040" style="font-size:16px;">DIRECCIÓN DE ENVÍO</legend></fieldset>
+<fieldset><legend for="1194024040">DIRECCIÓN DE ENVÍO</legend></fieldset>
 
 <fieldset>
 <div class="form-group">
@@ -802,7 +541,7 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <!-- Field type: "short" id: "59.00075046" -->
 
-<fieldset><legend for="59.00075046" style="font-size:16px;">Provincia</legend>
+<fieldset><legend for="59.00075046">Provincia</legend>
 
 <div class="form-group"><select class="form-control" id="59648134" name="entry.59648134" required="" type="text" title="Provincia">
                                 <option value="">Por favor seleccione la provincia</option>
@@ -832,14 +571,14 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <!-- Field type: "short" id: "1057753036" -->
 
-<fieldset><legend for="1057753036" style="font-size:16px;">Localidad</legend>
+<fieldset><legend for="1057753036">Localidad</legend>
 
 <div class="form-group"><input class="form-control" id="1743418466" name="entry.1743418466" required="" type="text" /></div>
 </fieldset>
 
 <!-- Field type: "short" id: "1056197367" -->
 
-<fieldset><legend for="1056197367" style="font-size:16px;">Código Postal</legend>
+<fieldset><legend for="1056197367">Código Postal</legend>
 
 <div class="form-group"><input class="form-control" id="1005165410" name="entry.1005165410" required="" type="text" /></div>
 </fieldset>
@@ -847,17 +586,17 @@ TALLES-MODELOS SELECCIONADOS:</legend>
 
 <!-- Field type: "paragraph" id: "1877226420" -->
 
-<fieldset><legend for="1877226420" style="font-size:16px;">Calle y Altura (aclarar casa o piso y depto.)</legend>
+<fieldset><legend for="1877226420">Calle y Altura (aclarar casa o piso y depto.)</legend>
 <div class="form-group"><input class="form-control" id="951592426" name="entry.951592426" placeholder="ingresa tu calle seguido de la altura" required=""/></div>
 </fieldset>
 
-<fieldset><legend for="1945027933" style="font-size:16px;">D.N.I</legend>
+<fieldset><legend for="1945027933">D.N.I</legend>
 
 <div class="form-group"><input class="form-control" id="541001873" name="entry.541001873" required="" type="text" /></div>
 </fieldset>
 <!-- Field type: "dropdown" id: "2315500325" -->
 
-<fieldset><legend for="2315500325" style="font-size:16px;">ENVÍO: se hace al domicilio indicado arriba. El cartero visitará el domicilio una vez y si no encuentra a nadie dejará tu encomienda en la sucursal más cercana. </legend>
+<fieldset><legend for="2315500325">ENVÍO: se hace al domicilio indicado arriba. El cartero visitará el domicilio una vez y si no encuentra a nadie dejará tu encomienda en la sucursal más cercana. </legend>
 
 <div style="display:none;" class="form-group"><select class="form-control" id="2315500325" name="entry.17650825"><option value="A DOMICILIO">A DOMICILIO</option></select></div>
 </fieldset>
@@ -917,29 +656,13 @@ $(document).ready(function(){
     dots: true,
     infinite: true,
     speed: 500,
-    fade: true,           // Cambiado a true para transiciones más suaves
+    fade: false,
     cssEase: 'linear',
     lazyLoad: 'ondemand',
-    adaptiveHeight: true,    // Cambiado a true
+    adaptiveHeight: false,
     slidesToShow: 1,
     centerMode: false, //  Turn off centerMode
     variableWidth: false, //  Turn off variableWidth
-    responsive: true,         // Agregado para mejor respuesta
-    accessibility: true,  // Habilitar características de accesibilidad
-    focusOnSelect: false, // Evitar problemas con el foco
-    focusOnChange: false, // Evitar problemas con el foco
-    swipeToSlide: true,   // Mejor manejo del deslizamiento
-    touchThreshold: 10,   // Hacer el deslizamiento más sensible
-    waitForAnimate: true, // Esperar a que termine la animación
-    // Manejar el foco apropiadamente
-    beforeChange: function(slick, currentSlide, nextSlide) {
-      $(slick.$slides).removeAttr('aria-hidden').removeClass('slick-active');
-    },
-    afterChange: function(slick, currentSlide) {
-      $(slick.$slides.get(currentSlide)).attr('tabindex', '0').focus();
-    },
-    // Eliminar transformaciones automáticas
-    useTransform: false
   });
 
   $('.testimonials-carousel').slick({
@@ -1068,7 +791,7 @@ var getUrlParameter = function getUrlParameter(sParam) {
         i;
 
     for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = i.sURLVariables[i].split('=');
+        sParameterName = sURLVariables[i].split('=');
 
         if (sParameterName[0] === sParam) {
             return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
@@ -1081,7 +804,7 @@ var fbclidpedido = window.location.href;
 $("#1209868979").val(fbclidpedido);
 
 var modeload = getUrlParameter('modeload');
-// $('#' + modeload).insertBefore("#modelo-40"); //
+// $('#' + modeload).insertBefore("#modeload-modelo-40"); //
 $('#' + modeload).insertBefore("#tituloh4");
 // $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');
 });
@@ -1103,7 +826,7 @@ $('#bootstrapForm').submit(function (event) {
         const comprador = $('#1460904554').val();
         const monto = words.length === 2 ? "59000" : "89000";
 
-        console.log('Obteniendo link de MercadoPago...');
+        // Primero obtenemos el link de MercadoPago
         fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
             method: 'POST',
             headers: {
@@ -1118,46 +841,39 @@ $('#bootstrapForm').submit(function (event) {
         .then(responseText => {
             const responseData = JSON.parse(responseText);
             const mpLink = responseData.linkpersonalizadomp;
-            console.log('Link de MercadoPago obtenido:', mpLink);
+            console.log('Link de MP obtenido:', mpLink);
 
-            // Agregar el link al formulario
+            // Agregamos el link al formulario
             $('<input>').attr({
                 type: 'hidden',
                 name: 'entry.978809450',
                 value: mpLink
             }).appendTo('#bootstrapForm');
 
-            // Enviar el formulario usando POST directamente
-            var formData = $('#bootstrapForm').serialize();
+            // Enviamos el formulario usando fetch
+            var formData = new URLSearchParams($('#bootstrapForm').serialize());
             var formAction = $('#bootstrapForm').attr('action');
 
             console.log('Enviando formulario a Google Forms...');
-            $.ajax({
-                url: formAction,
-                data: formData,
-                type: 'POST',
-                dataType: 'jsonp',
-                complete: function() {
-                    console.log('Formulario enviado exitosamente');
-                    fbq('track', 'InitiateCheckout');
-                    
-                    // Redirigir a MercadoPago
-                    setTimeout(() => {
-                        console.log('Redirigiendo a:', mpLink);
-                        window.location.href = mpLink;
-                    }, 2000);
-                },
-                error: function() {
-                    // Este error es esperado debido a JSONP
-                    console.log('Error JSONP esperado - continuando con el proceso');
-                    fbq('track', 'InitiateCheckout');
-                    
-                    setTimeout(() => {
-                        console.log('Redirigiendo a MercadoPago después de error JSONP');
-                        window.location.href = mpLink;
-                    }, 2000);
+            return fetch(formAction, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
                 }
             });
+        })
+        .then(() => {
+            console.log('Formulario enviado exitosamente');
+            fbq('track', 'InitiateCheckout');
+            
+            // Redirigir a MercadoPago
+            setTimeout(() => {
+                const mpLink = $('input[name="entry.978809450"]').val();
+                console.log('Redirigiendo a:', mpLink);
+                window.location.href = mpLink;
+            }, 2000);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -1167,29 +883,35 @@ $('#bootstrapForm').submit(function (event) {
         });
     } else {
         // Para otros métodos de pago
-        console.log('Procesando otro método de pago:', formaPago);
-        var formData = $('#bootstrapForm').serialize();
+        var formData = new URLSearchParams($('#bootstrapForm').serialize());
         var formAction = $('#bootstrapForm').attr('action');
 
-        $.ajax({
-            url: formAction,
-            data: formData,
-            type: 'POST',
-            dataType: 'jsonp',
-            complete: function() {
-                console.log('Formulario enviado exitosamente');
-                fbq('track', 'InitiateCheckout');
-                
-                if (formaPago === "cbu") {
-                    setTimeout(() => {
-                        var queryString = $('#1471599855').serialize();
-                        var redirectUrl = words.length === 2 ? 
-                            'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
-                            'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
-                        window.location.href = redirectUrl;
-                    }, 2000);
-                }
+        fetch(formAction, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
             }
+        })
+        .then(() => {
+            console.log('Formulario enviado exitosamente');
+            fbq('track', 'InitiateCheckout');
+            
+            if (formaPago === "cbu") {
+                setTimeout(() => {
+                    var queryString = $('#1471599855').serialize();
+                    var redirectUrl = words.length === 2 ? 
+                        'https://rositarococo.com/transferenciacbu-1par.html?' + queryString :
+                        'https://rositarococo.com/transferenciacbu-2pares.html?' + queryString;
+                    window.location.href = redirectUrl;
+                }, 2000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            $('#botoncomprar').attr('value', 'COMPRAR 🛒');
+            $('#botoncomprar').removeAttr('disabled');
         });
     }
 });
