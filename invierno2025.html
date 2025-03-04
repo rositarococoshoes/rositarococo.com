@@ -349,137 +349,77 @@ tr:nth-child(even) {  background-color: #dddddd;}
 .model-carousel {
     width: 100%;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: hidden;
-    line-height: 0;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    display: block !important;
 }
 
 .model-carousel .slick-list {
     margin: 0 !important;
     padding: 0 !important;
     overflow: hidden;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    display: block !important;
 }
 
 .model-carousel .slick-track {
-    display: flex !important;
-    align-items: stretch !important;
     margin: 0 !important;
     padding: 0 !important;
-}
-
-.model-carousel .slick-slide {
-    height: auto !important;
-    padding: 0 !important;
-    margin: 0 !important;
     line-height: 0 !important;
     font-size: 0 !important;
-}
-
-.model-carousel .slick-slide > div {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    height: 100%;
-}
-
-.model-carousel .slick-slide label {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    line-height: 0 !important;
-    height: 100%;
-}
-
-.model-carousel .slick-slide img {
-    width: 100%;
-    height: auto !important;
-    display: block !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    object-fit: contain;
-    max-width: none;
-}
-
-/* Eliminar espacio de los dots */
-.model-carousel .slick-dots {
-    margin: 0 !important;
-    padding: 0 !important;
-    bottom: 0 !important;
-}
-
-/* Ajustar contenedor del slide */
-.model-carousel .slick-slide > * {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-}
-
-/* Asegurar que los slides clonados también no tengan margen */
-.model-carousel .slick-slide.slick-cloned {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-}
-
-/* Carrusel de modelos - ajustes adicionales */
-.model-carousel .slick-track,
-.model-carousel .slick-list {
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-}
-
-.model-carousel .slick-slide {
-    float: none !important;
-    display: inline-block !important;
-    vertical-align: top !important;
-    height: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-.model-carousel .slick-slide > div {
-    font-size: 0 !important;
-    line-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-.model-carousel .slick-slide label {
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    font-size: 0 !important;
-    line-height: 0 !important;
-}
-
-.model-carousel .slick-slide img {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    width: 100% !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
-}
-
-/* Forzar alineación vertical */
-.model-carousel .slick-track {
     display: flex !important;
     align-items: flex-start !important;
 }
 
-/* Reset para cualquier espacio heredado */
-.model-carousel * {
+.model-carousel .slick-slide {
     margin: 0 !important;
     padding: 0 !important;
     line-height: 0 !important;
     font-size: 0 !important;
+    height: auto !important;
+    display: block !important;
+    font-size: 0 !important;
+}
+
+.model-carousel .slick-slide > * {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+}
+
+.model-carousel .slick-slide label {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+}
+
+.model-carousel .slick-slide img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    font-size: 0 !important;
+}
+
+/* Reset para elementos internos del carousel */
+.model-carousel *, 
+.model-carousel *:before,
+.model-carousel *:after {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 0 !important;
+    font-size: 0 !important;
+    box-sizing: border-box !important;
 }
 
 	</style>
