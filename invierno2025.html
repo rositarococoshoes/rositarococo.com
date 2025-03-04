@@ -760,8 +760,8 @@ $(document).ready(function(){
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
 
 var val = "";
-var theval = $("#1471599855");{
-hwA-' + fieldset + '-' + i).show();
+var theval = $("#1471599855");
+$('#hwA-' + fieldset + '-' + i).show();
 $("#todoslosmodelos select").change(function(){
   $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
   $('.avisoagregado').fadeOut(10000);
@@ -771,11 +771,12 @@ $("#todoslosmodelos select").change(function(){
   $("#avisoform").hide();
   $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;max-width: 400px;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
 
-	val = $.each($(this).children("option:selected"), ()=> {;
+	val = $.each($(this).children("option:selected"), ()=> {
   var before_change = $(this).data('pre');
   let value = $(this).val()
   if(value.length>0) {
-  	if(before_change && before_change.length>0) {soagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
+  	if(before_change && before_change.length>0) {
+  	 
     	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
       $("#help-modelostallesseleccionados").html($("#1471599855").val());  $("#region").hide();
 	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccioná Modelos/Talles arriba</span>");
@@ -848,8 +849,8 @@ he desired point -- hide div
   </script><script>
  $( document ).ready(function() {
 
-);
-var getUrlParameter = function getUrlParameter(sParam) {;
+});
+var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
         sParameterName,
@@ -883,7 +884,7 @@ $('#bootstrapForm').submit(function (event) {
     $('#botoncomprar').attr('disabled', 'true');ter('modeload');
 nsertBefore("#modeload-modelo-40"); //
     var talleselegidos = $('#1471599855').val();
-    var value2 = (talleselegidos).replace(" ", "");first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');
+    var value2 = (talleselegidos).replace(" ", "");
     var words = value2.split(",");
     var formaPago = $('#comoabona').val();
 
