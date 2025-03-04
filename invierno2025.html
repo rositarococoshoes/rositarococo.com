@@ -127,281 +127,6 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel .slick-slide img {
-    width: 400px;
-    height: 400px !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    object-fit: fill;
-    max-width: none;
-    vertical-align: top !important;
-}
-
-/* Eliminar espacio de los dots */
-.model-carousel .slick-dots {
-    margin: 0 !important;
-    padding: 0 !important;
-    bottom: 0 !important;
-    line-height: 0 !important;
-}
-
-/* Ajustes adicionales */
-.model-carousel .slick-slide:before,
-.model-carousel .slick-slide:after {
-    display: none !important;
-}
-
-.model-carousel * {
-    line-height: 0 !important;
-    font-size: 0 !important;
-}
-
-/* Asegurar que los slides clonados también no tengan margen */
-.model-carousel .slick-slide.slick-cloned {
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Ajuste para la inicialización del carrusel */
-.model-carousel:not(.slick-initialized) {
-    display: none;
-}
-
-/* Apply same fixes to testimonials carousel */
-.testimonials-carousel {
-    width: 100%;
-    max-width: 900px; /* Aumentado para consistencia */
-    margin: 20px auto;
-    overflow: hidden;
-}
-
-.testimonials-carousel .slick-slide img {
-    width: 100%;
-    height: auto !important; /* Cambiado para mantener proporción */
-    object-fit: contain;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin: 0 auto;
-    display: block !important;
-    max-width: none;
-}
-
-/*  Make sure the label is displayed */
-.model-carousel label[for] {
-   display: block;
-   cursor: pointer;
-}
-
-/*  Lazy-loaded images - ensure they appear correctly */
-.model-carousel img[data-lazy] {
-    opacity: 1; /* Start with full opacity */
-    transition: opacity 0.3s ease;
-}
-
-      .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
-
-	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
-		   /* Estilos para el enlace */
-    .instructions-link {
-      color: blue;
-      text-decoration: underline;
-      font-size: 15px;
-      text-align: center;
-    }
-.instructions-link i {
-  font-size: 1.1em;
-}
-
-    /* Estilos para el pop-over */
-    #instructions-popover {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      z-index: 2;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-content: center;
-    }
-
-    /* Estilos para el contenido del pop-over */
-    #instructions-popover > div {
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      /* width: 100%; */
-     /*  max-width: 400px; */
-      padding: 20px;
-      text-align: center;
-    }
-
-    /* Estilos para el botón de cierre */
-    #close-button {
-      position: relative;
-      top: 49px !important;
-      /* right: 39px !important; */
-      color: black;
-      padding-right: 15px;
-      border: none;
-      text-align: right;
-      background-color: transparent;
-      font-size: 32px;
-      cursor: pointer;
-    }
-
-#instructions-popover h2 {
-  background-color: #f1c40f;
-  color: white;
-  padding: 10px;
-  text-align: center;
-}
-#close-button {
-  /* Otros estilos */
-  top: 10px;
-  left: 10px;
-}
-
-#instructions-popover > div {
-  /* Otros estilos */
-  padding: 10px 20px 10px 20px;
-}
-/* Estilo de la capa transparente */
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0) !important; /* Color de fondo semi-transparente */
-  z-index: 1; /* Mostrar por encima de otros elementos */
-}
-.notification {
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: white;
-  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
-  z-index:995;
-}
-
-.notification img {
-  height: 85px;
-  border-radius: 0;
-  object-fit: cover;
-  margin-right: 15px;
-}
-
-.notification .order-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.notification .order-info h3 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.notification .order-info p {
-  margin: 5px 0;
-  font-size: 13px;
-  color: #a0a0a0;
-}
-
-.notification .close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #a0a0a0;
-  cursor: pointer;
-}
-
-.notification .close:hover {
-  color: #707070;
-}
-.notification .order-info .customer-info {
-  display: flex;
-  align-items: center;
-}
-
-.notification .order-info .customer-info .city {
-  margin-left: auto;
-  padding-right:5px;
-}
-
-/* Carrusel de modelos */
-.model-carousel {
-    width: 100%;
-    max-width: 900px;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden;
-    line-height: 0 !important;
-    font-size: 0 !important;
-    display: block !important;
-}
-
-.model-carousel .slick-list {
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden;
-    line-height: 0 !important;
-    font-size: 0 !important;
-    display: block !important;
-}
-
-.model-carousel .slick-track {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-    display: flex !important;
-    align-items: flex-start !important;
-}
-
-.model-carousel .slick-slide {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-    height: auto !important;
-    display: block !important;
-    font-size: 0 !important;
-}
-
-.model-carousel .slick-slide > * {
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-}
-
-.model-carousel .slick-slide label {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
-    line-height: 0 !important;
-    font-size: 0 !important;
-}
-
-.model-carousel .slick-slide img {
     width: 100% !important;
     height: auto !important;
     display: block !important;
@@ -413,7 +138,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 /* Reset para elementos internos del carousel */
-.model-carousel *, 
+.model-carousel *,
 .model-carousel *:before,
 .model-carousel *:after {
     margin: 0 !important;
@@ -425,196 +150,189 @@ tr:nth-child(even) {  background-color: #dddddd;}
 
 	</style>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-</head>
-<body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<p id="text" style="display: block;font-size: 11px;position: fixed;width: 100%;max-width: 395px;padding: 5px 10px;text-align: center;bottom: 0px;background-color: yellow;margin: auto;z-index: 9999999999999999999999
-;">Luego de seleccionar tus modelos completá tus datos abajo ↓↓</p>
-<div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
-<div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
+<script>
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
-<p><img alt="" src="rosita-form.webp" /></p>
+//  ***  Modified Slick Initialization  ***
+$(document).ready(function(){
+  $('.model-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: false,
+    cssEase: 'linear',
+    lazyLoad: 'ondemand',
+    adaptiveHeight: false,
+    slidesToShow: 1,
+    centerMode: false, //  Turn off centerMode
+    variableWidth: false,
+    verticalAlign: 'top',
+    touchThreshold: 8,
+    arrows: true
+  });
 
-<fieldset style="margin-bottom:0px !important;">
-<h4 id="tituloh4" style="text-align: center;"><span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/bomb/" ping="/url?sa=t&source=web&rct=j&url=https://emojipedia.org/bomb/&ved=2ahUKEwjL_Pb-0o3mAhVxILkGHZQvDEoQFjAAegQICBAC" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💣</a></span><span style="font-size:13px;color: #ff00dc; font-weight: bold;">NUEVA TEMPORADA OTOÑO INVIERNO 2025</span><br />
-<span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/money-bag/" ping="/url?sa=t&source=web&rct=j&url=https://emojipedia.org/money-bag/&ved=2ahUKEwjGuoCS043mAhU_K7kGHb-qAXkQFjACegQIARAB" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💰</a></span><span style="font-size:12px;"><em><strong>DESCUENTO ADICIONAL LLEVANDO DOS PARES</strong></em></span></h4>
+  $('.testimonials-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    fade: true,
+    cssEase: 'linear'
+  });
+});
 
-<p id="fechahoy" style="display:none;color: white;background-color: #ff00dc;padding: 5px 10px;font-weight: bold;text-align: center;font-size: 13px;"></p>
-<p style="text-align: center; font-size: 14px;">3 cuotas sin interés sólo con <u>tarjetas bancarias</u><br><b>¡ENVÍO GRATIS APROVECHA HOY QUE VUELAN!</b></p>
-<h6 style="background-color: lightyellow; padding: 5px 0px 5px 10px;">
-<p style="text-align: center; font-size: 13px;">MÁXIMO DE 2 PARES POR PEDIDO</p>
-<span style="font-size: 19px;text-align: center;line-height: 30px;margin: auto;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;  padding: 0px 5px;">1 par:     🔥 $59.000</span><br>
-<span style="color: #ff00dc;  padding: 0px 5px;">2 pares: 🔥 $89.000</span><span>($44.500 c/par)</span><br>
-</span>
-<span style="font-size:12px;"><em><span style="background-color:#FFFF00;">Podés combinar modelos en tu mismo pedido.</span></em></span></h6>
-<p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
- 
-<p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
-<!-- 📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: del 35 al 39. Tabla de talles debajo. </small></span><br /> -->
-💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta , MercadoPago, Transferencia.</small></span><br />
-⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DESPACHO EN</span>: 15  días aprox. Producimos a pedido.</small></span><br />
-❇️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">STOCK</span>: de todos los modelos que ves aquí.</small></span><br /><br />
+    $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
 
-<span style="color: rgb(68, 68, 68); font-size: 17.5px;">¿CÓMO COMPRAR FÁCIL Y RÁPIDO?</span><br />
+var val = "";
+var theval = $("#1471599855");
+$('#hwA-' + fieldset + '-' + i).show();
+$("#todoslosmodelos select").change(function(){
+  $(this).parent().prepend('<p class="avisoagregado" style="color:green;"><b>¡AGREGADO AL PEDIDO!</b><br>ABAJO DE TODO PODÉS COMPLETAR EL FORMULARIO CON TUS DATOS DE ENVÍO ↓↓↓</p>');
+  $('.avisoagregado').fadeOut(10000);
+  $("#region").hide();
+  $("#restodelform").show();
+  $("#avisoform").hide();
+  $("#avisoform").hide();
+  $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;max-width: 400px;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
 
-<div class="contorno" id="modeload-roma-negras">
-<div class="model-carousel">
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" src="roma-negras-1a.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2a.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-3a.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-4a.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2.jpg" width="600" height="800"  /></label></div>
-</div>
+	val = $.each($(this).children("option:selected"), ()=> {
+  var before_change = $(this).data('pre');
+  let value = $(this).val()
+  if(value.length>0) {
+  	if(before_change && before_change.length>0) {
+    	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
+      $("#help-modelostallesseleccionados").html($("#1471599855").val());  $("#region").hide();
+	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccioná Modelos/Talles arriba</span>");
+      $("#text").css("display", "block");  $("#avisoform").hide();
+    $( "#text" ).delay(9930000).fadeOut( "slow" );
+	 fbq('track', 'AddToCart');
 
-<div class="novisible" id="talles-roma-negras">
-<div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);"> </span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">MATERIAL</span>: Cuero. Suela:</small></span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"> <em>PVC.</em></small></span></div>
+    } else {
+    theval.val(theval.val() + value + ", ");
+     $("#help-modelostallesseleccionados").html($("#1471599855").val());
+	 $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccioná Modelos/Talles arriba</span>");
+      $("#text").css("display", "block");    	theval.val(theval.val().replace(before_change + ", ", "") + value + ", ");
+    $( "#text" ).delay(9930000).fadeOut( "slow" );
+	 fbq('track', 'AddToCart');
+    }
+  }
+  $(this).data('pre', $(this).val());
+  $("#help-modelostallesseleccionados").html($("#1471599855").val());
+  }); if(value.length==0){
+  console.log(theval.val())lesseleccionados").html($("#1471599855").val());
 
-<div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par: 🔥 $59.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $89.000</span></span></span>
-<br>
-<span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
-<label>1 <input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-roma-negras" type="radio" value="2" /></label></div>
+  var value2 = $("#1471599855").val().replace(" ", ""); <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccioná Modelos/Talles arriba</span>");
+    var words = value2.split(",");     $("#text").css("display", "block");
+var remuevapares = words.length - 3;   $( "#text" ).delay(9930000).fadeOut( "slow" );
+if (words.length === 2) {
+  $("#preciototal, #preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $<span class=\"preciototalaobservar\">59.000</span> x 1 par + </span><span style='color: rgb(0, 100, 0);'>ENVÍO GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Si agregas otro par te llevas cada uno a sólo $44.500.</p>");
+  $("#restodelform").show();
+}
+if (words.length === 3) {
+  $("#preciototal, #preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $<span class=\"preciototalaobservar\">89.000</span> x 2 pares + </span><span style='color: rgb(0, 100, 0);'>ENVÍO GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Ya agregaste 2 pares that is the maximum of pares per pedido. No puedes agregar más pares.</p>");
+  $("#restodelform").show();
+}(theval.val())
+if (words.length > 3) {
+  $("#preciototal, #preciototal2").html("Sólo puede agregar 2 pares máximo a su pedido. Remueva " + remuevapares + " para poder comprar");ue2 = $("#1471599855").val().replace(" ", "");
+  $("#restodelform").hide(); words = value2.split(",");
+} remuevapares = words.length - 3;
+if (words.length === 2) {
+  $("#preciototal, #preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $<span class=\"preciototalaobservar\">59.000</span> x 1 par + </span><span style='color: rgb(0, 100, 0);'>ENVÍO GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Si agregas otro par te llevas cada uno a sólo $44.500.</p>");
+$("#text").append('<a id="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR COMPRA</a>');  $("#restodelform").show();
+ var topOfOthDiv = $("#restodelform").offset().top;}
+    $(window).scroll(function() {if (words.length === 3) {
+        if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?  $("#preciototal, #preciototal2").html("TOTAL: <span style='color: #ff00dc;'>🔥 $<span class=\"preciototalaobservar\">89.000</span> x 2 pares + </span><span style='color: rgb(0, 100, 0);'>ENVÍO GRATIS</span> <br><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>Ya agregaste 2 pares that is the maximum of pares per pedido. No puedes agregar más pares.</p>");
+            $("#finalizarpedido").hide(); //reached the desired point -- hide divestodelform").show();
+        }
+        else{
+            $("#finalizarpedido").show(); //else above the desired point -- hide div  $("#preciototal, #preciototal2").html("Sólo puede agregar 2 pares máximo a su pedido. Remueva " + remuevapares + " para poder comprar");
+        }  $("#restodelform").hide();
+    });
+});
 
-<fieldset id="hwA-roma-negras-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-negras">35 (23 cm de plantilla)</option><option value="36-roma-negras">36 (23,5 cm de plantilla)</option><option value="37-roma-negras">37 (24 cm de plantilla)</option><option value="38-roma-negras">38 (25 cm de plantilla)</option><option value="39-roma-negras">39 (25,5 cm de plantilla)</option><option value="40-roma-negras">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
+d="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR COMPRA</a>');
+OthDiv = $("#restodelform").offset().top;
+    $(window).scroll(function() {
+{ //scrolled past the other div?
+he desired point -- hide div
+    });        }
+  </script><script>
+ $( document ).ready(function() {
 
-<fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-negras">35 (23 cm de plantilla)</option><option value="36-roma-negras">36 (23,5 cm de plantilla)</option><option value="37-roma-negras">37 (24 cm de plantilla)</option><option value="38-roma-negras">38 (25 cm de plantilla)</option><option value="39-roma-negras">39 (25,5 cm de plantilla)</option><option value="40-roma-negras">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
+);
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-</div>
-</div>
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
 
-<div class="contorno" id="modeload-roma-suela">
-<div class="model-carousel">
-<div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg" width="600" height="800" /></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg" width="600" height="800" /></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg" width="600" height="800"  /></label></div>
-<div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2.jpg" width="600" height="800" /></label></div>
-</div>
+        if (sParameterName[0] === sParam) {
+            return sURLVariables[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
+    }rlParameter = function getUrlParameter(sParam) {
+};string(1),
+geURL.split('&'),
 
-<div class="novisible" id="talles-roma-suela">
-                        <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
-                            <div class="form-group">
-                                <select class="form-control talle">
-                                    <option value="">-- Seleccione Talle --</option>
-                                    <option value="35-siena2025">35 (23 cm de plantilla)</option>
-                                    <option value="36-siena2025">36 (23,5 cm de plantilla)</option>
-                                    <option value="37-siena2025">37 (24 cm de plantilla)</option>
-                                    <option value="38-siena2025">38 (25 cm de plantilla)</option>
-                                    <option value="39-siena2025">39 (25,5 cm de plantilla)</option>
-                                    <option value="40-siena2025">40 (26 cm de plantilla)</option>
-                                </select>
-                            </div>
-                        </fieldset>
+var fbclidpedido = window.location.href;    i;
+$("#1209868979").val(fbclidpedido);
 
-                    </div>
-                </div>
+var modeload = getUrlParameter('modeload');        sParameterName = sURLVariables[i].split('=');
+// $('#' + modeload).insertBefore("#modeload-modelo-40"); //
+$('#' + modeload).insertBefore("#tituloh4");
+// $('.select:first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+});
+</script>    }
+<script>
+$('#bootstrapForm').submit(function (event) {
+    event.preventDefault();
+    console.log('Iniciando envío del formulario');var fbclidpedido = window.location.href;
+    
+    $('#botoncomprar').attr('value', 'Espere...');
+    $('#botoncomprar').attr('disabled', 'true');ter('modeload');
+nsertBefore("#modeload-modelo-40"); //
+    var talleselegidos = $('#1471599855').val();
+    var value2 = (talleselegidos).replace(" ", "");first').html('<p>😱POCOS PARES EN STOCK. NO DEMORES<br>✅ MATERIAL: Cuero PU. Suela: expanso. </p>');
+    var words = value2.split(",");
+    var formaPago = $('#comoabona').val();
 
+    if (formaPago === "tarjeta" || formaPago === "mercadopago") {orm').submit(function (event) {
+        const comprador = $('#1460904554').val();preventDefault();
+        const monto = words.length === 2 ? "59000" : "89000";lario');
 
-	<p>😊REFERENCIAS DE CLIENTAS😊</p>
-
-	<div class="testimonials-carousel">
-<div><img alt="" data-lazy="comentariorecibi1.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi2.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi4.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi5.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi6.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi7.webp" width="600" height="400"  /></div>
-<div><img alt="" data-lazy="comentariorecibi8.webp" width="600" height="400"  /></div>
-</div>
-
-<div class="testimonials-carousel">
-<div><label for="comentarios"><img src="comentariosig.webp"  width="600" height="400" ></label></div>
-<div><label for="comentarios"><img src="comentariosig2.webp" width="600" height="400"  ></label></div>
-</div>
-
-	<div class="testimonials-carousel">
-<div><label for="referencias"><img alt="" src="comentario1-min.webp" width="600" height="400" /></label></div>
-<div><label for="referencias"><img alt="" data-lazy="comentario2-min.webp" width="600" height="400"  /></label></div>
-<div><label for="referencias"><img alt="" data-lazy="comentario3-min.webp" width="600" height="400" /></label></div>
-<div><label for="referencias"><img alt="" data-lazy="comentario4-min.webp" width="600" height="400"  /></label></div>
-<div><label for="referencias"><img alt="" data-lazy="comentario5-min.webp" width="600" height="400"  /></label></div>
-</div>
-
-</div>
-</fieldset>
-<!-- Field type: "title" id: "1542668863" -->
-
-
-<p style="text-align: center; font-size: 13px;">3 sin interés sólo con <u>tarjetas bancarias</u>.</p>
-<h6 style="text-align: center;"><u>TODOS LOS MODELOS MISMO PRECIO</u></h6>
-
-<h6><span style="font-size: 20px;text-align: center;line-height: 30px;margin: auto;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;  padding: 0px 5px;">1 par:     🔥 $59.000</span><br>
-<span style="color: #ff00dc;  padding: 0px 5px;">2 pares: 🔥 $89.000</span><span>($44.500 c/par)</span><br>
-</span>
-<span style="font-size:12px;"><em><span style="background-color:#FFFF00;">Podés pedir diferentes modelos en tu mismo pedido.</span></em></span></h6>
-<p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
-<p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
-<!-- 📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: del 36 al 40. Tabla de talles debajo. </small></span><br /> -->
-💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta , MercadoPago, Transferencia.</small></span><br />
-⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DESPACHO EN</span>: 15  días aprox. Producimos a pedido.</small></span><br />
-❇️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">STOCK</span>: de todos los modelos que ves aquí.</small></span><br />
-<br />
-<!-- Field type: "short" id: "1284324650" -->
-
-	<div id="restodelform" style="display:none;">
-<fieldset style="background-color:lightyellow;"><legend for="1471599855" style="font-size:16px;"><br />
-TALLES-MODELOS SELECCIONADOS:</legend>
-
-<p style="font-size: 12px;">Estos son los talles-modelos que seleccionaste arriba.</p>
-
-<div class="form-group"><input class="form-control" id="1471599855" name="entry.1471599855" readonly="readonly" type="text" /></div>
-</fieldset>
-<!-- Field type: "short" id: "1234675908" -->
-<fieldset><legend for="1145718766" style="font-size:16px;"><br />
-TALLES-MODELOS SELECCIONADOS:</legend>
-
-<p style="font-size: 12px;">Estos son los talles-modelos que seleccionaste arriba.</p>
-
-<div class="form-group"><input class="form-control" id="1471599855" name="entry.1471599855" readonly="readonly" type="text" /></div>
-</fieldset>
-<!-- Field type: "short" id: "1234675908" -->
-<fieldset><legend for="1145718766">Email</legend>
-
-<p style="font-size:11px;">poné el mismo email que uses para pagar en Mercadopago en el siguiente paso. Vamos a usarlo para enviarte la confirmación de tu pago y el seguimiento al despachar.</p>
-
-<div class="form-group"><input class="form-control" id="1465946249" name="entry.1465946249" placeholder="chequeá que ingreses el email correctamente" required="" type="text" /></div>
-</fieldset>
-
-<fieldset><legend for="1234675908">Nombre y Apellido</legend>
-
-<div class="form-group"><input class="form-control" id="1460904554" name="entry.1460904554" required="" type="text" /></div>
-</fieldset>
-<!-- Field type: "short" id: "1145718766" -->
-
-<fieldset><legend for="1145718766">WhatsApp<br />
-<span style="font-size:11px;">sin 0 ni 15 <em>Ejemplo</em>: 1156457057</span> </legend>
-
-<p style="font-size:11px;">Chequeá que lo ingreses correctamente para poder enviarte el seguimiento online de tu pedido.</p>
-
-<div class="form-group"><input class="form-control" id="53830725" name="entry.53830725" placeholder="Poné tu WHATSAPP sin 0 ni 15, ejemplo: 1156357659" required="" type="text" /></div>
-</fieldset>
-
-<!-- Field type: "dropdown" id: "1194024040" -->
-
-<fieldset><legend for="1194024040">DIRECCIÓN DE ENVÍO</legend></fieldset>
-
-<fieldset>
-<div class="form-group">
-<p class="help-block">Completá debajo con tus datos de entrega para poder generar la etiqueta de envío de tu pedido.</p>
-</div>
-</fieldset>
-
+        // Primero obtenemos el link de MercadoPago
+        fetch('https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30', {
+            method: 'POST',
+            headers: {    var talleselegidos = $('#1471599855').val();
+                'Content-Type': 'application/json' "");
+            },");
+            body: JSON.stringify({na').val();
+                comprador: comprador,
+                monto: montoa" || formaPago === "mercadopago") {
+            }).val();
+        })        const monto = words.length === 2 ? "59000" : "89000";
+        .then(response => response.text())
+        .then(responseText => {
+            const responseData = JSON.parse(responseText);-96b1-4d63-b2c0-991d6be3de30', {
+            const mpLink = responseData.linkpersonalizadomp;            method: 'POST',
+            console.log('Link de MP obtenido:', mpLink);
+cation/json'
+            // Agregamos el link al formulario
+            $('<input>').attr({({
+                type: 'hidden',rador,
+                name: 'entry.978809450',to
+                value: mpLink
+            }).appendTo('#bootstrapForm');
+esponse => response.text())
+            // Enviamos el formulario usando fetchhen(responseText => {
+            var formData = new URLSearchParams($('#bootstrapForm').serialize());ponseData = JSON.parse(responseText);
 <!-- Field type: "short" id: "59.00075046" -->
 
 <fieldset><legend for="59.00075046">Provincia</legend>
@@ -782,7 +500,7 @@ $("#todoslosmodelos select").change(function(){
 	  $("#text").html("PEDIDO: <b>" + $("#1471599855").val() + "</b><br><span id='preciototal2' style='color:black; font-size:13px;'>Seleccioná Modelos/Talles arriba</span>");
       $("#text").css("display", "block");  $("#avisoform").hide();
     $( "#text" ).delay(9930000).fadeOut( "slow" );#avisoform").hide();
-( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;max-width: 400px;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
+ $( '<p style="margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: green;/* display: none; */text-align: center;top: -22px;max-width: 400px;padding: 5px 0px;z-index: 5000;position: fixed;">¡AGREGADO!<br>Podés completar datos de envío más abajo</p>' ).insertBefore( "#text" ).fadeOut(10000);
 	 fbq('track', 'AddToCart');
 
     } else {
