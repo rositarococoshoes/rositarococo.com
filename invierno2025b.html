@@ -1160,7 +1160,6 @@ $('#bootstrapForm').submit(async function (event) {
 });
 
 
-
 async function getMercadoPagoLink(comprador, monto) {
     const endpoint = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
     const data = {
@@ -1193,8 +1192,8 @@ async function getMercadoPagoLink(comprador, monto) {
         console.log("Respuesta completa de Mercado Pago:", result); // LOG: Respuesta completa
 
 
-        if (result && result[0] && result[0].linkpersonalizadomp) {
-            return result[0].linkpersonalizadomp;
+        if (result && result.linkpersonalizadomp) {
+            return result.linkpersonalizadomp;
         } else {
             throw new Error("No se pudo obtener el link de Mercado Pago.");
         }
