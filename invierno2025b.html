@@ -1088,36 +1088,41 @@ $('#' + modeload).insertBefore("#tituloh4");
 });
 </script>
 <script>
-$('#bootstrapForm').submit(function (event) {
+$('#bootstrapForm').submit(async function (event) {  // Marca la función como async
     event.preventDefault();
     $('#botoncomprar').attr('value', 'Espere...').prop('disabled', true);
 
-    // Capturar datos necesarios
+    // Capturar datos necesarios (¡IMPORTANTE: Obtener el nombre y el monto!)
     const talleselegidos = $('#1471599855').val();
     const formaPago = $('#comoabona').val();
+    const nombreComprador = $('#1460904554').val(); //  Nombre del comprador
+    // Extrae el monto desde el texto visible.  ¡MUY IMPORTANTE!  Usa una expresión regular para extraer el número correctamente.
+    const montoTexto = $("#preciototal .preciototalaobservar").text(); // Obtiene "59.000" o "89.000"
+     const monto = parseFloat(montoTexto.replace('.', '')); // Convierte a número: 59000 o 89000
+
     const value2 = talleselegidos.replace(" ", "");
     const words = value2.split(",");
-    const queryString = $('#1471599855').serialize();
+    const queryString = $('#1471599855').serialize();  // Esto no se usa realmente, pero lo dejo por si lo necesitas para algo más adelante.
 
-    // Determinar URL de MercadoPago
-    const isMercadoPago = formaPago === "tarjeta" || formaPago === "mercadopago";
+    // Obtener la URL de Mercado Pago *solo si es necesario*
     let mercadoPagoUrl = '';
-    
-    if (words.length === 2 && isMercadoPago) {
-        mercadoPagoUrl = 'https://mpago.la/1FigNnC';
-    } else if (words.length === 3 && isMercadoPago) {
-        mercadoPagoUrl = 'https://mpago.la/2gYRoZX';
+    if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+        mercadoPagoUrl = await getMercadoPagoLink(nombreComprador, monto); // Llama a la función async
+        if (!mercadoPagoUrl) {
+             // Si getMercadoPagoLink devuelve null (error), detén el proceso.
+              $('#botoncomprar').attr('value', 'COMPRAR 🛒').prop('disabled', false);
+              return; // Detiene la ejecución del submit
+        }
+        $('#link-mercadopago').val(mercadoPagoUrl); // Asigna la URL al campo oculto
     }
 
-    // Asignar valor al campo oculto
-    $('#link-mercadopago').val(mercadoPagoUrl);
 
-    // Resto del código existente...
     const formData = new URLSearchParams($(this).serialize());
     const formAction = $(this).attr('action');
 
-    fbq('track', 'InitiateCheckout');
+     fbq('track', 'InitiateCheckout');
 
+    // Enviar el formulario a Google Forms *después* de obtener la URL de MP
     fetch(formAction, {
         method: 'POST',
         mode: 'no-cors',
@@ -1125,12 +1130,60 @@ $('#bootstrapForm').submit(function (event) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         }
-    }).catch(() => {})
+    }).catch(() => {}) //  El .catch() vacío es importante para evitar errores en la consola si la petición no-cors falla.
 
+     // Redirección *después* de enviar el formulario
     setTimeout(() => {
-        // Resto de la lógica de redirección...
+
+         if (formaPago === "cbu") {
+            window.location.href = "https://odontolab.ar/cbu.html";
+        } else if (mercadoPagoUrl) { // Redirige solo si hay una URL válida
+           window.location.href = mercadoPagoUrl;
+        }
+        else{ //si no es cbu ni mp
+            window.location.href = "https://odontolab.ar/gracias.html";
+        }
+
     }, 2000);
+
 });
+
+async function getMercadoPagoLink(comprador, monto) {
+  const endpoint = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
+  const data = {
+    comprador: comprador,
+    monto: monto
+  };
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    // Acceder correctamente a la URL dentro de la respuesta
+    if (result && result[0] && result[0].linkpersonalizadomp) {
+        return result[0].linkpersonalizadomp;
+    } else {
+        throw new Error("No se pudo obtener el link de Mercado Pago.");
+    }
+
+
+  } catch (error) {
+    console.error("Error al obtener el link de Mercado Pago:", error);
+    // Manejar el error, por ejemplo, mostrando un mensaje al usuario.
+    alert("Hubo un problema al generar el link de pago. Por favor, inténtalo de nuevo más tarde.");
+    return null; // Importante devolver null para que el flujo del submit se detenga
+  }
+}
 </script>
 <script>
 
