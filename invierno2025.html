@@ -100,6 +100,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel .slick-slide {
+    width: 100% !important;
     height: auto !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -126,14 +127,14 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel .slick-slide img {
-    width: 100%;
-    height: auto !important;
+    width: 400px;
+    height: 400px !important;
     display: block !important;
     margin: 0 !important;
     padding: 0 !important;
     border: 1px solid #ddd;
     border-radius: 4px;
-    object-fit: contain;
+    object-fit: fill;
     max-width: none;
     vertical-align: top !important;
 }
@@ -736,25 +737,25 @@ $(document).ready(function(){
     lazyLoad: 'ondemand',
     adaptiveHeight: false,
     slidesToShow: 1,
-    centerMode: false,false, //  Turn off centerMode
+    centerMode: false, //  Turn off centerMode
     variableWidth: false,
     verticalAlign: 'top',
     touchThreshold: 8,
-    arrows: true,estimonials-carousel').slick({
-    draggable: true,ots: true,
-    swipe: true,    infinite: true,
-    touchMove: true,    speed: 500,
-    useCSS: true,    arrows: false,
-    useTransform: true, true,
-    waitForAnimate: false
-  });     slidesToShow: 1,
+    arrows: true
+  });
 
   $('.testimonials-carousel').slick({
-    // ...existing code...
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    fade: true,
+    cssEase: 'linear'
   });
-cript - NO CHANGES NEEDED BELOW) ...
-  // ... rest of your JavaScript code ...
-});-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
+});
 
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
 
