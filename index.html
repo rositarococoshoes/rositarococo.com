@@ -601,6 +601,29 @@ tr:nth-child(even) {  background-color: #dddddd;}
     margin: 0;
     line-height: 1.4;
 }
+.error-message {
+    display: none;
+    font-size: 0.9em;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-message.verifying {
+    display: block;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
 	</style>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
@@ -1542,13 +1565,23 @@ $(document).ready(function() {
     }
 
     function showError(message, color = "red") {
-        const errorElement = getErrorElement();
-        if (errorElement) {
-            errorElement.textContent = message;
-            errorElement.style.color = color;
-            errorElement.style.display = "block";
+    const errorElement = getErrorElement();
+    if (errorElement) {
+        errorElement.textContent = message;
+        
+        // Si está verificando WhatsApp, agregar clase especial
+        if (message === "Verificando WhatsApp...") {
+            errorElement.className = "error-message verifying";
+        } else {
+            errorElement.className = "error-message";
+            errorElement.style.backgroundColor = color === "green" ? "#d4edda" : "#f8d7da";
+            errorElement.style.color = color === "green" ? "#155724" : "#721c24";
+            errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
         }
+        
+        errorElement.style.display = "block";
     }
+}
 
     function formatNumber(number) {
         let rawNumber = number.replace(/\D/g, "");
