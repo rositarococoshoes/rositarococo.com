@@ -618,7 +618,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
 <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
-<p><img alt="" src="rosita-form.webp" /></p>
+  <input type="text" 
+  name="website" 
+  id="website" 
+  style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" 
+  tabindex="-1" 
+  autocomplete="off">
+  <p><img alt="" src="rosita-form.webp" /></p>
 
 <fieldset style="margin-bottom:0px !important;">
 <h4 id="tituloh4" style="text-align: center;"><span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/bomb/" ping="/url?sa=t&source=web&rct=j&url=https://emojipedia.org/bomb/&ved=2ahUKEwjL_Pb-0o3mAhVxILkGHZQvDEoQFjAAegQICBAC" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💣</a></span><span style="font-size:13px;color: #ff00dc; font-weight: bold;">NUEVA TEMPORADA OTOÑO INVIERNO 2025</span><br />
@@ -1143,6 +1149,12 @@ $('#' + modeload).insertBefore("#tituloh4");
 <script>
 $('#bootstrapForm').submit(async function (event) {
     event.preventDefault();
+
+     // Validación anti-bot simple
+     if ($('#website').val() !== '') {
+        console.log('Bot detectado, cancelando submit');
+        return false;
+    }
     
     // Capturar datos necesarios
     const talleselegidos = $('#1471599855').val();
