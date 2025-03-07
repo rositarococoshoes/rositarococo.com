@@ -54,15 +54,76 @@ tr:nth-child(even) {  background-color: #dddddd;}
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #777;
 }
-      .slick-prev {
-    margin-left: 40px;
-     z-index:1000;
-  }
+ /* Estilos para el carrusel de modelos */
+.model-carousel {
+    width: 400px !important;
+    height: 356px !important;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-  .slick-next {
-    margin-right: 40px;
-    z-index:1000;
-  }
+.model-carousel .slick-slide {
+    width: 400px !important;
+    height: 356px !important;
+    flex: 0 0 auto;
+}
+
+.model-carousel .slick-slide img {
+    width: 400px !important;
+    height: 356px !important;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block !important;
+}
+
+/* Estilos para las flechas del carrusel */
+.slick-prev,
+.slick-next {
+    width: 25px !important;
+    height: 25px !important;
+    opacity: 0.8;
+    background: white;
+    color: white;
+    border-radius: 50%;
+    box-shadow: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.slick-prev { 
+    left: 10px; 
+}
+
+.slick-next { 
+    right: 15px; 
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: #ff00dc;
+    font-size: 20px !important;
+    opacity: 1;
+}
+
+/* Asegurar que las imágenes se centren */
+.model-carousel .slick-slide {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Hacer el carrusel responsivo */
+@media (max-width: 768px) {
+    .model-carousel {
+        width: 100% !important;
+        max-width: 400px !important;
+    }
+
+    .slick-prev { left: 5px !important; }
+    .slick-next { right: 5px !important; }
+}
       .checkbox+.checkbox, .radio+.radio {margin-top:5px;}
 	  
 	.ui-menu-item {background-color: white;list-style-type: none;padding: 10px;}
@@ -209,6 +270,29 @@ tr:nth-child(even) {  background-color: #dddddd;}
   margin-left: auto;
   padding-right:5px;
 }
+.error-message {
+    display: none;
+    font-size: 0.9em;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error-message.verifying {
+    display: block;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
   	</style>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -229,7 +313,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <form id="bootstrapForm" action="https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec" method="post">
 <p><img alt="" src="rosita-form.png" /></p>
-
+ <input type="text" 
+           name="website" 
+           id="website" 
+           style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" 
+           tabindex="-1" 
+           autocomplete="off">
 <fieldset style="margin-bottom:0px !important;">
 <h4 id="tituloh4" style="text-align: center;margin: 0px 0px 5px 0px;"><span class="S3Uucc" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);"><a href="https://emojipedia.org/bomb/" ping="/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://emojipedia.org/bomb/&amp;ved=2ahUKEwjL_Pb-0o3mAhVxILkGHZQvDEoQFjAAegQICBAC" style="color: rgb(102, 0, 153); cursor: pointer; font-family: arial, sans-serif; font-size: small; background-color: rgb(255, 255, 255);">💣</a></span><span style="font-size:13px;color: #ff00dc; font-weight: bold;">NUEVA TEMPORADA PRIMAVERA-VERANO 2024</span></h4>
 
@@ -256,80 +345,121 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="form-group">
 
 
-<div class="contorno" id="modeload-puglia">
-<div class="single-item">
-<div><label for="puglia"><img alt="" data-lazy="puglia1.webp"  /></label></div>
-<div><label for="puglia"><img alt="" data-lazy="puglia2.webp"  /></label></div>
-<div><label for="puglia"><img alt="" data-lazy="puglia3.webp"  /></label></div>
-</div>
-
-<div class="novisible" id="talles-puglia">
-<div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);">&nbsp;</span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">Materiales</span>: Cuero PU y Expansor. Tiene elástico en el talón.</small></span></div>
-
-<div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par:&nbsp;🔥 $50.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $70.000</span></span></span>
-<br>
-<span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
-<label>1 <input checked="checked" name="hwA-qty-puglia" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-puglia" type="radio" value="2" /></label></div>
-
-<fieldset id="hwA-puglia-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-puglia">35 (23 cm de plantilla)</option><option value="36-puglia">36 (23,5 cm de plantilla)</option><option value="37-puglia">37 (24 cm de plantilla)</option><option value="38-puglia">38 (25 cm de plantilla)</option><option value="39-puglia">39 (25,5 cm de plantilla)</option><option value="40-puglia">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-<fieldset class="fieldsetstalles" id="hwA-puglia-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-puglia">35 (23 cm de plantilla)</option><option value="36-puglia">36 (23,5 cm de plantilla)</option><option value="37-puglia">37 (24 cm de plantilla)</option><option value="38-puglia">38 (25 cm de plantilla)</option><option value="39-puglia">39 (25,5 cm de plantilla)</option><option value="40-puglia">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-</div>
-</div>
-
-<div class="contorno" id="modeload-calabria">
-<div class="single-item">
-<div><label for="calabria"><img alt="" data-lazy="calabria1.webp"  /></label></div>
-<div><label for="calabria"><img alt="" data-lazy="calabria2.webp"  /></label></div>
-</div>
-
-<div class="novisible" id="talles-calabria">
-<div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);">&nbsp;</span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">Materiales</span>: Cuero PU y Expansor. Tiene elástico en el talón.</small></span></div>
-
-<div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par:&nbsp;🔥 $50.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $70.000</span></span></span>
-<br>
-<span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
-<label>1 <input checked="checked" name="hwA-qty-calabria" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-calabria" type="radio" value="2" /></label></div>
-
-<fieldset id="hwA-calabria-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-calabria">35 (23 cm de plantilla)</option><option value="36-calabria">36 (23,5 cm de plantilla)</option><option value="37-calabria">37 (24 cm de plantilla)</option><option value="38-calabria">38 (25 cm de plantilla)</option><option value="39-calabria">39 (25,5 cm de plantilla)</option><option value="40-calabria">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-<fieldset class="fieldsetstalles" id="hwA-calabria-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-calabria">35 (23 cm de plantilla)</option><option value="36-calabria">36 (23,5 cm de plantilla)</option><option value="37-calabria">37 (24 cm de plantilla)</option><option value="38-calabria">38 (25 cm de plantilla)</option><option value="39-calabria">39 (25,5 cm de plantilla)</option><option value="40-calabria">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-</div>
-</div>
-
-<div class="contorno" id="modeload-liguria">
-<div class="single-item">
-<div><label for="liguria"><img alt="" data-lazy="liguria.webp"  /></label></div>
-</div>
-
-<div class="novisible" id="talles-liguria">
-<div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);">&nbsp;</span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">Materiales</span>: Cuero PU y Expansor.</small></span></div>
-
-<div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par:&nbsp;🔥 $50.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $70.000</span></span></span>
-<br>
-<span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
-<label>1 <input checked="checked" name="hwA-qty-liguria" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-liguria" type="radio" value="2" /></label></div>
-
-<fieldset id="hwA-liguria-1">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-liguria">35 (23 cm de plantilla)</option><option value="36-liguria">36 (23,5 cm de plantilla)</option><option value="37-liguria">37 (24 cm de plantilla)</option><option value="38-liguria">38 (25 cm de plantilla)</option><option value="39-liguria">39 (25,5 cm de plantilla)</option><option value="40-liguria">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-<fieldset class="fieldsetstalles" id="hwA-liguria-2">
-<div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-liguria">35 (23 cm de plantilla)</option><option value="36-liguria">36 (23,5 cm de plantilla)</option><option value="37-liguria">37 (24 cm de plantilla)</option><option value="38-liguria">38 (25 cm de plantilla)</option><option value="39-liguria">39 (25,5 cm de plantilla)</option><option value="40-liguria">40 (26 cm de plantilla)</option></select></div>
-</fieldset>
-
-</div>
-</div>
+  <div class="contorno" id="modeload-roma-negras">
+    <div class="model-carousel">
+    <div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg" width="400" height="356"  ></label></div>
+    <div><label for="roma-negras"><img alt=""  data-lazy="roma-negras-1a.jpg" width="400" height="356"   ></label></div>
+    <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg" width="400" height="356"   ></label></div>
+    <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2a.jpg" width="400" height="356"  ></label></div>
+    <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-3a.jpg" width="400" height="356"  ></label></div>
+    <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-4a.jpg" width="400" height="356" ></label></div>
+    <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-2.jpg" width="400" height="356"  ></label></div>
+    </div>
+    
+    <div class="novisible" id="talles-roma-negras">
+    <div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);"> </span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">MATERIAL</span>: Cuero. Suela:</small></span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"> <em>Expanso.</em></small></span></div>
+    
+    <div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par: 🔥 $70.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $110.000</span></span></span>
+    <br>
+    <span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
+    <label>1 <input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-roma-negras" type="radio" value="2" /></label></div>
+    
+    <fieldset id="hwA-roma-negras-1">
+    <div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-negras">35 (23 cm de plantilla)</option><option value="36-roma-negras">36 (23,5 cm de plantilla)</option><option value="37-roma-negras">37 (24 cm de plantilla)</option><option value="38-roma-negras">38 (25 cm de plantilla)</option><option value="39-roma-negras">39 (25,5 cm de plantilla)</option><option value="40-roma-negras">40 (26 cm de plantilla)</option></select></div>
+    </fieldset>
+    
+    <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
+    <div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-negras">35 (23 cm de plantilla)</option><option value="36-roma-negras">36 (23,5 cm de plantilla)</option><option value="37-roma-negras">37 (24 cm de plantilla)</option><option value="38-roma-negras">38 (25 cm de plantilla)</option><option value="39-roma-negras">39 (25,5 cm de plantilla)</option><option value="40-roma-negras">40 (26 cm de plantilla)</option></select></div>
+    </fieldset>
+    
+    </div>
+    </div>
+    
+    <div class="contorno" id="modeload-roma-suela">
+    <div class="model-carousel">
+    <div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg" width="400" height="356"  ></label></div>
+    <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg" width="400" height="356" ></label></div>
+    <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-1.jpg" width="400" height="356"   ></label></div>
+    <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2.jpg"width="400" height="356"  ></label></div>
+    </div>
+    
+    <div class="novisible" id="talles-roma-suela">
+    <div class="select"><span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);"> </span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">MATERIAL</span>: Cuero. Suela:</small></span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"> <em>Expanso.</em></small></span></div>
+    
+    <div class="select"><p><span style="font-size:11px; line-height: 24px;"><span style="font-weight: 700; color: rgb(183, 183, 183);"><span style="color: #ff00dc;">1 par: 🔥 $70.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $110.000</span></span></span>
+    <br>
+    <span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span></p><p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p><span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
+    <label>1 <input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" /></label> <label>2 <input name="hwA-qty-roma-suela" type="radio" value="2" /></label></div>
+    
+    <fieldset id="hwA-roma-suela-1">
+    <div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-suela">35 (23 cm de plantilla)</option><option value="36-roma-suela">36 (23,5 cm de plantilla)</option><option value="37-roma-suela">37 (24 cm de plantilla)</option><option value="38-roma-suela">38 (25 cm de plantilla)</option><option value="39-roma-suela">39 (25,5 cm de plantilla)</option><option value="40-roma-suela">40 (26 cm de plantilla)</option></select></div>
+    </fieldset>
+    
+    <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
+    <div class="form-group"><select class="form-control talle"><option selected="selected" value="">-- Seleccione Talle --</option><option value="35-roma-suela">35 (23 cm de plantilla)</option><option value="36-roma-suela">36 (23,5 cm de plantilla)</option><option value="37-roma-suela">37 (24 cm de plantilla)</option><option value="38-roma-suela">38 (25 cm de plantilla)</option><option value="39-roma-suela">39 (25,5 cm de plantilla)</option><option value="40-roma-suela">40 (26 cm de plantilla)</option></select></div>
+    </fieldset>
+    
+    </div>
+    </div>
+    
+                    <div class="contorno" id="modeload-siena2025">
+                        <div class="model-carousel">
+                            <div><label for="siena2025"><img src="siena2025-1.webp" data-lazy="siena2025-1.webp" alt="Siena 2025 1" width="400" height="356"  ></label></div>
+                            <div><label for="siena2025"><img data-lazy="siena2025-2.webp" data-lazy="siena2025-2.webp" alt="Siena 2025 2"width="400" height="356" ></label></div>
+                        </div>
+    
+                        <div class="novisible" id="talles-siena2025">
+                            <div class="select">
+                                <span style="font-size: 12px; text-align: center;">✅</span><span style="font-size: 12px; text-align: center; color: rgb(183, 183, 183);"> </span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">MATERIAL</span>
+                  : Cuero. Suela:</small></span><span style="text-align: center; font-size: 14px;"><small style="font-size: 12.88px;"> <em>Expanso.</em></small></span>
+                            </div>
+    
+                            <div class="select">
+                                <p>
+                                    <span style="font-size:11px; line-height: 24px;">
+                                        <span style="font-weight: 700; color: rgb(183, 183, 183);">
+                                            <span style="color: #ff00dc;">1 par: 🔥 $70.000 | </span><span style="color: #ff00dc;">2 pares: 🔥 $110.000</span>
+                                        </span>
+                                    </span>
+                                    <br>
+                                    <span style="font-size:12px;"><em><span style="font-size:12px;"><em><span style="background-color:#FFFF00;">STOCK disponible. Podés combinar modelos.</span></em></span></em></span>
+                                </p>
+                                <p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
+                                <span style="color: #ff00dc; font-size: 12px; text-align: center;">CANTIDAD DE PARES:</span><br />
+                                <label>1 <input checked="checked" name="hwA-qty-siena2025" type="radio" value="1" /></label>
+                                <label>2 <input name="hwA-qty-siena2025" type="radio" value="2" /></label>
+                            </div>
+    
+                            <fieldset id="hwA-siena2025-1">
+                                <div class="form-group">
+                                    <select class="form-control talle">
+                                        <option value="">-- Seleccione Talle --</option>
+                                        <option value="35-siena2025">35 (23 cm de plantilla)</option>
+                                        <option value="36-siena2025">36 (23,5 cm de plantilla)</option>
+                                        <option value="37-siena2025">37 (24 cm de plantilla)</option>
+                                        <option value="38-siena2025">38 (25 cm de plantilla)</option>
+                                        <option value="39-siena2025">39 (25,5 cm de plantilla)</option>
+                                        <option value="40-siena2025">40 (26 cm de plantilla)</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+    
+                            <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
+                                <div class="form-group">
+                                    <select class="form-control talle">
+                                        <option value="">-- Seleccione Talle --</option>
+                                        <option value="35-siena2025">35 (23 cm de plantilla)</option>
+                                        <option value="36-siena2025">36 (23,5 cm de plantilla)</option>
+                                        <option value="37-siena2025">37 (24 cm de plantilla)</option>
+                                        <option value="38-siena2025">38 (25 cm de plantilla)</option>
+                                        <option value="39-siena2025">39 (25,5 cm de plantilla)</option>
+                                        <option value="40-siena2025">40 (26 cm de plantilla)</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+    
+                        </div>
+                    </div>
 
 
 	<p>😊REFERENCIAS DE CLIENTAS😊</p>
@@ -528,9 +658,20 @@ DÍA Y HORA DE ENTREGA: <span id="help-diayhora" style="color:black;">-</span></
   <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script><script>
    	$(document).ready(function(){
   $('.single-item').slick({dots: true, infinite: true, speed: 500, fade: true, cssEase: 'linear',lazyLoad: 'ondemand'}); 	  
-	   
+	$('.model-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
+    lazyLoad: 'ondemand',
+    adaptiveHeight: true,
+    slidesToShow: 1,
+    centerMode: false,
+    variableWidth: false
+});   
 	
-var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-suela','maggie-negras', 'roxy-negras', 'sofia-negras', 'sofia-suela', 'espana-negras', 'espana-celeste', 'harrison-negras', 'harrison-celeste', 'rodra-multi', 'harrison-beige', 'puglia', 'calabria', 'liguria'];
+var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-suela','maggie-negras', 'roxy-negras', 'sofia-negras', 'sofia-suela', 'espana-negras', 'espana-celeste', 'harrison-negras', 'harrison-celeste', 'rodra-multi', 'harrison-beige', 'puglia', 'calabria', 'liguria', 'siena2025'];
   fieldsets.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selected = $(this).val();
@@ -1188,6 +1329,140 @@ jQuery(document).ready(function() {
     }
   });
 });
+</script>
+<script>
+(function() {
+    const whatsappInputId = "501094818"; // ID del input de WhatsApp en contrareembolso.html
+    const dependentElementIds = ["59648134", "1743418466", "1005165410", "394819614", "423544000", "1756027935", "botoncomprar"];
+    const errorClass = "error-message";
+    const apiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+
+    let isValid = false;
+    let isChecking = false;
+    let timeout;
+
+    function getInputElement(id) {
+        return document.getElementById(id);
+    }
+
+    function getErrorElement() {
+        return document.querySelector("." + errorClass);
+    }
+
+    function createErrorElement(inputElement) {
+        let errorElement = getErrorElement();
+        if (!errorElement) {
+            errorElement = document.createElement("div");
+            errorElement.className = errorClass;
+            inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
+        }
+        return errorElement;
+    }
+
+    function hideError() {
+        const errorElement = getErrorElement();
+        if (errorElement) {
+            errorElement.style.display = "none";
+        }
+    }
+
+    function showError(message, color = "red") {
+        const errorElement = getErrorElement();
+        if (errorElement) {
+            errorElement.textContent = message;
+            
+            if (message === "Verificando WhatsApp...") {
+                errorElement.className = "error-message verifying";
+            } else {
+                errorElement.className = "error-message";
+                errorElement.style.backgroundColor = color === "green" ? "#d4edda" : "#f8d7da";
+                errorElement.style.color = color === "green" ? "#155724" : "#721c24";
+                errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
+            }
+            
+            errorElement.style.display = "block";
+        }
+    }
+
+    function formatNumber(number) {
+        let rawNumber = number.replace(/\D/g, "");
+        if (rawNumber.length >= 10) {
+            if (rawNumber.startsWith("54") && !rawNumber.startsWith("549")) {
+                rawNumber = "549" + rawNumber.substring(2);
+            } else if (!rawNumber.startsWith("54")) {
+                rawNumber = "549" + rawNumber;
+            }
+        }
+        return rawNumber;
+    }
+
+    function setDependentElementsDisabled(disabled) {
+        dependentElementIds.forEach(id => {
+            const element = getInputElement(id);
+            if (element) {
+                element.disabled = disabled;
+            }
+        });
+    }
+
+    function validateWhatsApp() {
+        if (isChecking) return;
+        isChecking = true;
+
+        const inputElement = getInputElement(whatsappInputId);
+        if (!inputElement) {
+            console.error("WhatsApp input element not found.");
+            isChecking = false;
+            return;
+        }
+
+        createErrorElement(inputElement);
+        showError("Verificando WhatsApp...");
+        setDependentElementsDisabled(true);
+
+        const formattedNumber = formatNumber(inputElement.value);
+        console.log("Validating number:", formattedNumber);
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", apiUrl, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    isValid = data.exists === true;
+                    showError(isValid ? "WhatsApp válido." : "WhatsApp no válido. Verifica el número.", isValid ? "green" : "red");
+                    setDependentElementsDisabled(!isValid);
+                } else {
+                    showError("Error de conexión", "orange");
+                    setDependentElementsDisabled(true);
+                }
+                isChecking = false;
+            }
+        };
+        xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
+    }
+
+    function clearErrorAndValidate() {
+        hideError();
+        clearTimeout(timeout);
+    }
+
+    function setupListeners() {
+        const whatsappInput = getInputElement(whatsappInputId);
+        if (!whatsappInput) return;
+
+        whatsappInput.addEventListener("input", clearErrorAndValidate);
+        whatsappInput.addEventListener("blur", () => {
+            console.log("blur event triggered");
+            timeout = setTimeout(validateWhatsApp, 200);
+        });
+
+        setDependentElementsDisabled(true);
+    }
+
+    setupListeners();
+})();
 </script>
 </body>
 </html>
