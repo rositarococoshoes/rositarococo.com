@@ -1199,8 +1199,9 @@ $('#bootstrapForm').submit(async function (event) {
     $('#botoncomprar').attr('value', 'Espere...').prop('disabled', true);
     
     try {
+        let mercadoPagoUrl; // Declare mercadoPagoUrl outside the fetch block
+
         // Preparar datos del formulario
-        const formData = new URLSearchParams($(this).serialize());
         const formAction = $(this).attr('action');
 
         // Si es transferencia CBU
@@ -1253,6 +1254,12 @@ $('#bootstrapForm').submit(async function (event) {
 
             // Guardar link en el formulario
             $('#link-mercadopago').val(mercadoPagoUrl);
+
+             // Set the hidden field value before serializing
+            document.getElementById('link-mercadopago').value = mercadoPagoUrl;
+			document.getElementById('entry.978809450').value = mercadoPagoUrl;
+
+            const formData = new URLSearchParams($(this).serialize());
 
             console.log('Form Data:', formData.toString());
 
