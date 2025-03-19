@@ -1254,22 +1254,21 @@ $('#bootstrapForm').submit(async function (event) {
             // Guardar link en el formulario
             $('#link-mercadopago').val(mercadoPagoUrl);
 
-            // Enviar formulario a Google Forms
-            await fetch(formAction, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            });
-
             console.log('Form Data:', formData.toString());
 
             // Tracking y redirección
             fbq('track', 'InitiateCheckout');
             setTimeout(() => {
                 window.location.href = mercadoPagoUrl;
+                 // Enviar formulario a Google Forms
+                 fetch(formAction, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                });
             }, 2000);
         }
     } catch (error) {
