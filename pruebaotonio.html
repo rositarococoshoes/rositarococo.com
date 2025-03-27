@@ -23,9 +23,11 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="stylesheet" href="pruebaotonio.css">
 
+    <!-- Scripts moved back to head for compatibility -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -357,11 +359,8 @@
         <p class="loading-message">Estamos preparando tu pago seguro...<br>Un momento por favor, no actualices la página.</p>
     </div>
 
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script defer type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script defer src="pruebaotonio.js"></script>
+    <!-- Custom script at the end of body, defer removed -->
+    <script src="pruebaotonio.js"></script>
 
 </body>
 </html>
