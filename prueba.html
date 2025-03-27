@@ -11,8 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Calzado Femenino Otoño/Invierno 2025</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="https://stefano.brilli.me/google-forms-html-exporter/styles/vendor.css" rel="stylesheet" />
-	<link href="https://stefano.brilli.me/google-forms-html-exporter/styles/main.css" rel="stylesheet" />
+	<!-- Note: External CSS links removed as per original file structure, using inline styles -->
 	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
 	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" />
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -26,20 +25,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         margin: 0;
         padding: 0;
       }
-      
+
       body {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Montserrat', sans-serif; /* Assuming Montserrat is loaded elsewhere or default */
         background-color: #f8f4ee;
         color: #5a4a42;
         line-height: 1.6;
         background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path fill="%23d4a373" fill-opacity="0.03" d="M0 0h100v100H0z"/></svg>');
       }
-      
+
       img {
         max-width: 100%;
         height: auto;
+        display: block; /* Added for consistency */
       }
-      
+
       /* Enhanced autumnal color palette */
       :root {
         --primary: #8b5a2b;
@@ -51,14 +51,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         --text: #3a2e26;
         --border: rgba(139, 90, 43, 0.15);
       }
-      
+
       /* Main container */
       .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 15px;
       }
-      
+
       /* Header - minimalist approach */
       .header {
         background-color: var(--primary);
@@ -67,25 +67,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         text-align: center;
         border-bottom: 1px solid rgba(255,255,255,0.1);
       }
-      
+
       .header h1 {
         font-size: 1.8rem;
         margin-bottom: 5px;
         font-weight: 500;
         letter-spacing: 0.5px;
       }
-      
+
       .header p {
         font-size: 1rem;
         opacity: 0.9;
         font-weight: 300;
+        margin: 0; /* Reset margin */
       }
-      
+
+      /* Offer banner */
+      .offer-banner {
+        background-color: var(--accent);
+        color: white;
+        text-align: center;
+        padding: 12px;
+        margin: 20px 0;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+       .offer-banner p {
+         margin: 0; /* Reset margin */
+       }
+
       /* Models section */
       .model-section {
         margin: 40px 0;
       }
-      
+
       .model-section h2 {
         text-align: center;
         color: var(--primary);
@@ -94,7 +109,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-weight: 500;
         position: relative;
       }
-      
+
       .model-section h2:after {
         content: '';
         display: block;
@@ -103,89 +118,62 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         background: var(--accent);
         margin: 10px auto 0;
       }
-      
+
       .model-container {
         display: flex;
         flex-wrap: wrap;
         gap: 25px;
         justify-content: center;
       }
-      
-      /* Model card - minimalist redesign */
-      .model-card {
-        background: white;
+
+      /* Model container (contorno) */
+      .contorno {
+        margin: 0; /* Removed auto margin, handled by flex gap */
+        border: 1px solid var(--border);
+        background-color: white;
         border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-        width: 100%;
-        max-width: 350px;
+        width: 100%; /* Let flexbox handle sizing */
+        max-width: 350px; /* Max width from original */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         transition: all 0.3s ease;
-        border: 1px solid var(--border);
       }
-      
-      .model-card:hover {
+       .contorno:hover {
         transform: translateY(-5px);
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       }
-      
-      .model-image {
-        height: 250px;
-        overflow: hidden;
-        position: relative;
-      }
-      
-      .model-image:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.05) 100%);
-        z-index: 1;
-      }
-      
-      .model-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.5s ease;
-      }
-      
-      .model-card:hover .model-image img {
-        transform: scale(1.03);
-      }
-      
+
       .model-info {
         padding: 20px;
       }
-      
+
       .model-info h3 {
         color: var(--primary);
+        margin-top: 0; /* Reset margin */
         margin-bottom: 12px;
         font-size: 1.2rem;
         font-weight: 500;
       }
-      
+
       .model-info p {
         margin-bottom: 12px;
         font-size: 0.9rem;
         color: var(--text);
         line-height: 1.5;
       }
-      
+
       .price {
         font-weight: 600;
         color: var(--accent);
         font-size: 1.1rem;
       }
-      
+
       .discount {
         color: #c45c40;
         font-weight: 600;
         font-size: 0.9rem;
       }
-      
+
       /* Form section - minimalist redesign */
       .form-section {
         background: white;
@@ -195,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         margin: 40px 0;
         border: 1px solid var(--border);
       }
-      
+
       .form-section h2 {
         text-align: center;
         color: var(--primary);
@@ -203,7 +191,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-weight: 500;
         position: relative;
       }
-      
+
       .form-section h2:after {
         content: '';
         display: block;
@@ -212,18 +200,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         background: var(--accent);
         margin: 10px auto 0;
       }
-      
+
       .form-group {
         margin-bottom: 20px;
       }
-      
+
       .form-group label {
         display: block;
         margin-bottom: 8px;
         font-weight: 500;
         color: var(--text);
       }
-      
+      /* Specific label styling for radio buttons */
+      fieldset legend + label {
+        display: inline-block; /* Make radio labels inline */
+        margin-right: 15px;
+        margin-bottom: 5px; /* Add some space below */
+        font-weight: normal; /* Normal weight for options */
+      }
+       fieldset legend + label input[type="radio"] {
+         margin-right: 5px;
+         vertical-align: middle;
+       }
+
       .form-control {
         width: 100%;
         padding: 12px;
@@ -233,16 +232,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         transition: border 0.3s ease;
         background-color: #fff;
       }
-      
+
       .form-control:focus {
         outline: none;
         border-color: var(--accent);
       }
-      
+
       select.form-control {
-        height: 45px;
+        height: 45px; /* Consistent height */
+        appearance: none; /* Custom arrow */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%235a4a42' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 16px 12px;
+        padding-right: 40px; /* Space for arrow */
       }
-      
+
+      fieldset {
+        border: none;
+        padding: 0;
+        margin-bottom: 15px;
+      }
+      legend {
+        font-weight: 500;
+        margin-bottom: 10px;
+        font-size: 1rem;
+        padding: 0;
+        display: block;
+        width: 100%;
+        color: var(--text);
+      }
+
+
       /* Buttons - minimalist style */
       .btn {
         display: inline-block;
@@ -258,22 +279,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-weight: 500;
         letter-spacing: 0.5px;
       }
-      
+
       .btn:hover {
         background: var(--secondary);
         transform: translateY(-2px);
       }
-      
+
       .btn-block {
         display: block;
         width: 100%;
       }
-      
+
       /* Testimonials */
       .testimonials {
         margin: 40px 0;
       }
-      
+
       .testimonials h2 {
         text-align: center;
         color: var(--primary);
@@ -281,7 +302,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         font-weight: 500;
         position: relative;
       }
-      
+
       .testimonials h2:after {
         content: '';
         display: block;
@@ -290,18 +311,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         background: var(--accent);
         margin: 10px auto 0;
       }
-      
-      /* Offer banner */
-      .offer-banner {
-        background-color: var(--accent);
-        color: white;
-        text-align: center;
-        padding: 12px;
-        margin: 20px 0;
-        border-radius: 4px;
-        font-weight: 500;
-      }
-      
+
       /* Footer - minimalist style */
       .footer {
         background-color: var(--primary);
@@ -311,7 +321,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         margin-top: 40px;
         font-size: 0.9rem;
       }
-      
+       .footer p {
+         margin: 0; /* Reset margin */
+       }
+
       /* WhatsApp float */
       .whatsapp-float {
         position: fixed;
@@ -320,249 +333,273 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         z-index: 100;
         transition: transform 0.3s ease;
       }
-      
+
       .whatsapp-float:hover {
         transform: scale(1.1);
       }
-      
+
       .whatsapp-float img {
         width: 50px;
         height: 50px;
         border-radius: 50%;
         box-shadow: 0 2px 10px rgba(0,0,0,0.2);
       }
-      
+
       /* Carousel styles */
-      .model-carousel {
+      .model-carousel { /* Applied to the container within .contorno */
         width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
+        margin-bottom: 15px; /* Space below carousel */
       }
-      
-      .model-carousel .slick-slide {
-        padding: 0;
-        margin: 0;
-        width: 100% !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      
+
       .model-carousel .slick-slide img {
-        width: auto;
-        max-width: 100%;
-        height: auto !important;
+        width: 100%; /* Make image fill slide width */
+        height: auto;
+        object-fit: cover; /* Cover the area */
+        max-height: 300px; /* Limit image height */
+        border-radius: 0; /* Remove radius if inside card */
         margin: 0 auto;
-        display: block !important;
-        object-fit: contain;
-        border-radius: 2px;
-        max-height: 500px;
       }
-      
+      .testimonials-carousel .slick-slide img {
+         width: 100%;
+         height: auto;
+         max-height: 500px; /* Adjust as needed */
+         object-fit: contain;
+         margin: 0 auto;
+         border-radius: 4px;
+         border: 1px solid var(--border);
+      }
+
+
       .slick-prev, .slick-next {
         width: 30px;
         height: 30px;
         z-index: 10;
-        background: rgba(139, 90, 43, 0.8);
+        background: rgba(139, 90, 43, 0.7); /* Slightly darker */
         border-radius: 50%;
       }
-      
+       .slick-prev:hover, .slick-next:hover {
+         background: rgba(139, 90, 43, 0.9);
+       }
+
+      .slick-prev { left: 10px; } /* Adjust position */
+      .slick-next { right: 10px; } /* Adjust position */
+
       .slick-prev:before, .slick-next:before {
         color: white;
+        font-size: 16px; /* Adjust size */
       }
-      
+
+      .slick-dots {
+        bottom: 10px; /* Position dots inside */
+      }
       .slick-dots li button:before {
-        color: var(--primary);
+        color: rgba(139, 90, 43, 0.5); /* Primary color, semi-transparent */
+        font-size: 10px; /* Adjust size */
+        opacity: 1;
       }
-      
-      .sick-dots li.slick-active button:before {
-        color: var(--accent);
+
+      .slick-dots li.slick-active button:before {
+        color: var(--primary); /* Accent color for active */
       }
-      
-      /* Model container */
-      .contorno {
-        margin: 25px auto;
-        border: 1px solid var(--border);
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        max-width: 900px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+
+      /* Notification container */
+      #notification-container {
+          position: fixed;
+          bottom: 20px; /* Adjust position */
+          left: 20px; /* Adjust position */
+          z-index: 1000;
+          width: auto;
+          max-width: 300px;
       }
-      
-      /* Notification */
+
       .notification {
         display: flex;
         align-items: center;
         padding: 12px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
         background-color: white;
-        box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
         z-index: 995;
-        border-top: 2px solid var(--accent);
-        transform: translateY(100%);
-        transition: transform 0.3s ease;
+        border-left: 4px solid var(--accent); /* Accent border */
+        border-radius: 4px;
+        margin-top: 10px; /* Space between notifications */
+        transform: translateX(-120%);
+        transition: transform 0.4s ease-out;
+        opacity: 0;
       }
-      
+
       .notification.show {
-        transform: translateY(0);
+        transform: translateX(0);
+        opacity: 1;
       }
-      
-      .notification img {
-        height: 60px;
+
+      .notification img { /* Optional image */
+        height: 50px;
+        width: 50px;
         border-radius: 4px;
         object-fit: cover;
         margin-right: 15px;
+        flex-shrink: 0;
       }
-      
+
       .notification .order-info h3 {
-        margin: 0;
-        font-size: 14px;
+        margin: 0 0 5px 0;
+        font-size: 1rem;
         font-weight: 600;
         color: var(--primary);
       }
-      
+
       .notification .order-info p {
-        margin: 5px 0;
-        font-size: 13px;
+        margin: 0;
+        font-size: 0.9rem;
         color: var(--dark);
       }
-      
+
       .notification .close {
         position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 20px;
-        height: 20px;
-        text-align: center;
-        line-height: 20px;
-        font-size: 12px;
-        font-weight: 600;
-        color: #a0a0a0;
+        top: 5px;
+        right: 8px;
+        font-size: 1.2rem;
+        color: #aaa;
         cursor: pointer;
+        line-height: 1;
+        padding: 2px;
       }
-      
+
       .notification .close:hover {
         color: #707070;
       }
-      
+
       /* Loading overlay */
       .loading-overlay {
-        display: none;
+        display: none; /* Hidden by default */
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(5px);
+        background: rgba(248, 244, 238, 0.9); /* Match body bg */
+        backdrop-filter: blur(4px);
         z-index: 9999;
         align-items: center;
         justify-content: center;
-      }
-      
-      .loading-content {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         text-align: center;
-        max-width: 80%;
-        margin: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
       }
-      
+      .loading-overlay.show {
+          display: flex;
+          opacity: 1;
+      }
+
       .loading-spinner {
         width: 40px;
         height: 40px;
-        border: 3px solid #f3f3f3;
-        border-top: 3px solid var(--accent);
+        border: 4px solid rgba(139, 90, 43, 0.2); /* Lighter primary */
+        border-top: 4px solid var(--primary); /* Primary color */
         border-radius: 50%;
         margin: 0 auto 20px;
         animation: spin 1s linear infinite;
       }
-      
+
       @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
       }
-      
+
       .loading-message {
         color: var(--text);
-        font-size: 16px;
+        font-size: 1rem;
         margin: 0;
         line-height: 1.4;
       }
-      
+
       /* Error messages */
       .error-message {
-        color: #c45c40;
-        font-size: 0.9rem;
+        color: #c45c40; /* Error color */
+        font-size: 0.85rem;
         margin-top: 5px;
-        display: none;
+        display: none; /* Hidden by default */
       }
-      
+
       .error-message.show {
         display: block;
       }
-      
+       /* Style invalid fields */
+       .form-control:invalid {
+         border-color: #c45c40;
+       }
+       #bootstrapForm:invalid .btn {
+         opacity: 0.7;
+         cursor: not-allowed;
+       }
+
+
       /* Responsive styles */
       @media (max-width: 768px) {
         .header h1 {
           font-size: 1.5rem;
         }
-        
+
         .header p {
           font-size: 0.9rem;
         }
-        
-        .model-card {
-          max-width: 100%;
+
+        .contorno { /* Use contorno instead of model-card */
+          max-width: calc(50% - 12.5px); /* Two columns on medium screens */
         }
-        
+
         .form-section {
           padding: 20px;
         }
-        
+
         .model-section h2,
         .testimonials h2,
         .form-section h2 {
           font-size: 1.3rem;
         }
-        
+
         .slick-prev {
           left: 5px;
         }
-        
+
         .slick-next {
           right: 5px;
         }
       }
-      
+
       @media (max-width: 480px) {
         .header {
           padding: 15px 0;
         }
-        
+
+        .contorno { /* Use contorno instead of model-card */
+          max-width: 100%; /* Single column on small screens */
+        }
+
         .model-info {
           padding: 15px;
         }
-        
+
         .form-section {
           padding: 15px;
         }
-        
+
         .btn {
           padding: 12px 20px;
         }
-        
+
+        #notification-container {
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            max-width: none;
+            width: auto;
+        }
         .notification {
           padding: 10px;
         }
-        
+
         .notification img {
           height: 50px;
           margin-right: 10px;
@@ -589,135 +626,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="model-section">
     <h2>NUESTROS MODELOS DESTACADOS</h2>
     <div class="model-container">
-      <!-- Modelo Roma Negras -->
-      <div class="contorno" id="modeload-roma-negras">
-        <div class="model-carousel">
-          <div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg"></label></div>
-          <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1a.jpg"></label></div>
-          <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-5a.jpg"></label></div>
-        </div>
-
-        <div class="model-info">
-          <h3>BOTAS ROMA NEGRAS</h3>
-          <p>Material: Cuero genuino - Suela: Expanso</p>
-          <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-          <p class="discount">10% OFF adicional por transferencia</p>
-          
-          <fieldset>
-            <legend>Cantidad:</legend>
-            <label><input type="radio" name="hwA-qty-roma-negras" value="1" checked> 1 par</label>
-            <label><input type="radio" name="hwA-qty-roma-negras" value="2"> 2 pares</label>
-          </fieldset>
-
-          <fieldset>
-            <legend>Seleccione talle:</legend>
-            <select class="form-control talle">
-              <option value="">-- Seleccione --</option>
-              <option value="35-roma-negras">35 (23 cm)</option>
-              <option value="36-roma-negras">36 (23.5 cm)</option>
-              <option value="37-roma-negras">37 (24 cm)</option>
-              <option value="38-roma-negras">38 (25 cm)</option>
-              <option value="39-roma-negras">39 (25.5 cm)</option>
-            </select>
-          </fieldset>
-        </div>
-      </div>
-
-      <!-- Modelo Roma Suela -->
-      <div class="contorno" id="modeload-roma-suela">
-        <div class="model-carousel">
-          <div><label for="roma-suela"><img alt="" src="roma-suela-1a.jpg"></label></div>
-          <div><label for="roma-suela"><img alt="" data-lazy="roma-suela-2a.jpg"></label></div>
-        </div>
-
-        <div class="model-info">
-          <h3>BOTAS ROMA SUELA</h3>
-          <p>Material: Cuero genuino - Suela: Expanso</p>
-          <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-          <p class="discount">10% OFF adicional por transferencia</p>
-          
-          <fieldset>
-            <legend>Cantidad:</legend>
-            <label><input type="radio" name="hwA-qty-roma-suela" value="1" checked> 1 par</label>
-            <label><input type="radio" name="hwA-qty-roma-suela" value="2"> 2 pares</label>
-          </fieldset>
-
-          <fieldset>
-            <legend>Seleccione talle:</legend>
-            <select class="form-control talle">
-              <option value="">-- Seleccione --</option>
-              <option value="35-roma-suela">35 (23 cm)</option>
-              <option value="36-roma-suela">36 (23.5 cm)</option>
-              <option value="37-roma-suela">37 (24 cm)</option>
-              <option value="38-roma-suela">38 (25 cm)</option>
-              <option value="39-roma-suela">39 (25.5 cm)</option>
-            </select>
-          </fieldset>
-        </div>
-      </div>
-
-      <!-- Modelo Siena 2025 -->
-      <div class="contorno" id="modeload-siena2025">
-        <div class="model-carousel">
-          <div><label for="siena2025"><img src="siena2025-1.webp" data-lazy="siena2025-1.webp" alt="Siena 2025"></label></div>
-          <div><label for="siena2025"><img data-lazy="siena2025-2.webp" alt="Siena 2025"></label></div>
-        </div>
-
-        <div class="model-info">
-          <h3>BOTAS SIENA 2025</h3>
-          <p>Material: Cuero genuino - Suela: Expanso</p>
-          <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-          <p class="discount">10% OFF adicional por transferencia</p>
-          
-          <fieldset>
-            <legend>Cantidad:</legend>
-            <label><input type="radio" name="hwA-qty-siena2025" value="1" checked> 1 par</label>
-            <label><input type="radio" name="hwA-qty-siena2025" value="2"> 2 pares</label>
-          </fieldset>
-
-          <fieldset>
-            <legend>Seleccione talle:</legend>
-            <select class="form-control talle">
-              <option value="">-- Seleccione --</option>
-              <option value="35-siena2025">35 (23 cm)</option>
-              <option value="36-siena2025">36 (23.5 cm)</option>
-              <option value="37-siena2025">37 (24 cm)</option>
-              <option value="38-siena2025">38 (25 cm)</option>
-              <option value="39-siena2025">39 (25.5 cm)</option>
-            </select>
-          </fieldset>
-        </div>
-      </div>
+      <!-- Product cards will be dynamically inserted here by JavaScript -->
     </div>
   </section>
 
   <section class="form-section">
     <h2>COMPLETE SUS DATOS</h2>
-    <form id="bootstrapForm" method="POST" target="_self">
+    <form id="bootstrapForm" method="POST" target="_self" novalidate> <!-- Added novalidate -->
+      <!-- Honeypot -->
       <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" tabindex="-1" autocomplete="off">
-      
+
+      <!-- Hidden input for cart summary (optional, depends on submission method) -->
+      <input type="hidden" id="cart-summary-input" name="cart_summary">
+
       <div class="form-group">
         <label for="nombre">Nombre completo:</label>
         <input type="text" id="nombre" name="nombre" class="form-control" required>
       </div>
-      
+
       <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" class="form-control" required>
         <div class="error-message" id="email-error"></div>
       </div>
-      
+
       <div class="form-group">
-        <label for="whatsapp">WhatsApp (sin 0 ni 15):</label>
-        <input type="text" id="whatsapp" name="whatsapp" class="form-control" required>
+        <label for="whatsapp">WhatsApp (solo números, sin 0 ni 15):</label>
+        <input type="tel" id="whatsapp" name="whatsapp" class="form-control" required pattern="\d{8,15}"> <!-- Basic pattern -->
         <div class="error-message" id="whatsapp-error"></div>
       </div>
-      
+
       <div class="form-group">
-        <label for="direccion">Dirección completa:</label>
+        <label for="direccion">Dirección completa (Calle, Número, Localidad, Provincia, CP):</label>
         <input type="text" id="direccion" name="direccion" class="form-control" required>
       </div>
-      
+
       <div class="form-group">
         <button type="submit" class="btn btn-block" id="submit-btn">FINALIZAR COMPRA</button>
       </div>
@@ -727,9 +670,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <section class="testimonials">
     <h2>OPINIONES DE NUESTRAS CLIENTAS</h2>
     <div class="testimonials-carousel">
-      <div><img src="comentariorecibi1.webp" alt="Testimonio 1"></div>
-      <div><img src="comentariorecibi2.webp" alt="Testimonio 2"></div>
-      <div><img src="comentariorecibi4.webp" alt="Testimonio 3"></div>
+      <!-- Testimonial images -->
+      <div><img src="comentariorecibi1.webp" alt="Testimonio clienta 1"></div>
+      <div><img src="comentariorecibi2.webp" alt="Testimonio clienta 2"></div>
+      <div><img src="comentariorecibi4.webp" alt="Testimonio clienta 3"></div>
+      <!-- Add more testimonials if available -->
     </div>
   </section>
 
@@ -742,146 +687,454 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="notification-container"></div>
 
 <!-- Loading overlay -->
-<div class="loading-overlay">
-  <div class="loading-content">
+<div class="loading-overlay" id="loading-overlay"> <!-- Added ID -->
     <div class="loading-spinner"></div>
     <p class="loading-message">Procesando tu pedido...</p>
-  </div>
 </div>
 
 <!-- WhatsApp float -->
 <div class="whatsapp-float">
-  <a href="https://api.whatsapp.com/send?phone=5491127595502"><img src="/whatsapp.png" alt="WhatsApp"></a>
+  <a href="https://api.whatsapp.com/send?phone=5491127595502" target="_blank" rel="noopener noreferrer"><img src="/whatsapp.png" alt="WhatsApp"></a>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<!-- Library Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- Updated jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> <!-- Updated jQuery Form -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-  $(document).ready(function(){
-    // Initialize carousels
-    $('.model-carousel').slick({
-      dots: true,
-      infinite: true,
-      speed: 500,
-      fade: true,
-      cssEase: 'linear',
-      lazyLoad: 'ondemand',
-      adaptiveHeight: true
-    });
-    
-    $('.testimonials-carousel').slick({
-      dots: true,
-      infinite: true,
-      speed: 500,
-      arrows: false,
-      autoplay: true,
-      autoplaySpeed: 3000
-    });
 
-    // Cart functionality
-    let cartItems = [];
-    
-    // Handle size selection
-    $('.talle').change(function() {
-      const selectedSize = $(this).val();
-      if (selectedSize) {
-        const productId = $(this).closest('.contorno').attr('id').replace('modeload-', '');
-        const productName = $(this).closest('.model-info').find('h3').text();
-        
-        // Add to cart
+<!-- Inline Script with Refactored Logic -->
+<script>
+// Product Data
+const products = [
+  {
+    id: 'roma-negras',
+    name: 'BOTAS ROMA NEGRAS',
+    description: 'Material: Cuero genuino - Suela: Expanso',
+    images: [
+      { src: 'roma-negras-1.jpg', alt: 'Roma Negras Vista 1' },
+      { src: 'roma-negras-1a.jpg', alt: 'Roma Negras Vista 2', lazy: true },
+      { src: 'roma-negras-5a.jpg', alt: 'Roma Negras Vista 3', lazy: true }
+    ],
+    sizes: [
+      { value: '35-roma-negras', text: '35 (23 cm)' },
+      { value: '36-roma-negras', text: '36 (23.5 cm)' },
+      { value: '37-roma-negras', text: '37 (24 cm)' },
+      { value: '38-roma-negras', text: '38 (25 cm)' },
+      { value: '39-roma-negras', text: '39 (25.5 cm)' }
+    ],
+    priceSingle: 70000,
+    priceDouble: 110000
+  },
+  {
+    id: 'roma-suela',
+    name: 'BOTAS ROMA SUELA',
+    description: 'Material: Cuero genuino - Suela: Expanso',
+    images: [
+      { src: 'roma-suela-1a.jpg', alt: 'Roma Suela Vista 1' },
+      { src: 'roma-suela-2a.jpg', alt: 'Roma Suela Vista 2', lazy: true }
+    ],
+    sizes: [
+      { value: '35-roma-suela', text: '35 (23 cm)' },
+      { value: '36-roma-suela', text: '36 (23.5 cm)' },
+      { value: '37-roma-suela', text: '37 (24 cm)' },
+      { value: '38-roma-suela', text: '38 (25 cm)' },
+      { value: '39-roma-suela', text: '39 (25.5 cm)' }
+    ],
+    priceSingle: 70000,
+    priceDouble: 110000
+  },
+  {
+    id: 'siena2025',
+    name: 'BOTAS SIENA 2025',
+    description: 'Material: Cuero genuino - Suela: Expanso',
+    images: [
+      { src: 'siena2025-1.webp', alt: 'Siena 2025 Vista 1' },
+      { src: 'siena2025-2.webp', alt: 'Siena 2025 Vista 2', lazy: true }
+    ],
+    sizes: [
+      { value: '35-siena2025', text: '35 (23 cm)' },
+      { value: '36-siena2025', text: '36 (23.5 cm)' },
+      { value: '37-siena2025', text: '37 (24 cm)' },
+      { value: '38-siena2025', text: '38 (25 cm)' },
+      { value: '39-siena2025', text: '39 (25.5 cm)' }
+    ],
+    priceSingle: 70000,
+    priceDouble: 110000
+  }
+];
+
+// Function to create HTML for a single product card
+function createProductCardHTML(product) {
+  const imageSlides = product.images.map(img => `
+    <div>
+      <img ${img.lazy ? 'data-lazy' : 'src'}="${img.src}" alt="${img.alt}">
+    </div>
+  `).join('');
+
+  const sizeOptions = product.sizes.map(size => `
+    <option value="${size.value}">${size.text}</option>
+  `).join('');
+
+  const formatCurrency = (value) => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value);
+
+  return `
+    <div class="contorno" id="modeload-${product.id}" data-product-id="${product.id}">
+      <div class="model-carousel">
+        ${imageSlides}
+      </div>
+      <div class="model-info">
+        <h3>${product.name}</h3>
+        <p>${product.description}</p>
+        <p class="price">1 par: ${formatCurrency(product.priceSingle)} | 2 pares: ${formatCurrency(product.priceDouble)}</p>
+        <p class="discount">10% OFF adicional por transferencia</p>
+
+        <fieldset>
+          <legend>Cantidad (para este modelo):</legend>
+          <label><input type="radio" name="qty-${product.id}" value="1" checked> 1 par</label>
+          <label><input type="radio" name="qty-${product.id}" value="2"> 2 pares</label>
+        </fieldset>
+
+        <fieldset class="size-selector-set" data-pair="1">
+          <legend>Talle Par 1:</legend>
+          <select class="form-control talle" data-pair-index="1">
+            <option value="">-- Seleccione --</option>
+            ${sizeOptions}
+          </select>
+        </fieldset>
+
+        <fieldset class="size-selector-set" data-pair="2" style="display: none;">
+          <legend>Talle Par 2:</legend>
+          <select class="form-control talle" data-pair-index="2">
+            <option value="">-- Seleccione --</option>
+            ${sizeOptions}
+          </select>
+        </fieldset>
+      </div>
+    </div>
+  `;
+}
+
+// Function to show notification
+function showNotification(message, isError = false) {
+  const notification = $(`
+    <div class="notification ${isError ? 'error' : ''}">
+      <div class="order-info">
+        <h3>${isError ? 'Error' : '¡Carrito actualizado!'}</h3>
+        <p>${message}</p>
+      </div>
+      <div class="close">×</div>
+    </div>
+  `);
+
+  $('#notification-container').append(notification);
+  // Trigger the transition
+  setTimeout(() => notification.addClass('show'), 10);
+
+
+  const autoHideDuration = isError ? 8000 : 5000; // Longer display for errors
+  setTimeout(() => {
+    notification.removeClass('show');
+    setTimeout(() => notification.remove(), 400); // Remove after transition
+  }, autoHideDuration);
+
+  notification.find('.close').click(function() {
+    notification.removeClass('show');
+    setTimeout(() => notification.remove(), 400);
+  });
+}
+
+// Form validation function
+function validateForm() {
+  let isValid = true;
+  $('.error-message').removeClass('show').text(''); // Clear previous errors
+
+  const email = $('#email').val();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    $('#email-error').text('Por favor ingresa un email válido').addClass('show');
+     if(isValid) $('#email').focus(); // Focus first invalid field
+    isValid = false;
+  }
+
+  const whatsapp = $('#whatsapp').val();
+  if (!whatsapp || !/^\d{8,15}$/.test(whatsapp)) {
+    $('#whatsapp-error').text('Por favor ingresa un número de WhatsApp válido (solo números)').addClass('show');
+     if(isValid) $('#whatsapp').focus(); // Focus first invalid field
+    isValid = false;
+  }
+
+  // Check other required fields
+  $('#bootstrapForm [required]').each(function() {
+      const $field = $(this);
+      if (!$field.val()) {
+          // Add error message dynamically or use a dedicated error div
+          const fieldName = $field.prev('label').text() || $field.attr('name') || 'Este campo';
+          const $errorDiv = $field.next('.error-message');
+          if ($errorDiv.length) {
+              $errorDiv.text(`${fieldName} es requerido.`).addClass('show');
+          } else {
+              $field.after(`<div class="error-message show">${fieldName} es requerido.</div>`);
+          }
+          if(isValid) $field.focus(); // Focus first invalid field
+          isValid = false;
+      }
+  });
+
+  return isValid;
+}
+
+
+// Main script execution
+$(document).ready(function() {
+  const productContainer = $('.model-container');
+  const loadingOverlay = $('#loading-overlay');
+  let cartItems = []; // Array to hold selected items { uniqueId, id, name, size, fullValue, pairIndex }
+  const MAX_ITEMS_TOTAL = 2;
+
+  // --- Generate Product Cards ---
+  products.forEach(product => {
+    const cardHTML = createProductCardHTML(product);
+    productContainer.append(cardHTML);
+  });
+
+  // --- Initialize Carousels (after content is added) ---
+  $('.model-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    cssEase: 'linear',
+    lazyLoad: 'ondemand',
+    adaptiveHeight: true,
+    arrows: true, // Enable arrows for model carousel
+    accessibility: false // Keep disabled based on previous file experience
+  });
+
+  $('.testimonials-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    arrows: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    accessibility: false // Keep disabled
+  });
+
+  // --- Event Handlers using Delegation ---
+
+  // Handle Quantity Radio Button Changes
+  productContainer.on('change', 'input[type="radio"][name^="qty-"]', function() {
+    const $radio = $(this);
+    const $card = $radio.closest('.contorno');
+    const selectedQty = parseInt($radio.val());
+    const $secondPairFieldset = $card.find('.size-selector-set[data-pair="2"]');
+    const $secondSelect = $secondPairFieldset.find('select.talle');
+    const secondItemUniqueId = $secondSelect.data('previous-value'); // Get unique ID if a size was selected
+
+    if (selectedQty === 2) {
+      $secondPairFieldset.slideDown('fast');
+    } else {
+      $secondPairFieldset.slideUp('fast');
+      // If quantity reduced to 1, remove the second item of this product from cart if it existed
+      if (secondItemUniqueId) {
+          const itemIndex = cartItems.findIndex(item => item.uniqueId === secondItemUniqueId);
+          if (itemIndex > -1) {
+              const removedItemName = cartItems[itemIndex].name;
+              cartItems.splice(itemIndex, 1);
+              showNotification(`Se quitó el segundo par de ${removedItemName}`);
+              updateCartSummary();
+          }
+      }
+      $secondSelect.val(''); // Reset the second dropdown
+      $secondSelect.data('previous-value', null); // Clear its previous value data
+    }
+  });
+
+  // Handle Size Selection Changes
+  productContainer.on('change', 'select.talle', function() {
+    const $select = $(this);
+    const selectedValue = $select.val(); // e.g., "37-roma-negras"
+    const $card = $select.closest('.contorno');
+    const productId = $card.data('product-id');
+    const productName = $card.find('h3').text();
+    const pairIndex = $select.data('pair-index'); // 1 or 2
+    const uniqueItemId = selectedValue ? `${selectedValue}-${pairIndex}` : null; // e.g., "37-roma-negras-1"
+    const previousUniqueItemId = $select.data('previous-value'); // e.g., "36-roma-negras-1"
+
+    // 1. Remove previous item for this specific dropdown instance if it existed
+    if (previousUniqueItemId) {
+      const previousItemIndex = cartItems.findIndex(item => item.uniqueId === previousUniqueItemId);
+      if (previousItemIndex > -1) {
+        cartItems.splice(previousItemIndex, 1);
+      }
+    }
+
+    // 2. Add new item if a size is selected
+    if (uniqueItemId) {
+      // Check if adding this item exceeds the total limit
+      if (cartItems.length >= MAX_ITEMS_TOTAL) {
+        alert(`Puedes seleccionar un máximo de ${MAX_ITEMS_TOTAL} pares en total.`);
+        $select.val(''); // Reset current dropdown
+        $select.data('previous-value', null); // Clear previous value data
+        // Ensure the item isn't added if the alert condition was met
+        // (It shouldn't be due to the check, but belt-and-suspenders)
+        const newItemIndex = cartItems.findIndex(item => item.uniqueId === uniqueItemId);
+         if (newItemIndex > -1) {
+            cartItems.splice(newItemIndex, 1);
+         }
+      } else {
+        // Add the new item
         cartItems.push({
+          uniqueId: uniqueItemId,
           id: productId,
           name: productName,
-          size: selectedSize
+          size: selectedValue.split('-')[0], // Just the size number
+          fullValue: selectedValue,
+          pairIndex: pairIndex
         });
-        
-        // Show notification
-        showNotification(`${productName} - Talle ${selectedSize.split('-')[0]} agregado al carrito`);
+        showNotification(`${productName} - Talle ${selectedValue.split('-')[0]} (Par ${pairIndex}) agregado.`);
+        $select.data('previous-value', uniqueItemId); // Store current unique ID as previous
       }
-    });
-
-    // Form submission
-    $('#bootstrapForm').submit(function(e) {
-      e.preventDefault();
-      
-      // Validate form
-      if (!validateForm()) {
-        return false;
-      }
-      
-      // Show loading
-      $('.loading-overlay').show();
-      
-      // Simulate form processing
-      setTimeout(function() {
-        $('.loading-overlay').hide();
-        showNotification('Pedido completado con éxito. Te contactaremos por WhatsApp.');
-        
-        // Reset form
-        $('#bootstrapForm')[0].reset();
-        cartItems = [];
-      }, 2000);
-    });
-
-    // Form validation
-    function validateForm() {
-      let isValid = true;
-      
-      // Validate email
-      const email = $('#email').val();
-      if (!email || !email.includes('@')) {
-        $('#email-error').text('Por favor ingresa un email válido').addClass('show');
-        isValid = false;
-      } else {
-        $('#email-error').removeClass('show');
-      }
-      
-      // Validate WhatsApp
-      const whatsapp = $('#whatsapp').val();
-      if (!whatsapp || whatsapp.length < 8) {
-        $('#whatsapp-error').text('Por favor ingresa un número de WhatsApp válido').addClass('show');
-        isValid = false;
-      } else {
-        $('#whatsapp-error').removeClass('show');
-      }
-      
-      return isValid;
+    } else {
+      // Size deselected ("-- Seleccione --"), clear previous value data
+      $select.data('previous-value', null);
+       showNotification(`Selección de talle (Par ${pairIndex}) para ${productName} eliminada.`);
     }
 
-    // Show notification
-    function showNotification(message) {
-      const notification = $(`
-        <div class="notification show">
-          <div class="order-info">
-            <h3>¡Nuevo pedido!</h3>
-            <p>${message}</p>
-          </div>
-          <div class="close">×</div>
-        </div>
-      `);
-      
-      $('#notification-container').append(notification);
-      
-      // Auto-hide after 5 seconds
-      setTimeout(() => {
-        notification.removeClass('show');
-        setTimeout(() => notification.remove(), 300);
-      }, 5000);
-      
-      // Close button
-      notification.find('.close').click(function() {
-        notification.removeClass('show');
-        setTimeout(() => notification.remove(), 300);
-      });
-    }
-
-    // WhatsApp validation
-    $('#whatsapp').on('input', function() {
-      $(this).val($(this).val().replace(/\D/g, ''));
-    });
+    console.log("Cart:", cartItems); // For debugging
+    updateCartSummary();
   });
+
+  // Function to update cart summary (example implementation)
+  function updateCartSummary() {
+      const summaryText = cartItems.map(item => `${item.name} T${item.size} (Par ${item.pairIndex})`).join('; ');
+      $('#cart-summary-input').val(summaryText); // Update hidden input for potential submission
+      console.log(`Cart updated: ${cartItems.length} items total. Summary: ${summaryText}`);
+      // You could also update a visible summary element here if you add one to the HTML
+  }
+
+  // --- Form Submission ---
+  $('#bootstrapForm').submit(function(e) {
+    e.preventDefault();
+    $('.error-message').removeClass('show').text(''); // Clear previous errors
+
+    if (!validateForm()) {
+        showNotification('Por favor, revisa los campos marcados.', true); // Show error notification
+        return false;
+    }
+
+    if (cartItems.length === 0) {
+        showNotification('¡No has seleccionado ningún par! Elige tus modelos y talles.', true);
+        $('html, body').animate({ scrollTop: $(".model-section").offset().top - 20 }, 500);
+        return false;
+    }
+     if (cartItems.length > MAX_ITEMS_TOTAL) {
+        showNotification(`Has seleccionado más de ${MAX_ITEMS_TOTAL} pares. Por favor, revisa tu selección.`, true);
+         $('html, body').animate({ scrollTop: $(".model-section").offset().top - 20 }, 500);
+        return false;
+    }
+
+    loadingOverlay.addClass('show'); // Show loading overlay
+
+    // Prepare data for submission
+    const formData = {
+        nombre: $('#nombre').val(),
+        email: $('#email').val(),
+        whatsapp: $('#whatsapp').val(),
+        direccion: $('#direccion').val(),
+        pedido: cartItems.map(item => `${item.name} T${item.size} (Par ${item.pairIndex})`).join(', ')
+        // Map this data to your Google Form entry IDs if submitting there
+    };
+    console.log("Submitting data:", formData);
+    // Update hidden input just before submission (if needed for Google Forms)
+     $('#cart-summary-input').val(formData.pedido);
+
+
+    // --- Replace with actual submission logic ---
+    // Example: Simulate submission success/failure
+    const simulateSuccess = true; // Change to false to test error handling
+    setTimeout(function() {
+        loadingOverlay.removeClass('show'); // Hide loading overlay
+
+        if (simulateSuccess) {
+            showNotification('Pedido completado con éxito. Te contactaremos por WhatsApp.');
+            // Reset form and cart
+            $('#bootstrapForm')[0].reset();
+            $('select.talle').val('').data('previous-value', null);
+            $('input[type="radio"][value="1"]').prop('checked', true);
+            $('.size-selector-set[data-pair="2"]').hide();
+            cartItems = [];
+            updateCartSummary();
+        } else {
+            showNotification('Hubo un error al procesar tu pedido. Intenta nuevamente.', true);
+        }
+    }, 2500); // Simulate 2.5 second processing time
+    // --- End of replacement section ---
+
+    /*
+    // Example for Google Forms submission (replace with your actual endpoint and entry IDs)
+    const googleFormUrl = 'YOUR_GOOGLE_FORM_URL/formResponse';
+    const googleFormData = new FormData();
+    googleFormData.append('entry.YOUR_NAME_ENTRY_ID', formData.nombre);
+    googleFormData.append('entry.YOUR_EMAIL_ENTRY_ID', formData.email);
+    googleFormData.append('entry.YOUR_WHATSAPP_ENTRY_ID', formData.whatsapp);
+    googleFormData.append('entry.YOUR_ADDRESS_ENTRY_ID', formData.direccion);
+    googleFormData.append('entry.YOUR_ORDER_ENTRY_ID', formData.pedido);
+    // Add other hidden fields if necessary (like fbzx, pageHistory etc. from original form)
+
+    fetch(googleFormUrl, {
+        method: 'POST',
+        body: googleFormData,
+        mode: 'no-cors' // Important for Google Forms
+    })
+    .then(() => {
+        loadingOverlay.removeClass('show');
+        showNotification('Pedido enviado con éxito. Te contactaremos por WhatsApp.');
+        // Reset form and cart
+         $('#bootstrapForm')[0].reset();
+         $('select.talle').val('').data('previous-value', null);
+         $('input[type="radio"][value="1"]').prop('checked', true);
+         $('.size-selector-set[data-pair="2"]').hide();
+         cartItems = [];
+         updateCartSummary();
+    })
+    .catch(error => {
+        console.error('Form submission error:', error);
+        loadingOverlay.removeClass('show');
+        showNotification('Hubo un error al enviar tu pedido. Intenta nuevamente.', true);
+    });
+    */
+  });
+
+  // --- Other Initializations ---
+  // WhatsApp input formatting (allow only digits)
+  $('#whatsapp').on('input', function() {
+    $(this).val($(this).val().replace(/\D/g, ''));
+  });
+
+}); // End document ready
 </script>
 </body>
 </html>
+
+</final_file_content>
+
+IMPORTANT: For any future changes to this file, use the final_file_content shown above as your reference. This content reflects the current state of the file, including any auto-formatting (e.g., if you used single quotes but the formatter converted them to double quotes). Always base your SEARCH/REPLACE operations on this final version to ensure accuracy.
+
+<environment_details>
+# VSCode Visible Files
+prueba.html
+
+# VSCode Open Tabs
+pruebaotonio.css
+pruebaotonio.html
+prueba.js
+prueba.html
+pruebaotonio.js
+
+# Current Time
+3/27/2025, 1:35:00 AM (America/Buenos_Aires, UTC-3:00)
+
+# Current Mode
+ACT MODE
+</environment_details>
