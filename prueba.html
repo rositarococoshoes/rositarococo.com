@@ -14,6 +14,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 	<link href="https://stefano.brilli.me/google-forms-html-exporter/styles/vendor.css" rel="stylesheet" />
 	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
+	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
 	<style type="text/css">
       :root {
         --autumn-primary: #d35400;
@@ -66,8 +71,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         transition: all 0.3s ease;
       }
 
-      .slick-prev { left: 15px; }
-      .slick-next { right: 15px; }
+      .slick-prev {
+        left: 15px;
+      }
+
+      .slick-next {
+        right: 15px;
+      }
 
       .slick-prev:hover, .slick-next:hover {
         background: white;
@@ -98,13 +108,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
       /* Estilos responsivos */
       @media (max-width: 768px) {
-        .contorno {
-          margin: 15px auto;
-          padding: 15px;
+        .model-carousel, .testimonials-carousel {
+          max-width: 100%;
         }
-        
-        .slick-prev { left: 5px; }
-        .slick-next { right: 5px; }
+
+        .slick-prev {
+          left: 5px;
+        }
+        .slick-next {
+          right: 5px;
+        }
+      }
+
+      /* Mantengo los estilos originales para formularios y funcionalidad */
+      img {max-width:100%;}
+      table {border-collapse: collapse; width: 48%; float: left; margin-left: 5px; margin-bottom: 10px; margin-top: 10px; font-family: arial, sans-serif; color: #444;}
+      td, th {border: 1px solid #dddddd; text-align: left; padding: 2px; color: #444;}
+      tr:nth-child(even) {background-color: #dddddd;}
+      form {max-width:400px;}
+      .form-control {font-size: 12px;}
+      .fieldsetstalles { display: none; }
+      fieldset { margin-bottom: 0px; }
+      legend {font-size: 13px;}
+      #restodelform {padding: 0px 5px;}
+      
+      /* Estilos específicos del formulario con tema otoñal */
+      h4, h6 {
+        color: var(--autumn-primary);
+      }
+      
+      .btn-primary {
+        background-color: var(--autumn-primary);
+        border-color: var(--autumn-accent);
+      }
+      
+      .btn-primary:hover {
+        background-color: var(--autumn-accent);
+      }
+      
+      #text {
+        background-color: var(--autumn-secondary);
+        color: white;
       }
 	</style>
 </head>
@@ -113,12 +157,110 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+<p id="text" style="display: block;font-size: 11px;position: fixed;width: 100%;max-width: 395px;padding: 5px 10px;text-align: center;bottom: 0px;background-color: var(--autumn-secondary);color: white;margin: auto;z-index: 9999999999999999999999;">Luego de seleccionar tus modelos completá tus datos abajo ↓↓</p>
+<div style="font-size: 11px; display:none; background-color: var(--autumn-primary); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
+<div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
-<!-- Resto del contenido HTML original con mejoras de estructura -->
-<!-- Se mantienen los formularios y funcionalidades originales pero con el nuevo diseño -->
+<form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
+  <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" tabindex="-1" autocomplete="off">
+  <p><img alt="" src="rosita-form.webp" style="max-width:100%;height:auto;display:block;margin:0 auto;" /></p>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <fieldset style="margin-bottom:0px !important;border:1px solid var(--autumn-light);background-color:white;padding:15px;border-radius:8px;">
+    <h4 id="tituloh4" style="text-align: center;color:var(--autumn-primary);">
+      <span style="font-size:13px;color: var(--autumn-primary); font-weight: bold;">NUEVA TEMPORADA OTOÑO INVIERNO 2025</span><br />
+      <span style="font-size:12px;"><em><strong>DESCUENTO ADICIONAL LLEVANDO DOS PARES</strong></em></span>
+    </h4>
+
+    <p id="fechahoy" style="display:none;color: white;background-color: var(--autumn-primary);padding: 5px 10px;font-weight: bold;text-align: center;font-size: 13px;"></p>
+    <p style="text-align: center; font-size: 14px;">3 cuotas sin interés<br><b>¡ENVÍO GRATIS APROVECHA HOY QUE VUELAN!</b></p>
+    
+    <h6 style="background-color: var(--autumn-light); padding: 5px 0px 5px 10px;border-radius:4px;">
+      <p style="text-align: center; font-size: 13px;">MÁXIMO DE 2 PARES POR PEDIDO</p>
+      <span style="font-size: 19px;text-align: center;line-height: 30px;margin: auto;">
+        <span style="color: var(--autumn-primary); padding: 0px 5px;">1 par: 🔥 $70.000</span><br>
+        <span style="color: var(--autumn-primary); padding: 0px 5px;">2 pares: 🔥 $110.000</span><span>($55.000 c/par)</span><br>
+      </span>
+      <span style="font-size:12px;"><em><span style="background-color:var(--autumn-light);">Podés combinar modelos en tu mismo pedido.</span></em></span>
+    </h6>
+    
+    <p style="text-align: center; color: var(--autumn-primary); font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
+     
+    <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
+    💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta, MercadoPago, Transferencia.</small></span><br />
+    ⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DESPACHO EN</span>: 15 días aprox. Producimos a pedido.</small></span><br />
+    ❇️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">STOCK</span>: de todos los modelos que ves aquí.</small></span><br /><br />
+
+    <span style="color: var(--autumn-dark); font-size: 17.5px;">¿CÓMO COMPRAR FÁCIL Y RÁPIDO?</span><br />
+    <span style="font-size:14px;"><strong><em><span style="color: var(--autumn-primary);">1. Elegí los talles de cada modelo.</span></em></strong></span><br />
+    <span style="font-size:14px;"><strong><em><span style="color: var(--autumn-primary);">2. Completá más abajo tus datos de envío.</span></em></strong></span></p>
+    <p>Podés agregar un máximo de 2 pares en tu pedido y podés elegir pares surtidos.</p>
+  </fieldset>
+
+  <!-- [Aquí irían todos los fieldset originales de productos y formularios] -->
+  <!-- Se mantiene la estructura original pero con los nuevos estilos -->
+
+  <fieldset id="todoslosmodelos">
+    <div class="form-group">
+      <!-- Ejemplo de un contenedor de producto -->
+      <div class="contorno" id="modeload-roma-negras">
+        <div class="model-carousel">
+          <div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg" style="width:100%;height:auto;"></label></div>
+          <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1a.jpg" style="width:100%;height:auto;"></label></div>
+          <!-- Más imágenes del carrusel -->
+        </div>
+
+        <div class="novisible" id="talles-roma-negras">
+          <!-- Contenido original de selección de talles -->
+        </div>
+      </div>
+      
+      <!-- Más productos con la misma estructura -->
+    </div>
+  </fieldset>
+
+  <!-- Resto del formulario original -->
+  <fieldset style="margin-top: 25px;">
+    <legend for="comoabona" style="color:var(--autumn-primary);">¿Cómo querés pagar?</legend>
+    <p>Si seleccionas Transferencia Bancaria tienes 10% de descuento adicional.</p>
+    <div class="form-group">
+      <select class="form-control" id="comoabona" name="comoabona" required="" type="text" style="background-color:var(--autumn-light);">
+        <option value="">-- Selecciona forma de pago --</option>
+        <option value="tarjeta">Tarjeta de Crédito o Débito</option>
+        <option value="mercadopago">Saldo MercadoPago</option>
+        <option value="cbu">Transferencia Bancaria</option>
+      </select>
+    </div>
+  </fieldset>
+
+  <p class="help-block"><span id="preciototal" style="color:var(--autumn-dark); font-size:14px;">Seleccioná Modelos/Talles arriba</span></p>
+
+  <p class="help-block">
+    ✓ DESPACHO EN: 15 días aprox. Producimos a pedido. Te llegará el seguimiento de tu envío mediante email al despachar.<br />
+    ✓ En el siguiente paso vas a poder pagar con Tarjeta de crédito/débito o Transferencia Bancaria.
+  </p>
+
+  <textarea id="1209868979" name="entry.1209868979" style="display:none;"></textarea>
+  <input name="fvv" type="hidden" value="1" />
+  <input name="fbzx" type="hidden" value="5661184097173102736" />
+  <input type="hidden" name="entry.978809450" id="link-mercadopago">
+  <input name="pageHistory" type="hidden" value="0" />
+  
+  <input style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" />
+</form>
+
+<!-- Contenedor para las notificaciones -->
+<div id="notification-container"></div>
+<div class="loading-overlay">
+    <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p class="loading-message">Redireccionando a MercadoPago para finalizar tu pedido.<br>Por favor no refresques la página, espera un momento...</p>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
   $(document).ready(function(){
     // Inicialización mejorada de carruseles
@@ -126,31 +268,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       dots: true,
       infinite: true,
       speed: 300,
-      slidesToShow: 1,
+      fade: true,
+      cssEase: 'ease-in-out',
       adaptiveHeight: true,
+      slidesToShow: 1,
       arrows: true,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            arrows: true,
-            dots: true
-          }
-        }
-      ]
+      prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+      nextArrow: '<button type="button" class="slick-next">Next</button>'
     });
 
     $('.testimonials-carousel').slick({
       dots: true,
       infinite: true,
       speed: 300,
+      fade: true,
+      cssEase: 'ease-in-out',
+      arrows: true,
       autoplay: true,
-      autoplaySpeed: 5000,
-      slidesToShow: 1,
-      arrows: true
+      autoplaySpeed: 3000,
+      slidesToShow: 1
     });
 
     // Resto del JavaScript original
+    var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
+    
+    fieldsets.forEach(function(fieldset) {
+      $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
+        var selected = $(this).val();
+        for (var i = 1; i <= 3; i++) {
+          if (i <= selected) {
+            $('fieldset#hwA-' + fieldset + '-' + i).show();
+          } else {
+            $('fieldset#hwA-' + fieldset + '-' + i).hide();
+          }
+        }
+      });
+    });
+
+    // Resto del código JavaScript original...
   });
 </script>
 </body>
