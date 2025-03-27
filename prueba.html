@@ -75,13 +75,13 @@
       .model-carousel .slick-slide { display: flex !important; justify-content: center; align-items: center; padding: 0 5px; }
       /* Ensure image height adjusts automatically and object-fit works */
       .model-carousel .slick-slide img {
-          width: 100%; /* Let image try to fill slide width */
-          height: auto; /* Allow height to adjust based on width */
-          object-fit: contain; /* Keep aspect ratio, fit within bounds */
-          border-radius: 8px;
-          margin: 0 auto;
-          border: 1px solid #f0f0f0;
-          max-height: 75vh; /* Optional: Limit extreme height on large slides */
+        width: 100%;
+        height: 300px; /* Fixed height for consistent sizing */
+        object-fit: contain;
+        border-radius: 8px;
+        margin: 0 auto;
+        border: 1px solid #f0f0f0;
+        background-color: #fff; /* Added white background for padding */
       }
       .testimonials-carousel .slick-slide img {
           width: 100%;
