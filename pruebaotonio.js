@@ -1,7 +1,9 @@
 // --- Todo el JavaScript anterior (sin cambios en la lógica funcional) ---
+
+// Initialize functionalities once the DOM is ready
 $(document).ready(function(){
 
-  // --- Slick Carousel Initialization ---
+  // --- Slick Carousel Initialization (Restored options, accessibility: false) ---
   $('.model-carousel').slick({
     dots: true,
     infinite: true,
@@ -13,6 +15,7 @@ $(document).ready(function(){
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
+    accessibility: false, // Keep accessibility disabled as workaround
     responsive: [
         {
           breakpoint: 768,
@@ -33,8 +36,10 @@ $(document).ready(function(){
     autoplaySpeed: 4000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: true
+    adaptiveHeight: true,
+    accessibility: false // Keep accessibility disabled as workaround
   });
+
 
   // --- Product Selection Logic ---
   var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025']; // Add all product IDs
