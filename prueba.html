@@ -1,312 +1,1835 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
-<!-- End Google Tag Manager -->
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>¿Cómo comprar?</title>
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-	<link href="https://stefano.brilli.me/google-forms-html-exporter/styles/vendor.css" rel="stylesheet" />
-	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
-	<link href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" />
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-	<style type="text/css">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rosita Rococó | Catálogo Otoño-Invierno 2025</title>
+    <meta name="description" content="Descubre la nueva colección Otoño Invierno 2025 de Rosita Rococó. Borcegos y botas de cuero con envío gratis y cuotas sin interés. ¡Comprá online!">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+      /* --- Reset & Base --- */
       :root {
-        --autumn-primary: #d35400;
-        --autumn-secondary: #e67e22;
-        --autumn-light: #f8edeb;
-        --autumn-dark: #5a4a42;
-        --autumn-accent: #a84300;
+          --color-primary: #A0522D; /* Terracotta */
+          --color-secondary: #D2B48C; /* Tan */
+          --color-accent: #CC5500; /* Burnt Orange */
+          --color-background: #fdfbf7; /* Light Beige */
+          --color-card-bg: #fffcf7; /* Creamy White */
+          --color-text: #4a4a4a;
+          --color-heading: #5D4037; /* Dark Brown */
+          --color-border: #e0d8cd;
+          --color-success: #28a745;
+          --color-error: #dc3545;
+          --color-highlight: #fff3cd;
+          --font-primary: 'Lato', sans-serif;
+          --font-secondary: 'Merriweather', serif;
       }
-      
+
+      * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+      }
+
+      html {
+          scroll-behavior: smooth;
+      }
+
       body {
-        background-color: #fff9f2;
-        font-family: 'Montserrat', sans-serif;
-        color: var(--autumn-dark);
-        line-height: 1.6;
+          font-family: var(--font-primary);
+          font-size: 16px;
+          line-height: 1.6;
+          color: var(--color-text);
+          background-color: var(--color-background);
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
       }
 
-      /* Estilos mejorados para los carruseles */
-      .model-carousel, .testimonials-carousel {
-        width: 100%;
-        max-width: 900px;
-        margin: 20px auto;
-        position: relative;
-      }
-
-      .slick-slide {
-        padding: 0 10px;
-        transition: all 0.3s ease;
-      }
-
-      .slick-slide img {
-        width: 100%;
-        height: auto;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease;
-      }
-
-      .slick-slide:hover img {
-        transform: scale(1.02);
-      }
-
-      /* Flechas de navegación mejoradas */
-      .slick-prev, .slick-next {
-        width: 40px;
-        height: 40px;
-        z-index: 10;
-        background: rgba(255,255,255,0.9);
-        border-radius: 50%;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: all 0.3s ease;
-      }
-
-      .slick-prev {
-        left: 15px;
-      }
-
-      .slick-next {
-        right: 15px;
-      }
-
-      .slick-prev:hover, .slick-next:hover {
-        background: white;
-        transform: scale(1.1);
-      }
-
-      .slick-prev:before, .slick-next:before {
-        color: var(--autumn-primary);
-        font-size: 24px;
-        opacity: 0.9;
-      }
-
-      /* Contenedores de productos */
-      .contorno {
-        margin: 30px auto;
-        max-width: 900px;
-        border: 1px solid #e0d6c2;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        padding: 20px;
-        transition: all 0.3s ease;
-      }
-
-      .contorno:hover {
-        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-      }
-
-      /* Estilos responsivos */
-      @media (max-width: 768px) {
-        .model-carousel, .testimonials-carousel {
+      img {
           max-width: 100%;
-        }
-
-        .slick-prev {
-          left: 5px;
-        }
-        .slick-next {
-          right: 5px;
-        }
+          height: auto;
+          display: block;
       }
 
-      /* Mantengo los estilos originales para formularios y funcionalidad */
-      img {max-width:100%;}
-      table {border-collapse: collapse; width: 48%; float: left; margin-left: 5px; margin-bottom: 10px; margin-top: 10px; font-family: arial, sans-serif; color: #444;}
-      td, th {border: 1px solid #dddddd; text-align: left; padding: 2px; color: #444;}
-      tr:nth-child(even) {background-color: #dddddd;}
-      form {max-width:400px;}
-      .form-control {font-size: 12px;}
-      .fieldsetstalles { display: none; }
-      fieldset { margin-bottom: 0px; }
-      legend {font-size: 13px;}
-      #restodelform {padding: 0px 5px;}
-      
-      /* Estilos específicos del formulario con tema otoñal */
-      h4, h6 {
-        color: var(--autumn-primary);
+      a {
+          color: var(--color-accent);
+          text-decoration: none;
       }
-      
-      .btn-primary {
-        background-color: var(--autumn-primary);
-        border-color: var(--autumn-accent);
+      a:hover {
+          text-decoration: underline;
       }
-      
-      .btn-primary:hover {
-        background-color: var(--autumn-accent);
+
+      h1, h2, h3, h4, h5, h6 {
+          font-family: var(--font-secondary);
+          color: var(--color-heading);
+          margin-bottom: 0.75em;
+          line-height: 1.3;
       }
-      
-      #text {
-        background-color: var(--autumn-secondary);
-        color: white;
+      h1 { font-size: 1.8em; }
+      h2 { font-size: 1.5em; }
+      h3 { font-size: 1.3em; }
+
+      p {
+          margin-bottom: 1em;
       }
-	</style>
+
+      fieldset {
+          border: 1px solid var(--color-border);
+          padding: 20px;
+          margin-bottom: 20px;
+          border-radius: 6px;
+          background-color: #fff;
+      }
+      legend {
+          font-family: var(--font-secondary);
+          font-weight: bold;
+          font-size: 1.1em;
+          padding: 0 10px;
+          margin-left: 10px; /* Aligns with fieldset padding */
+          color: var(--color-heading);
+      }
+
+      /* --- Layout & Container --- */
+      .container {
+          max-width: 1000px; /* Adjust as needed for wider layout */
+          margin: 0 auto;
+          padding: 20px 15px;
+      }
+       .form-container {
+            max-width: 500px;
+            margin: 20px auto 0 auto; /* Centered */
+            padding: 0 15px;
+        }
+
+      /* --- Header --- */
+      .site-header {
+          text-align: center;
+          padding-bottom: 20px;
+          border-bottom: 1px solid var(--color-border);
+          margin-bottom: 30px;
+      }
+      .site-header img {
+          max-width: 250px; /* Adjust logo size */
+          margin: 0 auto 15px auto;
+      }
+      .site-header h1 {
+          font-size: 1.6em;
+          margin-bottom: 10px;
+      }
+      .site-header .emoji {
+          font-size: 1.3em;
+          vertical-align: middle;
+      }
+       .promo-highlight {
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+      /* --- Product Catalog --- */
+      #todoslosmodelos {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+          gap: 25px;
+          border: none;
+          padding: 0;
+          background: none;
+          margin-bottom: 30px;
+      }
+
+      .product-card { /* Replaces .contorno */
+          background-color: var(--color-card-bg);
+          border: 1px solid var(--color-border);
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+          transition: box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+      }
+      .product-card:hover {
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      /* --- Carousel Styles --- */
+      .slick-slider { margin-bottom: 0 !important; position: relative; }
+      .slick-list { overflow: hidden; }
+      .slick-track { display: flex; align-items: center; }
+      .slick-slide { float: left; height: 100%; min-height: 1px; outline: none; }
+      .slick-slide img { display: block; margin: 0 auto; }
+
+      /* Model Carousel Specific */
+      .model-carousel {
+          width: 100%;
+          position: relative; /* For arrows */
+      }
+      .model-carousel .slick-slide {
+          background-color: #fff; /* Ensure solid background behind images */
+          cursor: pointer;
+      }
+      .model-carousel .slick-slide img {
+          width: 100%;
+          height: 300px; /* Consistent height */
+          object-fit: contain; /* Fit image within bounds */
+      }
+      .model-carousel label[for] { display: block; cursor: pointer; }
+
+       /* Testimonials Carousel Specific */
+       .testimonials-section {
+           background-color: var(--color-card-bg);
+           padding: 30px 15px;
+           margin-bottom: 30px;
+           border-radius: 8px;
+           border: 1px solid var(--color-border);
+       }
+       .testimonials-section h2 {
+           text-align: center;
+           margin-bottom: 25px;
+       }
+      .testimonials-carousel {
+          max-width: 600px;
+          margin: 0 auto;
+      }
+      .testimonials-carousel .slick-slide img {
+          width: 100%;
+          height: auto;
+          max-height: 500px; /* Limit height */
+          object-fit: contain;
+          border: 1px solid #eee;
+          border-radius: 4px;
+      }
+
+      /* Slick Arrows */
+      .slick-prev,
+      .slick-next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 10;
+          width: 35px;
+          height: 35px;
+          padding: 0;
+          border: none;
+          background: rgba(255, 255, 255, 0.8);
+          border-radius: 50%;
+          cursor: pointer;
+          color: var(--color-primary); /* Arrow color */
+          transition: background-color 0.2s ease, color 0.2s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      }
+      .slick-prev { left: 10px; }
+      .slick-next { right: 10px; }
+      .slick-prev:hover,
+      .slick-next:hover {
+          background: var(--color-primary);
+          color: white;
+      }
+      .slick-prev:before,
+      .slick-next:before {
+          font-family: 'slick'; /* Ensure Slick font is loaded */
+          font-size: 18px;
+          line-height: 1;
+          opacity: 1;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+      }
+      .slick-prev:before { content: '<'; }
+      .slick-next:before { content: '>'; }
+      .slick-dots { bottom: 10px; }
+      .slick-dots li button:before { font-size: 10px; color: #ccc; opacity: 0.8; }
+      .slick-dots li.slick-active button:before { color: var(--color-primary); opacity: 1; }
+
+
+      /* --- Product Details --- */
+      .product-details { /* Replaces .novisible */
+          padding: 15px 20px;
+          text-align: center;
+          font-size: 0.9em;
+          border-top: 1px solid var(--color-border);
+          flex-grow: 1; /* Makes details section expand */
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between; /* Pushes selection to bottom */
+      }
+       .product-info {
+           margin-bottom: 15px;
+           color: #666;
+       }
+       .product-info span {
+           display: block; /* Each item on new line */
+           margin-bottom: 5px;
+       }
+        .product-info strong { color: var(--color-heading); }
+
+       .product-pricing { margin-bottom: 15px; }
+       .product-pricing .price {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--color-primary);
+            display: block; /* Price on its own line */
+            margin-bottom: 5px;
+        }
+       .product-pricing .discount-info {
+            font-size: 0.85em;
+            background-color: var(--color-highlight);
+            padding: 3px 6px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .product-pricing .transfer-discount {
+            color: var(--color-success);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+
+      .quantity-select label {
+          margin: 0 10px;
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+      }
+      .quantity-select input[type="radio"] {
+          margin-left: 5px;
+          width: 16px;
+          height: 16px;
+          accent-color: var(--color-primary);
+      }
+      .quantity-label {
+           display: block;
+           margin-bottom: 8px;
+           font-weight: bold;
+           color: var(--color-heading);
+           font-size: 0.9em;
+       }
+
+      .size-selection fieldset { /* targets inner fieldsets */
+          border: none;
+          padding: 0;
+          margin-top: 15px;
+      }
+      .fieldsetstalles { /* For hiding/showing */
+          display: none;
+      }
+
+      /* --- Form Styles --- */
+       #restodelform {
+           display: none; /* Hidden initially */
+           background-color: var(--color-card-bg);
+           padding: 25px;
+           border: 1px solid var(--color-border);
+           border-radius: 8px;
+           margin-top: 30px;
+       }
+       #restodelform h2 {
+           text-align: center;
+           margin-bottom: 25px;
+       }
+
+      .form-group {
+          margin-bottom: 15px;
+      }
+      .form-group label { /* Style labels above fields */
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            color: var(--color-heading);
+        }
+
+      .form-control {
+          display: block;
+          width: 100%;
+          padding: 10px 12px;
+          font-size: 1em;
+          line-height: 1.5;
+          color: var(--color-text);
+          background-color: #fff;
+          background-clip: padding-box;
+          border: 1px solid var(--color-border);
+          border-radius: 4px;
+          transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+      }
+      .form-control:focus {
+          border-color: var(--color-secondary);
+          outline: 0;
+          box-shadow: 0 0 0 0.2rem rgba(210, 180, 140, 0.25); /* Tan glow */
+      }
+      .form-control[readonly] {
+          background-color: #e9ecef;
+          opacity: 1;
+      }
+       select.form-control {
+            height: calc(1.5em + 1.25rem + 2px); /* Match input height */
+       }
+
+      .help-block {
+          font-size: 0.85em;
+          color: #6c757d;
+          margin-top: 5px;
+      }
+
+      /* Order Summary in Form */
+      #confirma-pedido {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            margin-top: 20px;
+        }
+        #confirma-pedido h3 {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        #confirma-pedido .summary-item {
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        #confirma-pedido .summary-label {
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+        #confirma-pedido .summary-value {
+            color: var(--color-text);
+        }
+        #preciototal {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+        #preciototal .preciototalaobservar {
+            color: var(--color-accent);
+        }
+         #preciototal .shipping-free {
+             color: var(--color-success);
+             font-size: 0.9em;
+             font-weight: normal;
+         }
+         #preciototal .add-more-info {
+             font-size: 0.8em;
+             color: #6c757d;
+             font-weight: normal;
+             display: block;
+             margin-top: 5px;
+         }
+
+       .commitment-warning {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.9em;
+            background-color: var(--color-highlight);
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ffeeba;
+        }
+         .commitment-warning .emoji { font-size: 1.2em; }
+
+      /* Submit Button */
+      #botoncomprar {
+          width: 100%;
+          padding: 12px 20px;
+          font-size: 1.2em;
+          font-weight: bold;
+          background-color: var(--color-accent);
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.2s ease, opacity 0.2s ease;
+          margin-top: 20px;
+          margin-bottom: 0; /* Remove extra bottom margin */
+      }
+      #botoncomprar:hover {
+          background-color: #a54400; /* Darker orange */
+      }
+      #botoncomprar:disabled {
+          background-color: #ccc;
+          cursor: not-allowed;
+          opacity: 0.7;
+      }
+
+      /* --- Floating Elements & Overlays --- */
+       #text {
+            display: none; /* Initially hidden */
+            font-size: 12px;
+            position: fixed;
+            width: 100%;
+            max-width: 500px; /* Match form width */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 15px;
+            text-align: center;
+            bottom: 0;
+            background-color: rgba(255, 235, 180, 0.95); /* Lighter yellow/orange */
+            color: #5D4037; /* Dark brown text */
+            margin: 0;
+            z-index: 990;
+            border-top: 1px solid #f5dca0;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+         #text-content { flex-grow: 1; text-align: left; padding-right: 10px;}
+         #text-content b { display: block; font-size: 0.9em; margin-bottom: 3px;}
+         #preciototal2 { font-weight: bold; color: var(--color-primary);}
+         #finalizarpedido {
+            font-size: 12px;
+            padding: 6px 12px;
+            background-color: var(--color-accent);
+            border: none;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            white-space: nowrap;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0; /* Prevent button from shrinking */
+        }
+         #finalizarpedido:hover { background-color: #a54400; }
+
+
+      #region { /* Promo bar */
+            font-size: 13px;
+            display: none; /* Hidden initially */
+            background-color: var(--color-primary);
+            color: white;
+            padding: 8px 10px;
+            position: fixed;
+            font-weight: bold;
+            margin: auto;
+            z-index: 5000;
+            top: 0; /* Moved to top */
+            width: 100%;
+            text-align: center;
+        }
+
+      #whatsapp {
+            display: none; /* Hidden initially */
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 75px; /* Adjusted for bottom bar */
+            right: 15px;
+            z-index: 991; /* Above bottom bar */
+            transition: opacity 0.3s ease;
+        }
+        #whatsapp img {
+            width: 100%; height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+       #fechahoy {
+           color: white;
+           background-color: var(--color-primary);
+           padding: 5px 10px;
+           font-weight: bold;
+           text-align: center;
+           font-size: 0.9em;
+           margin: 15px auto;
+           border-radius: 3px;
+           display: inline-block; /* Center based on text width */
+       }
+        .info-section {
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+        }
+        .info-section span { display: block; margin-bottom: 8px; }
+        .info-section small span { font-weight: bold; color: var(--color-heading); }
+        .info-section .emoji { margin-right: 8px; }
+
+        .how-to-buy {
+             margin-bottom: 25px;
+             background-color: var(--color-card-bg);
+             padding: 20px;
+             border: 1px solid var(--color-border);
+             border-radius: 6px;
+         }
+         .how-to-buy h3 { margin-bottom: 10px; }
+         .how-to-buy ol { padding-left: 25px; margin: 0; }
+         .how-to-buy li { margin-bottom: 5px; color: var(--color-primary); }
+         .how-to-buy strong { color: var(--color-heading); }
+
+        .price-summary-box {
+            background-color: var(--color-highlight);
+            padding: 15px 20px;
+            border: 1px solid #ffeeba;
+            border-radius: 6px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .price-summary-box p { margin: 0 0 10px 0; font-size: 0.9em; font-weight: bold; }
+        .price-summary-box .price-line {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--color-accent);
+        }
+        .price-summary-box .price-detail {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .price-summary-box .discount-info {
+            font-size: 0.85em;
+            background-color:#FFFF00; /* Keep yellow highlight distinct */
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+        .price-summary-box .transfer-discount {
+             color: var(--color-success);
+             font-weight: bold;
+             text-transform: uppercase;
+             font-size: 0.9em;
+             margin-top: 10px;
+             display: block;
+         }
+
+      /* Loading Overlay */
+      .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(253, 251, 247, 0.9); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; text-align: center; }
+      .loading-content { background: white; padding: 30px 40px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+      .loading-spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--color-accent); border-radius: 50%; margin: 0 auto 20px; animation: spin 1s linear infinite; }
+      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+      .loading-message { color: var(--color-heading); font-size: 1em; margin: 0; line-height: 1.5; }
+
+      /* Error Messages (WhatsApp Validation) */
+      .error-message {
+            display: none;
+            font-size: 0.9em;
+            margin-top: 8px;
+            padding: 10px 12px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: opacity 0.3s ease;
+        }
+        .error-message.verifying {
+            display: block;
+            background-color: #e2f3fd; color: #0c5460; border-color: #b8daff;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        .error-message.valid {
+            display: block;
+            background-color: #d4edda; color: #155724; border-color: #c3e6cb;
+        }
+        .error-message.invalid {
+            display: block;
+            background-color: #f8d7da; color: #721c24; border-color: #f5c6cb;
+        }
+        .error-message.api-error {
+             display: block;
+             background-color: #fff3cd; color: #856404; border-color: #ffeeba;
+         }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+        /* Item Added Confirmation */
+        .avisoagregado {
+            color: var(--color-success);
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .avisoagregado-fixed {
+             margin-top: 20px;font-size: 14px;line-height: 22px;color: white;font-weight: bold;border: 1px solid;background-color: var(--color-success); text-align: center;top: 10px; /* Adjust if #region is shown */ max-width: 90%; width: 350px; padding: 8px 0px;z-index: 5000;position: fixed; left: 50%; transform: translateX(-50%); border-radius: 5px; box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+      /* Utility */
+      .hidden { display: none; } /* Simple hide class */
+      .text-center { text-align: center; }
+
+      /* jQuery UI Autocomplete */
+      .ui-autocomplete {
+          position: absolute;
+          z-index: 1000;
+          cursor: default;
+          padding: 0;
+          margin-top: 2px;
+          list-style: none;
+          background-color: #ffffff;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+          max-height: 200px;
+          overflow-y: auto;
+      }
+      .ui-menu-item {
+          padding: 8px 12px;
+          clear: both;
+          font-weight: normal;
+          line-height: 1.42857143;
+          color: #333333;
+          white-space: nowrap;
+      }
+      .ui-menu-item.ui-state-focus,
+      .ui-menu-item.ui-state-active {
+          color: #ffffff;
+          text-decoration: none;
+          background-color: var(--color-primary);
+          border-radius: 0; /* Keep consistent look */
+          margin: 0;
+      }
+
+        /* --- Notifications --- */
+        #notification-container {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            z-index: 995;
+            width: calc(100% - 20px); /* Full width on small screens */
+            max-width: 350px;
+        }
+        .notification {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            margin-bottom: 10px; /* Space between notifications if multiple shown */
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideInLeft 0.5s forwards;
+            position: relative; /* For close button */
+        }
+        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        .notification img {
+            height: 60px; width: 60px; border-radius: 4px;
+            object-fit: cover; margin-right: 12px; flex-shrink: 0;
+        }
+        .notification .order-info { flex-grow: 1; }
+        .notification .order-info h3 { margin: 0 0 3px 0; font-size: 13px; font-weight: 700; color: var(--color-heading); }
+        .notification .order-info p { margin: 2px 0; font-size: 12px; color: #666; }
+        .notification .customer-info { display: flex; align-items: center; justify-content: space-between; }
+        .notification .city { font-size: 11px; color: #888; }
+        .notification .close {
+            position: absolute; top: 5px; right: 5px; width: 20px; height: 20px;
+            text-align: center; line-height: 18px; font-size: 14px; font-weight: bold;
+            color: #aaa; cursor: pointer; background: #f0f0f0; border-radius: 50%;
+            border: none; padding: 0;
+        }
+        .notification .close:hover { color: #707070; background: #e0e0e0; }
+
+      /* --- Responsiveness --- */
+      @media (max-width: 768px) {
+          h1 { font-size: 1.6em; }
+          h2 { font-size: 1.3em; }
+          .container, .form-container { padding: 15px 10px; }
+          #todoslosmodelos { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+          .model-carousel .slick-slide img { height: 280px; }
+          .testimonials-section { padding: 20px 10px; }
+          #text { max-width: 100%; }
+          #whatsapp { bottom: 70px; width: 45px; height: 45px; }
+      }
+
+      @media (max-width: 480px) {
+          body { font-size: 15px; }
+          h1 { font-size: 1.4em; }
+          #todoslosmodelos { grid-template-columns: 1fr; /* Single column */ }
+          .model-carousel .slick-slide img { height: 250px; }
+          .form-container { padding: 0 5px; }
+          fieldset { padding: 15px; }
+          legend { font-size: 1em; }
+          #botoncomprar { font-size: 1.1em; }
+          #text { font-size: 11px; padding: 8px 10px; }
+          #finalizarpedido { padding: 5px 10px; font-size: 11px; }
+          #whatsapp { bottom: 65px; width: 40px; height: 40px; right: 10px; }
+          .notification img { height: 50px; width: 50px; margin-right: 10px; }
+          .notification .order-info h3 { font-size: 12px; }
+          .notification .order-info p { font-size: 11px; }
+      }
+
+    </style>
 </head>
+
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<p id="text" style="display: block;font-size: 11px;position: fixed;width: 100%;max-width: 395px;padding: 5px 10px;text-align: center;bottom: 0px;background-color: var(--autumn-secondary);color: white;margin: auto;z-index: 9999999999999999999999;">Luego de seleccionar tus modelos completá tus datos abajo ↓↓</p>
-<div style="font-size: 11px; display:none; background-color: var(--autumn-primary); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
-<div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
-<form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
-  <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" tabindex="-1" autocomplete="off">
-  <p><img alt="" src="rosita-form.webp" style="max-width:100%;height:auto;display:block;margin:0 auto;" /></p>
+    <div id="region"></div> <!-- Top Promo Bar -->
 
-  <fieldset style="margin-bottom:0px !important;border:1px solid var(--autumn-light);background-color:white;padding:15px;border-radius:8px;">
-    <h4 id="tituloh4" style="text-align: center;color:var(--autumn-primary);">
-      <span style="font-size:13px;color: var(--autumn-primary); font-weight: bold;">NUEVA TEMPORADA OTOÑO INVIERNO 2025</span><br />
-      <span style="font-size:12px;"><em><strong>DESCUENTO ADICIONAL LLEVANDO DOS PARES</strong></em></span>
-    </h4>
+    <header class="site-header container">
+        <img alt="Rosita Rococó Logo" src="rosita-form.webp" loading="lazy"/>
+        <h1>
+            <span class="emoji">🍂</span> Nueva Temporada <span class="promo-highlight">Otoño Invierno 2025</span> <span class="emoji">🍂</span>
+        </h1>
+        <p>
+             <span class="emoji">💰</span> <span style="font-weight: bold;">DESCUENTO ESPECIAL</span> llevando dos pares
+             <br> <span class="emoji">💳</span> 3 Cuotas sin interés y <span class="emoji">🚚</span> <span style="font-weight: bold;">Envío GRATIS</span> a todo el país
+        </p>
+        <div id="fechahoy" style="display:none;"></div>
+    </header>
 
-    <p id="fechahoy" style="display:none;color: white;background-color: var(--autumn-primary);padding: 5px 10px;font-weight: bold;text-align: center;font-size: 13px;"></p>
-    <p style="text-align: center; font-size: 14px;">3 cuotas sin interés<br><b>¡ENVÍO GRATIS APROVECHA HOY QUE VUELAN!</b></p>
-    
-    <h6 style="background-color: var(--autumn-light); padding: 5px 0px 5px 10px;border-radius:4px;">
-      <p style="text-align: center; font-size: 13px;">MÁXIMO DE 2 PARES POR PEDIDO</p>
-      <span style="font-size: 19px;text-align: center;line-height: 30px;margin: auto;">
-        <span style="color: var(--autumn-primary); padding: 0px 5px;">1 par: 🔥 $70.000</span><br>
-        <span style="color: var(--autumn-primary); padding: 0px 5px;">2 pares: 🔥 $110.000</span><span>($55.000 c/par)</span><br>
-      </span>
-      <span style="font-size:12px;"><em><span style="background-color:var(--autumn-light);">Podés combinar modelos en tu mismo pedido.</span></em></span>
-    </h6>
-    
-    <p style="text-align: center; color: var(--autumn-primary); font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
-     
-    <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
-    💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta, MercadoPago, Transferencia.</small></span><br />
-    ⌛<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">DESPACHO EN</span>: 15 días aprox. Producimos a pedido.</small></span><br />
-    ❇️<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">STOCK</span>: de todos los modelos que ves aquí.</small></span><br /><br />
+    <main class="container">
 
-    <span style="color: var(--autumn-dark); font-size: 17.5px;">¿CÓMO COMPRAR FÁCIL Y RÁPIDO?</span><br />
-    <span style="font-size:14px;"><strong><em><span style="color: var(--autumn-primary);">1. Elegí los talles de cada modelo.</span></em></strong></span><br />
-    <span style="font-size:14px;"><strong><em><span style="color: var(--autumn-primary);">2. Completá más abajo tus datos de envío.</span></em></strong></span></p>
-    <p>Podés agregar un máximo de 2 pares en tu pedido y podés elegir pares surtidos.</p>
-  </fieldset>
+        <section class="price-summary-box">
+            <p>¡Aprovechá los precios de Lanzamiento!</p>
+            <div class="price-line">1 par: 🔥 $70.000</div>
+            <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
+            <span class="discount-info">Podés combinar modelos en tu mismo pedido.</span>
+            <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
+        </section>
 
-  <!-- [Aquí irían todos los fieldset originales de productos y formularios] -->
-  <!-- Se mantiene la estructura original pero con los nuevos estilos -->
+        <section class="info-section">
+             <span class="emoji">🚚</span> <small><span style="font-weight: 700;">ENVÍO GRATIS</span> a domicilio o sucursal.</small><br />
+             <span class="emoji">💳</span> <small><span style="font-weight: 700;">PAGO:</span> Tarjeta (3 cuotas sin interés), MercadoPago, Transferencia (10% OFF).</small><br />
+             <span class="emoji">⌛</span> <small><span style="font-weight: 700;">DESPACHO:</span> 15 días aprox. (Producimos a pedido con mucho ❤️).</small><br />
+             <span class="emoji">✅</span> <small><span style="font-weight: 700;">STOCK:</span> Disponible en todos los modelos publicados.</small><br />
+             <span class="emoji">📏</span> <small><span style="font-weight: 700;">TALLES:</span> Del 35 al 40. Ver medida en cm en cada talle.</small>
+        </section>
 
-  <fieldset id="todoslosmodelos">
-    <div class="form-group">
-      <!-- Ejemplo de un contenedor de producto -->
-      <div class="contorno" id="modeload-roma-negras">
-        <div class="model-carousel">
-          <div><label for="roma-negras"><img alt="" src="roma-negras-1.jpg" style="width:100%;height:auto;"></label></div>
-          <div><label for="roma-negras"><img alt="" data-lazy="roma-negras-1a.jpg" style="width:100%;height:auto;"></label></div>
-          <!-- Más imágenes del carrusel -->
+        <section class="how-to-buy">
+             <h3>¿Cómo comprar fácil y rápido?</h3>
+             <ol>
+                 <li><strong>Elegí talle y cantidad</strong> de cada modelo que te guste. (Máx. 2 pares).</li>
+                 <li>Una vez listo, <strong>desplazate hacia abajo</strong>.</li>
+                 <li><strong>Completá tus datos</strong> de envío y seleccioná tu forma de pago preferida.</li>
+                 <li>¡Listo! Finalizá la compra y prepararemos tu pedido.</li>
+             </ol>
+         </section>
+
+        <!-- Product Catalog Grid -->
+        <section id="todoslosmodelos" aria-label="Catálogo de Productos">
+
+            <article class="product-card" id="modeload-roma-negras">
+                <div class="model-carousel">
+                    <div><label for="talle-select-roma-negras"><img src="roma-negras-1.jpg" alt="Borcego Roma Negro Vista 1" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-1a.jpg" alt="Borcego Roma Negro Vista 2" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-5a.jpg" alt="Borcego Roma Negro Vista 3" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-2a.jpg" alt="Borcego Roma Negro Vista 4" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-3a.jpg" alt="Borcego Roma Negro Vista 5" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-4a.jpg" alt="Borcego Roma Negro Detalle" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-negras"><img data-lazy="roma-negras-2.jpg" alt="Borcego Roma Negro Vista 6" loading="lazy"></label></div>
+                </div>
+                <div class="product-details">
+                    <div>
+                        <h4 style="font-size: 1.1em; margin-bottom: 10px;">Borcego ROMA Negro</h4>
+                         <div class="product-info">
+                            <span><strong>MATERIAL:</strong> Cuero Vacuno</span>
+                            <span><strong>SUELA:</strong> Expanso ultra liviano</span>
+                            <span><strong>HORMA:</strong> Normal</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Combiná modelos como quieras</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                    </div>
+                    <div class="size-selection">
+                        <div class="quantity-select">
+                            <span class="quantity-label">¿Cuántos pares de este modelo?</span>
+                            <label>1 <input checked name="hwA-qty-roma-negras" type="radio" value="1"></label>
+                            <label>2 <input name="hwA-qty-roma-negras" type="radio" value="2"></label>
+                        </div>
+                        <fieldset id="hwA-roma-negras-1">
+                            <div class="form-group">
+                                <label for="talle-select-roma-negras" class="hidden">Seleccione Talle 1</label>
+                                <select id="talle-select-roma-negras" class="form-control talle">
+                                    <option value="">-- Talle par 1 --</option>
+                                    <option value="35-roma-negras">35 (23 cm)</option>
+                                    <option value="36-roma-negras">36 (23,5 cm)</option>
+                                    <option value="37-roma-negras">37 (24 cm)</option>
+                                    <option value="38-roma-negras">38 (25 cm)</option>
+                                    <option value="39-roma-negras">39 (25,5 cm)</option>
+                                    <option value="40-roma-negras">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
+                            <div class="form-group">
+                                <label for="talle-select-roma-negras-2" class="hidden">Seleccione Talle 2</label>
+                                <select id="talle-select-roma-negras-2" class="form-control talle">
+                                     <option value="">-- Talle par 2 --</option>
+                                    <option value="35-roma-negras">35 (23 cm)</option>
+                                    <option value="36-roma-negras">36 (23,5 cm)</option>
+                                    <option value="37-roma-negras">37 (24 cm)</option>
+                                    <option value="38-roma-negras">38 (25 cm)</option>
+                                    <option value="39-roma-negras">39 (25,5 cm)</option>
+                                    <option value="40-roma-negras">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </article>
+
+            <article class="product-card" id="modeload-roma-suela">
+                <div class="model-carousel">
+                    <div><label for="talle-select-roma-suela"><img src="roma-suela-1a.jpg" alt="Borcego Roma Suela Vista 1" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-suela"><img data-lazy="roma-suela-2a.jpg" alt="Borcego Roma Suela Vista 2" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-suela"><img data-lazy="roma-suela-1.jpg" alt="Borcego Roma Suela Vista 3" loading="lazy"></label></div>
+                    <div><label for="talle-select-roma-suela"><img data-lazy="roma-suela-2.jpg" alt="Borcego Roma Suela Detalle" loading="lazy"></label></div>
+                </div>
+                 <div class="product-details">
+                    <div>
+                        <h4 style="font-size: 1.1em; margin-bottom: 10px;">Borcego ROMA Suela</h4>
+                         <div class="product-info">
+                             <span><strong>MATERIAL:</strong> Cuero Vacuno</span>
+                             <span><strong>SUELA:</strong> Expanso ultra liviano</span>
+                             <span><strong>HORMA:</strong> Normal</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Combiná modelos como quieras</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                    </div>
+                    <div class="size-selection">
+                        <div class="quantity-select">
+                            <span class="quantity-label">¿Cuántos pares de este modelo?</span>
+                            <label>1 <input checked name="hwA-qty-roma-suela" type="radio" value="1"></label>
+                            <label>2 <input name="hwA-qty-roma-suela" type="radio" value="2"></label>
+                        </div>
+                        <fieldset id="hwA-roma-suela-1">
+                            <div class="form-group">
+                                <label for="talle-select-roma-suela" class="hidden">Seleccione Talle 1</label>
+                                <select id="talle-select-roma-suela" class="form-control talle">
+                                    <option value="">-- Talle par 1 --</option>
+                                    <option value="35-roma-suela">35 (23 cm)</option>
+                                    <option value="36-roma-suela">36 (23,5 cm)</option>
+                                    <option value="37-roma-suela">37 (24 cm)</option>
+                                    <option value="38-roma-suela">38 (25 cm)</option>
+                                    <option value="39-roma-suela">39 (25,5 cm)</option>
+                                    <option value="40-roma-suela">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
+                            <div class="form-group">
+                                 <label for="talle-select-roma-suela-2" class="hidden">Seleccione Talle 2</label>
+                                <select id="talle-select-roma-suela-2" class="form-control talle">
+                                    <option value="">-- Talle par 2 --</option>
+                                    <option value="35-roma-suela">35 (23 cm)</option>
+                                    <option value="36-roma-suela">36 (23,5 cm)</option>
+                                    <option value="37-roma-suela">37 (24 cm)</option>
+                                    <option value="38-roma-suela">38 (25 cm)</option>
+                                    <option value="39-roma-suela">39 (25,5 cm)</option>
+                                    <option value="40-roma-suela">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </article>
+
+             <article class="product-card" id="modeload-siena2025">
+                 <div class="model-carousel">
+                    <div><label for="talle-select-siena2025"><img src="siena2025-1.webp" alt="Borcego Siena 2025 Negro Vista 1" loading="lazy"></label></div>
+                    <div><label for="talle-select-siena2025"><img data-lazy="siena2025-2.webp" alt="Borcego Siena 2025 Negro Vista 2" loading="lazy"></label></div>
+                 </div>
+                 <div class="product-details">
+                    <div>
+                         <h4 style="font-size: 1.1em; margin-bottom: 10px;">Borcego SIENA Negro</h4>
+                         <div class="product-info">
+                            <span><strong>MATERIAL:</strong> Cuero Vacuno</span>
+                             <span><strong>SUELA:</strong> Expanso ultra liviano</span>
+                             <span><strong>HORMA:</strong> Normal</span>
+                        </div>
+                        <div class="product-pricing">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Combiná modelos como quieras</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                    </div>
+                     <div class="size-selection">
+                         <div class="quantity-select">
+                             <span class="quantity-label">¿Cuántos pares de este modelo?</span>
+                            <label>1 <input checked name="hwA-qty-siena2025" type="radio" value="1"></label>
+                            <label>2 <input name="hwA-qty-siena2025" type="radio" value="2"></label>
+                        </div>
+                        <fieldset id="hwA-siena2025-1">
+                            <div class="form-group">
+                                <label for="talle-select-siena2025" class="hidden">Seleccione Talle 1</label>
+                                <select id="talle-select-siena2025" class="form-control talle">
+                                    <option value="">-- Talle par 1 --</option>
+                                    <option value="35-siena2025">35 (23 cm)</option>
+                                    <option value="36-siena2025">36 (23,5 cm)</option>
+                                    <option value="37-siena2025">37 (24 cm)</option>
+                                    <option value="38-siena2025">38 (25 cm)</option>
+                                    <option value="39-siena2025">39 (25,5 cm)</option>
+                                    <option value="40-siena2025">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                       <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
+                            <div class="form-group">
+                                <label for="talle-select-siena2025-2" class="hidden">Seleccione Talle 2</label>
+                                <select id="talle-select-siena2025-2" class="form-control talle">
+                                    <option value="">-- Talle par 2 --</option>
+                                    <option value="35-siena2025">35 (23 cm)</option>
+                                    <option value="36-siena2025">36 (23,5 cm)</option>
+                                    <option value="37-siena2025">37 (24 cm)</option>
+                                    <option value="38-siena2025">38 (25 cm)</option>
+                                    <option value="39-siena2025">39 (25,5 cm)</option>
+                                    <option value="40-siena2025">40 (26 cm)</option>
+                                </select>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Add more <article class="product-card"> elements here for other models -->
+
+        </section> <!-- End #todoslosmodelos -->
+
+        <!-- Testimonials Section -->
+         <section class="testimonials-section">
+            <h2><span class="emoji">😊</span> Lo que dicen nuestras clientas <span class="emoji">😊</span></h2>
+            <div class="testimonials-carousel">
+                <div><img alt="Comentario Cliente 1" data-lazy="comentariorecibi1.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 2" data-lazy="comentariorecibi2.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 4" data-lazy="comentariorecibi4.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 5" data-lazy="comentariorecibi5.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 6" data-lazy="comentariorecibi6.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 7" data-lazy="comentariorecibi7.webp" loading="lazy" /></div>
+                <div><img alt="Comentario Cliente 8" data-lazy="comentariorecibi8.webp" loading="lazy" /></div>
+                <div><img alt="Comentarios Instagram" src="comentariosig.webp" loading="lazy" ></div>
+                <div><img alt="Referencia Cliente 3" data-lazy="comentario3-min.webp" loading="lazy" /></div>
+                <div><img alt="Referencia Cliente 4" data-lazy="comentario4-min.webp" loading="lazy" /></div>
+                <div><img alt="Referencia Cliente 5" data-lazy="comentario5-min.webp" loading="lazy" /></div>
+            </div>
+         </section>
+
+        <!-- Repeat Price Summary -->
+         <section class="price-summary-box">
+             <p>Recordatorio de Precios:</p>
+             <div class="price-line">1 par: 🔥 $70.000</div>
+             <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
+             <span class="discount-info">Podés pedir diferentes modelos en tu mismo pedido.</span>
+             <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
+         </section>
+
+
+        <!-- ORDER FORM -->
+         <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" class="form-container" novalidate>
+            <!-- Honeypot -->
+            <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;" tabindex="-1" autocomplete="off">
+
+             <div id="restodelform">
+                 <h2 style="color: var(--color-primary);"><span class="emoji">🛒</span> Completá tu Pedido <span class="emoji">🛒</span></h2>
+
+                 <fieldset>
+                     <legend>Modelos Seleccionados</legend>
+                     <div class="form-group">
+                         <label for="1471599855" class="hidden">Resumen de talles y modelos</label>
+                         <textarea class="form-control" id="1471599855" name="entry.1471599855" readonly rows="3" style="font-size: 0.9em; background-color: #e9ecef;"></textarea>
+                         <p class="help-block">Estos son los talles/modelos que seleccionaste arriba. Máximo 2 pares.</p>
+                     </div>
+                 </fieldset>
+
+                 <fieldset>
+                     <legend>Datos de Contacto</legend>
+                     <div class="form-group">
+                         <label for="1465946249">Email <span style="color:red">*</span></label>
+                         <input class="form-control" id="1465946249" name="entry.1465946249" placeholder="ejemplo@email.com" required type="email" />
+                         <p class="help-block">Importante: Usaremos este email para enviarte confirmación y seguimiento.</p>
+                     </div>
+                      <div class="form-group">
+                         <label for="1460904554">Nombre y Apellido <span style="color:red">*</span></label>
+                         <input class="form-control" id="1460904554" name="entry.1460904554" required type="text" />
+                     </div>
+                     <div class="form-group">
+                         <label for="53830725">WhatsApp <span style="color:red">*</span></label>
+                         <input class="form-control" id="53830725" name="entry.53830725" placeholder="Ej: 1156357659 (sin 0, sin 15, sin +54)" required type="tel" />
+                         <div class="error-message"></div> <!-- For WhatsApp validation -->
+                         <p class="help-block">Necesario para coordinar el envío y enviarte el seguimiento.</p>
+                     </div>
+                      <div class="form-group">
+                         <label for="541001873">D.N.I <span style="color:red">*</span></label>
+                         <input class="form-control" id="541001873" name="entry.541001873" required type="text" inputmode="numeric" />
+                         <p class="help-block">Requerido por el correo para el envío.</p>
+                     </div>
+                 </fieldset>
+
+                 <fieldset>
+                     <legend>Dirección de Envío</legend>
+                     <p class="help-block" style="margin-bottom: 15px;">Completá con cuidado tus datos para el envío GRATIS a domicilio.</p>
+                     <div class="form-group">
+                         <label for="59648134">Provincia <span style="color:red">*</span></label>
+                         <select class="form-control" id="59648134" name="entry.59648134" required>
+                             <option value="">Seleccione su provincia</option>
+                            <option value="Buenos Aires">Buenos Aires</option>
+							<option value="Capital Federal">CABA</option>
+							<option value="Buenos Aires">Gran Buenos Aires</option> <!-- Considerar unificar GBA/BsAs si la lógica lo permite -->
+							<option value="Catamarca">Catamarca</option>
+							<option value="Chaco">Chaco</option>
+							<option value="Chubut">Chubut</option>
+							<option value="Córdoba">Córdoba</option>
+							<option value="Corrientes">Corrientes</option>
+							<option value="Entre Ríos">Entre Ríos</option>
+							<option value="Formosa">Formosa</option>
+                            <option value="Jujuy">Jujuy</option>
+							<option value="La Pampa">La Pampa</option>
+							<option value="La Rioja">La Rioja</option>
+							<option value="Mendoza">Mendoza</option>
+                            <option value="Misiones">Misiones</option>
+							<option value="Neuquén">Neuquén</option>
+							<option value="Río Negro">Río Negro</option>
+							<option value="Salta">Salta</option>
+							<option value="San Juan">San Juan</option>
+							<option value="San Luis">San Luis</option>
+							<option value="Santa Cruz">Santa Cruz</option>
+							<option value="Santa Fe">Santa Fe</option>
+							<option value="Santiago del Estero">Santiago del Estero</option>
+                            <option value="Tierra del Fuego">Tierra del Fuego</option>
+							<option value="Tucumán">Tucumán</option>
+                         </select>
+                     </div>
+                     <div class="form-group">
+                         <label for="1743418466">Localidad <span style="color:red">*</span></label>
+                         <input class="form-control" id="1743418466" name="entry.1743418466" required type="text" />
+                     </div>
+                     <div class="form-group">
+                         <label for="1005165410">Código Postal <span style="color:red">*</span></label>
+                         <input class="form-control" id="1005165410" name="entry.1005165410" required type="text" inputmode="numeric" />
+                     </div>
+                      <div class="form-group">
+                         <label for="951592426">Calle y Número <span style="color:red">*</span></label>
+                         <input class="form-control" id="951592426" name="entry.951592426" placeholder="Ej: Av. Siempre Viva 742" required type="text"/>
+                     </div>
+                      <div class="form-group">
+                         <label for="entry.XXXXXXX">Piso / Depto / Casa (Opcional)</label> <!-- Reemplazar XXXXXXX con ID real si existe o crear uno -->
+                         <input class="form-control" id="entry.XXXXXXX" name="entry.XXXXXXX" placeholder="Ej: Piso 3 Depto B" type="text"/>
+                         <p class="help-block">Aclaraciones adicionales para el cartero.</p>
+                     </div>
+                     <!-- Hidden field for shipping type -->
+                     <div style="display:none;" class="form-group">
+                         <label for="2315500325" class="hidden">Tipo de Envío</label>
+                         <select class="form-control" id="2315500325" name="entry.17650825"><option selected value="A DOMICILIO">A DOMICILIO</option></select>
+                     </div>
+                 </fieldset>
+
+                 <div class="commitment-warning">
+                    <span class="emoji">⚠️</span> TU PEDIDO ES UN COMPROMISO DE COMPRA <span class="emoji">⚠️</span>
+                    <br>Por favor, revisá que todos los datos sean correctos antes de continuar.
+                </div>
+
+                 <!-- Order Confirmation Summary -->
+                 <div id="confirma-pedido">
+                     <h3>Revisá tu pedido:</h3>
+                     <p class="summary-item"><span class="summary-label">Modelos/Talles:</span> <span id="help-modelostallesseleccionados" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">Nombre:</span> <span id="help-nombre" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">WhatsApp:</span> <span id="help-wapp" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">Email:</span> <span id="help-email" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">Dirección:</span> <span id="help-calleyaltura" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">Localidad:</span> <span id="help-localidad" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">Provincia:</span> <span id="help-provincia" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">CP:</span> <span id="help-cp" class="summary-value">-</span></p>
+                     <p class="summary-item"><span class="summary-label">DNI:</span> <span id="help-dni" class="summary-value">-</span></p>
+
+                     <fieldset style="margin-top: 25px; border-color: var(--color-primary);">
+                         <legend style="color: var(--color-primary);">Forma de Pago</legend>
+                         <div class="form-group">
+                            <label for="comoabona">¿Cómo querés abonar? <span style="color:red">*</span></label>
+                            <select class="form-control" id="comoabona" name="comoabona" required style="background-color: #fff9e6;">
+                                <option value="">-- Seleccioná una opción --</option>
+                                <option value="tarjeta">Tarjeta de Crédito (3 cuotas sin interés) o Débito</option>
+                                <option value="mercadopago">Saldo en cuenta de MercadoPago</option>
+                                <option value="cbu">Transferencia Bancaria (10% Descuento Adicional)</option>
+                            </select>
+                            <p class="help-block">Serás redirigido para completar el pago de forma segura.</p>
+                        </div>
+                     </fieldset>
+
+                      <div id="preciototal">
+                         Seleccioná Modelos/Talles arriba para ver el total
+                     </div>
+
+                     <p class="help-block text-center" style="margin-top: 20px; font-size: 0.9em;">
+                        <span class="emoji">📦</span> Despachamos en 15 días aprox. Recibirás el seguimiento por email.<br>
+                        <span class="emoji">🔒</span> Pagarás de forma segura a través de MercadoPago o Transferencia.
+                    </p>
+                 </div>
+
+                 <!-- Hidden Fields for Google Form -->
+                 <textarea id="1209868979" name="entry.1209868979" style="display:none;"></textarea>
+                 <input type="hidden" name="entry.978809450" id="link-mercadopago">
+                 <input name="fvv" type="hidden" value="1" />
+                 <input name="fbzx" type="hidden" value="5661184097173102736" />
+                 <input name="pageHistory" type="hidden" value="0" />
+
+                 <button class="btn btn-primary" id="botoncomprar" type="submit">IR A PAGAR <span class="emoji">💳</span></button>
+            </div> <!-- End #restodelform -->
+        </form>
+
+    </main>
+
+    <!-- Floating Bottom Bar -->
+    <div id="text">
+        <div id="text-content"><b>PEDIDO:</b> Aún no seleccionaste modelos</div>
+        <a id="finalizarpedido" href="#restodelform" style="display: none;">FINALIZAR COMPRA</a>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div id="whatsapp"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Hola!%20Quiero%20consultar%20por%20el%20calzado%20Rosita%20Rococó" id="linktowhatsapp" target="_blank"><img alt="Contactar por WhatsApp" height="50" width="50" src="/whatsapp.png" loading="lazy"/></a></div>
+
+    <!-- Notification Area -->
+    <div id="notification-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-message">Estamos preparando tu pago seguro...<br>Espera un momento, no actualices la página.</p>
         </div>
-
-        <div class="novisible" id="talles-roma-negras">
-          <!-- Contenido original de selección de talles -->
-        </div>
-      </div>
-      
-      <!-- Más productos con la misma estructura -->
     </div>
-  </fieldset>
 
-  <!-- Resto del formulario original -->
-  <fieldset style="margin-top: 25px;">
-    <legend for="comoabona" style="color:var(--autumn-primary);">¿Cómo querés pagar?</legend>
-    <p>Si seleccionas Transferencia Bancaria tienes 10% de descuento adicional.</p>
-    <div class="form-group">
-      <select class="form-control" id="comoabona" name="comoabona" required="" type="text" style="background-color:var(--autumn-light);">
-        <option value="">-- Selecciona forma de pago --</option>
-        <option value="tarjeta">Tarjeta de Crédito o Débito</option>
-        <option value="mercadopago">Saldo MercadoPago</option>
-        <option value="cbu">Transferencia Bancaria</option>
-      </select>
-    </div>
-  </fieldset>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js" integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-  <p class="help-block"><span id="preciototal" style="color:var(--autumn-dark); font-size:14px;">Seleccioná Modelos/Talles arriba</span></p>
+    <!-- Custom JavaScript -->
+    <script>
+    $(function() { // Equivalent to $(document).ready()
 
-  <p class="help-block">
-    ✓ DESPACHO EN: 15 días aprox. Producimos a pedido. Te llegará el seguimiento de tu envío mediante email al despachar.<br />
-    ✓ En el siguiente paso vas a poder pagar con Tarjeta de crédito/débito o Transferencia Bancaria.
-  </p>
+        // --- Global Variables ---
+        const priceOnePair = 70000;
+        const priceTwoPairs = 110000;
+        const discountTransfer = 0.10; // 10% discount
+        const currencyFormat = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: 0 });
+        const $restodelform = $("#restodelform");
+        const $textBar = $("#text");
+        const $textBarContent = $("#text-content");
+        const $finalizarPedidoBtn = $("#finalizarpedido");
+        const $selectedItemsInput = $("#1471599855");
+        const $priceTotalDisplay = $("#preciototal");
+        const $priceTotalDisplayBar = $("#preciototal2"); // In the bottom bar
+        const $form = $('#bootstrapForm');
+        const $submitButton = $('#botoncomprar');
+        const $loadingOverlay = $('.loading-overlay');
+        const $whatsappInput = $('#53830725');
+        const $emailInput = $('#1465946249');
+        const $dniInput = $('#541001873');
+        const $paymentMethodSelect = $('#comoabona');
 
-  <textarea id="1209868979" name="entry.1209868979" style="display:none;"></textarea>
-  <input name="fvv" type="hidden" value="1" />
-  <input name="fbzx" type="hidden" value="5661184097173102736" />
-  <input type="hidden" name="entry.978809450" id="link-mercadopago">
-  <input name="pageHistory" type="hidden" value="0" />
-  
-  <input style="margin-bottom:150px !important;" class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" />
-</form>
+        // --- Carousel Initialization ---
+        $('.model-carousel').slick({
+            dots: true,
+            infinite: true,
+            speed: 400,
+            fade: true,
+            cssEase: 'linear',
+            lazyLoad: 'ondemand',
+            adaptiveHeight: false, // Keep consistent height if possible, adjust CSS height if needed
+            slidesToShow: 1,
+            arrows: true, // Keep arrows
+            accessibility: true,
+            focusOnSelect: false,
+        });
 
-<!-- Contenedor para las notificaciones -->
-<div id="notification-container"></div>
-<div class="loading-overlay">
-    <div class="loading-content">
-        <div class="loading-spinner"></div>
-        <p class="loading-message">Redireccionando a MercadoPago para finalizar tu pedido.<br>Por favor no refresques la página, espera un momento...</p>
-    </div>
-</div>
+        $('.testimonials-carousel').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            arrows: false,
+            autoplay: true,
+            autoplaySpeed: 3500,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+        });
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script>
-  $(document).ready(function(){
-    // Inicialización mejorada de carruseles
-    $('.model-carousel').slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      fade: true,
-      cssEase: 'ease-in-out',
-      adaptiveHeight: true,
-      slidesToShow: 1,
-      arrows: true,
-      prevArrow: '<button type="button" class="slick-prev">Previous</button>',
-      nextArrow: '<button type="button" class="slick-next">Next</button>'
-    });
+        // --- Product Selection Logic ---
+        const fieldsets = ['roma-negras', 'roma-suela', 'siena2025']; // Add ALL model IDs here
+        fieldsets.forEach(function(fieldset) {
+            const $radioInputs = $(`input[name="hwA-qty-${fieldset}"]`);
+            const $sizeFieldsets = $(`.product-card[id$="-${fieldset}"] .size-selection fieldset`); // More specific selector
 
-    $('.testimonials-carousel').slick({
-      dots: true,
-      infinite: true,
-      speed: 300,
-      fade: true,
-      cssEase: 'ease-in-out',
-      arrows: true,
-      autoplay: true,
-      autoplaySpeed: 3000,
-      slidesToShow: 1
-    });
+             // Initial setup: Hide second fieldset if first radio is checked
+            if ($radioInputs.filter(':checked').val() === '1') {
+                 $sizeFieldsets.filter(`[id$="-${fieldset}-2"]`).hide();
+             }
 
-    // Resto del JavaScript original
-    var fieldsets = ['detroit-blancas', 'detroit-combinadas', 'roma-negras', 'venecia-negras', 'venecia-suela', 'roma-suela', 'siena-negras', 'siena-nude', 'dakar-negras', 'dakar-suela', 'dakar-ororosa', 'lima-negras', 'lima-suela', 'lima-blancas', 'verona', 'palermo-negras', 'milan-negras', 'diega', 'libra-negras', 'libra-suela', 'madison-negras', 'madison-gris', 'maggie-blancas','maggie-negras', 'roxy-negras', 'sofia', 'abril-negras', 'abril-suela', 'abril-nude', 'florencia', 'siena2025'];
-    
-    fieldsets.forEach(function(fieldset) {
-      $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
-        var selected = $(this).val();
-        for (var i = 1; i <= 3; i++) {
-          if (i <= selected) {
-            $('fieldset#hwA-' + fieldset + '-' + i).show();
-          } else {
-            $('fieldset#hwA-' + fieldset + '-' + i).hide();
-          }
+            $radioInputs.on('click', function() {
+                const selected = $(this).val();
+                 $sizeFieldsets.each(function() {
+                    const fieldsetId = $(this).attr('id');
+                    // Extract the number (1 or 2) from the fieldset ID
+                    const index = fieldsetId.match(/-(\d)$/);
+                     if (index && parseInt(index[1], 10) <= selected) {
+                        $(this).show();
+                     } else {
+                         $(this).hide();
+                         // Clear selection in the hidden dropdown
+                         $(this).find('select.talle').val('');
+                         // Important: Trigger change to update summary if a selection is cleared
+                          $(this).find('select.talle').trigger('change');
+                     }
+                });
+            });
+        });
+
+        // --- Talle Selection & Summary Update ---
+        $("#todoslosmodelos select.talle").on('change', function() {
+            const $select = $(this);
+            const $parentCard = $select.closest('.product-card');
+            const selectedValue = $select.val();
+            const previousValue = $select.data('pre') || "";
+
+            // Update hidden input (#1471599855)
+            let currentSummary = $selectedItemsInput.val();
+            if (previousValue) {
+                currentSummary = currentSummary.replace(previousValue + ", ", "");
+            }
+            if (selectedValue) {
+                currentSummary += selectedValue + ", ";
+                 // Show confirmation briefly
+                 $select.closest('.form-group').find('.avisoagregado').remove(); // Remove previous
+                 $select.closest('.form-group').append('<p class="avisoagregado">¡Agregado!</p>');
+                 $parentCard.find('.avisoagregado').fadeIn().delay(3000).fadeOut();
+
+                 // Show fixed notification
+                 $('.avisoagregado-fixed').remove(); // Remove previous
+                 $('<p class="avisoagregado-fixed">¡Agregado! Completá tus datos abajo ↓</p>')
+                    .insertAfter("header") // Insert after header
+                    .delay(5000)
+                    .fadeOut(1000, function() { $(this).remove(); });
+
+            }
+            $selectedItemsInput.val(currentSummary);
+            $select.data('pre', selectedValue); // Store current value for next change
+
+             // Update UI & Calculate Price
+            updateOrderSummary();
+
+            // Show form and bottom bar if first item is added
+            if ($selectedItemsInput.val().trim() !== "") {
+                if ($restodelform.is(':hidden')) {
+                    $restodelform.slideDown();
+                }
+                if ($textBar.is(':hidden')) {
+                     $textBar.fadeIn();
+                     $finalizarPedidoBtn.fadeIn();
+                 }
+                // Ensure WhatsApp button becomes visible after a delay
+                 setTimeout(() => { $('#whatsapp').fadeIn(); }, 2000);
+            } else {
+                // If all items removed, hide form and bar
+                 $restodelform.slideUp();
+                 $textBar.fadeOut();
+                 $finalizarPedidoBtn.fadeOut();
+            }
+             // Trigger AddToCart event (if FB Pixel is set up)
+             if (typeof fbq === 'function' && selectedValue) {
+                 fbq('track', 'AddToCart');
+             }
+        });
+
+        function updateOrderSummary() {
+            const summaryText = $selectedItemsInput.val().trim().slice(0, -1); // Remove trailing comma and space
+            const items = summaryText ? summaryText.split(', ') : [];
+            const itemCount = items.length;
+
+             // Update summary text in form and bottom bar
+             $("#help-modelostallesseleccionados").text(summaryText || '-');
+             $textBarContent.html(`<b>PEDIDO (${itemCount} ${itemCount === 1 ? 'par' : 'pares'}):</b> ${summaryText || 'Aún no seleccionaste modelos'}`);
+
+            let total = 0;
+            let message = "";
+             let canSubmit = false;
+             const paymentMethod = $paymentMethodSelect.val();
+             const isTransfer = paymentMethod === 'cbu';
+
+             if (itemCount === 1) {
+                 total = priceOnePair;
+                 message = `TOTAL: <span class='preciototalaobservar'>${currencyFormat.format(isTransfer ? total * (1 - discountTransfer) : total)}</span> x 1 par + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>Si agregás otro par, cada uno te queda a $${currencyFormat.format(priceTwoPairs / 2)}.</span>`;
+                 canSubmit = true;
+            } else if (itemCount === 2) {
+                 total = priceTwoPairs;
+                 message = `TOTAL: <span class='preciototalaobservar'>${currencyFormat.format(isTransfer ? total * (1 - discountTransfer) : total)}</span> x 2 pares + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>¡Excelente! Ya tenés el mejor precio.</span>`;
+                 canSubmit = true;
+            } else if (itemCount > 2) {
+                message = `<span style='color: ${'var(--color-error)'};'>⛔️ Solo puedes pedir un máximo de 2 pares.</span><br>Eliminá ${itemCount - 2} ${itemCount - 2 === 1 ? 'par' : 'pares'} para continuar.`;
+                canSubmit = false;
+             } else {
+                 message = "Seleccioná modelos/talles arriba para ver el total.";
+                 canSubmit = false;
+             }
+
+            $priceTotalDisplay.html(message);
+            $priceTotalDisplayBar.html(total > 0 ? `<span class='preciototalaobservar'>${currencyFormat.format(isTransfer ? total * (1 - discountTransfer) : total)}</span>` : 'Seleccioná modelos');
+             $submitButton.prop('disabled', !canSubmit || !isWhatsAppValid); // Also disable if WhatsApp is invalid
+
+             // Toggle visibility of "Finalizar Compra" button in bar based on item count
+             if (itemCount > 0) {
+                 $finalizarPedidoBtn.fadeIn();
+             } else {
+                 $finalizarPedidoBtn.fadeOut();
+             }
         }
-      });
-    });
 
-    // Resto del código JavaScript original...
-  });
-</script>
+        // Update price immediately when payment method changes
+        $paymentMethodSelect.on('change', updateOrderSummary);
+
+        // --- Form Field Updates & Summary ---
+        $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873").on('keyup change', function() {
+            $("#help-nombre").text($("#1460904554").val() || '-');
+            $("#help-wapp").text($("#53830725").val() || '-');
+            $("#help-email").text($("#1465946249").val() || '-');
+            $("#help-calleyaltura").text($("#951592426").val() || '-');
+            $("#help-localidad").text($("#1743418466").val() || '-');
+            $("#help-provincia").text($("#59648134 option:selected").text() || '-');
+            $("#help-cp").text($("#1005165410").val() || '-');
+            $("#help-dni").text($("#541001873").val() || '-');
+        });
+        // Trigger change for province dropdown initially if needed
+         if ($("#59648134").val()) { $("#59648134").trigger('change'); }
+
+
+        // --- Form Input Formatting ---
+        $emailInput.on('input keyup', function() {
+            $(this).val($(this).val().trim().toLowerCase());
+        });
+        $dniInput.on('input keyup', function() {
+            $(this).val($(this).val().replace(/\s/g, '').replace(/\./g, ''));
+        });
+        $whatsappInput.on('input keyup', function() {
+            let value = $(this).val();
+            value = value.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
+            // Allow optional '9' after area code, remove if present after 54
+             // value = value.replace(/^(54)(?!9)(\d{10})$/, '549$2'); // Add 9 if missing 54XXXXXXXXXX
+             value = value.replace(/^(?:54|549)/, ''); // Remove 54 or 549 prefix
+            value = value.replace(/^0+/, ''); // Remove leading zeros (like 011)
+             // Ensure it doesn't start with 15
+             if (value.startsWith('15')) {
+                 value = value.substring(2);
+             }
+            $(this).val(value.toLowerCase());
+        });
+
+        // --- Form Submission ---
+        $form.on('submit', async function (event) {
+            event.preventDefault();
+
+            // Honeypot Check
+            if ($('#website').val() !== '') {
+                console.log('Bot detected, submission cancelled.');
+                return false;
+            }
+
+            // Basic Validation (Required fields)
+            let formIsValid = true;
+            $form.find('[required]').each(function() {
+                if (!$(this).val()) {
+                    formIsValid = false;
+                    // Optionally highlight invalid fields
+                    $(this).css('border-color', 'red');
+                } else {
+                    $(this).css('border-color', ''); // Reset border
+                }
+            });
+
+             // Check item count again
+            const items = $selectedItemsInput.val().trim().split(', ');
+            const itemCount = items[0] === "" ? 0 : items.length;
+
+             if (!formIsValid || itemCount === 0 || itemCount > 2 || !isWhatsAppValid) {
+                alert('Por favor, completá todos los campos requeridos (*), asegurate de tener 1 o 2 pares seleccionados y que tu WhatsApp sea válido.');
+                 $submitButton.val('IR A PAGAR 💳').prop('disabled', false); // Re-enable if validation fails early
+                return;
+            }
+
+
+            $submitButton.val('Procesando...').prop('disabled', true);
+            $loadingOverlay.css('display', 'flex'); // Show loading overlay for all submissions now
+
+
+            const formAction = $(this).attr('action');
+            const formData = new FormData(this);
+            const paymentMethod = $paymentMethodSelect.val();
+            const buyerName = $('#1460904554').val();
+            const amountText = $priceTotalDisplay.find(".preciototalaobservar").text();
+            // Robust amount parsing
+             let amount = 0;
+             try {
+                 // Remove currency symbol, thousand separators (dots), use comma as decimal sep.
+                 const cleanedAmount = amountText.replace(/[$.]/g, '').replace(',', '.');
+                 amount = parseFloat(cleanedAmount);
+                 if (isNaN(amount)) throw new Error("Amount parsing failed");
+             } catch (e) {
+                 console.error("Error parsing amount:", amountText, e);
+                 alert("Error al procesar el monto del pedido. Intente nuevamente.");
+                 $loadingOverlay.css('display', 'none');
+                 $submitButton.val('IR A PAGAR 💳').prop('disabled', false);
+                 return;
+             }
+
+
+            try {
+                 // --- 1. Send Data to Google Forms (for all payment types) ---
+                 // Use fetch with no-cors for Google Forms
+                 await fetch(formAction, {
+                     method: 'POST',
+                     mode: 'no-cors', // Important for Google Forms
+                     body: new URLSearchParams(formData) // Convert FormData for fetch
+                 });
+                 console.log("Attempted to send data to Google Forms.");
+
+                 // Track checkout initiation (if FB Pixel is available)
+                if (typeof fbq === 'function') {
+                    fbq('track', 'InitiateCheckout', {
+                         value: amount,
+                         currency: 'ARS',
+                         num_items: itemCount
+                     });
+                }
+
+                 // --- 2. Handle Payment Redirection ---
+                 if (paymentMethod === "cbu") {
+                     // Redirect to CBU instructions page
+                     const redirectUrl = itemCount === 2 ?
+                         'https://rositarococo.com/transferenciacbu-2pares.html' :
+                         'https://rositarococo.com/transferenciacbu-1par.html';
+
+                      // Small delay to allow GForm request to potentially go through
+                      setTimeout(() => {
+                          window.location.href = redirectUrl;
+                      }, 500); // 0.5 second delay
+
+                 } else if (paymentMethod === "tarjeta" || paymentMethod === "mercadopago") {
+                    // Fetch MercadoPago link
+                    const mpApiUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30"; // Your MP webhook
+                    const response = await fetch(mpApiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            comprador: buyerName,
+                            monto: amount // Send parsed amount
+                        })
+                    });
+
+                    if (!response.ok) {
+                         throw new Error(`MercadoPago API request failed with status ${response.status}`);
+                     }
+
+                    const jsonData = await response.json(); // Assuming webhook returns JSON directly now
+                     const mercadoPagoUrl = jsonData.linkpersonalizadomp; // Adjusted based on potential webhook response
+
+                     if (!mercadoPagoUrl) {
+                         throw new Error('No se pudo obtener el link de MercadoPago de la respuesta.');
+                     }
+
+                    // Update hidden field (just in case, though GForm data was sent earlier)
+                    $('#link-mercadopago').val(mercadoPagoUrl);
+
+                    // Redirect to MercadoPago after a short delay
+                    setTimeout(() => {
+                        window.location.href = mercadoPagoUrl;
+                    }, 1500); // Slightly longer delay for MP link fetch + GForm attempt
+                }
+
+            } catch (error) {
+                console.error("Error en el proceso de submit:", error);
+                $loadingOverlay.css('display', 'none');
+                $submitButton.val('IR A PAGAR 💳').prop('disabled', false);
+                 // Show user-friendly error
+                alert('Hubo un problema al procesar tu pedido. Por favor, revisá tus datos e intentá nuevamente. Si el problema persiste, contactanos por WhatsApp.');
+            }
+        });
+
+
+        // --- WhatsApp Validation ---
+        let isWhatsAppValid = false; // Assume invalid initially
+        let isWhatsAppChecking = false;
+        let wpValidationTimeout;
+        const wpApiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+        const $wpErrorElement = createWhatsAppErrorElement();
+
+        function getWhatsAppErrorElement() {
+            return $form.find(".error-message");
+        }
+
+        function createWhatsAppErrorElement() {
+            let $errorElement = getWhatsAppErrorElement();
+            if ($errorElement.length === 0) {
+                $errorElement = $("<div class='error-message'></div>");
+                $whatsappInput.parent().append($errorElement);
+            }
+            return $errorElement;
+        }
+
+        function showWhatsAppError(message, type = 'invalid') { // types: 'invalid', 'valid', 'verifying', 'api-error'
+             $wpErrorElement.text(message).removeClass('valid invalid verifying api-error').addClass(type).show();
+        }
+
+        function hideWhatsAppError() {
+             $wpErrorElement.hide();
+        }
+
+        function setDependentFieldsDisabled(disabled) {
+            const dependentIds = ["59648134", "1743418466", "1005165410", "951592426", "541001873", "comoabona", "botoncomprar"];
+             dependentIds.forEach(id => {
+                const $el = $(`#${id}`);
+                if ($el.length) {
+                     $el.prop('disabled', disabled);
+                     // Update submit button state directly based on validity
+                      if (id === 'botoncomprar') {
+                          const items = $selectedItemsInput.val().trim().split(', ');
+                          const itemCount = items[0] === "" ? 0 : items.length;
+                           $el.prop('disabled', disabled || itemCount === 0 || itemCount > 2); // Also disable if item count wrong
+                      }
+                }
+            });
+        }
+
+        async function validateWhatsApp() {
+            if (isWhatsAppChecking) return;
+
+            const number = $whatsappInput.val();
+            if (!number || number.length < 9 ) { // Basic length check
+                 hideWhatsAppError();
+                 setDependentFieldsDisabled(true); // Keep disabled if empty or too short
+                 isWhatsAppValid = false;
+                return;
+            }
+
+            isWhatsAppChecking = true;
+            showWhatsAppError("Verificando WhatsApp...", 'verifying');
+            setDependentFieldsDisabled(true); // Disable while checking
+
+             // Format number: ensure 549 prefix for Argentina
+            let formattedNumber = number.replace(/\D/g, ""); // Remove non-digits
+             if (formattedNumber.length >= 10 && !formattedNumber.startsWith('549')) {
+                 formattedNumber = '549' + formattedNumber;
+             }
+
+
+            try {
+                const response = await fetch(wpApiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ whatsapp_check: formattedNumber })
+                });
+
+                if (!response.ok) {
+                     throw new Error(`API Error: ${response.status}`);
+                 }
+
+                const data = await response.json();
+                isWhatsAppValid = data.exists === true;
+
+                if (isWhatsAppValid) {
+                    showWhatsAppError("WhatsApp válido.", 'valid');
+                    setDependentFieldsDisabled(false); // Enable fields on valid
+                } else {
+                    showWhatsAppError("WhatsApp no válido. Verificá el número.", 'invalid');
+                     setDependentFieldsDisabled(true); // Keep disabled on invalid
+                }
+
+            } catch (error) {
+                console.error("WhatsApp validation error:", error);
+                showWhatsAppError("Error al verificar. Intentá de nuevo.", 'api-error');
+                 setDependentFieldsDisabled(true); // Keep disabled on API error
+                 isWhatsAppValid = false;
+            } finally {
+                isWhatsAppChecking = false;
+            }
+        }
+
+         // Disable fields initially until WhatsApp is validated
+         setDependentFieldsDisabled(true);
+
+         $whatsappInput.on('input', function() {
+             clearTimeout(wpValidationTimeout);
+             hideWhatsAppError(); // Hide message immediately on typing
+             isWhatsAppValid = false; // Assume invalid while typing
+             setDependentFieldsDisabled(true); // Keep disabled while potentially invalid
+         });
+
+        $whatsappInput.on('blur', function() {
+            clearTimeout(wpValidationTimeout);
+            wpValidationTimeout = setTimeout(validateWhatsApp, 300); // Validate after user stops typing
+        });
+
+
+        // --- Initial Page Setup ---
+        // Display date
+        const d = new Date();
+        const strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
+        const $fechahoy = $("#fechahoy");
+        let i = 0;
+        const txt = 'Ofertas válidas HOY ' + strDate;
+        const speed = 50;
+        function typeWriter() {
+            if (i < txt.length) {
+                $fechahoy.append(txt.charAt(i));
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+        $fechahoy.show();
+        typeWriter();
+
+
+        // Region/Promo Bar display
+        const $regionBar = $("#region");
+        // async function showRegionPromo() {
+        //     try {
+        //         const response = await fetch('https://api.ipregistry.co/?key=ytj9a1amj1kefj&fields=location.city,location.region.name'); // Replace with your key if using IP detection
+        //         const json = await response.json();
+        //         const city = json.location.city;
+        //         const province = json.location.region.name;
+        //         $regionBar.html(`📍 ¡Envío GRATIS a ${city ? city + ', ' : ''}${province || 'tu zona'}! Aprovechá HOY`).slideDown();
+        //     } catch (error) {
+        //         console.warn("IP Registry error or not used:", error);
+                 $regionBar.html("🚚 Envío GRATIS a TODO el país ¡Últimos días!").slideDown(); // Fallback message
+        //     }
+        // }
+        // showRegionPromo(); // Call the function to show the bar
+        $regionBar.html("🚚 Envío GRATIS a TODO el país ¡Últimos días!").slideDown(); // Simplified version
+
+        // Email Autocomplete
+        const acList = ['gmail.com','hotmail.com','hotmail.com.ar','hotmail.es','yahoo.com.ar','yahoo.com','live.com.ar','live.com','outlook.com'];
+        $emailInput.autocomplete({
+            source: function(request, response) {
+                const term = request.term;
+                const atIndex = term.lastIndexOf('@');
+                if (atIndex !== -1) {
+                    const domainPart = term.substring(atIndex + 1);
+                     response($.ui.autocomplete.filter(acList, domainPart).map(d => term.substring(0, atIndex + 1) + d));
+                }
+            },
+            minLength: 1,
+            select: function(event, ui) {
+                this.value = ui.item.value;
+                return false;
+            }
+        });
+
+        // Initial summary update in case of page reload with selections
+        updateOrderSummary();
+
+        // Store FBCLID if present
+         const fbclidpedido = window.location.href;
+         $("#1209868979").val(fbclidpedido); // Hidden textarea for GForm
+
+         // Scroll to form functionality for the button in the bottom bar
+         $finalizarPedidoBtn.on('click', function(e) {
+             e.preventDefault();
+             $('html, body').animate({
+                 scrollTop: $restodelform.offset().top - 20 // Scroll to just above the form
+             }, 500);
+             // Hide button immediately on click? Or maybe rely on scroll listener below?
+             // $(this).fadeOut(); // Optional: hide immediately
+         });
+
+          // Hide "Finalizar Compra" button when scrolling past the form
+         let formTopOffset = $restodelform.length ? $restodelform.offset().top : $(document).height();
+         $(window).on('scroll resize', function() {
+             // Recalculate offset on resize/scroll in case layout changes
+              if ($restodelform.is(':visible')) {
+                  formTopOffset = $restodelform.offset().top;
+              }
+              if ($(window).scrollTop() + $(window).height() > formTopOffset + 50 ) { // If bottom of viewport is below the form area
+                 if ($finalizarPedidoBtn.is(':visible') && $selectedItemsInput.val().trim() !== "") {
+                      $finalizarPedidoBtn.fadeOut();
+                 }
+             } else {
+                 if (!$finalizarPedidoBtn.is(':visible') && $selectedItemsInput.val().trim() !== "") {
+                      $finalizarPedidoBtn.fadeIn();
+                  }
+             }
+         }).trigger('scroll'); // Trigger initially
+
+
+        // --- Sales Notifications ---
+        const salesData = [
+            { name: 'María G.', city: 'CABA', order: 'Roma Negro', time: '20 min', img: 'roma-negras-1.jpg' },
+            { name: 'Sofía L.', city: 'Ramos Mejía', order: 'Roma Suela', time: '1 hr', img: 'roma-suela-1a.jpg' },
+            { name: 'Rocío M.', city: 'Córdoba', order: 'Siena Negro', time: '3 hs', img: 'siena2025-1.webp' },
+            { name: 'Valeria P.', city: 'Rosario', order: 'Roma Negro x2', time: '4 hs', img: 'roma-negras-1a.jpg' },
+        ];
+        let currentNotificationIndex = 0;
+        const $notificationContainer = $('#notification-container');
+
+        function showNotification() {
+            if (currentNotificationIndex >= salesData.length) {
+                currentNotificationIndex = 0; // Loop back
+            }
+            const data = salesData[currentNotificationIndex];
+
+            const $notification = $(`
+                <div class="notification">
+                    <img src="${data.img}" alt="${data.order}" loading="lazy">
+                    <div class="order-info">
+                        <div class="customer-info">
+                            <h3>✅ ${data.name}</h3>
+                            <span class="city">📍 ${data.city}</span>
+                        </div>
+                        <p class="order">Compró ${data.order}</p>
+                        <p class="time-since-purchase">hace ${data.time}</p>
+                    </div>
+                    <button class="close" aria-label="Cerrar notificación">X</button>
+                </div>
+            `);
+
+            $notification.find('.close').on('click', function() {
+                $(this).closest('.notification').fadeOut(300, function() { $(this).remove(); });
+            });
+
+            // Remove old notifications before adding new one
+             $notificationContainer.find('.notification').fadeOut(300, function() { $(this).remove(); });
+            $notificationContainer.append($notification);
+
+
+            // Auto-remove after some time
+            setTimeout(() => {
+                $notification.fadeOut(500, function() { $(this).remove(); });
+            }, 6000); // Show for 6 seconds
+
+            currentNotificationIndex++;
+        }
+
+         // Start notifications after a delay
+         setTimeout(() => {
+            showNotification(); // Show first one
+            setInterval(showNotification, 12000); // Show subsequent ones every 12 seconds
+         }, 5000); // Initial delay of 5 seconds
+
+
+    }); // End document ready
+    </script>
+
 </body>
 </html>
