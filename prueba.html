@@ -36,14 +36,14 @@
           --color-secondary: #D2B48C; /* Tan */
           --color-accent: #CC5500; /* Burnt Orange */
           --color-background: #fdfbf7; /* Light Beige/Cream */
-          --color-card-bg: #fffcf7; /* Slightly Creamier White */
+          --color-card-bg: #fffcf7; /* Slightly Creamier White for cards */
           --color-text: #4a4a4a;
           --color-heading: #5D4037; /* Dark Brown */
-          --color-border: #e8e0d4;
-          --color-success: #5D4037;
-          --color-error: #c0392b;
-          --color-highlight-bg: #fff8e1;
-          --color-highlight-text: #5D4037;
+          --color-border: #e8e0d4; /* Lighter border */
+          --color-success: #5D4037; /* Dark brown for success text */
+          --color-error: #c0392b; /* Standard red for errors */
+          --color-highlight-bg: #fff8e1; /* Light yellow for highlights */
+          --color-highlight-text: #5D4037; /* Dark text on highlight */
           --font-primary: 'Lato', sans-serif;
           --font-secondary: 'Merriweather', serif;
           --border-radius: 8px;
@@ -57,7 +57,7 @@
       a { color: var(--color-accent); text-decoration: none; }
       a:hover { text-decoration: underline; }
       h1, h2, h3, h4, h5, h6 { font-family: var(--font-secondary); color: var(--color-heading); margin-bottom: 0.8em; line-height: 1.3; }
-      h1 { font-size: 1.8em; margin-top: 0.5em; }
+      h1 { font-size: 1.8em; margin-top: 0.5em; } /* Adjusted base size */
       h2 { font-size: 1.5em; }
       h3 { font-size: 1.3em; }
       h4 { font-size: 1.15em; margin-bottom: 0.6em; }
@@ -69,6 +69,7 @@
       /* Clearfix for legend */
       fieldset::after { content: ""; display: table; clear: both; }
 
+
       /* --- Layout & Container --- */
       .container { max-width: 960px; margin: 0 auto; padding: 0 15px; } /* Removed top/bottom padding, handled by section margins */
       .form-container { max-width: 550px; margin: 0 auto; padding: 0 15px; } /* Removed top margin */
@@ -76,47 +77,70 @@
       /* --- Header --- */
       .site-header { text-align: center; padding-bottom: 30px; border-bottom: 1px solid var(--color-border); margin-bottom: var(--section-spacing); }
       .site-header img { max-width: 230px; margin: 0 auto 20px auto; }
-      .site-header h1 { font-size: 1.7em; margin-bottom: 15px; }
-      .site-header p { font-size: 1.05em; line-height: 1.7; margin-bottom: 15px; }
-      .site-header .emoji { font-size: 1.1em; /* Slightly smaller */ vertical-align: -0.1em; /* Adjust vertical align */ display: inline-block; margin: 0 3px; }
+      .site-header h1 { font-size: 1.7em; margin-bottom: 15px; color: var(--color-heading); }
+      .site-header p { font-size: 1.05em; line-height: 1.7; margin-bottom: 15px; color: var(--color-text); }
+      .site-header .emoji { font-size: 1.1em; vertical-align: -0.1em; display: inline-block; margin: 0 3px; }
       .promo-highlight { color: var(--color-primary); font-weight: bold; }
       #fechahoy { color: var(--color-heading); background-color: var(--color-secondary); padding: 6px 15px; font-weight: bold; text-align: center; font-size: 0.9em; margin: 15px auto 0 auto; border-radius: 20px; display: inline-block; border: none; }
 
-      /* --- Product Catalog --- */
-      #todoslosmodelos { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 30px; border: none; padding: 0; background: none; } /* Removed bottom margin, handled by section */
-      .product-card { background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s ease; display: flex; flex-direction: column; }
+      /* --- Price Summary Box (Repeated & Initial) --- */
+      .price-summary-box { background-color: var(--color-highlight-bg); padding: 25px; border: 1px solid #f5e5b8; border-radius: var(--border-radius); margin: var(--section-spacing) 0; text-align: center; }
+      .price-summary-box p:first-child { margin: 0 0 18px 0; font-size: 1.1em; font-weight: bold; color: var(--color-heading); }
+      .price-summary-box .price-line { font-size: 1.25em; font-weight: bold; margin-bottom: 10px; color: var(--color-accent); }
+      .price-summary-box .price-detail { font-size: 0.9em; color: #666; }
+      .price-summary-box .discount-info { font-size: 0.9em; background-color: #fff; color: var(--color-highlight-text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 12px 0; border: 1px solid var(--color-border); }
+      .price-summary-box .transfer-discount { color: var(--color-success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 15px; display: block; }
+
+      /* --- Info Section --- */
+      .info-section { font-size: 0.98em; line-height: 1.8; margin: var(--section-spacing) 0; padding: 25px; background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); }
+      .info-section span { display: flex; align-items: baseline; margin-bottom: 12px; }
+      .info-section small span { font-weight: bold; color: var(--color-heading); } /* Target the bold span directly */
+      .info-section .emoji { margin-right: 12px; font-size: 1.1em; min-width: 1.3em; /* Ensure alignment */ display: inline-block; text-align: center; vertical-align: -0.1em; }
+
+      /* --- How to Buy Section --- */
+      .how-to-buy { margin-bottom: var(--section-spacing); background-color: var(--color-card-bg); padding: 30px; border: 1px solid var(--color-border); border-radius: var(--border-radius); }
+      .how-to-buy h3 { margin-bottom: 15px; color: var(--color-primary); }
+      .how-to-buy ol { padding-left: 25px; margin: 0; font-size: 0.98em; }
+      .how-to-buy li { margin-bottom: 10px; color: var(--color-text); }
+      .how-to-buy li::marker { color: var(--color-primary); font-weight: bold; }
+      .how-to-buy strong { color: var(--color-heading); }
+
+      /* --- Product Catalog Grid --- */
+      #todoslosmodelos { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 30px; /* No border/padding needed */ }
+      .product-card { background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.06); transition: box-shadow 0.3s ease; display: flex; flex-direction: column; /* Important for structure */ }
       .product-card:hover { box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
 
-      /* --- Carousel Styles --- */
-      .slick-slider { margin-bottom: 0 !important; position: relative; }
-      .slick-list { overflow: hidden; border-radius: var(--border-radius) var(--border-radius) 0 0; }
-      .slick-track { display: flex; align-items: center; }
+      /* --- Carousel Styles (Inside Product Card) --- */
+      .slick-slider { margin-bottom: 0 !important; position: relative; } /* Remove default Slick margin */
+      .slick-list { /* Container for slides */ overflow: hidden; border-radius: var(--border-radius) var(--border-radius) 0 0; }
+      .slick-track { display: flex; align-items: center; } /* Align slides vertically if adaptiveHeight is used */
       .slick-slide { float: left; height: 100%; min-height: 1px; outline: none; }
-      .slick-slide img { display: block; margin: 0 auto; }
+      .slick-slide img { display: block; margin: 0 auto; } /* Center image if needed */
       .model-carousel { width: 100%; position: relative; }
-      .model-carousel .slick-slide { background-color: #fff; cursor: pointer; }
-      .model-carousel .slick-slide img { width: 100%; height: 320px; object-fit: cover; }
-      .model-carousel label[for] { display: block; cursor: pointer; }
-      .testimonials-section { background-color: var(--color-card-bg); padding: 35px 20px; border-radius: var(--border-radius); border: 1px solid var(--color-border); }
-      .testimonials-section h2 { text-align: center; margin-bottom: 30px; }
-      .testimonials-carousel { max-width: 600px; margin: 0 auto; }
-      .testimonials-carousel .slick-slide img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border: 1px solid #eee; border-radius: 4px; }
-      .slick-prev, .slick-next { width: 38px; height: 38px; background: rgba(255, 255, 255, 0.85); color: var(--color-primary); }
-      .slick-prev:hover, .slick-next:hover { background: var(--color-primary); color: white; }
-      .slick-prev:before, .slick-next:before { font-size: 20px; }
+      .model-carousel .slick-slide { background-color: #fff; /* White background behind images */ cursor: pointer; }
+      .model-carousel .slick-slide img {
+          width: 100%;
+          height: 320px; /* Fixed height as per original code - ADJUST IF NEEDED */
+          object-fit: cover; /* 'cover' crops, 'contain' fits without cropping */
+          /* Consider 'contain' if 'no cortadas' is absolute priority, or use adaptiveHeight in JS */
+      }
+      .model-carousel label[for] { display: block; cursor: pointer; } /* Make image clickable for select */
+      /* Slick Arrows */
+      .slick-prev, .slick-next { z-index: 1; width: 38px; height: 38px; background: rgba(255, 255, 255, 0.85); border-radius: 50%; }
+      .slick-prev:hover, .slick-next:hover { background: rgba(93, 64, 55, 0.9); /* Darker background on hover */ }
+      .slick-prev:before, .slick-next:before { color: var(--color-primary); font-size: 20px; opacity: 0.8; transition: color 0.2s; }
+      .slick-prev:hover:before, .slick-next:hover:before { color: white; opacity: 1; }
       .slick-prev { left: 12px; }
       .slick-next { right: 12px; }
-      /* Dots Contrast */
+      /* Slick Dots */
       .slick-dots { bottom: 12px; }
       .slick-dots li { margin: 0 6px; }
-      .slick-dots li button { width: 10px; height: 10px; }
-      .slick-dots li button:before { font-size: 10px; color: #aaaaaa; /* Darker gray for inactive */ opacity: 0.8; }
-      /* Specificity for testimonials dots */
-      .testimonials-carousel .slick-dots li button:before { color: #aaaaaa; }
-      .slick-dots li.slick-active button:before { color: var(--color-primary); /* Primary color for active */ opacity: 1; }
+      .slick-dots li button { width: 10px; height: 10px; padding: 0; }
+      .slick-dots li button:before { font-size: 10px; line-height: 10px; width: 10px; height: 10px; color: #aaaaaa; opacity: 0.8; transition: color 0.2s; }
+      .slick-dots li.slick-active button:before { color: var(--color-primary); opacity: 1; }
 
-      /* --- Product Details --- */
-      .product-details { padding: 25px; text-align: center; font-size: 0.95em; border-top: 1px solid var(--color-border); flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+      /* --- Product Details (Inside Product Card) --- */
+      .product-details { padding: 25px; text-align: center; font-size: 0.95em; border-top: 1px solid var(--color-border); flex-grow: 1; /* Allows this section to fill space */ display: flex; flex-direction: column; justify-content: space-between; /* Pushes selection down */ }
       .product-info { margin-bottom: 18px; color: var(--color-text); line-height: 1.7; }
       .product-info span { display: block; margin-bottom: 6px; }
       .product-info strong { color: var(--color-heading); }
@@ -127,24 +151,32 @@
       .quantity-select label { margin: 0 12px; cursor: pointer; display: inline-flex; align-items: center; font-size: 1em; }
       .quantity-select input[type="radio"] { margin-left: 8px; width: 18px; height: 18px; accent-color: var(--color-primary); vertical-align: middle; /* Align radio */ }
       .quantity-label { display: block; margin-bottom: 10px; font-weight: bold; color: var(--color-heading); font-size: 1em; }
-      .size-selection fieldset { border: none; padding: 0; margin-top: 18px; }
-      .fieldsetstalles { display: none; }
+      .size-selection { margin-top: auto; /* Pushes this group to the bottom */ padding-top: 15px; /* Space above selection */ }
+      .size-selection fieldset { border: none; padding: 0; margin-top: 10px; /* Reduced margin */ }
+      .fieldsetstalles { display: none; } /* Hide second size initially */
       .size-selection .form-group { margin-bottom: 0; }
       .size-selection select.talle { font-size: 0.95em; }
 
-      /* --- Form Styles --- */
-      #restodelform { display: none; background-color: var(--color-card-bg); padding: 30px 35px; border: 1px solid var(--color-border); border-radius: var(--border-radius); } /* Removed top margin, handled by section */
-      #restodelform h2 { text-align: center; /* Center heading */ margin-bottom: 35px; font-size: 1.6em; }
-      #restodelform h2 .emoji { vertical-align: -0.1em; margin: 0 5px; } /* Align cart emojis */
-      .form-group { margin-bottom: 20px; /* More space */ }
-      .form-group label { display: block; margin-bottom: 8px; /* More space */ font-weight: bold; font-size: 0.95em; color: var(--color-heading); }
-      .form-control { display: block; width: 100%; padding: 12px 15px; /* Adjusted padding */ font-size: 1em; line-height: 1.5; color: var(--color-text); background-color: #fff; background-clip: padding-box; border: 1px solid var(--color-border); border-radius: 5px; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; vertical-align: middle; /* Align input baseline */ }
+      /* --- Testimonials Section --- */
+      .testimonials-section { background-color: var(--color-card-bg); padding: 35px 20px; border-radius: var(--border-radius); border: 1px solid var(--color-border); }
+      .testimonials-section h2 { text-align: center; margin-bottom: 30px; }
+      .testimonials-carousel { max-width: 600px; margin: 0 auto; }
+      .testimonials-carousel .slick-slide img { width: 100%; height: auto; max-height: 500px; object-fit: contain; border: 1px solid #eee; border-radius: 4px; }
+      /* Using default dots from product card */
+
+       /* --- Form Styles --- */
+      #restodelform { display: none; /* Hidden initially */ background-color: var(--color-card-bg); padding: 30px 35px; border: 1px solid var(--color-border); border-radius: var(--border-radius); margin-top: var(--section-spacing); /* Add top margin when visible */ }
+      #restodelform h2 { text-align: center; margin-bottom: 35px; font-size: 1.6em; }
+      #restodelform h2 .emoji { vertical-align: -0.1em; margin: 0 5px; }
+      .form-group { margin-bottom: 20px; /* Consistent spacing */ }
+      .form-group label { display: block; margin-bottom: 8px; font-weight: bold; font-size: 0.95em; color: var(--color-heading); }
+      .form-control { display: block; width: 100%; padding: 12px 15px; /* Generous padding */ font-size: 1em; line-height: 1.5; color: var(--color-text); background-color: #fff; background-clip: padding-box; border: 1px solid var(--color-border); border-radius: 5px; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; vertical-align: middle; }
       .form-control:focus { border-color: var(--color-secondary); outline: 0; box-shadow: 0 0 0 0.2rem rgba(210, 180, 140, 0.3); }
       .form-control[readonly] { background-color: #f8f6f2; opacity: 0.8; cursor: not-allowed; }
-      select.form-control { height: auto; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235D4037' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 12px 12px; padding-right: 2.5rem; }
+      select.form-control { height: auto; /* Let padding define height */ appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235D4037' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 12px 12px; padding-right: 2.5rem; }
       /* Specific style for summary textarea */
       textarea#1471599855 { min-height: 70px; line-height: 1.5; font-size: 0.9em; }
-      .help-block { font-size: 0.88em; color: #777; margin-top: 8px; /* More space */ }
+      .help-block { font-size: 0.88em; color: #777; margin-top: 8px; }
       /* Order Summary in Form */
       #confirma-pedido { background-color: #fffcf7; padding: 25px; border-radius: var(--border-radius); border: 1px solid var(--color-border); margin-top: 30px; }
       #confirma-pedido h3 { font-size: 1.3em; margin-bottom: 25px; text-align: center; color: var(--color-primary); }
@@ -156,13 +188,13 @@
       #preciototal .shipping-free { color: var(--color-success); font-size: 0.9em; font-weight: normal; display: inline-block; margin-left: 5px; }
       #preciototal .add-more-info { font-size: 0.85em; color: #6c757d; font-weight: normal; display: block; margin-top: 8px; }
       #confirma-pedido fieldset { margin-top: 30px; border-color: var(--color-secondary); background-color: #fff; }
-      #confirma-pedido legend { color: var(--color-primary); margin-bottom: 20px; } /* More space below legend */
+      #confirma-pedido legend { color: var(--color-primary); margin-bottom: 20px; }
       #comoabona { background-color: #fff; }
       .commitment-warning { text-align: center; margin: 30px 0; font-size: 0.95em; background-color: var(--color-highlight-bg); padding: 15px; border-radius: var(--border-radius); border: 1px solid #f5e5b8; color: var(--color-highlight-text); }
       .commitment-warning .emoji { font-size: 1.2em; vertical-align: -0.1em; }
       /* Submit Button */
       #botoncomprar { width: 100%; padding: 14px 20px; font-size: 1.25em; font-family: var(--font-secondary); font-weight: bold; background-color: var(--color-accent); color: white; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.2s ease, opacity 0.2s ease; margin-top: 30px; margin-bottom: 0; letter-spacing: 0.5px; }
-      #botoncomprar:hover { background-color: #a54400; }
+      #botoncomprar:hover { background-color: #a54400; /* Darker accent */ }
       #botoncomprar:disabled { background-color: #cccccc; cursor: not-allowed; opacity: 0.7; }
       #botoncomprar .emoji { margin-left: 8px; vertical-align: -0.1em; }
 
@@ -173,36 +205,42 @@
             position: fixed;
             width: 100%;
             left: 0;
-            padding: 10px 15px; /* Consistent padding */
-            min-height: 55px; /* Adjusted height */
+            padding: 10px 15px;
+            min-height: 55px; /* Ensure enough height */
             bottom: 0;
             background-color: var(--color-heading);
             color: var(--color-background);
             margin: 0;
             z-index: 998;
-            border-top: 1px solid #4a3027;
+            border-top: 1px solid #4a3027; /* Darker border top */
             box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            gap: 15px; /* Space between text and button */
         }
          #text-content {
-             flex-grow: 1; /* Allow text to grow */
-             flex-shrink: 1; /* Allow text to shrink */
-             overflow: hidden;
+             flex-grow: 1; /* Allow text to take available space */
+             flex-shrink: 1; /* Allow text to shrink if needed */
+             overflow: hidden; /* Hide overflow */
              line-height: 1.4;
-             /* Removed text-overflow ellipsis, relying on flex shrink */
          }
-         #text-content b { display: block; font-size: 1em; margin-bottom: 2px; font-weight: bold; color: #fff; white-space: nowrap; /* Prevent wrapping of label */ }
-         #text-content span:not(#preciototal2) { /* Target the summary text */
-            display: block; /* Make summary text block */
+         #text-content b { /* Label like "PEDIDO (1 par):" */
+             display: block;
+             font-size: 1em; /* Relative to bar font size */
+             margin-bottom: 2px;
+             font-weight: bold;
+             color: #fff;
+             white-space: nowrap; /* Prevent label wrapping */
+         }
+         #text-content span:not(#preciototal2) { /* The summary text */
+            display: block; /* Ensure it's on its own line */
             white-space: normal; /* Allow wrapping */
          }
          #preciototal2 { /* Price in bar */
              font-weight: bold;
-             color: var(--color-secondary);
-             font-size: 1.1em;
+             color: var(--color-secondary); /* Tan color for price */
+             font-size: 1.1em; /* Slightly larger price */
              display: block;
              margin-top: 3px;
          }
@@ -214,23 +252,23 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            white-space: nowrap;
+            white-space: nowrap; /* Prevent button text wrapping */
             transition: background-color 0.2s ease;
-            flex-shrink: 0; /* IMPORTANT: Prevent button from shrinking */
+            flex-shrink: 0; /* Prevent button from shrinking */
             font-weight: bold;
-            margin-left: auto; /* Push button to the right if needed, though space-between should work */
+            margin-left: auto; /* Pushes button right if space allows */
         }
          #finalizarpedido:hover { background-color: #a54400; }
 
       #region { /* Top Promo bar */
             font-size: 13px;
-            display: none;
+            display: none; /* Hidden initially */
             background-color: var(--color-primary);
             color: white;
             padding: 10px 15px;
             position: fixed;
             font-weight: bold;
-            z-index: 1000;
+            z-index: 1000; /* Above most content */
             top: 0;
             width: 100%;
             text-align: center;
@@ -239,78 +277,55 @@
          #region .emoji { vertical-align: -0.1em; font-size: 1.1em; }
 
       #whatsapp { /* WhatsApp Button */
-            display: none;
+            display: none; /* Hidden initially */
             position: fixed;
             width: 55px;
             height: 55px;
             bottom: 80px; /* INCREASED: Position above taller bottom bar */
             right: 15px;
-            z-index: 999;
+            z-index: 999; /* Above bottom bar */
             transition: opacity 0.3s ease;
         }
         #whatsapp img { width: 100%; height: 100%; filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25)); }
 
-        /* Info Section */
-        .info-section { font-size: 0.98em; line-height: 1.8; margin: var(--section-spacing) 0; padding: 25px; background-color: var(--color-card-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); }
-        .info-section span { display: flex; align-items: baseline; margin-bottom: 12px; }
-        .info-section small span { font-weight: bold; color: var(--color-heading); }
-        .info-section .emoji { margin-right: 12px; font-size: 1.1em; min-width: 1.3em; display: inline-block; text-align: center; vertical-align: -0.1em; }
+        /* Loading Overlay */
+        .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(253, 251, 247, 0.92); backdrop-filter: blur(5px); z-index: 10001; /* Above everything */ display: flex; align-items: center; justify-content: center; text-align: center; }
+        .loading-content { background: white; padding: 35px 45px; border-radius: var(--border-radius); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .loading-spinner { width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid var(--color-accent); border-radius: 50%; margin: 0 auto 25px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-message { color: var(--color-heading); font-size: 1.05em; margin: 0; line-height: 1.6; }
 
-        /* How to Buy Section */
-        .how-to-buy { margin-bottom: var(--section-spacing); background-color: var(--color-card-bg); padding: 30px; border: 1px solid var(--color-border); border-radius: var(--border-radius); }
-        .how-to-buy h3 { margin-bottom: 15px; color: var(--color-primary); }
-        .how-to-buy ol { padding-left: 25px; margin: 0; font-size: 0.98em; }
-        .how-to-buy li { margin-bottom: 10px; color: var(--color-text); }
-        .how-to-buy li::marker { color: var(--color-primary); font-weight: bold; }
-        .how-to-buy strong { color: var(--color-heading); }
+        /* Error Messages (WhatsApp Validation) */
+        .error-message { display: none; font-size: 0.9em; margin-top: 8px; padding: 10px 12px; border-radius: 4px; text-align: center; font-weight: 500; border: 1px solid transparent; transition: opacity 0.3s ease; }
+        .error-message.verifying { display: block; background-color: #e2f3fd; color: #0c5460; border-color: #b8daff; animation: pulse 1.5s infinite ease-in-out; }
+        .error-message.valid { display: block; background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+        .error-message.invalid { display: block; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+        .error-message.api-error { display: block; background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
-        /* Price Summary Box (Repeated) */
-        .price-summary-box { background-color: var(--color-highlight-bg); padding: 25px; border: 1px solid #f5e5b8; border-radius: var(--border-radius); margin: var(--section-spacing) 0; text-align: center; }
-        .price-summary-box p:first-child { margin: 0 0 18px 0; font-size: 1.1em; font-weight: bold; color: var(--color-heading); }
-        .price-summary-box .price-line { font-size: 1.25em; font-weight: bold; margin-bottom: 10px; color: var(--color-accent); }
-        .price-summary-box .price-detail { font-size: 0.9em; color: #666; }
-        .price-summary-box .discount-info { font-size: 0.9em; background-color: #fff; color: var(--color-highlight-text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 12px 0; border: 1px solid var(--color-border); }
-        .price-summary-box .transfer-discount { color: var(--color-success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 15px; display: block; }
+        /* Item Added Confirmation (Sticky Top) */
+        .avisoagregado-fixed { font-size: 14px; line-height: 1.5; color: white; font-weight: bold; border: none; background-color: var(--color-success); text-align: center; top: 60px; /* Below sticky promo bar */ max-width: 90%; width: 350px; padding: 10px 15px; z-index: 5001; position: fixed; left: 50%; transform: translateX(-50%); border-radius: 5px; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 
-      /* Loading Overlay */
-      .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(253, 251, 247, 0.92); backdrop-filter: blur(5px); z-index: 10001; /* Above promo bar */ align-items: center; justify-content: center; text-align: center; }
-      .loading-content { background: white; padding: 35px 45px; border-radius: var(--border-radius); box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
-      .loading-spinner { width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid var(--color-accent); border-radius: 50%; margin: 0 auto 25px; animation: spin 1s linear infinite; }
-      @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      .loading-message { color: var(--color-heading); font-size: 1.05em; margin: 0; line-height: 1.6; }
+        /* Utility */
+        .hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; } /* Screen reader only */
+        .text-center { text-align: center; }
 
-      /* Error Messages (WhatsApp Validation) */
-      .error-message { display: none; font-size: 0.9em; margin-top: 8px; padding: 10px 12px; border-radius: 4px; text-align: center; font-weight: 500; border: 1px solid transparent; transition: opacity 0.3s ease; }
-      .error-message.verifying { display: block; background-color: #e2f3fd; color: #0c5460; border-color: #b8daff; animation: pulse 1.5s infinite ease-in-out; }
-      .error-message.valid { display: block; background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
-      .error-message.invalid { display: block; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-      .error-message.api-error { display: block; background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        /* jQuery UI Autocomplete */
+        .ui-autocomplete { z-index: 1001; border-radius: 5px; border: 1px solid var(--color-border); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); background: #fff; }
+        .ui-menu-item { padding: 10px 14px; font-size: 0.95em; color: var(--color-text); }
+        .ui-menu-item.ui-state-focus, .ui-menu-item.ui-state-active { background-color: var(--color-primary); color: #ffffff; border: none; margin: 0; border-radius: 0; }
 
-      /* Item Added Confirmation */
-      .avisoagregado { color: var(--color-success); font-weight: bold; font-size: 0.9em; margin-top: 12px; text-align: center; }
-      .avisoagregado-fixed { font-size: 14px; line-height: 1.5; color: white; font-weight: bold; border: none; background-color: var(--color-success); text-align: center; top: 60px; /* Below sticky promo bar */ max-width: 90%; width: 350px; padding: 10px 15px; z-index: 5001; position: fixed; left: 50%; transform: translateX(-50%); border-radius: 5px; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
-
-      /* Utility */
-      .hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; } /* Screen reader only */
-      .text-center { text-align: center; }
-
-      /* jQuery UI Autocomplete */
-      .ui-autocomplete { z-index: 1001; border-radius: 5px; border: 1px solid var(--color-border); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); }
-      .ui-menu-item { padding: 10px 14px; font-size: 0.95em; }
-      .ui-menu-item.ui-state-focus, .ui-menu-item.ui-state-active { background-color: var(--color-primary); color: #ffffff; }
-
-      /* --- Notifications --- */
-      #notification-container {
+        /* --- Notifications --- */
+        #notification-container {
             position: fixed;
             bottom: 70px; /* Adjusted position above bottom bar */
             left: 15px;
             z-index: 997; /* Below bottom bar, above content */
             width: calc(100% - 30px);
             max-width: 360px;
-            pointer-events: none;
+            pointer-events: none; /* Container doesn't block clicks */
         }
-        .notification { display: flex; align-items: center; padding: 12px 15px; background-color: white; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18); border-radius: var(--border-radius); margin-bottom: 12px; opacity: 0; transform: translateX(-110%); animation: slideInLeft 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; position: relative; pointer-events: auto; }
+        .notification { display: flex; align-items: center; padding: 12px 15px; background-color: white; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.18); border-radius: var(--border-radius); margin-bottom: 12px; opacity: 0; transform: translateX(-110%); animation: slideInLeft 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; position: relative; pointer-events: auto; /* Individual notifications are clickable */ }
         @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
         .notification img { height: 60px; width: 60px; border-radius: 6px; object-fit: cover; margin-right: 15px; flex-shrink: 0; }
         .notification .order-info { flex-grow: 1; line-height: 1.4; }
@@ -328,7 +343,7 @@
           .form-container { padding: 0 10px; }
           h1 { font-size: 1.6em; } h2 { font-size: 1.3em; }
           #todoslosmodelos { gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-          .model-carousel .slick-slide img { height: 290px; }
+          .model-carousel .slick-slide img { height: 290px; } /* Adjust height for smaller screens */
           .testimonials-section { padding: 25px 15px; }
           #text { min-height: 50px; padding: 8px 10px; gap: 10px; }
           #text-content { font-size: 11px; }
@@ -343,22 +358,37 @@
            :root { --section-spacing: 30px; }
           body { font-size: 15px; }
           h1 { font-size: 1.4em; }
-          #todoslosmodelos { grid-template-columns: 1fr; gap: 25px; }
-          .model-carousel .slick-slide img { height: 280px; /* Adjust height */ }
+          #todoslosmodelos { grid-template-columns: 1fr; gap: 25px; } /* Single column */
+          .model-carousel .slick-slide img { height: 280px; /* Further adjust height */ }
           .form-container { padding: 0 5px; }
           fieldset { padding: 15px; } legend { font-size: 1.1em; }
           #botoncomprar { font-size: 1.15em; padding: 12px 15px; }
-          #text { min-height: 55px; padding: 10px 12px; /* More padding */ }
-          #text-content b { font-size: 0.9em; } /* Smaller label */
-          #text-content span { font-size: 0.85em; } /* Smaller summary */
-          #finalizarpedido { font-size: 12px; padding: 8px 12px; } /* Slightly larger button */
-          #whatsapp { bottom: 80px; width: 48px; height: 48px; } /* Adjust for bar */
-          .info-section, .how-to-buy, .price-summary-box { padding: 20px; }
-          #notification-container { bottom: 75px; max-width: calc(100% - 20px); width: auto; }
-          /* Prevent bottom bar button taking full width on very small screens if not desired */
-          /* #text { flex-wrap: nowrap; } */ /* Optional: force no wrap */
-      }
+          #text { /* Adjust bottom bar for small screens */
+              min-height: 55px;
+              padding: 10px 12px;
+              flex-wrap: wrap; /* Allow wrapping if needed */
+              gap: 5px 10px; /* Row and column gap */
+          }
+          #text-content {
+              flex-basis: 100%; /* Allow text to take full width if it wraps */
+              text-align: center; /* Center text if wrapped */
+              font-size: 11px; /* Keep small */
+          }
+          #text-content b { display: inline; margin-right: 5px; } /* Inline label */
+          #text-content span:not(#preciototal2) { display: inline; } /* Inline summary */
+          #preciototal2 { display: inline; margin-left: 5px; font-size: 1em; } /* Inline price */
 
+          #finalizarpedido {
+              flex-basis: 100%; /* Button takes full width when wrapped */
+              font-size: 13px; /* Make button slightly larger */
+              padding: 9px 12px;
+              margin-left: 0; /* Remove margin when full width */
+              text-align: center;
+          }
+          #whatsapp { bottom: 95px; /* INCREASED position due to potentially taller wrapped bottom bar */ width: 48px; height: 48px; }
+          .info-section, .how-to-buy, .price-summary-box { padding: 20px; }
+          #notification-container { bottom: 110px; /* Adjust for potentially taller bar */ max-width: calc(100% - 20px); width: auto; left: 10px; }
+      }
     </style>
 </head>
 
@@ -368,10 +398,9 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="region" style="display: none;"></div> <!-- Top Promo Bar -->
+    <div id="region" style="display: none;"></div> <!-- Top Promo Bar - Content added via JS -->
 
     <header class="site-header container">
-        {/* ... Header content ... */}
          <img alt="Rosita Rococó Logo" src="rosita-form.webp" loading="lazy"/>
         <h1>
             <span class="emoji">🍂</span> Nueva Temporada <span class="promo-highlight">Otoño Invierno 2025</span> <span class="emoji">🍂</span>
@@ -385,8 +414,7 @@
 
     <main class="container">
 
-        <section class="price-summary-box">
-             {/* ... Price summary content ... */}
+        <section class="price-summary-box" aria-label="Resumen de Precios de Lanzamiento">
              <p>¡Aprovechá los precios de Lanzamiento!</p>
             <div class="price-line">1 par: 🔥 $70.000</div>
             <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
@@ -394,8 +422,7 @@
             <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
         </section>
 
-        <section class="info-section">
-            {/* ... Info list ... */}
+        <section class="info-section" aria-label="Información Importante">
              <span><span class="emoji">🚚</span> <small><span style="font-weight: 700;">ENVÍO GRATIS</span> a domicilio o sucursal.</small></span>
              <span><span class="emoji">💳</span> <small><span style="font-weight: 700;">PAGO:</span> Tarjeta (3 cuotas sin interés), MercadoPago, Transferencia (10% OFF).</small></span>
              <span><span class="emoji">⌛</span> <small><span style="font-weight: 700;">DESPACHO:</span> 15 días aprox. (Producimos a pedido con mucho ❤️).</small></span>
@@ -403,8 +430,7 @@
              <span><span class="emoji">📏</span> <small><span style="font-weight: 700;">TALLES:</span> Del 35 al 40. Ver medida en cm en cada talle.</small></span>
         </section>
 
-        <section class="how-to-buy">
-             {/* ... How to buy steps ... */}
+        <section class="how-to-buy" aria-label="Cómo Comprar">
              <h3>¿Cómo comprar fácil y rápido?</h3>
              <ol>
                  <li><strong>Elegí talle y cantidad</strong> de cada modelo que te guste (Máx. 2 pares).</li>
@@ -416,9 +442,9 @@
 
         {/* Product Catalog Grid */}
         <section id="todoslosmodelos" aria-label="Catálogo de Productos">
-             {/* ... Product card article elements ... */}
+
+            {/* --- Producto 1: Roma Negras --- */}
             <article class="product-card" id="modeload-roma-negras">
-                {/* ... Roma Negras content ... */}
                  <div class="model-carousel">
                     <div><label for="talle-select-roma-negras-1"><img src="roma-negras-1.jpg" alt="Borcego Roma Negro Vista 1" loading="lazy"></label></div>
                     <div><label for="talle-select-roma-negras-1"><img data-lazy="roma-negras-1a.jpg" alt="Borcego Roma Negro Vista 2" loading="lazy"></label></div>
@@ -450,7 +476,7 @@
                         </div>
                         <fieldset id="hwA-roma-negras-1">
                             <div class="form-group">
-                                <label for="talle-select-roma-negras-1" class="hidden">Seleccione Talle 1</label>
+                                <label for="talle-select-roma-negras-1" class="hidden">Seleccione Talle 1 para Roma Negro</label>
                                 <select id="talle-select-roma-negras-1" class="form-control talle">
                                     <option value="">-- Talle par 1 --</option>
                                     <option value="35-roma-negras">35 (23 cm)</option>
@@ -464,7 +490,7 @@
                         </fieldset>
                         <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
                             <div class="form-group">
-                                <label for="talle-select-roma-negras-2" class="hidden">Seleccione Talle 2</label>
+                                <label for="talle-select-roma-negras-2" class="hidden">Seleccione Talle 2 para Roma Negro</label>
                                 <select id="talle-select-roma-negras-2" class="form-control talle">
                                      <option value="">-- Talle par 2 --</option>
                                     <option value="35-roma-negras">35 (23 cm)</option>
@@ -480,8 +506,8 @@
                 </div>
             </article>
 
+            {/* --- Producto 2: Roma Suela --- */}
             <article class="product-card" id="modeload-roma-suela">
-                 {/* ... Roma Suela content ... */}
                    <div class="model-carousel">
                     <div><label for="talle-select-roma-suela-1"><img src="roma-suela-1a.jpg" alt="Borcego Roma Suela Vista 1" loading="lazy"></label></div>
                     <div><label for="talle-select-roma-suela-1"><img data-lazy="roma-suela-2a.jpg" alt="Borcego Roma Suela Vista 2" loading="lazy"></label></div>
@@ -510,7 +536,7 @@
                         </div>
                         <fieldset id="hwA-roma-suela-1">
                             <div class="form-group">
-                                <label for="talle-select-roma-suela-1" class="hidden">Seleccione Talle 1</label>
+                                <label for="talle-select-roma-suela-1" class="hidden">Seleccione Talle 1 para Roma Suela</label>
                                 <select id="talle-select-roma-suela-1" class="form-control talle">
                                     <option value="">-- Talle par 1 --</option>
                                     <option value="35-roma-suela">35 (23 cm)</option>
@@ -524,7 +550,7 @@
                         </fieldset>
                         <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
                             <div class="form-group">
-                                 <label for="talle-select-roma-suela-2" class="hidden">Seleccione Talle 2</label>
+                                 <label for="talle-select-roma-suela-2" class="hidden">Seleccione Talle 2 para Roma Suela</label>
                                 <select id="talle-select-roma-suela-2" class="form-control talle">
                                     <option value="">-- Talle par 2 --</option>
                                     <option value="35-roma-suela">35 (23 cm)</option>
@@ -540,12 +566,12 @@
                 </div>
             </article>
 
-             <article class="product-card" id="modeload-siena2025">
-                  {/* ... Siena 2025 content ... */}
+            {/* --- Producto 3: Siena 2025 --- */}
+            <article class="product-card" id="modeload-siena2025">
                     <div class="model-carousel">
-                    <div><label for="talle-select-siena2025-1"><img src="siena2025-1.webp" alt="Borcego Siena 2025 Negro Vista 1" loading="lazy"></label></div>
-                    <div><label for="talle-select-siena2025-1"><img data-lazy="siena2025-2.webp" alt="Borcego Siena 2025 Negro Vista 2" loading="lazy"></label></div>
-                 </div>
+                        <div><label for="talle-select-siena2025-1"><img src="siena2025-1.webp" alt="Borcego Siena 2025 Negro Vista 1" loading="lazy"></label></div>
+                        <div><label for="talle-select-siena2025-1"><img data-lazy="siena2025-2.webp" alt="Borcego Siena 2025 Negro Vista 2" loading="lazy"></label></div>
+                    </div>
                  <div class="product-details">
                     <div>
                          <h4>Borcego SIENA Negro</h4>
@@ -568,7 +594,7 @@
                         </div>
                         <fieldset id="hwA-siena2025-1">
                             <div class="form-group">
-                                <label for="talle-select-siena2025-1" class="hidden">Seleccione Talle 1</label>
+                                <label for="talle-select-siena2025-1" class="hidden">Seleccione Talle 1 para Siena Negro</label>
                                 <select id="talle-select-siena2025-1" class="form-control talle">
                                     <option value="">-- Talle par 1 --</option>
                                     <option value="35-siena2025">35 (23 cm)</option>
@@ -582,7 +608,7 @@
                         </fieldset>
                        <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
                             <div class="form-group">
-                                <label for="talle-select-siena2025-2" class="hidden">Seleccione Talle 2</label>
+                                <label for="talle-select-siena2025-2" class="hidden">Seleccione Talle 2 para Siena Negro</label>
                                 <select id="talle-select-siena2025-2" class="form-control talle">
                                     <option value="">-- Talle par 2 --</option>
                                     <option value="35-siena2025">35 (23 cm)</option>
@@ -598,11 +624,12 @@
                 </div>
             </article>
 
+            {/* --- Agrega más <article class="product-card"> aquí si tienes más modelos --- */}
+
         </section> { /* End #todoslosmodelos */}
 
         {/* Testimonials Section */}
-         <section class="testimonials-section">
-            {/* ... Testimonials carousel ... */}
+         <section class="testimonials-section" aria-label="Testimonios de Clientes">
              <h2><span class="emoji">😊</span> Lo que dicen nuestras clientas <span class="emoji">😊</span></h2>
             <div class="testimonials-carousel">
                 <div><img alt="Comentario Cliente 1" data-lazy="comentariorecibi1.webp" loading="lazy" /></div>
@@ -620,8 +647,7 @@
          </section>
 
         {/* Repeat Price Summary */}
-         <section class="price-summary-box">
-            {/* ... Price summary ... */}
+         <section class="price-summary-box" aria-label="Recordatorio de Precios">
              <p>Recordatorio de Precios:</p>
              <div class="price-line">1 par: 🔥 $70.000</div>
              <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
@@ -629,28 +655,27 @@
              <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
          </section>
 
-
-        {/* ORDER FORM */}
-         <section class="form-container"> {/* Added section wrapper */}
+        {/* ORDER FORM SECTION */}
+         <section class="form-container" aria-label="Formulario de Pedido">
             <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" novalidate>
-                {/* ... Form content ... */}
-                 {/* Honeypot */}
+
+                 {/* Honeypot Field (Anti-spam) */}
                 <input type="text" name="website" id="website" class="hidden" tabindex="-1" autocomplete="off">
 
+                 {/* Form content - initially hidden */}
                  <div id="restodelform" style="display: none;">
                      <h2><span class="emoji">🛒</span> Completá tu Pedido <span class="emoji">🛒</span></h2>
 
                      <fieldset>
                          <legend>Modelos Seleccionados</legend>
                          <div class="form-group">
-                             <label for="1471599855" class="hidden">Resumen de talles y modelos</label>
+                             <label for="1471599855" class="hidden">Resumen de talles y modelos seleccionados</label>
                              <textarea class="form-control" id="1471599855" name="entry.1471599855" readonly rows="3"></textarea>
                              <p class="help-block">Revisá que los talles y modelos sean correctos. Máximo 2 pares.</p>
                          </div>
                      </fieldset>
 
-                      {/* ... Other fieldsets (Datos de Contacto, Dirección de Envío) ... */}
-                       <fieldset>
+                     <fieldset>
                         <legend>Datos de Contacto</legend>
                         <div class="form-group">
                             <label for="1465946249">Email <span style="color:var(--color-error)">*</span></label>
@@ -683,8 +708,7 @@
                                 <option value="">Seleccione su provincia</option>
                                 <option value="Buenos Aires">Buenos Aires</option>
                                 <option value="Capital Federal">CABA</option>
-                                {/* ... other provinces ... */}
-                                 <option value="Catamarca">Catamarca</option>
+                                <option value="Catamarca">Catamarca</option>
                                 <option value="Chaco">Chaco</option>
                                 <option value="Chubut">Chubut</option>
                                 <option value="Córdoba">Córdoba</option>
@@ -725,7 +749,7 @@
                             <input class="form-control" id="piso_depto" name="entry.1945027933" placeholder="Ej: Piso 3 Depto B" type="text"/>
                             <p class="help-block">Aclaraciones adicionales para el cartero.</p>
                         </div>
-                         {/* Hidden field for shipping type */}
+                         {/* Hidden field for shipping type (Always Domicilio) */}
                          <div style="display:none;" class="form-group">
                             <label for="2315500325" class="hidden">Tipo de Envío</label>
                             <select class="form-control" id="2315500325" name="entry.17650825"><option selected value="A DOMICILIO">A DOMICILIO</option></select>
@@ -733,14 +757,12 @@
                     </fieldset>
 
                      <div class="commitment-warning">
-                         {/* ... Commitment warning ... */}
                           <span class="emoji">⚠️</span> TU PEDIDO ES UN COMPROMISO DE COMPRA <span class="emoji">⚠️</span>
                         <br>Por favor, revisá que todos los datos sean correctos antes de continuar.
                     </div>
 
                      {/* Order Confirmation Summary */}
-                     <div id="confirma-pedido">
-                        {/* ... Order summary details ... */}
+                     <div id="confirma-pedido" aria-live="polite">
                          <h3>Revisá tu pedido:</h3>
                          <p class="summary-item"><span class="summary-label">Modelos/Talles:</span> <span id="help-modelostallesseleccionados" class="summary-value">-</span></p>
                          <p class="summary-item"><span class="summary-label">Nombre:</span> <span id="help-nombre" class="summary-value">-</span></p>
@@ -776,9 +798,9 @@
                         </p>
                      </div>
 
-                     {/* Hidden Fields */}
-                     <textarea id="1209868979" name="entry.1209868979" class="hidden"></textarea>
-                     <input type="hidden" name="entry.978809450" id="link-mercadopago">
+                     {/* Hidden Fields for Form Submission */}
+                     <textarea id="1209868979" name="entry.1209868979" class="hidden"></textarea> <!-- FBCLID -->
+                     <input type="hidden" name="entry.978809450" id="link-mercadopago"> <!-- MP Link -->
                      <input name="fvv" type="hidden" value="1" />
                      <input name="fbzx" type="hidden" value="5661184097173102736" />
                      <input name="pageHistory" type="hidden" value="0" />
@@ -792,18 +814,17 @@
 
     {/* Elements outside main container for fixed positioning */}
     <div id="text" style="display: none;"> {/* Bottom Bar */}
-        <div id="text-content"><b>PEDIDO:</b> <span>Aún no seleccionaste modelos</span></div>
+        <div id="text-content"><b>PEDIDO:</b> <span>Aún no seleccionaste modelos</span><span id="preciototal2"></span></div>
         <a id="finalizarpedido" href="#restodelform" style="display: none;">FINALIZAR COMPRA</a>
     </div>
 
     <div id="whatsapp" style="display: none;"> {/* WhatsApp Button */}
-        <a href="https://api.whatsapp.com/send?phone=5491127595502&text=Hola!%20Quiero%20consultar%20por%20el%20calzado%20Rosita%20Rococó" id="linktowhatsapp" target="_blank"><img alt="Contactar por WhatsApp" height="55" width="55" src="/whatsapp.png" loading="lazy"/></a>
+        <a href="https://api.whatsapp.com/send?phone=5491127595502&text=Hola!%20Quiero%20consultar%20por%20el%20calzado%20Rosita%20Rococó" id="linktowhatsapp" target="_blank" aria-label="Contactar por WhatsApp"><img alt="WhatsApp Icon" height="55" width="55" src="/whatsapp.png" loading="lazy"/></a>
     </div>
 
     <div id="notification-container"></div> {/* Notification Area */}
 
-    <div class="loading-overlay" style="display: none;"> {/* Loading Overlay */}
-         {/* ... Loading content ... */}
+    <div class="loading-overlay" style="display: none;" aria-label="Procesando pago" role="alertdialog" aria-busy="true"> {/* Loading Overlay */}
           <div class="loading-content">
             <div class="loading-spinner"></div>
             <p class="loading-message">Estamos preparando tu pago seguro...<br>Espera un momento, no actualices la página.</p>
@@ -818,10 +839,7 @@
 
     {/* Custom JavaScript */}
     <script>
-    // All the previous JavaScript code remains the same
-    // Ensure it's placed here, before the closing </body> tag.
-    // ... (Paste the entire <script> block from the previous response here) ...
-     $(function() { // Equivalent to $(document).ready()
+    $(function() { // Equivalent to $(document).ready()
 
         // --- Global Variables & Constants ---
         const PRICE_ONE_PAIR = 70000;
@@ -846,10 +864,11 @@
         const $whatsappButton = $('#whatsapp');
         const $fechahoy = $("#fechahoy");
         const $notificationContainer = $('#notification-container');
-        const ALL_MODEL_IDS = ['roma-negras', 'roma-suela', 'siena2025']; // ** IMPORTANT: Add ALL model IDs here **
+        // ** IMPORTANT: Add ALL model IDs here for JS logic to work **
+        const ALL_MODEL_IDS = ['roma-negras', 'roma-suela', 'siena2025'];
         const MP_WEBHOOK_URL = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
         const WP_VALIDATION_URL = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
-        const SALES_DATA = [ // Sales Notification Data
+        const SALES_DATA = [ // Sales Notification Data (Keep paths relative or absolute as needed)
             { name: 'María G.', city: 'CABA', order: 'Roma Negro', time: '20 min', img: 'roma-negras-1.jpg' },
             { name: 'Sofía L.', city: 'Ramos Mejía', order: 'Roma Suela', time: '1 hr', img: 'roma-suela-1a.jpg' },
             { name: 'Rocío M.', city: 'Córdoba', order: 'Siena Negro', time: '3 hs', img: 'siena2025-1.webp' },
@@ -863,14 +882,13 @@
         let currentNotificationIndex = 0;
         let formTopOffset = $(document).height(); // Initial high value
 
-
         // --- Function Definitions ---
 
         function formatPrice(amount) {
             return CURRENCY_FORMAT.format(amount);
         }
 
-        // Debounce function to limit rapid execution (like WP validation on input)
+        // Debounce function to limit rapid execution
         function debounce(func, wait) {
             let timeout;
             return function executedFunction(...args) {
@@ -883,6 +901,7 @@
             };
         }
 
+        // Typewriter effect for date
         function typeWriter(element, text, speed, callback) {
             let i = 0;
             element.html(''); // Clear previous text
@@ -898,134 +917,154 @@
             type();
         }
 
+        // Show sticky top message (e.g., item added)
         function showStickyMessage(message, duration = 5000) {
-             $('.avisoagregado-fixed').remove(); // Remove previous
+             $('.avisoagregado-fixed').remove(); // Remove previous message
              $('<p class="avisoagregado-fixed"></p>')
-                .html(message) // Use html to allow simple tags
-                .insertAfter("header")
+                .html(message) // Use html to allow simple tags like strong, br
+                .insertAfter(".site-header") // Insert below header
+                .hide() // Start hidden
+                .fadeIn(500) // Fade in
                 .delay(duration)
-                .fadeOut(1000, function() { $(this).remove(); });
+                .fadeOut(1000, function() { $(this).remove(); }); // Fade out and remove
         }
 
+        // Update order summary in form and bottom bar
         function updateOrderSummary() {
-            const summaryTextRaw = $selectedItemsInput.val().trim().replace(/,\s*$/, ""); // Remove trailing comma/space
-             // Keep summary concise for bottom bar
-            const summaryParts = summaryTextRaw.split(', ');
-            const itemCount = summaryParts[0] === "" ? 0 : summaryParts.length;
-             let summaryTextForBar = summaryTextRaw;
-             if (itemCount > 1) { // Shorten if more than 1 item for bar
-                 summaryTextForBar = `${itemCount} pares seleccionados`;
-             }
+            const summaryTextRaw = $selectedItemsInput.val().trim().replace(/,\s*$/, ""); // Cleaned summary string
+            const summaryParts = summaryTextRaw === "" ? [] : summaryTextRaw.split(', ');
+            const itemCount = summaryParts.length;
 
-            // Update summary text in form and bottom bar
+            // Update summary text in the main form
             $("#help-modelostallesseleccionados").text(summaryTextRaw || '-');
-            const barTextPrefix = `<b>PEDIDO (${itemCount} ${itemCount === 1 ? 'par' : 'pares'}):</b> `;
-            // Use the potentially shortened summary for the bar content span
-            $textBarContent.find('span:not(#preciototal2)').html(summaryTextForBar || 'Aún no seleccionaste modelos');
+
+            // Update bottom bar text
+            let summaryTextForBar = 'Aún no seleccionaste modelos';
+            if (itemCount > 0) {
+                summaryTextForBar = summaryParts.join(' / '); // Use slash for conciseness
+                 // Optionally shorten further if too long for mobile bar
+                 if (itemCount > 1 && summaryTextForBar.length > 40) { // Example length check
+                     summaryTextForBar = `${itemCount} pares seleccionados`;
+                 }
+            }
+            $textBarContent.find('b').html(`PEDIDO (${itemCount} ${itemCount === 1 ? 'par' : 'pares'}):`);
+            $textBarContent.find('span:not(#preciototal2)').html(summaryTextForBar);
 
 
+            // Calculate total and update price displays
             let total = 0;
-            let message = "";
+            let formPriceMessage = "";
             let canSubmit = false;
             const paymentMethod = $paymentMethodSelect.val();
             const isTransfer = paymentMethod === 'cbu';
+            let finalAmount = 0; // Price considering discount
 
             if (itemCount === 1) {
                 total = PRICE_ONE_PAIR;
-                message = `TOTAL: <span class='preciototalaobservar'>${formatPrice(isTransfer ? total * (1 - DISCOUNT_TRANSFER) : total)}</span> x 1 par + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>Si agregás otro par, cada uno te queda a ${formatPrice(PRICE_TWO_PAIRS / 2)}.</span>`;
+                finalAmount = isTransfer ? total * (1 - DISCOUNT_TRANSFER) : total;
+                formPriceMessage = `TOTAL: <span class='preciototalaobservar'>${formatPrice(finalAmount)}</span> x 1 par + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>Si agregás otro par, cada uno te queda a ${formatPrice(PRICE_TWO_PAIRS / 2)}.</span>`;
                 canSubmit = true;
             } else if (itemCount === 2) {
                 total = PRICE_TWO_PAIRS;
-                message = `TOTAL: <span class='preciototalaobservar'>${formatPrice(isTransfer ? total * (1 - DISCOUNT_TRANSFER) : total)}</span> x 2 pares + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>¡Excelente! Ya tenés el mejor precio.</span>`;
+                finalAmount = isTransfer ? total * (1 - DISCOUNT_TRANSFER) : total;
+                formPriceMessage = `TOTAL: <span class='preciototalaobservar'>${formatPrice(finalAmount)}</span> x 2 pares + <span class='shipping-free'>ENVÍO GRATIS</span><br><span class='add-more-info'>¡Excelente! Ya tenés el mejor precio.</span>`;
                 canSubmit = true;
             } else if (itemCount > 2) {
                 const excess = itemCount - 2;
-                message = `<span style='color: var(--color-error);'>⛔️ Solo puedes pedir un máximo de 2 pares.</span><br>Eliminá ${excess} ${excess === 1 ? 'par' : 'pares'} para continuar.`;
+                formPriceMessage = `<span style='color: var(--color-error);'>⛔️ Solo puedes pedir un máximo de 2 pares.</span><br>Eliminá ${excess} ${excess === 1 ? 'par' : 'pares'} para continuar.`;
                 canSubmit = false;
             } else {
-                message = "Seleccioná modelos/talles arriba para ver el total.";
+                formPriceMessage = "Seleccioná modelos/talles arriba para ver el total.";
                 canSubmit = false;
             }
 
-            $priceTotalDisplay.html(message);
-            $priceTotalDisplayBar.html(total > 0 ? `<span class='preciototalaobservar'>${formatPrice(isTransfer ? total * (1 - DISCOUNT_TRANSFER) : total)}</span>` : 'Seleccioná modelos');
+            // Update price displays
+            $priceTotalDisplay.html(formPriceMessage);
+            $priceTotalDisplayBar.html(total > 0 ? `<span class='preciototalaobservar'>${formatPrice(finalAmount)}</span>` : ''); // Show price or nothing in bar
 
-             // Disable submit if cannot submit OR if WhatsApp is required and invalid
+             // Disable submit button if validation fails or WhatsApp is invalid
             $submitButton.prop('disabled', !canSubmit || !isWhatsAppValid);
 
-            // Toggle visibility of "Finalizar Compra" button and form
+            // Toggle visibility of bottom bar, finalize button, and the main form section
             if (itemCount > 0) {
-                $finalizarPedidoBtn.css('display', 'inline-block');
-                 if ($restodelform.is(':hidden')) { $restodelform.slideDown(); }
-                 if ($textBar.css('display') === 'none') { $textBar.css('display', 'flex'); } // Use flex display
-                 if ($whatsappButton.is(':hidden')) { setTimeout(() => { $whatsappButton.fadeIn(); }, 1500); }
-                 // Update formTopOffset only when form becomes visible
-                  if ($restodelform.is(':visible')) {
-                      formTopOffset = $restodelform.offset().top;
-                  }
-
+                if ($textBar.css('display') === 'none') { $textBar.css('display', 'flex').hide().fadeIn(300); } // Fade in bar
+                $finalizarPedidoBtn.css('display', 'inline-block'); // Ensure button is block for layout
+                 if ($restodelform.is(':hidden')) {
+                     $restodelform.slideDown(400, function() {
+                         formTopOffset = $restodelform.offset().top; // Update offset *after* animation
+                     });
+                 } else {
+                      formTopOffset = $restodelform.offset().top; // Update if already visible
+                 }
+                 if ($whatsappButton.is(':hidden')) { setTimeout(() => { $whatsappButton.fadeIn(); }, 1500); } // Delayed WP button
             } else {
-                $finalizarPedidoBtn.css('display', 'none');
-                 if ($restodelform.is(':visible')) { $restodelform.slideUp(); }
-                 if ($textBar.css('display') !== 'none') { $textBar.css('display', 'none'); }
+                 if ($textBar.css('display') !== 'none') { $textBar.fadeOut(300); } // Fade out bar
+                 $finalizarPedidoBtn.css('display', 'none');
+                 if ($restodelform.is(':visible')) { $restodelform.slideUp(400); }
             }
+             handleScroll(); // Re-evaluate scroll state after updates
         }
 
+        // Handle change in Talle dropdowns
         function handleTalleSelectionChange() {
             const $select = $(this);
             const selectedValue = $select.val();
             const previousValue = $select.data('pre') || "";
 
-            // Update hidden input (#1471599855)
+            // Update hidden input (#1471599855) which stores the selections
             let currentSummary = $selectedItemsInput.val();
+            // Remove previous value if it existed
             if (previousValue) {
-                currentSummary = currentSummary.replace(new RegExp(previousValue.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ",\\s*"), ""); // More robust replace
+                // Use regex for safer replacement (handles special chars) and trailing comma/space
+                currentSummary = currentSummary.replace(new RegExp(previousValue.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&') + ",\\s*"), "");
             }
+            // Add new value if selected
             if (selectedValue) {
                 currentSummary += selectedValue + ", ";
-                // Show confirmation message
-                 showStickyMessage("¡Agregado! Completá tus datos abajo ↓");
-
+                // Show confirmation message only when adding a value
+                 showStickyMessage("¡Agregado! 👍 Completá tus datos abajo ↓");
             }
             $selectedItemsInput.val(currentSummary);
-            $select.data('pre', selectedValue); // Store current value for next change
+            $select.data('pre', selectedValue); // Store current value for the next change event
 
             updateOrderSummary(); // Update UI & Calculate Price
 
-             // Track AddToCart event
+             // Track AddToCart event for Facebook Pixel
              if (typeof fbq === 'function' && selectedValue) {
                  fbq('track', 'AddToCart');
              }
         }
 
+        // Handle change in Quantity radio buttons
         function handleQuantityChange() {
             const $radio = $(this);
-            const selectedQuantity = $radio.val();
+            const selectedQuantity = parseInt($radio.val(), 10); // Get quantity as number
             const $card = $radio.closest('.product-card');
-            const $sizeFieldsets = $card.find('.size-selection fieldset');
+            const $sizeFieldsets = $card.find('.size-selection fieldset'); // Find fieldsets within the card
 
             $sizeFieldsets.each(function(index) {
                 const $fieldset = $(this);
+                // Show fieldsets up to the selected quantity, hide others
                 if ((index + 1) <= selectedQuantity) {
-                    if ($fieldset.is(':hidden')) $fieldset.slideDown('fast'); // Animate only if hidden
+                    if ($fieldset.is(':hidden')) $fieldset.slideDown('fast'); // Animate if hidden
                 } else {
                     if ($fieldset.is(':visible')) {
-                        $fieldset.slideUp('fast', function() { // Slide up then clear/trigger
-                             // Clear selection in the hidden dropdown and trigger change *after* animation
+                        // Slide up, then clear selection and trigger update *after* animation
+                        $fieldset.slideUp('fast', function() {
                             $fieldset.find('select.talle').val('').trigger('change');
                         });
                     } else {
-                        // If already hidden, just ensure value is cleared and change triggered
+                        // If already hidden, just ensure value is cleared and trigger change
                         const $select = $fieldset.find('select.talle');
                         if($select.val() !== '') {
-                             $select.val('').trigger('change');
+                             $select.val('').trigger('change'); // Trigger to update summary
                         }
                     }
                 }
             });
         }
 
-
+        // Update the summary fields within the form (#confirma-pedido)
         function updateFormSummaryFields() {
             $("#help-nombre").text($("#1460904554").val() || '-');
             $("#help-wapp").text($whatsappInput.val() || '-');
@@ -1037,134 +1076,177 @@
             $("#help-dni").text($dniInput.val() || '-');
         }
 
+        // Scroll smoothly to the top of the form section
         function scrollToForm() {
-             // Recalculate offset just before scrolling
              if ($restodelform.is(':visible')) {
+                 // Recalculate offset just before scrolling in case layout changed
                  formTopOffset = $restodelform.offset().top;
                  $('html, body').animate({
-                     scrollTop: formTopOffset - 60 // Scroll slightly above form
-                 }, 600);
+                     scrollTop: formTopOffset - 60 // Scroll slightly above form (adjust offset as needed)
+                 }, 600); // Animation duration
              }
         }
 
+        // Handle window scroll events (debounced)
         function handleScroll() {
+             // Don't do anything if the form isn't visible
              if (!$restodelform.is(':visible')) {
-                 $finalizarPedidoBtn.css('display', 'none');
+                  if ($finalizarPedidoBtn.css('display') !== 'none') $finalizarPedidoBtn.fadeOut(200);
                  return;
              };
-             // Update offset calculation within the scroll handler if layout might change dynamically
-             formTopOffset = $restodelform.offset().top;
 
-            const scrollBottom = $(window).scrollTop() + $(window).height();
+             // Ensure formTopOffset is current
+              formTopOffset = $restodelform.offset().top;
+
             const itemsSelected = $selectedItemsInput.val().trim() !== "";
+            const scrollPosition = $(window).scrollTop();
 
-            // Hide button if scrolled well past the top of the form area
-            if ($(window).scrollTop() > formTopOffset - 50 ) { // Hide if viewport top is past form top
+            // Hide button if scrolled past the form area, show if above and items selected
+            if (scrollPosition > formTopOffset - 80 ) { // Hide if viewport top is near/past form top
                  if ($finalizarPedidoBtn.css('display') !== 'none') {
-                     $finalizarPedidoBtn.css('display', 'none');
+                     $finalizarPedidoBtn.fadeOut(200); // Fade out smoothly
                  }
-            } else if (itemsSelected) { // Show only if items are selected and above form
+            } else if (itemsSelected) { // Show only if items are selected and user is above the form
                  if ($finalizarPedidoBtn.css('display') === 'none') {
-                     $finalizarPedidoBtn.css('display', 'inline-block');
+                     $finalizarPedidoBtn.fadeIn(200); // Fade in smoothly
                   }
+            } else { // If no items selected, ensure it's hidden
+                 if ($finalizarPedidoBtn.css('display') !== 'none') $finalizarPedidoBtn.fadeOut(200);
             }
         }
 
+        // Handle form submission
         async function submitFormHandler(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent default browser submission
 
-            if ($('#website').val() !== '') { return false; } // Honeypot
+            // --- Basic Spam Check (Honeypot) ---
+            if ($('#website').val() !== '') {
+                console.log("Honeypot triggered.");
+                return false;
+            }
 
+            // --- Form Validation ---
             let formIsValid = true;
+            // Check all required fields
             $form.find('[required]').each(function() {
-                $(this).css('border-color', ''); // Reset border
-                if (!$(this).val()) {
+                $(this).css('border-color', ''); // Reset border color
+                if (!$(this).val() || ($(this).is('select') && $(this).val() === "")) {
                     formIsValid = false;
-                    $(this).css('border-color', 'var(--color-error)');
+                    $(this).css('border-color', 'var(--color-error)'); // Highlight invalid field
                 }
             });
 
+            // Check item count (must be 1 or 2)
             const items = $selectedItemsInput.val().trim().split(', ');
             const itemCount = items[0] === "" ? 0 : items.length;
+            if (itemCount === 0 || itemCount > 2) {
+                formIsValid = false;
+                 // Highlight the summary textarea if item count is wrong
+                $selectedItemsInput.css('border-color', 'var(--color-error)');
+            } else {
+                $selectedItemsInput.css('border-color', ''); // Reset border if count is ok
+            }
+
 
              // Check WhatsApp validity again before submitting
              if (!isWhatsAppValid) {
                  $whatsappInput.css('border-color', 'var(--color-error)');
                  formIsValid = false;
-                 if (!getWhatsAppErrorElement().is(':visible')) {
+                 // Ensure error message is visible if not already
+                 if (!getWhatsAppErrorElement().is(':visible') || !getWhatsAppErrorElement().hasClass('invalid')) {
                      showWhatsAppError("Verificá tu número de WhatsApp.", 'invalid');
                  }
              }
 
-            if (!formIsValid || itemCount === 0 || itemCount > 2) {
+            // If form is not valid, show alert and stop submission
+            if (!formIsValid) {
                 alert('Por favor, completá todos los campos requeridos (*), asegurate de tener 1 o 2 pares seleccionados y que tu WhatsApp sea válido.');
-                $submitButton.val('IR A PAGAR').prop('disabled', false); // Re-enable button
-                // Scroll to the first invalid field
-                 const firstInvalid = $form.find('[required]').filter(function() { return !$(this).val() || $(this).css('border-color') === 'var(--color-error)'; }).first();
+                // Scroll to the first invalid field for user convenience
+                 const firstInvalid = $form.find('[required]').filter(function() {
+                    return !$(this).val() || ($(this).is('select') && $(this).val() === "") || $(this).css('border-color').includes('rgb(192, 57, 43)'); // Check for empty or red border
+                 }).first();
+
                  if (firstInvalid.length) {
                      $('html, body').animate({ scrollTop: firstInvalid.offset().top - 80 }, 300);
+                     firstInvalid.focus(); // Set focus to the invalid field
                  }
                 return;
             }
 
-            $submitButton.val('Procesando...').prop('disabled', true);
-            $loadingOverlay.css('display', 'flex');
+            // --- Form is Valid - Proceed with Submission ---
+            $submitButton.text('Procesando...').prop('disabled', true);
+            $loadingOverlay.css('display', 'flex'); // Show loading indicator
 
-            const formAction = $form.attr('action');
+            const formAction = $form.attr('action'); // Google Forms URL
             const formData = new FormData(this);
             const paymentMethod = $paymentMethodSelect.val();
             const buyerName = $('#1460904554').val();
-            const amountText = $priceTotalDisplay.find(".preciototalaobservar").text();
+
+            // Get final amount from price display
+             const amountText = $priceTotalDisplay.find(".preciototalaobservar").text();
             let amount = 0;
              try {
+                 // Robust amount parsing
                  const cleanedAmount = amountText.replace(/[$.]/g, '').replace(',', '.');
                  amount = parseFloat(cleanedAmount);
-                 if (isNaN(amount)) throw new Error("Amount parsing failed");
+                 if (isNaN(amount) || amount <= 0) throw new Error("Invalid amount parsed");
              } catch (e) {
                  console.error("Error parsing amount:", amountText, e);
-                 alert("Error al procesar el monto. Intente nuevamente.");
+                 alert("Error al procesar el monto del pedido. Intente nuevamente o contactanos.");
                  $loadingOverlay.css('display', 'none');
-                 $submitButton.val('IR A PAGAR').prop('disabled', false);
+                 $submitButton.text('IR A PAGAR').prop('disabled', !canSubmit || !isWhatsAppValid); // Re-enable based on state
                  return;
              }
 
+            // --- Submit Logic ---
             try {
+                 // 1. Send data to Google Forms (using no-cors as response isn't needed)
                  await fetch(formAction, {
                      method: 'POST',
-                     mode: 'no-cors',
-                     body: new URLSearchParams(formData)
+                     mode: 'no-cors', // Important for Google Forms
+                     body: new URLSearchParams(formData) // Convert FormData for URL encoding
                  });
-                 console.log("Data sent to Google Forms (no-cors).");
+                 console.log("Data potentially sent to Google Forms (no-cors mode).");
 
+                 // 2. Track Facebook InitiateCheckout event
                  if (typeof fbq === 'function') {
                     fbq('track', 'InitiateCheckout', { value: amount, currency: 'ARS', num_items: itemCount });
                  }
 
+                 // 3. Redirect based on payment method
                  if (paymentMethod === "cbu") {
+                     // Determine CBU page based on item count
                      const redirectUrl = itemCount === 2 ?
                          'https://rositarococo.com/transferenciacbu-2pares.html' :
                          'https://rositarococo.com/transferenciacbu-1par.html';
+                     // Small delay before redirecting
                      setTimeout(() => { window.location.href = redirectUrl; }, 500);
 
                  } else if (paymentMethod === "tarjeta" || paymentMethod === "mercadopago") {
+                     // Fetch MercadoPago link from your webhook
                     const response = await fetch(MP_WEBHOOK_URL, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ comprador: buyerName, monto: amount })
                     });
-                    if (!response.ok) throw new Error(`MP API Error: ${response.status}`);
+                    if (!response.ok) throw new Error(`MercadoPago API Error: ${response.status} ${await response.text()}`); // Include response text on error
                     const jsonData = await response.json();
-                    const mercadoPagoUrl = jsonData.linkpersonalizadomp;
-                    if (!mercadoPagoUrl) throw new Error('MP link not received.');
-                    $('#link-mercadopago').val(mercadoPagoUrl); // Update hidden field just in case
+                    const mercadoPagoUrl = jsonData.linkpersonalizadomp; // Get the URL from the JSON response
+                    if (!mercadoPagoUrl) throw new Error('Link de MercadoPago no recibido del webhook.');
+
+                    $('#link-mercadopago').val(mercadoPagoUrl); // Update hidden field (optional, but good practice)
+                    // Redirect to MercadoPago after a slightly longer delay
                     setTimeout(() => { window.location.href = mercadoPagoUrl; }, 1500);
                  }
 
+                 // Note: Loading overlay stays visible until redirection happens
+
             } catch (error) {
+                // --- Handle Errors ---
                 console.error("Submit Error:", error);
-                $loadingOverlay.css('display', 'none');
-                $submitButton.val('IR A PAGAR').prop('disabled', false);
-                alert('Hubo un problema al procesar tu pedido. Por favor, intentá nuevamente o contactanos por WhatsApp.');
+                $loadingOverlay.css('display', 'none'); // Hide loading indicator on error
+                $submitButton.text('IR A PAGAR').prop('disabled', !canSubmit || !isWhatsAppValid); // Re-enable button based on state
+                alert('Hubo un problema al procesar tu pedido. Por favor, intentá nuevamente o contactanos por WhatsApp si el problema persiste.');
             }
         }
 
@@ -1172,63 +1254,97 @@
          function getWhatsAppErrorElement() { return $whatsappInput.parent().find(".error-message"); }
          function showWhatsAppError(message, type = 'invalid') { getWhatsAppErrorElement().text(message).removeClass('valid invalid verifying api-error').addClass(type).slideDown('fast'); }
          function hideWhatsAppError() { getWhatsAppErrorElement().slideUp('fast'); }
+
+         // Enable/disable form fields that depend on a valid WhatsApp number
          function setDependentFieldsDisabled(disabled) {
              const dependentIds = ["59648134", "1743418466", "1005165410", "951592426", "541001873", "piso_depto", "comoabona", "botoncomprar"];
              dependentIds.forEach(id => {
                  const $el = $(`#${id}`);
-                 if ($el.length) { $el.prop('disabled', disabled); }
+                 if ($el.length) {
+                     $el.prop('disabled', disabled);
+                      // Add/remove a visual cue if desired
+                      // $el.toggleClass('disabled-field', disabled);
+                 }
              });
-              // Explicitly re-evaluate submit button state after enabling/disabling
+              // Explicitly re-evaluate submit button state AFTER enabling/disabling fields
               updateOrderSummary();
          }
 
+         // Async function to validate WhatsApp number via webhook
          async function validateWhatsApp() {
-             if (isWhatsAppChecking) return;
-             const number = $whatsappInput.val();
-             if (!number || number.length < 9) { // Keep basic length check
+             if (isWhatsAppChecking) return; // Prevent simultaneous checks
+             const number = $whatsappInput.val().trim();
+
+             // Basic client-side check (length)
+             if (!number || number.length < 9 || number.length > 11) { // Adjust length check as needed for AR numbers
                  hideWhatsAppError();
-                 setDependentFieldsDisabled(true);
+                 setDependentFieldsDisabled(true); // Disable dependent fields
                  isWhatsAppValid = false;
                  updateOrderSummary(); // Update submit button state
-                 return;
+                 return; // Stop if basic check fails
              }
+
              isWhatsAppChecking = true;
              showWhatsAppError("Verificando WhatsApp...", 'verifying');
-             setDependentFieldsDisabled(true);
+             setDependentFieldsDisabled(true); // Disable while checking
+
+             // Format number (remove non-digits, add country code if missing)
              let formattedNumber = number.replace(/\D/g, "");
-             if (formattedNumber.length >= 10 && !formattedNumber.startsWith('549')) { formattedNumber = '549' + formattedNumber; }
+              // Simple check: if 10 digits and doesn't start with 9, assume mobile without 9, add 549
+              if (formattedNumber.length === 10 && !formattedNumber.startsWith('9')) {
+                   formattedNumber = '549' + formattedNumber;
+              }
+              // If 11 digits and starts with 9, assume 549 is missing
+              else if (formattedNumber.length === 11 && formattedNumber.startsWith('9')) {
+                   formattedNumber = '54' + formattedNumber;
+              }
+              // If 11 digits starting 11/15/etc (old format), try stripping first two? - Complex, stick to simpler rules or adjust API side
+              else if (!formattedNumber.startsWith('549')) {
+                  // Fallback or specific logic needed here if other formats are common
+                   // For now, assume 549 if length is appropriate
+                  if (formattedNumber.length >= 10) formattedNumber = '549' + formattedNumber.substring(formattedNumber.length - 10);
+              }
+
 
              try {
                  const response = await fetch(WP_VALIDATION_URL, {
                      method: 'POST',
                      headers: { 'Content-Type': 'application/json' },
-                     body: JSON.stringify({ whatsapp_check: formattedNumber })
+                     body: JSON.stringify({ whatsapp_check: formattedNumber }) // Send formatted number
                  });
-                 if (!response.ok) throw new Error(`API Error: ${response.status}`);
+
+                 if (!response.ok) { // Handle non-2xx responses
+                      throw new Error(`API Error: ${response.status} ${await response.text()}`);
+                 }
+
                  const data = await response.json();
-                 isWhatsAppValid = data.exists === true;
+                 isWhatsAppValid = data.exists === true; // Check the 'exists' property from API response
+
                  if (isWhatsAppValid) {
                      showWhatsAppError("WhatsApp válido.", 'valid');
-                     setDependentFieldsDisabled(false);
+                     setDependentFieldsDisabled(false); // Enable dependent fields
                  } else {
-                     showWhatsAppError("WhatsApp no válido. Verificá el número.", 'invalid');
-                     setDependentFieldsDisabled(true);
+                     showWhatsAppError("WhatsApp no válido o no encontrado. Verificá el número.", 'invalid');
+                     setDependentFieldsDisabled(true); // Keep fields disabled
                  }
+
              } catch (error) {
                  console.error("WP validation error:", error);
-                 showWhatsAppError("Error al verificar. Intentá de nuevo.", 'api-error');
-                 setDependentFieldsDisabled(true);
-                 isWhatsAppValid = false;
+                 showWhatsAppError("Error al verificar WhatsApp. Intentá de nuevo o contactanos.", 'api-error');
+                 setDependentFieldsDisabled(true); // Keep fields disabled on error
+                 isWhatsAppValid = false; // Assume invalid on error
              } finally {
-                 isWhatsAppChecking = false;
-                 updateOrderSummary(); // Update submit button state after validation
+                 isWhatsAppChecking = false; // Allow new checks
+                 updateOrderSummary(); // Update submit button state based on validation result
              }
          }
 
         // --- Sales Notifications ---
         function showSalesNotification() {
-            if (currentNotificationIndex >= SALES_DATA.length) { currentNotificationIndex = 0; }
+            if (currentNotificationIndex >= SALES_DATA.length) { currentNotificationIndex = 0; } // Loop through data
             const data = SALES_DATA[currentNotificationIndex];
+
+            // Create notification HTML dynamically
             const $notification = $(`
                 <div class="notification">
                     <img src="${data.img}" alt="${data.order}" loading="lazy">
@@ -1243,61 +1359,105 @@
                     <button class="close" aria-label="Cerrar notificación">X</button>
                 </div>
             `);
-            $notification.find('.close').on('click', function() { $(this).closest('.notification').fadeOut(300, function() { $(this).remove(); }); });
-            $notificationContainer.find('.notification').fadeOut(300, function() { $(this).remove(); }); // Remove old before adding new
+
+            // Add close button functionality
+            $notification.find('.close').on('click', function() {
+                $(this).closest('.notification').fadeOut(300, function() { $(this).remove(); });
+            });
+
+            // Remove any existing notification before adding the new one
+            $notificationContainer.find('.notification').fadeOut(300, function() { $(this).remove(); });
+            // Append the new notification and make it visible
             $notificationContainer.append($notification);
-            setTimeout(() => { $notification.fadeOut(500, function() { $(this).remove(); }); }, 7000); // Show longer
-            currentNotificationIndex++;
+
+            // Auto-hide the notification after a delay
+            setTimeout(() => {
+                 $notification.fadeOut(500, function() { $(this).remove(); });
+             }, 7000); // Notification display duration
+
+            currentNotificationIndex++; // Move to the next notification data
         }
 
+        // --- Initialization Code ---
 
-        // --- Initialization ---
-
-        // Carousels
-        $('.model-carousel').slick({ dots: true, infinite: true, speed: 400, fade: true, cssEase: 'linear', lazyLoad: 'ondemand', adaptiveHeight: false, slidesToShow: 1, arrows: true, accessibility: true, focusOnSelect: false });
-        $('.testimonials-carousel').slick({ dots: true, infinite: true, speed: 500, arrows: false, autoplay: true, autoplaySpeed: 3500, slidesToShow: 1, adaptiveHeight: true });
-
-        // Product Quantity/Size Logic
-        ALL_MODEL_IDS.forEach(id => {
-            const $card = $(`.product-card[id$="-${id}"]`);
-             $card.find(`input[name="hwA-qty-${id}"]`).on('click', handleQuantityChange);
-             $card.find(`input[name="hwA-qty-${id}"]`).filter(':checked').trigger('click'); // Initial check
+        // Initialize Slick Carousels
+        $('.model-carousel').slick({
+            dots: true,
+            infinite: true,
+            speed: 400,
+            fade: true,
+            cssEase: 'linear',
+            lazyLoad: 'ondemand',
+            adaptiveHeight: false, // Set true ONLY if image heights vary AND you use height:auto in CSS
+            slidesToShow: 1,
+            arrows: true,
+            accessibility: true,
+            focusOnSelect: false // Don't focus carousel on dot/arrow click
         });
+        $('.testimonials-carousel').slick({
+            dots: true,
+            infinite: true,
+            speed: 500,
+            arrows: false, // Hide arrows for testimonials
+            autoplay: true,
+            autoplaySpeed: 3500,
+            slidesToShow: 1,
+            adaptiveHeight: true // Good for varying comment image heights
+        });
+
+        // Setup Product Quantity/Size Logic for all defined models
+        ALL_MODEL_IDS.forEach(id => {
+            const $card = $(`.product-card[id$="-${id}"]`); // Find card by ID ending
+            // Attach quantity change handler
+             $card.find(`input[name="hwA-qty-${id}"]`).on('change', handleQuantityChange);
+            // Trigger initial state based on checked radio (usually '1')
+             $card.find(`input[name="hwA-qty-${id}"]:checked`).trigger('change');
+        });
+        // Attach talle change handler to all talle selects
         $("#todoslosmodelos select.talle").on('change', handleTalleSelectionChange);
 
-        // Form Field Updates & Summary Trigger
+        // Update form summary fields on input/change
         $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873, #piso_depto")
             .on('keyup change input', updateFormSummaryFields);
-        updateFormSummaryFields(); // Initial call
+        updateFormSummaryFields(); // Initial population of summary
 
-        // Input Formatting
+        // Input Formatting/Cleaning
         $emailInput.on('input keyup', function() { $(this).val($(this).val().trim().toLowerCase()); });
         $dniInput.on('input keyup', function() { $(this).val($(this).val().replace(/[^\d]/g, '')); });
-        $whatsappInput.on('input keyup', function() { $(this).val($(this).val().replace(/[^\d]/g, '')); });
+        $whatsappInput.on('input keyup', function() { $(this).val($(this).val().replace(/[^\d.-]/g, '')); }); // Allow digits, dot, hyphen temporarily
 
-        // Payment Method Change
+        // Update summary when payment method changes (for discount)
         $paymentMethodSelect.on('change', updateOrderSummary);
 
-        // Form Submission
+        // Attach form submission handler
         $form.on('submit', submitFormHandler);
 
         // WhatsApp Validation Setup
-        const debouncedWPValidation = debounce(validateWhatsApp, 500);
-        $whatsappInput.on('input', () => { hideWhatsAppError(); isWhatsAppValid = false; setDependentFieldsDisabled(true); clearTimeout(wpValidationTimeout); });
-        $whatsappInput.on('blur', debouncedWPValidation);
-        setDependentFieldsDisabled(true); // Start disabled
+        const debouncedWPValidation = debounce(validateWhatsApp, 600); // Debounce API call
+         // When user types, clear errors, mark as invalid, disable fields
+        $whatsappInput.on('input', () => {
+             hideWhatsAppError();
+             isWhatsAppValid = false;
+             setDependentFieldsDisabled(true);
+             clearTimeout(wpValidationTimeout); // Clear any pending validation
+             updateOrderSummary(); // Reflect disabled state in button
+         });
+         // When user leaves the field (blur), trigger validation
+         $whatsappInput.on('blur', debouncedWPValidation);
+         // Start with dependent fields disabled until WP is validated
+         setDependentFieldsDisabled(true);
 
-        // Initial Date Display
+        // Display Current Date with Typewriter Effect
         const d = new Date();
         const strDate = d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear();
         const dateText = 'Ofertas válidas HOY ' + strDate;
         $fechahoy.show();
-        typeWriter($fechahoy, dateText, 50);
+        typeWriter($fechahoy, dateText, 50); // 50ms typing speed
 
-        // Promo Bar
+        // Show Top Promo Bar
         $regionBar.html("<span class='emoji'>🚚</span> Envío GRATIS a TODO el país ¡Últimos días!").slideDown();
 
-        // Email Autocomplete (basic structure, requires jQuery UI)
+        // Email Autocomplete (using jQuery UI)
         const acList = ['gmail.com','hotmail.com','hotmail.com.ar','hotmail.es','yahoo.com.ar','yahoo.com','live.com.ar','live.com','outlook.com'];
         if ($.ui && $.ui.autocomplete) { // Check if jQuery UI autocomplete is loaded
             $emailInput.autocomplete({
@@ -1305,35 +1465,52 @@
                     const term = request.term;
                     const atIndex = term.lastIndexOf('@');
                     if (atIndex !== -1) {
+                        const namePart = term.substring(0, atIndex);
                         const domainPart = term.substring(atIndex + 1);
-                         response($.ui.autocomplete.filter(acList, domainPart).map(d => term.substring(0, atIndex + 1) + d));
+                         // Filter domains based on input and map back to full email suggestion
+                         response($.ui.autocomplete.filter(acList, domainPart).map(d => namePart + "@" + d));
                     }
-                 }, minLength: 1, select: function(event, ui) { this.value = ui.item.value; return false; }
+                 },
+                 minLength: 1, // Start suggesting after 1 character after '@'
+                 select: function(event, ui) {
+                     this.value = ui.item.value; // Set input value on selection
+                     updateFormSummaryFields(); // Update summary if needed
+                     return false; // Prevent default autocomplete action
+                 }
             });
+        } else {
+            console.warn("jQuery UI Autocomplete not loaded.");
         }
 
-        // Store FBCLID
+        // Store FBCLID if present in URL
         try {
             const urlParams = new URLSearchParams(window.location.search);
             const fbclid = urlParams.get('fbclid');
-            if (fbclid) { $("#1209868979").val(window.location.href); }
-        } catch (e) { console.warn("Error processing URL params:", e); }
+            if (fbclid) {
+                // Store the full URL including fbclid in the hidden field
+                $("#1209868979").val(window.location.href);
+                console.log("FBCLID found and stored.");
+            }
+        } catch (e) { console.warn("Error processing URL parameters for FBCLID:", e); }
 
 
         // Scroll Button Listeners
         $finalizarPedidoBtn.on('click', (e) => { e.preventDefault(); scrollToForm(); });
-        $(window).on('scroll resize', debounce(handleScroll, 150)).trigger('scroll'); // Debounce scroll handler more
+        // Debounce scroll/resize handler for performance
+        $(window).on('scroll resize', debounce(handleScroll, 150)).trigger('scroll');
 
 
-        // Start Sales Notifications
-        setTimeout(() => { showSalesNotification(); setInterval(showSalesNotification, 10000); }, 9000); // Adjusted timings
+        // Start Sales Notifications after a delay
+        setTimeout(() => {
+            showSalesNotification(); // Show first one
+            setInterval(showSalesNotification, 10000); // Show subsequent ones every 10s
+        }, 9000); // Initial delay before first notification
 
 
-        // Initial UI State
-        updateOrderSummary(); // Final check on load
+        // Final initial UI state check
+        updateOrderSummary();
 
     }); // End document ready
-
     </script>
 
 </body>
