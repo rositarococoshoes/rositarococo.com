@@ -28,6 +28,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- jQuery UI CSS (Optional, for autocomplete styling) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
+
 
     <style type="text/css">
       /* Base styles with minimalist approach */
@@ -36,6 +39,8 @@
         margin: 0;
         padding: 0;
       }
+
+      html { scroll-behavior: smooth; }
 
       body {
         font-family: 'Montserrat', sans-serif;
@@ -67,6 +72,18 @@
         --card-bg: #ffffff; /* White card background */
         --error: #c45c40; /* Error Red */
         --success: #5a8b2b; /* Success Green */
+        --warning-bg: #fff3cd;
+        --warning-text: #856404;
+        --warning-border: #ffeeba;
+        --info-bg: #e2f3fd;
+        --info-text: #0c5460;
+        --info-border: #b8daff;
+        --success-bg: #d4edda;
+        --success-text: #155724;
+        --success-border: #c3e6cb;
+        --error-bg: #f8d7da;
+        --error-text: #721c24;
+        --error-border: #f5c6cb;
         --border-radius: 6px;
         --section-spacing: 40px;
       }
@@ -87,6 +104,7 @@
         border-bottom: 1px solid rgba(255,255,255,0.1);
         margin-bottom: var(--section-spacing);
       }
+      .header img.logo { max-width: 200px; margin: 0 auto 15px auto; } /* Logo style */
 
       .header h1 {
         font-size: 1.9rem;
@@ -99,10 +117,15 @@
         font-size: 1.05rem;
         opacity: 0.9;
         font-weight: 300;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
+      .header .emoji { font-size: 1.1em; vertical-align: -0.1em; }
+      #fechahoy { color: var(--primary); background-color: var(--light); padding: 5px 12px; font-weight: bold; text-align: center; font-size: 0.9em; margin: 15px auto 0 auto; border-radius: 20px; display: inline-block; border: 1px solid var(--border); }
 
-      /* Offer banner */
-      .offer-banner {
+      /* Offer banner & Price Summary */
+      .offer-banner, .price-summary-box {
         background-color: var(--accent);
         color: white;
         text-align: center;
@@ -113,6 +136,33 @@
         font-size: 1.05em;
       }
       .offer-banner .emoji { margin: 0 5px; vertical-align: -0.1em; }
+
+      .price-summary-box {
+        background-color: var(--light);
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 20px;
+      }
+      .price-summary-box p:first-child { margin: 0 0 15px 0; font-size: 1.1em; font-weight: bold; color: var(--primary); }
+      .price-summary-box .price-line { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; color: var(--primary); }
+      .price-summary-box .price-detail { font-size: 0.9em; color: #666; }
+      .price-summary-box .discount-info { font-size: 0.9em; background-color: #fff; color: var(--text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 10px 0; border: 1px solid var(--border); }
+      .price-summary-box .transfer-discount { color: var(--success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 12px; display: block; }
+
+      /* Info Section */
+      .info-section { font-size: 0.95em; line-height: 1.7; margin-bottom: var(--section-spacing); padding: 25px; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: var(--border-radius); }
+      .info-section span { display: flex; align-items: baseline; margin-bottom: 10px; }
+      .info-section small span { font-weight: bold; color: var(--primary); }
+      .info-section .emoji { margin-right: 10px; font-size: 1.1em; min-width: 1.2em; display: inline-block; text-align: center; vertical-align: -0.1em; }
+
+      /* How to Buy */
+      .how-to-buy { margin-bottom: var(--section-spacing); background-color: var(--card-bg); padding: 25px; border: 1px solid var(--border); border-radius: var(--border-radius); }
+      .how-to-buy h3 { margin-bottom: 15px; color: var(--primary); font-size: 1.3em; }
+      .how-to-buy ol { padding-left: 20px; margin: 0; font-size: 0.95em; }
+      .how-to-buy li { margin-bottom: 8px; color: var(--text); }
+      .how-to-buy li::marker { color: var(--primary); font-weight: bold; }
+      .how-to-buy strong { color: var(--primary); }
+
 
       /* Section Heading */
       .section-heading {
@@ -220,6 +270,7 @@
         margin-bottom: 5px;
       }
       .model-info fieldset:last-of-type { margin-bottom: 0; }
+      .fieldsetstalles { display: none; } /* Hide second size select initially */
 
       .model-info legend {
         font-weight: 600;
@@ -262,6 +313,7 @@
         outline: none;
         border-color: var(--accent);
       }
+      .avisoagregado { color: var(--success); font-weight: bold; font-size: 0.9em; margin-top: 10px; text-align: center; }
 
       /* Form section - minimalist redesign */
       .form-section {
@@ -274,6 +326,7 @@
         max-width: 650px;
         margin-left: auto;
         margin-right: auto;
+        display: none; /* Hidden by default */
       }
 
       .form-group {
@@ -297,12 +350,33 @@
         transition: border-color 0.3s ease;
         background-color: #fff;
       }
+      .form-control[readonly] { background-color: #f8f6f2; opacity: 0.8; cursor: not-allowed; }
+      select.form-control { height: auto; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235a4a42' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 12px 12px; padding-right: 2.5rem; }
+
 
       .form-control:focus {
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 2px rgba(212, 163, 115, 0.2); /* Subtle focus ring */
       }
+      .help-block { font-size: 0.88em; color: #777; margin-top: 8px; }
+
+      /* Order Summary in Form */
+      #confirma-pedido { background-color: var(--light); padding: 20px; border-radius: var(--border-radius); border: 1px solid var(--border); margin-top: 25px; }
+      #confirma-pedido h3 { font-size: 1.2em; margin-bottom: 20px; text-align: center; color: var(--primary); }
+      #confirma-pedido .summary-item { margin-bottom: 10px; font-size: 0.95em; line-height: 1.5; }
+      #confirma-pedido .summary-label { font-weight: bold; color: var(--text); margin-right: 6px; }
+      #confirma-pedido .summary-value { color: var(--dark); word-break: break-word; }
+      #preciototal { font-size: 1.2em; font-weight: bold; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--border); }
+      #preciototal .preciototalaobservar { color: var(--accent); }
+      #preciototal .shipping-free { color: var(--success); font-size: 0.9em; font-weight: normal; display: inline-block; margin-left: 5px; }
+      #preciototal .add-more-info { font-size: 0.85em; color: #6c757d; font-weight: normal; display: block; margin-top: 8px; }
+      #confirma-pedido fieldset { margin-top: 25px; border-color: var(--secondary); background-color: #fff; padding: 15px; }
+      #confirma-pedido legend { color: var(--primary); margin-bottom: 15px; font-size: 1.1em; }
+      #comoabona { background-color: #fff; }
+      .commitment-warning { text-align: center; margin: 25px 0; font-size: 0.95em; background-color: var(--warning-bg); padding: 12px; border-radius: var(--border-radius); border: 1px solid var(--warning-border); color: var(--warning-text); }
+      .commitment-warning .emoji { font-size: 1.2em; vertical-align: -0.1em; }
+
 
       /* Buttons - minimalist style */
       .btn {
@@ -337,6 +411,8 @@
         display: block;
         width: 100%;
       }
+      #submit-btn .emoji { margin-left: 8px; vertical-align: -0.1em; }
+
 
       /* Testimonials */
       .testimonials-section {
@@ -449,15 +525,99 @@
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
       .loading-message { color: var(--text); font-size: 1.05rem; margin: 0; line-height: 1.4; }
 
-      /* Error messages */
+      /* Error messages (General & WhatsApp) */
       .error-message {
-        color: var(--error);
         font-size: 0.85rem;
         margin-top: 6px;
         display: none; /* Hidden by default */
         font-weight: 500;
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid transparent;
       }
-      .error-message.show { display: block; } /* Class to show */
+      .error-message.show { display: block; } /* Class to show general errors */
+      /* Specific WhatsApp validation states */
+      .whatsapp-error-message { /* Use a specific class for WhatsApp */
+          display: none;
+          font-size: 0.9em;
+          margin-top: 8px;
+          padding: 10px 12px;
+          border-radius: 4px;
+          text-align: center;
+          font-weight: 500;
+          border: 1px solid transparent;
+          transition: opacity 0.3s ease;
+      }
+      .whatsapp-error-message.verifying { display: block; background-color: var(--info-bg); color: var(--info-text); border-color: var(--info-border); animation: pulse 1.5s infinite ease-in-out; }
+      .whatsapp-error-message.valid { display: block; background-color: var(--success-bg); color: var(--success-text); border-color: var(--success-border); }
+      .whatsapp-error-message.invalid { display: block; background-color: var(--error-bg); color: var(--error-text); border-color: var(--error-border); }
+      .whatsapp-error-message.api-error { display: block; background-color: var(--warning-bg); color: var(--warning-text); border-color: var(--warning-border); }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+
+      /* Bottom Summary Bar */
+       #bottom-bar {
+            display: none; /* Hidden initially */
+            font-size: 12px;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            padding: 10px 15px;
+            min-height: 55px;
+            bottom: 0;
+            background-color: var(--dark); /* Darker background */
+            color: var(--light);
+            margin: 0;
+            z-index: 998;
+            border-top: 1px solid #4a3027;
+            box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+         #bottom-bar-content {
+             flex-grow: 1;
+             flex-shrink: 1;
+             overflow: hidden;
+             line-height: 1.4;
+         }
+         #bottom-bar-content b { /* Label like "PEDIDO (1 par):" */
+             display: block;
+             font-size: 1em;
+             margin-bottom: 2px;
+             font-weight: bold;
+             color: #fff;
+             white-space: nowrap;
+         }
+         #bottom-bar-content span:not(#bottom-bar-price) { /* The summary text */
+            display: block;
+            white-space: normal;
+            font-size: 0.9em; /* Smaller summary text */
+         }
+         #bottom-bar-price { /* Price in bar */
+             font-weight: bold;
+             color: var(--accent); /* Accent color for price */
+             font-size: 1.1em;
+             display: block;
+             margin-top: 3px;
+         }
+         #bottom-bar-button { /* Button in bar */
+            font-size: 13px;
+            padding: 8px 14px;
+            background-color: var(--accent);
+            border: none;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            white-space: nowrap;
+            transition: background-color 0.2s ease;
+            flex-shrink: 0;
+            font-weight: bold;
+            margin-left: auto;
+        }
+         #bottom-bar-button:hover { background-color: var(--secondary); }
+
 
       /* Responsive styles */
       @media (max-width: 768px) {
@@ -472,6 +632,9 @@
         .slick-prev:before, .slick-next:before { font-size: 16px; }
         .whatsapp-float { width: 50px; height: 50px; }
         #notification-container { max-width: 320px; bottom: 75px; }
+        #bottom-bar { min-height: 50px; padding: 8px 10px; gap: 10px; }
+        #bottom-bar-content { font-size: 11px; }
+        #bottom-bar-button { font-size: 12px; padding: 7px 12px; }
       }
 
       @media (max-width: 480px) {
@@ -489,6 +652,35 @@
         .notification .icon { font-size: 1.3rem; margin-right: 10px; }
         .notification .order-info h3 { font-size: 0.9rem; }
         .notification .order-info p { font-size: 0.85rem; }
+        #bottom-bar { /* Adjust bottom bar for small screens */
+            min-height: 55px;
+            padding: 10px 12px;
+            flex-wrap: wrap; /* Allow wrapping if needed */
+            gap: 5px 10px; /* Row and column gap */
+            bottom: 0; /* Ensure it's at the very bottom */
+        }
+        #bottom-bar-content {
+            flex-basis: 100%; /* Allow text to take full width if it wraps */
+            text-align: center; /* Center text if wrapped */
+            font-size: 11px; /* Keep small */
+            order: 1; /* Text first */
+        }
+        #bottom-bar-content b { display: inline; margin-right: 5px; } /* Inline label */
+        #bottom-bar-content span:not(#bottom-bar-price) { display: inline; } /* Inline summary */
+        #bottom-bar-price { display: inline; margin-left: 5px; font-size: 1em; } /* Inline price */
+
+        #bottom-bar-button {
+            flex-basis: 100%; /* Button takes full width when wrapped */
+            font-size: 13px; /* Make button slightly larger */
+            padding: 9px 12px;
+            margin-left: 0; /* Remove margin when full width */
+            text-align: center;
+            order: 2; /* Button second */
+            margin-top: 5px; /* Add space when wrapped */
+        }
+        .whatsapp-float { bottom: 85px; /* INCREASED position due to potentially taller wrapped bottom bar */ }
+        #notification-container { bottom: 100px; /* Adjust for potentially taller bar */ }
+
       }
     </style>
 </head>
@@ -498,269 +690,32 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
+    <!-- Top Promo Bar -->
+    <div id="region" style="display: none;"></div>
+
     <div class="container">
         <header class="header">
-            <h1>COLECCIÓN OTOÑO/INVIERNO 2025</h1>
-            <p>Calzado femenino de alta calidad en cuero</p>
+            <img class="logo" alt="Rosita Rococó Logo" src="rosita-form.webp" loading="lazy"/>
+            <h1><span class="emoji">🍂</span> Nueva Temporada <span class="emoji">🍂</span><br>Otoño Invierno 2025</h1>
+            <p>
+                 <span class="emoji">💰</span> DESCUENTO ESPECIAL llevando dos pares
+                 <br> <span class="emoji">💳</span> 3 Cuotas sin interés y <span class="emoji">🚚</span> Envío GRATIS
+            </p>
+             <div id="fechahoy" style="display:none;"></div>
         </header>
 
-        <div class="offer-banner">
-            <span class="emoji">🔥</span> 3 CUOTAS SIN INTERÉS | <span class="emoji">🚚</span> ENVÍO GRATIS
-        </div>
-
-        <section class="model-section">
-            <h2 class="section-heading">Nuestros Modelos Destacados</h2>
-            <div class="model-container">
-                <!-- Modelo Roma Negras -->
-                <div class="model-card" id="model-roma-negras">
-                    <div class="model-carousel">
-                        <div><img alt="Botas Roma Negras - Vista 1" src="roma-negras-1.jpg" loading="lazy"></div>
-                        <div><img alt="Botas Roma Negras - Vista 2" data-lazy="roma-negras-1a.jpg" loading="lazy"></div>
-                        <div><img alt="Botas Roma Negras - Vista 3" data-lazy="roma-negras-5a.jpg" loading="lazy"></div>
-                        <!-- Add other images if available -->
-                    </div>
-                    <div class="model-info">
-                        <h3>BOTAS ROMA NEGRAS</h3>
-                        <p class="material">Material: Cuero genuino - Suela: Expanso</p>
-                        <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-                        <p class="discount">10% OFF adicional por transferencia</p>
-                        <fieldset>
-                            <legend>Cantidad:</legend>
-                            <label><input type="radio" name="qty-roma-negras" value="1" checked> 1 par</label>
-                            <label><input type="radio" name="qty-roma-negras" value="2"> 2 pares</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Seleccione talle:</legend>
-                            <select class="form-control talle" data-product-id="roma-negras" data-product-name="Botas Roma Negras">
-                                <option value="">-- Seleccione --</option>
-                                <option value="35">35 (23 cm)</option>
-                                <option value="36">36 (23.5 cm)</option>
-                                <option value="37">37 (24 cm)</option>
-                                <option value="38">38 (25 cm)</option>
-                                <option value="39">39 (25.5 cm)</option>
-                            </select>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <!-- Modelo Roma Suela -->
-                <div class="model-card" id="model-roma-suela">
-                    <div class="model-carousel">
-                        <div><img alt="Botas Roma Suela - Vista 1" src="roma-suela-1a.jpg" loading="lazy"></div>
-                        <div><img alt="Botas Roma Suela - Vista 2" data-lazy="roma-suela-2a.jpg" loading="lazy"></div>
-                        <!-- Add other images if available -->
-                    </div>
-                    <div class="model-info">
-                        <h3>BOTAS ROMA SUELA</h3>
-                        <p class="material">Material: Cuero genuino - Suela: Expanso</p>
-                        <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-                        <p class="discount">10% OFF adicional por transferencia</p>
-                        <fieldset>
-                            <legend>Cantidad:</legend>
-                            <label><input type="radio" name="qty-roma-suela" value="1" checked> 1 par</label>
-                            <label><input type="radio" name="qty-roma-suela" value="2"> 2 pares</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Seleccione talle:</legend>
-                            <select class="form-control talle" data-product-id="roma-suela" data-product-name="Botas Roma Suela">
-                                <option value="">-- Seleccione --</option>
-                                <option value="35">35 (23 cm)</option>
-                                <option value="36">36 (23.5 cm)</option>
-                                <option value="37">37 (24 cm)</option>
-                                <option value="38">38 (25 cm)</option>
-                                <option value="39">39 (25.5 cm)</option>
-                            </select>
-                        </fieldset>
-                    </div>
-                </div>
-
-                <!-- Modelo Siena 2025 -->
-                <div class="model-card" id="model-siena2025">
-                    <div class="model-carousel">
-                        <div><img alt="Botas Siena 2025 - Vista 1" src="siena2025-1.webp" loading="lazy"></div>
-                        <div><img alt="Botas Siena 2025 - Vista 2" data-lazy="siena2025-2.webp" loading="lazy"></div>
-                        <!-- Add other images if available -->
-                    </div>
-                    <div class="model-info">
-                        <h3>BOTAS SIENA 2025</h3>
-                        <p class="material">Material: Cuero genuino - Suela: Expanso</p>
-                        <p class="price">1 par: $70.000 | 2 pares: $110.000</p>
-                        <p class="discount">10% OFF adicional por transferencia</p>
-                        <fieldset>
-                            <legend>Cantidad:</legend>
-                            <label><input type="radio" name="qty-siena2025" value="1" checked> 1 par</label>
-                            <label><input type="radio" name="qty-siena2025" value="2"> 2 pares</label>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Seleccione talle:</legend>
-                            <select class="form-control talle" data-product-id="siena2025" data-product-name="Botas Siena 2025">
-                                <option value="">-- Seleccione --</option>
-                                <option value="35">35 (23 cm)</option>
-                                <option value="36">36 (23.5 cm)</option>
-                                <option value="37">37 (24 cm)</option>
-                                <option value="38">38 (25 cm)</option>
-                                <option value="39">39 (25.5 cm)</option>
-                            </select>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
+        <!-- Initial Price Summary -->
+        <section class="price-summary-box" aria-label="Resumen de Precios">
+             <p>¡Aprovechá los precios de Lanzamiento!</p>
+            <div class="price-line">1 par: 🔥 $70.000</div>
+            <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
+            <span class="discount-info">Podés combinar modelos en tu mismo pedido</span>
+            <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
         </section>
 
-        <section class="form-section">
-            <h2 class="section-heading">Complete sus Datos</h2>
-            <form id="checkoutForm" method="POST" target="_self" novalidate>
-                <!-- Anti-bot Honeypot -->
-                <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" tabindex="-1" autocomplete="off">
-
-                <div class="form-group">
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control" required>
-                    <div class="error-message" id="nombre-error"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" class="form-control" required>
-                    <div class="error-message" id="email-error"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp (10 dígitos, sin 0 ni 15):</label>
-                    <input type="tel" id="whatsapp" name="whatsapp" class="form-control" required pattern="\d{10}">
-                    <div class="error-message" id="whatsapp-error"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="direccion">Dirección completa (Calle, Número, Piso/Depto):</label>
-                    <input type="text" id="direccion" name="direccion" class="form-control" required>
-                    <div class="error-message" id="direccion-error"></div>
-                </div>
-
-                 <div class="form-group">
-                    <label for="localidad">Localidad:</label>
-                    <input type="text" id="localidad" name="localidad" class="form-control" required>
-                    <div class="error-message" id="localidad-error"></div>
-                </div>
-
-                 <div class="form-group">
-                    <label for="provincia">Provincia:</label>
-                    <input type="text" id="provincia" name="provincia" class="form-control" required>
-                     <div class="error-message" id="provincia-error"></div>
-                </div>
-
-                 <div class="form-group">
-                    <label for="cp">Código Postal:</label>
-                    <input type="text" id="cp" name="cp" class="form-control" required>
-                     <div class="error-message" id="cp-error"></div>
-                </div>
-
-                <!-- Hidden field for cart items -->
-                <input type="hidden" id="cart-items-input" name="cart_items">
-
-                <div class="form-group">
-                    <button type="submit" class="btn btn-block" id="submit-btn">FINALIZAR COMPRA</button>
-                </div>
-            </form>
-        </section>
-
-        <section class="testimonials-section">
-            <h2 class="section-heading">Opiniones de Nuestras Clientes</h2>
-            <div class="testimonials-carousel">
-                <div><img src="comentariorecibi1.webp" alt="Testimonio Cliente 1" loading="lazy"></div>
-                <div><img src="comentariorecibi2.webp" alt="Testimonio Cliente 2" loading="lazy"></div>
-                <div><img src="comentariorecibi4.webp" alt="Testimonio Cliente 3" loading="lazy"></div>
-                <!-- Add more testimonials if available -->
-            </div>
-        </section>
-
-        <footer class="footer">
-            <p>© 2025 Rosita Rococó Calzados - Todos los derechos reservados</p>
-        </footer>
-    </div> <!-- End .container -->
-
-    <!-- Notification container -->
-    <div id="notification-container"></div>
-
-    <!-- Loading overlay -->
-    <div class="loading-overlay">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <p class="loading-message">Procesando tu pedido...</p>
-        </div>
-    </div>
-
-    <!-- WhatsApp float -->
-    <div class="whatsapp-float">
-        <a href="https://api.whatsapp.com/send?phone=5491127595502" target="_blank" rel="noopener noreferrer">
-            <img src="/whatsapp.png" alt="Contactar por WhatsApp">
-        </a>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script> -->
-    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script>
-      $(document).ready(function(){
-        // Initialize carousels
-        $('.model-carousel').slick({
-          dots: true,
-          infinite: true,
-          speed: 500,
-          fade: true,
-          cssEase: 'linear',
-          lazyLoad: 'ondemand',
-          adaptiveHeight: false, // Set to false if images have fixed height
-          arrows: true
-        });
-
-        $('.testimonials-carousel').slick({
-          dots: true,
-          infinite: true,
-          speed: 500,
-          arrows: false,
-          autoplay: true,
-          autoplaySpeed: 4000,
-          slidesToShow: 1,
-          centerMode: true,
-          variableWidth: true,
-          adaptiveHeight: true
-        });
-
-        // --- Cart Functionality ---
-        let cart = {}; // Use an object for easier management: { 'product-id-size': { details }, ... }
-
-        function updateCart(productId, productName, size, quantity) {
-            const cartKey = `${productId}-${size}`;
-            if (quantity > 0) {
-                cart[cartKey] = {
-                    id: productId,
-                    name: productName,
-                    size: size,
-                    quantity: quantity // Store quantity if needed, though form implies 1 per selection
-                };
-                showNotification('success', `${productName} (Talle ${size}) agregado al carrito.`);
-            } else {
-                // This case might not be needed if selection implies adding
-                delete cart[cartKey];
-                showNotification('error', `${productName} (Talle ${size}) eliminado del carrito.`);
-            }
-            console.log("Cart updated:", cart);
-            updateCartInput(); // Update hidden input for form submission
-        }
-
-        function updateCartInput() {
-            const cartItemsArray = Object.values(cart);
-            $('#cart-items-input').val(JSON.stringify(cartItemsArray));
-        }
-
-        // Handle size selection change
-        $('.talle').change(function() {
-            const selectedSize = $(this).val();
-            const productId = $(this).data('product-id');
-            const productName = $(this).data('product-name');
-
+        <!-- Info Section -->
+        <section class="info-section" aria-label="Información Importante">
+             <span><span class="emoji">🚚</span> <small><span style="font-weight: 700;">ENVÍO GRATIS</span> a domicilio o sucursal.</small></span>
             if (selectedSize && productId && productName) {
                 // For simplicity, assume selecting a size adds 1 item.
                 // More complex logic needed if quantity radios affect this.
