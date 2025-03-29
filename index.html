@@ -1629,7 +1629,7 @@ $(document).ready(function() {
 
         createErrorElement(inputElement);
         showError("Verificando WhatsApp...", "#666");
-        setDependentElementsDisabled(true);
+        // setDependentElementsDisabled(true); // <-- COMMENTED OUT: Don't disable fields during verification
 
         const formattedNumber = formatNumber(inputElement.value);
         console.log("Validating number:", formattedNumber);
@@ -1644,14 +1644,17 @@ $(document).ready(function() {
                     const data = JSON.parse(xhr.responseText);
                     console.log("API response:", data);
                     isValid = data.exists === true;
-                    const errorMessage = "WhatsApp no válido. Verifica el número.";
-                    showError(isValid ? "WhatsApp válido." : errorMessage, isValid ? "green" : "red");
-                    setDependentElementsDisabled(!isValid);
-
+                    if (isValid) {
+                        hideError(); // Hide "Verifying..." or any previous error
+                        setDependentElementsDisabled(false); // Ensure fields are enabled
+                    } else {
+                        showError("WhatsApp no válido. Verifica el número.", "red");
+                        setDependentElementsDisabled(true); // Disable fields only if invalid
+                    }
                 } else {
                     console.error("API error. Status:", xhr.status);
-                    showError("Error de conexión", "orange");
-                    setDependentElementsDisabled(true);
+                    showError("Error al verificar WhatsApp. Intenta de nuevo.", "orange");
+                    setDependentElementsDisabled(true); // Disable fields on connection error
                 }
                 isChecking = false;
             }
@@ -1681,7 +1684,7 @@ $(document).ready(function() {
             timeout = setTimeout(validateWhatsApp, 200); // Pequeño retraso para asegurar que se procese el valor final
         });
 
-        setDependentElementsDisabled(true);
+        // setDependentElementsDisabled(true); // <-- COMMENTED OUT: Prevent initial disabling
     }
 
 
