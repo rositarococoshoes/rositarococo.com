@@ -1428,7 +1428,7 @@ jQuery(document).ready(function() {
 
         createErrorElement(inputElement);
         showError("Verificando WhatsApp...");
-        setDependentElementsDisabled(true);
+        // setDependentElementsDisabled(true); // <-- REMOVED: Don't disable fields during verification
 
         const formattedNumber = formatNumber(inputElement.value);
         console.log("Validating number:", formattedNumber);
@@ -1441,11 +1441,16 @@ jQuery(document).ready(function() {
                 if (xhr.status === 200) {
                     const data = JSON.parse(xhr.responseText);
                     isValid = data.exists === true;
-                    showError(isValid ? "WhatsApp válido." : "WhatsApp no válido. Verifica el número.", isValid ? "green" : "red");
-                    setDependentElementsDisabled(!isValid);
+                    if (isValid) {
+                        hideError(); // Hide "Verifying..." or any previous error
+                        setDependentElementsDisabled(false); // Ensure fields are enabled
+                    } else {
+                        showError("WhatsApp no válido. Verifica el número.", "red");
+                        setDependentElementsDisabled(true); // Disable fields only if invalid
+                    }
                 } else {
-                    showError("Error de conexión", "orange");
-                    setDependentElementsDisabled(true);
+                    showError("Error al verificar WhatsApp. Intenta de nuevo.", "orange");
+                    setDependentElementsDisabled(true); // Disable fields on connection error
                 }
                 isChecking = false;
             }
