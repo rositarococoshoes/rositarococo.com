@@ -23,14 +23,14 @@
     <!-- Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <!-- jQuery UI CSS (for autocomplete) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- jQuery UI CSS (Optional, for autocomplete styling) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
-
 
     <style type="text/css">
       /* Base styles with minimalist approach */
@@ -39,8 +39,6 @@
         margin: 0;
         padding: 0;
       }
-
-      html { scroll-behavior: smooth; }
 
       body {
         font-family: 'Montserrat', sans-serif;
@@ -68,24 +66,15 @@
         --dark: #5a4a42; /* Dark Brown Text */
         --highlight: #e6b17e; /* Lighter Accent */
         --text: #3a2e26; /* Slightly Darker Text */
-        --border: rgba(139, 90, 43, 0.15); /* Subtle Border */
+        --border: rgba(139, 90, 43, 0.18); /* Slightly darker Subtle Border */
         --card-bg: #ffffff; /* White card background */
         --error: #c45c40; /* Error Red */
         --success: #5a8b2b; /* Success Green */
-        --warning-bg: #fff3cd;
-        --warning-text: #856404;
-        --warning-border: #ffeeba;
-        --info-bg: #e2f3fd;
-        --info-text: #0c5460;
-        --info-border: #b8daff;
-        --success-bg: #d4edda;
-        --success-text: #155724;
-        --success-border: #c3e6cb;
-        --error-bg: #f8d7da;
-        --error-text: #721c24;
-        --error-border: #f5c6cb;
+        --info-bg: #fff8e1; /* Light yellow for info */
+        --info-border: #ffeeba;
+        --info-text: #856404;
         --border-radius: 6px;
-        --section-spacing: 40px;
+        --section-spacing: 45px;
       }
 
       /* Main container */
@@ -96,24 +85,27 @@
       }
 
       /* Header - minimalist approach */
-      .header {
+      .site-header { /* Changed from .header */
         background-color: var(--primary);
         color: white;
-        padding: 25px 0;
+        padding: 30px 0;
         text-align: center;
         border-bottom: 1px solid rgba(255,255,255,0.1);
         margin-bottom: var(--section-spacing);
       }
-      .header img.logo { max-width: 200px; margin: 0 auto 15px auto; } /* Logo style */
+       .site-header img.logo {
+           max-width: 200px;
+           margin: 0 auto 15px auto;
+       }
 
-      .header h1 {
+      .site-header h1 {
         font-size: 1.9rem;
         margin-bottom: 8px;
         font-weight: 500;
         letter-spacing: 0.5px;
       }
 
-      .header p {
+      .site-header p {
         font-size: 1.05rem;
         opacity: 0.9;
         font-weight: 300;
@@ -121,11 +113,12 @@
         margin-left: auto;
         margin-right: auto;
       }
-      .header .emoji { font-size: 1.1em; vertical-align: -0.1em; }
-      #fechahoy { color: var(--primary); background-color: var(--light); padding: 5px 12px; font-weight: bold; text-align: center; font-size: 0.9em; margin: 15px auto 0 auto; border-radius: 20px; display: inline-block; border: 1px solid var(--border); }
+       .site-header .emoji { margin: 0 4px; vertical-align: -0.1em; }
+       #fechahoy { color: var(--primary); background-color: var(--accent); padding: 5px 12px; font-weight: bold; text-align: center; font-size: 0.9em; margin: 15px auto 0 auto; border-radius: 20px; display: inline-block; border: none; }
 
-      /* Offer banner & Price Summary */
-      .offer-banner, .price-summary-box {
+
+      /* Offer banner */
+      .offer-banner {
         background-color: var(--accent);
         color: white;
         text-align: center;
@@ -137,39 +130,35 @@
       }
       .offer-banner .emoji { margin: 0 5px; vertical-align: -0.1em; }
 
-      .price-summary-box {
-        background-color: var(--light);
-        border: 1px solid var(--border);
-        color: var(--text);
-        padding: 20px;
-      }
-      .price-summary-box p:first-child { margin: 0 0 15px 0; font-size: 1.1em; font-weight: bold; color: var(--primary); }
-      .price-summary-box .price-line { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; color: var(--primary); }
-      .price-summary-box .price-detail { font-size: 0.9em; color: #666; }
-      .price-summary-box .discount-info { font-size: 0.9em; background-color: #fff; color: var(--text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 10px 0; border: 1px solid var(--border); }
-      .price-summary-box .transfer-discount { color: var(--success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 12px; display: block; }
+       /* Price Summary Box */
+       .price-summary-box { background-color: var(--info-bg); padding: 25px; border: 1px solid var(--info-border); border-radius: var(--border-radius); margin-bottom: var(--section-spacing); text-align: center; }
+       .price-summary-box p:first-child { margin: 0 0 15px 0; font-size: 1.1em; font-weight: bold; color: var(--info-text); }
+       .price-summary-box .price-line { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; color: var(--primary); }
+       .price-summary-box .price-detail { font-size: 0.9em; color: #666; }
+       .price-summary-box .discount-info { font-size: 0.9em; background-color: #fff; color: var(--info-text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 10px 0; border: 1px solid var(--border); }
+       .price-summary-box .transfer-discount { color: var(--success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 12px; display: block; }
 
-      /* Info Section */
-      .info-section { font-size: 0.95em; line-height: 1.7; margin-bottom: var(--section-spacing); padding: 25px; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: var(--border-radius); }
-      .info-section span { display: flex; align-items: baseline; margin-bottom: 10px; }
-      .info-section small span { font-weight: bold; color: var(--primary); }
-      .info-section .emoji { margin-right: 10px; font-size: 1.1em; min-width: 1.2em; display: inline-block; text-align: center; vertical-align: -0.1em; }
+       /* Info Section */
+       .info-section { font-size: 0.98em; line-height: 1.7; margin-bottom: var(--section-spacing); padding: 25px; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: var(--border-radius); }
+       .info-section span { display: flex; align-items: baseline; margin-bottom: 10px; }
+       .info-section small span { font-weight: bold; color: var(--text); }
+       .info-section .emoji { margin-right: 10px; font-size: 1.1em; min-width: 1.2em; display: inline-block; text-align: center; vertical-align: -0.1em; }
 
-      /* How to Buy */
-      .how-to-buy { margin-bottom: var(--section-spacing); background-color: var(--card-bg); padding: 25px; border: 1px solid var(--border); border-radius: var(--border-radius); }
-      .how-to-buy h3 { margin-bottom: 15px; color: var(--primary); font-size: 1.3em; }
-      .how-to-buy ol { padding-left: 20px; margin: 0; font-size: 0.95em; }
-      .how-to-buy li { margin-bottom: 8px; color: var(--text); }
-      .how-to-buy li::marker { color: var(--primary); font-weight: bold; }
-      .how-to-buy strong { color: var(--primary); }
+       /* How to Buy Section */
+       .how-to-buy { margin-bottom: var(--section-spacing); background-color: var(--card-bg); padding: 30px; border: 1px solid var(--border); border-radius: var(--border-radius); }
+       .how-to-buy h3 { margin-bottom: 15px; color: var(--primary); font-size: 1.3em; }
+       .how-to-buy ol { padding-left: 25px; margin: 0; font-size: 0.98em; }
+       .how-to-buy li { margin-bottom: 10px; color: var(--text); }
+       .how-to-buy li::marker { color: var(--primary); font-weight: bold; }
+       .how-to-buy strong { color: var(--text); }
 
 
       /* Section Heading */
       .section-heading {
         text-align: center;
         color: var(--primary);
-        margin-bottom: 30px;
-        font-size: 1.6rem;
+        margin-bottom: 35px; /* Increased margin */
+        font-size: 1.7rem; /* Slightly larger */
         font-weight: 500;
         position: relative;
       }
@@ -177,10 +166,10 @@
       .section-heading::after {
         content: '';
         display: block;
-        width: 60px;
-        height: 2px;
+        width: 70px; /* Wider line */
+        height: 2.5px; /* Thicker line */
         background: var(--accent);
-        margin: 12px auto 0;
+        margin: 14px auto 0;
       }
 
       /* Models section */
@@ -191,7 +180,7 @@
       .model-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
+        gap: 35px; /* Increased gap */
         justify-content: center;
       }
 
@@ -200,7 +189,7 @@
         background: var(--card-bg);
         border-radius: var(--border-radius);
         overflow: hidden;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Slightly stronger shadow */
         border: 1px solid var(--border);
         transition: all 0.3s ease;
         display: flex;
@@ -208,8 +197,8 @@
       }
 
       .model-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        transform: translateY(-6px); /* More lift */
+        box-shadow: 0 8px 18px rgba(0,0,0,0.12);
       }
 
       .model-carousel {
@@ -219,7 +208,7 @@
 
       .model-carousel .slick-slide img {
         width: 100%;
-        height: 300px; /* Adjust height as needed */
+        height: 320px; /* Increased height */
         object-fit: cover;
         transition: transform 0.5s ease;
       }
@@ -229,73 +218,86 @@
       }
 
       .model-info {
-        padding: 20px;
+        padding: 25px; /* Increased padding */
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        text-align: center; /* Center align text */
       }
 
       .model-info h3 {
         color: var(--primary);
-        margin-bottom: 10px;
-        font-size: 1.25rem;
+        margin-bottom: 12px;
+        font-size: 1.3rem;
         font-weight: 600;
       }
 
       .model-info p {
-        margin-bottom: 10px;
+        margin-bottom: 12px;
         font-size: 0.95rem;
         color: var(--text);
         line-height: 1.5;
       }
-      .model-info p.material { font-size: 0.9rem; color: #666; }
+      .model-info p.material { font-size: 0.9rem; color: #666; margin-bottom: 15px; }
 
+      .price-section { margin-bottom: 15px; } /* Group price */
       .price {
         font-weight: 600;
         color: var(--accent);
-        font-size: 1.15rem;
+        font-size: 1.2rem;
         margin-bottom: 5px;
+        display: block; /* Ensure block display */
       }
+       .price-detail { font-size: 0.9em; color: #666; display: block; margin-bottom: 8px; }
+
 
       .discount {
         color: var(--error);
         font-weight: 600;
         font-size: 0.9rem;
+        display: block; /* Ensure block display */
       }
+       .discount-info { font-size: 0.9em; background-color: var(--info-bg); color: var(--info-text); padding: 4px 8px; border-radius: 4px; display: inline-block; margin: 8px 0 10px 0; border: 1px solid var(--info-border); }
+       .transfer-discount { color: var(--success); font-weight: bold; text-transform: uppercase; font-size: 0.95em; margin-top: 12px; display: block; }
+
 
       .model-info fieldset {
         border: none;
         padding: 0;
-        margin-top: 15px;
-        margin-bottom: 5px;
+        margin-top: 20px; /* Increased spacing */
+        margin-bottom: 10px;
       }
       .model-info fieldset:last-of-type { margin-bottom: 0; }
-      .fieldsetstalles { display: none; } /* Hide second size select initially */
 
       .model-info legend {
         font-weight: 600;
-        font-size: 0.95rem;
-        margin-bottom: 8px;
+        font-size: 1rem; /* Larger legend */
+        margin-bottom: 10px;
         padding: 0;
         color: var(--text);
         float: none; /* Override fieldset legend style */
         width: auto;
+        display: block; /* Ensure block */
+        text-align: center; /* Center legend */
       }
 
-      .model-info label {
+      .quantity-selection label { /* Target quantity labels */
         font-size: 0.95rem;
-        margin-right: 15px;
+        margin: 0 10px; /* Adjust spacing */
         display: inline-flex;
         align-items: center;
         cursor: pointer;
       }
-      .model-info input[type="radio"] {
-        margin-right: 5px;
+       .quantity-selection input[type="radio"] {
+        margin-right: 6px;
         accent-color: var(--primary);
       }
 
       .model-info select.talle {
         width: 100%;
+        max-width: 220px; /* Limit width */
+        margin-left: auto;
+        margin-right: auto;
         padding: 10px;
         border: 1px solid var(--border);
         border-radius: 4px;
@@ -308,74 +310,86 @@
         background-position: right 0.7rem center;
         background-size: 10px 10px;
         padding-right: 2rem;
+        cursor: pointer;
       }
       .model-info select.talle:focus {
         outline: none;
         border-color: var(--accent);
       }
-      .avisoagregado { color: var(--success); font-weight: bold; font-size: 0.9em; margin-top: 10px; text-align: center; }
+       .fieldsetstalles { display: none; } /* Hide second size select initially */
+
 
       /* Form section - minimalist redesign */
       .form-section {
         background: var(--card-bg);
-        padding: 30px 35px;
+        padding: 35px 40px; /* Increased padding */
         border-radius: var(--border-radius);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.07);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Slightly more shadow */
         margin-bottom: var(--section-spacing);
         border: 1px solid var(--border);
-        max-width: 650px;
+        max-width: 700px; /* Wider form */
         margin-left: auto;
         margin-right: auto;
-        display: none; /* Hidden by default */
+        display: none; /* Hide form initially */
       }
 
       .form-group {
-        margin-bottom: 22px;
+        margin-bottom: 24px; /* Increased spacing */
       }
 
       .form-group label {
         display: block;
-        margin-bottom: 8px;
+        margin-bottom: 9px; /* Increased spacing */
         font-weight: 500;
         color: var(--text);
-        font-size: 0.95rem;
+        font-size: 0.98rem; /* Slightly larger label */
       }
 
       .form-control {
         width: 100%;
-        padding: 12px 14px;
+        padding: 13px 15px; /* Increased padding */
         border: 1px solid var(--border);
         border-radius: 4px;
         font-size: 1rem;
-        transition: border-color 0.3s ease;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
         background-color: #fff;
       }
-      .form-control[readonly] { background-color: #f8f6f2; opacity: 0.8; cursor: not-allowed; }
-      select.form-control { height: auto; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235a4a42' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 12px 12px; padding-right: 2.5rem; }
+       select.form-control {
+           height: auto; /* Let padding define height */
+           appearance: none;
+           background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%235a4a42' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E");
+           background-repeat: no-repeat;
+           background-position: right 0.9rem center;
+           background-size: 12px 12px;
+           padding-right: 2.5rem;
+           cursor: pointer;
+       }
+       .form-control[readonly] { background-color: #f8f6f2; opacity: 0.8; cursor: not-allowed; }
 
 
       .form-control:focus {
         outline: none;
         border-color: var(--accent);
-        box-shadow: 0 0 0 2px rgba(212, 163, 115, 0.2); /* Subtle focus ring */
+        box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.25); /* Enhanced focus ring */
       }
-      .help-block { font-size: 0.88em; color: #777; margin-top: 8px; }
+       .form-group p.help-block { font-size: 0.85em; color: #777; margin-top: 8px; }
 
-      /* Order Summary in Form */
-      #confirma-pedido { background-color: var(--light); padding: 20px; border-radius: var(--border-radius); border: 1px solid var(--border); margin-top: 25px; }
-      #confirma-pedido h3 { font-size: 1.2em; margin-bottom: 20px; text-align: center; color: var(--primary); }
-      #confirma-pedido .summary-item { margin-bottom: 10px; font-size: 0.95em; line-height: 1.5; }
-      #confirma-pedido .summary-label { font-weight: bold; color: var(--text); margin-right: 6px; }
-      #confirma-pedido .summary-value { color: var(--dark); word-break: break-word; }
-      #preciototal { font-size: 1.2em; font-weight: bold; text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px dashed var(--border); }
-      #preciototal .preciototalaobservar { color: var(--accent); }
-      #preciototal .shipping-free { color: var(--success); font-size: 0.9em; font-weight: normal; display: inline-block; margin-left: 5px; }
-      #preciototal .add-more-info { font-size: 0.85em; color: #6c757d; font-weight: normal; display: block; margin-top: 8px; }
-      #confirma-pedido fieldset { margin-top: 25px; border-color: var(--secondary); background-color: #fff; padding: 15px; }
-      #confirma-pedido legend { color: var(--primary); margin-bottom: 15px; font-size: 1.1em; }
-      #comoabona { background-color: #fff; }
-      .commitment-warning { text-align: center; margin: 25px 0; font-size: 0.95em; background-color: var(--warning-bg); padding: 12px; border-radius: var(--border-radius); border: 1px solid var(--warning-border); color: var(--warning-text); }
-      .commitment-warning .emoji { font-size: 1.2em; vertical-align: -0.1em; }
+
+       /* Order Summary in Form */
+       #confirma-pedido { background-color: #fffcf7; padding: 25px; border-radius: var(--border-radius); border: 1px solid var(--border); margin-top: 30px; }
+       #confirma-pedido h3 { font-size: 1.3em; margin-bottom: 25px; text-align: center; color: var(--primary); }
+       #confirma-pedido .summary-item { margin-bottom: 12px; font-size: 1em; line-height: 1.5; }
+       #confirma-pedido .summary-label { font-weight: bold; color: var(--text); margin-right: 8px; }
+       #confirma-pedido .summary-value { color: var(--dark); word-break: break-word; }
+       #preciototal { font-size: 1.25em; font-weight: bold; text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px dashed var(--border); }
+       #preciototal .preciototalaobservar { color: var(--accent); }
+       #preciototal .shipping-free { color: var(--success); font-size: 0.9em; font-weight: normal; display: inline-block; margin-left: 5px; }
+       #preciototal .add-more-info { font-size: 0.85em; color: #6c757d; font-weight: normal; display: block; margin-top: 8px; }
+       #confirma-pedido fieldset { margin-top: 30px; border-color: var(--secondary); background-color: #fff; padding: 20px; }
+       #confirma-pedido legend { color: var(--primary); margin-bottom: 15px; font-size: 1.1em; }
+       #comoabona { background-color: #fff; }
+       .commitment-warning { text-align: center; margin: 30px 0 25px 0; font-size: 0.95em; background-color: var(--info-bg); padding: 15px; border-radius: var(--border-radius); border: 1px solid var(--info-border); color: var(--info-text); }
+       .commitment-warning .emoji { font-size: 1.2em; vertical-align: -0.1em; }
 
 
       /* Buttons - minimalist style */
@@ -383,21 +397,21 @@
         display: inline-block;
         background: var(--primary);
         color: white;
-        padding: 14px 28px;
+        padding: 15px 30px; /* Slightly larger padding */
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        font-size: 1.05rem;
+        font-size: 1.1rem; /* Slightly larger font */
         text-align: center;
         transition: all 0.3s ease;
-        font-weight: 500;
+        font-weight: 600; /* Bolder */
         letter-spacing: 0.5px;
       }
 
       .btn:hover {
         background: var(--secondary);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transform: translateY(-3px); /* More lift */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.12);
       }
       .btn:disabled {
         background-color: #cccccc;
@@ -411,14 +425,14 @@
         display: block;
         width: 100%;
       }
-      #submit-btn .emoji { margin-left: 8px; vertical-align: -0.1em; }
+       #submit-btn .emoji { margin-left: 8px; vertical-align: -0.1em; }
 
 
       /* Testimonials */
       .testimonials-section {
         margin-bottom: var(--section-spacing);
         background-color: var(--card-bg);
-        padding: 30px;
+        padding: 35px; /* Increased padding */
         border-radius: var(--border-radius);
         border: 1px solid var(--border);
       }
@@ -437,7 +451,7 @@
         background-color: var(--primary);
         color: white;
         text-align: center;
-        padding: 25px;
+        padding: 30px; /* Increased padding */
         margin-top: var(--section-spacing);
         font-size: 0.9rem;
         opacity: 0.95;
@@ -446,8 +460,8 @@
       /* WhatsApp float */
       .whatsapp-float {
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 25px; /* Adjusted */
+        right: 25px;
         z-index: 100;
         transition: transform 0.3s ease;
       }
@@ -460,7 +474,7 @@
         width: 55px;
         height: 55px;
         border-radius: 50%;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 14px rgba(0,0,0,0.25); /* Enhanced shadow */
       }
 
       /* Slick Carousel Base Styles */
@@ -484,203 +498,224 @@
       .slick-arrow.slick-hidden { display: none; }
 
       /* Slick Arrows */
-      .slick-prev, .slick-next { font-size: 0; line-height: 0; position: absolute; top: 50%; display: block; width: 35px; height: 35px; padding: 0; -webkit-transform: translate(0, -50%); -ms-transform: translate(0, -50%); transform: translate(0, -50%); cursor: pointer; color: transparent; border: none; outline: none; background: rgba(255, 255, 255, 0.8); border-radius: 50%; z-index: 1; transition: background-color 0.2s ease; }
-      .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus { color: transparent; outline: none; background: rgba(255, 255, 255, 1); }
+      .slick-prev, .slick-next { font-size: 0; line-height: 0; position: absolute; top: 50%; display: block; width: 38px; height: 38px; padding: 0; -webkit-transform: translate(0, -50%); -ms-transform: translate(0, -50%); transform: translate(0, -50%); cursor: pointer; color: transparent; border: none; outline: none; background: rgba(255, 255, 255, 0.85); border-radius: 50%; z-index: 1; transition: background-color 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+      .slick-prev:hover, .slick-prev:focus, .slick-next:hover, .slick-next:focus { color: transparent; outline: none; background: rgba(255, 255, 255, 1); box-shadow: 0 3px 8px rgba(0,0,0,0.15); }
       .slick-prev:hover:before, .slick-prev:focus:before, .slick-next:hover:before, .slick-next:focus:before { opacity: 1; }
       .slick-prev.slick-disabled:before, .slick-next.slick-disabled:before { opacity: .25; }
-      .slick-prev:before, .slick-next:before { font-family: 'slick'; font-size: 18px; line-height: 1; opacity: .75; color: var(--primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: color 0.2s ease; }
-      .slick-prev { left: 10px; } [dir='rtl'] .slick-prev { right: 10px; left: auto; }
+      .slick-prev:before, .slick-next:before { font-family: 'slick'; font-size: 20px; line-height: 1; opacity: .75; color: var(--primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: color 0.2s ease; }
+      .slick-prev { left: 12px; } [dir='rtl'] .slick-prev { right: 12px; left: auto; }
       .slick-prev:before { content: '←'; } [dir='rtl'] .slick-prev:before { content: '→'; }
-      .slick-next { right: 10px; } [dir='rtl'] .slick-next { right: auto; left: 10px; }
+      .slick-next { right: 12px; } [dir='rtl'] .slick-next { right: auto; left: 12px; }
       .slick-next:before { content: '→'; } [dir='rtl'] .slick-next:before { content: '←'; }
 
       /* Slick Dots */
-      .slick-dots { position: absolute; bottom: 15px; display: block; width: 100%; padding: 0; margin: 0; list-style: none; text-align: center; }
-      .slick-dots li { position: relative; display: inline-block; width: 10px; height: 10px; margin: 0 5px; padding: 0; cursor: pointer; }
+      .slick-dots { position: absolute; bottom: 18px; display: block; width: 100%; padding: 0; margin: 0; list-style: none; text-align: center; }
+      .slick-dots li { position: relative; display: inline-block; width: 10px; height: 10px; margin: 0 6px; padding: 0; cursor: pointer; }
       .slick-dots li button { font-size: 0; line-height: 0; display: block; width: 10px; height: 10px; padding: 5px; cursor: pointer; color: transparent; border: 0; outline: none; background: transparent; }
       .slick-dots li button:hover, .slick-dots li button:focus { outline: none; }
       .slick-dots li button:hover:before, .slick-dots li button:focus:before { opacity: 1; }
-      .slick-dots li button:before { font-family: 'slick'; font-size: 8px; line-height: 10px; position: absolute; top: 0; left: 0; width: 10px; height: 10px; content: '•'; text-align: center; opacity: .5; color: var(--primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: color 0.2s ease, opacity 0.2s ease; }
+      .slick-dots li button:before { font-family: 'slick'; font-size: 9px; line-height: 10px; position: absolute; top: 0; left: 0; width: 10px; height: 10px; content: '•'; text-align: center; opacity: .5; color: var(--primary); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transition: color 0.2s ease, opacity 0.2s ease; }
       .slick-dots li.slick-active button:before { opacity: 1; color: var(--accent); }
 
 
       /* Notification */
-      #notification-container { position: fixed; bottom: 80px; /* Above whatsapp */ left: 15px; z-index: 999; width: calc(100% - 30px); max-width: 350px; pointer-events: none; }
-      .notification { display: flex; align-items: center; padding: 12px 15px; background-color: white; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); border-radius: var(--border-radius); margin-bottom: 10px; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; border-left: 4px solid var(--success); }
+      #notification-container { position: fixed; bottom: 90px; /* Adjusted */ left: 15px; z-index: 999; width: calc(100% - 30px); max-width: 360px; pointer-events: none; }
+      .notification { display: flex; align-items: center; padding: 14px 18px; background-color: white; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.18); border-radius: var(--border-radius); margin-bottom: 12px; opacity: 0; transform: translateY(20px); transition: opacity 0.4s ease, transform 0.4s ease; pointer-events: auto; border-left: 5px solid var(--success); }
       .notification.show { opacity: 1; transform: translateY(0); }
       .notification.error { border-left-color: var(--error); }
-      .notification .icon { font-size: 1.5rem; margin-right: 12px; }
+      .notification .icon { font-size: 1.6rem; margin-right: 14px; }
       .notification .icon.success { color: var(--success); }
       .notification .icon.error { color: var(--error); }
       .notification .order-info { flex-grow: 1; }
-      .notification .order-info h3 { margin: 0 0 3px 0; font-size: 0.95rem; font-weight: 600; color: var(--text); }
+      .notification .order-info h3 { margin: 0 0 4px 0; font-size: 1rem; font-weight: 600; color: var(--text); }
       .notification .order-info p { margin: 0; font-size: 0.9rem; color: #555; }
-      .notification .close { position: absolute; top: 8px; right: 8px; width: 20px; height: 20px; text-align: center; line-height: 18px; font-size: 14px; font-weight: bold; color: #aaa; cursor: pointer; background: #f0f0f0; border-radius: 50%; border: none; padding: 0; transition: background-color 0.2s, color 0.2s; }
+      .notification .close { position: absolute; top: 10px; right: 10px; width: 22px; height: 22px; text-align: center; line-height: 20px; font-size: 14px; font-weight: bold; color: #aaa; cursor: pointer; background: #f0f0f0; border-radius: 50%; border: none; padding: 0; transition: background-color 0.2s, color 0.2s; }
       .notification .close:hover { color: #fff; background: #888; }
 
       /* Loading overlay */
-      .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(248, 244, 238, 0.9); backdrop-filter: blur(4px); z-index: 10001; align-items: center; justify-content: center; }
-      .loading-content { background: white; padding: 30px 40px; border-radius: var(--border-radius); box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
-      .loading-spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--accent); border-radius: 50%; margin: 0 auto 20px; animation: spin 1s linear infinite; }
+      .loading-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(248, 244, 238, 0.92); backdrop-filter: blur(5px); z-index: 10001; align-items: center; justify-content: center; }
+      .loading-content { background: white; padding: 35px 45px; border-radius: var(--border-radius); box-shadow: 0 5px 20px rgba(0,0,0,0.15); text-align: center; }
+      .loading-spinner { width: 45px; height: 45px; border: 5px solid #f3f3f3; border-top: 5px solid var(--accent); border-radius: 50%; margin: 0 auto 25px; animation: spin 1s linear infinite; }
       @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-      .loading-message { color: var(--text); font-size: 1.05rem; margin: 0; line-height: 1.4; }
+      .loading-message { color: var(--text); font-size: 1.1rem; margin: 0; line-height: 1.5; }
 
-      /* Error messages (General & WhatsApp) */
+      /* Error messages (General Form & WhatsApp) */
       .error-message {
-        font-size: 0.85rem;
-        margin-top: 6px;
+        font-size: 0.88rem; /* Slightly larger */
+        margin-top: 8px; /* More space */
         display: none; /* Hidden by default */
         font-weight: 500;
-        padding: 8px 10px;
+        padding: 8px 10px; /* Add padding */
         border-radius: 4px;
         border: 1px solid transparent;
       }
-      .error-message.show { display: block; } /* Class to show general errors */
-      /* Specific WhatsApp validation states */
-      .whatsapp-error-message { /* Use a specific class for WhatsApp */
-          display: none;
-          font-size: 0.9em;
-          margin-top: 8px;
-          padding: 10px 12px;
-          border-radius: 4px;
-          text-align: center;
-          font-weight: 500;
-          border: 1px solid transparent;
-          transition: opacity 0.3s ease;
+      .error-message.show { display: block; } /* Class to show */
+      /* General form error */
+      .form-group .error-message {
+          color: var(--error);
+          background-color: #f8d7da;
+          border-color: #f5c6cb;
       }
-      .whatsapp-error-message.verifying { display: block; background-color: var(--info-bg); color: var(--info-text); border-color: var(--info-border); animation: pulse 1.5s infinite ease-in-out; }
-      .whatsapp-error-message.valid { display: block; background-color: var(--success-bg); color: var(--success-text); border-color: var(--success-border); }
-      .whatsapp-error-message.invalid { display: block; background-color: var(--error-bg); color: var(--error-text); border-color: var(--error-border); }
-      .whatsapp-error-message.api-error { display: block; background-color: var(--warning-bg); color: var(--warning-text); border-color: var(--warning-border); }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+      /* WhatsApp specific validation messages */
+       .whatsapp-validation-msg { /* Use a different class for WApp messages */
+           text-align: center;
+           font-weight: bold;
+       }
+       .whatsapp-validation-msg.verifying { background-color: #e2f3fd; color: #0c5460; border-color: #b8daff; animation: pulse 1.5s infinite ease-in-out; }
+       .whatsapp-validation-msg.valid { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+       .whatsapp-validation-msg.invalid { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+       .whatsapp-validation-msg.api-error { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+       @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
 
 
-      /* Bottom Summary Bar */
-       #bottom-bar {
-            display: none; /* Hidden initially */
-            font-size: 12px;
-            position: fixed;
-            width: 100%;
-            left: 0;
-            padding: 10px 15px;
-            min-height: 55px;
-            bottom: 0;
-            background-color: var(--dark); /* Darker background */
-            color: var(--light);
-            margin: 0;
-            z-index: 998;
-            border-top: 1px solid #4a3027;
-            box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
+       /* Bottom Cart Summary Bar */
+       #cart-summary-bar { /* Renamed from #text */
+           display: none; /* Hidden initially */
+           font-size: 13px; /* Base size */
+           position: fixed;
+           width: 100%;
+           left: 0;
+           padding: 10px 15px;
+           min-height: 60px; /* Increased height */
+           bottom: 0;
+           background-color: var(--dark); /* Darker background */
+           color: var(--light);
+           margin: 0;
+           z-index: 998;
+           border-top: 1px solid #4a3027; /* Darker border top */
+           box-shadow: 0 -4px 12px rgba(0,0,0,0.2); /* Stronger shadow */
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           gap: 15px; /* Space between text and button */
+       }
+        #cart-summary-content { /* Renamed from #text-content */
+            flex-grow: 1;
+            flex-shrink: 1;
+            overflow: hidden;
+            line-height: 1.4;
         }
-         #bottom-bar-content {
-             flex-grow: 1;
-             flex-shrink: 1;
-             overflow: hidden;
-             line-height: 1.4;
-         }
-         #bottom-bar-content b { /* Label like "PEDIDO (1 par):" */
-             display: block;
-             font-size: 1em;
-             margin-bottom: 2px;
-             font-weight: bold;
-             color: #fff;
-             white-space: nowrap;
-         }
-         #bottom-bar-content span:not(#bottom-bar-price) { /* The summary text */
+        #cart-summary-content b { /* Label like "PEDIDO (1 par):" */
             display: block;
-            white-space: normal;
-            font-size: 0.9em; /* Smaller summary text */
-         }
-         #bottom-bar-price { /* Price in bar */
-             font-weight: bold;
-             color: var(--accent); /* Accent color for price */
-             font-size: 1.1em;
-             display: block;
-             margin-top: 3px;
-         }
-         #bottom-bar-button { /* Button in bar */
-            font-size: 13px;
-            padding: 8px 14px;
-            background-color: var(--accent);
-            border: none;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            white-space: nowrap;
-            transition: background-color 0.2s ease;
-            flex-shrink: 0;
+            font-size: 1em;
+            margin-bottom: 3px; /* More space */
             font-weight: bold;
-            margin-left: auto;
+            color: #fff;
+            white-space: nowrap;
         }
-         #bottom-bar-button:hover { background-color: var(--secondary); }
+        #cart-summary-content span:not(#cart-total-price) { /* The summary text */
+           display: block;
+           white-space: normal;
+           font-size: 0.9em; /* Smaller summary text */
+           opacity: 0.9;
+        }
+        #cart-total-price { /* Renamed from #preciototal2 */
+            font-weight: bold;
+            color: var(--accent); /* Accent color for price */
+            font-size: 1.15em; /* Larger price */
+            display: block;
+            margin-top: 4px;
+        }
+        #go-to-checkout-btn { /* Renamed from #finalizarpedido */
+           font-size: 14px; /* Larger button text */
+           padding: 9px 16px; /* Larger padding */
+           background-color: var(--accent);
+           border: none;
+           color: white;
+           text-decoration: none;
+           border-radius: 5px;
+           white-space: nowrap;
+           transition: background-color 0.2s ease;
+           flex-shrink: 0;
+           font-weight: bold;
+           margin-left: auto;
+       }
+        #go-to-checkout-btn:hover { background-color: #b88a5f; } /* Darker accent */
+
+       /* Top Promo Bar */
+       #region {
+           font-size: 13px;
+           display: none; /* Hidden initially */
+           background-color: var(--primary);
+           color: white;
+           padding: 10px 15px;
+           position: fixed;
+           font-weight: bold;
+           z-index: 1000; /* Above most content */
+           top: 0;
+           width: 100%;
+           text-align: center;
+           box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+       }
+        #region .emoji { vertical-align: -0.1em; font-size: 1.1em; }
+
+       /* Utility */
+       .hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; } /* Screen reader only */
+       .text-center { text-align: center; }
+
+       /* jQuery UI Autocomplete */
+       .ui-autocomplete { z-index: 1001; border-radius: 5px; border: 1px solid var(--border); box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); background: #fff; }
+       .ui-menu-item { padding: 10px 14px; font-size: 0.95em; color: var(--text); }
+       .ui-menu-item.ui-state-focus, .ui-menu-item.ui-state-active { background-color: var(--primary); color: #ffffff; border: none; margin: 0; border-radius: 0; }
 
 
       /* Responsive styles */
       @media (max-width: 768px) {
         .container { padding: 0 10px; }
-        .header h1 { font-size: 1.6rem; }
-        .header p { font-size: 1rem; }
-        .model-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .form-section { padding: 25px; }
-        .section-heading { font-size: 1.4rem; }
-        .slick-prev, .slick-next { width: 30px; height: 30px; }
-        .slick-prev { left: 5px; } .slick-next { right: 5px; }
-        .slick-prev:before, .slick-next:before { font-size: 16px; }
-        .whatsapp-float { width: 50px; height: 50px; }
-        #notification-container { max-width: 320px; bottom: 75px; }
-        #bottom-bar { min-height: 50px; padding: 8px 10px; gap: 10px; }
-        #bottom-bar-content { font-size: 11px; }
-        #bottom-bar-button { font-size: 12px; padding: 7px 12px; }
+        .site-header h1 { font-size: 1.6rem; }
+        .site-header p { font-size: 1rem; }
+        .model-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .form-section { padding: 30px 25px; }
+        .section-heading { font-size: 1.5rem; }
+        .slick-prev, .slick-next { width: 35px; height: 35px; }
+        .slick-prev { left: 8px; } .slick-next { right: 8px; }
+        .slick-prev:before, .slick-next:before { font-size: 18px; }
+        .whatsapp-float { width: 50px; height: 50px; bottom: 85px; right: 15px; } /* Adjusted bottom */
+        #notification-container { max-width: 320px; bottom: 145px; } /* Adjusted bottom */
+        #cart-summary-bar { min-height: 55px; padding: 8px 10px; gap: 10px; }
+        #cart-summary-content { font-size: 12px; }
+        #go-to-checkout-btn { font-size: 13px; padding: 8px 14px; }
       }
 
       @media (max-width: 480px) {
         body { font-size: 15px; }
-        .header { padding: 20px 0; }
-        .header h1 { font-size: 1.4rem; }
+        .site-header { padding: 25px 0; }
+        .site-header h1 { font-size: 1.5rem; }
         .offer-banner { font-size: 1em; padding: 12px; }
         .model-container { grid-template-columns: 1fr; gap: 25px; }
-        .model-info { padding: 15px; }
-        .form-section { padding: 20px 15px; }
-        .btn { padding: 12px 24px; font-size: 1rem; }
-        .whatsapp-float { width: 48px; height: 48px; bottom: 15px; right: 15px; }
-        #notification-container { bottom: 70px; left: 10px; width: calc(100% - 20px); max-width: none; }
-        .notification { padding: 10px 12px; }
-        .notification .icon { font-size: 1.3rem; margin-right: 10px; }
-        .notification .order-info h3 { font-size: 0.9rem; }
-        .notification .order-info p { font-size: 0.85rem; }
-        #bottom-bar { /* Adjust bottom bar for small screens */
-            min-height: 55px;
-            padding: 10px 12px;
-            flex-wrap: wrap; /* Allow wrapping if needed */
-            gap: 5px 10px; /* Row and column gap */
-            bottom: 0; /* Ensure it's at the very bottom */
-        }
-        #bottom-bar-content {
-            flex-basis: 100%; /* Allow text to take full width if it wraps */
-            text-align: center; /* Center text if wrapped */
-            font-size: 11px; /* Keep small */
-            order: 1; /* Text first */
-        }
-        #bottom-bar-content b { display: inline; margin-right: 5px; } /* Inline label */
-        #bottom-bar-content span:not(#bottom-bar-price) { display: inline; } /* Inline summary */
-        #bottom-bar-price { display: inline; margin-left: 5px; font-size: 1em; } /* Inline price */
+        .model-info { padding: 20px; }
+        .form-section { padding: 25px 20px; }
+        .btn { padding: 14px 26px; font-size: 1.05rem; }
+        .whatsapp-float { width: 50px; height: 50px; bottom: 90px; right: 15px; } /* Adjusted bottom */
+        #notification-container { bottom: 150px; left: 10px; width: calc(100% - 20px); max-width: none; } /* Adjusted bottom */
+        .notification { padding: 12px 15px; }
+        .notification .icon { font-size: 1.4rem; margin-right: 12px; }
+        .notification .order-info h3 { font-size: 0.95rem; }
+        .notification .order-info p { font-size: 0.88rem; }
+         #cart-summary-bar { /* Adjust bottom bar for small screens */
+             min-height: 65px; /* Taller */
+             padding: 10px 12px;
+             flex-wrap: wrap; /* Allow wrapping */
+             gap: 5px 10px; /* Row and column gap */
+             justify-content: center; /* Center items when wrapped */
+         }
+         #cart-summary-content {
+             flex-basis: 100%; /* Allow text to take full width if it wraps */
+             text-align: center; /* Center text if wrapped */
+             font-size: 12px; /* Keep small */
+             margin-bottom: 5px; /* Space below text when wrapped */
+         }
+         #cart-summary-content b { display: inline; margin-right: 5px; } /* Inline label */
+         #cart-summary-content span:not(#cart-total-price) { display: inline; } /* Inline summary */
+         #cart-total-price { display: inline; margin-left: 5px; font-size: 1.1em; } /* Inline price */
 
-        #bottom-bar-button {
-            flex-basis: 100%; /* Button takes full width when wrapped */
-            font-size: 13px; /* Make button slightly larger */
-            padding: 9px 12px;
-            margin-left: 0; /* Remove margin when full width */
-            text-align: center;
-            order: 2; /* Button second */
-            margin-top: 5px; /* Add space when wrapped */
-        }
-        .whatsapp-float { bottom: 85px; /* INCREASED position due to potentially taller wrapped bottom bar */ }
-        #notification-container { bottom: 100px; /* Adjust for potentially taller bar */ }
-
+         #go-to-checkout-btn {
+             flex-basis: auto; /* Allow button to size naturally */
+             font-size: 14px; /* Make button slightly larger */
+             padding: 9px 18px; /* Adjust padding */
+             margin-left: 0;
+             margin-top: 5px; /* Space above button when wrapped */
+         }
       }
     </style>
 </head>
@@ -690,22 +725,22 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Top Promo Bar -->
-    <div id="region" style="display: none;"></div>
+     <div id="region" style="display: none;"></div> <!-- Top Promo Bar - Content added via JS -->
 
     <div class="container">
-        <header class="header">
-            <img class="logo" alt="Rosita Rococó Logo" src="rosita-form.webp" loading="lazy"/>
-            <h1><span class="emoji">🍂</span> Nueva Temporada <span class="emoji">🍂</span><br>Otoño Invierno 2025</h1>
+        <header class="site-header">
+             <img class="logo" alt="Rosita Rococó Logo" src="rosita-form.webp" loading="lazy"/>
+            <h1>
+                <span class="emoji">🍂</span> Nueva Temporada <span class="promo-highlight">Otoño Invierno 2025</span> <span class="emoji">🍂</span>
+            </h1>
             <p>
-                 <span class="emoji">💰</span> DESCUENTO ESPECIAL llevando dos pares
-                 <br> <span class="emoji">💳</span> 3 Cuotas sin interés y <span class="emoji">🚚</span> Envío GRATIS
+                 <span class="emoji">💰</span> <span style="font-weight: bold;">DESCUENTO ESPECIAL</span> llevando dos pares
+                 <br> <span class="emoji">💳</span> 3 Cuotas sin interés y <span class="emoji">🚚</span> <span style="font-weight: bold;">Envío GRATIS</span> a todo el país
             </p>
-             <div id="fechahoy" style="display:none;"></div>
+            <div id="fechahoy" style="display:none;"></div>
         </header>
 
-        <!-- Initial Price Summary -->
-        <section class="price-summary-box" aria-label="Resumen de Precios">
+        <section class="price-summary-box" aria-label="Resumen de Precios de Lanzamiento">
              <p>¡Aprovechá los precios de Lanzamiento!</p>
             <div class="price-line">1 par: 🔥 $70.000</div>
             <div class="price-line">2 pares: 🔥 $110.000 <span class="price-detail">($55.000 c/par)</span></div>
@@ -713,19 +748,536 @@
             <p class="transfer-discount">10% OFF ADICIONAL por Transferencia</p>
         </section>
 
-        <!-- Info Section -->
         <section class="info-section" aria-label="Información Importante">
              <span><span class="emoji">🚚</span> <small><span style="font-weight: 700;">ENVÍO GRATIS</span> a domicilio o sucursal.</small></span>
-            if (selectedSize && productId && productName) {
-                // For simplicity, assume selecting a size adds 1 item.
-                // More complex logic needed if quantity radios affect this.
-                updateCart(productId, productName, selectedSize, 1);
-            } else {
-                // Handle deselection if necessary (e.g., find previous selection and remove)
-                // This part is complex if multiple size selects exist per product (for quantity > 1)
-                // For now, assume selecting "-- Seleccione --" doesn't remove items automatically.
-            }
+             <span><span class="emoji">💳</span> <small><span style="font-weight: 700;">PAGO:</span> Tarjeta (3 cuotas sin interés), MercadoPago, Transferencia (10% OFF).</small></span>
+             <span><span class="emoji">⌛</span> <small><span style="font-weight: 700;">DESPACHO:</span> 15 días aprox. (Producimos a pedido con mucho ❤️).</small></span>
+             <span><span class="emoji">✅</span> <small><span style="font-weight: 700;">STOCK:</span> Disponible en todos los modelos publicados.</small></span>
+             <span><span class="emoji">📏</span> <small><span style="font-weight: 700;">TALLES:</span> Del 35 al 40. Ver medida en cm en cada talle.</small></span>
+        </section>
+
+        <section class="how-to-buy" aria-label="Cómo Comprar">
+             <h3>¿Cómo comprar fácil y rápido?</h3>
+             <ol>
+                 <li><strong>Elegí talle y cantidad</strong> de cada modelo que te guste (Máx. 2 pares).</li>
+                 <li>Una vez listo, <strong>desplazate hacia abajo</strong>.</li>
+                 <li><strong>Completá tus datos</strong> de envío y seleccioná tu forma de pago.</li>
+                 <li>¡Listo! Finalizá la compra y prepararemos tu pedido.</li>
+             </ol>
+         </section>
+
+
+        <section class="model-section">
+            <h2 class="section-heading">Nuestros Modelos Destacados</h2>
+            <div class="model-container">
+                <!-- Modelo Roma Negras -->
+                <div class="model-card" id="model-roma-negras">
+                    <div class="model-carousel">
+                        <div><img alt="Botas Roma Negras - Vista 1" src="roma-negras-1.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 2" data-lazy="roma-negras-1a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 3" data-lazy="roma-negras-5a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 4" data-lazy="roma-negras-2a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 5" data-lazy="roma-negras-3a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 6" data-lazy="roma-negras-4a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Negras - Vista 7" data-lazy="roma-negras-2.jpg" loading="lazy"></div>
+                    </div>
+                    <div class="model-info">
+                        <h3>BOTAS ROMA NEGRAS</h3>
+                        <p class="material">Material: Cuero Genuino | Suela: Expanso Ultra Liviano | Horma: Normal</p>
+                        <div class="price-section">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Podés combinar modelos</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                        <fieldset class="quantity-selection">
+                            <legend>Cantidad:</legend>
+                            <label><input type="radio" name="qty-roma-negras" value="1" checked> 1 par</label>
+                            <label><input type="radio" name="qty-roma-negras" value="2"> 2 pares</label>
+                        </fieldset>
+                        <fieldset id="fs-roma-negras-1">
+                            <legend>Talle (Par 1):</legend>
+                            <select class="form-control talle" data-product-id="roma-negras" data-product-name="Botas Roma Negras">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                         <fieldset class="fieldsetstalles" id="fs-roma-negras-2">
+                            <legend>Talle (Par 2):</legend>
+                            <select class="form-control talle" data-product-id="roma-negras" data-product-name="Botas Roma Negras (Par 2)">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!-- Modelo Roma Suela -->
+                 <div class="model-card" id="model-roma-suela">
+                    <div class="model-carousel">
+                        <div><img alt="Botas Roma Suela - Vista 1" src="roma-suela-1a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Suela - Vista 2" data-lazy="roma-suela-2a.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Suela - Vista 3" data-lazy="roma-suela-1.jpg" loading="lazy"></div>
+                        <div><img alt="Botas Roma Suela - Vista 4" data-lazy="roma-suela-2.jpg" loading="lazy"></div>
+                    </div>
+                    <div class="model-info">
+                        <h3>BOTAS ROMA SUELA</h3>
+                         <p class="material">Material: Cuero Genuino | Suela: Expanso Ultra Liviano | Horma: Normal</p>
+                         <div class="price-section">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Podés combinar modelos</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                        <fieldset class="quantity-selection">
+                            <legend>Cantidad:</legend>
+                            <label><input type="radio" name="qty-roma-suela" value="1" checked> 1 par</label>
+                            <label><input type="radio" name="qty-roma-suela" value="2"> 2 pares</label>
+                        </fieldset>
+                        <fieldset id="fs-roma-suela-1">
+                            <legend>Talle (Par 1):</legend>
+                            <select class="form-control talle" data-product-id="roma-suela" data-product-name="Botas Roma Suela">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                         <fieldset class="fieldsetstalles" id="fs-roma-suela-2">
+                            <legend>Talle (Par 2):</legend>
+                            <select class="form-control talle" data-product-id="roma-suela" data-product-name="Botas Roma Suela (Par 2)">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <!-- Modelo Siena 2025 -->
+                 <div class="model-card" id="model-siena2025">
+                    <div class="model-carousel">
+                        <div><img alt="Botas Siena 2025 - Vista 1" src="siena2025-1.webp" loading="lazy"></div>
+                        <div><img alt="Botas Siena 2025 - Vista 2" data-lazy="siena2025-2.webp" loading="lazy"></div>
+                    </div>
+                    <div class="model-info">
+                        <h3>BOTAS SIENA 2025</h3>
+                         <p class="material">Material: Cuero Genuino | Suela: Expanso Ultra Liviano | Horma: Normal</p>
+                         <div class="price-section">
+                            <span class="price">1 par: $70.000 | 2 pares: $110.000</span>
+                            <span class="discount-info">Podés combinar modelos</span>
+                            <span class="transfer-discount">10% OFF extra por Transferencia</span>
+                        </div>
+                        <fieldset class="quantity-selection">
+                            <legend>Cantidad:</legend>
+                            <label><input type="radio" name="qty-siena2025" value="1" checked> 1 par</label>
+                            <label><input type="radio" name="qty-siena2025" value="2"> 2 pares</label>
+                        </fieldset>
+                        <fieldset id="fs-siena2025-1">
+                            <legend>Talle (Par 1):</legend>
+                            <select class="form-control talle" data-product-id="siena2025" data-product-name="Botas Siena 2025">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                         <fieldset class="fieldsetstalles" id="fs-siena2025-2">
+                            <legend>Talle (Par 2):</legend>
+                            <select class="form-control talle" data-product-id="siena2025" data-product-name="Botas Siena 2025 (Par 2)">
+                                <option value="">-- Seleccione --</option>
+                                <option value="35">35 (23 cm)</option>
+                                <option value="36">36 (23.5 cm)</option>
+                                <option value="37">37 (24 cm)</option>
+                                <option value="38">38 (25 cm)</option>
+                                <option value="39">39 (25.5 cm)</option>
+                                <option value="40">40 (26 cm)</option>
+                            </select>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Form Section (Initially Hidden) -->
+        <section class="form-section" id="checkout-form-section">
+            <h2 class="section-heading"> <span class="emoji">✍️</span> Complete sus Datos para Finalizar</h2>
+            {/* Action should point to the Google Form URL */}
+            <form id="checkoutForm" action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" method="POST" target="_self" novalidate>
+                {/* Anti-bot Honeypot */}
+                <input type="text" name="website" id="website" style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" tabindex="-1" autocomplete="off">
+
+                {/* Hidden fields from index.html */}
+                <textarea id="entry.1471599855" name="entry.1471599855" style="display:none;"></textarea> {/* Selected items summary */}
+                <textarea id="entry.1209868979" name="entry.1209868979" style="display:none;"></textarea> {/* fbclid */}
+                <input type="hidden" name="entry.978809450" id="link-mercadopago"> {/* MP Link */}
+                <input name="fvv" type="hidden" value="1" />
+                <input name="fbzx" type="hidden" value="5661184097173102736" />
+                <input name="pageHistory" type="hidden" value="0" />
+
+                <fieldset>
+                     <legend>Resumen del Pedido</legend>
+                     <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Estos son los modelos y talles que seleccionaste:</p>
+                     <div class="form-group">
+                         <textarea class="form-control" id="cart-summary-display" name="cart_summary_display_readonly" readonly style="min-height: 70px; background-color: #f8f6f2; opacity: 0.8; cursor: not-allowed;"></textarea>
+                     </div>
+                 </fieldset>
+
+                <fieldset>
+                    <legend>Datos Personales</legend>
+                    <div class="form-group">
+                        <label for="entry.1460904554">Nombre y Apellido:</label>
+                        <input type="text" id="entry.1460904554" name="entry.1460904554" class="form-control" required>
+                        <div class="error-message" id="nombre-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry.1465946249">Email:</label>
+                        <input type="email" id="entry.1465946249" name="entry.1465946249" class="form-control" required placeholder="ejemplo@mail.com">
+                         <p class="help-block">Usaremos este email para enviarte la confirmación y seguimiento.</p>
+                        <div class="error-message" id="email-error"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="entry.53830725">WhatsApp (10 dígitos sin 0 ni 15):</label>
+                        <input type="tel" id="entry.53830725" name="entry.53830725" class="form-control" required pattern="\d{10}" placeholder="Ej: 1127595502">
+                         <p class="help-block">Necesario para el seguimiento online de tu pedido.</p>
+                        <div class="error-message whatsapp-validation-msg" id="whatsapp-error"></div> {/* Specific class for WApp validation */}
+                    </div>
+                     <div class="form-group">
+                        <label for="entry.541001873">D.N.I:</label>
+                        <input type="text" id="entry.541001873" name="entry.541001873" class="form-control" required pattern="\d{7,8}">
+                         <div class="error-message" id="dni-error"></div>
+                    </div>
+                </fieldset>
+
+                 <fieldset>
+                    <legend>Dirección de Envío</legend>
+                     <p class="help-block" style="margin-bottom: 15px;">Completá con cuidado para generar la etiqueta de envío.</p>
+                     <div class="form-group">
+                        <label for="entry.951592426">Calle y Altura (Aclarar Piso/Depto si aplica):</label>
+                        <input type="text" id="entry.951592426" name="entry.951592426" class="form-control" required>
+                         <div class="error-message" id="direccion-error"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="entry.1743418466">Localidad:</label>
+                        <input type="text" id="entry.1743418466" name="entry.1743418466" class="form-control" required>
+                         <div class="error-message" id="localidad-error"></div>
+                    </div>
+                     <div class="form-group">
+                        <label for="entry.1005165410">Código Postal:</label>
+                        <input type="text" id="entry.1005165410" name="entry.1005165410" class="form-control" required>
+                         <div class="error-message" id="cp-error"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="entry.59648134">Provincia:</label>
+                        <select class="form-control" id="entry.59648134" name="entry.59648134" required>
+                             <option value="">-- Seleccione Provincia --</option>
+                             <option value="Buenos Aires">Buenos Aires</option>
+                             <option value="Capital Federal">CABA</option>
+                             <option value="Buenos Aires">Gran Buenos Aires</option>
+                             <option value="Córdoba">Córdoba</option>
+                             <option value="Santa Fé">Santa Fé</option>
+                             <option value="Mendoza">Mendoza</option>
+                             <option value="Neuquén">Neuquén</option>
+                             <option value="Entre Ríos">Entre Ríos</option>
+                             <option value="Catamarca">Catamarca</option>
+                             <option value="Chubut">Chubut</option>
+                             <option value="Salta">Salta</option>
+                             <option value="Santa Cruz">Santa Cruz</option>
+                             <option value="Chaco">Chaco</option>
+                             <option value="Corrientes">Corrientes</option>
+                             <option value="Formosa">Formosa</option>
+                             <option value="La Pampa">La Pampa</option>
+                             <option value="La Rioja">La Rioja</option>
+                             <option value="Río Negro">Río Negro</option>
+                             <option value="San Juan">San Juan</option>
+                             <option value="San Luis">San Luis</option>
+                             <option value="Santiago del Estero">Santiago del Estero</option>
+                             <option value="Tierra del Fuego">Tierra del Fuego</option>
+                             <option value="Tucumán">Tucumán</option>
+                             <option value="Jujuy">Jujuy</option>
+                             <option value="Misiones">Misiones</option>
+                        </select>
+                         <div class="error-message" id="provincia-error"></div>
+                    </div>
+                     {/* Hidden field for shipping type */}
+                     <input type="hidden" name="entry.17650825" value="A DOMICILIO">
+                </fieldset>
+
+                 {/* Order Confirmation Summary Section */}
+                 <div id="confirma-pedido" style="margin-top: 25px;">
+                     <h3 style="font-size: 1.2em; margin-bottom: 20px; text-align: center; color: var(--primary);">Verificá tus Datos</h3>
+                     <p class="help-block" style="text-align: center; margin-bottom: 15px;"><span style="color:var(--error); font-weight: bold;">✓</span> Asegurate que todo sea correcto antes de continuar.</p>
+                     <div style="font-size: 0.95em; line-height: 1.7;">
+                         <p class="summary-item"><span class="summary-label">Pedido:</span> <span class="summary-value" id="help-modelostallesseleccionados">-</span></p>
+                         <p class="summary-item"><span class="summary-label">Nombre:</span> <span class="summary-value" id="help-nombre">-</span></p>
+                         <p class="summary-item"><span class="summary-label">WhatsApp:</span> <span class="summary-value" id="help-wapp">-</span></p>
+                         <p class="summary-item"><span class="summary-label">Email:</span> <span class="summary-value" id="help-email">-</span></p>
+                         <p class="summary-item"><span class="summary-label">Dirección:</span> <span class="summary-value" id="help-calleyaltura">-</span></p>
+                         <p class="summary-item"><span class="summary-label">Localidad:</span> <span class="summary-value" id="help-localidad">-</span></p>
+                         <p class="summary-item"><span class="summary-label">Provincia:</span> <span class="summary-value" id="help-provincia">-</span></p>
+                         <p class="summary-item"><span class="summary-label">CP:</span> <span class="summary-value" id="help-cp">-</span></p>
+                         <p class="summary-item"><span class="summary-label">DNI:</span> <span class="summary-value" id="help-dni">-</span></p>
+                     </div>
+
+                     <fieldset style="margin-top: 25px;">
+                         <legend for="comoabona">¿Cómo querés pagar?</legend>
+                         <p class="help-block" style="margin-bottom: 15px;">Si seleccionas Transferencia Bancaria tenés 10% de descuento adicional.</p>
+                         <div class="form-group" style="margin-bottom: 0;">
+                             <select class="form-control" id="comoabona" name="comoabona" required>
+                                 <option value="">-- Selecciona forma de pago --</option>
+                                 <option value="tarjeta">Tarjeta de Crédito o Débito (3 Cuotas Sin Interés)</option>
+                                 <option value="mercadopago">Saldo MercadoPago</option>
+                                 <option value="cbu">Transferencia Bancaria (10% OFF)</option>
+                             </select>
+                             <div class="error-message" id="pago-error"></div>
+                         </div>
+                     </fieldset>
+
+                     <p id="preciototal" style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed var(--border); font-size: 1.2em; text-align: center;">
+                         Seleccioná Modelos/Talles arriba
+                     </p>
+                     <p class="help-block" style="text-align: center; margin-top: 15px;">
+                         ✓ DESPACHO EN: 15 días aprox. Producimos a pedido.<br>
+                         ✓ Te llegará el seguimiento por email al despachar.<br>
+                         ✓ En el siguiente paso vas a poder abonar tu pedido.
+                     </p>
+                 </div>
+
+                 <div class="commitment-warning">
+                     <span class="emoji">⚠️</span> TU PEDIDO ES UN COMPROMISO DE PAGO <span class="emoji">⚠️</span>
+                 </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-block" id="submit-btn" disabled>
+                        COMPRAR <span class="emoji">🛒</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="testimonials-section">
+            <h2 class="section-heading">Opiniones de Nuestras Clientes</h2>
+            <div class="testimonials-carousel">
+                <div><img src="comentariorecibi1.webp" alt="Testimonio Cliente 1" loading="lazy"></div>
+                <div><img src="comentariorecibi2.webp" alt="Testimonio Cliente 2" loading="lazy"></div>
+                <div><img src="comentariorecibi4.webp" alt="Testimonio Cliente 3" loading="lazy"></div>
+                <!-- Add more testimonials if available -->
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2025 Rosita Rococó Calzados - Todos los derechos reservados</p>
+        </footer>
+    </div> <!-- End .container -->
+
+    <!-- Notification container -->
+    <div id="notification-container"></div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-message">Procesando tu pedido...</p>
+        </div>
+    </div>
+
+     <!-- Bottom Cart Summary Bar -->
+     <div id="cart-summary-bar" style="display: none;">
+         <div id="cart-summary-content">
+             <b>PEDIDO:</b> <span id="cart-items-summary"></span><br>
+             <span id="cart-total-price">Seleccioná Talles</span>
+         </div>
+         <a id="go-to-checkout-btn" href="#checkout-form-section" class="btn">FINALIZAR COMPRA</a>
+     </div>
+
+
+    <!-- WhatsApp float -->
+    <div class="whatsapp-float" id="whatsapp-icon" style="display: none;">
+        <a href="https://api.whatsapp.com/send?phone=5491127595502" target="_blank" rel="noopener noreferrer">
+            <img src="/whatsapp.png" alt="Contactar por WhatsApp">
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> {/* For Autocomplete */}
+    <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        // Initialize carousels
+        $('.model-carousel').slick({
+          dots: true,
+          infinite: true,
+          speed: 500,
+          fade: true,
+          cssEase: 'linear',
+          lazyLoad: 'ondemand',
+          adaptiveHeight: false, // Keep false for consistent height
+          arrows: true
         });
+
+        $('.testimonials-carousel').slick({
+          dots: true,
+          infinite: true,
+          speed: 500,
+          arrows: false,
+          autoplay: true,
+          autoplaySpeed: 4000,
+          slidesToShow: 1,
+          centerMode: true,
+          variableWidth: true,
+          adaptiveHeight: true
+        });
+
+        // --- Cart & Form Logic ---
+        let cart = {}; // Use an object: { 'product-id-size-instance': { details }, ... }
+        const checkoutFormSection = $('#checkout-form-section');
+        const cartSummaryBar = $('#cart-summary-bar');
+        const cartItemsSummaryEl = $('#cart-items-summary');
+        const cartTotalPriceEl = $('#cart-total-price');
+        const cartSummaryDisplayEl = $('#cart-summary-display'); // Textarea in form
+        const hiddenCartItemsInput = $('#entry\\.1471599855'); // Hidden input for Google Form
+        const helpModelsSelectedEl = $('#help-modelostallesseleccionados'); // Summary in form confirmation
+
+        // Function to update cart display and hidden input
+        function updateCartDisplay() {
+            const items = Object.values(cart);
+            let summaryText = "";
+            let totalPrice = 0;
+            const itemCount = items.length;
+
+            if (itemCount === 0) {
+                summaryText = "Carrito vacío";
+                cartSummaryBar.hide();
+                checkoutFormSection.hide(); // Hide form if cart is empty
+                cartTotalPriceEl.text("Seleccioná Talles");
+            } else {
+                 summaryText = items.map(item => `${item.size}-${item.id}`).join(', ');
+                 if (itemCount === 1) {
+                    totalPrice = 70000;
+                    cartTotalPriceEl.html("TOTAL: <span class='preciototalaobservar'>$70.000</span> x 1 par + <span style='color: var(--success);'>ENVÍO GRATIS</span>");
+                    $('#preciototal').html("TOTAL: <span style='color: var(--primary);'>🔥 $<span class=\"preciototalaobservar\">70.000</span> x 1 par + </span><span style='color: var(--success);'>ENVÍO GRATIS</span> <br><p class='add-more-info'>Si agregas otro par te llevas cada uno a sólo $55.000.</p>");
+                 } else if (itemCount === 2) {
+                    totalPrice = 110000;
+                    cartTotalPriceEl.html("TOTAL: <span class='preciototalaobservar'>$110.000</span> x 2 pares + <span style='color: var(--success);'>ENVÍO GRATIS</span>");
+                     $('#preciototal').html("TOTAL: <span style='color: var(--primary);'>🔥 $<span class=\"preciototalaobservar\">110.000</span> x 2 pares + </span><span style='color: var(--success);'>ENVÍO GRATIS</span> <br><p class='add-more-info'>Ya agregaste el máximo de 2 pares por pedido.</p>");
+                 } else {
+                     // Handle > 2 items - show error, disable form?
+                     cartTotalPriceEl.text("Máximo 2 pares");
+                     $('#preciototal').html("<span style='color: var(--error);'>Sólo puede agregar 2 pares máximo a su pedido. Remueva " + (itemCount - 2) + " para poder comprar.</span>");
+                     // Disable checkout button if needed
+                     $('#submit-btn').prop('disabled', true);
+                 }
+
+                 // Enable checkout button only if 1 or 2 items
+                 $('#submit-btn').prop('disabled', itemCount > 2);
+
+
+                cartItemsSummaryEl.text(summaryText);
+                cartSummaryBar.css('display', 'flex'); // Show summary bar
+                checkoutFormSection.slideDown(); // Show form smoothly
+            }
+
+            cartSummaryDisplayEl.val(summaryText); // Update textarea in form
+            hiddenCartItemsInput.val(summaryText + ", "); // Update hidden input for Google Form
+            helpModelsSelectedEl.text(summaryText || '-'); // Update summary in confirmation section
+
+             // Trigger change on payment method to update price if CBU is selected
+             $('#comoabona').trigger('change');
+        }
+
+        // Handle size selection change
+        $('.talle').change(function() {
+            const selectElement = $(this);
+            const selectedSize = selectElement.val();
+            const productId = selectElement.data('product-id');
+            const productName = selectElement.data('product-name');
+            const fieldsetId = selectElement.closest('fieldset').attr('id'); // e.g., fs-roma-negras-1
+            const instance = fieldsetId; // Use fieldset ID as a unique instance key
+
+            // Use a more robust key including the instance
+            const cartKey = `${instance}`; // Key based on the specific select fieldset
+
+            // Remove previous entry from this specific select if it exists
+             Object.keys(cart).forEach(key => {
+                 if (key.startsWith(fieldsetId.substring(0, fieldsetId.lastIndexOf('-')))) { // Match product ID part
+                     if (cart[key].instance === instance) {
+                         delete cart[key];
+                     }
+                 }
+             });
+
+
+            if (selectedSize && productId && productName) {
+                 // Check if max items reached
+                 if (Object.keys(cart).length >= 2) {
+                     showNotification('error', 'Sólo puedes agregar un máximo de 2 pares por pedido.');
+                     selectElement.val(""); // Reset the current select
+                     return; // Stop processing
+                 }
+
+                cart[cartKey] = {
+                    id: productId,
+                    name: productName,
+                    size: selectedSize,
+                    instance: instance // Store which select added this item
+                };
+                showNotification('success', `${productName} (Talle ${selectedSize}) agregado.`);
+                 // Add item added confirmation message below select
+                 selectElement.closest('.form-group').find('.avisoagregado').remove(); // Remove previous message
+                 selectElement.closest('.form-group').append('<p class="avisoagregado" style="color:var(--success); font-size:0.85em; margin-top:5px; font-weight:bold;">¡Agregado al pedido!</p>');
+                 selectElement.closest('.form-group').find('.avisoagregado').delay(5000).fadeOut(); // Fade out after 5s
+
+            } else {
+                 // If "-- Seleccione --" is chosen, remove the item associated with this specific select
+                 delete cart[cartKey];
+                 selectElement.closest('.form-group').find('.avisoagregado').remove(); // Remove confirmation message
+            }
+
+            updateCartDisplay();
+        });
+
+         // Handle Quantity Radio Change
+         $('input[name^="qty-"]').change(function() {
+             const qty = $(this).val();
+             const model = $(this).attr('name').replace('qty-', ''); // e.g., roma-negras
+             const secondSizeFieldset = $(`#fs-${model}-2`);
+
+             if (qty === '2') {
+                 secondSizeFieldset.slideDown();
+             } else {
+                 secondSizeFieldset.slideUp();
+                 // If quantity is reduced to 1, remove the second item from cart if it exists
+                 const secondInstanceKey = `fs-${model}-2`;
+                 if (cart[secondInstanceKey]) {
+                     delete cart[secondInstanceKey];
+                     updateCartDisplay();
+                     // Reset the second select field
+                     secondSizeFieldset.find('select.talle').val('');
+                     secondSizeFieldset.find('.avisoagregado').remove();
+                 }
+             }
+         });
+
 
         // --- Form Validation & Submission ---
         const form = $('#checkoutForm');
@@ -733,17 +1285,29 @@
         const loadingOverlay = $('.loading-overlay');
 
         function showError(fieldId, message) {
-            $(`#${fieldId}-error`).text(message).addClass('show');
-            $(`#${fieldId}`).focus(); // Focus the field with error
+            const errorEl = $(`#${fieldId}-error`);
+            errorEl.text(message).addClass('show');
+             // Add specific class for WhatsApp validation messages
+             if (fieldId === 'whatsapp') {
+                 errorEl.removeClass('verifying valid invalid api-error').addClass('invalid'); // Default to invalid style
+             } else {
+                 errorEl.css({ // Apply general error styles directly
+                     'background-color': '#f8d7da',
+                     'color': '#721c24',
+                     'border-color': '#f5c6cb',
+                     'padding': '8px 10px'
+                 });
+             }
+            $(`#entry\\.${fieldId}`).focus(); // Focus the field with error (escape dots in ID)
         }
 
         function clearError(fieldId) {
-            $(`#${fieldId}-error`).text('').removeClass('show');
+            $(`#${fieldId}-error`).text('').removeClass('show verifying valid invalid api-error');
         }
 
         function validateField(fieldId, validationFn, errorMessage) {
             clearError(fieldId);
-            const value = $(`#${fieldId}`).val().trim();
+            const value = $(`#entry\\.${fieldId}`).val().trim(); // Escape dots in ID selector
             if (!validationFn(value)) {
                 showError(fieldId, errorMessage);
                 return false;
@@ -751,40 +1315,181 @@
             return true;
         }
 
+        function validateSelect(fieldId, errorMessage) {
+             clearError(fieldId);
+             const value = $(`#entry\\.${fieldId}`).val(); // Escape dots for select too
+             if (!value) {
+                 showError(fieldId, errorMessage);
+                 return false;
+             }
+             return true;
+         }
+         function validatePayment(fieldId, errorMessage) {
+             clearError(fieldId);
+             const value = $(`#${fieldId}`).val(); // No entry prefix for comoabona
+             if (!value) {
+                 showError(fieldId, errorMessage);
+                 return false;
+             }
+             return true;
+         }
+
+
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(String(email).toLowerCase());
         }
 
-        function validateWhatsApp(whatsapp) {
-            // Basic check for 10 digits
-            return /^\d{10}$/.test(whatsapp);
-        }
+        // Use the WhatsApp validation function from index.html (adapted)
+        // WhatsApp Validation Logic (Adapted from index.html)
+         const whatsappInputId = "entry.53830725"; // ID of the WhatsApp input
+         const whatsappErrorElementId = "whatsapp-error"; // ID of the error message div
+         const dependentElementIds = ["entry.59648134", "entry.1743418466", "entry.1005165410", "entry.951592426", "entry.541001873", "comoabona", "submit-btn"]; // IDs of elements to disable during check
+         const whatsappApiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+
+         let isWhatsAppValid = false; // Track validation status
+         let isWhatsAppChecking = false;
+         let whatsappCheckTimeout;
+
+         function getWhatsAppErrorElement() {
+             return document.getElementById(whatsappErrorElementId);
+         }
+
+         function showWhatsAppError(message, type = "invalid") { // types: verifying, valid, invalid, api-error
+             const errorElement = getWhatsAppErrorElement();
+             if (errorElement) {
+                 errorElement.textContent = message;
+                 errorElement.className = `error-message whatsapp-validation-msg ${type}`; // Use specific class
+                 $(errorElement).addClass('show');
+             }
+         }
+          function hideWhatsAppError() {
+             const errorElement = getWhatsAppErrorElement();
+             if (errorElement) {
+                  $(errorElement).removeClass('show verifying valid invalid api-error');
+             }
+         }
+
+
+         function formatWhatsAppNumber(number) {
+             let rawNumber = String(number).replace(/\D/g, "");
+             if (rawNumber.length >= 10) {
+                 if (rawNumber.startsWith("54") && !rawNumber.startsWith("549")) {
+                     rawNumber = "549" + rawNumber.substring(2);
+                 } else if (!rawNumber.startsWith("54")) {
+                     rawNumber = "549" + rawNumber;
+                 }
+             }
+             return rawNumber;
+         }
+
+         function setDependentElementsDisabled(disabled) {
+             dependentElementIds.forEach(id => {
+                 const element = $(`#${id.replace('.', '\\.')}`); // Escape dots for jQuery selector
+                 if (element.length) {
+                     element.prop('disabled', disabled);
+                 }
+             });
+         }
+
+         function checkWhatsAppApi() {
+             if (isWhatsAppChecking) return;
+             isWhatsAppChecking = true;
+             isWhatsAppValid = false; // Reset validity
+
+             const inputElement = document.getElementById(whatsappInputId);
+             if (!inputElement) {
+                 console.error("WhatsApp input element not found.");
+                 isWhatsAppChecking = false;
+                 return;
+             }
+
+             const formattedNumber = formatWhatsAppNumber(inputElement.value);
+             if (formattedNumber.length < 12) { // Basic length check (549 + 10 digits)
+                 showWhatsAppError("Número incompleto.", "invalid");
+                 setDependentElementsDisabled(true); // Keep disabled if incomplete
+                 isWhatsAppChecking = false;
+                 return;
+             }
+
+
+             showWhatsAppError("Verificando WhatsApp...", "verifying");
+             setDependentElementsDisabled(true);
+
+             $.ajax({
+                 url: whatsappApiUrl,
+                 method: 'POST',
+                 contentType: 'application/json',
+                 data: JSON.stringify({ whatsapp_check: formattedNumber }),
+                 success: function(data) {
+                     console.log("WhatsApp API response:", data);
+                     isWhatsAppValid = data.exists === true;
+                     const errorMessage = "WhatsApp no válido. Verificá el número.";
+                     showWhatsAppError(isWhatsAppValid ? "WhatsApp válido." : errorMessage, isWhatsAppValid ? "valid" : "invalid");
+                     setDependentElementsDisabled(!isWhatsAppValid); // Enable only if valid
+                 },
+                 error: function(xhr, status, error) {
+                     console.error("WhatsApp API error. Status:", status, error);
+                     showWhatsAppError("Error de conexión al verificar.", "api-error");
+                     setDependentElementsDisabled(true); // Keep disabled on error
+                     isWhatsAppValid = false; // Assume invalid on error
+                 },
+                 complete: function() {
+                     isWhatsAppChecking = false;
+                 }
+             });
+         }
+
+         // Attach listeners for WhatsApp validation
+         $(`#${whatsappInputId.replace('.', '\\.')}`).on('input', function() {
+             hideWhatsAppError();
+             clearTimeout(whatsappCheckTimeout);
+             setDependentElementsDisabled(true); // Disable dependents while typing
+             isWhatsAppValid = false; // Reset validity on input
+         }).on('blur', function() {
+             clearTimeout(whatsappCheckTimeout);
+             whatsappCheckTimeout = setTimeout(checkWhatsAppApi, 300); // Check after a short delay
+         });
+
+         // Initial state: disable dependent fields
+         setDependentElementsDisabled(true);
+
 
         form.submit(function(e) {
             e.preventDefault(); // Prevent default form submission
 
             // Clear previous errors
             $('.error-message').removeClass('show');
-            let isValid = true;
+            let isFormValid = true;
 
-            // Validate fields
-            isValid &= validateField('nombre', val => val.length > 0, 'Por favor ingresa tu nombre completo.');
-            isValid &= validateField('email', validateEmail, 'Por favor ingresa un email válido.');
-            isValid &= validateField('whatsapp', validateWhatsApp, 'Ingresa 10 dígitos (ej: 1127595502).');
-            isValid &= validateField('direccion', val => val.length > 5, 'Por favor ingresa tu dirección completa.');
-            isValid &= validateField('localidad', val => val.length > 1, 'Por favor ingresa tu localidad.');
-            isValid &= validateField('provincia', val => val.length > 1, 'Por favor ingresa tu provincia.');
-            isValid &= validateField('cp', val => val.length > 3, 'Por favor ingresa tu código postal.');
+            // Validate fields (excluding WhatsApp initially)
+            isFormValid &= validateField('entry\\.1460904554', val => val.length > 0, 'Por favor ingresa tu nombre completo.');
+            isFormValid &= validateField('entry\\.1465946249', validateEmail, 'Por favor ingresa un email válido.');
+            // WhatsApp is validated on blur, check the flag
+             if (!isWhatsAppValid) {
+                 showError('whatsapp', 'Por favor ingresa y verifica un WhatsApp válido.');
+                 isFormValid = false;
+             }
+            isFormValid &= validateField('entry\\.951592426', val => val.length > 5, 'Por favor ingresa tu dirección completa.');
+            isFormValid &= validateField('entry\\.1743418466', val => val.length > 1, 'Por favor ingresa tu localidad.');
+            isFormValid &= validateField('entry\\.1005165410', val => val.length > 3, 'Por favor ingresa tu código postal.');
+            isFormValid &= validateSelect('entry\\.59648134', 'Por favor selecciona tu provincia.');
+            isFormValid &= validateField('entry\\.541001873', val => /^\d{7,8}$/.test(val), 'Por favor ingresa un DNI válido (7 u 8 dígitos).');
+            isFormValid &= validatePayment('comoabona', 'Por favor selecciona una forma de pago.');
 
-            // Check if cart is empty
-            if (Object.keys(cart).length === 0) {
+
+            // Check if cart is empty or has too many items
+            const itemCount = Object.keys(cart).length;
+            if (itemCount === 0) {
                  showNotification('error', 'Tu carrito está vacío. Selecciona un talle.');
-                 isValid = false;
+                 isFormValid = false;
+            } else if (itemCount > 2) {
+                 showNotification('error', 'Sólo puedes pedir un máximo de 2 pares.');
+                 isFormValid = false;
             }
 
 
-            if (isValid) {
+            if (isFormValid) {
                 // Anti-bot check
                  if ($('#website').val() !== '') {
                     console.log('Bot detected, submission cancelled.');
@@ -794,50 +1499,28 @@
                 submitButton.prop('disabled', true).text('Procesando...');
                 loadingOverlay.css('display', 'flex'); // Use flex for centering
 
-                // Simulate form processing (replace with actual AJAX call)
-                console.log("Form Data:", form.serialize());
-                console.log("Cart Items:", cart);
+                // IMPORTANT: Using original form submission logic (no AJAX simulation)
+                // The form's action attribute points to the Google Form URL.
+                // The browser will handle the submission.
+                console.log("Form is valid, preparing to submit to Google Forms...");
+                console.log("Cart Items for hidden field:", hiddenCartItemsInput.val());
 
-                // Example: Send data via AJAX
-                // $.ajax({
-                //     url: 'YOUR_ENDPOINT_HERE', // Replace with your form processing URL
-                //     method: 'POST',
-                //     data: form.serialize(), // Sends form data including hidden cart input
-                //     success: function(response) {
-                //         loadingOverlay.hide();
-                //         showNotification('success', '¡Pedido enviado! Te contactaremos pronto.');
-                //         form[0].reset(); // Reset form fields
-                //         cart = {}; // Clear cart object
-                //         updateCartInput(); // Clear hidden input
-                //         submitButton.prop('disabled', false).text('FINALIZAR COMPRA');
-                //     },
-                //     error: function(xhr, status, error) {
-                //         loadingOverlay.hide();
-                //         showNotification('error', 'Error al enviar el pedido. Intenta de nuevo.');
-                //         submitButton.prop('disabled', false).text('FINALIZAR COMPRA');
-                //         console.error("Form submission error:", status, error);
-                //     }
-                // });
+                 // Add small delay before submitting to allow user to see loading state
+                 setTimeout(() => {
+                     // Trigger the actual form submission to Google Forms
+                     form.off('submit').submit(); // Unbind handler to prevent loop and submit
+                 }, 500);
 
-                // --- Simulation ---
-                setTimeout(function() {
-                    loadingOverlay.hide();
-                    showNotification('success', '¡Pedido enviado! Te contactaremos pronto.');
-                    form[0].reset(); // Reset form fields
-                    cart = {}; // Clear cart object
-                    updateCartInput(); // Clear hidden input
-                    submitButton.prop('disabled', false).text('FINALIZAR COMPRA');
-                }, 2500);
-                // --- End Simulation ---
 
             } else {
-                 // Scroll to the first error? Optional.
+                 // Scroll to the first error
                  const firstError = $('.error-message.show').first();
                  if (firstError.length) {
                      $('html, body').animate({
                          scrollTop: firstError.closest('.form-group').offset().top - 20
                      }, 500);
                  }
+                 submitButton.prop('disabled', false).text('FINALIZAR COMPRA 🛒'); // Re-enable button
             }
         });
 
@@ -887,16 +1570,132 @@
              }, 400); // Match transition duration
         }
 
-        // --- Input Formatting ---
-        $('#whatsapp').on('input', function() {
-            // Allow only digits
+        // --- Input Formatting & Live Summary Update ---
+        $('#entry\\.53830725').on('input', function() { // WhatsApp
             $(this).val($(this).val().replace(/\D/g, ''));
+            $('#help-wapp').text($(this).val() || '-');
         });
+        $('#entry\\.1005165410').on('input', function() { // CP
+            $(this).val($(this).val().replace(/\D/g, ''));
+             $('#help-cp').text($(this).val() || '-');
+        });
+         $('#entry\\.541001873').on('input', function() { // DNI
+            $(this).val($(this).val().replace(/\D/g, ''));
+             $('#help-dni').text($(this).val() || '-');
+        });
+         $('#entry\\.1460904554').on('input keyup', function() { // Name
+             $('#help-nombre').text($(this).val() || '-');
+         });
+         $('#entry\\.1465946249').on('input keyup', function() { // Email
+             $('#help-email').text($(this).val() || '-');
+         });
+         $('#entry\\.951592426').on('input keyup', function() { // Address
+             $('#help-calleyaltura').text($(this).val() || '-');
+         });
+         $('#entry\\.1743418466').on('input keyup', function() { // Locality
+             $('#help-localidad').text($(this).val() || '-');
+         });
+         $('#entry\\.59648134').on('change', function() { // Province
+             $('#help-provincia').text($(this).val() || '-');
+         });
 
-        $('#cp').on('input', function() {
-            // Allow only digits (basic CP format)
-            $(this).val($(this).val().replace(/\D/g, ''));
-        });
+
+         // --- Email Autocomplete ---
+         $(function () {
+           var acList = ['gmail.com','hotmail.com','hotmail.com.ar','hotmail.es','yahoo.com.ar','yahoo.com','live.com.ar','live.com','outlook.com'];
+           var lastDot = -1;
+           $("#entry\\.1465946249").autocomplete({ // Target email input
+             minLength: 1, // Start suggesting after 1 character after @
+             source: function (request, response) {
+                var term = request.term;
+                var atIndex = term.lastIndexOf('@');
+                if (atIndex !== -1) {
+                    var domainPart = term.substring(atIndex + 1);
+                    var usernamePart = term.substring(0, atIndex + 1); // Include the @
+                    var filteredDomains = $.ui.autocomplete.filter(acList, domainPart);
+                    // Prepend the username part to each suggestion
+                    var suggestions = $.map(filteredDomains, function(domain) {
+                        return usernamePart + domain;
+                    });
+                    response(suggestions);
+                } else {
+                    response([]); // No suggestions if no @
+                }
+             },
+             focus: function () { return false; }, // Prevent value change on focus
+             select: function (event, ui) {
+               this.value = ui.item.value; // Set the input value to the selected suggestion
+               $('#help-email').text(this.value || '-'); // Update summary
+               return false;
+             }
+           });
+         });
+
+         // --- Top Promo Bar & Date ---
+         var regionEl = document.querySelector("#region");
+         regionEl.innerHTML = "🚚 Envío GRATIS HOY";
+         $(regionEl).slideDown();
+
+         $("#whatsapp-icon").slideUp( 300 ).delay( 9960000 ).fadeIn( 400 ); // Show WhatsApp icon after delay
+
+         var d = new Date();
+         var strDate =  d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear();
+         var fechahoyEl = document.querySelector("#fechahoy");
+         if (fechahoyEl) {
+             var i = 0;
+             var txt = 'ENVÍO GRATIS Y 3 CUOTAS S/INTERÉS HOY ' + strDate;
+             var speed = 50;
+             function typeWriter() {
+               if (i < txt.length) {
+                 fechahoyEl.innerHTML += txt.charAt(i);
+                 i++;
+                 setTimeout(typeWriter, speed);
+               }
+             }
+             $(fechahoyEl).show(); // Make sure it's visible
+             typeWriter();
+         }
+
+         // --- Payment Method Price Update ---
+         $("#comoabona").change(function() {
+             var selectedValue = $(this).val();
+             var isCBU = selectedValue === "cbu";
+             const itemCount = Object.keys(cart).length;
+             let basePrice1 = 70000;
+             let basePrice2 = 110000;
+             let finalPrice1 = isCBU ? basePrice1 * 0.9 : basePrice1;
+             let finalPrice2 = isCBU ? basePrice2 * 0.9 : basePrice2;
+
+             // Format prices with dots
+             const formatCurrency = (num) => num.toLocaleString('es-AR');
+
+             // Update prices in the main summary section (#preciototal)
+             if (itemCount === 1) {
+                  $('#preciototal').html(`TOTAL: <span style='color: var(--primary);'>🔥 $<span class="preciototalaobservar">${formatCurrency(finalPrice1)}</span> x 1 par + </span><span style='color: var(--success);'>ENVÍO GRATIS</span> <br><p class='add-more-info'>Si agregas otro par te llevas cada uno a sólo $${formatCurrency(finalPrice2 / 2)}.</p>`);
+             } else if (itemCount === 2) {
+                  $('#preciototal').html(`TOTAL: <span style='color: var(--primary);'>🔥 $<span class="preciototalaobservar">${formatCurrency(finalPrice2)}</span> x 2 pares + </span><span style='color: var(--success);'>ENVÍO GRATIS</span> <br><p class='add-more-info'>Ya agregaste el máximo de 2 pares por pedido.</p>`);
+             } else if (itemCount > 2) {
+                  $('#preciototal').html("<span style='color: var(--error);'>Sólo puede agregar 2 pares máximo a su pedido. Remueva " + (itemCount - 2) + " para poder comprar.</span>");
+             } else {
+                  $('#preciototal').html("Seleccioná Modelos/Talles arriba");
+             }
+
+             // Update price in the bottom bar (#cart-total-price)
+             if (itemCount === 1) {
+                 cartTotalPriceEl.html(`TOTAL: <span class='preciototalaobservar'>$${formatCurrency(finalPrice1)}</span> x 1 par + <span style='color: var(--success); font-size: 0.9em;'>ENVÍO GRATIS</span>`);
+             } else if (itemCount === 2) {
+                 cartTotalPriceEl.html(`TOTAL: <span class='preciototalaobservar'>$${formatCurrency(finalPrice2)}</span> x 2 pares + <span style='color: var(--success); font-size: 0.9em;'>ENVÍO GRATIS</span>`);
+             } else if (itemCount > 2) {
+                 cartTotalPriceEl.text("Máximo 2 pares");
+             } else {
+                 cartTotalPriceEl.text("Seleccioná Talles");
+             }
+         }).trigger('change'); // Trigger initially to set price based on default payment selection (if any)
+
+
+         // --- Initial Setup ---
+         updateCartDisplay(); // Initial cart update (likely empty)
+
 
       }); // End document ready
     </script>
