@@ -106,7 +106,9 @@ p {
 }
 
 .main-header img {
-  max-width: 220px; /* Logo ligeramente más grande */
+  max-width: 100%; /* Logo a tamaño completo */
+  width: auto;
+  height: auto;
   margin: 0 auto 30px;
   border-radius: 0;
   filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.1)); /* Sombra para el logo */
@@ -227,30 +229,72 @@ p {
   border-radius: 2px;
 }
 
-.price-highlight {
+/* Estilos para la tarjeta de precios */
+.price-card {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 25px auto;
+  max-width: 500px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.price-option {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f7f4;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-option:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.price-option.best-value {
+  background-color: rgba(160, 89, 65, 0.08);
+  border: 2px solid rgba(160, 89, 65, 0.15);
+  position: relative;
+  padding-top: 20px;
+}
+
+.price-option.best-value::before {
+  content: '¡Mejor opción!';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-accent);
+  color: white;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 0.75em;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.price-label {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-right: 10px;
+}
+
+.price-amount {
   font-size: 1.4em;
   font-weight: 700;
-  margin: 18px 0;
-  display: block;
-  line-height: 1.5;
-  color: var(--color-text);
-  padding: 10px;
-  border-radius: var(--border-radius-medium);
-  transition: transform var(--transition-fast);
-}
-
-.price-highlight:hover {
-  transform: translateY(-3px);
-}
-
-.price-highlight .price {
   color: var(--color-primary);
-  font-weight: 700;
   position: relative;
-  display: inline-block;
 }
 
-.price-highlight .price::after {
+.price-amount::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -260,6 +304,15 @@ p {
   background-color: var(--color-primary);
   opacity: 0.3;
   border-radius: 2px;
+}
+
+.price-detail {
+  width: 100%;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: var(--color-text-light);
+  font-weight: 600;
 }
 
 .info-section .details {
@@ -344,8 +397,10 @@ p {
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* Sombra mejorada */
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: 1px solid #f0e9e0;
+  border: none; /* Eliminado el borde */
   position: relative; /* Para posicionamiento absoluto de elementos internos */
+  display: flex;
+  flex-direction: column;
 }
 
 .product-item:hover {
@@ -355,12 +410,14 @@ p {
 
 .product-item h2 {
   font-size: 1.6em; /* Título más grande */
-  padding: 25px 20px 0; /* Más padding superior */
-  margin-bottom: 15px;
+  padding: 15px 20px 0; /* Padding ajustado sin espacio inferior */
+  margin-bottom: 0; /* Eliminado el margen inferior */
   color: #3a3a3a;
   text-align: center;
   font-weight: 700; /* Más negrita */
   letter-spacing: 0.5px; /* Espaciado entre letras */
+  background-color: #fff;
+  line-height: 1.2; /* Reducir altura de línea */
 }
 
 /* --- Carousel Styles --- */
@@ -371,27 +428,63 @@ p {
   position: relative;
   border-radius: 0;
   background-color: #f9f6f2; /* Fondo suave para el carrusel */
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03); /* Sombra interna sutil */
+  margin-top: 0; /* Eliminar margen superior */
+  padding-top: 0; /* Eliminar padding superior */
+  flex: 1; /* Hacer que el carrusel ocupe todo el espacio disponible */
 }
 
 .model-carousel .slick-slide {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  height: 450px; /* Altura aumentada para mejor visualización */
+  height: 450px; /* Altura fija para todos los slides */
   overflow: hidden;
   position: relative;
-  padding: 10px; /* Espacio interno para evitar que las imágenes toquen los bordes */
+  padding: 10px 0; /* Reducir padding horizontal para aprovechar más el ancho */
 }
 
 .model-carousel .slick-slide img {
-  width: auto; /* Cambiado de 100% a auto para mantener proporciones */
+  width: 100%; /* Usar todo el ancho disponible */
   height: auto; /* Altura automática */
-  max-width: 100%; /* Asegura que la imagen no sea más ancha que el contenedor */
-  max-height: 430px; /* Altura máxima ligeramente menor que el contenedor */
+  max-height: 430px; /* Altura máxima casi igual al contenedor */
   object-fit: contain; /* Mantiene la proporción de la imagen */
   border-radius: 0;
   margin: 0 auto;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil para destacar la imagen */
+  transition: opacity 0.3s ease; /* Transición suave al cargar */
+}
+
+/* Estilo para imágenes en carga */
+.model-carousel .slick-slide img[data-lazy] {
+  opacity: 0; /* Ocultar hasta que se cargue */
+}
+
+/* Estilo para imágenes cargadas */
+.model-carousel .slick-slide img[src] {
+  opacity: 1; /* Mostrar cuando esté cargada */
+}
+
+/* Fallback para cuando el carrusel no se inicializa */
+.model-carousel:not(.slick-initialized) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.model-carousel:not(.slick-initialized) > div {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.model-carousel:not(.slick-initialized) > div:first-child {
+  display: block;
+}
+
+.model-carousel:not(.slick-initialized) > div:not(:first-child) {
+  display: none;
 }
 
 /* Carousel Navigation */
@@ -465,6 +558,8 @@ p {
 /* --- Product Selection Area --- */
 .product-selection {
   padding: 20px;
+  border-top: none; /* Eliminar borde superior */
+  margin-top: 0; /* Eliminar margen superior */
 }
 
 .product-info-details {
@@ -483,8 +578,8 @@ p {
   text-align: center;
   margin-bottom: 20px;
   padding: 15px 0;
-  border-top: 1px solid #f0e9e0;
-  border-bottom: 1px solid #f0e9e0;
+  border-top: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
+  border-bottom: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
 }
 
 .quantity-selector span {
@@ -523,8 +618,8 @@ p {
 .size-selector select.form-control {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid rgba(221, 221, 221, 0.5); /* Borde más sutil */
+  border-radius: 8px; /* Bordes más redondeados */
   font-size: 0.95em;
   background-color: #fff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -534,12 +629,19 @@ p {
   background-position: right 15px center;
   background-size: 16px 12px;
   padding-right: 40px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02); /* Sombra sutil */
 }
 
 .size-selector select.form-control:focus {
   border-color: #a05941;
   outline: none;
   box-shadow: 0 0 0 3px rgba(160, 89, 65, 0.15);
+}
+
+fieldset {
+  border: none;
+  padding: 20px 0;
+  margin-bottom: 20px;
 }
 
 .fieldsetstalles {
@@ -612,16 +714,49 @@ p {
   margin: 0 auto;
   max-height: 400px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombra mejorada */
+  transition: opacity 0.3s ease; /* Transición suave al cargar */
+}
+
+/* Estilo para imágenes en carga */
+.testimonials-carousel .slick-slide img[data-lazy] {
+  opacity: 0; /* Ocultar hasta que se cargue */
+}
+
+/* Estilo para imágenes cargadas */
+.testimonials-carousel .slick-slide img[src] {
+  opacity: 1; /* Mostrar cuando esté cargada */
+}
+
+/* Fallback para cuando el carrusel de testimonios no se inicializa */
+.testimonials-carousel:not(.slick-initialized) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.testimonials-carousel:not(.slick-initialized) > div {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.testimonials-carousel:not(.slick-initialized) > div:first-child {
+  display: block;
+}
+
+.testimonials-carousel:not(.slick-initialized) > div:not(:first-child) {
+  display: none;
 }
 
 /* --- Form Styles --- */
 #restodelform {
   background-color: #fff;
-  padding: 45px; /* Más padding */
+  padding: 45px 35px; /* Ajustado */
   border-radius: var(--border-radius-large);
   margin-top: 60px; /* Más espacio superior */
   box-shadow: var(--shadow-medium);
-  border: 1px solid var(--color-border);
+  border: none; /* Eliminado el borde */
   position: relative;
   overflow: hidden;
 }
@@ -664,7 +799,7 @@ p {
 #restodelform legend {
   font-size: 1.3em;
   color: #3a3a3a;
-  border-bottom: 1px solid #f0e9e0;
+  border-bottom: 1px solid rgba(240, 233, 224, 0.5); /* Borde más sutil */
   padding-bottom: 12px;
   margin-bottom: 25px;
   font-weight: 600;
@@ -686,18 +821,20 @@ p {
 .form-control {
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 1px solid rgba(221, 221, 221, 0.7); /* Borde más sutil */
+  border-radius: 6px; /* Bordes más redondeados */
   font-size: 1em;
   line-height: 1.5;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02); /* Sombra sutil */
 }
 
 .form-control:focus {
   border-color: #a05941;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(160, 89, 65, 0.15);
+  box-shadow: 0 0 0 3px rgba(160, 89, 65, 0.1); /* Sombra más sutil */
+  background-color: #fffcf9; /* Fondo sutil al enfocar */
 }
 
 .form-control[readonly] {
@@ -718,9 +855,10 @@ p {
 #confirma-pedido {
   background-color: #f9f7f4;
   padding: 25px;
-  border-radius: 8px;
-  border: 1px solid #f0e9e0;
+  border-radius: 10px; /* Bordes más redondeados */
+  border: none; /* Eliminado el borde */
   margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03); /* Sombra sutil */
 }
 
 #confirma-pedido h3 {
@@ -751,13 +889,14 @@ p {
 
 #preciototal {
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.15em; /* Ligeramente más pequeño */
   margin-top: 25px;
   margin-bottom: 15px;
   display: block;
   color: #3a3a3a;
-  border-top: 1px dashed #ddd;
-  padding-top: 25px;
+  border-top: 1px dashed rgba(221, 221, 221, 0.5); /* Borde más sutil */
+  padding-top: 20px; /* Reducido */
+  line-height: 1.4; /* Mejor espaciado */
 }
 
 #preciototal .price {
@@ -838,10 +977,10 @@ p {
   width: 100%;
   background-color: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(8px); /* Mejor efecto de desenfoque */
-  padding: 18px; /* Más padding */
+  padding: 12px 18px; /* Padding reducido verticalmente */
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.12); /* Sombra mejorada */
   z-index: 999;
-  font-size: 1em; /* Texto ligeramente más grande */
+  font-size: 0.95em; /* Texto ligeramente más pequeño */
   display: none;
   border-top: 2px solid var(--color-primary); /* Borde más visible con el color primario */
   text-align: center;
@@ -854,16 +993,17 @@ p {
 }
 
 #floating-cart-summary p {
-  margin-bottom: 8px;
+  margin-bottom: 4px; /* Reducido */
   color: var(--color-text-light);
   font-weight: 500;
+  line-height: 1.3; /* Reducido */
 }
 
 #floating-cart-summary b {
   color: var(--color-text);
   font-weight: 700;
   position: relative;
-  padding-bottom: 2px;
+  padding-bottom: 1px; /* Reducido */
 }
 
 #floating-cart-summary b::after {
@@ -879,8 +1019,8 @@ p {
 
 #floating-cart-summary span {
   color: var(--color-text-light);
-  display: block;
-  margin-top: 8px;
+  display: inline-block; /* Cambiado a inline-block */
+  margin-top: 4px; /* Reducido */
   font-size: 0.95em;
   max-width: 600px;
   margin-left: auto;
@@ -901,10 +1041,10 @@ p {
   display: inline-block;
   background-color: var(--color-accent);
   color: white;
-  padding: 12px 25px; /* Más padding */
+  padding: 8px 20px; /* Padding reducido */
   border-radius: var(--border-radius-medium);
-  margin-top: 12px;
-  font-size: 1.05em;
+  margin-top: 8px; /* Reducido */
+  font-size: 0.95em; /* Reducido */
   font-weight: bold;
   text-align: center;
   text-decoration: none;
@@ -1176,10 +1316,11 @@ p {
 
   .model-carousel .slick-slide {
     height: 420px; /* Ligeramente menor en pantallas más pequeñas */
+    padding: 12px; /* Ajustar padding */
   }
 
   .model-carousel .slick-slide img {
-    max-height: 400px;
+    max-height: 396px; /* Ajustar para el nuevo padding */
   }
 }
 
@@ -1199,6 +1340,7 @@ p {
 
   .model-carousel .slick-slide {
     height: 400px;
+    padding: 10px; /* Ajustar padding */
   }
 
   .model-carousel .slick-slide img {
@@ -1217,6 +1359,18 @@ p {
 
   .container {
     padding: 0 15px;
+  }
+
+  /* Ajustes para el carrito flotante en móviles */
+  #floating-cart-summary {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+
+  #finalizarpedido {
+    padding: 6px 15px;
+    font-size: 0.9em;
+    margin-top: 6px;
   }
 
   .main-header {
@@ -1243,16 +1397,18 @@ p {
 
   .product-item h2 {
     font-size: 1.5em;
-    padding: 20px 15px 0;
+    padding: 10px 15px 0;
+    margin-bottom: 0;
   }
 
   .model-carousel .slick-slide {
     height: 380px;
-    padding: 8px;
+    padding: 5px 0; /* Reducir padding horizontal */
   }
 
   .model-carousel .slick-slide img {
-    max-height: 360px;
+    width: 100%;
+    max-height: 370px; /* Ajustado para aprovechar más espacio */
   }
 
   .slick-prev,
@@ -1277,6 +1433,12 @@ p {
   #restodelform {
     padding: 25px 20px;
     margin-top: 40px;
+    border-radius: 8px; /* Bordes menos pronunciados en móviles */
+  }
+
+  #confirma-pedido {
+    padding: 20px;
+    border-radius: 8px;
   }
 
   #restodelform h2 {
@@ -1330,13 +1492,21 @@ p {
     gap: 25px;
   }
 
+  .product-item h2 {
+    font-size: 1.4em;
+    padding: 8px 10px 0;
+    margin-bottom: 0;
+  }
+
   .model-carousel .slick-slide {
-    height: 340px;
-    padding: 5px;
+    height: 320px;
+    padding: 0; /* Eliminar padding completamente */
+    margin-top: 0;
   }
 
   .model-carousel .slick-slide img {
-    max-height: 320px;
+    width: 100%;
+    max-height: 320px; /* Usar toda la altura disponible */
   }
 
   .slick-prev,
@@ -1392,16 +1562,24 @@ p {
       font-size: 1.6em;
     }
 
+    .product-item h2 {
+      font-size: 1.3em;
+      padding: 5px 8px 0;
+    }
+
     .model-carousel .slick-slide {
-      height: 300px;
+      height: 280px;
+      padding: 0; /* Sin padding */
+      margin-top: 0;
     }
 
     .model-carousel .slick-slide img {
-      max-height: 280px;
+      width: 100%;
+      max-height: 280px; /* Usar toda la altura disponible */
     }
 
-    .product-item h2 {
-      font-size: 1.4em;
+    .testimonials-carousel .slick-slide img {
+      max-height: 260px;
     }
   }
 }
