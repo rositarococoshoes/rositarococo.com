@@ -307,7 +307,10 @@ $(document).ready(function(){
       if (formaPago === "cbu") {
         // Process bank transfer payment
         console.log('Processing CBU payment...');
-        fbq('track', 'InitiateCheckout');
+        // Check if Facebook Pixel is available before calling it
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout');
+        }
         fetch(formAction, {
           method: 'POST',
           mode: 'no-cors',
@@ -327,7 +330,10 @@ $(document).ready(function(){
       } else if (formaPago === "tarjeta" || formaPago === "mercadopago") {
         // Process MercadoPago/Card payment
         console.log('Processing MercadoPago/Card payment...');
-        fbq('track', 'InitiateCheckout');
+        // Check if Facebook Pixel is available before calling it
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout');
+        }
 
         try {
           // Obtener link de MercadoPago
