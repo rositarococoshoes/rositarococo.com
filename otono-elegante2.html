@@ -58,13 +58,19 @@
         <div class="mini-cart-body">
             <p class="empty-cart-message">Tu carrito está vacío</p>
             <div class="cart-items"></div>
+            <div class="cart-instructions">
+                <p class="instruction-step"><span class="step-number">1</span> Selecciona tus productos favoritos</p>
+                <p class="instruction-step"><span class="step-number">2</span> Revisa tu carrito</p>
+                <p class="instruction-step"><span class="step-number">3</span> Haz clic en "Finalizar Compra"</p>
+            </div>
         </div>
         <div class="mini-cart-footer">
             <div class="cart-total">Total: <span>$0</span></div>
-            <button id="checkout-btn" class="btn-disabled">Finalizar Compra</button>
+            <button id="checkout-btn" class="btn-disabled">Finalizar Compra →</button>
         </div>
         <div class="mini-cart-tab">
             <span class="tab-icon">🛒</span>
+            <span class="tab-text">Ver<br>Carrito</span>
             <span class="tab-count">0</span>
         </div>
     </div>
@@ -154,6 +160,9 @@
                 <h2 class="text-center" style="font-weight: 700; font-size: 1.8em; margin-bottom: 40px; color: #a05941;">Elige tus Esenciales de Temporada</h2>
 
                 <div class="checkout-navigation product-nav">
+                    <div class="shopping-instructions">
+                        <p><span class="instruction-icon">🛒</span> Selecciona tus productos y talles favoritos</p>
+                    </div>
                     <button class="btn btn-primary" id="continue-to-checkout">Continuar al Envío →</button>
                 </div>
                 <div class="product-grid">
@@ -424,6 +433,9 @@
                     </div>
                 </div>
                 <div class="checkout-navigation product-nav-bottom">
+                    <div class="shopping-instructions">
+                        <p><span class="instruction-icon">👍</span> ¡Listo para continuar con tu compra!</p>
+                    </div>
                     <button class="btn btn-primary" id="continue-to-checkout-bottom">Continuar al Envío →</button>
                 </div>
             </fieldset>

@@ -11,7 +11,14 @@ $(document).ready(function(){
   updateCheckoutProgress(currentStep);
 
   // Mini-cart toggle functionality
-  $('.cart-icon, .cart-title, .mini-cart-tab, .tab-icon').on('click', function() {
+  $('.mini-cart-tab').on('click', function(e) {
+    e.stopPropagation(); // Evitar que el clic se propague
+    $('#mini-cart').toggleClass('active');
+  });
+
+  // También permitir clic en los elementos dentro de la pestaña
+  $('.tab-icon, .tab-text').on('click', function(e) {
+    e.stopPropagation(); // Evitar que el clic se propague
     $('#mini-cart').toggleClass('active');
   });
 
@@ -1036,12 +1043,22 @@ $(document).ready(function(){
     // Show/hide empty cart message and update cart classes
     if (cartItems.length === 0) {
       $('.empty-cart-message').show();
+      $('.cart-instructions').show();
       restOfForm.removeClass('active').addClass('inactive');
       miniCart.removeClass('has-items');
+
+      // Resaltar la primera instrucción cuando el carrito está vacío
+      $('.instruction-step:first-child').addClass('highlight');
+      $('.instruction-step:not(:first-child)').removeClass('highlight');
     } else {
       $('.empty-cart-message').hide();
+      $('.cart-instructions').show();
       restOfForm.removeClass('inactive');
       miniCart.addClass('has-items');
+
+      // Resaltar la última instrucción cuando hay productos
+      $('.instruction-step:last-child').addClass('highlight');
+      $('.instruction-step:not(:last-child)').removeClass('highlight');
     }
 
     // Setup remove buttons
