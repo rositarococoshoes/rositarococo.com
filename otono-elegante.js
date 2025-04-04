@@ -135,15 +135,20 @@ $(document).ready(function(){
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
 
-  // Smooth scroll to form when clicking the floating button
+  // Scroll inmediato al formulario cuando se hace clic en el botón flotante
   finalizeButton.on('click', function(e) {
     e.preventDefault();
-    // Ocultar la barra flotante inmediatamente para mejor experiencia
-    floatingSummary.fadeOut(200);
-    // Scroll más rápido y con mejor offset
-    $('html, body').animate({
-      scrollTop: $("#datos-envio").offset().top - 30
-    }, 800, 'swing');
+    // Ocultar la barra flotante inmediatamente
+    floatingSummary.hide();
+    // Scroll inmediato sin animación para eliminar el delay
+    window.scrollTo({
+      top: $("#datos-envio").offset().top - 30,
+      behavior: 'smooth'
+    });
+    // Enfocar el primer campo del formulario para mejor experiencia
+    setTimeout(function() {
+      $("#1465946249").focus();
+    }, 100);
   });
 
   // --- Form Input Formatting & Live Update ---
@@ -792,7 +797,7 @@ $(document).ready(function(){
       const $carousel = $button.closest('.css-carousel');
       const $container = $carousel.find('.scroll-container');
       const scrollAmount = $container.width(); // Scroll by the width of the container (one item)
-  
+
       if ($button.hasClass('next-btn')) {
         // Smooth scroll right
         $container.animate({ scrollLeft: $container.scrollLeft() + scrollAmount }, 300);
@@ -801,7 +806,7 @@ $(document).ready(function(){
         $container.animate({ scrollLeft: $container.scrollLeft() - scrollAmount }, 300);
       }
     });
-  
+
   });
 
   // Ocultar la barra flotante cuando el usuario está en la sección del formulario

@@ -94,6 +94,61 @@ p {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Sombra sutil */
 }
 
+/* Banner de beneficios destacados */
+.benefits-banner {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 0 auto 30px;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  border-radius: var(--border-radius-medium);
+  box-shadow: var(--shadow-medium);
+  color: white;
+  max-width: 800px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+}
+
+.benefit-icon {
+  font-size: 2.2rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.benefit-text {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.benefit-text strong {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .benefits-banner {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+
+  .benefit-item {
+    justify-content: center;
+  }
+}
+
 .main-header::before {
   content: '';
   position: absolute;
@@ -563,19 +618,54 @@ p {
 }
 
 .product-info-details {
+  margin: 5px 0 25px;
+  padding: 20px 15px;
+  background-color: rgba(250, 248, 245, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product-specs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed rgba(160, 89, 65, 0.2);
+  text-align: center;
+}
+
+.spec-item {
+  font-size: 0.95em;
+  color: #555;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spec-item strong {
+  color: #a05941;
+  margin-right: 8px;
+  min-width: 75px;
+  text-align: right;
+}
+
+.product-description {
   font-size: 1.05em;
   color: #555;
-  margin: 5px 0 20px;
   text-align: center;
-  line-height: 1.5;
-  padding: 10px 15px;
-  background-color: rgba(250, 248, 245, 0.7);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  line-height: 1.6;
+  margin: 0;
+  padding: 5px 0;
+  font-style: italic;
 }
 
 .product-info-details strong {
-  color: #3a3a3a;
+  color: var(--color-primary-dark);
   font-weight: 700;
 }
 
