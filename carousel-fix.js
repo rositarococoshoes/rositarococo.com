@@ -47,6 +47,12 @@ window.onload = function() {
             // Mostrar el slide actual
             slides[currentIndex].style.display = 'block';
 
+            // Asegurarse de que el contenedor de carrusel no tenga transformación
+            const container = carouselElement.querySelector('.carousel-container');
+            if (container) {
+                container.style.transform = 'translateX(0%)';
+            }
+
             // Actualizar indicadores si existen
             if (indicators.length) {
                 for (let i = 0; i < indicators.length; i++) {

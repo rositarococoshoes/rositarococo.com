@@ -11,7 +11,7 @@ $(document).ready(function(){
   // and calls to fixSpacing have been removed.
 
   // --- Product Selection Logic ---
-  var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025']; // Add all product IDs
+  var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025', 'venecia-negras']; // Add all product IDs
   fieldsetsToShow.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selectedQty = parseInt($(this).val());

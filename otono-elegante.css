@@ -318,21 +318,25 @@ p {
   border: 2px solid rgba(160, 89, 65, 0.15);
   position: relative;
   padding-top: 20px;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(160, 89, 65, 0.15);
+  z-index: 1;
 }
 
 .price-option.best-value::before {
   content: '¡Mejor opción!';
   position: absolute;
-  top: -10px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--color-accent);
+  background-color: var(--color-primary);
   color: white;
-  padding: 3px 12px;
+  padding: 4px 15px;
   border-radius: 20px;
-  font-size: 0.75em;
+  font-size: 0.8em;
   font-weight: bold;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(160, 89, 65, 0.3);
+  letter-spacing: 0.5px;
 }
 
 .price-label {
@@ -347,19 +351,14 @@ p {
   font-weight: 700;
   color: var(--color-primary);
   position: relative;
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgba(160, 89, 65, 0.1);
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.price-amount::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--color-primary);
-  opacity: 0.3;
-  border-radius: 2px;
-}
+/* Eliminado el subrayado */
 
 .price-detail {
   width: 100%;
@@ -420,21 +419,32 @@ p {
 .info-section .discount-info {
   margin-top: 30px;
   font-weight: 700;
-  color: var(--color-accent);
+  color: var(--color-primary);
   font-size: 1.15em;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   padding: 12px 25px;
-  background-color: rgba(90, 143, 62, 0.12);
+  background-color: rgba(160, 89, 65, 0.12);
   border-radius: var(--border-radius-medium);
   display: inline-block;
-  box-shadow: 0 3px 10px rgba(90, 143, 62, 0.15);
+  box-shadow: 0 3px 10px rgba(160, 89, 65, 0.15);
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .info-section .discount-info:hover {
   transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(90, 143, 62, 0.2);
+  box-shadow: 0 5px 15px rgba(160, 89, 65, 0.2);
+}
+
+.highlight-discount {
+  background-color: #a05941;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 800;
+  display: inline-block;
+  transform: rotate(-2deg);
+  margin: 0 3px;
 }
 
 /* --- Product Grid & Items --- */
@@ -650,8 +660,16 @@ p {
 .spec-item strong {
   color: #a05941;
   margin-right: 8px;
-  min-width: 75px;
+  min-width: 80px;
   text-align: right;
+  display: inline-block;
+  position: relative;
+}
+
+.spec-item strong::after {
+  content: ":";
+  position: absolute;
+  right: 0;
 }
 
 .product-description {
@@ -794,12 +812,13 @@ fieldset {
 }
 
 .testimonials-carousel {
-  max-width: 800px;
+  max-width: 600px; /* Reducido de 800px */
   margin: 0 auto;
   padding: 25px 0 5px; /* Reducir padding inferior */
 }
 
-.testimonials-carousel .slick-slide img {
+.testimonials-carousel .slick-slide img,
+.testimonials-carousel .carousel-slide img {
   width: auto; /* Ancho automático */
   max-width: 100%; /* Ancho máximo */
   height: auto;
@@ -807,7 +826,7 @@ fieldset {
   border: 1px solid #f0e9e0;
   border-radius: 10px; /* Bordes más redondeados */
   margin: 0 auto;
-  max-height: 400px;
+  max-height: 350px; /* Altura máxima reducida */
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* Sombra mejorada */
   transition: opacity 0.3s ease; /* Transición suave al cargar */
 }
@@ -818,8 +837,35 @@ fieldset {
 }
 
 /* Estilo para imágenes cargadas */
-.testimonials-carousel .slick-slide img[src] {
+.testimonials-carousel .slick-slide img[src],
+.testimonials-carousel .carousel-slide img {
   opacity: 1; /* Mostrar cuando esté cargada */
+}
+
+/* Contenedor de slides para testimonios */
+.testimonials-carousel .carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajuste específico para el carrusel de testimonios */
+#carousel-testimonios .carousel-slide {
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+  height: auto;
+  text-align: center;
+}
+
+#carousel-testimonios .carousel-container {
+  transform: none !important;
+}
+
+#carousel-testimonios img {
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 /* Fallback para cuando el carrusel de testimonios no se inicializa */

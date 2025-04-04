@@ -9,6 +9,12 @@
     background-color: #fff;
 }
 
+.carousel-container {
+    position: relative;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
 .carousel-slide {
     display: none; /* Todos los slides están ocultos por defecto */
     width: 100%;
@@ -95,9 +101,23 @@
 }
 
 /* Estilos específicos para el carrusel de testimonios */
+.testimonials-carousel .carousel-slide {
+    display: none; /* Oculto por defecto */
+    width: 100%;
+    text-align: center;
+}
+
+.testimonials-carousel .carousel-slide:first-child {
+    display: block; /* El primer slide visible */
+}
+
 .testimonials-carousel .carousel-slide img {
-    max-height: 600px;
+    max-height: 400px;
     object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    width: auto;
+    max-width: 100%;
 }
 
 /* Ajustes para dispositivos móviles */
@@ -107,18 +127,18 @@
         height: 36px;
         font-size: 18px;
     }
-    
+
     .carousel-indicators {
         bottom: 10px;
     }
-    
+
     .carousel-indicators li {
         width: 10px;
         height: 10px;
     }
-    
+
     .testimonials-carousel .carousel-slide img {
-        max-height: 450px;
+        max-height: 300px;
     }
 }
 
@@ -128,17 +148,17 @@
         height: 32px;
         font-size: 16px;
     }
-    
+
     .carousel-indicators {
         bottom: 5px;
         gap: 8px;
     }
-    
+
     .carousel-indicators li {
         width: 8px;
         height: 8px;
     }
-    
+
     .testimonials-carousel .carousel-slide img {
         max-height: 350px;
     }
