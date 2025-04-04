@@ -1114,7 +1114,7 @@ fieldset {
 /* --- Mini Cart & Checkout Process --- */
 #mini-cart {
   position: fixed;
-  top: 20px;
+  bottom: 80px;
   right: 0;
   width: 320px;
   background-color: #fff;
@@ -1123,7 +1123,7 @@ fieldset {
   z-index: 1000;
   overflow: visible;
   transition: all 0.3s ease;
-  transform: translateX(calc(100% - 50px));
+  transform: translateX(100%);
 }
 
 #mini-cart.active {
@@ -1132,7 +1132,7 @@ fieldset {
 }
 
 #mini-cart.has-items:not(.active):hover {
-  transform: translateX(calc(100% - 60px));
+  transform: translateX(calc(100% - 10px));
   cursor: pointer;
 }
 
@@ -1143,8 +1143,8 @@ fieldset {
   transform: translateY(-50%) translateX(-100%);
   background-color: var(--color-primary);
   color: white;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
   display: flex;
   align-items: center;
@@ -1152,31 +1152,33 @@ fieldset {
   cursor: pointer;
   box-shadow: var(--shadow-soft);
   transition: background-color 0.3s ease;
+  opacity: 0.85;
 }
 
 .mini-cart-tab:hover {
   background-color: var(--color-primary-dark);
+  opacity: 1;
 }
 
 .tab-icon {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .tab-count {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -5px;
+  right: -5px;
   background-color: var(--color-accent);
   color: white;
-  font-size: 0.8em;
+  font-size: 0.7em;
   font-weight: bold;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(50%, -50%);
+  transform: translate(0, 0);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -1190,9 +1192,9 @@ fieldset {
 }
 
 @keyframes pulse-once {
-  0% { transform: translateY(-50%) translateX(-100%) scale(1); }
-  50% { transform: translateY(-50%) translateX(-100%) scale(1.2); }
-  100% { transform: translateY(-50%) translateX(-100%) scale(1); }
+  0% { transform: translateY(-50%) translateX(-100%) scale(1); opacity: 0.85; }
+  50% { transform: translateY(-50%) translateX(-100%) scale(1.1); opacity: 1; }
+  100% { transform: translateY(-50%) translateX(-100%) scale(1); opacity: 0.85; }
 }
 
 #mini-cart:not(.has-items):not(.active) .cart-icon {

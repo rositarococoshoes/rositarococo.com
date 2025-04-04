@@ -22,14 +22,19 @@ $(document).ready(function(){
     }
   });
 
-  // Animate the mini-cart tab slightly after page load to draw attention
-  setTimeout(function() {
-    $('.mini-cart-tab').addClass('pulse-once');
+  // Animate the mini-cart tab slightly after page load to draw attention, but only once
+  var hasAnimated = sessionStorage.getItem('cartTabAnimated');
 
+  if (!hasAnimated) {
     setTimeout(function() {
-      $('.mini-cart-tab').removeClass('pulse-once');
-    }, 1000);
-  }, 2000);
+      $('.mini-cart-tab').addClass('pulse-once');
+
+      setTimeout(function() {
+        $('.mini-cart-tab').removeClass('pulse-once');
+        sessionStorage.setItem('cartTabAnimated', 'true');
+      }, 1000);
+    }, 3000);
+  }
 
   // Show checkout progress bar after scrolling
   $(window).scroll(function() {
