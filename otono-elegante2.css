@@ -1115,20 +1115,94 @@ fieldset {
 #mini-cart {
   position: fixed;
   top: 20px;
-  right: 20px;
+  right: 0;
   width: 320px;
   background-color: #fff;
-  border-radius: var(--border-radius-medium);
+  border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
   box-shadow: var(--shadow-medium);
   z-index: 1000;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  transform: translateX(calc(100% + 20px));
+  overflow: visible;
+  transition: all 0.3s ease;
+  transform: translateX(calc(100% - 50px));
 }
 
 #mini-cart.active {
   transform: translateX(0);
   box-shadow: var(--shadow-strong);
+}
+
+#mini-cart.has-items:not(.active):hover {
+  transform: translateX(calc(100% - 60px));
+  cursor: pointer;
+}
+
+.mini-cart-tab {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-100%);
+  background-color: var(--color-primary);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+  transition: background-color 0.3s ease;
+}
+
+.mini-cart-tab:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.tab-icon {
+  font-size: 1.5em;
+}
+
+.tab-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--color-accent);
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#mini-cart.has-items .tab-count {
+  opacity: 1;
+}
+
+.pulse-once {
+  animation: pulse-once 1s ease-in-out;
+}
+
+@keyframes pulse-once {
+  0% { transform: translateY(-50%) translateX(-100%) scale(1); }
+  50% { transform: translateY(-50%) translateX(-100%) scale(1.2); }
+  100% { transform: translateY(-50%) translateX(-100%) scale(1); }
+}
+
+#mini-cart:not(.has-items):not(.active) .cart-icon {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 #mini-cart:hover {

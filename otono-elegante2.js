@@ -10,10 +10,26 @@ $(document).ready(function(){
   // Initialize checkout progress
   updateCheckoutProgress(currentStep);
 
-  // Show mini-cart after a short delay
+  // Mini-cart toggle functionality
+  $('.cart-icon, .cart-title, .mini-cart-tab, .tab-icon').on('click', function() {
+    $('#mini-cart').toggleClass('active');
+  });
+
+  // Close mini-cart when clicking outside
+  $(document).on('click', function(e) {
+    if (!$(e.target).closest('#mini-cart').length && $('#mini-cart').hasClass('active')) {
+      $('#mini-cart').removeClass('active');
+    }
+  });
+
+  // Animate the mini-cart tab slightly after page load to draw attention
   setTimeout(function() {
-    $('#mini-cart').addClass('active');
-  }, 1000);
+    $('.mini-cart-tab').addClass('pulse-once');
+
+    setTimeout(function() {
+      $('.mini-cart-tab').removeClass('pulse-once');
+    }, 1000);
+  }, 2000);
 
   // Show checkout progress bar after scrolling
   $(window).scroll(function() {
@@ -1001,8 +1017,9 @@ $(document).ready(function(){
       }
     });
 
-    // Update cart count
+    // Update cart count in both places
     cartCountElement.text(cartItems.length);
+    $('.tab-count').text(cartItems.length);
 
     // Update cart total
     var total = cartItems.reduce(function(sum, item) {
@@ -1011,13 +1028,15 @@ $(document).ready(function(){
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
-    // Show/hide empty cart message
+    // Show/hide empty cart message and update cart classes
     if (cartItems.length === 0) {
       $('.empty-cart-message').show();
       restOfForm.removeClass('active').addClass('inactive');
+      miniCart.removeClass('has-items');
     } else {
       $('.empty-cart-message').hide();
       restOfForm.removeClass('inactive');
+      miniCart.addClass('has-items');
     }
 
     // Setup remove buttons
