@@ -586,7 +586,8 @@ $(document).ready(function(){
             if (message === "Verificando WhatsApp...") {
                 errorElement.className = "error-message verifying";
             } else {
-                errorElement.className = "error-message";
+                // Add 'valid' class when the message indicates success (green color)
+                errorElement.className = color === "green" ? "error-message valid" : "error-message";
                 errorElement.style.backgroundColor = color === "green" ? "#d4edda" : "#f8d7da";
                 errorElement.style.color = color === "green" ? "#155724" : "#721c24";
                 errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
