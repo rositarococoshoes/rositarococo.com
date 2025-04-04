@@ -20,8 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <!-- Carousel CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -31,12 +30,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="otono-elegante.css">
+    <link rel="stylesheet" href="carousel-fix.css">
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="carousel-fix.js"></script>
+    <script src="carousel-init.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -112,14 +113,27 @@
                     <!-- PRODUCTO 1: Roma Negras -->
                     <div class="product-item" id="modeload-roma-negras">
                         <h2>Mocasín Roma Negras</h2>
-                        <div class="model-carousel">
-                            <div><img alt="Mocasín Roma Negras - Vista 1" src="roma-negras-1.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 2" src="roma-negras-1a.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 3" src="roma-negras-5a.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 4" src="roma-negras-2a.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 5" src="roma-negras-3a.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 6" src="roma-negras-4a.jpg"></div>
-                            <div><img alt="Mocasín Roma Negras - Vista 7" src="roma-negras-2.jpg"></div>
+                        <div id="carousel-roma-negras" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 1" src="roma-negras-1.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 2" src="roma-negras-1a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 3" src="roma-negras-5a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 4" src="roma-negras-2a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 5" src="roma-negras-3a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 6" src="roma-negras-4a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Negras - Vista 7" src="roma-negras-2.jpg"></div>
+                            </div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-roma-negras">
                             <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo.</p>
@@ -164,11 +178,21 @@
                     <!-- PRODUCTO 2: Roma Suela -->
                     <div class="product-item" id="modeload-roma-suela">
                         <h2>Mocasín Roma Suela</h2>
-                        <div class="model-carousel">
-                            <div><img alt="Mocasín Roma Suela - Vista 1" src="roma-suela-1a.jpg"></div>
-                            <div><img alt="Mocasín Roma Suela - Vista 2" src="roma-suela-2a.jpg"></div>
-                            <div><img alt="Mocasín Roma Suela - Vista 3" src="roma-suela-1.jpg"></div>
-                            <div><img alt="Mocasín Roma Suela - Vista 4" src="roma-suela-2.jpg"></div>
+                        <div id="carousel-roma-suela" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img alt="Mocasín Roma Suela - Vista 1" src="roma-suela-1a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Suela - Vista 2" src="roma-suela-2a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Suela - Vista 3" src="roma-suela-1.jpg"></div>
+                                <div class="carousel-slide"><img alt="Mocasín Roma Suela - Vista 4" src="roma-suela-2.jpg"></div>
+                            </div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-roma-suela">
                             <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado.</p>
@@ -213,9 +237,17 @@
                     <!-- PRODUCTO 3: Siena 2025 -->
                     <div class="product-item" id="modeload-siena2025">
                         <h2>Borcego Siena 2025</h2>
-                        <div class="model-carousel">
-                            <div><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1"></div>
-                            <div><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2"></div>
+                        <div id="carousel-siena2025" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1"></div>
+                                <div class="carousel-slide"><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2"></div>
+                            </div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-siena2025">
                             <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>Robusto, chic y con carácter. El borcego Siena está listo para acompañarte en cualquier aventura urbana con actitud.</p>
@@ -262,18 +294,36 @@
             <!-- Testimonials Section -->
             <section class="testimonials-section">
                 <h2 class="text-center">Lo que dicen nuestras clientas</h2>
-                <div class="testimonials-carousel">
-                    <div><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" /></div>
-                    <div><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" /></div>
-                    <div><img src="comentariosig.webp" alt="Captura de comentarios de Instagram"></div>
-                    <div><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" /></div>
-                    <div><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" /></div>
-                    <div><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" /></div>
+                <!-- Testimonials carousel -->
+                <div id="carousel-testimonios" class="simple-carousel testimonials-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" /></div>
+                        <div class="carousel-slide"><img src="comentariosig.webp" alt="Captura de comentarios de Instagram"></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" /></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" /></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" /></div>
+                    </div>
+                    <button class="carousel-button prev" aria-label="Testimonio anterior">&lt;</button>
+                    <button class="carousel-button next" aria-label="Testimonio siguiente">&gt;</button>
+                    <ul class="carousel-indicators">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </div>
             </section>
 
@@ -413,5 +463,6 @@
         <p class="loading-message">Estamos preparando tu pago seguro...<br>Un momento por favor, no actualices la página.</p>
     </div>
 
+    <script src="simple-carousel.js"></script>
     <!-- Custom script -->
     <script src="otono-elegante.js"></script>

@@ -1,0 +1,152 @@
+/* Estilos personalizados para Swiper */
+
+/* Estilos generales para todos los carruseles */
+.swiper {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0;
+    background-color: #f9f6f2;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+}
+
+/* Estilos para los slides */
+.swiper-slide {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f6f2;
+    overflow: hidden;
+}
+
+/* Estilos para las imágenes dentro de los slides */
+.swiper-slide img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+/* Estilos para los botones de navegación */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #a05941;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7a3f2b;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Estilos para la paginación */
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #a05941;
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+}
+
+/* Estilos específicos para el carrusel de testimonios */
+.testimonials-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    padding-bottom: 40px; /* Espacio para la paginación */
+}
+
+.testimonials-carousel .swiper-slide img {
+    max-height: 400px;
+    width: auto;
+    margin: 0 auto;
+}
+
+/* Estilos para los títulos de productos */
+.product-item h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    font-size: 1.6em !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 16px;
+    }
+    
+    .testimonials-carousel .swiper-slide img {
+        max-height: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 14px;
+    }
+    
+    .testimonials-carousel .swiper-slide img {
+        max-height: 300px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .swiper-button-next:after,
+    .swiper-button-prev:after {
+        font-size: 12px;
+    }
+    
+    .testimonials-carousel .swiper-slide img {
+        max-height: 250px;
+    }
+}

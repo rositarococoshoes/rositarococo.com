@@ -2,163 +2,13 @@
 
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
-  // Check if Slick is loaded
-  if (typeof $.fn.slick === 'undefined') {
-    console.error('Slick carousel not loaded. Attempting to load it dynamically.');
-    // Try to load Slick dynamically
-    var script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js';
-    script.onload = initCarousels;
-    document.head.appendChild(script);
+  // Slick Carousel initialization check and dynamic loading removed.
+  // initCarousels function definition removed.
 
-    // Also load CSS
-    if (!document.querySelector('link[href*="slick.css"]')) {
-      var link1 = document.createElement('link');
-      link1.rel = 'stylesheet';
-      link1.href = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css';
-      document.head.appendChild(link1);
+  // fixSpacing function definition removed as it was related to Slick Carousel.
 
-      var link2 = document.createElement('link');
-      link2.rel = 'stylesheet';
-      link2.href = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css';
-      document.head.appendChild(link2);
-    }
-  } else {
-    initCarousels();
-  }
-
-  // Function to initialize all carousels
-  function initCarousels() {
-
-  // --- Slick Carousel Initialization with optimized settings for image display ---
-  $('.model-carousel').slick({
-    dots: true,
-    infinite: true,
-    speed: 600, // Velocidad de transición ligeramente más lenta para mejor visualización
-    fade: true,
-    cssEase: 'cubic-bezier(0.25, 0.1, 0.25, 1)', // Transición más suave
-    lazyLoad: 'ondemand', // Cambiado a ondemand para mejor carga
-    adaptiveHeight: false, // Desactivado para mantener altura consistente
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: true,
-    accessibility: true, // Mejorar accesibilidad
-    autoplay: false,
-    centerMode: false,
-    variableWidth: false,
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    touchThreshold: 10, // Más sensible al tacto
-    responsive: [
-      {
-        breakpoint: 992,
-        settings: {
-          dots: true,
-          arrows: true,
-          speed: 500
-        }
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          dots: true,
-          arrows: true,
-          speed: 400
-        }
-      },
-      {
-        breakpoint: 576,
-        settings: {
-          dots: true,
-          arrows: true,
-          speed: 300
-        }
-      }
-    ]
-  });
-
-  // Mejorar la carga de imágenes en el carrusel
-  $('.model-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-    // Precarga la siguiente imagen
-    let $nextSlideElement = $(slick.$slides.get(nextSlide));
-    let $img = $nextSlideElement.find('img[data-lazy]');
-
-    if ($img.length && !$img.attr('src')) {
-      let imgSrc = $img.attr('data-lazy');
-      $img.attr('src', imgSrc).removeAttr('data-lazy');
-    }
-  });
-
-  // Cargar todas las imágenes del carrusel activo después de la inicialización
-  $('.model-carousel').each(function() {
-    const $carousel = $(this);
-    setTimeout(function() {
-      $carousel.find('img[data-lazy]').each(function() {
-        const $img = $(this);
-        const imgSrc = $img.attr('data-lazy');
-        if (imgSrc && !$img.attr('src')) {
-          $img.attr('src', imgSrc).removeAttr('data-lazy');
-        }
-      });
-    }, 500);
-  });
-
-  // Reinicializar carrusel cuando se cambia el tamaño de la ventana
-  let resizeTimer;
-  $(window).on('resize', function() {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-      $('.model-carousel').slick('setPosition');
-    }, 200);
-  });
-
-  // Testimonials carousel with autoplay
-  $('.testimonials-carousel').slick({
-    dots: true,
-    infinite: true,
-    speed: 700, // Transición más lenta para mejor visualización
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000, // Más tiempo para leer los testimonios
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: false, // Cambiado para mantener altura consistente
-    accessibility: true, // Mejorar accesibilidad
-    fade: true,
-    cssEase: 'cubic-bezier(0.25, 0.1, 0.25, 1)', // Transición más suave
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    touchThreshold: 10, // Más sensible al tacto
-    lazyLoad: 'ondemand' // Cambiado a ondemand para mejor carga
-  });
-
-  // Asegurar que las imágenes de testimonios se carguen correctamente
-  $('.testimonials-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
-    // Precarga la siguiente imagen
-    let $nextSlideElement = $(slick.$slides.get(nextSlide));
-    let $img = $nextSlideElement.find('img[data-lazy]');
-
-    if ($img.length && !$img.attr('src')) {
-      let imgSrc = $img.attr('data-lazy');
-      $img.attr('src', imgSrc).removeAttr('data-lazy');
-    }
-  });
-
-  // Cargar todas las imágenes del carrusel de testimonios después de la inicialización
-  $('.testimonials-carousel').each(function() {
-    const $carousel = $(this);
-    setTimeout(function() {
-      $carousel.find('img[data-lazy]').each(function() {
-        const $img = $(this);
-        const imgSrc = $img.attr('data-lazy');
-        if (imgSrc && !$img.attr('src')) {
-          $img.attr('src', imgSrc).removeAttr('data-lazy');
-        }
-      });
-    }, 500);
-  });
-
-  } // End of initCarousels function
+  // All Slick Carousel initialization code, event handlers,
+  // and calls to fixSpacing have been removed.
 
   // --- Product Selection Logic ---
   var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025']; // Add all product IDs
@@ -239,7 +89,7 @@ $(document).ready(function(){
       totalPrice = 70000;
       totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
       restOfForm.slideDown();
-      floatingSummary.data('should-show', true).fadeIn();
+      floatingSummary.data('should-show', true).fadeIn().addClass('show');
       finalizeButton.removeClass('hidden').text('Completar Datos ↓');
 
       // Scroll to the form if user has selected at least one pair
@@ -254,7 +104,7 @@ $(document).ready(function(){
       totalPrice = 110000;
       totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
       restOfForm.slideDown();
-      floatingSummary.data('should-show', true).fadeIn();
+      floatingSummary.data('should-show', true).fadeIn().addClass('show');
       finalizeButton.removeClass('hidden').text('Completar Datos ↓');
 
       // If this is the second pair being added, show a more prominent notification
@@ -266,12 +116,12 @@ $(document).ready(function(){
       }
     } else if (pairCount === 0) {
       restOfForm.slideUp();
-      floatingSummary.fadeOut();
+      floatingSummary.fadeOut().removeClass('show');
       finalizeButton.addClass('hidden');
     } else {
       totalPriceText = "Has seleccionado más de 2 pares. Revisa tu selección.";
       restOfForm.slideUp();
-      floatingSummary.fadeIn();
+      floatingSummary.fadeIn().addClass('show');
       finalizeButton.addClass('hidden');
     }
 
@@ -936,6 +786,22 @@ $(document).ready(function(){
     $('html, body').animate({
       scrollTop: $(targetId).offset().top - 50
     }, 800);
+    // --- CSS Carousel Button Logic ---
+    $('.css-carousel .carousel-btn').on('click', function() {
+      const $button = $(this);
+      const $carousel = $button.closest('.css-carousel');
+      const $container = $carousel.find('.scroll-container');
+      const scrollAmount = $container.width(); // Scroll by the width of the container (one item)
+  
+      if ($button.hasClass('next-btn')) {
+        // Smooth scroll right
+        $container.animate({ scrollLeft: $container.scrollLeft() + scrollAmount }, 300);
+      } else if ($button.hasClass('prev-btn')) {
+        // Smooth scroll left
+        $container.animate({ scrollLeft: $container.scrollLeft() - scrollAmount }, 300);
+      }
+    });
+  
   });
 
   // Ocultar la barra flotante cuando el usuario está en la sección del formulario
