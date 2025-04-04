@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Preview</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="otono-elegante.css">
+    <link rel="stylesheet" href="fix-spacing.css">
+    <style>
+        /* Estilos de prueba para visualizar mejor */
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .test-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; margin-bottom: 30px;">Elige tus Esenciales de Temporada</h1>
+
+        <div class="test-grid">
+            <!-- Producto 1 -->
+            <div class="product-item">
+                <h2 style="margin: 0; padding: 0; line-height: 1.2;">Mocasín Roma Negras</h2>
+                <div class="model-carousel" style="margin-top: 0; padding-top: 0;">
+                    <div><img src="https://via.placeholder.com/400x400" alt="Producto 1"></div>
+                </div>
+                <div class="product-selection">
+                    <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>Un clásico atemporal y versátil, perfecto para elevar cualquier look diario.</p>
+                </div>
+            </div>
+
+            <!-- Producto 2 -->
+            <div class="product-item">
+                <h2 style="margin: 0; padding: 0; line-height: 1.2;">Mocasín Roma Suela</h2>
+                <div class="model-carousel" style="margin-top: 0; padding-top: 0;">
+                    <div><img src="https://via.placeholder.com/400x400" alt="Producto 2"></div>
+                </div>
+                <div class="product-selection">
+                    <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>Un clásico atemporal y versátil, perfecto para elevar cualquier look diario.</p>
+                </div>
+            </div>
+
+            <!-- Producto 3 -->
+            <div class="product-item">
+                <h2 style="margin: 0; padding: 0; line-height: 1.2;">Borcego Siena 2025</h2>
+                <div class="model-carousel" style="margin-top: 0; padding-top: 0;">
+                    <div><img src="https://via.placeholder.com/400x400" alt="Producto 3"></div>
+                </div>
+                <div class="product-selection">
+                    <p class="product-info-details"><strong>Material:</strong> Cuero genuino | <strong>Suela:</strong> Expanso<br>Robusto, chic y con carácter. El borcego Siena está listo para acompañarte.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+</body>
+</html>

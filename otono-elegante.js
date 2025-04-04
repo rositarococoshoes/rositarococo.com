@@ -2,6 +2,33 @@
 
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
+  // Check if Slick is loaded
+  if (typeof $.fn.slick === 'undefined') {
+    console.error('Slick carousel not loaded. Attempting to load it dynamically.');
+    // Try to load Slick dynamically
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js';
+    script.onload = initCarousels;
+    document.head.appendChild(script);
+
+    // Also load CSS
+    if (!document.querySelector('link[href*="slick.css"]')) {
+      var link1 = document.createElement('link');
+      link1.rel = 'stylesheet';
+      link1.href = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css';
+      document.head.appendChild(link1);
+
+      var link2 = document.createElement('link');
+      link2.rel = 'stylesheet';
+      link2.href = 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css';
+      document.head.appendChild(link2);
+    }
+  } else {
+    initCarousels();
+  }
+
+  // Function to initialize all carousels
+  function initCarousels() {
 
   // --- Slick Carousel Initialization with optimized settings for image display ---
   $('.model-carousel').slick({
@@ -10,8 +37,8 @@ $(document).ready(function(){
     speed: 600, // Velocidad de transición ligeramente más lenta para mejor visualización
     fade: true,
     cssEase: 'cubic-bezier(0.25, 0.1, 0.25, 1)', // Transición más suave
-    lazyLoad: 'progressive', // Carga progresiva para mejor rendimiento
-    adaptiveHeight: true, // Altura adaptativa para evitar recortes
+    lazyLoad: 'ondemand', // Cambiado a ondemand para mejor carga
+    adaptiveHeight: false, // Desactivado para mantener altura consistente
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
@@ -50,7 +77,7 @@ $(document).ready(function(){
     ]
   });
 
-  // Asegurar que las imágenes se carguen correctamente
+  // Mejorar la carga de imágenes en el carrusel
   $('.model-carousel').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
     // Precarga la siguiente imagen
     let $nextSlideElement = $(slick.$slides.get(nextSlide));
@@ -60,6 +87,20 @@ $(document).ready(function(){
       let imgSrc = $img.attr('data-lazy');
       $img.attr('src', imgSrc).removeAttr('data-lazy');
     }
+  });
+
+  // Cargar todas las imágenes del carrusel activo después de la inicialización
+  $('.model-carousel').each(function() {
+    const $carousel = $(this);
+    setTimeout(function() {
+      $carousel.find('img[data-lazy]').each(function() {
+        const $img = $(this);
+        const imgSrc = $img.attr('data-lazy');
+        if (imgSrc && !$img.attr('src')) {
+          $img.attr('src', imgSrc).removeAttr('data-lazy');
+        }
+      });
+    }, 500);
   });
 
   // Reinicializar carrusel cuando se cambia el tamaño de la ventana
@@ -81,14 +122,14 @@ $(document).ready(function(){
     autoplaySpeed: 5000, // Más tiempo para leer los testimonios
     slidesToShow: 1,
     slidesToScroll: 1,
-    adaptiveHeight: true,
+    adaptiveHeight: false, // Cambiado para mantener altura consistente
     accessibility: true, // Mejorar accesibilidad
     fade: true,
     cssEase: 'cubic-bezier(0.25, 0.1, 0.25, 1)', // Transición más suave
     pauseOnHover: true,
     pauseOnFocus: true,
     touchThreshold: 10, // Más sensible al tacto
-    lazyLoad: 'progressive' // Carga progresiva para mejor rendimiento
+    lazyLoad: 'ondemand' // Cambiado a ondemand para mejor carga
   });
 
   // Asegurar que las imágenes de testimonios se carguen correctamente
@@ -102,6 +143,22 @@ $(document).ready(function(){
       $img.attr('src', imgSrc).removeAttr('data-lazy');
     }
   });
+
+  // Cargar todas las imágenes del carrusel de testimonios después de la inicialización
+  $('.testimonials-carousel').each(function() {
+    const $carousel = $(this);
+    setTimeout(function() {
+      $carousel.find('img[data-lazy]').each(function() {
+        const $img = $(this);
+        const imgSrc = $img.attr('data-lazy');
+        if (imgSrc && !$img.attr('src')) {
+          $img.attr('src', imgSrc).removeAttr('data-lazy');
+        }
+      });
+    }, 500);
+  });
+
+  } // End of initCarousels function
 
   // --- Product Selection Logic ---
   var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025']; // Add all product IDs
@@ -182,8 +239,8 @@ $(document).ready(function(){
       totalPrice = 70000;
       totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
       restOfForm.slideDown();
-      floatingSummary.fadeIn();
-      finalizeButton.removeClass('hidden').text('Completar Datos de Envío ↓');
+      floatingSummary.data('should-show', true).fadeIn();
+      finalizeButton.removeClass('hidden').text('Completar Datos ↓');
 
       // Scroll to the form if user has selected at least one pair
       if (currentVal && !prevVal) {
@@ -197,8 +254,8 @@ $(document).ready(function(){
       totalPrice = 110000;
       totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
       restOfForm.slideDown();
-      floatingSummary.fadeIn();
-      finalizeButton.removeClass('hidden').text('Completar Datos de Envío ↓');
+      floatingSummary.data('should-show', true).fadeIn();
+      finalizeButton.removeClass('hidden').text('Completar Datos ↓');
 
       // If this is the second pair being added, show a more prominent notification
       if (currentVal && prevVal === "" && summaryArray.length === 2) {
@@ -231,9 +288,12 @@ $(document).ready(function(){
   // Smooth scroll to form when clicking the floating button
   finalizeButton.on('click', function(e) {
     e.preventDefault();
+    // Ocultar la barra flotante inmediatamente para mejor experiencia
+    floatingSummary.fadeOut(200);
+    // Scroll más rápido y con mejor offset
     $('html, body').animate({
-      scrollTop: $("#datos-envio").offset().top - 20
-    }, 500);
+      scrollTop: $("#datos-envio").offset().top - 30
+    }, 800, 'swing');
   });
 
   // --- Form Input Formatting & Live Update ---
@@ -563,121 +623,175 @@ $(document).ready(function(){
     const errorClass = "error-message";
     const apiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
 
-    let validationTimeout;
+    let isValid = false;
     let isChecking = false;
-    let lastCheckedValue = null;
+    let timeout; // Timeout para debounce
+
+    function getInputElement(id) {
+        return document.getElementById(id);
+    }
+
+    function getErrorElement() {
+        return document.querySelector("." + errorClass);
+    }
+
+    function createErrorElement(inputElement) {
+        if (!getErrorElement()) {
+            const errorDiv = document.createElement("div");
+            errorDiv.className = errorClass;
+            errorDiv.style.display = "none";
+            errorDiv.style.marginTop = "5px";
+            errorDiv.style.padding = "8px 12px";
+            errorDiv.style.borderRadius = "4px";
+            errorDiv.style.fontSize = "0.9em";
+            inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
+        }
+    }
 
     function hideError() {
-      const errorElement = getErrorElement();
-      if (errorElement) {
-        errorElement.style.display = "none";
-        errorElement.className = errorClass;
-      }
+        const errorElement = getErrorElement();
+        if (errorElement) {
+            errorElement.style.display = "none";
+        }
     }
 
-    function showError(message, status = "invalid") {
-      const errorElement = getErrorElement();
-      if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.className = `${errorClass} ${status}`;
-        errorElement.style.display = "block";
-      }
+    function showError(message, color = "red") {
+        const errorElement = getErrorElement();
+        if (errorElement) {
+            errorElement.textContent = message;
+
+            // Si está verificando WhatsApp, agregar clase especial
+            if (message === "Verificando WhatsApp...") {
+                errorElement.className = "error-message verifying";
+            } else {
+                errorElement.className = "error-message";
+                errorElement.style.backgroundColor = color === "green" ? "#d4edda" : "#f8d7da";
+                errorElement.style.color = color === "green" ? "#155724" : "#721c24";
+                errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
+            }
+
+            errorElement.style.display = "block";
+        }
     }
 
-    function formatNumberForValidation(number) {
-      let rawNumber = number.replace(/\D/g, "");
-      if (rawNumber.length >= 10 && rawNumber.length <= 12) {
-        if (rawNumber.length === 11 && rawNumber.startsWith('9'))
-          rawNumber = '54' + rawNumber;
-        else if (rawNumber.length === 10)
-          rawNumber = '549' + rawNumber;
-      } else if (rawNumber.length > 0)
+    function formatNumber(number) {
+        let rawNumber = number.replace(/\D/g, "");
+        if (rawNumber.length === 0) return null;
+
+        // Si empieza con 549, lo dejamos como está
+        if (rawNumber.startsWith("549")) {
+            return rawNumber;
+        }
+
+        // Si empieza con 54 y tiene al menos 12 dígitos, lo dejamos como está
+        if (rawNumber.startsWith("54") && rawNumber.length >= 12) {
+            return rawNumber;
+        }
+
+        // Si tiene 10 dígitos, agregamos 549 al principio
+        if (rawNumber.length === 10) {
+            return "549" + rawNumber;
+        }
+
+        // Si tiene 11 dígitos y empieza con 9, agregamos 54 al principio
+        if (rawNumber.length === 11 && rawNumber.startsWith("9")) {
+            return "54" + rawNumber;
+        }
+
+        // En cualquier otro caso, devolvemos null (número inválido)
         return null;
-
-      return rawNumber.startsWith('549') ? rawNumber : null;
     }
 
     function setDependentElementsDisabled(disabled) {
-      dependentElementIds.forEach(id => {
-        const element = getInputElement(id);
-        if (element) {
-          element.disabled = disabled;
-        }
-      });
+        dependentElementIds.forEach(id => {
+            const element = getInputElement(id);
+            if (element) {
+                element.disabled = disabled;
+            }
+        });
     }
 
     function validateWhatsApp() {
-      if (isChecking) return;
+        console.log("validateWhatsApp called");
+        if (isChecking) {
+            console.log("validateWhatsApp: Already checking, returning.");
+            return;
+        }
+        isChecking = true;
 
-      const inputElement = getInputElement(whatsappInputId);
-      if (!inputElement) return;
+        const inputElement = getInputElement(whatsappInputId);
+        if (!inputElement) {
+            console.error("WhatsApp input element not found.");
+            isChecking = false;
+            return;
+        }
 
-      const currentValue = inputElement.value.trim();
-      if (currentValue === lastCheckedValue || currentValue === "") {
-        if (currentValue === "") hideError();
-        return;
-      }
+        createErrorElement(inputElement);
+        showError("Verificando WhatsApp...", "#666");
 
-      const formattedNumber = formatNumberForValidation(currentValue);
+        const formattedNumber = formatNumber(inputElement.value);
+        console.log("Validating number:", formattedNumber);
 
-      if (!formattedNumber) {
-        if (currentValue !== "")
-          showError("Formato de WhatsApp inválido. Ej: 1156457057", "invalid");
-        else
-          hideError();
+        if (!formattedNumber) {
+            showError("Formato de WhatsApp inválido. Ej: 1156457057", "red");
+            setDependentElementsDisabled(true);
+            isChecking = false;
+            return;
+        }
 
-        setDependentElementsDisabled(true);
-        lastCheckedValue = currentValue;
-        return;
-      }
-
-      isChecking = true;
-      lastCheckedValue = currentValue;
-      showError("Verificando WhatsApp...", "verifying");
-      setDependentElementsDisabled(true);
-
-      fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ whatsapp_check: formattedNumber })
-      })
-      .then(response => {
-        if (!response.ok) throw new Error(`API Error: ${response.status}`);
-        return response.json();
-      })
-      .then(data => {
-        const isValid = data.exists === true;
-        showError(
-          isValid ? "WhatsApp válido. ¡Puedes continuar!" : "WhatsApp no encontrado. Revisa el número.",
-          isValid ? "valid" : "invalid"
-        );
-        setDependentElementsDisabled(!isValid);
-      })
-      .catch(error => {
-        console.error("WhatsApp validation error:", error);
-        showError("Error al verificar. Intenta de nuevo.", "error-connection");
-        setDependentElementsDisabled(true);
-      })
-      .finally(() => {
-        isChecking = false;
-      });
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", apiUrl, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.onreadystatechange = function() {
+            console.log("xhr.onreadystatechange called.  readyState:", xhr.readyState, "status:", xhr.status);
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    console.log("API response:", data);
+                    isValid = data.exists === true;
+                    if (isValid) {
+                        showError("WhatsApp válido. ¡Puedes continuar!", "green");
+                        setDependentElementsDisabled(false); // Habilitar campos si es válido
+                    } else {
+                        showError("WhatsApp no válido. Verifica el número.", "red");
+                        setDependentElementsDisabled(true); // Deshabilitar campos si no es válido
+                    }
+                } else {
+                    console.error("API error. Status:", xhr.status);
+                    showError("Error al verificar WhatsApp. Intenta de nuevo.", "orange");
+                    setDependentElementsDisabled(true); // Deshabilitar campos en caso de error
+                }
+                isChecking = false;
+            }
+        };
+        xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
     }
 
-    function handleInput() {
-      clearTimeout(validationTimeout);
-      hideError();
-      setDependentElementsDisabled(true);
-      validationTimeout = setTimeout(validateWhatsApp, 800); // Debounce
+    function clearErrorAndValidate() {
+        hideError(); // Oculta el mensaje de error
+        clearTimeout(timeout); // Limpia cualquier validación pendiente
+        // No es necesario llamar a validateWhatsApp() aquí
     }
 
-    const whatsappInput = getInputElement(whatsappInputId);
-    if (whatsappInput) {
-      whatsappInput.addEventListener("input", handleInput);
-      whatsappInput.addEventListener("blur", validateWhatsApp);
-      setDependentElementsDisabled(true); // Initially disable dependent fields
-    } else {
-      console.error("WhatsApp input field not found.");
+    function setupListeners() {
+        const whatsappInput = getInputElement(whatsappInputId);
+        if (!whatsappInput) {
+            console.error("WhatsApp input element not found in setupListeners.");
+            return;
+        }
+
+        // Agrega el listener para 'input'
+        whatsappInput.addEventListener("input", clearErrorAndValidate);
+
+        whatsappInput.addEventListener("blur", () => {
+            console.log("blur event triggered");
+            // Ahora sí, llama a validateWhatsApp después del 'blur'
+            timeout = setTimeout(validateWhatsApp, 200); // Pequeño retraso para asegurar que se procese el valor final
+        });
     }
+
+    // Inicializar
+    setupListeners();
   })();
 
   // --- Additional UI Enhancements ---
@@ -720,38 +834,49 @@ $(document).ready(function(){
   });
 
   // Add enhanced CSS classes for animations
-  $('<style>
-    .product-item {
-      opacity: 0;
-      transform: translateY(25px);
-      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease;
-    }
-    .product-item.animated {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .product-item {
-        transition: opacity 0.2s ease;
-        transform: none;
-      }
-      .product-item.animated {
-        transform: none;
-      }
-    }
-  </style>').appendTo('head');
+  $("<style>\
+    .product-item { \
+      opacity: 0; \
+      transform: translateY(25px); \
+      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease; \
+    } \
+    .product-item.animated { \
+      opacity: 1; \
+      transform: translateY(0); \
+    }\
+    @media (prefers-reduced-motion: reduce) {\
+      .product-item {\
+        transition: opacity 0.2s ease;\
+        transform: none;\
+      }\
+      .product-item.animated {\
+        transform: none;\
+      }\
+    }\
+  </style>").appendTo('head');
 
   // Mejorar la carga de imágenes
   function loadVisibleImages() {
     $('img[data-lazy]').each(function() {
       var $img = $(this);
-      var position = $img.offset().top;
-      var scroll = $(window).scrollTop();
-      var windowHeight = $(window).height();
+      if (!$img.attr('src')) {
+        var position = $img.offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
 
-      if (scroll + windowHeight > position - 200 && scroll < position + $img.height() + 200) {
-        var imgSrc = $img.attr('data-lazy');
-        $img.attr('src', imgSrc).removeAttr('data-lazy');
+        // Cargar imágenes con un margen más amplio para precargar
+        if (scroll + windowHeight > position - 300 && scroll < position + $img.height() + 300) {
+          var imgSrc = $img.attr('data-lazy');
+          if (imgSrc) {
+            // Crear una imagen temporal para precargar
+            var tempImg = new Image();
+            tempImg.onload = function() {
+              // Una vez cargada, actualizar la imagen visible
+              $img.attr('src', imgSrc).removeAttr('data-lazy');
+            };
+            tempImg.src = imgSrc;
+          }
+        }
       }
     });
   }
@@ -767,6 +892,19 @@ $(document).ready(function(){
     }
   });
 
+  // Forzar carga de todas las imágenes después de un tiempo
+  setTimeout(function() {
+    $('img[data-lazy]').each(function() {
+      var $img = $(this);
+      if (!$img.attr('src')) {
+        var imgSrc = $img.attr('data-lazy');
+        if (imgSrc) {
+          $img.attr('src', imgSrc).removeAttr('data-lazy');
+        }
+      }
+    });
+  }, 2000);
+
   // Show WhatsApp button with animation
   $("#whatsapp").css({
     'transform': 'scale(0)',
@@ -776,6 +914,49 @@ $(document).ready(function(){
     'opacity': '1'
   }, 500, function() {
     $(this).css('transform', 'scale(1)');
+  });
+
+  // Final fallback to ensure all images are loaded
+  setTimeout(function() {
+    $('img[data-lazy]').each(function() {
+      var $img = $(this);
+      if (!$img.attr('src')) {
+        var imgSrc = $img.attr('data-lazy');
+        if (imgSrc) {
+          $img.attr('src', imgSrc).removeAttr('data-lazy');
+        }
+      }
+    });
+  }, 3000);
+
+  // Scroll to form when clicking on finalize button
+  $('#finalizarpedido').click(function(e) {
+    e.preventDefault();
+    var targetId = $(this).attr('href');
+    $('html, body').animate({
+      scrollTop: $(targetId).offset().top - 50
+    }, 800);
+  });
+
+  // Ocultar la barra flotante cuando el usuario está en la sección del formulario
+  $(window).scroll(function() {
+    var formSection = $('#restodelform');
+    var floatingBar = $('#floating-cart-summary');
+
+    if (formSection.is(':visible')) {
+      var formTop = formSection.offset().top;
+      var formBottom = formTop + formSection.outerHeight();
+      var scrollPosition = $(window).scrollTop() + $(window).height();
+
+      // Si el usuario está en la sección del formulario o por debajo, ocultar la barra
+      if (scrollPosition >= formTop) {
+        floatingBar.fadeOut(300);
+      } else {
+        if (floatingBar.is(':hidden') && floatingBar.data('should-show')) {
+          floatingBar.fadeIn(300);
+        }
+      }
+    }
   });
 
 }); // End document ready
