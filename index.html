@@ -535,7 +535,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel .slick-slide {
-    width: 100% !important; 
+    width: 100% !important;
     max-width: 400px !important;
     height: auto !important;
     max-height: 356px !important;
@@ -641,11 +641,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
 <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
-  <input type="text" 
-  name="website" 
-  id="website" 
-  style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" 
-  tabindex="-1" 
+  <input type="text"
+  name="website"
+  id="website"
+  style="opacity: 0; position: absolute; top: -9999px; left: -9999px;"
+  tabindex="-1"
   autocomplete="off">
   <p><img alt="" src="rosita-form.webp" /></p>
 
@@ -662,7 +662,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </span>
 <span style="font-size:12px;"><em><span style="background-color:#FFFF00;">Podés combinar modelos en tu mismo pedido.</span></em></span></h6>
 <p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
- 
+
 <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
 <!-- 📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: del 35 al 39. Tabla de talles debajo. </small></span><br /> -->
 💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta , MercadoPago, Transferencia.</small></span><br />
@@ -1178,15 +1178,32 @@ $('#bootstrapForm').submit(async function (event) {
         console.log('Bot detectado, cancelando submit');
         return false;
     }
-    
+
     // Capturar datos necesarios
     const talleselegidos = $('#1471599855').val();
     const value2 = talleselegidos.replace(" ", "");
     const words = value2.split(",");
     const formaPago = $('#comoabona').val();
     const nombreComprador = $('#1460904554').val();
-    const montoTexto = $("#preciototal .preciototalaobservar").text();
-    const monto = parseFloat(montoTexto.replace('.', ''));
+
+    // Obtener el monto correctamente
+    let monto;
+    if (words.length === 2) { // 1 par
+        monto = 70000; // Precio de 1 par
+    } else if (words.length === 3) { // 2 pares
+        monto = 110000; // Precio de 2 pares
+    } else {
+        alert('Error en la cantidad de productos seleccionados');
+        $('#botoncomprar').attr('value', 'COMPRAR 🛒').prop('disabled', false);
+        return;
+    }
+
+    // Aplicar descuento si es transferencia bancaria
+    if (formaPago === "cbu") {
+        monto = words.length === 2 ? 63000 : 99000; // Descuento del 10%
+    }
+
+    console.log('Monto a enviar:', monto);
 
     // Validaciones iniciales
     if (!talleselegidos || !formaPago || !nombreComprador) {
@@ -1197,33 +1214,43 @@ $('#bootstrapForm').submit(async function (event) {
 
     // Deshabilitar el botón antes de procesar
     $('#botoncomprar').attr('value', 'Espere...').prop('disabled', true);
-    
+
     try {
         let mercadoPagoUrl; // Declare mercadoPagoUrl outside the fetch block
 
         // Preparar datos del formulario
         const formAction = $(this).attr('action');
+        const formData = new URLSearchParams($(this).serialize());
 
         // Si es transferencia CBU
         if (formaPago === "cbu") {
-            // Enviar formulario a Google Forms
-            await fetch(formAction, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            });
-            
+            console.log('Procesando pago por transferencia bancaria (CBU)');
+
             // Tracking de Facebook
             fbq('track', 'InitiateCheckout');
-            
+
+            // Enviar formulario a Google Forms
+            try {
+                await fetch(formAction, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: formData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                });
+                console.log('Formulario enviado correctamente');
+            } catch (formError) {
+                console.error('Error al enviar el formulario:', formError);
+                // Continuamos con la redirección aunque falle el envío del formulario
+            }
+
             // Redireccionar según cantidad de pares
-            const redirectUrl = words.length === 3 ? 
-                'https://rositarococo.com/transferenciacbu-2pares.html' : 
+            const redirectUrl = words.length === 3 ?
+                'https://rositarococo.com/transferenciacbu-2pares.html' :
                 'https://rositarococo.com/transferenciacbu-1par.html';
-            
+
+            console.log('Redirigiendo a:', redirectUrl);
             window.location.href = redirectUrl;
             return;
         }
@@ -1234,6 +1261,7 @@ $('#bootstrapForm').submit(async function (event) {
             $('.loading-overlay').css('display', 'flex');
 
             // Obtener link de MercadoPago
+            console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: monto });
             const response = await fetch("https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30", {
                 method: 'POST',
                 headers: {
@@ -1245,21 +1273,30 @@ $('#bootstrapForm').submit(async function (event) {
                 })
             });
 
-            const jsonData = JSON.parse(await response.text());
-            const mercadoPagoUrl = jsonData.linkpersonalizadomp;
+            const responseText = await response.text();
+            console.log('Respuesta del servidor:', responseText);
 
-            if (!mercadoPagoUrl) {
-                throw new Error('No se pudo obtener el link de MercadoPago');
+            let mercadoPagoUrl;
+            try {
+                const jsonData = JSON.parse(responseText);
+                mercadoPagoUrl = jsonData.linkpersonalizadomp;
+
+                if (!mercadoPagoUrl) {
+                    throw new Error('No se pudo obtener el link de MercadoPago');
+                }
+
+                console.log('Link de MercadoPago obtenido:', mercadoPagoUrl);
+            } catch (parseError) {
+                console.error('Error al procesar la respuesta:', parseError);
+                throw new Error('Error al procesar la respuesta del servidor. Por favor, intente nuevamente.');
             }
 
             // Guardar link en el formulario
             $('#link-mercadopago').val(mercadoPagoUrl);
-
-             // Set the hidden field value before serializing
             document.getElementById('link-mercadopago').value = mercadoPagoUrl;
 
-
-            const formData = new URLSearchParams($(this).serialize());
+            // Actualizar formData con el nuevo valor del link
+            formData.set('entry.978809450', mercadoPagoUrl);
 
             console.log('Form Data:', formData.toString());
 
@@ -1490,16 +1527,16 @@ $('#541001873').on('input keyup', function() {
 $('#53830725').on('input keyup', function() {
     // Obtener el valor actual
     let value = $(this).val();
-    
+
     // Eliminar espacios, guiones y el signo +
     value = value.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
-    
+
     // Eliminar 54 o 549 al inicio
     value = value.replace(/^(?:54|549)/, '');
-    
+
     // Eliminar ceros al inicio
     value = value.replace(/^0+/, '');
-    
+
     // Convertir a minúsculas y actualizar el valor
     $(this).val(value.toLowerCase());
 });
@@ -1576,7 +1613,7 @@ $(document).ready(function() {
     const errorElement = getErrorElement();
     if (errorElement) {
         errorElement.textContent = message;
-        
+
         // Si está verificando WhatsApp, agregar clase especial
         if (message === "Verificando WhatsApp...") {
             errorElement.className = "error-message verifying";
@@ -1586,7 +1623,7 @@ $(document).ready(function() {
             errorElement.style.color = color === "green" ? "#155724" : "#721c24";
             errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
         }
-        
+
         errorElement.style.display = "block";
     }
 }
