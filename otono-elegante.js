@@ -447,12 +447,12 @@ $(document).ready(function(){
 
   // --- Sales Notification Popups ---
   const salesData = [
-    { product: "Mocasín Roma Negras", city: "CABA", image: "roma-negras-1.jpg" },
+    { product: "Botineta Roma Negras", city: "CABA", image: "roma-negras-1.jpg" },
     { product: "Borcego Siena 2025", city: "Córdoba", image: "siena2025-1.webp" },
-    { product: "Mocasín Roma Suela", city: "Rosario", image: "roma-suela-1a.jpg" },
-    { product: "Mocasín Roma Negras", city: "La Plata", image: "roma-negras-1.jpg" },
+    { product: "Botineta Roma Suela", city: "Rosario", image: "roma-suela-1a.jpg" },
+    { product: "Botineta Roma Negras", city: "La Plata", image: "roma-negras-1.jpg" },
     { product: "Borcego Siena 2025", city: "Mendoza", image: "siena2025-1.webp" },
-    { product: "Mocasín Roma Suela", city: "Mar del Plata", image: "roma-suela-1a.jpg" }
+    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "roma-suela-1a.jpg" }
   ];
 
   let currentNotificationIndex = 0;
@@ -510,10 +510,10 @@ $(document).ready(function(){
     }, 5000);
   }
 
-  // Start notifications after a delay
+  // Show only one notification at the beginning of the session
   setTimeout(() => {
     showNotification();
-    setInterval(showNotification, 15000);
+    // Removed interval to prevent multiple notifications
   }, 10000);
 
   // --- WhatsApp Number Validation ---
