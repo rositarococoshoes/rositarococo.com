@@ -330,6 +330,8 @@ $(document).ready(function(){
         fbq('track', 'InitiateCheckout');
 
         try {
+          // Obtener link de MercadoPago
+          console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: monto });
           const response = await fetch("https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -342,26 +344,91 @@ $(document).ready(function(){
           if (!response.ok) throw new Error(`Webhook status ${response.status}`);
 
           const responseText = await response.text();
-          const jsonData = JSON.parse(responseText);
-          const mercadoPagoUrl = jsonData.linkpersonalizadomp;
+          console.log('Respuesta del servidor:', responseText);
 
-          if (!mercadoPagoUrl) throw new Error('MP link not found.');
+          let mercadoPagoUrl;
+          try {
+            const jsonData = JSON.parse(responseText);
+            mercadoPagoUrl = jsonData.linkpersonalizadomp;
 
+            if (!mercadoPagoUrl) {
+              throw new Error('No se pudo obtener el link de MercadoPago');
+            }
+
+            console.log('Link de MercadoPago obtenido:', mercadoPagoUrl);
+          } catch (parseError) {
+            console.error('Error al procesar la respuesta:', parseError);
+            throw new Error('Error al procesar la respuesta del servidor. Por favor, intente nuevamente.');
+          }
+
+          // Guardar link en el formulario
           $('#link-mercadopago').val(mercadoPagoUrl);
+          document.getElementById('link-mercadopago').value = mercadoPagoUrl;
 
-          const finalFormData = new URLSearchParams($form.serialize());
-          fetch(formAction, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: finalFormData
-          });
+          // Primero enviar el formulario a Google Forms
+          try {
+            console.log('Enviando formulario a Google Forms...');
+            await fetch(formAction, {
+              method: 'POST',
+              mode: 'no-cors',
+              body: new URLSearchParams($form.serialize())
+            });
+            console.log('Formulario enviado correctamente');
+          } catch (formError) {
+            console.error('Error al enviar formulario:', formError);
+            // Continuamos con la redirección aunque falle el envío del formulario
+          }
 
-          setTimeout(() => {
-            window.location.href = mercadoPagoUrl;
-          }, 1500);
+          // Luego redireccionar a MercadoPago (separado del envío del formulario)
+          console.log('Redirigiendo a MercadoPago:', mercadoPagoUrl);
+
+          // Usar una redirección directa sin setTimeout para evitar problemas
+          try {
+            // Crear un enlace y hacer clic en él (método alternativo de redirección)
+            const redirectLink = document.createElement('a');
+            redirectLink.href = mercadoPagoUrl;
+            redirectLink.target = '_self';
+            redirectLink.style.display = 'none';
+            document.body.appendChild(redirectLink);
+
+            console.log('Ejecutando redirección a MercadoPago...');
+            setTimeout(() => {
+              redirectLink.click();
+            }, 500);
+          } catch (redirectError) {
+            console.error('Error en la redirección:', redirectError);
+
+            // Intentar método alternativo de redirección
+            console.log('Intentando método alternativo de redirección...');
+            setTimeout(() => {
+              window.location.replace(mercadoPagoUrl);
+            }, 500);
+          }
         } catch (webhookError) {
           console.error("MP link fetch error:", webhookError);
-          alert('Hubo un problema al generar el link de pago. Intenta nuevamente.');
+
+          // Mensaje de error más específico
+          let errorMessage = 'Hubo un problema al generar el link de pago. Intenta nuevamente.';
+
+          // Si es un error de conexión con el webservice
+          if (webhookError.message && webhookError.message.includes('fetch')) {
+            errorMessage = 'Error de conexión con el servidor de pagos. Verifica tu conexión a internet e intenta nuevamente.';
+          }
+
+          // Si es un error al procesar la respuesta JSON
+          if (webhookError.message && webhookError.message.includes('JSON')) {
+            errorMessage = 'Error al procesar la respuesta del servidor. Por favor, intenta nuevamente en unos minutos.';
+          }
+
+          // Si es un error relacionado con MercadoPago
+          if (webhookError.message && webhookError.message.includes('MercadoPago')) {
+            errorMessage = 'No se pudo generar el link de pago. Por favor, intenta nuevamente o elige otro método de pago.';
+          }
+
+          // Mostrar error al usuario
+          alert(errorMessage);
+
+          // Ocultar overlay y reactivar botón
           $('.loading-overlay').removeClass('visible');
           $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
         }
