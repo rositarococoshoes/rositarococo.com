@@ -1227,7 +1227,17 @@ $('#bootstrapForm').submit(async function (event) {
             console.log('Procesando pago por transferencia bancaria (CBU)');
 
             // Tracking de Facebook
-            fbq('track', 'InitiateCheckout');
+            try {
+                // Verificar si fbq está definido antes de llamarlo
+                if (typeof fbq === 'function') {
+                    fbq('track', 'InitiateCheckout');
+                } else {
+                    console.log('Facebook Pixel no está disponible');
+                }
+            } catch (pixelError) {
+                console.warn('Error al registrar evento de Facebook:', pixelError);
+                // Continuamos con el proceso aunque falle el tracking
+            }
 
             // Enviar formulario a Google Forms
             try {
@@ -1301,11 +1311,22 @@ $('#bootstrapForm').submit(async function (event) {
             console.log('Form Data:', formData.toString());
 
             // Tracking y redirección
-            fbq('track', 'InitiateCheckout');
-            setTimeout(() => {
-                window.location.href = mercadoPagoUrl;
-                 // Enviar formulario a Google Forms
-                 fetch(formAction, {
+            try {
+                // Verificar si fbq está definido antes de llamarlo
+                if (typeof fbq === 'function') {
+                    fbq('track', 'InitiateCheckout');
+                } else {
+                    console.log('Facebook Pixel no está disponible');
+                }
+            } catch (pixelError) {
+                console.warn('Error al registrar evento de Facebook:', pixelError);
+                // Continuamos con el proceso aunque falle el tracking
+            }
+
+            // Primero enviar el formulario a Google Forms
+            try {
+                console.log('Enviando formulario a Google Forms...');
+                await fetch(formAction, {
                     method: 'POST',
                     mode: 'no-cors',
                     body: formData,
@@ -1313,16 +1334,67 @@ $('#bootstrapForm').submit(async function (event) {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     }
                 });
-            }, 2000);
+                console.log('Formulario enviado correctamente');
+            } catch (formError) {
+                console.error('Error al enviar formulario:', formError);
+                // Continuamos con la redirección aunque falle el envío del formulario
+            }
+
+            // Luego redireccionar a MercadoPago (separado del envío del formulario)
+            console.log('Redirigiendo a MercadoPago:', mercadoPagoUrl);
+
+            // Usar una redirección directa sin setTimeout para evitar problemas
+            try {
+                // Crear un enlace y hacer clic en él (método alternativo de redirección)
+                const redirectLink = document.createElement('a');
+                redirectLink.href = mercadoPagoUrl;
+                redirectLink.target = '_self';
+                redirectLink.style.display = 'none';
+                document.body.appendChild(redirectLink);
+
+                console.log('Ejecutando redirección a MercadoPago...');
+                setTimeout(() => {
+                    redirectLink.click();
+                }, 500);
+            } catch (redirectError) {
+                console.error('Error en la redirección:', redirectError);
+
+                // Intentar método alternativo de redirección
+                console.log('Intentando método alternativo de redirección...');
+                setTimeout(() => {
+                    window.location.replace(mercadoPagoUrl);
+                }, 500);
+            }
         }
     } catch (error) {
         console.error("Error en el proceso:", error);
+
         // Ocultar overlay si está visible
         $('.loading-overlay').css('display', 'none');
+
         // Reactivar botón
         $('#botoncomprar').attr('value', 'COMPRAR 🛒').prop('disabled', false);
+
+        // Mensaje de error más específico
+        let errorMessage = 'Hubo un error procesando tu pedido. Por favor, intenta nuevamente.';
+
+        // Si es un error de conexión con el webservice
+        if (error.message && error.message.includes('fetch')) {
+            errorMessage = 'Error de conexión con el servidor de pagos. Verifica tu conexión a internet e intenta nuevamente.';
+        }
+
+        // Si es un error al procesar la respuesta JSON
+        if (error.message && error.message.includes('JSON')) {
+            errorMessage = 'Error al procesar la respuesta del servidor. Por favor, intenta nuevamente en unos minutos.';
+        }
+
+        // Si es un error relacionado con MercadoPago
+        if (error.message && error.message.includes('MercadoPago')) {
+            errorMessage = 'No se pudo generar el link de pago. Por favor, intenta nuevamente o elige otro método de pago.';
+        }
+
         // Mostrar error al usuario
-        alert('Hubo un error procesando tu pedido. Por favor, intenta nuevamente.');
+        alert(errorMessage);
     }
 });
 </script>
