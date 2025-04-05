@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Rosita Rococó - Experiencia de Compra Fluida</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Descubre nuestra exclusiva colección otoño-invierno de calzado femenino con una experiencia de compra mejorada. Diseños elegantes y cómodos con envío gratis a todo el país.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Swiper JS for modern carousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="compra-fluida.css">
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Anti-bot Honeypot Field -->
+    <input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off">
+
+    <!-- Mini Cart Button (Always Visible) -->
+    <div id="mini-cart-button">
+        <span class="cart-icon"><i class="bi bi-bag"></i></span>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Mini Cart Drawer -->
+    <div id="mini-cart-drawer" class="hidden">
+        <div class="drawer-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-drawer"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="drawer-body">
+            <div class="empty-cart-message">
+                <i class="bi bi-bag"></i>
+                <p>Tu carrito está vacío</p>
+                <p class="small">Agrega productos para continuar</p>
+            </div>
+            <div class="cart-items">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+        </div>
+        <div class="drawer-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span class="cart-subtotal">$0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío:</span>
+                    <span class="shipping-cost">GRATIS</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span class="cart-total">$0</span>
+                </div>
+            </div>
+            <button class="checkout-button" disabled>Finalizar Compra</button>
+        </div>
+    </div>
+
+    <!-- WhatsApp Button -->
+    <div id="whatsapp">
+        <a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp" target="_blank" rel="noopener noreferrer">
+            <img alt="whatsapp" src="whatsapp.png" />
+        </a>
+    </div>
+
+    <div class="container">
+        <header class="main-header">
+            <img alt="Rosita Rococó Logo" src="rosita-form.webp" />
+            <h1>🍂 Colección Otoño-Invierno 2025 🍂</h1>
+            <p class="subtitle">Diseños exclusivos que abrazan tus pasos con estilo y confort</p>
+            <span class="season-badge">NUEVA TEMPORADA</span>
+        </header>
+
+        <!-- Banner de beneficios destacados -->
+        <div class="benefits-banner">
+            <div class="benefit-item">
+                <span class="benefit-icon">🚚</span>
+                <span class="benefit-text"><strong>ENVÍO GRATIS</strong><br>a todo el país</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💳</span>
+                <span class="benefit-text"><strong>3 CUOTAS SIN INTERÉS</strong><br>con todas las tarjetas</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💰</span>
+                <span class="benefit-text"><strong>10% OFF</strong><br>en transferencias</span>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step active" data-step="products">
+                <div class="step-number">1</div>
+                <div class="step-label">Productos</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step" data-step="shipping">
+                <div class="step-number">2</div>
+                <div class="step-label">Envío</div>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step" data-step="payment">
+                <div class="step-number">3</div>
+                <div class="step-label">Pago</div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Step 1: Products Section -->
+            <section id="products-section" class="step-section active">
+                <div class="section-header">
+                    <h2>Elige tus Modelos Favoritos</h2>
+                    <p class="price-info">
+                        <span class="price-option">1 par: <strong>$70.000</strong></span>
+                        <span class="price-option highlight">2 pares: <strong>$110.000</strong> <small>(¡$55.000 c/u!)</small></span>
+                    </p>
+                </div>
+
+                <div class="product-grid">
+                    <!-- Product cards will be added here -->
+                </div>
+
+                <div class="section-footer">
+                    <button class="continue-button" id="to-shipping-btn" disabled>Continuar al Envío</button>
+                </div>
+            </section>
+
+            <!-- Step 2: Shipping Information Section -->
+            <section id="shipping-section" class="step-section">
+                <div class="section-header">
+                    <h2>Información de Envío</h2>
+                    <p>Completa tus datos para recibir tu pedido</p>
+                </div>
+
+                <form id="shipping-form" class="checkout-form">
+                    <div class="form-section">
+                        <h3>Información de Contacto</h3>
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="entry.1465946249" required placeholder="tuemail@ejemplo.com">
+                            <p class="help-text">Para enviarte la confirmación y el seguimiento de tu pedido.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nombre y Apellido <span class="required">*</span></label>
+                            <input type="text" id="name" name="entry.1460904554" required placeholder="Quien recibe el pedido">
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+                            <input type="tel" id="whatsapp" name="entry.53830725" required placeholder="Ej: 1156457057 (sin 0 ni 15)">
+                            <div class="whatsapp-validation-message"></div>
+                            <p class="help-text">Fundamental para coordinar el envío si es necesario.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Dirección de Envío</h3>
+                        <div class="form-group">
+                            <label for="street">Calle y Número (Piso/Dpto) <span class="required">*</span></label>
+                            <input type="text" id="street" name="entry.951592426" required placeholder="Ej: Av. Siempreviva 742, 3B">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="postal-code">Código Postal <span class="required">*</span></label>
+                                <input type="text" id="postal-code" name="entry.1005165410" required placeholder="Ej: 1425">
+                            </div>
+                            <div class="form-group half">
+                                <label for="city">Localidad <span class="required">*</span></label>
+                                <input type="text" id="city" name="entry.1743418466" required placeholder="Ej: Palermo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="province">Provincia <span class="required">*</span></label>
+                            <select id="province" name="entry.59648134" required>
+                                <option value="">-- Selecciona tu Provincia --</option>
+                                <option value="Buenos Aires">Buenos Aires</option>
+                                <option value="Capital Federal">CABA</option>
+                                <option value="Buenos Aires">Gran Buenos Aires</option>
+                                <option value="Córdoba">Córdoba</option>
+                                <option value="Santa Fé">Santa Fé</option>
+                                <option value="Mendoza">Mendoza</option>
+                                <option value="Neuquén">Neuquén</option>
+                                <option value="Entre Ríos">Entre Ríos</option>
+                                <option value="Catamarca">Catamarca</option>
+                                <option value="Chaco">Chaco</option>
+                                <option value="Chubut">Chubut</option>
+                                <option value="Corrientes">Corrientes</option>
+                                <option value="Formosa">Formosa</option>
+                                <option value="Jujuy">Jujuy</option>
+                                <option value="La Pampa">La Pampa</option>
+                                <option value="La Rioja">La Rioja</option>
+                                <option value="Misiones">Misiones</option>
+                                <option value="Río Negro">Río Negro</option>
+                                <option value="Salta">Salta</option>
+                                <option value="San Juan">San Juan</option>
+                                <option value="San Luis">San Luis</option>
+                                <option value="Santa Cruz">Santa Cruz</option>
+                                <option value="Santiago del Estero">Santiago del Estero</option>
+                                <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                <option value="Tucumán">Tucumán</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dni">DNI <span class="required">*</span></label>
+                            <input type="text" id="dni" name="entry.541001873" required placeholder="Del titular de la tarjeta o quien recibe">
+                            <p class="help-text">Necesario para el envío y/o verificación de pago.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="back-button" id="back-to-products-btn">Volver a Productos</button>
+                        <button type="submit" class="continue-button" id="to-payment-btn">Continuar al Pago</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Step 3: Payment Section -->
+            <section id="payment-section" class="step-section">
+                <div class="section-header">
+                    <h2>Método de Pago</h2>
+                    <p>Elige cómo quieres pagar tu pedido</p>
+                </div>
+
+                <form id="payment-form" class="checkout-form">
+                    <div class="form-section">
+                        <h3>Resumen del Pedido</h3>
+                        <div class="order-summary">
+                            <div class="summary-products">
+                                <!-- Products summary will be added here dynamically -->
+                            </div>
+                            <div class="summary-totals">
+                                <div class="summary-row">
+                                    <span>Subtotal:</span>
+                                    <span class="summary-subtotal">$0</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Envío:</span>
+                                    <span class="summary-shipping">GRATIS</span>
+                                </div>
+                                <div class="summary-row discount hidden">
+                                    <span>Descuento:</span>
+                                    <span class="summary-discount">-$0</span>
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Total:</span>
+                                    <span class="summary-total">$0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Forma de Pago</h3>
+                        <div class="payment-options">
+                            <div class="payment-option">
+                                <input type="radio" id="credit-card" name="comoabona" value="tarjeta">
+                                <label for="credit-card">
+                                    <span class="payment-icon">💳</span>
+                                    <div class="payment-details">
+                                        <span class="payment-title">Tarjeta de Crédito/Débito</span>
+                                        <span class="payment-subtitle">¡3 Cuotas sin interés!</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="mercado-pago" name="comoabona" value="mercadopago">
+                                <label for="mercado-pago">
+                                    <span class="payment-icon">💲</span>
+                                    <div class="payment-details">
+                                        <span class="payment-title">Saldo en cuenta MercadoPago</span>
+                                        <span class="payment-subtitle">Pago rápido y seguro</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="payment-option">
+                                <input type="radio" id="bank-transfer" name="comoabona" value="cbu">
+                                <label for="bank-transfer">
+                                    <span class="payment-icon">🏦</span>
+                                    <div class="payment-details">
+                                        <span class="payment-title">Transferencia Bancaria</span>
+                                        <span class="payment-subtitle">¡Con 10% OFF adicional!</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Fields for Google Forms -->
+                    <input type="hidden" id="form-products" name="entry.1471599855" value="">
+                    <input type="hidden" id="form-url" name="entry.1209868979" value="">
+                    <input type="hidden" name="fvv" value="1">
+                    <input type="hidden" name="fbzx" value="5661184097173102736">
+                    <input type="hidden" name="entry.978809450" id="link-mercadopago" value="">
+                    <input type="hidden" name="pageHistory" value="0">
+                    <input type="hidden" name="entry.17650825" value="A DOMICILIO">
+
+                    <div class="form-actions">
+                        <button type="button" class="back-button" id="back-to-shipping-btn">Volver al Envío</button>
+                        <button type="submit" class="checkout-submit-button" id="complete-order-btn">Confirmar y Pagar</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <h2>Lo que dicen nuestras clientas</h2>
+            <div class="swiper testimonials-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonials will be added here -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img alt="Rosita Rococó Logo" src="rosita-form.webp" />
+                </div>
+                <div class="footer-info">
+                    <p>© 2025 Rosita Rococó - Todos los derechos reservados</p>
+                    <p>Calzado artesanal de diseño exclusivo</p>
+                </div>
+                <div class="footer-contact">
+                    <a href="https://api.whatsapp.com/send?phone=5491127595502" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp"></i> Consultas por WhatsApp
+                    </a>
+                    <a href="mailto:info@rositarococo.com">
+                        <i class="bi bi-envelope"></i> info@rositarococo.com
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notification Area -->
+    <div id="notification-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-message">Estamos preparando tu pago seguro...<br>Un momento por favor, no actualices la página.</p>
+    </div>
+
+    <!-- Custom script -->
+    <script src="compra-fluida.js"></script>
+</body>
+</html>
