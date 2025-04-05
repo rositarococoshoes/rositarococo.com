@@ -2622,36 +2622,73 @@ right: 15px;
 /* Notifications */
 #notification-container {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
-  width: 100%;
-  max-width: 500px;
+  bottom: 90px;
+  right: 20px;
+  z-index: 9998;
+  width: 280px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   pointer-events: none;
 }
 
 .notification {
   background-color: white;
   color: var(--color-text);
-  padding: 15px 20px;
+  padding: 12px;
   border-radius: var(--border-radius-medium);
   box-shadow: var(--shadow-medium);
   margin-bottom: 10px;
-  transform: translateY(-20px);
+  transform: translateX(120%);
   opacity: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  width: 90%;
-  text-align: center;
+  width: 100%;
+  text-align: left;
   pointer-events: auto;
-  border-left: 4px solid var(--color-primary);
+  border-left: 3px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.notification img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.notification .order-info {
+  flex: 1;
+}
+
+.notification .order-info h3 {
+  margin: 0 0 3px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.notification .order-info p {
+  margin: 0 0 3px 0;
+  font-size: 13px;
+}
+
+.notification .customer-info {
+  font-size: 12px;
+  color: #666;
+}
+
+.notification .close {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #999;
 }
 
 .notification.show {
-  transform: translateY(0);
+  transform: translateX(0);
   opacity: 1;
 }
 

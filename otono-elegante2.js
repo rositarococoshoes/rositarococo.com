@@ -616,12 +616,12 @@ $(document).ready(function(){
 
   // --- Sales Notification Popups ---
   const salesData = [
-    { product: "Botineta Roma Negras", city: "CABA", image: "roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Córdoba", image: "siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Rosario", image: "roma-suela-1a.jpg" },
-    { product: "Botineta Roma Negras", city: "La Plata", image: "roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Mendoza", image: "siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "roma-suela-1a.jpg" }
+    { product: "Botineta Roma Negras", city: "CABA", image: "img/roma-negras-1.jpg" },
+    { product: "Borcego Siena 2025", city: "Córdoba", image: "img/siena2025-1.webp" },
+    { product: "Botineta Roma Suela", city: "Rosario", image: "img/roma-suela-1a.jpg" },
+    { product: "Botineta Roma Negras", city: "La Plata", image: "img/roma-negras-1.jpg" },
+    { product: "Borcego Siena 2025", city: "Mendoza", image: "img/siena2025-1.webp" },
+    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "img/roma-suela-1a.jpg" }
   ];
 
   let currentNotificationIndex = 0;
@@ -679,11 +679,7 @@ $(document).ready(function(){
     }, 5000);
   }
 
-  // Show only one notification at the beginning of the session
-  setTimeout(() => {
-    showNotification();
-    // Removed interval to prevent multiple notifications
-  }, 10000);
+  // Notificación de compra reciente ya implementada al final del archivo
 
   // --- WhatsApp Number Validation ---
   function getInputElement(id) {
@@ -1251,7 +1247,50 @@ $(document).ready(function(){
 
   // Mostrar notificación de compra reciente al cargar la página
   setTimeout(function() {
-    showNotification('¡Alguien acaba de comprar un par de Botineta Roma Negras!', 'success');
+    // Usar la función showNotification original
+    const sale = salesData[Math.floor(Math.random() * salesData.length)];
+
+    // Crear el HTML para la notificación con imagen
+    const notificationHTML = `
+      <img src="${sale.image}" alt="Foto ${sale.product}">
+      <div class="order-info">
+        <h3>¡Alguien compró!</h3>
+        <p>${sale.product}</p>
+        <div class="customer-info">
+          <span class="city">en ${sale.city}</span>
+        </div>
+      </div>
+      <span class="close">&times;</span>
+    `;
+
+    // Crear y mostrar la notificación personalizada
+    if (!$('#notification-container').length) {
+      $('<div id="notification-container"></div>').appendTo('body');
+    }
+
+    const notification = $(`<div class="notification notification-success">${notificationHTML}</div>`);
+    $('#notification-container').append(notification);
+
+    // Agregar manejador de eventos para el botón de cierre
+    notification.find('.close').on('click', function() {
+      notification.removeClass('show');
+      setTimeout(function() {
+        notification.remove();
+      }, 300);
+    });
+
+    // Mostrar la notificación
+    setTimeout(function() {
+      notification.addClass('show');
+
+      // Ocultar automáticamente después de 5 segundos
+      setTimeout(function() {
+        notification.removeClass('show');
+        setTimeout(function() {
+          notification.remove();
+        }, 300);
+      }, 5000);
+    }, 100);
   }, 3000);
 
 }); // End document ready
