@@ -1136,7 +1136,8 @@ fieldset {
   cursor: pointer;
 }
 
-.mini-cart-tab {
+/* Nuevo botón de carrito independiente */
+#cart-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -1157,8 +1158,19 @@ fieldset {
   visibility: visible !important;
 }
 
-.mini-cart-tab.animated {
+#cart-button:hover {
+  background-color: #45a049;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  animation-play-state: paused;
+}
+
+.mini-cart-tab.animated, #cart-button.animated {
   animation: bounce-in 0.5s ease-out;
+}
+
+#cart-button.pulse-once {
+  animation: pulse-once 1s ease-in-out;
 }
 
 @keyframes bounce-in {
@@ -1202,7 +1214,7 @@ fieldset {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.tab-icon {
+.tab-icon, .cart-button-icon {
   font-size: 1.8em;
 }
 
@@ -1215,7 +1227,7 @@ fieldset {
   margin-top: 3px;
 }
 
-.tab-count {
+.tab-count, .cart-button-count {
   position: absolute;
   top: -5px;
   right: -5px;
@@ -1232,6 +1244,10 @@ fieldset {
   opacity: 0;
   transition: opacity 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cart-button-count {
+  opacity: 1;
 }
 
 #mini-cart.has-items .tab-count {

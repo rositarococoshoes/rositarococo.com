@@ -10,15 +10,26 @@ $(document).ready(function(){
   // Initialize checkout progress
   updateCheckoutProgress(currentStep);
 
-  // Mini-cart toggle functionality
-  $('.mini-cart-tab').on('click', function(e) {
+  // Mini-cart toggle functionality - Nuevo botón independiente
+  $('#cart-button').on('click', function(e) {
     e.stopPropagation(); // Evitar que el clic se propague
     $('#mini-cart').toggleClass('active');
   });
 
-  // También permitir clic en los elementos dentro de la pestaña
-  $('.tab-icon, .tab-text').on('click', function(e) {
+  // También permitir clic en los elementos dentro del botón
+  $('.cart-button-icon, .cart-button-count').on('click', function(e) {
     e.stopPropagation(); // Evitar que el clic se propague
+    $('#mini-cart').toggleClass('active');
+  });
+
+  // Mantener compatibilidad con el botón antiguo si existe
+  $('.mini-cart-tab').on('click', function(e) {
+    e.stopPropagation();
+    $('#mini-cart').toggleClass('active');
+  });
+
+  $('.tab-icon, .tab-text').on('click', function(e) {
+    e.stopPropagation();
     $('#mini-cart').toggleClass('active');
   });
 
@@ -37,7 +48,15 @@ $(document).ready(function(){
 
   // Asegurarse de que el botón del carrito sea visible
   function ensureCartButtonVisible() {
-    // Forzar visibilidad del botón del carrito
+    // Forzar visibilidad del botón del carrito independiente
+    $('#cart-button').css({
+      'display': 'flex',
+      'visibility': 'visible',
+      'opacity': '1',
+      'z-index': '9999'
+    });
+
+    // También asegurar visibilidad del botón antiguo por compatibilidad
     $('.mini-cart-tab').css({
       'display': 'flex',
       'visibility': 'visible',
@@ -46,22 +65,27 @@ $(document).ready(function(){
     });
 
     // Forzar animación
-    if (!$('.mini-cart-tab').hasClass('animated')) {
-      $('.mini-cart-tab').addClass('animated');
+    if (!$('#cart-button').hasClass('animated')) {
+      $('#cart-button').addClass('animated');
     }
+
+    // Actualizar contador
+    $('.cart-button-count').text($('.cart-count').text());
   }
 
   // Llamar inmediatamente y también después de un retraso para asegurar que funcione
   ensureCartButtonVisible();
+  setTimeout(ensureCartButtonVisible, 500);
   setTimeout(ensureCartButtonVisible, 1000);
   setTimeout(ensureCartButtonVisible, 2000);
+  setTimeout(ensureCartButtonVisible, 3000);
 
-  // Animate the mini-cart tab slightly after page load to draw attention
+  // Animate the cart button after page load to draw attention
   setTimeout(function() {
-    $('.mini-cart-tab').addClass('pulse-once');
+    $('#cart-button').addClass('pulse-once');
 
     setTimeout(function() {
-      $('.mini-cart-tab').removeClass('pulse-once');
+      $('#cart-button').removeClass('pulse-once');
     }, 1000);
   }, 3000);
 
@@ -1018,6 +1042,9 @@ $(document).ready(function(){
 
   // Update cart display
   function updateCart(itemsArray) {
+    // Asegurarse de que el botón del carrito sea visible
+    ensureCartButtonVisible();
+
     // Clear current cart items
     cartItems = [];
     cartItemsContainer.empty();
@@ -1060,9 +1087,10 @@ $(document).ready(function(){
       }
     });
 
-    // Update cart count in both places
+    // Update cart count in all places
     cartCountElement.text(cartItems.length);
     $('.tab-count').text(cartItems.length);
+    $('.cart-button-count').text(cartItems.length);
 
     // Update cart total
     var total = cartItems.reduce(function(sum, item) {
