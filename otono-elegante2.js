@@ -256,8 +256,12 @@ $(document).ready(function(){
         $("#1465946249").focus();
       }, 500);
 
-      // Mostrar notificación de éxito
-      showNotification('Completa tus datos para finalizar la compra', 'success');
+      // Mostrar notificación según la cantidad de productos
+      if (cartItems.length === 1) {
+        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
+      } else {
+        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
+      }
     } else {
       showNotification('Por favor, selecciona al menos un producto para continuar', 'error');
     }
@@ -299,8 +303,12 @@ $(document).ready(function(){
       currentStep = 2;
       updateCheckoutProgress(currentStep);
 
-      // Mostrar notificación de éxito
-      showNotification('Completa tus datos para finalizar la compra', 'success');
+      // Mostrar notificación según la cantidad de productos
+      if (cartItems.length === 1) {
+        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
+      } else {
+        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
+      }
     } else {
       showNotification('Agrega productos a tu carrito para continuar', 'error');
     }
@@ -989,16 +997,7 @@ $(document).ready(function(){
     });
   }, 2000);
 
-  // Show WhatsApp button with animation
-  $("#whatsapp").css({
-    'transform': 'scale(0)',
-    'opacity': '0',
-    'display': 'block'
-  }).animate({
-    'opacity': '1'
-  }, 500, function() {
-    $(this).css('transform', 'scale(1)');
-  });
+  // WhatsApp button removed as requested
 
   // Final fallback to ensure all images are loaded
   setTimeout(function() {
@@ -1117,13 +1116,6 @@ $(document).ready(function(){
       $('.cart-instructions').show();
       miniCart.addClass('has-items');
 
-      // Mostrar y activar el formulario de envío automáticamente
-      restOfForm.removeClass('hidden inactive').addClass('active');
-
-      // Actualizar el paso del checkout
-      currentStep = 2;
-      updateCheckoutProgress(currentStep);
-
       // Mostrar botones de continuar al envío
       $('#continue-to-checkout, #continue-to-checkout-bottom').removeClass('hidden');
 
@@ -1131,13 +1123,29 @@ $(document).ready(function(){
       $('.instruction-step:last-child').addClass('highlight');
       $('.instruction-step:not(:last-child)').removeClass('highlight');
 
-      // Scroll suave al formulario si es la primera vez que se agrega un producto
+      // Si hay exactamente 1 producto, mostrar mensaje sobre descuento por segundo par
       if (cartItems.length === 1) {
+        showNotification('¡Agrega otro par y obtén un 21% de descuento! Segundo par a solo $55.000', 'info');
+      }
+
+      // Solo si hay 2 productos, mostrar y activar el formulario automáticamente
+      if (cartItems.length === 2) {
+        // Mostrar y activar el formulario de envío automáticamente
+        restOfForm.removeClass('hidden inactive').addClass('active');
+
+        // Actualizar el paso del checkout
+        currentStep = 2;
+        updateCheckoutProgress(currentStep);
+
+        // Scroll suave al formulario
         setTimeout(function() {
           $('html, body').animate({
             scrollTop: $("#datos-envio").offset().top - 80
           }, 800);
         }, 500);
+
+        // Mostrar notificación de éxito
+        showNotification('¡Excelente elección! Has completado tu selección de 2 pares con descuento.', 'success');
       }
     }
 
