@@ -1141,24 +1141,26 @@ fieldset {
   left: 0;
   top: 50%;
   transform: translateY(-50%) translateX(-100%);
-  background-color: var(--color-primary);
+  background-color: var(--color-accent); /* Cambiado a verde para mejor contraste */
   color: white;
   width: 60px;
   height: 60px;
   border-radius: var(--border-radius-medium) 0 0 var(--border-radius-medium);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: var(--shadow-soft);
   transition: all 0.3s ease;
-  opacity: 0.9;
+  opacity: 1; /* Opacidad completa para mejor visibilidad */
   z-index: 1001; /* Asegurar que esté por encima del carrito */
 }
 
 .mini-cart-tab:hover {
-  background-color: var(--color-primary-dark);
+  background-color: #4CAF50; /* Verde más oscuro */
   opacity: 1;
+  transform: translateY(-50%) translateX(-100%) scale(1.05);
 }
 
 .tab-icon {
@@ -1167,10 +1169,12 @@ fieldset {
 }
 
 .tab-text {
-  font-size: 0.8em;
+  font-size: 0.9em;
   font-weight: bold;
   text-align: center;
   line-height: 1.2;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); /* Sombra para mejorar legibilidad */
+  margin-top: 3px;
 }
 
 .tab-count {
@@ -1227,6 +1231,7 @@ fieldset {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .cart-icon {
@@ -1250,6 +1255,26 @@ fieldset {
   justify-content: center;
   font-weight: bold;
   font-size: 0.9em;
+}
+
+.cart-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  margin-left: 5px;
+}
+
+.cart-close:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .mini-cart-body {
@@ -1372,6 +1397,7 @@ fieldset {
   padding: 15px;
   border-top: 1px solid var(--color-border);
   background-color: var(--color-background-alt);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .cart-total {
@@ -2356,6 +2382,10 @@ right: 15px;
   box-shadow: var(--shadow-medium);
   width: 80%;
   max-width: 400px;
+}
+
+.checkout-section.hidden {
+  display: none;
 }
 
 .checkout-section.active {

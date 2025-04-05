@@ -29,6 +29,12 @@ $(document).ready(function(){
     }
   });
 
+  // Close mini-cart when clicking the close button
+  $('.cart-close').on('click', function(e) {
+    e.stopPropagation();
+    $('#mini-cart').removeClass('active');
+  });
+
   // Animate the mini-cart tab slightly after page load to draw attention, but only once
   var hasAnimated = sessionStorage.getItem('cartTabAnimated');
 
@@ -192,8 +198,8 @@ $(document).ready(function(){
 
     // Check if there are items in the cart
     if (cartItems.length > 0) {
-      // Activate the checkout section
-      restOfForm.removeClass('inactive').addClass('active');
+      // Mostrar y activar la sección de checkout
+      restOfForm.removeClass('hidden inactive').addClass('active');
 
       // Scroll to the checkout section
       window.scrollTo({
@@ -209,6 +215,9 @@ $(document).ready(function(){
       setTimeout(function() {
         $("#1465946249").focus();
       }, 500);
+
+      // Mostrar notificación de éxito
+      showNotification('Completa tus datos para finalizar la compra', 'success');
     } else {
       showNotification('Por favor, selecciona al menos un producto para continuar', 'error');
     }
@@ -234,8 +243,11 @@ $(document).ready(function(){
     e.preventDefault();
 
     if (!$(this).hasClass('btn-disabled')) {
-      // Activate the checkout section
-      restOfForm.removeClass('inactive').addClass('active');
+      // Cerrar el mini-carrito
+      $('#mini-cart').removeClass('active');
+
+      // Mostrar y activar la sección de checkout
+      restOfForm.removeClass('hidden inactive').addClass('active');
 
       // Scroll to the checkout section
       window.scrollTo({
@@ -246,6 +258,9 @@ $(document).ready(function(){
       // Update checkout progress
       currentStep = 2;
       updateCheckoutProgress(currentStep);
+
+      // Mostrar notificación de éxito
+      showNotification('Completa tus datos para finalizar la compra', 'success');
     } else {
       showNotification('Agrega productos a tu carrito para continuar', 'error');
     }
@@ -1044,8 +1059,11 @@ $(document).ready(function(){
     if (cartItems.length === 0) {
       $('.empty-cart-message').show();
       $('.cart-instructions').show();
-      restOfForm.removeClass('active').addClass('inactive');
+      restOfForm.removeClass('active').addClass('hidden');
       miniCart.removeClass('has-items');
+
+      // Ocultar botones de continuar al envío
+      $('#continue-to-checkout, #continue-to-checkout-bottom').addClass('hidden');
 
       // Resaltar la primera instrucción cuando el carrito está vacío
       $('.instruction-step:first-child').addClass('highlight');
@@ -1053,8 +1071,10 @@ $(document).ready(function(){
     } else {
       $('.empty-cart-message').hide();
       $('.cart-instructions').show();
-      restOfForm.removeClass('inactive');
       miniCart.addClass('has-items');
+
+      // Mostrar botones de continuar al envío
+      $('#continue-to-checkout, #continue-to-checkout-bottom').removeClass('hidden');
 
       // Resaltar la última instrucción cuando hay productos
       $('.instruction-step:last-child').addClass('highlight');
