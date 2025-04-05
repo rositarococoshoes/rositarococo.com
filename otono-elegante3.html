@@ -48,52 +48,11 @@
     <!-- Anti-bot Honeypot Field -->
     <input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off">
 
-    <!-- Mini Cart -->
-    <div id="mini-cart">
-        <div class="mini-cart-header">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-title">Tu Carrito</span>
-            <span class="cart-count">0</span>
-            <button class="cart-close">×</button>
-        </div>
-        <div class="mini-cart-body">
-            <p class="empty-cart-message">Tu carrito está vacío</p>
-            <div class="cart-items"></div>
-            <div class="cart-instructions">
-                <p class="instruction-step"><span class="step-number">1</span> Selecciona tus productos favoritos</p>
-                <p class="instruction-step"><span class="step-number">2</span> Revisa tu carrito</p>
-                <p class="instruction-step"><span class="step-number">3</span> Haz clic en "Finalizar Compra"</p>
-            </div>
-        </div>
-        <div class="mini-cart-footer">
-            <div class="cart-total">Total: <span>$0</span></div>
-            <button id="checkout-btn" class="btn-disabled">Finalizar Compra →</button>
-        </div>
-    </div>
+    <!-- Mini Cart removed for simplified checkout -->
 
-    <!-- Botón de carrito independiente -->
-    <div id="cart-button">
-        <span class="cart-button-icon">🛒</span>
-        <span class="cart-button-count">0</span>
-    </div>
+    <!-- Cart button removed for simplified checkout -->
 
-    <!-- Checkout Progress Bar -->
-    <div id="checkout-progress">
-        <div class="progress-step active" data-step="1">
-            <span class="step-number">1</span>
-            <span class="step-name">Productos</span>
-        </div>
-        <div class="progress-connector"></div>
-        <div class="progress-step" data-step="2">
-            <span class="step-number">2</span>
-            <span class="step-name">Envío</span>
-        </div>
-        <div class="progress-connector"></div>
-        <div class="progress-step" data-step="3">
-            <span class="step-number">3</span>
-            <span class="step-name">Pago</span>
-        </div>
-    </div>
+    <!-- Checkout progress bar removed for simplified checkout -->
 
     <!-- WhatsApp Button Removed -->
 
@@ -430,10 +389,7 @@
                     </div>
                 </div>
                 <div class="checkout-navigation product-nav-bottom">
-                    <div class="shopping-instructions">
-                        <p><span class="instruction-icon">👍</span> ¡Listo para continuar con tu compra!</p>
-                    </div>
-                    <button class="btn btn-primary" id="continue-to-checkout-bottom">Continuar al Envío →</button>
+                    <!-- Removed multi-step navigation button (bottom) for simplified checkout -->
                 </div>
             </fieldset>
 
@@ -474,22 +430,9 @@
             </section>
 
             <!-- Shipping and Payment Form Section -->
-            <div id="restodelform" class="checkout-section hidden">
+            <div id="restodelform" class="checkout-section">
                 <h2 id="datos-envio">¡Casi listos! Completa tus datos</h2>
-                <div class="checkout-steps">
-                    <div class="checkout-step active" id="shipping-step">
-                        <span class="step-number">1</span>
-                        <span class="step-name">Información de Envío</span>
-                    </div>
-                    <div class="checkout-step" id="payment-step">
-                        <span class="step-number">2</span>
-                        <span class="step-name">Método de Pago</span>
-                    </div>
-                    <div class="checkout-step" id="review-step">
-                        <span class="step-number">3</span>
-                        <span class="step-name">Revisar y Confirmar</span>
-                    </div>
-                </div>
+                <!-- Removed multi-step step indicators for simplified checkout -->
 
                 <fieldset>
                     <legend>Resumen de tu Pedido</legend>

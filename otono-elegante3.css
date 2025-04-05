@@ -1141,7 +1141,9 @@ fieldset {
 }
 
 /* --- Mini Cart & Checkout Process --- */
+/* Hide mini-cart for simplified checkout */
 #mini-cart {
+    display: none !important;
   position: fixed;
   bottom: 80px;
   right: 20px;
@@ -1166,25 +1168,9 @@ fieldset {
 }
 
 /* Nuevo botón de carrito independiente */
+/* Hide cart button for simplified checkout */
 #cart-button {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #4CAF50;
-  color: white;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  opacity: 1 !important;
-  z-index: 9999 !important;
-  animation: float 3s ease-in-out infinite;
-  visibility: visible !important;
+    display: none !important;
 }
 
 #cart-button:hover {
@@ -2774,6 +2760,11 @@ right: 15px;
   font-size: 16px;
   cursor: pointer;
   color: #999;
+}
+
+/* Hide checkout progress bar for simplified checkout */
+#checkout-progress {
+    display: none !important;
 }
 
 .notification.show {

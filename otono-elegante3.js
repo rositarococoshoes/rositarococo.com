@@ -4,107 +4,18 @@
 $(document).ready(function(){
 
   // Accessibility enhancements: add ARIA roles and labels dynamically
-  $('#mini-cart').attr('role', 'region').attr('aria-label', 'Shopping cart');
-  $('#cart-button').attr('aria-label', 'Toggle shopping cart');
-  $('.cart-close').attr('aria-label', 'Close cart');
-  $('#checkout-progress').attr('role', 'progressbar').attr('aria-label', 'Checkout progress');
-  $('.checkout-step').attr('role', 'group').attr('aria-label', 'Checkout step');
+  // Accessibility enhancements preserved, removed mini-cart and progress bar ARIA
 
   // --- Cart & Checkout Process Variables ---
   var cartItems = [];
-  var currentStep = 1;
-  var maxStep = 3;
 
-  // Initialize checkout progress
-  updateCheckoutProgress(currentStep);
+  // Removed multi-step checkout progress initialization
 
-  // Mini-cart toggle functionality - Nuevo botón independiente
-  $('#cart-button').on('click', function(e) {
-    e.stopPropagation(); // Evitar que el clic se propague
-    $('#mini-cart').toggleClass('active');
-  });
+  // Removed mini-cart toggle and close event handlers for simplified checkout
 
-  // También permitir clic en los elementos dentro del botón
-  $('.cart-button-icon, .cart-button-count').on('click', function(e) {
-    e.stopPropagation(); // Evitar que el clic se propague
-    $('#mini-cart').toggleClass('active');
-  });
+  // Removed cart button visibility and animation logic for simplified checkout
 
-  // Mantener compatibilidad con el botón antiguo si existe
-  $('.mini-cart-tab').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').toggleClass('active');
-  });
-
-  $('.tab-icon, .tab-text').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').toggleClass('active');
-  });
-
-  // Close mini-cart when clicking outside
-  $(document).on('click', function(e) {
-    if (!$(e.target).closest('#mini-cart').length && $('#mini-cart').hasClass('active')) {
-      $('#mini-cart').removeClass('active');
-    }
-  });
-
-  // Close mini-cart when clicking the close button
-  $('.cart-close').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').removeClass('active');
-  });
-
-  // Asegurarse de que el botón del carrito sea visible
-  function ensureCartButtonVisible() {
-    // Forzar visibilidad del botón del carrito independiente
-    $('#cart-button').css({
-      'display': 'flex',
-      'visibility': 'visible',
-      'opacity': '1',
-      'z-index': '9999'
-    });
-
-    // También asegurar visibilidad del botón antiguo por compatibilidad
-    $('.mini-cart-tab').css({
-      'display': 'flex',
-      'visibility': 'visible',
-      'opacity': '1',
-      'z-index': '9999'
-    });
-
-    // Forzar animación
-    if (!$('#cart-button').hasClass('animated')) {
-      $('#cart-button').addClass('animated');
-    }
-
-    // Actualizar contador
-    $('.cart-button-count').text($('.cart-count').text());
-  }
-
-  // Llamar inmediatamente y también después de un retraso para asegurar que funcione
-  ensureCartButtonVisible();
-  setTimeout(ensureCartButtonVisible, 500);
-  setTimeout(ensureCartButtonVisible, 1000);
-  setTimeout(ensureCartButtonVisible, 2000);
-  setTimeout(ensureCartButtonVisible, 3000);
-
-  // Animate the cart button after page load to draw attention
-  setTimeout(function() {
-    $('#cart-button').addClass('pulse-once');
-
-    setTimeout(function() {
-      $('#cart-button').removeClass('pulse-once');
-    }, 1000);
-  }, 3000);
-
-  // Show checkout progress bar after scrolling
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > 300) {
-      $('#checkout-progress').addClass('visible');
-    } else {
-      $('#checkout-progress').removeClass('visible');
-    }
-  });
+  // Removed checkout progress bar scroll logic for simplified checkout
 
   // --- Product Selection Logic ---
   var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025', 'venecia-negras']; // Add all product IDs
@@ -240,87 +151,11 @@ $(document).ready(function(){
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
 
-  // Continue to checkout button click handlers
-  $("#continue-to-checkout, #continue-to-checkout-bottom").on('click', function(e) {
-    e.preventDefault();
+  // Removed continue to checkout button logic for simplified checkout
 
-    // Check if there are items in the cart
-    if (cartItems.length > 0) {
-      // Mostrar y activar la sección de checkout
-      restOfForm.removeClass('hidden inactive').addClass('active');
+  // Removed back to products button logic for simplified checkout
 
-      // Scroll to the checkout section
-      window.scrollTo({
-        top: $("#datos-envio").offset().top - 80,
-        behavior: 'smooth'
-      });
-
-      // Update checkout progress
-      currentStep = 2;
-      updateCheckoutProgress(currentStep);
-
-      // Focus the first field
-      setTimeout(function() {
-        $("#1465946249").focus();
-      }, 500);
-
-      // Mostrar notificación según la cantidad de productos
-      if (cartItems.length === 1) {
-        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
-      } else {
-        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
-      }
-    } else {
-      showNotification('Por favor, selecciona al menos un producto para continuar', 'error');
-    }
-  });
-
-  // Back to products button
-  $("#back-to-products").on('click', function(e) {
-    e.preventDefault();
-
-    // Scroll back to products section
-    window.scrollTo({
-      top: $("#todoslosmodelos").offset().top - 80,
-      behavior: 'smooth'
-    });
-
-    // Update checkout progress
-    currentStep = 1;
-    updateCheckoutProgress(currentStep);
-  });
-
-  // Checkout button in mini-cart
-  $("#checkout-btn").on('click', function(e) {
-    e.preventDefault();
-
-    if (!$(this).hasClass('btn-disabled')) {
-      // Cerrar el mini-carrito
-      $('#mini-cart').removeClass('active');
-
-      // Mostrar y activar la sección de checkout
-      restOfForm.removeClass('hidden inactive').addClass('active');
-
-      // Scroll to the checkout section
-      window.scrollTo({
-        top: $("#datos-envio").offset().top - 80,
-        behavior: 'smooth'
-      });
-
-      // Update checkout progress
-      currentStep = 2;
-      updateCheckoutProgress(currentStep);
-
-      // Mostrar notificación según la cantidad de productos
-      if (cartItems.length === 1) {
-        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
-      } else {
-        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
-      }
-    } else {
-      showNotification('Agrega productos a tu carrito para continuar', 'error');
-    }
-  });
+  // Removed mini-cart checkout button logic for simplified checkout
 
   // --- Form Input Formatting & Live Update ---
   $('#1465946249').on('input blur', function() {
