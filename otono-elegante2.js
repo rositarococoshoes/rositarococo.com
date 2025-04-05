@@ -624,60 +624,135 @@ $(document).ready(function(){
     { product: "Botineta Roma Suela", city: "Mar del Plata", image: "img/roma-suela-1a.jpg" }
   ];
 
-  let currentNotificationIndex = 0;
-  const notificationContainer = document.getElementById('notification-container');
+  // Función para mostrar notificaciones de compra
+  function showSaleNotification() {
+    // Crear el contenedor de notificaciones si no existe
+    if (!$('#sale-notification-container').length) {
+      $('<div id="sale-notification-container"></div>').css({
+        'position': 'fixed',
+        'bottom': '90px',
+        'right': '20px',
+        'z-index': '9998',
+        'width': '280px',
+        'pointer-events': 'none'
+      }).appendTo('body');
+    }
 
-  function showNotification() {
-    if (!notificationContainer) return;
+    // Seleccionar una venta aleatoria
+    const sale = salesData[Math.floor(Math.random() * salesData.length)];
 
-    const sale = salesData[currentNotificationIndex % salesData.length];
-    currentNotificationIndex++;
+    // Crear la notificación
+    const notification = $(`
+      <div class="sale-notification">
+        <img src="${sale.image}" alt="${sale.product}">
+        <div class="order-info">
+          <h3>¡Alguien compró!</h3>
+          <p>${sale.product}</p>
+          <div class="customer-info">
+            <span>en ${sale.city}</span>
+          </div>
+        </div>
+        <span class="close">&times;</span>
+      </div>
+    `);
 
-    const notification = document.createElement('div');
-    notification.className = 'notification';
+    // Estilos para la notificación
+    notification.css({
+      'display': 'flex',
+      'align-items': 'center',
+      'background-color': 'white',
+      'border-radius': '8px',
+      'box-shadow': '0 2px 10px rgba(0,0,0,0.2)',
+      'padding': '12px',
+      'margin-bottom': '10px',
+      'border-left': '3px solid #4CAF50',
+      'transform': 'translateX(120%)',
+      'opacity': '0',
+      'transition': 'transform 0.3s ease, opacity 0.3s ease',
+      'pointer-events': 'auto',
+      'position': 'relative'
+    });
 
-    const img = document.createElement('img');
-    img.src = sale.image;
-    img.alt = `Foto ${sale.product}`;
+    // Estilos para la imagen
+    notification.find('img').css({
+      'width': '50px',
+      'height': '50px',
+      'object-fit': 'cover',
+      'border-radius': '4px',
+      'margin-right': '10px'
+    });
 
-    const orderInfo = document.createElement('div');
-    orderInfo.className = 'order-info';
+    // Estilos para la información del pedido
+    notification.find('.order-info').css({
+      'flex': '1'
+    });
 
-    const title = document.createElement('h3');
-    title.textContent = `¡Alguien compró!`;
+    notification.find('h3').css({
+      'margin': '0 0 3px 0',
+      'font-size': '14px',
+      'font-weight': '600'
+    });
 
-    const productInfo = document.createElement('p');
-    productInfo.textContent = `${sale.product}`;
+    notification.find('p').css({
+      'margin': '0 0 3px 0',
+      'font-size': '13px'
+    });
 
-    const customerInfo = document.createElement('div');
-    customerInfo.className = 'customer-info';
-    const citySpan = document.createElement('span');
-    citySpan.className = 'city';
-    citySpan.textContent = `en ${sale.city}`;
-    customerInfo.appendChild(citySpan);
+    notification.find('.customer-info').css({
+      'font-size': '12px',
+      'color': '#666'
+    });
 
-    const closeButton = document.createElement('span');
-    closeButton.className = 'close';
-    closeButton.innerHTML = '&times;';
-    closeButton.onclick = () => notification.remove();
+    // Estilos para el botón de cierre
+    notification.find('.close').css({
+      'position': 'absolute',
+      'top': '5px',
+      'right': '8px',
+      'font-size': '16px',
+      'cursor': 'pointer',
+      'color': '#999'
+    }).on('click', function() {
+      notification.css({
+        'transform': 'translateX(120%)',
+        'opacity': '0'
+      });
+      setTimeout(function() {
+        notification.remove();
+      }, 300);
+    });
 
-    orderInfo.appendChild(title);
-    orderInfo.appendChild(productInfo);
-    orderInfo.appendChild(customerInfo);
+    // Agregar al contenedor
+    $('#sale-notification-container').append(notification);
 
-    notification.appendChild(img);
-    notification.appendChild(orderInfo);
-    notification.appendChild(closeButton);
+    // Mostrar con animación
+    setTimeout(function() {
+      notification.css({
+        'transform': 'translateX(0)',
+        'opacity': '1'
+      });
 
-    notificationContainer.appendChild(notification);
-
-    // Remove notification after animation ends + a little delay
-    setTimeout(() => {
-      if (notification.parentNode === notificationContainer) {
-        notificationContainer.removeChild(notification);
-      }
-    }, 5000);
+      // Ocultar automáticamente después de 5 segundos
+      setTimeout(function() {
+        notification.css({
+          'transform': 'translateX(120%)',
+          'opacity': '0'
+        });
+        setTimeout(function() {
+          notification.remove();
+        }, 300);
+      }, 5000);
+    }, 100);
   }
+
+  // Mostrar notificación de compra al cargar la página
+  setTimeout(function() {
+    showSaleNotification();
+
+    // Mostrar notificaciones periódicamente (cada 30-60 segundos)
+    setInterval(function() {
+      showSaleNotification();
+    }, Math.random() * 30000 + 30000); // Entre 30 y 60 segundos
+  }, 3000);
 
   // Notificación de compra reciente ya implementada al final del archivo
 
@@ -1222,75 +1297,65 @@ $(document).ready(function(){
 
     // Create notification container if it doesn't exist
     if (!$('#notification-container').length) {
-      $('<div id="notification-container"></div>').appendTo('body');
+      $('<div id="notification-container"></div>').css({
+        'position': 'fixed',
+        'bottom': '90px',
+        'right': '20px',
+        'z-index': '9998',
+        'width': '280px',
+        'pointer-events': 'none'
+      }).appendTo('body');
     }
 
-    var notificationClass = 'notification';
-    if (type === 'error') notificationClass += ' notification-error';
-    if (type === 'success') notificationClass += ' notification-success';
-    if (type === 'info') notificationClass += ' notification-info';
+    // Determinar el color del borde según el tipo
+    var borderColor = '#5bc0de'; // info (default)
+    if (type === 'error') borderColor = '#d9534f';
+    if (type === 'success') borderColor = '#4CAF50';
 
-    var notification = $(`<div class="${notificationClass}">${message}</div>`);
-    $('#notification-container').append(notification);
+    // Crear la notificación
+    var notification = $(`<div class="system-notification">${message}</div>`);
 
-    setTimeout(function() {
-      notification.addClass('show');
-
-      setTimeout(function() {
-        notification.removeClass('show');
-        setTimeout(function() {
-          notification.remove();
-        }, 300);
-      }, 5000); // Mostrar por más tiempo (5 segundos)
-    }, 100);
-  }
-
-  // Mostrar notificación de compra reciente al cargar la página
-  setTimeout(function() {
-    // Usar la función showNotification original
-    const sale = salesData[Math.floor(Math.random() * salesData.length)];
-
-    // Crear el HTML para la notificación con imagen
-    const notificationHTML = `
-      <img src="${sale.image}" alt="Foto ${sale.product}">
-      <div class="order-info">
-        <h3>¡Alguien compró!</h3>
-        <p>${sale.product}</p>
-        <div class="customer-info">
-          <span class="city">en ${sale.city}</span>
-        </div>
-      </div>
-      <span class="close">&times;</span>
-    `;
-
-    // Crear y mostrar la notificación personalizada
-    if (!$('#notification-container').length) {
-      $('<div id="notification-container"></div>').appendTo('body');
-    }
-
-    const notification = $(`<div class="notification notification-success">${notificationHTML}</div>`);
-    $('#notification-container').append(notification);
-
-    // Agregar manejador de eventos para el botón de cierre
-    notification.find('.close').on('click', function() {
-      notification.removeClass('show');
-      setTimeout(function() {
-        notification.remove();
-      }, 300);
+    // Aplicar estilos
+    notification.css({
+      'display': 'block',
+      'background-color': 'white',
+      'border-radius': '8px',
+      'box-shadow': '0 2px 10px rgba(0,0,0,0.2)',
+      'padding': '12px 15px',
+      'margin-bottom': '10px',
+      'border-left': '3px solid ' + borderColor,
+      'transform': 'translateX(120%)',
+      'opacity': '0',
+      'transition': 'transform 0.3s ease, opacity 0.3s ease',
+      'pointer-events': 'auto',
+      'position': 'relative',
+      'font-size': '14px',
+      'text-align': 'left'
     });
 
-    // Mostrar la notificación
+    // Agregar al contenedor
+    $('#notification-container').append(notification);
+
+    // Mostrar con animación
     setTimeout(function() {
-      notification.addClass('show');
+      notification.css({
+        'transform': 'translateX(0)',
+        'opacity': '1'
+      });
 
       // Ocultar automáticamente después de 5 segundos
       setTimeout(function() {
-        notification.removeClass('show');
+        notification.css({
+          'transform': 'translateX(120%)',
+          'opacity': '0'
+        });
         setTimeout(function() {
           notification.remove();
         }, 300);
       }, 5000);
     }, 100);
-  }, 3000);
+  }
+
+  // La notificación de compra reciente ya está implementada arriba con showSaleNotification
 
 }); // End document ready
