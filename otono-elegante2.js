@@ -35,19 +35,35 @@ $(document).ready(function(){
     $('#mini-cart').removeClass('active');
   });
 
-  // Animate the mini-cart tab slightly after page load to draw attention, but only once
-  var hasAnimated = sessionStorage.getItem('cartTabAnimated');
+  // Asegurarse de que el botón del carrito sea visible
+  function ensureCartButtonVisible() {
+    // Forzar visibilidad del botón del carrito
+    $('.mini-cart-tab').css({
+      'display': 'flex',
+      'visibility': 'visible',
+      'opacity': '1',
+      'z-index': '9999'
+    });
 
-  if (!hasAnimated) {
-    setTimeout(function() {
-      $('.mini-cart-tab').addClass('pulse-once');
-
-      setTimeout(function() {
-        $('.mini-cart-tab').removeClass('pulse-once');
-        sessionStorage.setItem('cartTabAnimated', 'true');
-      }, 1000);
-    }, 3000);
+    // Forzar animación
+    if (!$('.mini-cart-tab').hasClass('animated')) {
+      $('.mini-cart-tab').addClass('animated');
+    }
   }
+
+  // Llamar inmediatamente y también después de un retraso para asegurar que funcione
+  ensureCartButtonVisible();
+  setTimeout(ensureCartButtonVisible, 1000);
+  setTimeout(ensureCartButtonVisible, 2000);
+
+  // Animate the mini-cart tab slightly after page load to draw attention
+  setTimeout(function() {
+    $('.mini-cart-tab').addClass('pulse-once');
+
+    setTimeout(function() {
+      $('.mini-cart-tab').removeClass('pulse-once');
+    }, 1000);
+  }, 3000);
 
   // Show checkout progress bar after scrolling
   $(window).scroll(function() {
@@ -1073,12 +1089,28 @@ $(document).ready(function(){
       $('.cart-instructions').show();
       miniCart.addClass('has-items');
 
+      // Mostrar y activar el formulario de envío automáticamente
+      restOfForm.removeClass('hidden inactive').addClass('active');
+
+      // Actualizar el paso del checkout
+      currentStep = 2;
+      updateCheckoutProgress(currentStep);
+
       // Mostrar botones de continuar al envío
       $('#continue-to-checkout, #continue-to-checkout-bottom').removeClass('hidden');
 
       // Resaltar la última instrucción cuando hay productos
       $('.instruction-step:last-child').addClass('highlight');
       $('.instruction-step:not(:last-child)').removeClass('highlight');
+
+      // Scroll suave al formulario si es la primera vez que se agrega un producto
+      if (cartItems.length === 1) {
+        setTimeout(function() {
+          $('html, body').animate({
+            scrollTop: $("#datos-envio").offset().top - 80
+          }, 800);
+        }, 500);
+      }
     }
 
     // Setup remove buttons
@@ -1154,6 +1186,13 @@ $(document).ready(function(){
 
   // Show notification
   function showNotification(message, type) {
+    console.log('Showing notification:', message, type);
+
+    // Create notification container if it doesn't exist
+    if (!$('#notification-container').length) {
+      $('<div id="notification-container"></div>').appendTo('body');
+    }
+
     var notificationClass = 'notification';
     if (type === 'error') notificationClass += ' notification-error';
     if (type === 'success') notificationClass += ' notification-success';
@@ -1170,8 +1209,13 @@ $(document).ready(function(){
         setTimeout(function() {
           notification.remove();
         }, 300);
-      }, 3000);
+      }, 5000); // Mostrar por más tiempo (5 segundos)
     }, 100);
   }
+
+  // Mostrar notificación de compra reciente al cargar la página
+  setTimeout(function() {
+    showNotification('¡Alguien acaba de comprar un par de Botineta Roma Negras!', 'success');
+  }, 3000);
 
 }); // End document ready

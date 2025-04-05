@@ -1140,20 +1140,31 @@ fieldset {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: var(--color-accent);
+  background-color: #4CAF50;
   color: white;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: var(--shadow-medium);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  opacity: 1;
-  z-index: 1001;
+  opacity: 1 !important;
+  z-index: 9999 !important;
   animation: float 3s ease-in-out infinite;
+  visibility: visible !important;
+}
+
+.mini-cart-tab.animated {
+  animation: bounce-in 0.5s ease-out;
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 @keyframes float {
