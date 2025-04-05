@@ -640,11 +640,12 @@ $(document).ready(function(){
 
     // Seleccionar una venta aleatoria
     const sale = salesData[Math.floor(Math.random() * salesData.length)];
+    console.log('Mostrando notificación de compra con imagen:', sale.image);
 
     // Crear la notificación
     const notification = $(`
       <div class="sale-notification">
-        <img src="${sale.image}" alt="${sale.product}">
+        <img src="${sale.image}" alt="${sale.product}" onerror="this.src='roma-negras-1.jpg'">
         <div class="order-info">
           <h3>¡Alguien compró!</h3>
           <p>${sale.product}</p>
@@ -679,7 +680,13 @@ $(document).ready(function(){
       'height': '50px',
       'object-fit': 'cover',
       'border-radius': '4px',
-      'margin-right': '10px'
+      'margin-right': '10px',
+      'border': '1px solid #ddd',
+      'background-color': '#f8f8f8'
+    }).on('error', function() {
+      // Si la imagen no carga, usar una imagen de respaldo
+      $(this).attr('src', 'roma-negras-1.jpg');
+      console.log('Error al cargar la imagen, usando imagen de respaldo');
     });
 
     // Estilos para la información del pedido
