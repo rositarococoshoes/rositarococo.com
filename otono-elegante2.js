@@ -751,17 +751,18 @@ $(document).ready(function(){
     }, 100);
   }
 
-  // Mostrar notificación de compra al cargar la página
+  // Mostrar notificación de compra solo una vez por sesión
   setTimeout(function() {
-    showSaleNotification();
-
-    // Mostrar notificaciones periódicamente (cada 30-60 segundos)
-    setInterval(function() {
+    // Verificar si ya se mostró la notificación en esta sesión
+    if (!sessionStorage.getItem('saleNotificationShown')) {
       showSaleNotification();
-    }, Math.random() * 30000 + 30000); // Entre 30 y 60 segundos
+
+      // Marcar que ya se mostró la notificación
+      sessionStorage.setItem('saleNotificationShown', 'true');
+    }
   }, 3000);
 
-  // Notificación de compra reciente ya implementada al final del archivo
+  // Fin de la configuración de notificaciones
 
   // --- WhatsApp Number Validation ---
   function getInputElement(id) {
@@ -1363,6 +1364,6 @@ $(document).ready(function(){
     }, 100);
   }
 
-  // La notificación de compra reciente ya está implementada arriba con showSaleNotification
+  // Fin de las funciones de notificación
 
 }); // End document ready
