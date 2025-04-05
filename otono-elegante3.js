@@ -1,4 +1,5 @@
-// Otoño Elegante - Funcionalidad principal
+// Otoño Elegante v3 - Enhanced UX & Comments
+// -------------------------------------------
 
 // Toggle hamburger menu
 const hamburger = document.querySelector('.hamburger');
@@ -16,6 +17,10 @@ const closeCart = document.querySelector('.close-cart');
 cartButton.addEventListener('click', () => {
   cartDrawer.classList.toggle('open');
   cartDrawer.setAttribute('aria-hidden', cartDrawer.classList.contains('open') ? 'false' : 'true');
+  if(cartDrawer.classList.contains('open')) {
+    cartDrawer.style.transition = 'right 0.3s ease';
+    cartDrawer.focus();
+  }
 });
 
 closeCart.addEventListener('click', () => {
@@ -23,12 +28,13 @@ closeCart.addEventListener('click', () => {
   cartDrawer.setAttribute('aria-hidden', 'true');
 });
 
-// Cart functionality
+// Cart data
+let cart = [];
+
+// Elements
 const addToCartButtons = document.querySelectorAll('.add-to-cart');
 const cartItemsContainer = document.querySelector('.cart-items');
 const cartTotal = document.getElementById('cart-total');
-
-let cart = [];
 
 // Add product to cart
 addToCartButtons.forEach(button => {
@@ -61,39 +67,35 @@ function updateCart() {
   cartTotal.innerText = total.toFixed(2);
 }
 
-// Checkout multi-step navigation
+// Checkout multi-step
 const checkoutSection = document.querySelector('.checkout');
 const checkoutButton = document.querySelector('.checkout-button');
 const nextButtons = document.querySelectorAll('.next-step');
 const prevButtons = document.querySelectorAll('.prev-step');
 const steps = document.querySelectorAll('.checkout-step');
 
-// Open checkout
+// Open checkout modal
 checkoutButton.addEventListener('click', () => {
   checkoutSection.classList.add('active');
   checkoutSection.setAttribute('aria-hidden', 'false');
   showStep(0);
 });
 
-// Show specific step
+// Show specific checkout step
 function showStep(index) {
   steps.forEach((step, i) => {
-    if (i === index) {
-      step.hidden = false;
-    } else {
-      step.hidden = true;
-    }
+    step.hidden = i !== index;
   });
 }
 
-// Next step buttons
+// Next step navigation
 nextButtons.forEach((button, idx) => {
   button.addEventListener('click', () => {
     showStep(idx + 1);
   });
 });
 
-// Previous step buttons
+// Previous step navigation
 prevButtons.forEach((button, idx) => {
   button.addEventListener('click', () => {
     showStep(idx);
