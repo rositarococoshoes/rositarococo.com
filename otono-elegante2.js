@@ -616,12 +616,12 @@ $(document).ready(function(){
 
   // --- Sales Notification Popups ---
   const salesData = [
-    { product: "Botineta Roma Negras", city: "CABA", image: "img/roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Córdoba", image: "img/siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Rosario", image: "img/roma-suela-1a.jpg" },
-    { product: "Botineta Roma Negras", city: "La Plata", image: "img/roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Mendoza", image: "img/siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "img/roma-suela-1a.jpg" }
+    { product: "Botineta Roma Negras", city: "CABA", image: "roma-negras-1.jpg" },
+    { product: "Borcego Siena 2025", city: "Córdoba", image: "siena2025-1.webp" },
+    { product: "Botineta Roma Suela", city: "Rosario", image: "roma-suela-1a.jpg" },
+    { product: "Botineta Roma Negras", city: "La Plata", image: "roma-negras-1.jpg" },
+    { product: "Borcego Siena 2025", city: "Mendoza", image: "siena2025-1.webp" },
+    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "roma-suela-1a.jpg" }
   ];
 
   // Función para mostrar notificaciones de compra
