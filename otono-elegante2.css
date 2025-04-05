@@ -455,6 +455,9 @@ p {
   gap: 35px; /* Más espacio entre productos */
   margin-bottom: 60px; /* Más espacio inferior */
   padding: 10px; /* Padding para evitar que los productos toquen los bordes */
+  max-width: 1200px; /* Limitar el ancho máximo */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .product-item {
@@ -896,11 +899,12 @@ fieldset {
   background-color: #fff;
   padding: 45px 35px; /* Ajustado */
   border-radius: var(--border-radius-large);
-  margin-top: 60px; /* Más espacio superior */
+  margin: 60px auto 0; /* Centrado y más espacio superior */
   box-shadow: var(--shadow-medium);
   border: none; /* Eliminado el borde */
   position: relative;
   overflow: hidden;
+  max-width: 900px; /* Limitar el ancho en desktop */
 }
 
 /* Decoración otoñal en las esquinas del formulario */
@@ -1912,7 +1916,19 @@ fieldset {
   }
 
   .container {
-    padding: 0 15px;
+    padding: 0 10px;
+  }
+
+  /* Mejorar carruseles de productos en móviles */
+  .model-carousel, .simple-carousel {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .model-carousel .slick-slide img, .carousel-slide img {
+    max-width: 95%;
+    margin: 0 auto;
   }
 
   /* Ajustes para el carrito flotante en móviles */
@@ -2009,9 +2025,33 @@ fieldset {
   }
 
   #restodelform {
-    padding: 25px 20px;
+    padding: 30px 20px;
     margin-top: 40px;
     border-radius: 8px; /* Bordes menos pronunciados en móviles */
+    width: 95%;
+  }
+
+  /* Mejorar sección de pasos en móviles */
+  .checkout-steps {
+    padding: 0 10px;
+    margin-bottom: 30px;
+  }
+
+  .checkout-steps::before {
+    left: 40px;
+    right: 40px;
+    top: 25px;
+  }
+
+  .checkout-step .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2em;
+    margin-bottom: 8px;
+  }
+
+  .checkout-step .step-name {
+    font-size: 0.9em;
   }
 
   #confirma-pedido {
@@ -2452,18 +2492,19 @@ right: 15px;
 .checkout-steps {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin: 0 auto 40px;
   position: relative;
   padding: 0 20px;
+  max-width: 800px; /* Limitar el ancho en desktop */
 }
 
 .checkout-steps::before {
   content: '';
   position: absolute;
-  top: 25px;
-  left: 50px;
-  right: 50px;
-  height: 2px;
+  top: 30px;
+  left: 60px;
+  right: 60px;
+  height: 3px;
   background-color: var(--color-border);
   z-index: 0;
 }
@@ -2475,29 +2516,33 @@ right: 15px;
   position: relative;
   z-index: 1;
   width: 33.333%;
+  padding: 0 10px;
 }
 
 .checkout-step .step-number {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background-color: white;
-  border: 2px solid var(--color-border);
+  border: 3px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 10px;
+  font-size: 1.4em;
+  margin-bottom: 12px;
   color: var(--color-text-light);
   transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
 .checkout-step .step-name {
-  font-size: 0.9em;
+  font-size: 1.1em;
   font-weight: 600;
   color: var(--color-text-light);
   transition: color 0.3s ease;
+  text-align: center;
+  line-height: 1.3;
 }
 
 .checkout-step.active .step-number {
