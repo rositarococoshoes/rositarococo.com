@@ -1,7 +1,9 @@
 /* Rosita Rococó Premium E-commerce Stylesheet */
 /* Mobile-first, minimalist, elegant, fully responsive */
 
-/* Reset and base styles */
+/* =========================
+   Reset & Base Styles
+   ========================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -13,143 +15,193 @@ body {
   background: #fdfcf9;
   color: #333;
   line-height: 1.6;
-  padding: 1rem;
   font-size: 1.1rem;
+  overflow-x: hidden;
 }
 
-/* Typography hierarchy */
+/* =========================
+   Typography
+   ========================= */
 h1, h2 {
   font-family: 'Playfair Display', serif;
+  color: #7a3b2e;
   margin-bottom: 1rem;
-  color: #8b3a2e;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 }
 
-/* Header hero section */
+/* =========================
+   Immersive Hero Section
+   ========================= */
 header.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url('abrilnude.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 1rem 0;
+  color: #fff;
+  overflow: hidden;
+}
+
+header.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+header.hero .hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 90%;
+  animation: fadeInUp 1s ease forwards;
+}
+
+header.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 header.hero p {
-  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+header.hero .cta-button {
+  background: #e6b89c;
+  color: #333;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 50px;
   font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-.trust-signals {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  color: #555;
+header.hero .cta-button:hover {
+  background: #d9a17b;
+  transform: scale(1.05);
 }
 
-/* Layout */
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-/* Product list styles */
+/* =========================
+   Product Grid
+   ========================= */
 #products .product-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+  padding: 1rem;
 }
 
-/* Product card */
 .product-card {
   background: #fff;
-  padding: 1.5rem;
   border-radius: 16px;
+  overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
 .product-card img {
   width: 100%;
-  border-radius: 12px;
+  display: block;
 }
 
-/* Select and button inside product card */
+.product-card .product-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-card h2 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.product-card p {
+  font-size: 1rem;
+  color: #666;
+}
+
 .product-card select,
 .product-card button {
   padding: 1rem;
   font-size: 1.1rem;
   border-radius: 8px;
-}
-
-.product-card select {
   border: 1px solid #ccc;
 }
 
 .product-card button {
-  background: #8b3a2e;
+  background: #7a3b2e;
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.product-card button:hover,
-.product-card button:focus {
-  background: #6a2b21;
-  outline: none;
+.product-card button:hover {
+  background: #5a2a20;
 }
 
-/* Sticky cart summary */
+/* =========================
+   Sticky Slide-in Cart Drawer
+   ========================= */
 #cart-summary {
   position: fixed;
-  bottom: 0;
-  left: 0;
   right: 0;
+  top: 0;
+  width: 320px;
+  max-width: 90%;
+  height: 100%;
   background: #fff;
-  padding: 1rem;
-  border-top: 3px solid #8b3a2e;
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
-  z-index: 1000;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  z-index: 2000;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  max-height: 50vh;
+  gap: 1rem;
   overflow-y: auto;
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
 }
 
-/* Cart visible state toggled by JS */
 #cart-summary.active {
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 #cart-summary h2 {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .cart-items {
   list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
 }
 
 .cart-items li {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
 }
 
 #cart-message {
@@ -157,22 +209,54 @@ main {
   font-weight: bold;
 }
 
-/* Checkout form */
+#cart-summary button.checkout-btn {
+  background: #5a8f3e;
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#cart-summary button.checkout-btn:hover {
+  background: #3f6f2b;
+}
+
+/* =========================
+   Checkout Form
+   ========================= */
 #checkout {
   background: #fff;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin: 2rem 1rem;
 }
 
 #checkout h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
 }
 
 #checkout form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
+}
+
+#checkout form label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#checkout form label::before {
+  content: "📝";
+  font-size: 1.2rem;
 }
 
 #checkout input,
@@ -184,82 +268,146 @@ main {
 }
 
 #checkout button {
-  padding: 1rem;
-  font-size: 1.1rem;
-  background: #5a8f3e;
+  background: #7a3b2e;
   color: #fff;
+  padding: 1rem;
+  font-size: 1.2rem;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-#checkout button:hover,
-#checkout button:focus {
-  background: #3f6f2b;
-  outline: none;
+#checkout button:hover {
+  background: #5a2a20;
 }
 
 #form-message {
   color: #5a8f3e;
   font-weight: bold;
+  text-align: center;
 }
 
-/* Testimonials */
+/* Trust badges */
+.trust-signals {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.trust-signals img {
+  height: 40px;
+}
+
+/* =========================
+   Testimonials
+   ========================= */
 #testimonials {
-  text-align: center;
+  padding: 2rem 1rem;
+  background: #f9f6f2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .testimonial-list {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding: 1rem 0;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.testimonial-list img {
-  max-width: 140px;
-  border-radius: 12px;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+.testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-.testimonial-list img:hover {
-  transform: scale(1.05);
+.testimonial-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
 }
 
-/* Accessibility focus */
+.testimonial-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card blockquote {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card cite {
+  font-weight: bold;
+  color: #333;
+}
+
+/* =========================
+   Animations & Micro-interactions
+   ========================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Accessibility Focus
+   ========================= */
 button:focus,
 select:focus,
 input:focus {
-  outline: 2px solid #8b3a2e;
+  outline: 2px solid #7a3b2e;
   outline-offset: 2px;
 }
 
-/* Smooth transitions for interactive elements */
-button,
-.product-card,
-#cart-summary,
-#checkout button,
-.testimonial-list img {
-  transition: all 0.3s ease;
+/* =========================
+   Responsive Layout
+   ========================= */
+@media (min-width: 600px) {
+  #products .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .testimonial-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
-/* Responsive layout for larger screens */
-@media (min-width: 768px) {
-  main {
-    flex-direction: row;
-    align-items: flex-start;
+@media (min-width: 992px) {
+  #products .product-list {
+    grid-template-columns: repeat(3, 1fr);
   }
-  #products, #checkout {
-    flex: 1;
+  header.hero h1 {
+    font-size: 3rem;
   }
-  #cart-summary {
-    position: sticky;
-    top: 1rem;
-    max-height: none;
-    border-top: none;
-    border: 3px solid #8b3a2e;
-    transform: translateY(0);
+  header.hero p {
+    font-size: 1.5rem;
   }
+}
+
+/* =========================
+   Utility Classes
+   ========================= */
+.hidden {
+  display: none !important;
 }
