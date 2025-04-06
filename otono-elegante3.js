@@ -1,4 +1,4 @@
-// Ultra-minimalist e-commerce logic with inline feedback and micro-interactions
+// Modern, elegant e-commerce logic with smooth micro-interactions
 $(function() {
   const products = [
     { id: 'roma-negras', name: 'Botineta Roma Negras', price1: 70000, price2: 110000, img: 'roma-negras-1.jpg' },
@@ -19,11 +19,21 @@ $(function() {
   }
 
   function showCartMessage(msg, isError = false) {
-    $('#cart-message').text(msg).css('color', isError ? '#a05941' : '#5a8f3e').fadeIn(200).delay(1500).fadeOut(200);
+    $('#cart-message')
+      .stop(true, true)
+      .css('color', isError ? '#8b3a2e' : '#5a8f3e')
+      .fadeIn(200)
+      .delay(1500)
+      .fadeOut(400);
   }
 
   function showFormMessage(msg, isError = false) {
-    $('#form-message').text(msg).css('color', isError ? '#a05941' : '#5a8f3e').fadeIn(200).delay(2000).fadeOut(200);
+    $('#form-message')
+      .stop(true, true)
+      .css('color', isError ? '#8b3a2e' : '#5a8f3e')
+      .fadeIn(200)
+      .delay(2000)
+      .fadeOut(400);
   }
 
   function addToCart(product, size) {

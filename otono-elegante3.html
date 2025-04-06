@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<header role="banner">
+<header role="banner" class="hero">
   <h1>🍂 Colección Otoño-Invierno 2025 🍂</h1>
   <p>Diseños exclusivos que abrazan tus pasos con estilo y confort</p>
   <div class="trust-signals" aria-label="Confianza">
@@ -40,19 +40,20 @@
     <h2>Finaliza tu compra</h2>
     <form id="checkout-form">
       <label>Nombre
-        <input type="text" name="name" required aria-required="true">
+        <input type="text" name="name" required aria-required="true" placeholder="Tu nombre completo">
       </label>
       <label>Email
-        <input type="email" name="email" required aria-required="true">
+        <input type="email" name="email" required aria-required="true" placeholder="tu@email.com">
       </label>
       <label>WhatsApp
-        <input type="tel" name="whatsapp" required aria-required="true">
+        <input type="tel" name="whatsapp" required aria-required="true" placeholder="Ej: +54 9 11 1234-5678">
       </label>
       <label>Dirección
-        <input type="text" name="address" required aria-required="true">
+        <input type="text" name="address" required aria-required="true" placeholder="Calle, número, ciudad">
       </label>
       <label>Método de Pago
         <select name="payment" required aria-required="true">
+          <option value="">Selecciona un método</option>
           <option value="tarjeta">Tarjeta</option>
           <option value="mercadopago">MercadoPago</option>
           <option value="cbu">Transferencia (10% OFF)</option>
