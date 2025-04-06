@@ -11,25 +11,28 @@
 <style>
   :root {
     /* Palette: warm elegant tones */
-    --color-primary: #4E342E;        /* Dark brown */
-    --color-secondary: #A1887F;      /* Light brown/beige */
-    --color-accent: #D7CCC8;         /* Soft beige */
+    --color-primary: #7a3b2e;        /* Rich brown - main brand color */
+    --color-secondary: #A1887F;      /* Light brown/beige - secondary elements */
+    --color-accent: #D7CCC8;         /* Soft beige - subtle accents */
     --color-neutral-bg: #FFFFFF;     /* White background */
-    --color-neutral-dark: #000000;   /* Black text */
-    --color-success: #6A994E;        /* Green for success */
+    --color-neutral-light: #F9F6F2;  /* Off-white for sections */
+    --color-neutral-dark: #333333;   /* Dark gray for text */
+    --color-success: #6A994E;        /* Green for success messages */
     --color-error: #BC4749;          /* Red for errors */
+    --color-highlight: #e6b89c;      /* Highlight color for important elements */
 
     /* Typography */
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Lato', sans-serif;
 
-    --font-size-h1: 2rem;
-    --font-size-h2: 1.75rem;
-    --font-size-h3: 1.5rem;
-    --font-size-h4: 1.25rem;
+    --font-size-h1: clamp(2rem, 5vw, 3rem);     /* Responsive heading sizes */
+    --font-size-h2: clamp(1.75rem, 4vw, 2.5rem);
+    --font-size-h3: clamp(1.5rem, 3vw, 2rem);
+    --font-size-h4: clamp(1.25rem, 2vw, 1.75rem);
     --font-size-h5: 1.125rem;
     --font-size-h6: 1rem;
     --font-size-p: 1rem;
+    --font-size-small: 0.875rem;
     --font-size-button: 1rem;
 
     /* Spacing scale */
@@ -37,38 +40,210 @@
     --space-s: 0.5rem;
     --space-m: 1rem;
     --space-l: 2rem;
-    --space-xl: 4rem;
+    --space-xl: 3rem;
+    --space-xxl: 5rem;
+
+    /* Borders & Shadows */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 16px;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 16px rgba(0,0,0,0.1);
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
   }
 
-  /* Basic responsive layout helpers */
+  /* Reset & Base Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: var(--font-sans);
+    color: var(--color-neutral-dark);
+    line-height: 1.6;
+    background-color: var(--color-neutral-light);
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   main {
     display: flex;
     flex-direction: column;
+    flex: 1;
   }
 
   section {
-    padding: var(--space-l) var(--space-m);
+    padding: var(--space-xl) var(--space-m);
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-m);
+    color: var(--color-primary);
+  }
+
+  h1 { font-size: var(--font-size-h1); }
+  h2 { font-size: var(--font-size-h2); }
+  h3 { font-size: var(--font-size-h3); }
+  h4 { font-size: var(--font-size-h4); }
+  h5 { font-size: var(--font-size-h5); }
+  h6 { font-size: var(--font-size-h6); }
+
+  p {
+    margin-bottom: var(--space-m);
+    font-size: var(--font-size-p);
+  }
+
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--color-secondary);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-button);
+    transition: all var(--transition-medium);
+  }
+
+  /* Form Elements */
+  input, select, textarea {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-p);
+    padding: var(--space-s) var(--space-m);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    width: 100%;
+    transition: border-color var(--transition-fast);
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(122, 59, 46, 0.2);
+  }
+
+  label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 500;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: var(--space-s) var(--space-l);
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    text-align: center;
+    transition: all var(--transition-medium);
+  }
+
+  .btn:hover {
+    background-color: #663226;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+  }
+
+  .btn-secondary:hover {
+    background-color: #8a7369;
+  }
+
+  /* Utility Classes */
+  .text-center { text-align: center; }
+  .text-right { text-align: right; }
+  .text-left { text-align: left; }
+  .hidden { display: none !important; }
+  .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 var(--space-m); }
+  .mt-0 { margin-top: 0; }
+  .mb-0 { margin-bottom: 0; }
+  .mt-1 { margin-top: var(--space-s); }
+  .mb-1 { margin-bottom: var(--space-s); }
+  .mt-2 { margin-top: var(--space-m); }
+  .mb-2 { margin-bottom: var(--space-m); }
+  .mt-3 { margin-top: var(--space-l); }
+  .mb-3 { margin-bottom: var(--space-l); }
+  .mt-4 { margin-top: var(--space-xl); }
+  .mb-4 { margin-bottom: var(--space-xl); }
 
   /* Responsive grid for product and testimonial lists */
   .grid-responsive {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--space-m);
+    gap: var(--space-l);
   }
 
   @media (min-width: 600px) {
     .grid-responsive {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  @media (min-width: 992px) {
+    .grid-responsive {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    section {
+      padding: var(--space-xxl) var(--space-xl);
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideInUp 0.8s ease forwards;
   }
 </style>
 
@@ -90,55 +265,145 @@
 <body>
 
 <!-- =========================
-     Hero Section
-     ========================= -->
-<!-- =========================
      Hero Section - Nueva Colección Otoño
      ========================= -->
-<section class="hero-section" role="banner" style="
-  position: relative;
-  background-image: url('coverrosi-min.jpg'); /* Convert this to .webp or .avif for optimization */
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #fff;
-  padding: var(--space-l) var(--space-m);
-">
-  <!-- Overlay for better text readability -->
-  <div style="
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 1;
-  "></div>
+<section class="hero-section" id="hero">
+  <!-- Hero background with overlay -->
+  <div class="hero-background"></div>
 
-  <!-- Hero Content -->
-  <div style="position: relative; z-index: 2; max-width: 800px;">
-    <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--space-m);">
-      Descubrí la Nueva Colección Otoño: Elegancia y Comodidad
-    </h1>
-    <p style="font-size: var(--font-size-p); margin-bottom: var(--space-l);">
-      Inspirada en la calidez otoñal, nuestra nueva colección combina materiales suaves, diseño elegante y comodidad para acompañarte en cada paso con estilo.
-    </p>
-    <button onclick="window.scrollTo({top: document.querySelector('#products').offsetTop, behavior: 'smooth'});" style="
-      background-color: var(--color-primary);
-      color: #fff;
-      border: none;
-      padding: var(--space-s) var(--space-l);
-      font-size: var(--font-size-button);
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s ease;
-    " onmouseover="this.style.backgroundColor='var(--color-secondary)'" onmouseout="this.style.backgroundColor='var(--color-primary)'">
-      Ver Diseños
-    </button>
+  <!-- Hero Content Container -->
+  <div class="container hero-content animate-fade-in">
+    <div class="hero-text">
+      <h1>Descubrí la Nueva Colección Otoño: Elegancia y Comodidad</h1>
+      <p class="hero-description">Inspirada en la calidez otoñal, nuestra nueva colección combina materiales suaves, diseño elegante y comodidad para acompañarte en cada paso con estilo.</p>
+
+      <!-- Benefits highlights -->
+      <div class="hero-benefits">
+        <div class="benefit-tag"><span class="benefit-icon">🚚</span> Envío GRATIS a todo el país</div>
+        <div class="benefit-tag"><span class="benefit-icon">💳</span> 3 cuotas sin interés</div>
+      </div>
+
+      <button class="btn hero-cta" onclick="window.scrollTo({top: document.querySelector('#products').offsetTop, behavior: 'smooth'});">
+        Ver Diseños
+      </button>
+    </div>
   </div>
 </section>
+
+<!-- Hero Section Styles -->
+<style>
+  .hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('coverrosi-min.jpg'); /* Consider converting to .webp for better performance */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.8);
+    z-index: 0;
+  }
+
+  .hero-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: var(--space-l);
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-section h1 {
+    color: white;
+    margin-bottom: var(--space-m);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-description {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-l);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .hero-benefits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-m);
+    margin-bottom: var(--space-l);
+  }
+
+  .benefit-tag {
+    background-color: rgba(255,255,255,0.15);
+    backdrop-filter: blur(5px);
+    padding: var(--space-xs) var(--space-m);
+    border-radius: 50px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+  }
+
+  .benefit-icon {
+    font-size: 1.2rem;
+  }
+
+  .hero-cta {
+    padding: var(--space-s) var(--space-xl);
+    font-size: 1.1rem;
+    background-color: var(--color-highlight);
+    color: var(--color-neutral-dark);
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    background-color: #d9a17b;
+  }
+
+  @media (max-width: 768px) {
+    .hero-benefits {
+      flex-direction: column;
+      gap: var(--space-s);
+    }
+
+    .hero-description {
+      font-size: 1rem;
+    }
+  }
+</style>
 
 <main role="main">
 
@@ -146,348 +411,1562 @@
        Products Section
        ========================= -->
   <section id="products" class="products-section" aria-label="Lista de productos">
-    <h2 style="text-align:center;">Elige tu próximo par favorito</h2>
-    <div class="product-list grid-responsive" style="margin-top: var(--space-l);">
+    <div class="container">
+      <h2 class="section-title text-center">Elegí tu próximo par favorito</h2>
 
-      <!-- =========================
-           Product Card Template
-           ========================= -->
-
-      <!-- Product Card 1 -->
-      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
-        <!-- Product Image -->
-        <img src="1-atlanta-negras.webp" alt="Zapato Atlanta Negro" style="width:100%; border-radius:8px; object-fit:cover;">
-
-        <!-- Product Info -->
-        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
-          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Atlanta Negro</h3>
-          <div style="font-size: var(--font-size-p);">
-            <span style="font-weight:bold;">$12,000</span>
-            <span style="text-decoration: line-through; color: var(--color-secondary); margin-left: var(--space-s);">$15,000</span>
-          </div>
+      <!-- Pricing information -->
+      <div class="pricing-info">
+        <div class="pricing-option">
+          <span class="pricing-label">1 par:</span>
+          <span class="pricing-value">$70.000</span>
         </div>
-
-        <!-- Size Selector -->
-        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
-          <!-- Example sizes -->
-          <label style="flex:1;">
-            <input type="radio" name="size1" value="35" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size1" value="36" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size1" value="37" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size1" value="38" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size1" value="39" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
-          </label>
+        <div class="pricing-option best-value">
+          <span class="pricing-label">2 pares:</span>
+          <span class="pricing-value">$110.000</span>
+          <span class="pricing-note">($55.000 c/u - ¡Ahorrás $30.000!)</span>
         </div>
-
-        <!-- Add to Cart Button -->
-        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
-          Agregar al Carrito
-        </button>
       </div>
 
-      <!-- Repeat Product Card 2 -->
-      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
-        <img src="2-furia.webp" alt="Zapato Furia" style="width:100%; border-radius:8px; object-fit:cover;">
-        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
-          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Furia</h3>
-          <div style="font-size: var(--font-size-p);">
-            <span style="font-weight:bold;">$10,500</span>
+      <div class="product-list grid-responsive">
+        <!-- Product Card 1: Roma Negras -->
+        <div class="product-card" data-product-id="roma-negras">
+          <div class="product-image-container">
+            <img src="roma-negras-1a.jpg" alt="Botineta Roma Negras" class="product-image" loading="lazy">
           </div>
-        </div>
-        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
-          <label style="flex:1;">
-            <input type="radio" name="size2" value="35" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size2" value="36" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size2" value="37" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size2" value="38" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size2" value="39" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
-          </label>
-        </div>
-        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
-          Agregar al Carrito
-        </button>
-      </div>
 
-      <!-- Repeat Product Card 3 -->
-      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
-        <img src="3-furia.webp" alt="Zapato Furia Nude" style="width:100%; border-radius:8px; object-fit:cover;">
-        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
-          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Furia Nude</h3>
-          <div style="font-size: var(--font-size-p);">
-            <span style="font-weight:bold;">$11,000</span>
+          <div class="product-info">
+            <h3 class="product-title">Botineta Roma Negras</h3>
+            <div class="product-price">
+              <span class="current-price">$70.000</span>
+            </div>
           </div>
+
+          <div class="product-sizes" role="group" aria-label="Seleccionar Talle">
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="35">
+              <span class="size-label">35</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="36">
+              <span class="size-label">36</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="37">
+              <span class="size-label">37</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="38">
+              <span class="size-label">38</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="39">
+              <span class="size-label">39</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-negras" value="40">
+              <span class="size-label">40</span>
+            </label>
+          </div>
+
+          <button class="btn add-to-cart-btn" data-product="roma-negras">
+            Agregar al Carrito
+          </button>
         </div>
-        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
-          <label style="flex:1;">
-            <input type="radio" name="size3" value="35" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size3" value="36" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size3" value="37" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size3" value="38" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
-          </label>
-          <label style="flex:1;">
-            <input type="radio" name="size3" value="39" style="display:none;">
-            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
-          </label>
+
+        <!-- Product Card 2: Roma Suela -->
+        <div class="product-card" data-product-id="roma-suela">
+          <div class="product-image-container">
+            <img src="roma-suela-1a.jpg" alt="Botineta Roma Suela" class="product-image" loading="lazy">
+          </div>
+
+          <div class="product-info">
+            <h3 class="product-title">Botineta Roma Suela</h3>
+            <div class="product-price">
+              <span class="current-price">$70.000</span>
+            </div>
+          </div>
+
+          <div class="product-sizes" role="group" aria-label="Seleccionar Talle">
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="35">
+              <span class="size-label">35</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="36">
+              <span class="size-label">36</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="37">
+              <span class="size-label">37</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="38">
+              <span class="size-label">38</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="39">
+              <span class="size-label">39</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-roma-suela" value="40">
+              <span class="size-label">40</span>
+            </label>
+          </div>
+
+          <button class="btn add-to-cart-btn" data-product="roma-suela">
+            Agregar al Carrito
+          </button>
         </div>
-        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
-          Agregar al Carrito
-        </button>
+
+        <!-- Product Card 3: Siena 2025 -->
+        <div class="product-card" data-product-id="siena2025">
+          <div class="product-image-container">
+            <img src="siena2025-1.webp" alt="Borcego Siena 2025" class="product-image" loading="lazy">
+          </div>
+
+          <div class="product-info">
+            <h3 class="product-title">Borcego Siena 2025</h3>
+            <div class="product-price">
+              <span class="current-price">$70.000</span>
+            </div>
+          </div>
+
+          <div class="product-sizes" role="group" aria-label="Seleccionar Talle">
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="35">
+              <span class="size-label">35</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="36">
+              <span class="size-label">36</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="37">
+              <span class="size-label">37</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="38">
+              <span class="size-label">38</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="39">
+              <span class="size-label">39</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-siena2025" value="40">
+              <span class="size-label">40</span>
+            </label>
+          </div>
+
+          <button class="btn add-to-cart-btn" data-product="siena2025">
+            Agregar al Carrito
+          </button>
+        </div>
+
+        <!-- Product Card 4: Venecia Negras -->
+        <div class="product-card" data-product-id="venecia-negras">
+          <div class="product-image-container">
+            <img src="venecia-negras-1a.jpg" alt="Venecia Negras" class="product-image" loading="lazy">
+          </div>
+
+          <div class="product-info">
+            <h3 class="product-title">Venecia Negras</h3>
+            <div class="product-price">
+              <span class="current-price">$70.000</span>
+            </div>
+          </div>
+
+          <div class="product-sizes" role="group" aria-label="Seleccionar Talle">
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="35">
+              <span class="size-label">35</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="36">
+              <span class="size-label">36</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="37">
+              <span class="size-label">37</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="38">
+              <span class="size-label">38</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="39">
+              <span class="size-label">39</span>
+            </label>
+            <label class="size-option">
+              <input type="radio" name="size-venecia-negras" value="40">
+              <span class="size-label">40</span>
+            </label>
+          </div>
+
+          <button class="btn add-to-cart-btn" data-product="venecia-negras">
+            Agregar al Carrito
+          </button>
+        </div>
       </div>
-
-      <!-- End Product Cards -->
-
     </div>
   </section>
 
+  <!-- Products Section Styles -->
+  <style>
+    .products-section {
+      background-color: var(--color-neutral-light);
+    }
+
+    .section-title {
+      margin-bottom: var(--space-l);
+    }
+
+    .pricing-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-l);
+      margin-bottom: var(--space-xl);
+      text-align: center;
+    }
+
+    .pricing-option {
+      padding: var(--space-m);
+      background-color: white;
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-sm);
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .best-value {
+      border: 2px solid var(--color-primary);
+      transform: scale(1.05);
+      position: relative;
+    }
+
+    .best-value::after {
+      content: '¡Mejor opción!';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-primary);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    .pricing-label {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .pricing-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+
+    .pricing-note {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .product-card {
+      background-color: white;
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-image-container {
+      position: relative;
+      overflow: hidden;
+      padding-top: 100%; /* 1:1 Aspect ratio */
+    }
+
+    .product-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-medium);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: var(--space-m);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .product-title {
+      margin: 0 0 var(--space-xs) 0;
+      font-size: 1.25rem;
+    }
+
+    .product-price {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
+    }
+
+    .current-price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      color: var(--color-primary);
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .product-sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      padding: var(--space-m);
+    }
+
+    .size-option {
+      flex: 1;
+      min-width: calc(16.666% - var(--space-xs));
+    }
+
+    .size-option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .size-label {
+      display: block;
+      padding: var(--space-s);
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .size-option input:checked + .size-label {
+      background-color: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+
+    .size-option input:not(:checked) + .size-label:hover {
+      border-color: var(--color-primary);
+      background-color: rgba(122, 59, 46, 0.05);
+    }
+
+    .add-to-cart-btn {
+      margin: 0 var(--space-m) var(--space-m);
+      padding: var(--space-s) var(--space-m);
+    }
+
+    @media (max-width: 768px) {
+      .pricing-info {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-m);
+      }
+
+      .best-value {
+        transform: scale(1);
+      }
+
+      .product-sizes {
+        gap: calc(var(--space-xs) / 2);
+      }
+
+      .size-option {
+        min-width: calc(20% - var(--space-xs) / 2);
+      }
+
+      .size-label {
+        padding: var(--space-xs);
+      }
+    }
+  </style>
+
   <!-- Sticky Slide-in Cart Drawer -->
-  <aside id="cart-drawer" aria-label="Carrito de compras" style="position: fixed; top: 0; right: -100%; width: 300px; height: 100%; background: #fff; box-shadow: -2px 0 5px rgba(0,0,0,0.3); transition: right 0.3s ease; z-index: 1000; display: flex; flex-direction: column;">
-    <button id="close-cart" aria-label="Cerrar carrito" style="align-self: flex-end; margin: 1rem;">✖</button>
-    <h2 style="margin: 1rem;">Tu Pedido</h2>
-    <ul class="cart-items" style="flex-grow:1; overflow-y:auto; margin: 0 1rem;"></ul>
-    <p id="total-price" style="margin:1rem;">Total: $0</p>
-    <div id="cart-message" role="status" aria-live="polite" style="margin:1rem;"></div>
+  <aside id="cart-drawer" aria-label="Carrito de compras" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h2>Tu Pedido</h2>
+      <button id="close-cart" aria-label="Cerrar carrito" class="close-btn">&times;</button>
+    </div>
+
+    <div class="cart-drawer-body">
+      <!-- Empty cart message -->
+      <div id="empty-cart-message" class="empty-cart-message">
+        <div class="empty-cart-icon">🛒</div>
+        <p>Tu carrito está vacío</p>
+        <p class="empty-cart-hint">Selecciona productos y talles para comenzar tu pedido</p>
+      </div>
+
+      <!-- Cart items list -->
+      <ul id="cart-items" class="cart-items"></ul>
+    </div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-pricing">
+        <div class="cart-subtotal">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">$0</span>
+        </div>
+        <div class="cart-shipping">
+          <span>Envío:</span>
+          <span class="free-shipping">GRATIS</span>
+        </div>
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="total-price">$0</span>
+        </div>
+      </div>
+
+      <button id="checkout-button" class="btn checkout-btn" disabled>
+        Completar Compra
+      </button>
+
+      <div class="cart-benefits">
+        <div class="cart-benefit"><span>🚚</span> Envío gratis a todo el país</div>
+        <div class="cart-benefit"><span>💳</span> 3 cuotas sin interés</div>
+      </div>
+    </div>
+
+    <!-- Cart notification message -->
+    <div id="cart-message" role="status" aria-live="polite" class="cart-message"></div>
   </aside>
+
+  <!-- Floating Cart Summary Button -->
+  <div id="cart-summary" class="floating-cart-summary">
+    <div class="cart-icon">🛒</div>
+    <span id="cart-count" class="cart-count">0</span>
+  </div>
+
+  <!-- Cart Styles -->
+  <style>
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px; /* Start off-screen */
+      width: 100%;
+      max-width: 380px;
+      height: 100vh;
+      background-color: white;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      transition: right var(--transition-medium);
+      overflow: hidden;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    /* Cart Header */
+    .cart-drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-m);
+      border-bottom: 1px solid #f0f0f0;
+      background-color: var(--color-primary);
+      color: white;
+    }
+
+    .cart-drawer-header h2 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: white;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: transform var(--transition-fast);
+    }
+
+    .close-btn:hover {
+      transform: scale(1.2);
+    }
+
+    /* Cart Body */
+    .cart-drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--space-m);
+    }
+
+    .empty-cart-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: var(--space-xl) var(--space-m);
+      color: #888;
+    }
+
+    .empty-cart-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-m);
+      color: #ccc;
+    }
+
+    .empty-cart-hint {
+      font-size: 0.9rem;
+      margin-top: var(--space-s);
+    }
+
+    .cart-items {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: var(--space-m) 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .cart-item-image {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--border-radius-sm);
+      object-fit: cover;
+      margin-right: var(--space-m);
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-size {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 4px;
+    }
+
+    .cart-item-price {
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0 var(--space-s);
+      transition: color var(--transition-fast);
+    }
+
+    .cart-item-remove:hover {
+      color: var(--color-error);
+    }
+
+    /* Cart Footer */
+    .cart-drawer-footer {
+      padding: var(--space-m);
+      border-top: 1px solid #f0f0f0;
+      background-color: #f9f9f9;
+    }
+
+    .cart-pricing {
+      margin-bottom: var(--space-m);
+    }
+
+    .cart-subtotal,
+    .cart-shipping,
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .cart-total {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px dashed #ddd;
+    }
+
+    .free-shipping {
+      color: var(--color-success);
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      padding: var(--space-s) var(--space-m);
+      margin-bottom: var(--space-m);
+      background-color: var(--color-success);
+      font-weight: bold;
+    }
+
+    .checkout-btn:hover {
+      background-color: #5a8f3e;
+    }
+
+    .checkout-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .cart-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .cart-benefit {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .cart-benefit span {
+      font-size: 1rem;
+    }
+
+    /* Cart Message */
+    .cart-message {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-primary);
+      color: white;
+      padding: var(--space-s) var(--space-m);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-md);
+      z-index: 1001;
+      opacity: 0;
+      transition: opacity var(--transition-medium);
+      pointer-events: none;
+    }
+
+    .cart-message.visible {
+      opacity: 1;
+    }
+
+    .cart-message.error {
+      background-color: var(--color-error);
+    }
+
+    .cart-message.success {
+      background-color: var(--color-success);
+    }
+
+    /* Floating Cart Summary */
+    .floating-cart-summary {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--color-primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      z-index: 999;
+      transition: transform var(--transition-medium), background-color var(--transition-medium);
+    }
+
+    .floating-cart-summary:hover {
+      transform: scale(1.1);
+      background-color: #663226;
+    }
+
+    .cart-icon {
+      font-size: 1.5rem;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--color-error);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Hide floating cart when in checkout section */
+    .in-checkout .floating-cart-summary {
+      display: none;
+    }
+
+    @media (max-width: 480px) {
+      .cart-drawer {
+        max-width: 100%;
+      }
+    }
+  </style>
 
   <!-- =========================
        Checkout Section
        ========================= -->
-  <!-- =========================
-       Redesigned Checkout Section
-       ========================= -->
-  <section id="checkout" class="checkout-section" aria-label="Formulario de compra" style="background: var(--color-accent); margin-top: var(--space-l); padding: var(--space-l) var(--space-m);">
-    <h2 style="text-align:center;">Completá tu Pedido</h2>
+  <section id="checkout" class="checkout-section" aria-label="Formulario de compra">
+    <div class="container">
+      <h2 class="section-title text-center">Completá tu Pedido</h2>
 
-    <!-- Order Summary dynamically populated from cart array -->
-    <div id="order-summary" style="max-width:600px; margin: var(--space-l) auto; background:#fff; padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <h3 style="margin-bottom: var(--space-m);">Resumen de tu compra</h3>
-      <table style="width:100%; border-collapse: collapse;">
-        <thead>
-          <tr>
-            <th style="text-align:left; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Producto</th>
-            <th style="text-align:left; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Talle</th>
-            <th style="text-align:right; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Precio</th>
-            <th style="text-align:right; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Subtotal</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="cart-items">
-          <!-- Cart items will be injected here dynamically -->
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="3" style="text-align:right; font-weight:bold; padding-top: var(--space-s);">Total:</td>
-            <td id="cart-total" style="text-align:right; font-weight:bold; padding-top: var(--space-s);">$0</td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
+      <div class="checkout-container">
+        <!-- Order Summary Column -->
+        <div class="order-summary-column">
+          <div class="order-summary" id="order-summary">
+            <h3 class="summary-title">Resumen de tu compra</h3>
 
-    <!-- Checkout Form -->
-    <form id="checkout-form" style="max-width:400px; margin: var(--space-l) auto; display:flex; flex-direction:column; gap: var(--space-m); background:#fff; padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-      <!-- Nombre Completo -->
-      <label>Nombre Completo
-        <input type="text" name="name" required placeholder="Ej: María González" aria-required="true">
-      </label>
+            <!-- Empty order message -->
+            <div id="empty-order-message" class="empty-order-message">
+              <div class="empty-order-icon">🛒</div>
+              <p>No has seleccionado productos</p>
+              <a href="#products" class="btn btn-sm">Ver productos</a>
+            </div>
 
-      <!-- Email -->
-      <label>Email
-        <input type="email" name="email" required placeholder="tu@email.com" aria-required="true">
-      </label>
+            <!-- Order items -->
+            <div id="order-items-container" class="order-items-container">
+              <div class="order-items">
+                <!-- Order items will be injected here dynamically -->
+              </div>
 
-      <!-- WhatsApp -->
-      <label>WhatsApp
-        <input type="tel" name="whatsapp" required placeholder="+54 9 11 1234-5678" aria-required="true">
-      </label>
+              <div class="order-totals">
+                <div class="order-subtotal">
+                  <span>Subtotal:</span>
+                  <span id="order-subtotal">$0</span>
+                </div>
+                <div class="order-shipping">
+                  <span>Envío:</span>
+                  <span class="free-shipping">GRATIS</span>
+                </div>
+                <div class="order-total">
+                  <span>Total:</span>
+                  <span id="order-total">$0</span>
+                </div>
+              </div>
+            </div>
 
-      <!-- Dirección completa -->
-      <label>Dirección completa
-        <input type="text" name="address" required placeholder="Calle, número, ciudad" aria-required="true">
-      </label>
-
-      <!-- Método de Pago visual selector -->
-      <div>
-        <p>Método de Pago</p>
-        <div id="payment-methods" style="display:flex; gap: var(--space-s); flex-wrap:wrap;">
-          <button type="button" class="payment-option" data-method="tarjeta" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">💳 Tarjeta</button>
-          <button type="button" class="payment-option" data-method="mercadopago" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">🛒 MercadoPago</button>
-          <button type="button" class="payment-option" data-method="cbu" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">🏦 Transferencia</button>
+            <!-- Order benefits -->
+            <div class="order-benefits">
+              <div class="benefit-item">
+                <div class="benefit-icon">🚚</div>
+                <div class="benefit-text">
+                  <strong>Envío gratis</strong>
+                  <span>A todo el país</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">💳</div>
+                <div class="benefit-text">
+                  <strong>3 cuotas sin interés</strong>
+                  <span>Con todas las tarjetas</span>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon">🔔</div>
+                <div class="benefit-text">
+                  <strong>Satisfacción garantizada</strong>
+                  <span>Calidad asegurada</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <input type="hidden" name="payment" required aria-required="true">
-        <div class="payment-error" style="color: var(--color-error); font-size:0.9rem; display:none;">Selecciona un método de pago</div>
+
+        <!-- Checkout Form Column -->
+        <div class="checkout-form-column">
+          <form id="checkout-form" class="checkout-form">
+            <h3 class="form-title">Datos de envío</h3>
+
+            <div class="form-group">
+              <label for="name">Nombre Completo <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="Ej: María González">
+              <div class="form-error" id="name-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="tu@email.com">
+              <div class="form-error" id="email-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="whatsapp">WhatsApp <span class="required">*</span></label>
+              <div class="input-with-icon">
+                <span class="input-icon">📱</span>
+                <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+54 9 11 1234-5678">
+              </div>
+              <div class="form-hint">Te enviaremos el seguimiento por WhatsApp</div>
+              <div class="form-error" id="whatsapp-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="address">Dirección completa <span class="required">*</span></label>
+              <textarea id="address" name="address" required placeholder="Calle, número, piso/depto&#10;Ciudad, Provincia, Código Postal" rows="3"></textarea>
+              <div class="form-error" id="address-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Método de Pago <span class="required">*</span></label>
+              <div id="payment-methods" class="payment-methods">
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="tarjeta">
+                  <span class="payment-option-inner">
+                    <span class="payment-icon">💳</span>
+                    <span class="payment-label">Tarjeta</span>
+                  </span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="mercadopago">
+                  <span class="payment-option-inner">
+                    <span class="payment-icon">🛒</span>
+                    <span class="payment-label">MercadoPago</span>
+                  </span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="payment" value="cbu">
+                  <span class="payment-option-inner">
+                    <span class="payment-icon">🏦</span>
+                    <span class="payment-label">Transferencia</span>
+                    <span class="payment-discount">10% OFF</span>
+                  </span>
+                </label>
+              </div>
+              <div class="form-error" id="payment-error"></div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" id="submit-order" class="btn submit-btn" disabled>Confirmar Pedido</button>
+            </div>
+
+            <div id="form-message" role="status" aria-live="polite" class="form-message"></div>
+
+            <div class="form-footer">
+              <p class="secure-payment">
+                <span class="secure-icon">🔒</span> Pago 100% Seguro
+              </p>
+              <p class="form-disclaimer">Al confirmar tu pedido, aceptas nuestros <a href="#">términos y condiciones</a>.</p>
+            </div>
+          </form>
+        </div>
       </div>
-
-      <!-- Submit Button -->
-      <button type="submit" id="submit-order" disabled style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:not-allowed; opacity:0.6;">Confirmar Pedido</button>
-
-      <!-- Validation / Status Message -->
-      <div id="form-message" role="status" aria-live="polite" style="color: var(--color-error); font-size:0.9rem;"></div>
-
-      <!-- Trust Badges -->
-      <div class="trust-badges" style="margin-top: var(--space-m); text-align:center;">
-        <span>🔒 Pago 100% Seguro</span> | <span>🚚 Envíos a todo el país</span> | <span>❤️ Satisfacción garantizada</span>
-      </div>
-    </form>
+    </div>
   </section>
 
+  <!-- Checkout Section Styles -->
+  <style>
+    .checkout-section {
+      background-color: var(--color-neutral-light);
+      padding-bottom: var(--space-xxl);
+    }
+
+    .checkout-container {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      margin-top: var(--space-l);
+    }
+
+    /* Order Summary Styles */
+    .order-summary {
+      background-color: white;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-l);
+      height: 100%;
+    }
+
+    .summary-title {
+      margin-bottom: var(--space-m);
+      padding-bottom: var(--space-s);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .empty-order-message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-xl) 0;
+      color: #888;
+    }
+
+    .empty-order-icon {
+      font-size: 3rem;
+      margin-bottom: var(--space-m);
+      color: #ccc;
+    }
+
+    .empty-order-message .btn {
+      margin-top: var(--space-m);
+    }
+
+    .btn-sm {
+      padding: var(--space-xs) var(--space-m);
+      font-size: 0.9rem;
+    }
+
+    .order-items {
+      margin-bottom: var(--space-m);
+    }
+
+    .order-item {
+      display: flex;
+      align-items: center;
+      padding: var(--space-s) 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .order-item-image {
+      width: 50px;
+      height: 50px;
+      border-radius: var(--border-radius-sm);
+      object-fit: cover;
+      margin-right: var(--space-s);
+    }
+
+    .order-item-details {
+      flex: 1;
+    }
+
+    .order-item-title {
+      font-weight: bold;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .order-item-size {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .order-item-price {
+      font-weight: bold;
+      color: var(--color-primary);
+      margin-left: var(--space-m);
+    }
+
+    .order-totals {
+      margin-top: var(--space-m);
+      padding-top: var(--space-s);
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .order-subtotal,
+    .order-shipping,
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .order-total {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px dashed #ddd;
+    }
+
+    .free-shipping {
+      color: var(--color-success);
+      font-weight: bold;
+    }
+
+    .order-benefits {
+      margin-top: var(--space-l);
+      padding-top: var(--space-m);
+      border-top: 1px solid #f0f0f0;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--space-s);
+    }
+
+    .benefit-icon {
+      font-size: 1.5rem;
+      margin-right: var(--space-s);
+      color: var(--color-primary);
+    }
+
+    .benefit-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .benefit-text strong {
+      font-size: 0.95rem;
+    }
+
+    .benefit-text span {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Checkout Form Styles */
+    .checkout-form {
+      background-color: white;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-md);
+      padding: var(--space-l);
+    }
+
+    .form-title {
+      margin-bottom: var(--space-m);
+      padding-bottom: var(--space-s);
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .form-group {
+      margin-bottom: var(--space-m);
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: var(--space-xs);
+      font-weight: 500;
+    }
+
+    .required {
+      color: var(--color-error);
+    }
+
+    .input-with-icon {
+      position: relative;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #666;
+    }
+
+    .input-with-icon input {
+      padding-left: 35px;
+    }
+
+    .form-hint {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 3px;
+    }
+
+    .form-error {
+      color: var(--color-error);
+      font-size: 0.85rem;
+      margin-top: 3px;
+      min-height: 1.2em;
+    }
+
+    .payment-methods {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-s);
+    }
+
+    .payment-option {
+      flex: 1;
+      min-width: 100px;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .payment-option input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .payment-option-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: var(--space-m) var(--space-s);
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius-md);
+      transition: all var(--transition-fast);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .payment-option input:checked + .payment-option-inner {
+      border-color: var(--color-primary);
+      background-color: rgba(122, 59, 46, 0.05);
+    }
+
+    .payment-option:hover .payment-option-inner {
+      border-color: var(--color-primary);
+    }
+
+    .payment-icon {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .payment-label {
+      font-weight: 500;
+    }
+
+    .payment-discount {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--color-success);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 0 var(--border-radius-md) 0 var(--border-radius-md);
+    }
+
+    .form-actions {
+      margin-top: var(--space-l);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: var(--space-m);
+      font-size: 1.1rem;
+      font-weight: bold;
+      background-color: var(--color-success);
+    }
+
+    .submit-btn:hover {
+      background-color: #5a8f3e;
+    }
+
+    .submit-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .form-message {
+      margin-top: var(--space-m);
+      padding: var(--space-s);
+      border-radius: var(--border-radius-sm);
+      text-align: center;
+      font-weight: 500;
+      min-height: 1.5em;
+    }
+
+    .form-message.error {
+      background-color: rgba(188, 71, 73, 0.1);
+      color: var(--color-error);
+    }
+
+    .form-message.success {
+      background-color: rgba(106, 153, 78, 0.1);
+      color: var(--color-success);
+    }
+
+    .form-footer {
+      margin-top: var(--space-l);
+      padding-top: var(--space-m);
+      border-top: 1px solid #f0f0f0;
+      text-align: center;
+    }
+
+    .secure-payment {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      margin-bottom: var(--space-s);
+      font-weight: 500;
+    }
+
+    .secure-icon {
+      color: var(--color-success);
+    }
+
+    .form-disclaimer {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Responsive Layout */
+    @media (min-width: 992px) {
+      .checkout-container {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      .order-summary-column {
+        flex: 1;
+        position: sticky;
+        top: 20px;
+      }
+
+      .checkout-form-column {
+        flex: 1.5;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .payment-methods {
+        flex-direction: column;
+      }
+
+      .payment-option {
+        width: 100%;
+      }
+
+      .payment-option-inner {
+        flex-direction: row;
+        justify-content: flex-start;
+        padding: var(--space-s) var(--space-m);
+      }
+
+      .payment-icon {
+        margin-bottom: 0;
+        margin-right: var(--space-s);
+      }
+    }
+  </style>
+
   <!-- =========================
-       Testimonials Section (Redesigned as Cards)
+       Testimonials Section
        ========================= -->
   <section id="testimonials" class="testimonials-section" aria-label="Testimonios">
-    <h2 style="text-align:center;">Lo que dicen nuestras clientas</h2>
-    <!-- Testimonials container: responsive grid of cards -->
-    <div class="testimonial-cards" style="
+    <div class="container">
+      <h2 class="section-title text-center">Lo que dicen nuestras clientas</h2>
+
+      <div class="testimonials-container">
+        <!-- Testimonial Card 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="quote-icon">“</div>
+            <blockquote class="testimonial-quote">
+              Me enamoré apenas abrí la caja. Son cómodos y hermosos, ¡no me los saco más! La calidad es excelente y el diseño es justo lo que buscaba.
+            </blockquote>
+            <div class="testimonial-rating">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="comentariorecibi1.webp" alt="María G." class="author-image" loading="lazy">
+            <div class="author-info">
+              <div class="author-name">María G.</div>
+              <div class="author-location">Buenos Aires</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial Card 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="quote-icon">“</div>
+            <blockquote class="testimonial-quote">
+              La calidad es increíble y el diseño super delicado. ¡Ya quiero otro par! Además, el envío fue muy rápido y el packaging precioso.
+            </blockquote>
+            <div class="testimonial-rating">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="comentariorecibi2.webp" alt="Lucía R." class="author-image" loading="lazy">
+            <div class="author-info">
+              <div class="author-name">Lucía R.</div>
+              <div class="author-location">Rosario</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial Card 3 -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            <div class="quote-icon">“</div>
+            <blockquote class="testimonial-quote">
+              Atención excelente y el envío rapidísimo. ¡Recomiendo 100%! Los zapatos son exactamente como en las fotos y muy cómodos desde el primer uso.
+            </blockquote>
+            <div class="testimonial-rating">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+          </div>
+          <div class="testimonial-author">
+            <img src="comentariorecibi4.webp" alt="Sofía M." class="author-image" loading="lazy">
+            <div class="author-info">
+              <div class="author-name">Sofía M.</div>
+              <div class="author-location">Córdoba</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Instagram-style social proof -->
+      <div class="social-proof">
+        <h3 class="social-proof-title">Síguenos en Instagram</h3>
+        <p class="social-proof-subtitle">@rositarococo</p>
+
+        <div class="instagram-grid">
+          <a href="#" class="instagram-item">
+            <img src="comentariorecibi5.webp" alt="Instagram post" loading="lazy">
+            <div class="instagram-overlay">
+              <span class="instagram-icon">❤️</span>
+            </div>
+          </a>
+          <a href="#" class="instagram-item">
+            <img src="comentariorecibi6.webp" alt="Instagram post" loading="lazy">
+            <div class="instagram-overlay">
+              <span class="instagram-icon">❤️</span>
+            </div>
+          </a>
+          <a href="#" class="instagram-item">
+            <img src="comentariorecibi7.webp" alt="Instagram post" loading="lazy">
+            <div class="instagram-overlay">
+              <span class="instagram-icon">❤️</span>
+            </div>
+          </a>
+          <a href="#" class="instagram-item">
+            <img src="comentariorecibi8.webp" alt="Instagram post" loading="lazy">
+            <div class="instagram-overlay">
+              <span class="instagram-icon">❤️</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section Styles -->
+  <style>
+    .testimonials-section {
+      background-color: white;
+      padding-bottom: var(--space-xxl);
+    }
+
+    .testimonials-container {
       display: grid;
       grid-template-columns: 1fr;
       gap: var(--space-l);
-      margin-top: var(--space-l);
-    ">
-      <!-- Testimonial Card 1 -->
-      <div class="testimonial-card" style="
-        background: var(--color-neutral-bg);
-        padding: var(--space-m);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      ">
-        <!-- Avatar -->
-        <img src="comentariorecibi1.webp" alt="Clienta feliz" style="
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-bottom: var(--space-m);
-        ">
-        <!-- Highlighted Quote -->
-        <blockquote style="
-          font-style: italic;
-          font-size: 1.1em;
-          color: var(--color-text);
-          margin-bottom: var(--space-m);
-        ">"Me enamoré apenas abrí la caja. Son cómodos y hermosos, ¡no me los saco más!"</blockquote>
-        <!-- Customer Info -->
-        <div class="customer-info" style="font-weight: bold;">
-          María G.
-          <!-- <span class="customer-city">Buenos Aires</span> -->
-          <!-- <span class="customer-rating">★★★★★</span> -->
-        </div>
-      </div>
+      margin-top: var(--space-xl);
+    }
 
-      <!-- Testimonial Card 2 -->
-      <div class="testimonial-card" style="
-        background: var(--color-neutral-bg);
-        padding: var(--space-m);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      ">
-        <img src="comentariorecibi2.webp" alt="Clienta feliz" style="
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-bottom: var(--space-m);
-        ">
-        <blockquote style="
-          font-style: italic;
-          font-size: 1.1em;
-          color: var(--color-text);
-          margin-bottom: var(--space-m);
-        ">"La calidad es increíble y el diseño super delicado. ¡Ya quiero otro par!"</blockquote>
-        <div class="customer-info" style="font-weight: bold;">
-          Lucía R.
-          <!-- <span class="customer-city">Rosario</span> -->
-          <!-- <span class="customer-rating">★★★★★</span> -->
-        </div>
-      </div>
+    .testimonial-card {
+      background-color: var(--color-neutral-light);
+      border-radius: var(--border-radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: transform var(--transition-medium);
+    }
 
-      <!-- Testimonial Card 3 -->
-      <div class="testimonial-card" style="
-        background: var(--color-neutral-bg);
-        padding: var(--space-m);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      ">
-        <img src="comentariorecibi4.webp" alt="Clienta feliz" style="
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          object-fit: cover;
-          margin-bottom: var(--space-m);
-        ">
-        <blockquote style="
-          font-style: italic;
-          font-size: 1.1em;
-          color: var(--color-text);
-          margin-bottom: var(--space-m);
-        ">"Atención excelente y el envío rapidísimo. ¡Recomiendo 100%!"</blockquote>
-        <div class="customer-info" style="font-weight: bold;">
-          Sofía M.
-          <!-- <span class="customer-city">Córdoba</span> -->
-          <!-- <span class="customer-rating">★★★★★</span> -->
-        </div>
-      </div>
-    </div>
-    <!-- Responsive enhancement: 2 columns on larger screens -->
-    <style>
-      @media (min-width: 600px) {
-        #testimonials .testimonial-cards {
-          grid-template-columns: repeat(2, 1fr);
-        }
+    .testimonial-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .testimonial-content {
+      position: relative;
+      padding: var(--space-l);
+      padding-top: var(--space-xl);
+    }
+
+    .quote-icon {
+      position: absolute;
+      top: var(--space-m);
+      left: var(--space-m);
+      font-size: 3rem;
+      color: var(--color-primary);
+      opacity: 0.2;
+      font-family: serif;
+      line-height: 1;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0 0 var(--space-m) 0;
+      color: var(--color-neutral-dark);
+    }
+
+    .testimonial-rating {
+      color: #FFD700; /* Gold color for stars */
+      font-size: 1.2rem;
+      margin-bottom: var(--space-s);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      padding: var(--space-m);
+      background-color: white;
+      border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .author-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: var(--space-m);
+      border: 2px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .author-name {
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .author-location {
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    /* Instagram-style Social Proof */
+    .social-proof {
+      margin-top: var(--space-xxl);
+      text-align: center;
+    }
+
+    .social-proof-title {
+      margin-bottom: var(--space-xs);
+    }
+
+    .social-proof-subtitle {
+      color: #666;
+      margin-bottom: var(--space-l);
+      font-size: 1.1rem;
+    }
+
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-s);
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .instagram-item {
+      position: relative;
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+    }
+
+    .instagram-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-medium);
+    }
+
+    .instagram-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition-medium);
+    }
+
+    .instagram-icon {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .instagram-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .instagram-item:hover .instagram-overlay {
+      opacity: 1;
+    }
+
+    /* Responsive Adjustments */
+    @media (min-width: 768px) {
+      .testimonials-container {
+        grid-template-columns: repeat(2, 1fr);
       }
-      @media (min-width: 900px) {
-        #testimonials .testimonial-cards {
-          grid-template-columns: repeat(3, 1fr);
-        }
+
+      .instagram-grid {
+        grid-template-columns: repeat(4, 1fr);
       }
-    </style>
-  </section>
+    }
+
+    @media (min-width: 992px) {
+      .testimonials-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 
 </main>
 
