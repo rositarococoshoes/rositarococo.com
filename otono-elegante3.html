@@ -4,34 +4,274 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Rosita Rococó - Colección Otoño-Invierno 2025</title>
+
+<!-- =========================
+     Base Design System Variables
+     ========================= -->
+<style>
+  :root {
+    /* Palette: warm elegant tones */
+    --color-primary: #4E342E;        /* Dark brown */
+    --color-secondary: #A1887F;      /* Light brown/beige */
+    --color-accent: #D7CCC8;         /* Soft beige */
+    --color-neutral-bg: #FFFFFF;     /* White background */
+    --color-neutral-dark: #000000;   /* Black text */
+    --color-success: #6A994E;        /* Green for success */
+    --color-error: #BC4749;          /* Red for errors */
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Lato', sans-serif;
+
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.5rem;
+    --font-size-h4: 1.25rem;
+    --font-size-h5: 1.125rem;
+    --font-size-h6: 1rem;
+    --font-size-p: 1rem;
+    --font-size-button: 1rem;
+
+    /* Spacing scale */
+    --space-xs: 0.25rem;
+    --space-s: 0.5rem;
+    --space-m: 1rem;
+    --space-l: 2rem;
+    --space-xl: 4rem;
+  }
+
+  /* Basic responsive layout helpers */
+  body {
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+
+  section {
+    padding: var(--space-l) var(--space-m);
+  }
+
+  /* Responsive grid for product and testimonial lists */
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-m);
+  }
+
+  @media (min-width: 600px) {
+    .grid-responsive {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+  }
+</style>
+
 <!-- Google Fonts: Elegant pairing -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="otono-elegante3.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="otono-elegante3.js" defer></script>
+
+<!-- Optimization Notes:
+- Minify 'otono-elegante3.css' before production (e.g., cssnano, online tools).
+- Minify 'otono-elegante3.js' before production (e.g., terser, online tools).
+- Convert 'coverrosi-min.jpg' (hero background) to .webp or .avif for better performance.
+- Verify all other images are optimized (most product/testimonial images already use .webp).
+- Check color contrast accessibility with tools like WebAIM Contrast Checker.
+-->
+
 </head>
 <body>
 
-<!-- Immersive fullscreen hero with emotional storytelling -->
-<header class="hero" role="banner" style="background-image: url('coverrosi-min.jpg'); background-size: cover; background-position: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: #fff;">
-  <h1>Descubrí la nueva colección que celebra tu esencia</h1>
-  <p>Diseños que abrazan tu caminar con pasión, estilo y calidez otoñal</p>
-  <button onclick="window.scrollTo({top: document.querySelector('#products').offsetTop, behavior: 'smooth'});" style="margin-top: 1rem;">Ver Colección</button>
-  <div class="trust-signals" aria-label="Confianza" style="margin-top: 2rem;">
-    <span>🚚 Envío Gratis</span>
-    <span>💳 3 Cuotas sin interés</span>
-    <span>🔒 Compra Segura</span>
+<!-- =========================
+     Hero Section
+     ========================= -->
+<!-- =========================
+     Hero Section - Nueva Colección Otoño
+     ========================= -->
+<section class="hero-section" role="banner" style="
+  position: relative;
+  background-image: url('coverrosi-min.jpg'); /* Convert this to .webp or .avif for optimization */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  padding: var(--space-l) var(--space-m);
+">
+  <!-- Overlay for better text readability -->
+  <div style="
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+  "></div>
+
+  <!-- Hero Content -->
+  <div style="position: relative; z-index: 2; max-width: 800px;">
+    <h1 style="font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--space-m);">
+      Descubrí la Nueva Colección Otoño: Elegancia y Comodidad
+    </h1>
+    <p style="font-size: var(--font-size-p); margin-bottom: var(--space-l);">
+      Inspirada en la calidez otoñal, nuestra nueva colección combina materiales suaves, diseño elegante y comodidad para acompañarte en cada paso con estilo.
+    </p>
+    <button onclick="window.scrollTo({top: document.querySelector('#products').offsetTop, behavior: 'smooth'});" style="
+      background-color: var(--color-primary);
+      color: #fff;
+      border: none;
+      padding: var(--space-s) var(--space-l);
+      font-size: var(--font-size-button);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    " onmouseover="this.style.backgroundColor='var(--color-secondary)'" onmouseout="this.style.backgroundColor='var(--color-primary)'">
+      Ver Diseños
+    </button>
   </div>
-</header>
+</section>
 
 <main role="main">
 
-  <!-- Product Grid -->
-  <section id="products" aria-label="Lista de productos" style="padding: 2rem 1rem;">
+  <!-- =========================
+       Products Section
+       ========================= -->
+  <section id="products" class="products-section" aria-label="Lista de productos">
     <h2 style="text-align:center;">Elige tu próximo par favorito</h2>
-    <!-- Large edge-to-edge product grid -->
-    <div class="product-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-top: 2rem;">
-      <!-- Product cards generated dynamically by JS, preserving hook -->
+    <div class="product-list grid-responsive" style="margin-top: var(--space-l);">
+
+      <!-- =========================
+           Product Card Template
+           ========================= -->
+
+      <!-- Product Card 1 -->
+      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
+        <!-- Product Image -->
+        <img src="1-atlanta-negras.webp" alt="Zapato Atlanta Negro" style="width:100%; border-radius:8px; object-fit:cover;">
+
+        <!-- Product Info -->
+        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
+          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Atlanta Negro</h3>
+          <div style="font-size: var(--font-size-p);">
+            <span style="font-weight:bold;">$12,000</span>
+            <span style="text-decoration: line-through; color: var(--color-secondary); margin-left: var(--space-s);">$15,000</span>
+          </div>
+        </div>
+
+        <!-- Size Selector -->
+        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
+          <!-- Example sizes -->
+          <label style="flex:1;">
+            <input type="radio" name="size1" value="35" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size1" value="36" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size1" value="37" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size1" value="38" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size1" value="39" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
+          </label>
+        </div>
+
+        <!-- Add to Cart Button -->
+        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
+          Agregar al Carrito
+        </button>
+      </div>
+
+      <!-- Repeat Product Card 2 -->
+      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
+        <img src="2-furia.webp" alt="Zapato Furia" style="width:100%; border-radius:8px; object-fit:cover;">
+        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
+          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Furia</h3>
+          <div style="font-size: var(--font-size-p);">
+            <span style="font-weight:bold;">$10,500</span>
+          </div>
+        </div>
+        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
+          <label style="flex:1;">
+            <input type="radio" name="size2" value="35" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size2" value="36" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size2" value="37" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size2" value="38" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size2" value="39" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
+          </label>
+        </div>
+        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
+          Agregar al Carrito
+        </button>
+      </div>
+
+      <!-- Repeat Product Card 3 -->
+      <div class="product-card" style="background: var(--color-neutral-bg); padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; gap: var(--space-m);">
+        <img src="3-furia.webp" alt="Zapato Furia Nude" style="width:100%; border-radius:8px; object-fit:cover;">
+        <div style="display:flex; flex-direction:column; gap: var(--space-s);">
+          <h3 style="font-family: var(--font-serif); font-size: var(--font-size-h3); margin:0;">Furia Nude</h3>
+          <div style="font-size: var(--font-size-p);">
+            <span style="font-weight:bold;">$11,000</span>
+          </div>
+        </div>
+        <div role="group" aria-label="Seleccionar Talle" style="display:flex; flex-wrap:wrap; gap: var(--space-xs);">
+          <label style="flex:1;">
+            <input type="radio" name="size3" value="35" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">35</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size3" value="36" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">36</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size3" value="37" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">37</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size3" value="38" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">38</span>
+          </label>
+          <label style="flex:1;">
+            <input type="radio" name="size3" value="39" style="display:none;">
+            <span style="display:block; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; text-align:center; cursor:pointer;">39</span>
+          </label>
+        </div>
+        <button style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:pointer;">
+          Agregar al Carrito
+        </button>
+      </div>
+
+      <!-- End Product Cards -->
+
     </div>
   </section>
 
@@ -44,74 +284,261 @@
     <div id="cart-message" role="status" aria-live="polite" style="margin:1rem;"></div>
   </aside>
 
-  <!-- Embedded Checkout Form with trust badges -->
-  <section id="checkout" aria-label="Formulario de compra" style="padding: 2rem 1rem; background: #f9f9f9; margin-top:2rem;">
-    <h2 style="text-align:center;">Finalizá tu compra con confianza</h2>
-    <form id="checkout-form" style="max-width:400px; margin:2rem auto; display:flex; flex-direction:column; gap:1rem;">
-      <label>👤 Nombre
-        <input type="text" name="name" required placeholder="Tu nombre completo" aria-required="true">
+  <!-- =========================
+       Checkout Section
+       ========================= -->
+  <!-- =========================
+       Redesigned Checkout Section
+       ========================= -->
+  <section id="checkout" class="checkout-section" aria-label="Formulario de compra" style="background: var(--color-accent); margin-top: var(--space-l); padding: var(--space-l) var(--space-m);">
+    <h2 style="text-align:center;">Completá tu Pedido</h2>
+
+    <!-- Order Summary dynamically populated from cart array -->
+    <div id="order-summary" style="max-width:600px; margin: var(--space-l) auto; background:#fff; padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <h3 style="margin-bottom: var(--space-m);">Resumen de tu compra</h3>
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Producto</th>
+            <th style="text-align:left; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Talle</th>
+            <th style="text-align:right; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Precio</th>
+            <th style="text-align:right; padding-bottom: var(--space-s); border-bottom:1px solid var(--color-secondary);">Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Cart items will be injected here dynamically -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" style="text-align:right; font-weight:bold; padding-top: var(--space-s);">Total:</td>
+            <td id="cart-total" style="text-align:right; font-weight:bold; padding-top: var(--space-s);">$0</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Checkout Form -->
+    <form id="checkout-form" style="max-width:400px; margin: var(--space-l) auto; display:flex; flex-direction:column; gap: var(--space-m); background:#fff; padding: var(--space-m); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      <!-- Nombre Completo -->
+      <label>Nombre Completo
+        <input type="text" name="name" required placeholder="Ej: María González" aria-required="true">
       </label>
-      <label>📧 Email
+
+      <!-- Email -->
+      <label>Email
         <input type="email" name="email" required placeholder="tu@email.com" aria-required="true">
       </label>
-      <label>📱 WhatsApp
-        <input type="tel" name="whatsapp" required placeholder="Ej: +54 9 11 1234-5678" aria-required="true">
+
+      <!-- WhatsApp -->
+      <label>WhatsApp
+        <input type="tel" name="whatsapp" required placeholder="+54 9 11 1234-5678" aria-required="true">
       </label>
-      <label>🏠 Dirección
+
+      <!-- Dirección completa -->
+      <label>Dirección completa
         <input type="text" name="address" required placeholder="Calle, número, ciudad" aria-required="true">
       </label>
-      <label>💳 Método de Pago
-        <select name="payment" required aria-required="true">
-          <option value="">Selecciona un método</option>
-          <option value="tarjeta">Tarjeta</option>
-          <option value="mercadopago">MercadoPago</option>
-          <option value="cbu">Transferencia (10% OFF)</option>
-        </select>
-      </label>
-      <button type="submit">Confirmar Pedido</button>
-      <div id="form-message" role="status" aria-live="polite"></div>
-      <div class="trust-badges" style="margin-top:1rem; text-align:center;">
+
+      <!-- Método de Pago visual selector -->
+      <div>
+        <p>Método de Pago</p>
+        <div id="payment-methods" style="display:flex; gap: var(--space-s); flex-wrap:wrap;">
+          <button type="button" class="payment-option" data-method="tarjeta" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">💳 Tarjeta</button>
+          <button type="button" class="payment-option" data-method="mercadopago" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">🛒 MercadoPago</button>
+          <button type="button" class="payment-option" data-method="cbu" style="flex:1; padding: var(--space-s); border:1px solid var(--color-secondary); border-radius:4px; background:#fff; cursor:pointer;">🏦 Transferencia</button>
+        </div>
+        <input type="hidden" name="payment" required aria-required="true">
+        <div class="payment-error" style="color: var(--color-error); font-size:0.9rem; display:none;">Selecciona un método de pago</div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="submit-order" disabled style="background-color: var(--color-primary); color:#fff; border:none; padding: var(--space-s) var(--space-m); font-size: var(--font-size-button); border-radius:4px; cursor:not-allowed; opacity:0.6;">Confirmar Pedido</button>
+
+      <!-- Validation / Status Message -->
+      <div id="form-message" role="status" aria-live="polite" style="color: var(--color-error); font-size:0.9rem;"></div>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges" style="margin-top: var(--space-m); text-align:center;">
         <span>🔒 Pago 100% Seguro</span> | <span>🚚 Envíos a todo el país</span> | <span>❤️ Satisfacción garantizada</span>
       </div>
     </form>
   </section>
 
-  <!-- Testimonials as styled quote cards -->
-  <section id="testimonials" aria-label="Testimonios" style="padding: 2rem 1rem;">
+  <!-- =========================
+       Testimonials Section (Redesigned as Cards)
+       ========================= -->
+  <section id="testimonials" class="testimonials-section" aria-label="Testimonios">
     <h2 style="text-align:center;">Lo que dicen nuestras clientas</h2>
-    <div class="testimonial-list" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top:2rem;">
-      
-      <figure style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; text-align:center;">
-        <img src="comentariorecibi1.webp" alt="Clienta feliz" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:1rem;">
-        <blockquote style="font-style:italic;">"Me enamoré apenas abrí la caja. Son cómodos y hermosos, ¡no me los saco más!"</blockquote>
-        <figcaption style="margin-top:0.5rem;">María G.</figcaption>
-      </figure>
+    <!-- Testimonials container: responsive grid of cards -->
+    <div class="testimonial-cards" style="
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+      margin-top: var(--space-l);
+    ">
+      <!-- Testimonial Card 1 -->
+      <div class="testimonial-card" style="
+        background: var(--color-neutral-bg);
+        padding: var(--space-m);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      ">
+        <!-- Avatar -->
+        <img src="comentariorecibi1.webp" alt="Clienta feliz" style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-bottom: var(--space-m);
+        ">
+        <!-- Highlighted Quote -->
+        <blockquote style="
+          font-style: italic;
+          font-size: 1.1em;
+          color: var(--color-text);
+          margin-bottom: var(--space-m);
+        ">"Me enamoré apenas abrí la caja. Son cómodos y hermosos, ¡no me los saco más!"</blockquote>
+        <!-- Customer Info -->
+        <div class="customer-info" style="font-weight: bold;">
+          María G.
+          <!-- <span class="customer-city">Buenos Aires</span> -->
+          <!-- <span class="customer-rating">★★★★★</span> -->
+        </div>
+      </div>
 
-      <figure style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; text-align:center;">
-        <img src="comentariorecibi2.webp" alt="Clienta feliz" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:1rem;">
-        <blockquote style="font-style:italic;">"La calidad es increíble y el diseño super delicado. ¡Ya quiero otro par!"</blockquote>
-        <figcaption style="margin-top:0.5rem;">Lucía R.</figcaption>
-      </figure>
+      <!-- Testimonial Card 2 -->
+      <div class="testimonial-card" style="
+        background: var(--color-neutral-bg);
+        padding: var(--space-m);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      ">
+        <img src="comentariorecibi2.webp" alt="Clienta feliz" style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-bottom: var(--space-m);
+        ">
+        <blockquote style="
+          font-style: italic;
+          font-size: 1.1em;
+          color: var(--color-text);
+          margin-bottom: var(--space-m);
+        ">"La calidad es increíble y el diseño super delicado. ¡Ya quiero otro par!"</blockquote>
+        <div class="customer-info" style="font-weight: bold;">
+          Lucía R.
+          <!-- <span class="customer-city">Rosario</span> -->
+          <!-- <span class="customer-rating">★★★★★</span> -->
+        </div>
+      </div>
 
-      <figure style="background:#fff; padding:1rem; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; align-items:center; text-align:center;">
-        <img src="comentariorecibi4.webp" alt="Clienta feliz" style="width:80px; height:80px; border-radius:50%; object-fit:cover; margin-bottom:1rem;">
-        <blockquote style="font-style:italic;">"Atención excelente y el envío rapidísimo. ¡Recomiendo 100%!"</blockquote>
-        <figcaption style="margin-top:0.5rem;">Sofía M.</figcaption>
-      </figure>
-
+      <!-- Testimonial Card 3 -->
+      <div class="testimonial-card" style="
+        background: var(--color-neutral-bg);
+        padding: var(--space-m);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      ">
+        <img src="comentariorecibi4.webp" alt="Clienta feliz" style="
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-bottom: var(--space-m);
+        ">
+        <blockquote style="
+          font-style: italic;
+          font-size: 1.1em;
+          color: var(--color-text);
+          margin-bottom: var(--space-m);
+        ">"Atención excelente y el envío rapidísimo. ¡Recomiendo 100%!"</blockquote>
+        <div class="customer-info" style="font-weight: bold;">
+          Sofía M.
+          <!-- <span class="customer-city">Córdoba</span> -->
+          <!-- <span class="customer-rating">★★★★★</span> -->
+        </div>
+      </div>
     </div>
+    <!-- Responsive enhancement: 2 columns on larger screens -->
+    <style>
+      @media (min-width: 600px) {
+        #testimonials .testimonial-cards {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (min-width: 900px) {
+        #testimonials .testimonial-cards {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    </style>
   </section>
 
 </main>
 
-<!-- Clear comments for developers -->
-<!-- 
+<!-- =========================
+     Footer Placeholder
+     ========================= -->
+<footer style="padding: var(--space-l) var(--space-m); background: var(--color-primary); color: var(--color-neutral-bg); text-align: center;">
+  <p>&copy; 2025 Rosita Rococó. Todos los derechos reservados.</p>
+</footer>
+
+<!-- =========================
+     Developer Notes
+     ========================= -->
+<!--
   - Hero section: immersive lifestyle image with emotional tagline and CTA
   - Product grid: dynamically populated, large images, minimal text
   - Cart drawer: hidden by default, slides in/out, preserves cart hooks
   - Checkout form: embedded, inviting, with trust badges
   - Testimonials: styled quote cards with photos and emotional quotes
   - All product/cart hooks preserved for JS integration
+  - Base design system variables defined in <style> inside <head>
+  - Layout is mobile-first, vertical flow, with responsive grids
+-->
+
+<!-- Floating Cart Summary -->
+<div id="cart-summary" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background-color 0.3s ease;
+">
+  0
+</div>
+
+<!-- Final Optimization Checklist:
+- Minify CSS/JS files before production.
+- Convert hero background image to .webp or .avif.
+- Consider lazy loading images (add loading="lazy" to <img> tags).
+- Verify color contrast accessibility.
 -->
 
 </body>

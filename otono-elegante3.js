@@ -151,4 +151,167 @@ $(function() {
     updateCartDisplay();
     this.reset();
   });
+/* ============================
+   Static Product Cards Cart Logic
+   ============================ */
+  
+  // Attach click event to all static "Agregar al Carrito" buttons
+  $('.product-card button').on('click', function() {
+    const $btn = $(this);
+    const $card = $btn.closest('.product-card');
+    const productName = $card.find('h3').text().trim();
+    const priceText = $card.find('span[style*="font-weight:bold"]').first().text().replace('$','').replace('.','').replace(',','').trim();
+    const price = parseInt(priceText.replace(/\D/g, '')) || 0;
+
+    // Find selected size radio input within this card
+    const $selectedSize = $card.find('input[type=radio]:checked');
+    if ($selectedSize.length === 0) {
+      showCartMessage('Selecciona un talle', true);
+      return;
+    }
+    const size = $selectedSize.val();
+
+    // Optional: limit cart size
+    if (cart.length >= 2) {
+      showCartMessage('Máximo 2 pares por pedido.', true);
+      return;
+    }
+
+    // Add to cart array
+    cart.push({ name: productName, size: size, price: price });
+    updateCartDisplay();
+
+    // Visual feedback: change button text briefly
+    const originalText = $btn.text();
+    $btn.text('¡Agregado!').css('background-color', 'var(--color-success)');
+    setTimeout(() => {
+      $btn.text(originalText).css('background-color', 'var(--color-primary)');
+    }, 1000);
+
+    showCartMessage('Producto agregado al carrito');
+  });
+
+  // Update floating cart summary count whenever cart changes
+  function updateCartSummaryCount() {
+    $('#cart-summary').text(cart.length);
+  }
+
+  // Extend existing updateCartDisplay to also update floating summary
+  const originalUpdateCartDisplay = updateCartDisplay;
+  updateCartDisplay = function() {
+    originalUpdateCartDisplay();
+    updateCartSummaryCount();
+  };
+
+  // Initial count
+  updateCartSummaryCount();
+
+  // Toggle cart drawer when clicking floating cart summary
+  $('#cart-summary').on('click', function() {
+    toggleCartDrawer();
+    // Alternatively, scroll to checkout:
+    // $('html, body').animate({ scrollTop: $('#checkout').offset().top }, 500);
+  });
+
+/* ============================
+   Checkout Redesign Logic
+   ============================ */
+  
+  function renderCheckoutSummary() {
+    const $tbody = $('#cart-items').empty();
+    let total = 0;
+    cart.forEach((item, index) => {
+      const subtotal = item.price || 0;
+      total += subtotal;
+      const $tr = $(`
+        <tr>
+          <td>${item.name}</td>
+          <td>${item.size}</td>
+          <td style="text-align:right;">$${subtotal.toLocaleString('es-AR')}</td>
+          <td style="text-align:right;">$${subtotal.toLocaleString('es-AR')}</td>
+          <td><button type="button" class="remove-item-btn" data-index="${index}">&times;</button></td>
+        </tr>
+      `);
+      $tbody.append($tr);
+    });
+    $('#cart-total').text(`$${total.toLocaleString('es-AR')}`);
+    validateCheckoutForm();
+  }
+
+  // Remove item from cart
+  $(document).on('click', '.remove-item-btn', function() {
+    const index = $(this).data('index');
+    cart.splice(index, 1);
+    updateCartDisplay();
+    renderCheckoutSummary();
+  });
+
+  // Extend updateCartDisplay to also update checkout summary
+  const originalUpdateCartDisplay2 = updateCartDisplay;
+  updateCartDisplay = function() {
+    originalUpdateCartDisplay2();
+    renderCheckoutSummary();
+  };
+  updateCartDisplay();
+
+  // Payment method selection
+  $('#payment-methods .payment-option').on('click', function() {
+    $('#payment-methods .payment-option').removeClass('active');
+    $(this).addClass('active');
+    const method = $(this).data('method');
+    $('input[name="payment"]').val(method);
+    $('.payment-error').hide();
+    validateCheckoutForm();
+  });
+
+  // Validate form fields and cart
+  function validateCheckoutForm() {
+    const name = $('input[name="name"]').val().trim();
+    const email = $('input[name="email"]').val().trim();
+    const whatsapp = $('input[name="whatsapp"]').val().trim();
+    const address = $('input[name="address"]').val().trim();
+    const payment = $('input[name="payment"]').val().trim();
+
+    let valid = true;
+    if (!name || !email || !whatsapp || !address || !payment) valid = false;
+    if (cart.length === 0) valid = false;
+
+    if (!payment) {
+      $('.payment-error').show();
+    } else {
+      $('.payment-error').hide();
+    }
+
+    $('#submit-order').prop('disabled', !valid);
+    if(valid){
+      $('#submit-order').css({'cursor':'pointer','opacity':'1'});
+    } else {
+      $('#submit-order').css({'cursor':'not-allowed','opacity':'0.6'});
+    }
+  }
+
+  // Validate on input change
+  $('#checkout-form input').on('input change', validateCheckoutForm);
+
+  // Override checkout form submit
+  $('#checkout-form').off('submit').on('submit', function(e){
+    e.preventDefault();
+    if(cart.length === 0){
+      showFormMessage('Tu carrito está vacío.', true);
+      return;
+    }
+    if(!$('input[name="payment"]').val()){
+      showFormMessage('Selecciona un método de pago.', true);
+      return;
+    }
+    showFormMessage('¡Gracias por tu compra!');
+    cart.length = 0;
+    updateCartDisplay();
+    renderCheckoutSummary();
+    this.reset();
+    $('#payment-methods .payment-option').removeClass('active');
+    $('input[name="payment"]').val('');
+    validateCheckoutForm();
+  });
+
 });

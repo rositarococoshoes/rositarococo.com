@@ -411,3 +411,81 @@ input:focus {
 .hidden {
   display: none !important;
 }
+
+/* =========================
+   Checkout Redesign Additions
+   ========================= */
+
+/* Order Summary Table */
+#order-summary table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+#order-summary th,
+#order-summary td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+#order-summary th {
+  font-weight: bold;
+}
+
+#order-summary td:last-child {
+  text-align: center;
+}
+
+/* Remove item button */
+.remove-item-btn {
+  background: transparent;
+  border: none;
+  color: var(--color-error, #BC4749);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.remove-item-btn:hover {
+  color: #a83234;
+}
+
+/* Payment Method Buttons */
+#payment-methods .payment-option {
+  transition: all 0.3s ease;
+}
+
+#payment-methods .payment-option.active {
+  background-color: var(--color-primary, #4E342E);
+  color: #fff;
+  border-color: var(--color-primary, #4E342E);
+}
+
+/* Validation Feedback */
+input:invalid,
+textarea:invalid,
+select:invalid {
+  border-color: var(--color-error, #BC4749);
+}
+
+#checkout .error-message {
+  color: var(--color-error, #BC4749);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+/* Disabled CTA Button */
+#submit-order:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Trust Badges */
+.trust-badges {
+  font-size: 0.95rem;
+  color: #333;
+  margin-top: 1rem;
+}
+
+/* End of Checkout Redesign Additions */
