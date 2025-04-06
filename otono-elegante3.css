@@ -1,9 +1,29 @@
-/* Rosita Rococó Premium E-commerce Stylesheet */
-/* Mobile-first, minimalist, elegant, fully responsive */
-
 /* =========================
-   Reset & Base Styles
+   Rosita Rococó Otoño 2025 Styles
+   Minimalistic, responsive, elegant
    ========================= */
+
+/* Variables */
+:root {
+  --primary: #7a3b2e;
+  --secondary: #A1887F;
+  --accent: #D7CCC8;
+  --bg: #FFFFFF;
+  --bg-light: #F9F6F2;
+  --text: #333;
+  --success: #6A994E;
+  --error: #BC4749;
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Lato', sans-serif;
+
+  --radius: 8px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+  --transition: 0.3s ease;
+}
+
+/* Reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,39 +31,136 @@
 }
 
 body {
-  font-family: 'Lato', sans-serif;
-  background: #fdfcf9;
-  color: #333;
+  font-family: var(--font-sans);
+  background: var(--bg-light);
+  color: var(--text);
   line-height: 1.6;
-  font-size: 1.1rem;
   overflow-x: hidden;
 }
 
-/* =========================
-   Typography
-   ========================= */
-h1, h2 {
-  font-family: 'Playfair Display', serif;
-  color: #7a3b2e;
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  color: var(--primary);
   margin-bottom: 1rem;
 }
 
-h1 {
-  font-size: 2.2rem;
+p {
+  margin-bottom: 1rem;
 }
 
-h2 {
-  font-size: 1.6rem;
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
 }
 
-/* =========================
-   Immersive Hero Section
-   ========================= */
-header.hero {
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #5a2a20;
+  transform: translateY(-2px);
+}
+
+.btn.highlight {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.btn.highlight:hover {
+  background: #d9a17b;
+  transform: translateY(-2px);
+}
+
+/* Floating Cart Button */
+.floating-cart-btn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  z-index: 1000;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.floating-cart-btn:hover {
+  background: #5a2a20;
+  transform: scale(1.1);
+}
+
+#cart-count {
+  font-size: 0.9rem;
+  background: #fff;
+  color: var(--primary);
+  border-radius: 50%;
+  padding: 2px 6px;
+  margin-left: 4px;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  max-width: 90%;
+  height: 100%;
+  background: #fff;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  padding: 1rem;
+  transition: right var(--transition);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open {
+  right: 0;
+}
+
+.cart-drawer h2 {
+  margin-bottom: 1rem;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.cart-items li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-total {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Hero Section */
+.hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
-  background: url('abrilnude.jpg') center/cover no-repeat;
+  min-height: 90vh;
+  background: url('coverrosi-min.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,70 +169,58 @@ header.hero {
   overflow: hidden;
 }
 
-header.hero::before {
-  content: "";
+.hero-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.4);
 }
 
-header.hero .hero-content {
+.hero-content {
   position: relative;
   z-index: 1;
   padding: 2rem;
-  max-width: 90%;
-  animation: fadeInUp 1s ease forwards;
 }
 
-header.hero h1 {
+.hero h1 {
+  color: #fff;
   font-size: 2.5rem;
-  margin-bottom: 1rem;
 }
 
-header.hero p {
-  font-size: 1.3rem;
+.hero p {
+  font-size: 1.2rem;
   margin-bottom: 2rem;
 }
 
-header.hero .cta-button {
-  background: #e6b89c;
-  color: #333;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 50px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+/* Products Section */
+.products-section {
+  padding: 2rem 1rem;
+  background: var(--bg);
 }
 
-header.hero .cta-button:hover {
-  background: #d9a17b;
-  transform: scale(1.05);
+.products-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-/* =========================
-   Product Grid
-   ========================= */
-#products .product-list {
+.carousel-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  padding: 1rem;
 }
 
 .product-card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .product-card:hover {
   transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .product-card img {
@@ -123,369 +228,115 @@ header.hero .cta-button:hover {
   display: block;
 }
 
-.product-card .product-info {
+.product-info {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
-.product-card h2 {
-  font-size: 1.4rem;
-  margin: 0;
+.product-info h3 {
+  margin-bottom: 0.5rem;
 }
 
-.product-card p {
-  font-size: 1rem;
-  color: #666;
+.size-selector {
+  margin: 0.5rem 0;
 }
 
-.product-card select,
-.product-card button {
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.product-card button {
-  background: #7a3b2e;
+.add-to-cart-btn {
+  margin: 1rem;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--primary);
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition);
 }
 
-.product-card button:hover {
+.add-to-cart-btn:hover {
   background: #5a2a20;
 }
 
-/* =========================
-   Sticky Slide-in Cart Drawer
-   ========================= */
-#cart-summary {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 320px;
-  max-width: 90%;
-  height: 100%;
-  background: #fff;
-  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
-  transform: translateX(100%);
-  transition: transform 0.4s ease;
-  z-index: 2000;
-  padding: 1.5rem;
+/* Checkout Section */
+.checkout {
+  padding: 2rem 1rem;
+  background: var(--bg);
+  max-width: 500px;
+  margin: 2rem auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.checkout h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.checkout form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  overflow-y: auto;
 }
 
-#cart-summary.active {
-  transform: translateX(0);
-}
-
-#cart-summary h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.cart-items {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-grow: 1;
-}
-
-.cart-items li {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 1rem;
-}
-
-#cart-message {
-  color: #5a8f3e;
-  font-weight: bold;
-}
-
-#cart-summary button.checkout-btn {
-  background: #5a8f3e;
-  color: #fff;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#cart-summary button.checkout-btn:hover {
-  background: #3f6f2b;
-}
-
-/* =========================
-   Checkout Form
-   ========================= */
-#checkout {
-  background: #fff;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  margin: 2rem 1rem;
-}
-
-#checkout h2 {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  text-align: center;
-}
-
-#checkout form {
+.checkout label {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  font-weight: 600;
 }
 
-#checkout form label {
-  position: relative;
+.checkout input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+}
+
+.payment-methods {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
-#checkout form label::before {
-  content: "📝";
-  font-size: 1.2rem;
-}
-
-#checkout input,
-#checkout select {
-  padding: 1rem;
-  font-size: 1.1rem;
+.payment-option {
+  padding: 0.75rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
-}
-
-#checkout button {
-  background: #7a3b2e;
-  color: #fff;
-  padding: 1rem;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
+  background: #f9f9f9;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background var(--transition), border-color var(--transition);
 }
 
-#checkout button:hover {
-  background: #5a2a20;
+.payment-option:hover {
+  background: #eee;
 }
 
-#form-message {
-  color: #5a8f3e;
-  font-weight: bold;
+.payment-option.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.payment-error {
+  color: var(--error);
+  font-size: 0.9rem;
+}
+
+.form-message {
   text-align: center;
-}
-
-/* Trust badges */
-.trust-signals {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
   margin-top: 1rem;
-}
-
-.trust-signals img {
-  height: 40px;
-}
-
-/* =========================
-   Testimonials
-   ========================= */
-#testimonials {
-  padding: 2rem 1rem;
-  background: #f9f6f2;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.testimonial-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.testimonial-card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.testimonial-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-.testimonial-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 1rem;
-}
-
-.testimonial-card blockquote {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
-.testimonial-card cite {
   font-weight: bold;
-  color: #333;
 }
 
-/* =========================
-   Animations & Micro-interactions
-   ========================= */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* =========================
-   Accessibility Focus
-   ========================= */
-button:focus,
-select:focus,
-input:focus {
-  outline: 2px solid #7a3b2e;
-  outline-offset: 2px;
-}
-
-/* =========================
-   Responsive Layout
-   ========================= */
-@media (min-width: 600px) {
-  #products .product-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .testimonial-list {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 992px) {
-  #products .product-list {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  header.hero h1 {
-    font-size: 3rem;
-  }
-  header.hero p {
-    font-size: 1.5rem;
-  }
-}
-
-/* =========================
-   Utility Classes
-   ========================= */
 .hidden {
   display: none !important;
 }
 
-/* =========================
-   Checkout Redesign Additions
-   ========================= */
-
-/* Order Summary Table */
-#order-summary table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
+/* Responsive */
+@media(min-width: 600px) {
+  .carousel-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-#order-summary th,
-#order-summary td {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+@media(min-width: 992px) {
+  .carousel-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
-
-#order-summary th {
-  font-weight: bold;
-}
-
-#order-summary td:last-child {
-  text-align: center;
-}
-
-/* Remove item button */
-.remove-item-btn {
-  background: transparent;
-  border: none;
-  color: var(--color-error, #BC4749);
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.remove-item-btn:hover {
-  color: #a83234;
-}
-
-/* Payment Method Buttons */
-#payment-methods .payment-option {
-  transition: all 0.3s ease;
-}
-
-#payment-methods .payment-option.active {
-  background-color: var(--color-primary, #4E342E);
-  color: #fff;
-  border-color: var(--color-primary, #4E342E);
-}
-
-/* Validation Feedback */
-input:invalid,
-textarea:invalid,
-select:invalid {
-  border-color: var(--color-error, #BC4749);
-}
-
-#checkout .error-message {
-  color: var(--color-error, #BC4749);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
-/* Disabled CTA Button */
-#submit-order:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Trust Badges */
-.trust-badges {
-  font-size: 0.95rem;
-  color: #333;
-  margin-top: 1rem;
-}
-
-/* End of Checkout Redesign Additions */
