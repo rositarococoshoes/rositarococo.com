@@ -1,5 +1,7 @@
-/* Modern, elegant, emotionally appealing mobile-first e-commerce style */
+/* Rosita Rococó Premium E-commerce Stylesheet */
+/* Mobile-first, minimalist, elegant, fully responsive */
 
+/* Reset and base styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,12 +17,22 @@ body {
   font-size: 1.1rem;
 }
 
+/* Typography hierarchy */
 h1, h2 {
   font-family: 'Playfair Display', serif;
   margin-bottom: 1rem;
   color: #8b3a2e;
 }
 
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+/* Header hero section */
 header.hero {
   text-align: center;
   margin-bottom: 2rem;
@@ -42,19 +54,21 @@ header.hero p {
   color: #555;
 }
 
+/* Layout */
 main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Product list */
+/* Product list styles */
 #products .product-list {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
+/* Product card */
 .product-card {
   background: #fff;
   padding: 1.5rem;
@@ -76,6 +90,7 @@ main {
   border-radius: 12px;
 }
 
+/* Select and button inside product card */
 .product-card select,
 .product-card button {
   padding: 1rem;
@@ -116,7 +131,13 @@ main {
   gap: 0.75rem;
   max-height: 50vh;
   overflow-y: auto;
-  transition: transform 0.3s ease;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+
+/* Cart visible state toggled by JS */
+#cart-summary.active {
+  transform: translateY(0);
 }
 
 #cart-summary h2 {
@@ -215,7 +236,7 @@ input:focus {
   outline-offset: 2px;
 }
 
-/* Smooth transitions */
+/* Smooth transitions for interactive elements */
 button,
 .product-card,
 #cart-summary,
@@ -224,7 +245,7 @@ button,
   transition: all 0.3s ease;
 }
 
-/* Responsive for larger screens */
+/* Responsive layout for larger screens */
 @media (min-width: 768px) {
   main {
     flex-direction: row;
@@ -239,5 +260,6 @@ button,
     max-height: none;
     border-top: none;
     border: 3px solid #8b3a2e;
+    transform: translateY(0);
   }
 }

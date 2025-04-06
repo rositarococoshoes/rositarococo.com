@@ -1,5 +1,8 @@
-// Modern, elegant e-commerce logic with smooth micro-interactions
+// Rosita Rococó Premium E-commerce Script
+// Handles product rendering, cart logic, checkout, and UI interactions
+
 $(function() {
+  // Product catalog (preserved core data)
   const products = [
     { id: 'roma-negras', name: 'Botineta Roma Negras', price1: 70000, price2: 110000, img: 'roma-negras-1.jpg' },
     { id: 'roma-suela', name: 'Botineta Roma Suela', price1: 70000, price2: 110000, img: 'roma-suela-1a.jpg' },
@@ -9,6 +12,7 @@ $(function() {
 
   const cart = [];
 
+  // Update cart UI and total price
   function updateCartDisplay() {
     const $list = $('.cart-items').empty();
     cart.forEach(item => {
@@ -16,10 +20,18 @@ $(function() {
     });
     const total = cart.length === 2 ? 110000 : cart.length === 1 ? 70000 : 0;
     $('#total-price').text(`Total: $${total.toLocaleString('es-AR')}`);
+    // Show or hide cart summary based on cart content
+    if(cart.length > 0){
+      $('#cart-summary').addClass('active');
+    } else {
+      $('#cart-summary').removeClass('active');
+    }
   }
 
+  // Show cart feedback message
   function showCartMessage(msg, isError = false) {
     $('#cart-message')
+      .text(msg)
       .stop(true, true)
       .css('color', isError ? '#8b3a2e' : '#5a8f3e')
       .fadeIn(200)
@@ -27,8 +39,10 @@ $(function() {
       .fadeOut(400);
   }
 
+  // Show checkout form feedback message
   function showFormMessage(msg, isError = false) {
     $('#form-message')
+      .text(msg)
       .stop(true, true)
       .css('color', isError ? '#8b3a2e' : '#5a8f3e')
       .fadeIn(200)
@@ -36,6 +50,7 @@ $(function() {
       .fadeOut(400);
   }
 
+  // Add product to cart with size validation
   function addToCart(product, size) {
     if (cart.length >= 2) {
       showCartMessage('Máximo 2 pares por pedido.', true);
@@ -46,7 +61,7 @@ $(function() {
     showCartMessage('Producto agregado al carrito');
   }
 
-  // Generate product cards
+  // Generate product cards dynamically
   products.forEach(prod => {
     const $card = $('<div class="product-card" tabindex="0"></div>');
     $card.append(`<img src="${prod.img}" alt="${prod.name}">`);
