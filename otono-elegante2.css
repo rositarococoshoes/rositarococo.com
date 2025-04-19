@@ -79,9 +79,28 @@ p {
 
 /* --- Layout --- */
 .container {
-  max-width: 1140px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 5px;
+}
+
+/* Ancho máximo para desktop */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 20px;
+  }
+
+  body {
+    background-color: #f5f5f5;
+  }
+
+  .main-content {
+    background-color: var(--color-background);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    border-radius: 0;
+    overflow: hidden;
+  }
 }
 
 /* --- Header Styles --- */
@@ -451,11 +470,11 @@ p {
 /* --- Product Grid & Items --- */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Ligeramente más anchos */
+  grid-template-columns: 1fr; /* Una sola columna para maximizar el ancho */
   gap: 35px; /* Más espacio entre productos */
   margin-bottom: 60px; /* Más espacio inferior */
-  padding: 10px; /* Padding para evitar que los productos toquen los bordes */
-  max-width: 1200px; /* Limitar el ancho máximo */
+  padding: 5px; /* Padding reducido para maximizar el ancho */
+  max-width: 100%; /* Usar todo el ancho disponible */
   margin-left: auto;
   margin-right: auto;
 }
@@ -510,7 +529,7 @@ p {
   height: 450px; /* Altura fija para todos los slides */
   overflow: hidden;
   position: relative;
-  padding: 10px 0; /* Reducir padding horizontal para aprovechar más el ancho */
+  padding: 0; /* Eliminar padding para aprovechar todo el ancho */
 }
 
 .model-carousel .slick-slide img {
@@ -626,28 +645,49 @@ p {
 
 /* --- Product Selection Area --- */
 .product-selection {
-  padding: 20px;
+  padding: 15px;
   border-top: none; /* Eliminar borde superior */
   margin-top: 0; /* Eliminar margen superior */
 }
 
+/* Instrucciones de compra simplificadas */
+.shopping-instructions-simple {
+  text-align: center;
+  margin-bottom: 25px;
+  color: var(--color-text);
+  font-size: 1.1em;
+}
+
+.shopping-instructions-simple .instruction-icon {
+  background-color: var(--color-primary);
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
 .product-info-details {
-  margin: 5px 0 25px;
-  padding: 20px 15px;
+  margin: 5px 0 10px;
+  padding: 10px;
   background-color: rgba(250, 248, 245, 0.9);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  max-width: 400px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .product-specs {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
   border-bottom: 1px dashed rgba(160, 89, 65, 0.2);
   text-align: center;
 }
@@ -686,6 +726,48 @@ p {
   font-style: italic;
 }
 
+/* Estilos para el precio del producto */
+.product-price {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: rgba(160, 89, 65, 0.08);
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.product-price:hover {
+  transform: scale(1.03);
+}
+
+.price-single {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.price-double {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.price-highlight {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin: 0 3px;
+}
+
 .product-info-details strong {
   color: var(--color-primary-dark);
   font-weight: 700;
@@ -693,10 +775,14 @@ p {
 
 .quantity-selector {
   text-align: center;
-  margin-bottom: 20px;
-  padding: 15px 0;
+  margin-bottom: 5px;
+  padding: 5px 0;
   border-top: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
   border-bottom: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 .quantity-selector span {
@@ -704,8 +790,8 @@ p {
   color: #3a3a3a;
   margin-right: 15px;
   font-size: 1em;
-  display: block;
-  margin-bottom: 10px;
+  display: inline-block;
+  margin-bottom: 0;
 }
 
 .quantity-selector label {
@@ -725,11 +811,49 @@ p {
 }
 
 .size-selector {
-  margin-top: 20px;
+  margin-top: 5px;
 }
 
 .size-selector .form-group {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+/* Botón de agregar al carrito */
+.add-to-cart-btn {
+  background-color: var(--color-accent, #5a8f3e);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 1.1em;
+  font-weight: 700;
+  margin-top: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  bottom: 10px;
+  z-index: 10;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #4a7a33;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-cart-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart-btn i {
+  margin-right: 8px;
+  font-size: 1.2em;
 }
 
 .size-selector select.form-control {
@@ -1160,6 +1284,75 @@ fieldset {
   z-index: 9999 !important;
   animation: float 3s ease-in-out infinite;
   visibility: visible !important;
+}
+
+/* Botón flotante para continuar al checkout */
+#fixed-checkout-button {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding: 15px 25px;
+  font-size: 1.2em;
+  font-weight: 700;
+  border-radius: 30px;
+  background-color: #a05941;
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  max-width: 300px;
+  width: auto;
+}
+
+#fixed-checkout-button .button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#fixed-checkout-button .button-content span {
+  margin-right: 8px;
+}
+
+#fixed-checkout-button .button-content svg {
+  margin-left: 5px;
+}
+
+#fixed-checkout-button:hover {
+  transform: translateX(-50%) translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background-color: #7a3f2b;
+}
+
+/* Estilos responsivos para el botón flotante */
+@media (max-width: 768px) {
+  #fixed-checkout-button {
+    width: 90%;
+    max-width: none;
+    padding: 12px 20px;
+  }
+}
+
+/* Estilos para desktop */
+@media (min-width: 1200px) {
+  #fixed-checkout-button {
+    max-width: 300px;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #fixed-checkout-button:hover {
+    transform: translateX(-50%) translateY(-3px);
+  }
+
+  /* Ajustar posición del botón del carrito */
+  #cart-button {
+    right: calc(50% - 600px + 20px);
+  }
 }
 
 #cart-button:hover {
@@ -1921,13 +2114,13 @@ fieldset {
 
   /* Mejorar carruseles de productos en móviles */
   .model-carousel, .simple-carousel {
-    width: 95%;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
   }
 
   .model-carousel .slick-slide img, .carousel-slide img {
-    max-width: 95%;
+    max-width: 100%;
     margin: 0 auto;
   }
 
@@ -2142,6 +2335,20 @@ fieldset {
     margin-top: 5px;
   }
 
+  /* Ajustes para los precios de productos en móviles */
+  .product-price {
+    margin: 12px 0;
+    padding: 8px;
+  }
+
+  .price-single {
+    font-size: 1.1em;
+  }
+
+  .price-double {
+    font-size: 1em;
+  }
+
   .product-grid {
     grid-template-columns: 1fr; /* Una sola columna en móviles */
     gap: 25px;
@@ -2154,14 +2361,14 @@ fieldset {
   }
 
   .model-carousel .slick-slide {
-    height: 320px;
+    height: 350px;
     padding: 0; /* Eliminar padding completamente */
     margin-top: 0;
   }
 
   .model-carousel .slick-slide img {
     width: 100%;
-    max-height: 320px; /* Usar toda la altura disponible */
+    max-height: 350px; /* Usar toda la altura disponible */
   }
 
   .slick-prev,
@@ -2197,9 +2404,13 @@ fieldset {
     margin-bottom: 5px;
   }
 
-  .btn-primary {
-    font-size: 1em;
-    padding: 12px 15px;
+  .btn-primary, .add-to-cart-btn {
+    font-size: 1.1em;
+    padding: 15px 20px;
+    position: sticky;
+    bottom: 10px;
+    z-index: 100;
+    margin-top: 5px;
   }
 
   .testimonials-section {
@@ -2372,6 +2583,9 @@ right: 15px;
   overflow: hidden;
   position: relative;
   width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .simple-carousel .carousel-container {

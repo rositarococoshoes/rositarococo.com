@@ -112,23 +112,40 @@ Whatsapp aqu&iacute; =&gt; <a href="http://bit.ly/wspb-rosita" style="background
 
 </div>
 <script>
-var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
+// Get order details from sessionStorage instead of URL parameters
+var talleselegidos = sessionStorage.getItem('orderDetails') || '';
+$("#talleselegidos").replaceWith(talleselegidos);
 
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
+// If no data in sessionStorage, try legacy URL parameter method as fallback
+if (!talleselegidos) {
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
 
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
         }
-    }
-};
+    };
 
-var talleselegidos = getUrlParameter('entry.1471599855');
-$("#talleselegidos").replaceWith(talleselegidos);  
+    talleselegidos = getUrlParameter('entry.1471599855') || '';
+    $("#talleselegidos").replaceWith(talleselegidos);
+}
+
+// Display customer name if available
+var customerName = sessionStorage.getItem('customerName');
+if (customerName) {
+    var greetingElement = document.createElement('p');
+    greetingElement.innerHTML = '¡Gracias por tu compra, <strong>' + customerName + '</strong>!';
+    greetingElement.style.textAlign = 'center';
+    greetingElement.style.marginTop = '10px';
+    document.querySelector('.form-group, #talleselegidos').parentNode.insertBefore(greetingElement, document.querySelector('.form-group, #talleselegidos').nextSibling);
+}
 </script>
 </body>
 </html>

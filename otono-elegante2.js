@@ -71,6 +71,60 @@ $(document).ready(function(){
 
     // Actualizar contador
     $('.cart-button-count').text($('.cart-count').text());
+
+    // Asegurar visibilidad del botón flotante de continuar al envío
+    if (cartItems.length > 0) {
+      var formElement = $('#restodelform');
+      var windowTopPosition = $(window).scrollTop();
+      var windowBottomPosition = windowTopPosition + $(window).height();
+
+      // Verificar si el formulario está visible y activo
+      var formVisible = false;
+
+      if (formElement.length > 0) {
+        // Comprobar si el formulario está activo o no oculto
+        var formIsActive = formElement.hasClass('active') || !formElement.hasClass('hidden');
+
+        if (formIsActive) {
+          // Si el formulario está activo, verificar si está en la pantalla
+          var formTop = formElement.offset().top;
+          var formBottom = formTop + formElement.outerHeight();
+
+          // El formulario está visible si:
+          // 1. La parte superior del formulario está visible en la pantalla, o
+          // 2. La parte inferior del formulario está visible en la pantalla, o
+          // 3. El formulario abarca toda la pantalla (más grande que la ventana)
+          // 4. Estamos cerca del formulario (dentro de 200px)
+          formVisible =
+            (formTop >= windowTopPosition && formTop <= windowBottomPosition) || // Parte superior visible
+            (formBottom >= windowTopPosition && formBottom <= windowBottomPosition) || // Parte inferior visible
+            (formTop <= windowTopPosition && formBottom >= windowBottomPosition) || // Formulario abarca toda la pantalla
+            (formTop - windowBottomPosition < 200 && formTop > windowBottomPosition) || // Estamos justo encima del formulario
+            (windowTopPosition - formBottom < 200 && windowTopPosition > formBottom); // Estamos justo debajo del formulario
+        }
+
+        // Si el formulario está activo, considerarlo visible aunque no esté en la pantalla
+        formVisible = formVisible || formIsActive;
+      }
+
+      // Mostrar el botón flotante solo si hay productos en el carrito y no estamos viendo el formulario
+      if (!formVisible) {
+        $('#fixed-checkout-button').css({
+          'display': 'block',
+          'visibility': 'visible',
+          'opacity': '1',
+          'z-index': '9999'
+        }).removeClass('hidden');
+        console.log('Mostrando botón flotante - formulario no visible');
+      } else {
+        // Ocultar el botón si estamos viendo el formulario
+        $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
+        console.log('Ocultando botón flotante - formulario visible');
+      }
+    } else {
+      // Ocultar el botón si no hay productos en el carrito
+      $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
+    }
   }
 
   // Llamar inmediatamente y también después de un retraso para asegurar que funcione
@@ -79,6 +133,29 @@ $(document).ready(function(){
   setTimeout(ensureCartButtonVisible, 1000);
   setTimeout(ensureCartButtonVisible, 2000);
   setTimeout(ensureCartButtonVisible, 3000);
+
+  // Función para mostrar el botón de emergencia
+  function showEmergencyButton() {
+    if (cartItems.length > 0) {
+      var formPosition = $('#datos-envio').offset().top;
+      var windowTopPosition = $(window).scrollTop();
+
+      if (windowTopPosition < formPosition - 200) {
+        $('#emergency-checkout-button').css('display', 'block');
+        console.log('Mostrando botón de emergencia');
+      } else {
+        $('#emergency-checkout-button').css('display', 'none');
+        console.log('Ocultando botón de emergencia');
+      }
+    } else {
+      $('#emergency-checkout-button').css('display', 'none');
+    }
+  }
+
+  // Llamar a la función para mostrar el botón de emergencia
+  setTimeout(showEmergencyButton, 1000);
+  setTimeout(showEmergencyButton, 2000);
+  setTimeout(showEmergencyButton, 3000);
 
   // Animate the cart button after page load to draw attention
   setTimeout(function() {
@@ -89,12 +166,66 @@ $(document).ready(function(){
     }, 1000);
   }, 3000);
 
-  // Show checkout progress bar after scrolling
+  // Show checkout progress bar and manage floating button after scrolling
   $(window).scroll(function() {
     if ($(window).scrollTop() > 300) {
       $('#checkout-progress').addClass('visible');
     } else {
       $('#checkout-progress').removeClass('visible');
+    }
+
+    // Mostrar/ocultar el botón flotante según la posición de desplazamiento
+    if (cartItems.length > 0) {
+      var formElement = $('#restodelform');
+      var windowTopPosition = $(window).scrollTop();
+      var windowBottomPosition = windowTopPosition + $(window).height();
+
+      // Verificar si el formulario está visible y activo
+      var formVisible = false;
+
+      if (formElement.length > 0) {
+        // Comprobar si el formulario está activo o no oculto
+        var formIsActive = formElement.hasClass('active') || !formElement.hasClass('hidden');
+
+        if (formIsActive) {
+          // Si el formulario está activo, verificar si está en la pantalla
+          var formTop = formElement.offset().top;
+          var formBottom = formTop + formElement.outerHeight();
+
+          // El formulario está visible si:
+          // 1. La parte superior del formulario está visible en la pantalla, o
+          // 2. La parte inferior del formulario está visible en la pantalla, o
+          // 3. El formulario abarca toda la pantalla (más grande que la ventana)
+          // 4. Estamos cerca del formulario (dentro de 200px)
+          formVisible =
+            (formTop >= windowTopPosition && formTop <= windowBottomPosition) || // Parte superior visible
+            (formBottom >= windowTopPosition && formBottom <= windowBottomPosition) || // Parte inferior visible
+            (formTop <= windowTopPosition && formBottom >= windowBottomPosition) || // Formulario abarca toda la pantalla
+            (formTop - windowBottomPosition < 200 && formTop > windowBottomPosition) || // Estamos justo encima del formulario
+            (windowTopPosition - formBottom < 200 && windowTopPosition > formBottom); // Estamos justo debajo del formulario
+        }
+
+        // Si el formulario está activo, considerarlo visible aunque no esté en la pantalla
+        formVisible = formVisible || formIsActive;
+      }
+
+      // Mostrar el botón flotante solo si hay productos en el carrito y no estamos viendo el formulario
+      if (!formVisible) {
+        $('#fixed-checkout-button').css({
+          'display': 'block',
+          'visibility': 'visible',
+          'opacity': '1',
+          'z-index': '9999'
+        }).removeClass('hidden');
+        console.log('Mostrando botón flotante al hacer scroll - formulario no visible');
+      } else {
+        // Ocultar el botón si estamos viendo el formulario
+        $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
+        console.log('Ocultando botón flotante al hacer scroll - formulario visible');
+      }
+    } else {
+      // Si no hay productos en el carrito, ocultar el botón flotante
+      $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
     }
   });
 
@@ -115,6 +246,24 @@ $(document).ready(function(){
     });
   });
 
+  // --- Add to Cart Button Logic ---
+  $('.add-to-cart-btn').on('click', function() {
+    var modelId = $(this).data('model');
+    var $select = $('#talle-select-' + modelId);
+
+    // Llamar a la función para agregar al carrito
+    var added = addToCartFromButton(modelId);
+
+    // Solo mostrar notificación y animar el botón si se agregó el producto
+    if (added) {
+      // Animar el botón del carrito
+      $('#cart-button').addClass('pulse-once');
+      setTimeout(function() {
+        $('#cart-button').removeClass('pulse-once');
+      }, 1000);
+    }
+  });
+
   // --- Update Order Summary ---
   var summaryInput = $("#1471599855");
   var miniCart = $("#mini-cart");
@@ -130,35 +279,86 @@ $(document).ready(function(){
     var currentVal = $select.val();
     var prevVal = $select.data('pre') || "";
 
-    // Remove previous notification and add new one if item selected
+    // Solo almacenar el valor seleccionado, pero no agregarlo al carrito automáticamente
+    $select.data('pre', currentVal);
+
+    // Eliminar cualquier notificación previa
     $currentItem.find('.avisoagregado').remove();
-    if (currentVal) {
-      $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
+  });
+
+  // Función para agregar al carrito cuando se hace clic en el botón
+  function addToCartFromButton(modelId) {
+    // Obtener el selector correcto basado en el ID del modelo
+    var $select;
+    if (modelId.includes('-1') || modelId.includes('-2')) {
+      // Si el ID incluye -1 o -2 (para el primer o segundo par)
+      $select = $('#talle-select-' + modelId);
+      if ($select.length === 0) {
+        // Intentar encontrar el selector dentro del fieldset correspondiente
+        var fieldsetId = 'hwA-' + modelId;
+        $select = $('#' + fieldsetId + ' select.talle');
+      }
+    } else {
+      // Fallback para buscar cualquier selector con ese modelo
+      $select = $('select.talle[id*="' + modelId + '"]').first();
+    }
+
+    // Si aún no encontramos el selector, buscar dentro del botón que se hizo clic
+    if ($select.length === 0) {
+      $select = $('.add-to-cart-btn[data-model="' + modelId + '"]').closest('fieldset').find('select.talle');
+    }
+
+    console.log('Selector encontrado:', $select.length > 0 ? 'Sí' : 'No');
+
+    // Obtener el elemento del producto actual
+    var $currentItem = $select.closest('.product-item');
+
+    var currentVal = $select.val();
+    var prevVal = $select.data('pre') || "";
+
+    // Verificar si se seleccionó un talle
+    if (!currentVal) {
+      alert('Por favor, selecciona un talle antes de agregar al carrito');
+      if ($select.length > 0) {
+        $select.focus();
+      }
+      return false;
+    }
+
+    // Verificar si el selector existe
+    if ($select.length === 0) {
+      console.error('No se encontró el selector para el modelo:', modelId);
+      alert('Error al agregar al carrito. Por favor, intenta de nuevo.');
+      return false;
     }
 
     // Process the summary content
     var summaryContent = summaryInput.val() || "";
     var summaryArray = summaryContent.split(', ').filter(Boolean);
 
+    // Verificar si el producto ya está en el carrito
+    if (summaryArray.includes(currentVal)) {
+      // Si el producto ya está en el carrito, mostrar notificación
+      showNotification('Este producto ya está en tu carrito', 'info');
+      return false;
+    }
+
     // Remove previous value if it exists
     if (prevVal) {
       summaryArray = summaryArray.filter(item => item !== prevVal);
     }
 
-    // Add new value if selected
-    if (currentVal) {
-      summaryArray.push(currentVal);
-    }
+    // Add new value
+    summaryArray.push(currentVal);
+
+    // Mostrar notificación de éxito
+    $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
 
     // Check if we exceed the maximum allowed pairs
     if (summaryArray.length > 2) {
       alert("Puedes seleccionar un máximo de 2 pares. Por favor, revisa tu selección.");
-      $select.val(prevVal);
       summaryArray = summaryArray.filter(item => item !== currentVal);
-      if (prevVal && !summaryArray.includes(prevVal)) {
-         summaryArray.push(prevVal);
-      }
-      $currentItem.find('.avisoagregado').remove();
+      $select.closest('.form-group').find('.avisoagregado').remove();
     } else {
       $select.data('pre', currentVal);
     }
@@ -180,20 +380,43 @@ $(document).ready(function(){
       // Activate checkout button
       checkoutBtn.removeClass('btn-disabled').text('Finalizar Compra');
 
-      // Show continue buttons
-      $('.product-nav button, .product-nav-bottom button').removeClass('hidden');
-
       // Make checkout section active if there are items in cart
       if (pairCount === 1) {
         totalPrice = 70000;
         totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
+
+        // Si es el primer par que se agrega, mostrar el formulario automáticamente
+        if (currentVal && prevVal === "") {
+          // Mostrar y activar la sección de checkout
+          restOfForm.removeClass('hidden inactive').addClass('active');
+
+          // Mostrar notificación
+          showNotification('¡Producto agregado! Completa tus datos para finalizar la compra.', 'success');
+
+          // Desplazarse al formulario con una pequeña demora
+          setTimeout(function() {
+            $('html, body').animate({
+              scrollTop: restOfForm.offset().top - 20
+            }, 500);
+          }, 500);
+        }
       } else if (pairCount === 2) {
         totalPrice = 110000;
         totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
 
         // If this is the second pair being added, show a more prominent notification
         if (currentVal && prevVal === "" && summaryArray.length === 2) {
-          showNotification('¡Genial! Has completado tu selección de 2 pares. Continúa para completar tu pedido.', 'success');
+          showNotification('¡Genial! Has completado tu selección de 2 pares. Completa tus datos para finalizar la compra.', 'success');
+
+          // Asegurarse de que el formulario esté visible
+          restOfForm.removeClass('hidden inactive').addClass('active');
+
+          // Desplazarse al formulario
+          setTimeout(function() {
+            $('html, body').animate({
+              scrollTop: restOfForm.offset().top - 20
+            }, 500);
+          }, 500);
         }
       } else {
         totalPriceText = "Has seleccionado más de 2 pares. Revisa tu selección.";
@@ -203,15 +426,6 @@ $(document).ready(function(){
       if (currentVal && !prevVal) {
         showNotification('¡Producto agregado! Puedes continuar con tu compra o seguir explorando.', 'success');
       }
-
-      // Scroll to the product if user has selected at least one pair
-      if (currentVal && !prevVal) {
-        setTimeout(function() {
-          $('html, body').animate({
-            scrollTop: $currentItem.offset().top + $currentItem.height() - 50
-          }, 500);
-        }, 300);
-      }
     } else {
       totalPrice = 0;
       totalPriceText = "Elige tus modelos y talles para ver el total";
@@ -219,22 +433,47 @@ $(document).ready(function(){
       // Disable checkout button
       checkoutBtn.addClass('btn-disabled').text('Carrito vacío');
 
-      // Hide continue buttons
-      $('.product-nav button, .product-nav-bottom button').addClass('hidden');
+      // Ocultar el formulario si no hay productos en el carrito
+      restOfForm.addClass('hidden').removeClass('active');
     }
 
     $("#preciototal").html(totalPriceText);
 
     // Recalculate price based on payment method
     $("#comoabona").trigger('change');
-  });
+
+    // Mostrar notificación de éxito
+    showNotification('¡Producto agregado al carrito!', 'success');
+
+    // Mostrar el botón flotante si no estamos en la sección del formulario
+    var formPosition = $('#datos-envio').offset().top;
+    var windowTopPosition = $(window).scrollTop();
+
+    if (windowTopPosition < formPosition - 200) {
+      // Mostrar botón flotante original
+      $('#floating-checkout-button').css({
+        'display': 'block',
+        'visibility': 'visible',
+        'opacity': '1'
+      }).removeClass('hidden');
+      console.log('Mostrando botón flotante después de agregar producto');
+
+      // Mostrar botón de emergencia también
+      $('#emergency-checkout-button').css('display', 'block');
+      console.log('Mostrando botón de emergencia después de agregar producto');
+    }
+
+    // Retornar true para indicar que el producto se agregó correctamente
+    return true;
+  }
 
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
 
-  // Continue to checkout button click handlers
-  $("#continue-to-checkout, #continue-to-checkout-bottom").on('click', function(e) {
+  // Continue to checkout button click handlers - para todos los botones flotantes
+  $("#floating-continue-to-checkout, #emergency-checkout-button, #fixed-checkout-button").on('click', function(e) {
     e.preventDefault();
+    console.log('Botón de continuar al envío clickeado');
 
     // Check if there are items in the cart
     if (cartItems.length > 0) {
@@ -262,6 +501,10 @@ $(document).ready(function(){
       } else {
         showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
       }
+
+      // Ocultar los botones flotantes cuando se muestra el formulario
+      $('#floating-checkout-button').addClass('hidden').css('display', 'none');
+      $('#emergency-checkout-button').css('display', 'none');
     } else {
       showNotification('Por favor, selecciona al menos un producto para continuar', 'error');
     }
@@ -280,6 +523,11 @@ $(document).ready(function(){
     // Update checkout progress
     currentStep = 1;
     updateCheckoutProgress(currentStep);
+
+    // Mostrar el botón flotante si hay productos en el carrito
+    if (cartItems.length > 0) {
+      $('#floating-checkout-button').removeClass('hidden');
+    }
   });
 
   // Checkout button in mini-cart
@@ -392,24 +640,32 @@ $(document).ready(function(){
 
     $totalPriceElement.html(currentHtml);
 
-    // Update floating summary as well
+    // Update floating summary if it exists
     var $floatingPriceSummary = $("#floating-price-summary");
-    var floatingHtml = $floatingPriceSummary.html();
+    if ($floatingPriceSummary.length > 0) {
+      var floatingHtml = $floatingPriceSummary.html();
 
-    floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
+      floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
 
-    if (isCBU) {
-      floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
+      if (isCBU) {
+        floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
+      }
+
+      $floatingPriceSummary.html(floatingHtml);
     }
-
-    $floatingPriceSummary.html(floatingHtml);
   });
 
   // Show WhatsApp button after a delay
   $("#whatsapp").delay(3000).fadeIn(400);
 
-  // Store page URL for tracking
-  $("#1209868979").val(window.location.href);
+  // Store page URL for tracking without query parameters
+  // This is also used as an anti-spam measure - real users will always have this field filled
+  $("#1209868979").val(window.location.origin + window.location.pathname);
+
+  // Ensure the landing URL is always set for real users
+  if (!$("#1209868979").val()) {
+    $("#1209868979").val(window.location.origin + window.location.pathname);
+  }
 
   // --- Form Submission Logic ---
   $('#bootstrapForm').submit(async function (event) {
@@ -417,9 +673,17 @@ $(document).ready(function(){
     var $form = $(this);
     var $submitButton = $('#botoncomprar');
 
-    // Bot detection
+    // Bot detection - Multiple methods
+    // 1. Honeypot field check
     if ($('#website').val() !== '') {
-      console.log('Bot detected.');
+      console.log('Bot detected via honeypot field.');
+      return false;
+    }
+
+    // 2. Landing URL check - Real users will always have this field filled
+    const landingUrl = $('#1209868979').val();
+    if (!landingUrl || landingUrl.trim() === '') {
+      console.log('Bot detected: Empty landing URL field.');
       return false;
     }
 
@@ -459,9 +723,30 @@ $(document).ready(function(){
     const formaPago = $('#comoabona').val();
     const nombreComprador = $('#1460904554').val();
 
-    // Get the potentially discounted price
-    const montoTexto = $(".preciototalaobservar").first().text();
-    const monto = parseFloat(montoTexto.replace(/\./g, ''));
+    // Get price based on payment method
+    let monto;
+    if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+      // For MercadoPago, always use the original price without discount
+      const $priceSpan = $(".preciototalaobservar").first();
+      monto = $priceSpan.data('original-price');
+
+      // If data attribute is not available, get from text and calculate original price
+      if (typeof monto === 'undefined') {
+        const currentText = $priceSpan.text();
+        monto = parseFloat(currentText.replace(/\./g, ''));
+
+        // If CBU is selected, we need to calculate back the original price (divide by 0.9)
+        if (formaPago === "cbu") {
+          monto = Math.round(monto / 0.9);
+        }
+      }
+    } else {
+      // For CBU, use the discounted price
+      const montoTexto = $(".preciototalaobservar").first().text();
+      monto = parseFloat(montoTexto.replace(/\./g, ''));
+    }
+
+    console.log(`Monto a enviar (${formaPago}):`, monto);
 
     try {
       const formAction = $form.attr('action');
@@ -474,16 +759,42 @@ $(document).ready(function(){
         if (typeof fbq !== 'undefined') {
           fbq('track', 'InitiateCheckout');
         }
-        fetch(formAction, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
+        try {
+          console.log('Enviando formulario al proxy (CBU)...');
+          const formResponse = await fetch(formAction, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData
+          });
+
+          // Verificar la respuesta del proxy
+          if (formResponse.ok) {
+            const responseData = await formResponse.json();
+            console.log('Respuesta del proxy (CBU):', responseData);
+
+            if (responseData.success) {
+              console.log('Formulario enviado correctamente (CBU)');
+            } else {
+              console.error('Error en el proxy (CBU):', responseData.message);
+            }
+          } else {
+            console.error('Error en la respuesta del proxy (CBU):', formResponse.status);
+          }
+        } catch (formError) {
+          console.error('Error al enviar formulario (CBU):', formError);
+          // Continuamos con la redirección aunque falle el envío del formulario
+        }
 
         const pairCount = talleselegidos.split(',').filter(Boolean).length;
         const redirectUrl = pairCount === 2 ?
           'https://rositarococo.com/transferenciacbu-2pares.html' :
           'https://rositarococo.com/transferenciacbu-1par.html';
+
+        // Store order data in sessionStorage instead of passing via URL
+        sessionStorage.setItem('orderDetails', talleselegidos);
+        sessionStorage.setItem('customerName', nombreComprador);
 
         setTimeout(() => {
           window.location.href = redirectUrl;
@@ -534,15 +845,31 @@ $(document).ready(function(){
           $('#link-mercadopago').val(mercadoPagoUrl);
           document.getElementById('link-mercadopago').value = mercadoPagoUrl;
 
-          // Primero enviar el formulario a Google Forms
+          // Enviar el formulario a nuestro proxy
           try {
-            console.log('Enviando formulario a Google Forms...');
-            await fetch(formAction, {
+            console.log('Enviando formulario al proxy...');
+            const formResponse = await fetch(formAction, {
               method: 'POST',
-              mode: 'no-cors',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
               body: new URLSearchParams($form.serialize())
             });
-            console.log('Formulario enviado correctamente');
+
+            // Verificar la respuesta del proxy
+            if (formResponse.ok) {
+              const responseData = await formResponse.json();
+              console.log('Respuesta del proxy:', responseData);
+
+              if (responseData.success) {
+                console.log('Formulario enviado correctamente');
+              } else {
+                console.error('Error en el proxy:', responseData.message);
+                // Podríamos mostrar un mensaje al usuario aquí si es necesario
+              }
+            } else {
+              console.error('Error en la respuesta del proxy:', formResponse.status);
+            }
           } catch (formError) {
             console.error('Error al enviar formulario:', formError);
             // Continuamos con la redirección aunque falle el envío del formulario
@@ -1184,8 +1511,8 @@ $(document).ready(function(){
       restOfForm.removeClass('active').addClass('hidden');
       miniCart.removeClass('has-items');
 
-      // Ocultar botones de continuar al envío
-      $('#continue-to-checkout, #continue-to-checkout-bottom').addClass('hidden');
+      // Ocultar botón flotante de continuar al envío
+      $('#floating-checkout-button').addClass('hidden');
 
       // Resaltar la primera instrucción cuando el carrito está vacío
       $('.instruction-step:first-child').addClass('highlight');
@@ -1195,36 +1522,47 @@ $(document).ready(function(){
       $('.cart-instructions').show();
       miniCart.addClass('has-items');
 
-      // Mostrar botones de continuar al envío
-      $('#continue-to-checkout, #continue-to-checkout-bottom').removeClass('hidden');
+      // Mostrar botón flotante de continuar al envío si no estamos en la sección del formulario
+      var formPosition = $('#datos-envio').offset().top;
+      var windowTopPosition = $(window).scrollTop();
+
+      // Siempre mostrar el botón flotante cuando hay productos en el carrito
+      // y no estamos en la sección del formulario
+      $('#floating-checkout-button').removeClass('hidden');
+
+      // Verificar si estamos en la sección del formulario
+      if (windowTopPosition >= formPosition - 200) {
+        $('#floating-checkout-button').addClass('hidden');
+      }
 
       // Resaltar la última instrucción cuando hay productos
       $('.instruction-step:last-child').addClass('highlight');
-      $('.instruction-step:not(:last-child)').removeClass('highlight');
+      $('.instruction-step:not(:first-child)').removeClass('highlight');
 
       // Si hay exactamente 1 producto, mostrar mensaje sobre descuento por segundo par
       if (cartItems.length === 1) {
         showNotification('¡Agrega otro par y obtén un 21% de descuento! Segundo par a solo $55.000', 'info');
       }
 
-      // Solo si hay 2 productos, mostrar y activar el formulario automáticamente
+      // Cuando hay 2 productos, mostrar notificación pero NO activar el formulario automáticamente
       if (cartItems.length === 2) {
-        // Mostrar y activar el formulario de envío automáticamente
-        restOfForm.removeClass('hidden inactive').addClass('active');
-
-        // Actualizar el paso del checkout
-        currentStep = 2;
-        updateCheckoutProgress(currentStep);
-
-        // Scroll suave al formulario
-        setTimeout(function() {
-          $('html, body').animate({
-            scrollTop: $("#datos-envio").offset().top - 80
-          }, 800);
-        }, 500);
-
         // Mostrar notificación de éxito
-        showNotification('¡Excelente elección! Has completado tu selección de 2 pares con descuento.', 'success');
+        showNotification('¡Excelente elección! Has completado tu selección de 2 pares con descuento. Puedes continuar cuando estés listo.', 'success');
+      }
+
+      // Mostrar el botón de emergencia
+      showEmergencyButton();
+
+      // Forzar la visibilidad del botón flotante original también
+      var formPosition = $('#datos-envio').offset().top;
+      var windowTopPosition = $(window).scrollTop();
+
+      if (windowTopPosition < formPosition - 200) {
+        $('#floating-checkout-button').css({
+          'display': 'block',
+          'visibility': 'visible',
+          'opacity': '1'
+        }).removeClass('hidden');
       }
     }
 

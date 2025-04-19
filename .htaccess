@@ -1,0 +1,11 @@
+# Proteger el archivo de registro de spam
+<Files "spam_log.txt">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Proteger el directorio de logs si existe
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^logs/ - [F,L]
+</IfModule>

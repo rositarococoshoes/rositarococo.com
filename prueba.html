@@ -536,7 +536,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 }
 
 .model-carousel .slick-slide {
-    width: 100% !important; 
+    width: 100% !important;
     max-width: 400px !important;
     height: auto !important;
     max-height: 356px !important;
@@ -642,11 +642,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="whatsapp" style="display:none; position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
 
 <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" validate="">
-  <input type="text" 
-  name="website" 
-  id="website" 
-  style="opacity: 0; position: absolute; top: -9999px; left: -9999px;" 
-  tabindex="-1" 
+  <input type="text"
+  name="website"
+  id="website"
+  style="opacity: 0; position: absolute; top: -9999px; left: -9999px;"
+  tabindex="-1"
   autocomplete="off">
   <p><img alt="" src="rosita-form.webp" /></p>
 
@@ -663,7 +663,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </span>
 <span style="font-size:12px;"><em><span style="background-color:#FFFF00;">Podés combinar modelos en tu mismo pedido.</span></em></span></h6>
 <p style="text-align: center; color: green; font-weight: bold; text-transform: uppercase; font-size: 13px;">10% OFF ADICIONAL por transferencia</p>
- 
+
 <p>🚚<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">ENVÍO GRATIS</span></small></span><br />
 <!-- 📏<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">TALLES</span>: del 35 al 39. Tabla de talles debajo. </small></span><br /> -->
 💳<span style="font-size: 14px;"><small style="font-size: 12.88px;"><span style="font-weight: 700;">PAGO</span>: Tarjeta , MercadoPago, Transferencia.</small></span><br />
@@ -1161,8 +1161,14 @@ var getUrlParameter = function getUrlParameter(sParam) {
 };
 
 
-var fbclidpedido = window.location.href;
+// Store page URL for tracking - also used as anti-spam measure
+var fbclidpedido = window.location.origin + window.location.pathname;
 $("#1209868979").val(fbclidpedido);
+
+// Ensure the landing URL is always set for real users
+if (!$("#1209868979").val()) {
+    $("#1209868979").val(window.location.origin + window.location.pathname);
+}
 
 var modeload = getUrlParameter('modeload');
 // $('#' + modeload).insertBefore("#modelo-40"); //
@@ -1174,12 +1180,20 @@ $('#' + modeload).insertBefore("#tituloh4");
 $('#bootstrapForm').submit(async function (event) {
     event.preventDefault();
 
-     // Validación anti-bot simple
+     // Validación anti-bot - Múltiples métodos
+     // 1. Honeypot field check
      if ($('#website').val() !== '') {
-        console.log('Bot detectado, cancelando submit');
+        console.log('Bot detectado via honeypot field, cancelando submit');
         return false;
-    }
-    
+     }
+
+     // 2. Landing URL check - Real users will always have this field filled
+     const landingUrl = $('#1209868979').val();
+     if (!landingUrl || landingUrl.trim() === '') {
+        console.log('Bot detectado: Empty landing URL field, cancelando submit');
+        return false;
+     }
+
     // Capturar datos necesarios
     const talleselegidos = $('#1471599855').val();
     const value2 = talleselegidos.replace(" ", "");
@@ -1198,7 +1212,7 @@ $('#bootstrapForm').submit(async function (event) {
 
     // Deshabilitar el botón antes de procesar
     $('#botoncomprar').attr('value', 'Espere...').prop('disabled', true);
-    
+
     try {
         let mercadoPagoUrl; // Declare mercadoPagoUrl outside the fetch block
 
@@ -1216,15 +1230,15 @@ $('#bootstrapForm').submit(async function (event) {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 }
             });
-            
+
             // Tracking de Facebook
             fbq('track', 'InitiateCheckout');
-            
+
             // Redireccionar según cantidad de pares
-            const redirectUrl = words.length === 3 ? 
-                'https://rositarococo.com/transferenciacbu-2pares.html' : 
+            const redirectUrl = words.length === 3 ?
+                'https://rositarococo.com/transferenciacbu-2pares.html' :
                 'https://rositarococo.com/transferenciacbu-1par.html';
-            
+
             window.location.href = redirectUrl;
             return;
         }
@@ -1491,16 +1505,16 @@ $('#541001873').on('input keyup', function() {
 $('#53830725').on('input keyup', function() {
     // Obtener el valor actual
     let value = $(this).val();
-    
+
     // Eliminar espacios, guiones y el signo +
     value = value.replace(/\s/g, '').replace(/-/g, '').replace(/\+/g, '');
-    
+
     // Eliminar 54 o 549 al inicio
     value = value.replace(/^(?:54|549)/, '');
-    
+
     // Eliminar ceros al inicio
     value = value.replace(/^0+/, '');
-    
+
     // Convertir a minúsculas y actualizar el valor
     $(this).val(value.toLowerCase());
 });
@@ -1577,7 +1591,7 @@ $(document).ready(function() {
     const errorElement = getErrorElement();
     if (errorElement) {
         errorElement.textContent = message;
-        
+
         // Si está verificando WhatsApp, agregar clase especial
         if (message === "Verificando WhatsApp...") {
             errorElement.className = "error-message verifying";
@@ -1587,7 +1601,7 @@ $(document).ready(function() {
             errorElement.style.color = color === "green" ? "#155724" : "#721c24";
             errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
         }
-        
+
         errorElement.style.display = "block";
     }
 }

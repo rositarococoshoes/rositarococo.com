@@ -67,7 +67,7 @@
         </div>
         <div class="mini-cart-footer">
             <div class="cart-total">Total: <span>$0</span></div>
-            <button id="checkout-btn" class="btn-disabled">Finalizar Compra →</button>
+            <button id="checkout-btn" class="btn-disabled" onclick="goToCheckoutForm()">Continuar al Envío →</button>
         </div>
     </div>
 
@@ -76,6 +76,107 @@
         <span class="cart-button-icon">🛒</span>
         <span class="cart-button-count">0</span>
     </div>
+
+    <!-- Botón flotante de continuar al envío -->
+    <button id="fixed-checkout-button" onclick="goToCheckoutForm()" style="display: none;">
+        <span class="button-content">
+            <span>Continuar al Envío</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+    </button>
+
+    <script>
+        // Variables globales para optimizar rendimiento
+        var floatingButton = document.getElementById('fixed-checkout-button');
+        var formSection = document.getElementById('restodelform');
+        var cartCountElement = document.querySelector('.cart-button-count');
+        var formTopPosition = formSection ? formSection.offsetTop : 0;
+        var lastScrollY = 0;
+        var lastItemCount = 0;
+        var buttonVisible = false;
+        var scrollTimeout = null;
+
+        // Función optimizada para ir al formulario de envío
+        function goToCheckoutForm() {
+            // Mostrar la sección del formulario
+            formSection.classList.remove('hidden');
+            formSection.classList.add('active');
+
+            // Desplazarse al formulario
+            window.scrollTo({
+                top: formSection.offsetTop - 20,
+                behavior: 'smooth'
+            });
+
+            // Ocultar el botón flotante
+            floatingButton.style.display = 'none';
+            buttonVisible = false;
+
+            // Mostrar notificación
+            var container = document.getElementById('notification-container');
+            if (container) {
+                var notification = document.createElement('div');
+                notification.className = 'notification info';
+                notification.innerHTML = 'Completa tus datos para finalizar la compra';
+                container.appendChild(notification);
+                setTimeout(function() {
+                    if (notification.parentNode) notification.parentNode.removeChild(notification);
+                }, 5000);
+            }
+        }
+
+        // Función optimizada para actualizar la visibilidad del botón flotante
+        function updateFloatingButton() {
+            // Obtener el contador del carrito
+            var itemCount = cartCountElement ? parseInt(cartCountElement.textContent || '0') : 0;
+            var scrollY = window.scrollY || window.pageYOffset;
+
+            // Optimización: solo actualizar si algo ha cambiado
+            if (itemCount === lastItemCount && scrollY === lastScrollY && formTopPosition) {
+                return;
+            }
+
+            // Actualizar valores
+            lastItemCount = itemCount;
+            lastScrollY = scrollY;
+
+            // Obtener el estado del formulario
+            var isFormActive = formSection && formSection.classList.contains('active');
+            var isAboveForm = scrollY < formTopPosition - 100;
+
+            // Mostrar u ocultar el botón según las condiciones
+            var shouldShow = itemCount > 0 && (!isFormActive || isAboveForm);
+
+            if (shouldShow !== buttonVisible) {
+                floatingButton.style.display = shouldShow ? 'block' : 'none';
+                buttonVisible = shouldShow;
+            }
+        }
+
+        // Optimización: usar requestAnimationFrame para el scroll
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) return;
+
+            scrollTimeout = requestAnimationFrame(function() {
+                updateFloatingButton();
+                scrollTimeout = null;
+            });
+        });
+
+        // Actualizar periódicamente (menos frecuente para ahorrar recursos)
+        setInterval(updateFloatingButton, 2000);
+
+        // Actualizar cuando cambia el carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar posición del formulario
+            formTopPosition = formSection ? formSection.offsetTop : 0;
+
+            // Ejecutar una vez al inicio
+            updateFloatingButton();
+        });
+    </script>
 
     <!-- Checkout Progress Bar -->
     <div id="checkout-progress">
@@ -143,7 +244,7 @@
         </section>
 
         <!-- Form Start -->
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" novalidate="">
+        <form action="form-proxy.php" id="bootstrapForm" method="POST" target="_self" novalidate="">
 
             <!-- Hidden Fields for Google Forms -->
             <textarea id="1209868979" name="entry.1209868979" class="hidden"></textarea>
@@ -156,12 +257,11 @@
                 <legend class="sr-only">Selección de Modelos</legend>
                 <h2 class="text-center" style="font-weight: 700; font-size: 1.8em; margin-bottom: 40px; color: #a05941;">Elige tus Esenciales de Temporada</h2>
 
-                <div class="checkout-navigation product-nav">
-                    <div class="shopping-instructions">
-                        <p><span class="instruction-icon">🛒</span> Selecciona tus productos y talles favoritos</p>
-                    </div>
-                    <button class="btn btn-primary" id="continue-to-checkout">Continuar al Envío →</button>
+                <!-- Instrucciones de compra simplificadas -->
+                <div class="shopping-instructions-simple">
+                    <p><span class="instruction-icon">🛒</span> Selecciona tus productos y talles favoritos</p>
                 </div>
+
                 <div class="product-grid">
                     <!-- PRODUCTO 1: Roma Negras -->
                     <div class="product-item" id="modeload-roma-negras">
@@ -197,6 +297,10 @@
                                 </div>
                                 <p class="product-description">Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo.</p>
                             </div>
+                            <div class="product-price">
+                                <div class="price-single">1 par: 🔥 $70.000</div>
+                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
+                            </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
                                 <label><input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" /> 1 par</label>
@@ -216,6 +320,7 @@
                                             <option value="40-roma-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-1">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
                                     <div class="form-group">
@@ -230,6 +335,7 @@
                                             <option value="40-roma-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-2">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -263,6 +369,10 @@
                                 </div>
                                 <p class="product-description">El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado.</p>
                             </div>
+                            <div class="product-price">
+                                <div class="price-single">1 par: 🔥 $70.000</div>
+                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
+                            </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
                                 <label><input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" /> 1 par</label>
@@ -282,6 +392,7 @@
                                             <option value="40-roma-suela">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-1">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
                                     <div class="form-group">
@@ -296,6 +407,7 @@
                                             <option value="40-roma-suela">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-2">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -325,6 +437,10 @@
                                 </div>
                                 <p class="product-description">Robusto, chic y con carácter. El borcego Siena está listo para acompañarte en cualquier aventura urbana con actitud.</p>
                             </div>
+                            <div class="product-price">
+                                <div class="price-single">1 par: 🔥 $70.000</div>
+                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
+                            </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
                                 <label><input checked="checked" name="hwA-qty-siena2025" type="radio" value="1" /> 1 par</label>
@@ -344,6 +460,7 @@
                                             <option value="40-siena2025">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-1">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
                                     <div class="form-group">
@@ -358,6 +475,7 @@
                                             <option value="40-siena2025">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-2">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -391,6 +509,10 @@
                                 </div>
                                 <p class="product-description">Elegancia y comodidad en un diseño moderno. El modelo Venecia es perfecto para complementar tus looks más sofisticados.</p>
                             </div>
+                            <div class="product-price">
+                                <div class="price-single">1 par: 🔥 $70.000</div>
+                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
+                            </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
                                 <label><input checked="checked" name="hwA-qty-venecia-negras" type="radio" value="1" /> 1 par</label>
@@ -410,6 +532,7 @@
                                             <option value="40-venecia-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-1">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-venecia-negras-2">
                                     <div class="form-group">
@@ -424,6 +547,7 @@
                                             <option value="40-venecia-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-2">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -431,9 +555,9 @@
                 </div>
                 <div class="checkout-navigation product-nav-bottom">
                     <div class="shopping-instructions">
-                        <p><span class="instruction-icon">👍</span> ¡Listo para continuar con tu compra!</p>
+                        <p><span class="instruction-icon">👍</span> ¡Selecciona tus productos favoritos y agrégalos al carrito!</p>
                     </div>
-                    <button class="btn btn-primary" id="continue-to-checkout-bottom">Continuar al Envío →</button>
+
                 </div>
             </fieldset>
 

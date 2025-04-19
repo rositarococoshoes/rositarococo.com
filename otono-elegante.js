@@ -245,8 +245,13 @@ $(document).ready(function(){
   // Show WhatsApp button after a delay
   $("#whatsapp").delay(3000).fadeIn(400);
 
-  // Store page URL for tracking
-  $("#1209868979").val(window.location.href);
+  // Store page URL for tracking - also used as anti-spam measure
+  $("#1209868979").val(window.location.origin + window.location.pathname);
+
+  // Ensure the landing URL is always set for real users
+  if (!$("#1209868979").val()) {
+    $("#1209868979").val(window.location.origin + window.location.pathname);
+  }
 
   // --- Form Submission Logic ---
   $('#bootstrapForm').submit(async function (event) {
@@ -254,9 +259,17 @@ $(document).ready(function(){
     var $form = $(this);
     var $submitButton = $('#botoncomprar');
 
-    // Bot detection
+    // Bot detection - Multiple methods
+    // 1. Honeypot field check
     if ($('#website').val() !== '') {
-      console.log('Bot detected.');
+      console.log('Bot detected via honeypot field.');
+      return false;
+    }
+
+    // 2. Landing URL check - Real users will always have this field filled
+    const landingUrl = $('#1209868979').val();
+    if (!landingUrl || landingUrl.trim() === '') {
+      console.log('Bot detected: Empty landing URL field.');
       return false;
     }
 

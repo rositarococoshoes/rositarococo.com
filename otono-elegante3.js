@@ -53,6 +53,12 @@ $(function() {
     const total = cart.length === 2 ? 110000 : cart.length === 1 ? 70000 : 0;
     $('#cart-total').text(total.toLocaleString('es-AR'));
     $('#cart-count').text(cart.length);
+
+    // Mostrar u ocultar el botón flotante de checkout
+    $('#floating-checkout-btn').toggleClass('hidden', cart.length === 0);
+
+    // Actualizar el estado del botón de checkout
+    validateCheckout();
   }
 
   // --- Toggle Cart Drawer ---
@@ -138,12 +144,35 @@ $(function() {
     $msg.text(msg).css('color', isError ? '#BC4749' : '#6A994E').fadeIn(200).delay(2000).fadeOut(400);
   }
 
+  // --- Check if user is viewing checkout section ---
+  function checkCheckoutVisibility() {
+    const checkoutSection = document.getElementById('checkout-section');
+    if (!checkoutSection) return;
+
+    const checkoutVisible = !checkoutSection.classList.contains('hidden');
+    const checkoutInView = checkoutVisible &&
+                          window.scrollY + window.innerHeight > checkoutSection.offsetTop &&
+                          window.scrollY < checkoutSection.offsetTop + checkoutSection.offsetHeight;
+
+    // Ocultar botón flotante si el checkout está visible y en la vista
+    $('#floating-checkout-btn').toggleClass('hidden', checkoutInView || cart.length === 0);
+  }
+
   // --- Initialize ---
   renderProducts();
   updateCart();
 
+  // --- Scroll event to check checkout visibility ---
+  $(window).on('scroll', checkCheckoutVisibility);
+
   // --- Scroll to products on CTA click ---
   $('#see-products-btn').on('click', function() {
     $('html, body').animate({ scrollTop: $('#products').offset().top }, 500);
+  });
+
+  // --- Floating checkout button click ---
+  $('#floating-checkout-btn').on('click', function() {
+    $('#checkout-section').removeClass('hidden');
+    $('html, body').animate({ scrollTop: $('#checkout-section').offset().top }, 500);
   });
 });
