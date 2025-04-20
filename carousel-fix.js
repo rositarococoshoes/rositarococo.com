@@ -11,6 +11,7 @@ window.onload = function() {
             return;
         }
 
+        const container = carouselElement.querySelector('.carousel-container');
         const slides = carouselElement.querySelectorAll('.carousel-slide');
         const prevBtn = carouselElement.querySelector('.carousel-button.prev');
         const nextBtn = carouselElement.querySelector('.carousel-button.next');
@@ -20,9 +21,17 @@ window.onload = function() {
         console.log('Botones:', prevBtn ? 'Prev OK' : 'No Prev', nextBtn ? 'Next OK' : 'No Next');
         console.log('Indicadores:', indicators.length);
 
-        if (!slides.length) {
-            console.error('No hay slides en este carrusel');
+        if (!slides.length || !container) {
+            console.error('No hay slides o contenedor en este carrusel');
             return;
+        }
+
+        // Configurar el ancho del contenedor y de los slides
+        container.style.width = (slides.length * 100) + '%';
+
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].style.width = (100 / slides.length) + '%';
+            slides[i].style.display = 'flex';
         }
 
         let currentIndex = 0;
@@ -39,18 +48,22 @@ window.onload = function() {
             // Actualizar el índice actual
             currentIndex = index;
 
-            // Ocultar todos los slides
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = 'none';
-            }
-
-            // Mostrar el slide actual
-            slides[currentIndex].style.display = 'block';
-
-            // Asegurarse de que el contenedor de carrusel no tenga transformación
+            // Configurar el contenedor para mostrar el slide actual
             const container = carouselElement.querySelector('.carousel-container');
             if (container) {
-                container.style.transform = 'translateX(0%)';
+                // Asegurarse de que el contenedor tenga el ancho correcto
+                container.style.width = (slides.length * 100) + '%';
+
+                // Asegurarse de que cada slide tenga el ancho correcto
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.width = (100 / slides.length) + '%';
+                    slides[i].style.display = 'flex';
+                }
+
+                // Mover el contenedor para mostrar el slide actual
+                const offset = -(currentIndex * (100 / slides.length));
+                container.style.transform = 'translateX(' + offset + '%)';
+                console.log('Transformando contenedor a:', offset + '%');
             }
 
             // Actualizar indicadores si existen

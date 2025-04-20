@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar todos los carruseles
     const carousels = document.querySelectorAll('.simple-carousel');
 
+    console.log('Inicializando carruseles. Encontrados:', carousels.length);
+
     carousels.forEach(function(carousel) {
         const container = carousel.querySelector('.carousel-container');
         const slides = carousel.querySelectorAll('.carousel-slide');
@@ -16,6 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        console.log('Carrusel inicializado con', slides.length, 'slides');
+
+        // Asegurarse de que el contenedor tenga el ancho correcto
+        container.style.width = (slides.length * 100) + '%';
+
+        // Asegurarse de que cada slide tenga el ancho correcto
+        slides.forEach(function(slide) {
+            slide.style.width = (100 / slides.length) + '%';
+        });
+
         let currentIndex = 0;
         const slideCount = slides.length;
 
@@ -27,7 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             currentIndex = index;
-            container.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+            container.style.transform = 'translateX(-' + (currentIndex * (100 / slideCount)) + '%)';
+            console.log('Mostrando slide', currentIndex, 'transform:', container.style.transform);
 
             if (indicators && indicators.length > 0) {
                 indicators.forEach(function(indicator, i) {
@@ -96,6 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        // Iniciar el carrusel mostrando la primera imagen
         showSlide(0);
     });
 });
@@ -108,3 +122,38 @@ document.addEventListener('click', function(e) {
         return false;
     }
 }, true);
+
+// Función para reinicializar los carruseles si es necesario
+function reinitializeCarousels() {
+    const carousels = document.querySelectorAll('.simple-carousel');
+
+    carousels.forEach(function(carousel) {
+        const container = carousel.querySelector('.carousel-container');
+        const slides = carousel.querySelectorAll('.carousel-slide');
+
+        if (!container || slides.length === 0) return;
+
+        // Asegurarse de que el contenedor tenga el ancho correcto
+        container.style.width = (slides.length * 100) + '%';
+
+        // Asegurarse de que cada slide tenga el ancho correcto
+        slides.forEach(function(slide) {
+            slide.style.width = (100 / slides.length) + '%';
+        });
+
+        // Resetear a la primera imagen
+        container.style.transform = 'translateX(0)';
+    });
+}
+
+// Llamar a reinitializeCarousels después de que la página esté completamente cargada
+window.addEventListener('load', function() {
+    console.log('Página completamente cargada, reinicializando carruseles');
+    reinitializeCarousels();
+});
+
+// También reinicializar si se redimensiona la ventana
+window.addEventListener('resize', function() {
+    console.log('Ventana redimensionada, reinicializando carruseles');
+    reinitializeCarousels();
+});

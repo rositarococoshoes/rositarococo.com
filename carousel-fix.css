@@ -6,32 +6,46 @@
     max-width: 100%;
     margin: 0 auto 20px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: transparent;
+    height: 500px; /* Altura fija para el carrusel */
+    border: none;
 }
 
 .carousel-container {
     position: relative;
-    width: 100%;
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 400%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    height: 100%;
+    transition: transform 0.5s ease;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .carousel-slide {
-    display: none; /* Todos los slides están ocultos por defecto */
-    width: 100%;
+    flex: 0 0 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    width: 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    height: 100%;
+    display: flex !important; /* Forzar display flex */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-}
-
-.carousel-slide:first-child {
-    display: block; /* El primer slide se muestra por defecto */
+    float: left; /* Asegurar que los slides se muestren en línea */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .carousel-slide img {
     display: block;
-    width: 100%;
+    max-width: 100%;
     height: auto;
-    max-height: 500px;
+    max-height: 480px;
     object-fit: contain;
     margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
 }
 
 /* Botones de navegación */
@@ -54,6 +68,8 @@
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     -webkit-tap-highlight-color: transparent;
+    outline: none;
+    text-decoration: none;
 }
 
 .carousel-button:hover {
@@ -61,22 +77,22 @@
 }
 
 .carousel-button.prev {
-    left: 10px;
+    left: 5px;
 }
 
 .carousel-button.next {
-    right: 10px;
+    right: 5px;
 }
 
 /* Indicadores de posición */
 .carousel-indicators {
     position: absolute;
-    bottom: 15px;
+    bottom: 10px;
     left: 0;
     right: 0;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -102,13 +118,11 @@
 
 /* Estilos específicos para el carrusel de testimonios */
 .testimonials-carousel .carousel-slide {
-    display: none; /* Oculto por defecto */
-    width: 100%;
+    display: flex !important; /* Forzar display flex */
+    align-items: center;
+    justify-content: center;
+    width: 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
     text-align: center;
-}
-
-.testimonials-carousel .carousel-slide:first-child {
-    display: block; /* El primer slide visible */
 }
 
 .testimonials-carousel .carousel-slide img {

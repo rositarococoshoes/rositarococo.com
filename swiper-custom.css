@@ -3,12 +3,27 @@
 /* Estilos generales para todos los carruseles */
 .swiper {
     width: 100%;
-    margin: 0;
+    height: 350px;
+    margin: 0 0 20px 0;
     padding: 0;
     overflow: hidden;
-    border-radius: 0;
+    border-radius: 8px;
     background-color: #f9f6f2;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos específicos para cada carrusel */
+#swiper-roma-negras,
+#swiper-roma-suela,
+#swiper-siena2025,
+#swiper-venecia-negras {
+    height: 350px;
+}
+
+#swiper-testimonios {
+    max-width: 600px;
+    height: 400px;
+    margin: 0 auto 30px;
 }
 
 /* Estilos para los slides */
@@ -19,6 +34,27 @@
     text-align: center;
     background-color: #f9f6f2;
     overflow: hidden;
+    position: relative;
+}
+
+/* Asegurarse de que los botones de navegación estén por encima de los slides */
+.swiper {
+    position: relative;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-button-next {
+    right: 10px;
 }
 
 /* Estilos para las imágenes dentro de los slides */
@@ -33,27 +69,32 @@
 /* Estilos para los botones de navegación */
 .swiper-button-next,
 .swiper-button-prev {
-    color: #a05941;
-    background-color: rgba(255, 255, 255, 0.7);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
+    color: #a05941 !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: all 0.3s ease !important;
+    z-index: 100 !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
 }
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #7a3f2b;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    color: #7a3f2b !important;
+    transform: scale(1.05) !important;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Estilos para la paginación */
@@ -105,12 +146,12 @@
         width: 35px;
         height: 35px;
     }
-    
+
     .swiper-button-next:after,
     .swiper-button-prev:after {
         font-size: 16px;
     }
-    
+
     .testimonials-carousel .swiper-slide img {
         max-height: 350px;
     }
@@ -122,12 +163,12 @@
         width: 30px;
         height: 30px;
     }
-    
+
     .swiper-button-next:after,
     .swiper-button-prev:after {
         font-size: 14px;
     }
-    
+
     .testimonials-carousel .swiper-slide img {
         max-height: 300px;
     }
@@ -140,12 +181,12 @@
         width: 25px;
         height: 25px;
     }
-    
+
     .swiper-button-next:after,
     .swiper-button-prev:after {
         font-size: 12px;
     }
-    
+
     .testimonials-carousel .swiper-slide img {
         max-height: 250px;
     }

@@ -7,6 +7,90 @@
   padding: 0;
 }
 
+/* --- Top Benefits Bar --- */
+.top-benefits-bar {
+  background-color: rgba(160, 89, 65, 0.85);
+  color: rgba(255, 255, 255, 1);
+  padding: 2px 15px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* --- Beneficios en productos --- */
+.product-benefits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 400;
+}
+
+.benefit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-icon {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  color: var(--color-primary);
+}
+
+.benefit-divider {
+  color: rgba(160, 89, 65, 0.3);
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .product-benefits {
+    font-size: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .benefit-icon {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-benefits {
+    font-size: 0.7rem;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .benefit-divider {
+    display: none;
+  }
+}
+
 :root {
   /* Paleta de colores otoñales */
   --color-primary: #a05941; /* Marrón rojizo */
@@ -44,6 +128,7 @@ body {
                     url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M50 50 L52 48 L50 46 L48 48 Z" fill="%23d68c4522" /></svg>');
   background-size: 100px 100px;
   background-attachment: fixed;
+  padding-top: 25px; /* Espacio para la barra fija */
 }
 
 img {
@@ -106,11 +191,73 @@ p {
 /* --- Header Styles --- */
 .main-header {
   text-align: center;
-  padding: 45px 0 35px; /* Más espacio vertical */
+  padding: 25px 0 10px; /* Menos espacio vertical */
   position: relative;
-  background: linear-gradient(to bottom, var(--color-background), var(--color-background-alt));
-  border-bottom: 1px solid rgba(160, 89, 65, 0.15);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03); /* Sombra sutil */
+  background-color: white;
+  border-bottom: none;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+/* --- Compact Price Info --- */
+.compact-price-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 10px 15px;
+  margin: 0 auto 20px;
+  max-width: 800px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.compact-price-info .price-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.compact-price-info .price-option span {
+  font-weight: 700;
+}
+
+.compact-price-info .price-option small {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.compact-price-info .price-option.highlight {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 5px 10px;
+}
+
+.compact-price-info .price-option.discount {
+  color: #a05941;
+  font-weight: 700;
+}
+
+.compact-price-info .price-option.discount span {
+  background-color: #a05941;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+  .compact-price-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px;
+  }
 }
 
 /* Banner de beneficios destacados */
@@ -180,30 +327,31 @@ p {
 }
 
 .main-header img {
-  max-width: 100%; /* Logo a tamaño completo */
+  max-width: 250px; /* Tamaño controlado */
   width: auto;
   height: auto;
-  margin: 0 auto 30px;
+  margin: 0 auto 15px;
   border-radius: 0;
-  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.1)); /* Sombra para el logo */
+  filter: none; /* Sin sombra */
 }
 
 .main-header h1 {
-  font-size: 2.6em; /* Título más grande */
-  color: var(--color-primary);
-  font-weight: 700;
-  margin-bottom: 12px;
-  letter-spacing: 1.2px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); /* Sombra sutil para el texto */
+  font-size: 1.8em; /* Título más pequeño */
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+  text-shadow: none; /* Sin sombra */
+  text-transform: uppercase;
 }
 
 .main-header .subtitle {
-  font-size: 1.3em;
-  color: var(--color-text-light);
+  font-size: 1em;
+  color: #666;
   font-weight: 400;
-  font-style: italic;
-  margin-bottom: 18px;
-  max-width: 800px;
+  font-style: normal;
+  margin-bottom: 10px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -467,6 +615,30 @@ p {
   margin: 0 3px;
 }
 
+/* --- Product Section Title --- */
+.product-section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 10px 0 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.product-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background-color: #a05941;
+}
+
 /* --- Product Grid & Items --- */
 .product-grid {
   display: grid;
@@ -479,33 +651,45 @@ p {
   margin-right: auto;
 }
 
+.product-item h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
 .product-item {
   background-color: #fff;
-  border-radius: 12px; /* Bordes más redondeados */
+  border-radius: 0; /* Sin bordes redondeados */
   overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* Sombra mejorada */
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  border: none; /* Eliminado el borde */
-  position: relative; /* Para posicionamiento absoluto de elementos internos */
+  box-shadow: none; /* Sin sombra */
+  transition: transform 0.3s ease;
+  border: none;
+  position: relative;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
 }
 
 .product-item:hover {
-  transform: translateY(-8px); /* Efecto hover más pronunciado */
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .product-item h2 {
-  font-size: 1.6em; /* Título más grande */
-  padding: 10px 20px 0; /* Padding reducido */
-  margin-bottom: 0; /* Eliminado el margen inferior */
-  color: #3a3a3a;
+  font-size: 1.2em;
+  padding: 5px 0;
+  margin: 0 0 5px 0;
+  color: #333;
+  font-weight: 600;
   text-align: center;
-  font-weight: 700; /* Más negrita */
-  letter-spacing: 0.5px; /* Espaciado entre letras */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   background-color: #fff;
-  line-height: 1; /* Ajustar altura de línea para minimizar espacio */
+  line-height: 1.2;
 }
 
 /* --- Carousel Styles --- */
@@ -522,24 +706,26 @@ p {
   flex: 1; /* Hacer que el carrusel ocupe todo el espacio disponible */
 }
 
-.model-carousel .slick-slide {
+.model-carousel .slick-slide,
+.simple-carousel .carousel-slide {
   display: flex !important;
   justify-content: center;
   align-items: center;
-  height: 450px; /* Altura fija para todos los slides */
+  height: 500px; /* Altura mayor para los slides */
   overflow: hidden;
   position: relative;
   padding: 0; /* Eliminar padding para aprovechar todo el ancho */
 }
 
-.model-carousel .slick-slide img {
+.model-carousel .slick-slide img,
+.simple-carousel .carousel-slide img {
   width: 100%; /* Usar todo el ancho disponible */
   height: auto; /* Altura automática */
-  max-height: 430px; /* Altura máxima casi igual al contenedor */
+  max-height: 480px; /* Altura máxima casi igual al contenedor */
   object-fit: contain; /* Mantiene la proporción de la imagen */
   border-radius: 0;
   margin: 0 auto;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil para destacar la imagen */
+  box-shadow: none; /* Sin sombra */
   transition: opacity 0.3s ease; /* Transición suave al cargar */
 }
 
@@ -671,11 +857,11 @@ p {
 }
 
 .product-info-details {
-  margin: 5px 0 10px;
-  padding: 10px;
-  background-color: rgba(250, 248, 245, 0.9);
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin: 5px 0 8px;
+  padding: 8px;
+  background-color: rgba(250, 248, 245, 0.7);
+  border-radius: 6px;
+  box-shadow: none;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -683,30 +869,33 @@ p {
 
 .product-specs {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed rgba(160, 89, 65, 0.2);
+  gap: 6px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: none;
   text-align: center;
 }
 
 .spec-item {
-  font-size: 0.95em;
-  color: #555;
-  padding: 5px 0;
-  display: flex;
+  font-size: 0.75em;
+  color: #666;
+  padding: 2px 6px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  background-color: rgba(250, 248, 245, 0.5);
+  border-radius: 3px;
+  margin: 0 1px;
 }
 
 .spec-item strong {
   color: #a05941;
-  margin-right: 8px;
-  min-width: 80px;
-  text-align: right;
-  display: inline-block;
+  margin-right: 4px;
+  font-weight: 600;
+  display: inline;
   position: relative;
 }
 
@@ -717,25 +906,24 @@ p {
 }
 
 .product-description {
-  font-size: 1.05em;
-  color: #555;
+  font-size: 0.9em;
+  color: #666;
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.4;
   margin: 0;
-  padding: 5px 0;
+  padding: 3px 0;
   font-style: italic;
 }
 
 /* Estilos para el precio del producto */
 .product-price {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
   margin: 10px 0;
-  padding: 8px;
+  padding: 10px;
   background-color: rgba(160, 89, 65, 0.08);
   border-radius: 8px;
   transition: transform 0.3s ease;
@@ -746,26 +934,43 @@ p {
 }
 
 .price-single {
-  font-size: 1.2em;
+  font-size: 1.3em;
   font-weight: 700;
-  color: var(--color-primary);
+  color: #333;
   margin: 0;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .price-double {
-  font-size: 1.1em;
+  font-size: 1.2em;
   font-weight: 600;
   color: var(--color-text);
   margin: 0;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.price-benefits {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 2px;
+  font-weight: 400;
 }
 
 .price-highlight {
   background-color: var(--color-primary);
   color: white;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 4px;
   font-weight: 700;
   margin: 0 3px;
+  box-shadow: 0 1px 3px rgba(160, 89, 65, 0.3);
 }
 
 .product-info-details strong {
@@ -2577,7 +2782,7 @@ left: 15px;
 
 .next-btn {
 right: 15px;
-/* === Fixes for Simple Carousel and Floating Bar === */
+/* === Simple Carousel Styles === */
 
 .simple-carousel {
   overflow: hidden;
@@ -2586,17 +2791,34 @@ right: 15px;
   max-width: 100%;
   margin: 0;
   padding: 0;
+  height: 500px; /* Altura fija para el carrusel */
+  background-color: #f9f9f9;
 }
 
 .simple-carousel .carousel-container {
   display: flex;
   transition: transform 0.5s ease;
   will-change: transform;
+  height: 100%; /* Asegurar que el contenedor ocupe toda la altura */
+  width: 400%; /* Ancho inicial para 4 slides (se ajustará con JS) */
 }
 
 .simple-carousel .carousel-slide {
-  flex: 0 0 100%;
+  flex: 0 0 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+  width: 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+  height: 100%; /* Asegurar que cada slide ocupe toda la altura */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left; /* Asegurar que los slides se muestren en línea */
+}
+
+.simple-carousel .carousel-slide img {
   max-width: 100%;
+  max-height: 480px; /* Altura máxima para las imágenes */
+  object-fit: contain; /* Mantener proporción de la imagen */
+  display: block;
+  margin: 0 auto;
 }
 
 .simple-carousel .carousel-button {
@@ -2612,6 +2834,16 @@ right: 15px;
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.simple-carousel .carousel-button:hover {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .simple-carousel .carousel-button.prev { left: 10px; }
@@ -2623,19 +2855,27 @@ right: 15px;
   margin-top: 10px;
   list-style: none;
   padding: 0;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  z-index: 10;
 }
 
 .simple-carousel .carousel-indicators li {
   width: 10px;
   height: 10px;
-  background: #ccc;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
   margin: 0 5px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .simple-carousel .carousel-indicators li.active {
   background: var(--color-primary, #a05941);
+  transform: scale(1.2);
 }
 
 /* Testimonials carousel images */

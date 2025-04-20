@@ -134,28 +134,7 @@ $(document).ready(function(){
   setTimeout(ensureCartButtonVisible, 2000);
   setTimeout(ensureCartButtonVisible, 3000);
 
-  // Función para mostrar el botón de emergencia
-  function showEmergencyButton() {
-    if (cartItems.length > 0) {
-      var formPosition = $('#datos-envio').offset().top;
-      var windowTopPosition = $(window).scrollTop();
-
-      if (windowTopPosition < formPosition - 200) {
-        $('#emergency-checkout-button').css('display', 'block');
-        console.log('Mostrando botón de emergencia');
-      } else {
-        $('#emergency-checkout-button').css('display', 'none');
-        console.log('Ocultando botón de emergencia');
-      }
-    } else {
-      $('#emergency-checkout-button').css('display', 'none');
-    }
-  }
-
-  // Llamar a la función para mostrar el botón de emergencia
-  setTimeout(showEmergencyButton, 1000);
-  setTimeout(showEmergencyButton, 2000);
-  setTimeout(showEmergencyButton, 3000);
+  // Función para mostrar el botón flotante (eliminada la función de emergencia)
 
   // Animate the cart button after page load to draw attention
   setTimeout(function() {
@@ -385,21 +364,14 @@ $(document).ready(function(){
         totalPrice = 70000;
         totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
 
-        // Si es el primer par que se agrega, mostrar el formulario automáticamente
-        if (currentVal && prevVal === "") {
-          // Mostrar y activar la sección de checkout
-          restOfForm.removeClass('hidden inactive').addClass('active');
+        // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
+        // Mostrar y activar la sección de checkout, pero sin forzar el foco
+        restOfForm.removeClass('hidden inactive').addClass('active');
 
-          // Mostrar notificación
-          showNotification('¡Producto agregado! Completa tus datos para finalizar la compra.', 'success');
+        // Mostrar notificación
+        showNotification('¡Producto agregado! Completa tus datos para finalizar la compra.', 'success');
 
-          // Desplazarse al formulario con una pequeña demora
-          setTimeout(function() {
-            $('html, body').animate({
-              scrollTop: restOfForm.offset().top - 20
-            }, 500);
-          }, 500);
-        }
+        // No forzamos el scroll al formulario, solo lo hacemos visible
       } else if (pairCount === 2) {
         totalPrice = 110000;
         totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
@@ -411,12 +383,7 @@ $(document).ready(function(){
           // Asegurarse de que el formulario esté visible
           restOfForm.removeClass('hidden inactive').addClass('active');
 
-          // Desplazarse al formulario
-          setTimeout(function() {
-            $('html, body').animate({
-              scrollTop: restOfForm.offset().top - 20
-            }, 500);
-          }, 500);
+          // No forzamos el scroll al formulario, solo lo hacemos visible
         }
       } else {
         totalPriceText = "Has seleccionado más de 2 pares. Revisa tu selección.";
@@ -458,9 +425,7 @@ $(document).ready(function(){
       }).removeClass('hidden');
       console.log('Mostrando botón flotante después de agregar producto');
 
-      // Mostrar botón de emergencia también
-      $('#emergency-checkout-button').css('display', 'block');
-      console.log('Mostrando botón de emergencia después de agregar producto');
+      // Botón de emergencia eliminado
     }
 
     // Retornar true para indicar que el producto se agregó correctamente
@@ -470,8 +435,8 @@ $(document).ready(function(){
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
 
-  // Continue to checkout button click handlers - para todos los botones flotantes
-  $("#floating-continue-to-checkout, #emergency-checkout-button, #fixed-checkout-button").on('click', function(e) {
+  // Continue to checkout button click handlers - para el botón flotante
+  $("#floating-continue-to-checkout, #fixed-checkout-button").on('click', function(e) {
     e.preventDefault();
     console.log('Botón de continuar al envío clickeado');
 
@@ -502,9 +467,8 @@ $(document).ready(function(){
         showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
       }
 
-      // Ocultar los botones flotantes cuando se muestra el formulario
+      // Ocultar el botón flotante cuando se muestra el formulario
       $('#floating-checkout-button').addClass('hidden').css('display', 'none');
-      $('#emergency-checkout-button').css('display', 'none');
     } else {
       showNotification('Por favor, selecciona al menos un producto para continuar', 'error');
     }

@@ -30,15 +30,14 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="otono-elegante2.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="swiper-custom.css" />
+    <link rel="stylesheet" href="carousel-fix.css">
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="carousel-fix.js"></script>
+    <script src="carousel-init.js"></script>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -48,15 +47,6 @@
 
     <!-- Anti-bot Honeypot Field -->
     <input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off">
-
-    <!-- Barra superior de beneficios -->
-    <div class="top-benefits-bar">
-        <div class="benefit-container">
-            <div class="benefit-item">3 CUOTAS SIN INTERÉS</div>
-            <div class="benefit-divider">|</div>
-            <div class="benefit-item">ENVÍO GRATIS A TODO EL PAÍS</div>
-        </div>
-    </div>
 
     <!-- Mini Cart -->
     <div id="mini-cart">
@@ -96,8 +86,6 @@
             </svg>
         </span>
     </button>
-
-
 
     <script>
         // Variables globales para optimizar rendimiento
@@ -213,10 +201,47 @@
     <div class="container">
         <header class="main-header">
             <img alt="Rosita Rococó Logo" src="rosita-form.webp" />
-            <h1>Colección Otoño-Invierno 2025</h1>
+            <h1>🍂 Colección Otoño-Invierno 2025 🍂</h1>
+            <p class="subtitle">Diseños exclusivos que abrazan tus pasos con estilo y confort</p>
+            <span class="season-badge">NUEVA TEMPORADA</span>
         </header>
 
+        <!-- Banner de beneficios destacados -->
+        <div class="benefits-banner">
+            <div class="benefit-item">
+                <span class="benefit-icon">🚚</span>
+                <span class="benefit-text"><strong>ENVÍO GRATIS</strong><br>a todo el país</span>
+            </div>
+            <div class="benefit-item">
+                <span class="benefit-icon">💳</span>
+                <span class="benefit-text"><strong>3 CUOTAS SIN INTERÉS</strong><br>con todas las tarjetas</span>
+            </div>
+        </div>
 
+        <section class="info-section">
+            <h2>Prepárate para la Temporada</h2>
+            <div class="price-card">
+                <div class="price-option">
+                    <span class="price-label">1 par:</span>
+                    <span class="price-amount">🔥 $70.000</span>
+                </div>
+                <div class="price-option best-value">
+                    <span class="price-label">2 pares:</span>
+                    <span class="price-amount">🔥 $110.000</span>
+                    <span class="price-detail">($55.000 c/u - ¡Tu mejor opción!)</span>
+                </div>
+            </div>
+            <p style="font-size: 0.95em; color: #666; margin-top: 15px;"><em>Combina modelos y talles como más te guste (máx. 2 pares).</em></p>
+            <p class="discount-info">💰 <span class="highlight-discount">10% OFF EXTRA</span> pagando por Transferencia! 💰</p>
+
+            <ul class="details">
+                <li><strong>ENVÍO GRATIS</strong> a todo el país. ¡Recíbelos en tu puerta!</li>
+                <li><strong>PAGO SEGURO:</strong> 3 Cuotas sin interés con Tarjeta, MercadoPago o Transferencia (con dto.)</li>
+                <li><strong>PRODUCCIÓN A PEDIDO:</strong> Despachamos en 15 días aprox. ¡Hechos especialmente para ti!</li>
+                <li><strong>TALLES:</strong> Del 35 al 40. Revisa los cm de plantilla en cada modelo</li>
+                <li><strong>STOCK ASEGURADO:</strong> Todos los modelos publicados están disponibles</li>
+            </ul>
+        </section>
 
         <!-- Form Start -->
         <form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" id="bootstrapForm" method="POST" target="_self" novalidate="">
@@ -230,25 +255,38 @@
 
             <fieldset id="todoslosmodelos">
                 <legend class="sr-only">Selección de Modelos</legend>
+                <h2 class="text-center" style="font-weight: 700; font-size: 1.8em; margin-bottom: 40px; color: #a05941;">Elige tus Esenciales de Temporada</h2>
 
+                <!-- Instrucciones de compra simplificadas -->
+                <div class="shopping-instructions-simple">
+                    <p><span class="instruction-icon">🛒</span> Selecciona tus productos y talles favoritos</p>
+                </div>
 
                 <div class="product-grid">
                     <!-- PRODUCTO 1: Roma Negras -->
                     <div class="product-item" id="modeload-roma-negras">
-                        <h2>Botineta Roma negras</h2>
-                        <div class="swiper" id="swiper-roma-negras">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.jpg"></div>
+                        <h2>Botineta Roma Negras</h2>
+                        <div id="carousel-roma-negras" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.jpg"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-roma-negras">
                             <div class="product-info-details">
@@ -262,11 +300,6 @@
                             <div class="product-price">
                                 <div class="price-single">1 par: 🔥 $70.000</div>
                                 <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> 3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> ENVÍO GRATIS</div>
-                                </div>
                             </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
@@ -310,17 +343,22 @@
 
                     <!-- PRODUCTO 2: Roma Suela -->
                     <div class="product-item" id="modeload-roma-suela">
-                        <h2>Botineta Roma suela</h2>
-                        <div class="swiper" id="swiper-roma-suela">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.jpg"></div>
+                        <h2>Botineta Roma Suela</h2>
+                        <div id="carousel-roma-suela" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.jpg"></div>
+                                <div class="carousel-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.jpg"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-roma-suela">
                             <div class="product-info-details">
@@ -334,11 +372,6 @@
                             <div class="product-price">
                                 <div class="price-single">1 par: 🔥 $70.000</div>
                                 <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> 3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> ENVÍO GRATIS</div>
-                                </div>
                             </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
@@ -383,14 +416,17 @@
                     <!-- PRODUCTO 3: Siena 2025 -->
                     <div class="product-item" id="modeload-siena2025">
                         <h2>Borcego Siena 2025</h2>
-                        <div class="swiper" id="swiper-siena2025">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1"></div>
-                                <div class="swiper-slide"><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2"></div>
+                        <div id="carousel-siena2025" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1"></div>
+                                <div class="carousel-slide"><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-siena2025">
                             <div class="product-info-details">
@@ -404,11 +440,6 @@
                             <div class="product-price">
                                 <div class="price-single">1 par: 🔥 $70.000</div>
                                 <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> 3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> ENVÍO GRATIS</div>
-                                </div>
                             </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
@@ -452,17 +483,22 @@
 
                     <!-- PRODUCTO 4: Venecia Negras -->
                     <div class="product-item" id="modeload-venecia-negras">
-                        <h2>Venecia negras</h2>
-                        <div class="swiper" id="swiper-venecia-negras">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.jpg"></div>
+                        <h2>Venecia Negras</h2>
+                        <div id="carousel-venecia-negras" class="simple-carousel">
+                            <div class="carousel-container">
+                                <div class="carousel-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.jpg"></div>
+                                <div class="carousel-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.jpg"></div>
                             </div>
-                            <div class="swiper-pagination"></div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
+                            <button class="carousel-button prev" aria-label="Imagen anterior">&lt;</button>
+                            <button class="carousel-button next" aria-label="Imagen siguiente">&gt;</button>
+                            <ul class="carousel-indicators">
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
                         </div>
                         <div class="product-selection" id="talles-venecia-negras">
                             <div class="product-info-details">
@@ -476,11 +512,6 @@
                             <div class="product-price">
                                 <div class="price-single">1 par: 🔥 $70.000</div>
                                 <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> 3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item"><span class="benefit-icon">✓</span> ENVÍO GRATIS</div>
-                                </div>
                             </div>
                             <div class="quantity-selector">
                                 <span>Cantidad:</span>
@@ -534,23 +565,35 @@
             <section class="testimonials-section">
                 <h2 class="text-center">Lo que dicen nuestras clientas</h2>
                 <!-- Testimonials carousel -->
-                <div class="swiper" id="swiper-testimonios">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" /></div>
-                        <div class="swiper-slide"><img src="comentariosig.webp" alt="Captura de comentarios de Instagram"></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" /></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" /></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" /></div>
+                <div id="carousel-testimonios" class="simple-carousel testimonials-carousel">
+                    <div class="carousel-container">
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" /></div>
+                        <div class="carousel-slide"><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" /></div>
+                        <div class="carousel-slide"><img src="comentariosig.webp" alt="Captura de comentarios de Instagram"></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" /></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" /></div>
+                        <div class="carousel-slide"><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" /></div>
                     </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+                    <button class="carousel-button prev" aria-label="Testimonio anterior">&lt;</button>
+                    <button class="carousel-button next" aria-label="Testimonio siguiente">&gt;</button>
+                    <ul class="carousel-indicators">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
                 </div>
             </section>
 
@@ -707,8 +750,8 @@
         <p class="loading-message">Estamos preparando tu pago seguro...<br>Un momento por favor, no actualices la página.</p>
     </div>
 
+    <script src="simple-carousel.js"></script>
     <!-- Custom scripts -->
-    <script src="swiper-init.js"></script>
     <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
 
