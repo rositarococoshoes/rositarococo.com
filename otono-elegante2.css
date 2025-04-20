@@ -33,18 +33,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin: 5px 0 10px;
+  gap: 5px;
+  margin: 3px 0 5px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--color-primary);
+  background-color: rgba(250, 248, 245, 0.7);
+  border-radius: 4px;
+  padding: 2px 5px;
 }
 
 .benefit-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: 0.65rem;
+  padding: 1px 4px;
+  background-color: rgba(160, 89, 65, 0.08);
+  border-radius: 3px;
 }
 
 .benefit-container {
@@ -65,29 +71,38 @@
 .benefit-divider {
   color: rgba(160, 89, 65, 0.3);
   font-weight: 300;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
+  margin: 0 -2px;
 }
 
 @media (max-width: 768px) {
   .product-benefits {
-    font-size: 0.75rem;
+    font-size: 0.65rem;
     flex-wrap: wrap;
+    padding: 1px 3px;
   }
 
-  .benefit-icon {
-    font-size: 0.75rem;
+  .benefit-item {
+    font-size: 0.6rem;
+    padding: 1px 3px;
   }
 }
 
 @media (max-width: 480px) {
   .product-benefits {
-    font-size: 0.7rem;
-    flex-direction: column;
-    gap: 5px;
+    font-size: 0.6rem;
+    flex-direction: row;
+    gap: 3px;
+    margin: 2px 0 4px;
+  }
+
+  .benefit-item {
+    font-size: 0.55rem;
+    padding: 1px 2px;
   }
 
   .benefit-divider {
-    display: none;
+    font-size: 0.5rem;
   }
 }
 
@@ -327,7 +342,7 @@ p {
 }
 
 .main-header img {
-  max-width: 250px; /* Tamaño controlado */
+  max-width: 320px; /* Tamaño aumentado para celulares */
   width: auto;
   height: auto;
   margin: 0 auto 15px;
@@ -360,13 +375,14 @@ p {
   display: inline-block;
   background-color: var(--color-primary);
   color: white;
-  padding: 10px 20px; /* Más padding */
+  padding: 8px 18px;
   border-radius: 30px;
-  font-size: 0.95em;
-  font-weight: 600;
-  margin-top: 15px;
-  letter-spacing: 1.2px;
-  box-shadow: 0 4px 12px rgba(160, 89, 65, 0.25); /* Sombra mejorada */
+  font-size: 0.9em;
+  font-weight: 500;
+  margin-top: 10px;
+  letter-spacing: 1px;
+  font-family: 'Lato', sans-serif;
+  box-shadow: 0 3px 10px rgba(160, 89, 65, 0.2);
   position: relative;
   overflow: hidden;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
@@ -652,13 +668,14 @@ p {
 }
 
 .product-item h2 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 500;
   text-transform: none;
   color: var(--color-primary);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   text-align: center;
   letter-spacing: 0.5px;
+  font-family: 'Lato', sans-serif;
 }
 
 .product-item {

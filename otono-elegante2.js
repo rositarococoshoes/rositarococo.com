@@ -134,7 +134,46 @@ $(document).ready(function(){
   setTimeout(ensureCartButtonVisible, 2000);
   setTimeout(ensureCartButtonVisible, 3000);
 
-  // Función para mostrar el botón flotante (eliminada la función de emergencia)
+  // Función para mostrar el botón flotante y el formulario cuando hay productos en el carrito
+  function updateFormVisibility() {
+    if (cartItems.length > 0) {
+      // Mostrar el formulario cuando hay productos en el carrito
+      restOfForm.removeClass('hidden inactive').addClass('active');
+
+      // Mostrar u ocultar el botón flotante según la posición de scroll
+      var formPosition = $('#datos-envio').offset().top;
+      // Obtener la altura del formulario para cálculos de visibilidad
+      var windowTopPosition = $(window).scrollTop();
+      var windowHeight = $(window).height();
+
+      // Calcular si el formulario está completamente visible en la pantalla
+      // El formulario está completamente visible si su parte superior está visible
+      // y hay suficiente espacio para mostrar al menos 300px del formulario
+      var formTopVisible = formPosition >= windowTopPosition && formPosition <= (windowTopPosition + windowHeight);
+      var formPartiallyVisible = (windowTopPosition + windowHeight) > formPosition && (windowTopPosition + windowHeight) < (formPosition + 300);
+      var formFullyVisible = formTopVisible && !formPartiallyVisible;
+
+      // Mostrar el botón si estamos por encima del formulario y el formulario no está completamente visible
+      if (windowTopPosition < formPosition && !formFullyVisible) {
+        $('#fixed-checkout-button').css('display', 'block');
+        console.log('Mostrando botón: estamos arriba del formulario');
+      } else {
+        $('#fixed-checkout-button').css('display', 'none');
+        console.log('Ocultando botón: formulario visible o estamos debajo');
+      }
+    } else {
+      // Ocultar el formulario y el botón cuando no hay productos
+      restOfForm.addClass('hidden').removeClass('active');
+      $('#fixed-checkout-button').css('display', 'none');
+      console.log('Ocultando botón: no hay productos');
+    }
+  }
+
+  // Llamar a la función al cargar la página
+  setTimeout(updateFormVisibility, 500);
+
+  // Llamar a la función cuando se hace scroll o se redimensiona la ventana
+  $(window).on('scroll resize', updateFormVisibility);
 
   // Animate the cart button after page load to draw attention
   setTimeout(function() {
@@ -412,21 +451,8 @@ $(document).ready(function(){
     // Mostrar notificación de éxito
     showNotification('¡Producto agregado al carrito!', 'success');
 
-    // Mostrar el botón flotante si no estamos en la sección del formulario
-    var formPosition = $('#datos-envio').offset().top;
-    var windowTopPosition = $(window).scrollTop();
-
-    if (windowTopPosition < formPosition - 200) {
-      // Mostrar botón flotante original
-      $('#floating-checkout-button').css({
-        'display': 'block',
-        'visibility': 'visible',
-        'opacity': '1'
-      }).removeClass('hidden');
-      console.log('Mostrando botón flotante después de agregar producto');
-
-      // Botón de emergencia eliminado
-    }
+    // Actualizar la visibilidad del botón flotante y el formulario
+    updateFormVisibility();
 
     // Retornar true para indicar que el producto se agregó correctamente
     return true;

@@ -11,6 +11,9 @@
 - Remover el texto actual "Colección Otoño-Invierno 2025" y el subtítulo "Diseños exclusivos que abrazan tus pasos con estilo y confort"
 - Reemplazar por etiquetas cortas que solo digan "Colección Otoño-Invierno 2025"
 - Eliminar la sección "NUESTROS MODELOS"
+- Usar una tipografía diferente para el título "Colección Otoño-Invierno 2025" para diferenciarlo de los títulos de los modelos
+- Reducir el tamaño de fuente de los títulos de cada modelo para que sean más compactos
+- Aumentar el ancho máximo del logo de Rosita Rococó en celulares a 320px para que se vea más grande
 
 ## Precios y promociones
 - Quitar la sección de precios que aparece en la parte superior de la página
@@ -24,6 +27,9 @@
 - Reorganizar la información de "Material", "Suela" y "Altura" para que no aparezcan uno debajo del otro (ocupan mucho espacio)
 - Mostrar "3 cuotas sin interés" y "Envío gratis" como etiquetas destacables sin emojis en las tarjetas de modelos
 - Optimizar el espacio vertical para reducir la necesidad de scroll en celulares entre el carrusel y su botón de "Agregar al carrito"
+- Reducir la altura de la sección de beneficios dentro de cada producto (3 cuotas sin interés y envío gratis)
+- Eliminar el emoji de check (✓) en los beneficios de cada producto para ahorrar espacio vertical
+- Mostrar los beneficios como etiquetas destacadas pero más compactas
 
 ## Comportamiento del formulario y carrito
 - Cuando se agrega al menos un producto al carrito, hacer visible automáticamente el formulario de envío (sin necesidad de hacer clic en "Continuar al envío")
@@ -32,6 +38,10 @@
 - Corregir la visibilidad del botón "Continuar al envío" para que se muestre correctamente cuando hay productos en el carrito
 - Mantener solo el botón original de "Continuar al envío" y eliminar el botón de emergencia
 - No forzar el foco automático al formulario cuando se agrega un producto, solo hacerlo visible
+- Asegurar que el formulario de envío sea visible en la página cuando haya al menos un producto agregado al carrito, sin necesidad de hacer clic en "Continuar al envío"
+- El botón "Continuar al envío" debe ser invisible cuando no hay productos en el carrito o cuando hay productos pero el formulario de envío ya está completamente visible en pantalla
+- Corregir el problema donde el botón "Continuar al envío" desaparece prematuramente al comenzar a hacer scroll
+- Corregir el error JavaScript: "Uncaught ReferenceError: showEmergencyButton is not defined"
 
 ## Optimización general
 - Reducir la cantidad de scroll necesario en dispositivos móviles
