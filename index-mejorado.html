@@ -1984,14 +1984,20 @@
             });
 
             // Botón para volver a productos desde el paso 1
-            document.getElementById('back-to-products-1').addEventListener('click', function() {
-                document.getElementById('restodelform').classList.add('hidden');
-                document.getElementById('restodelform').classList.remove('active');
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+            const backToProductsBtn = document.getElementById('back-to-products-1');
+            if (backToProductsBtn) {
+                backToProductsBtn.addEventListener('click', function() {
+                    const restoDelForm = document.getElementById('restodelform');
+                    if (restoDelForm) {
+                        restoDelForm.classList.add('hidden');
+                        restoDelForm.classList.remove('active');
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    }
                 });
-            });
+            }
 
             // Función para ir a un paso específico
             function goToStep(stepNumber) {
