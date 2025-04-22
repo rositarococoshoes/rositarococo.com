@@ -31,24 +31,25 @@
 /* --- Beneficios en productos --- */
 .product-benefits {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 5px;
-  margin: 3px 0 5px;
+  margin: 5px 0 8px;
   font-family: 'Lato', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.85rem;
   color: var(--color-primary);
   background-color: rgba(250, 248, 245, 0.7);
   border-radius: 4px;
-  padding: 2px 5px;
+  padding: 5px 8px;
+  width: 100%;
 }
 
 .benefit-item {
   display: inline-flex;
   align-items: center;
-  font-weight: 500;
-  font-size: 0.65rem;
-  padding: 1px 4px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 3px 6px;
   background-color: rgba(160, 89, 65, 0.08);
   border-radius: 3px;
 }
@@ -63,16 +64,17 @@
 }
 
 .benefit-icon {
-  font-size: 0.8rem;
+  font-size: 1rem;
   opacity: 0.9;
   color: var(--color-primary);
+  margin-right: 4px;
 }
 
 .benefit-divider {
-  color: rgba(160, 89, 65, 0.3);
-  font-weight: 300;
-  font-size: 0.6rem;
-  margin: 0 -2px;
+  color: rgba(160, 89, 65, 0.5);
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin: 0 2px;
 }
 
 @media (max-width: 768px) {
@@ -132,7 +134,7 @@ html {
 }
 
 body {
-  font-family: 'Playfair Display', 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-background);
@@ -169,12 +171,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   font-weight: 700;
   color: var(--color-text);
-  font-family: 'Playfair Display', serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 p {
   margin-bottom: 1em;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* --- Layout --- */
@@ -997,8 +999,8 @@ p {
 
 .quantity-selector {
   text-align: center;
-  margin-bottom: 5px;
-  padding: 5px 0;
+  margin-bottom: 3px;
+  padding: 3px 0;
   border-top: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
   border-bottom: 1px solid rgba(240, 233, 224, 0.3); /* Borde más sutil */
   display: flex;
@@ -1033,11 +1035,11 @@ p {
 }
 
 .size-selector {
-  margin-top: 5px;
+  margin-top: 2px;
 }
 
 .size-selector .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 /* Botón de agregar al carrito */
@@ -1103,8 +1105,8 @@ p {
 
 fieldset {
   border: none;
-  padding: 20px 0;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 }
 
 .fieldsetstalles {
@@ -1491,7 +1493,7 @@ fieldset {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #4CAF50;
+  background-color: #a05941; /* Cambiado a color primario para consistencia */
   color: white;
   width: 60px;
   height: 60px;
@@ -1506,6 +1508,8 @@ fieldset {
   z-index: 9999 !important;
   animation: float 3s ease-in-out infinite;
   visibility: visible !important;
+  font-size: 1.5em; /* Aumentado el tamaño del icono */
+  border: 2px solid white; /* Borde blanco para mejor contraste */
 }
 
 /* Botón flotante para continuar al checkout */
@@ -1650,19 +1654,20 @@ fieldset {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: var(--color-primary);
+  background-color: #333; /* Color oscuro para contraste */
   color: white;
-  font-size: 0.8em;
+  font-size: 0.9em; /* Ligeramente más grande */
   font-weight: bold;
-  width: 20px;
-  height: 20px;
+  width: 22px; /* Ligeramente más grande */
+  height: 22px; /* Ligeramente más grande */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid white; /* Borde blanco para mejor contraste */
 }
 
 .cart-button-count {
