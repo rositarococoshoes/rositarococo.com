@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+    <!-- Google Tag Manager (carga diferida) -->
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-W2CVWDJ');
+        }, 2000); // Retraso de 2 segundos para mejorar la carga inicial
+    });
+    </script>
     <!-- End Google Tag Manager -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -23,9 +29,13 @@
 
     <!-- Preload de recursos críticos -->
     <link rel="preload" href="rosita-form.webp" as="image">
+    <link rel="preload" href="roma-negras-1.webp" as="image">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Fonts con carga optimizada -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap">
+    </noscript>
 
     <!-- Carousel CSS con preload para mejorar rendimiento -->
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
@@ -174,32 +184,35 @@
             margin: 10px 0;
         }
 
-        /* Badges y elementos de urgencia */
+        /* Badges y elementos de urgencia - Mejorados para visibilidad */
         .product-badges {
             position: absolute;
             top: 10px;
             left: 10px;
-            z-index: 10;
+            z-index: 20; /* Aumentado para asegurar que esté por encima de otros elementos */
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px; /* Aumentado el espacio entre badges */
         }
 
         .badge {
-            padding: 5px 10px;
+            padding: 6px 12px; /* Padding aumentado */
             border-radius: 4px;
-            font-size: 0.7rem;
+            font-size: 0.75rem; /* Tamaño de fuente ligeramente aumentado */
             font-weight: bold;
             text-transform: uppercase;
             color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra añadida para mejor contraste */
+            letter-spacing: 0.5px; /* Mejor espaciado entre letras */
+            white-space: nowrap; /* Evitar que el texto se rompa */
         }
 
         .badge-bestseller {
-            background-color: #4caf50;
+            background-color: #2e7d32; /* Verde más oscuro para mejor contraste */
         }
 
         .badge-limited {
-            background-color: #f44336;
+            background-color: #c62828; /* Rojo más oscuro para mejor contraste */
         }
 
         .recent-purchases {
@@ -233,19 +246,20 @@
             margin-right: 5px;
         }
 
-        /* Ajustes para etiquetas de producto en móviles */
+        /* Ajustes para etiquetas de producto en móviles - Configuración específica */
         @media (max-width: 480px) {
             .product-badges {
-                flex-direction: row;
-                gap: 3px;
-                top: 5px;
-                left: 5px;
+                flex-direction: column;
+                gap: 0px;
+                top: 50px;
+                left: 3px;
             }
 
             .badge {
-                padding: 2px 5px;
-                font-size: 0.6rem;
-                line-height: 1;
+                padding: 4px 8px; /* Padding aumentado */
+                font-size: 0.65rem; /* Tamaño de fuente aumentado */
+                line-height: 1.2; /* Altura de línea aumentada */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada en móviles */
             }
 
             /* Ajustes para beneficios de producto */
@@ -289,7 +303,7 @@
         /* Estilos para el contenedor principal */
         .container {
             width: 100%;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 5px;
         }
@@ -314,11 +328,26 @@
             }
         }
 
-        /* Ajustes adicionales para pantallas muy pequeñas */
+        /* Ajustes para imágenes en desktop */
+        @media (min-width: 769px) {
+            .swiper-slide img {
+                width: auto;
+                height: auto;
+                object-fit: contain;
+                max-height: 600px;
+                max-width: 100%;
+            }
+        }
+
+        /* Ajustes adicionales para pantallas muy pequeñas - Mejorados para visibilidad */
         @media (max-width: 360px) {
             .badge {
-                padding: 1px 4px;
-                font-size: 0.55rem;
+                padding: 3px 6px; /* Padding aumentado */
+                font-size: 0.6rem; /* Tamaño de fuente aumentado */
+                margin-bottom: 3px; /* Espacio adicional entre badges */
+                display: block; /* Asegurar que se muestre como bloque */
+                width: auto; /* Ancho automático */
+                text-align: center; /* Texto centrado */
             }
 
             .product-benefits {
@@ -1039,9 +1068,22 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) cargado de forma diferida -->
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var noscript = document.createElement('noscript');
+            var iframe = document.createElement('iframe');
+            iframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ";
+            iframe.height = "0";
+            iframe.width = "0";
+            iframe.style.display = "none";
+            iframe.style.visibility = "hidden";
+            noscript.appendChild(iframe);
+            document.body.appendChild(noscript);
+        }, 2000);
+    });
+    </script>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Anti-bot Honeypot Field -->
@@ -1225,13 +1267,13 @@
                         <h2>Botineta Roma negras</h2>
                         <div class="swiper" id="swiper-roma-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.jpg" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.webp" width="100%" height="auto"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -1292,7 +1334,7 @@
                                             <option value="40-roma-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-1">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
                                     <div class="form-group">
@@ -1307,7 +1349,7 @@
                                             <option value="40-roma-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-2">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -1322,10 +1364,10 @@
                         <h2>Botineta Roma suela</h2>
                         <div class="swiper" id="swiper-roma-suela">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.jpg" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.webp" width="100%" height="auto"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -1386,7 +1428,7 @@
                                             <option value="40-roma-suela">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-1">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
                                     <div class="form-group">
@@ -1401,7 +1443,7 @@
                                             <option value="40-roma-suela">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-2">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -1409,15 +1451,11 @@
 
                     <!-- PRODUCTO 3: Siena 2025 -->
                     <div class="product-item" id="modeload-siena2025">
-                        <div class="product-badges">
-                            <span class="badge badge-bestseller">MÁS VENDIDO</span>
-                            <span class="badge badge-limited">STOCK LIMITADO</span>
-                        </div>
                         <h2>Borcego Siena 2025</h2>
                         <div class="swiper" id="swiper-siena2025">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1" loading="lazy"></div>
-                                <div class="swiper-slide"><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2" loading="lazy"></div>
+                                <div class="swiper-slide"><img src="siena2025-1.webp" alt="Borcego Siena 2025 - Vista 1" width="100%" height="auto"></div>
+                                <div class="swiper-slide"><img src="siena2025-2.webp" alt="Borcego Siena 2025 - Vista 2" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -1478,7 +1516,7 @@
                                             <option value="40-siena2025">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-1">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-siena2025-2">
                                     <div class="form-group">
@@ -1493,7 +1531,7 @@
                                             <option value="40-siena2025">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-2">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="siena2025-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -1501,17 +1539,13 @@
 
                     <!-- PRODUCTO 4: Venecia Negras -->
                     <div class="product-item" id="modeload-venecia-negras">
-                        <div class="product-badges">
-                            <span class="badge badge-bestseller">MÁS VENDIDO</span>
-                            <span class="badge badge-limited">STOCK LIMITADO</span>
-                        </div>
                         <h2>Venecia negras</h2>
                         <div class="swiper" id="swiper-venecia-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.jpg" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.jpg" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.webp" width="100%" height="auto"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -1572,7 +1606,7 @@
                                             <option value="40-venecia-negras">40 (26 cm de plantilla) - Última unidad!</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-1">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                                 <fieldset class="fieldsetstalles" id="hwA-venecia-negras-2">
                                     <div class="form-group">
@@ -1587,7 +1621,7 @@
                                             <option value="40-venecia-negras">40 (26 cm de plantilla) - Última unidad!</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-2">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="venecia-negras-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -1607,17 +1641,17 @@
                 <!-- Testimonials carousel -->
                 <div class="swiper" id="swiper-testimonios">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" /></div>
-                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" /></div>
-                        <div class="swiper-slide"><img src="comentariosig.webp" alt="Captura de comentarios de Instagram"></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" /></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" /></div>
-                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 1" src="comentariorecibi1.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 2" src="comentariorecibi2.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 3" src="comentariorecibi4.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 4" src="comentariorecibi5.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 5" src="comentariorecibi6.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 6" src="comentariorecibi7.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Captura de comentario positivo de clienta 7" src="comentariorecibi8.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img src="comentariosig.webp" alt="Captura de comentarios de Instagram" width="100%" height="auto" loading="lazy"></div>
+                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 1" src="comentario3-min.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 2" src="comentario4-min.webp" width="100%" height="auto" loading="lazy" /></div>
+                        <div class="swiper-slide"><img alt="Referencia de clienta satisfecha 3" src="comentario5-min.webp" width="100%" height="auto" loading="lazy" /></div>
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-prev"></div>
