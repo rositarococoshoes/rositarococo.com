@@ -265,7 +265,7 @@ $(document).ready(function(){
   });
 
   // --- Product Selection Logic ---
-  var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025', 'venecia-negras']; // Add all product IDs
+  var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025', 'venecia-negras', 'paris-negras', 'paris-camel', 'paris-verde']; // Add all product IDs
   fieldsetsToShow.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selectedQty = parseInt($(this).val());
