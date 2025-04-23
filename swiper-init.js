@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', function() {
         initProductSwiper('swiper-siena2025', commonConfig);
         initProductSwiper('swiper-venecia-negras', commonConfig);
 
+        // Inicializar carruseles de Paris (una sola imagen)
+        initProductSwiper('swiper-paris-negras', {...commonConfig, loop: false});
+        initProductSwiper('swiper-paris-camel', {...commonConfig, loop: false});
+        initProductSwiper('swiper-paris-verde', {...commonConfig, loop: false});
+
         // Inicializar el carrusel de testimonios
         const testimoniosEl = document.getElementById('swiper-testimonios');
         if (testimoniosEl) {
@@ -54,10 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     delay: 5000,
                     disableOnInteraction: false,
                 },
-                effect: 'fade',
-                fadeEffect: {
-                    crossFade: true
-                },
+                effect: 'slide',
                 pagination: {
                     ...commonConfig.pagination,
                     el: '#swiper-testimonios .swiper-pagination'
