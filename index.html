@@ -151,6 +151,15 @@
 
         // Función optimizada para ir al formulario de envío
         function goToCheckoutForm() {
+            // Verificar si formSection existe
+            if (!formSection) {
+                formSection = document.getElementById('restodelform');
+                if (!formSection) {
+                    console.error('Error: No se encontró el elemento con ID "restodelform"');
+                    return;
+                }
+            }
+
             // Mostrar la sección del formulario
             formSection.classList.remove('hidden');
             formSection.classList.add('active');
@@ -161,9 +170,12 @@
                 behavior: 'smooth'
             });
 
-            // Ocultar el botón flotante
-            floatingButton.style.display = 'none';
-            buttonVisible = false;
+            // Verificar si floatingButton existe
+            if (floatingButton) {
+                // Ocultar el botón flotante
+                floatingButton.style.display = 'none';
+                buttonVisible = false;
+            }
 
             // Mostrar notificación
             var container = document.getElementById('notification-container');

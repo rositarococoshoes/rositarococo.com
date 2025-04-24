@@ -34,6 +34,7 @@ function showNotification(message, type = 'info') {
 // Variable global para controlar el envío del formulario
 window.formSubmitted = false;
 window.formSubmissionId = null;
+window.formSubmissionCount = 0; // Contador de envíos
 
 // Función para generar un ID único
 function generateUniqueId() {
@@ -46,6 +47,7 @@ function checkPreviousSubmission() {
         // Verificar si hay un ID de envío almacenado en localStorage
         const storedSubmissionId = localStorage.getItem('formSubmissionId');
         const storedTimestamp = localStorage.getItem('formSubmissionTimestamp');
+        const storedCount = localStorage.getItem('formSubmissionCount');
 
         if (storedSubmissionId && storedTimestamp) {
             // Verificar si el envío fue hace menos de 10 minutos
@@ -58,6 +60,7 @@ function checkPreviousSubmission() {
                 console.log('Formulario enviado recientemente (hace ' + Math.round(timeDiff/1000) + ' segundos)');
                 window.formSubmitted = true;
                 window.formSubmissionId = storedSubmissionId;
+                window.formSubmissionCount = storedCount ? parseInt(storedCount, 10) : 0;
                 return true;
             }
         }
@@ -66,6 +69,27 @@ function checkPreviousSubmission() {
     }
 
     return false;
+}
+
+// Función para evitar envíos duplicados
+function preventDuplicateSubmission() {
+    // Incrementar el contador de envíos
+    window.formSubmissionCount++;
+
+    // Almacenar el contador en localStorage
+    try {
+        localStorage.setItem('formSubmissionCount', window.formSubmissionCount.toString());
+    } catch (e) {
+        console.error('Error al almacenar contador de envíos:', e);
+    }
+
+    // Si ya se ha enviado más de una vez, evitar envíos adicionales
+    if (window.formSubmissionCount > 1) {
+        console.log('Evitando envío duplicado. Contador:', window.formSubmissionCount);
+        return false;
+    }
+
+    return true;
 }
 
 // Función para manejar el envío del formulario
@@ -153,6 +177,23 @@ $(document).ready(function() {
             if (formaPago === 'cbu') {
                 // Preparar el formulario para envío a Google Forms
 
+                // Verificar si ya se ha enviado el formulario más de una vez
+                if (!preventDuplicateSubmission()) {
+                    console.log('Evitando envío duplicado a Google Forms (CBU)');
+
+                    // Redireccionar a la página de transferencia CBU sin enviar el formulario de nuevo
+                    setTimeout(function() {
+                        const pairCount = selectedProducts.split(',').length;
+                        const redirectUrl = pairCount >= 2 ?
+                            'https://rositarococo.com/transferenciacbu-2pares.html' :
+                            'https://rositarococo.com/transferenciacbu-1par.html';
+
+                        window.location.href = redirectUrl;
+                    }, 1000);
+
+                    return false;
+                }
+
                 // Enviar formulario a Google Forms usando un iframe oculto
                 // Esta técnica permite enviar a Google Forms sin redireccionar la página
                 const iframe = document.createElement('iframe');
@@ -167,9 +208,18 @@ $(document).ready(function() {
                 submissionIdField.value = window.formSubmissionId;
                 this.appendChild(submissionIdField);
 
+                // Agregar el contador de envíos como campo oculto
+                const submissionCountField = document.createElement('input');
+                submissionCountField.type = 'hidden';
+                submissionCountField.name = 'submission_count';
+                submissionCountField.value = window.formSubmissionCount.toString();
+                this.appendChild(submissionCountField);
+
                 // Configurar el formulario para enviar a través del iframe
                 this.target = 'hidden_iframe';
                 this.submit();
+
+                console.log('Formulario enviado a Google Forms (CBU). Contador:', window.formSubmissionCount);
 
                 // Redireccionar a la página de transferencia CBU
                 setTimeout(function() {
@@ -187,11 +237,31 @@ $(document).ready(function() {
             // Si es MercadoPago o tarjeta
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
                 // Obtener el precio
-                const montoTexto = $(".preciototalaobservar").first().text();
-                const monto = parseFloat(montoTexto.replace(/\./g, ''));
+                let montoTexto = $(".preciototalaobservar").first().text();
+                console.log('Texto del precio:', montoTexto);
+
+                // Si no se encuentra el precio, usar un valor predeterminado basado en la cantidad de productos
+                let monto = 0;
+                if (!montoTexto || montoTexto.trim() === '') {
+                    const pairCount = selectedProducts.split(',').length;
+                    monto = pairCount >= 2 ? 110000 : 70000;
+                    console.log('Usando monto predeterminado:', monto);
+                } else {
+                    monto = parseFloat(montoTexto.replace(/\./g, ''));
+                    console.log('Monto parseado:', monto);
+                }
+
+                // Verificar que el monto sea válido
+                if (isNaN(monto) || monto <= 0) {
+                    const pairCount = selectedProducts.split(',').length;
+                    monto = pairCount >= 2 ? 110000 : 70000;
+                    console.log('Monto inválido, usando predeterminado:', monto);
+                }
 
                 // Construir la URL para el webhook de MercadoPago
                 const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
+                console.log('Llamando al webhook:', webhookUrl);
+                console.log('Datos de envío:', { comprador: nombreComprador, monto: monto });
 
                 try {
                     // Llamar al webhook para generar el link de pago
@@ -203,13 +273,27 @@ $(document).ready(function() {
                             monto: monto
                         })
                     });
+
+                    console.log('Respuesta del webhook:', response.status, response.statusText);
+
                     if (!response.ok) {
-                        throw new Error(`Error en la respuesta del webhook: ${response.status}`);
+                        throw new Error(`Error en la respuesta del webhook: ${response.status} ${response.statusText}`);
                     }
 
                     const responseText = await response.text();
-                    const jsonData = JSON.parse(responseText);
+                    console.log('Texto de respuesta:', responseText);
+
+                    let jsonData;
+                    try {
+                        jsonData = JSON.parse(responseText);
+                        console.log('Datos JSON:', jsonData);
+                    } catch (e) {
+                        console.error('Error al parsear JSON:', e);
+                        throw new Error('Error al parsear la respuesta del servidor');
+                    }
+
                     const mercadoPagoUrl = jsonData.linkpersonalizadomp;
+                    console.log('URL de MercadoPago:', mercadoPagoUrl);
 
                     if (!mercadoPagoUrl) {
                         throw new Error('No se encontró el link de MercadoPago en la respuesta');
@@ -218,6 +302,20 @@ $(document).ready(function() {
                     // Guardar el link en el formulario
                     $('#link-mercadopago').val(mercadoPagoUrl);
                     document.getElementById('link-mercadopago').value = mercadoPagoUrl;
+
+                    // Verificar si ya se ha enviado el formulario más de una vez
+                    if (!preventDuplicateSubmission()) {
+                        console.log('Evitando envío duplicado a Google Forms (MercadoPago)');
+
+                        // Redireccionar a MercadoPago sin enviar el formulario de nuevo
+                        console.log('Redireccionando a MercadoPago sin enviar formulario...');
+                        setTimeout(function() {
+                            console.log('Redireccionando ahora a:', mercadoPagoUrl);
+                            window.location.href = mercadoPagoUrl;
+                        }, 1500);
+
+                        return false;
+                    }
 
                     // Enviar el formulario a Google Forms usando un iframe oculto
                     const iframe = document.createElement('iframe');
@@ -232,12 +330,23 @@ $(document).ready(function() {
                     submissionIdField.value = window.formSubmissionId;
                     this.appendChild(submissionIdField);
 
+                    // Agregar el contador de envíos como campo oculto
+                    const submissionCountField = document.createElement('input');
+                    submissionCountField.type = 'hidden';
+                    submissionCountField.name = 'submission_count';
+                    submissionCountField.value = window.formSubmissionCount.toString();
+                    this.appendChild(submissionCountField);
+
                     // Configurar el formulario para enviar a través del iframe
                     this.target = 'hidden_iframe';
                     this.submit();
 
+                    console.log('Formulario enviado a Google Forms (MercadoPago). Contador:', window.formSubmissionCount);
+
                     // Redireccionar a MercadoPago
+                    console.log('Redireccionando a MercadoPago en 1.5 segundos...');
                     setTimeout(function() {
+                        console.log('Redireccionando ahora a:', mercadoPagoUrl);
                         window.location.href = mercadoPagoUrl;
                     }, 1500);
 
