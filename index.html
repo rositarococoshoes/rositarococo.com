@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+    <!-- Google Tag Manager (carga diferida) -->
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-W2CVWDJ');
+        }, 2000); // Retraso de 2 segundos para mejorar la carga inicial
+    });
+    </script>
     <!-- End Google Tag Manager -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,13 +20,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Descubre nuestra exclusiva colección otoño-invierno de calzado femenino. Diseños elegantes y cómodos con envío gratis a todo el país.">
 
-    <!-- Fonts -->
+    <!-- Preconexiones para mejorar velocidad -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <!-- Carousel CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="rosita-form.webp" as="image">
+    <link rel="preload" href="roma-negras-1.webp" as="image">
+
+    <!-- Fonts con carga optimizada -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap">
+    </noscript>
+
+    <!-- Carousel CSS con preload para mejorar rendimiento -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -28,26 +47,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
 
-    <!-- Custom CSS -->
+    <!-- Custom CSS con preload para mejorar rendimiento -->
+    <link rel="preload" href="otono-elegante2.css" as="style">
     <link rel="stylesheet" href="otono-elegante2.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Swiper Custom CSS -->
+    <link rel="preload" href="swiper-custom.css" as="style">
     <link rel="stylesheet" href="swiper-custom.css" />
+
     <!-- Badges and Prices CSS -->
+    <link rel="preload" href="badges.css" as="style">
     <link rel="stylesheet" href="badges.css" />
+
     <!-- Price and Quantity Selector CSS -->
+    <link rel="preload" href="price-quantity.css" as="style">
     <link rel="stylesheet" href="price-quantity.css" />
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Scripts optimizados para carga rápida -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- Google Tag Manager (noscript) cargado de forma diferida -->
+    <script>
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var noscript = document.createElement('noscript');
+            var iframe = document.createElement('iframe');
+            iframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ";
+            iframe.height = "0";
+            iframe.width = "0";
+            iframe.style.display = "none";
+            iframe.style.visibility = "hidden";
+            noscript.appendChild(iframe);
+            document.body.appendChild(noscript);
+        }, 2000);
+    });
+    </script>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Anti-bot Honeypot Field -->
@@ -246,13 +284,13 @@
                         <h2>Botineta Roma negras</h2>
                         <div class="swiper" id="swiper-roma-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.jpg"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 1" src="roma-negras-1.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 2" src="roma-negras-1a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 3" src="roma-negras-5a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 4" src="roma-negras-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 5" src="roma-negras-3a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 6" src="roma-negras-4a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Negras - Vista 7" src="roma-negras-2.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -336,10 +374,10 @@
                         <h2>Botineta Roma suela</h2>
                         <div class="swiper" id="swiper-roma-suela">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.jpg"></div>
-                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.jpg"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 1" src="roma-suela-1a.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 2" src="roma-suela-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 3" src="roma-suela-1.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Botineta Roma Suela - Vista 4" src="roma-suela-2.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -505,10 +543,10 @@
                         <h2>Venecia negras</h2>
                         <div class="swiper" id="swiper-venecia-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.jpg"></div>
-                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.jpg"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 1" src="venecia-negras-1a.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 2" src="venecia-negras-2a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 3" src="venecia-negras-3a.webp" width="100%" height="auto" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Venecia Negras - Vista 4" src="venecia-negras-4a.webp" width="100%" height="auto" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -601,9 +639,10 @@
                         <div class="product-selection" id="talles-paris-negras">
                             <div class="product-info-details">
                                 <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada elastizada</span>
                                     <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
                                     <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                    <span class="spec-item"><strong>Detalles:</strong> Bicolor</span>
                                 </div>
                                 <p class="product-description">Elegancia urbana con un toque de sofisticación. El modelo Paris combina estilo y comodidad para tus looks diarios.</p>
                             </div>
@@ -693,9 +732,10 @@
                         <div class="product-selection" id="talles-paris-camel">
                             <div class="product-info-details">
                                 <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada elastizada</span>
                                     <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
                                     <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                    <span class="spec-item"><strong>Detalles:</strong> Bicolor</span>
                                 </div>
                                 <p class="product-description">El tono cálido camel aporta versatilidad y elegancia a este modelo, perfecto para combinar con cualquier outfit de temporada.</p>
                             </div>
@@ -786,9 +826,10 @@
                         <div class="product-selection" id="talles-paris-verde">
                             <div class="product-info-details">
                                 <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada elastizada</span>
                                     <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
                                     <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                    <span class="spec-item"><strong>Detalles:</strong> Bicolor</span>
                                 </div>
                                 <p class="product-description">Un toque de color que aporta personalidad y estilo. El verde intenso de este modelo Paris es perfecto para quienes buscan destacar.</p>
                             </div>

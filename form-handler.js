@@ -40,6 +40,9 @@ $(document).ready(function() {
     $('#bootstrapForm').submit(async function(event) {
         event.preventDefault();
 
+        // Reiniciar la variable de control de envío
+        window.formSubmitted = false;
+
         // Verificar si es un bot
         if (isBot()) {
             console.log('Envío bloqueado: posible bot');
@@ -83,14 +86,17 @@ $(document).ready(function() {
 
                 // Enviar formulario a Google Forms usando un iframe oculto
                 // Esta técnica permite enviar a Google Forms sin redireccionar la página
-                const iframe = document.createElement('iframe');
-                iframe.name = 'hidden_iframe';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
+                if (!window.formSubmitted) {
+                    window.formSubmitted = true;
+                    const iframe = document.createElement('iframe');
+                    iframe.name = 'hidden_iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
 
-                // Configurar el formulario para enviar a través del iframe
-                this.target = 'hidden_iframe';
-                this.submit();
+                    // Configurar el formulario para enviar a través del iframe
+                    this.target = 'hidden_iframe';
+                    this.submit();
+                }
 
                 // Redireccionar a la página de transferencia CBU
                 setTimeout(function() {
@@ -141,14 +147,17 @@ $(document).ready(function() {
                     document.getElementById('link-mercadopago').value = mercadoPagoUrl;
 
                     // Enviar el formulario a Google Forms usando un iframe oculto
-                    const iframe = document.createElement('iframe');
-                    iframe.name = 'hidden_iframe';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
+                    if (!window.formSubmitted) {
+                        window.formSubmitted = true;
+                        const iframe = document.createElement('iframe');
+                        iframe.name = 'hidden_iframe';
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
 
-                    // Configurar el formulario para enviar a través del iframe
-                    this.target = 'hidden_iframe';
-                    this.submit();
+                        // Configurar el formulario para enviar a través del iframe
+                        this.target = 'hidden_iframe';
+                        this.submit();
+                    }
 
                     // Redireccionar a MercadoPago
                     setTimeout(function() {
