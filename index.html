@@ -64,10 +64,7 @@
     <link rel="stylesheet" href="price-quantity.css" />
 
     <!-- Scripts optimizados para carga rápida -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Los scripts se cargarán al final del documento para mejorar el rendimiento -->
 </head>
 <body>
     <!-- Google Tag Manager (noscript) cargado de forma diferida -->
@@ -1086,6 +1083,12 @@
         <div class="loading-spinner"></div>
         <p class="loading-message">Estamos preparando tu pago seguro...<br>Un momento por favor, no actualices la página.</p>
     </div>
+
+    <!-- Scripts cargados al final del documento para asegurar que jQuery esté disponible -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- Custom scripts -->
     <script src="swiper-init.js"></script>
