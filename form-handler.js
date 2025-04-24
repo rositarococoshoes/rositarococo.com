@@ -31,17 +31,86 @@ function showNotification(message, type = 'info') {
     }, 5000);
 }
 
+// Variable global para controlar el envío del formulario
+window.formSubmitted = false;
+window.formSubmissionId = null;
+
+// Función para generar un ID único
+function generateUniqueId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+// Función para verificar si el formulario ya se ha enviado
+function checkPreviousSubmission() {
+    try {
+        // Verificar si hay un ID de envío almacenado en localStorage
+        const storedSubmissionId = localStorage.getItem('formSubmissionId');
+        const storedTimestamp = localStorage.getItem('formSubmissionTimestamp');
+
+        if (storedSubmissionId && storedTimestamp) {
+            // Verificar si el envío fue hace menos de 10 minutos
+            const now = Date.now();
+            const submissionTime = parseInt(storedTimestamp, 10);
+            const timeDiff = now - submissionTime;
+
+            // Si el envío fue hace menos de 10 minutos, considerar que el formulario ya se ha enviado
+            if (timeDiff < 10 * 60 * 1000) {
+                console.log('Formulario enviado recientemente (hace ' + Math.round(timeDiff/1000) + ' segundos)');
+                window.formSubmitted = true;
+                window.formSubmissionId = storedSubmissionId;
+                return true;
+            }
+        }
+    } catch (e) {
+        console.error('Error al verificar envío previo:', e);
+    }
+
+    return false;
+}
+
 // Función para manejar el envío del formulario
 $(document).ready(function() {
+    // Verificar si el formulario ya se ha enviado recientemente
+    if (checkPreviousSubmission()) {
+        // Deshabilitar el botón de envío
+        $('#botoncomprar').prop('disabled', true).val('Procesando...');
+        showNotification('Tu pedido ya está siendo procesado. Por favor, espera unos minutos.', 'info');
+    }
+
     // Asegurarse de que el campo landingurl tenga la URL actual
     $('#1209868979').val(window.location.href);
+
+    // Deshabilitar el botón de envío al hacer clic
+    $('#botoncomprar').on('click', function() {
+        // Deshabilitar el botón inmediatamente para evitar múltiples clics
+        $(this).prop('disabled', true).val('Procesando...');
+    });
 
     // Manejar el envío del formulario
     $('#bootstrapForm').submit(async function(event) {
         event.preventDefault();
 
-        // Reiniciar la variable de control de envío
-        window.formSubmitted = false;
+        // Verificar si el formulario ya se ha enviado
+        if (window.formSubmitted) {
+            console.log('Formulario ya enviado, evitando duplicación');
+            $('#botoncomprar').prop('disabled', true).val('Procesando...');
+            return false;
+        }
+
+        // Marcar el formulario como enviado
+        window.formSubmitted = true;
+        window.formSubmissionId = generateUniqueId();
+
+        // Almacenar el ID de envío en localStorage
+        try {
+            localStorage.setItem('formSubmissionId', window.formSubmissionId);
+            localStorage.setItem('formSubmissionTimestamp', Date.now().toString());
+        } catch (e) {
+            console.error('Error al almacenar ID de envío:', e);
+        }
+
+        // Deshabilitar el botón de envío
+        $('#botoncomprar').prop('disabled', true).val('Procesando...');
 
         // Verificar si es un bot
         if (isBot()) {
@@ -86,17 +155,21 @@ $(document).ready(function() {
 
                 // Enviar formulario a Google Forms usando un iframe oculto
                 // Esta técnica permite enviar a Google Forms sin redireccionar la página
-                if (!window.formSubmitted) {
-                    window.formSubmitted = true;
-                    const iframe = document.createElement('iframe');
-                    iframe.name = 'hidden_iframe';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
+                const iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
 
-                    // Configurar el formulario para enviar a través del iframe
-                    this.target = 'hidden_iframe';
-                    this.submit();
-                }
+                // Agregar el ID único de envío como campo oculto
+                const submissionIdField = document.createElement('input');
+                submissionIdField.type = 'hidden';
+                submissionIdField.name = 'submission_id';
+                submissionIdField.value = window.formSubmissionId;
+                this.appendChild(submissionIdField);
+
+                // Configurar el formulario para enviar a través del iframe
+                this.target = 'hidden_iframe';
+                this.submit();
 
                 // Redireccionar a la página de transferencia CBU
                 setTimeout(function() {
@@ -147,17 +220,21 @@ $(document).ready(function() {
                     document.getElementById('link-mercadopago').value = mercadoPagoUrl;
 
                     // Enviar el formulario a Google Forms usando un iframe oculto
-                    if (!window.formSubmitted) {
-                        window.formSubmitted = true;
-                        const iframe = document.createElement('iframe');
-                        iframe.name = 'hidden_iframe';
-                        iframe.style.display = 'none';
-                        document.body.appendChild(iframe);
+                    const iframe = document.createElement('iframe');
+                    iframe.name = 'hidden_iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
 
-                        // Configurar el formulario para enviar a través del iframe
-                        this.target = 'hidden_iframe';
-                        this.submit();
-                    }
+                    // Agregar el ID único de envío como campo oculto
+                    const submissionIdField = document.createElement('input');
+                    submissionIdField.type = 'hidden';
+                    submissionIdField.name = 'submission_id';
+                    submissionIdField.value = window.formSubmissionId;
+                    this.appendChild(submissionIdField);
+
+                    // Configurar el formulario para enviar a través del iframe
+                    this.target = 'hidden_iframe';
+                    this.submit();
 
                     // Redireccionar a MercadoPago
                     setTimeout(function() {
