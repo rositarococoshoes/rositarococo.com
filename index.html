@@ -33,6 +33,10 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="swiper-custom.css" />
+    <!-- Badges and Prices CSS -->
+    <link rel="stylesheet" href="badges.css" />
+    <!-- Price and Quantity Selector CSS -->
+    <link rel="stylesheet" href="price-quantity.css" />
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -235,6 +239,10 @@
                 <div class="product-grid">
                     <!-- PRODUCTO 1: Roma Negras -->
                     <div class="product-item" id="modeload-roma-negras">
+                        <div class="product-badges">
+                            <span class="badge badge-bestseller">MÁS VENDIDO</span>
+                            <span class="badge badge-limited">STOCK LIMITADO</span>
+                        </div>
                         <h2>Botineta Roma negras</h2>
                         <div class="swiper" id="swiper-roma-negras">
                             <div class="swiper-wrapper">
@@ -259,19 +267,31 @@
                                 </div>
                                 <p class="product-description">Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo.</p>
                             </div>
-                            <div class="product-price">
-                                <div class="price-single">1 par: 🔥 $70.000</div>
-                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item">3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item">ENVÍO GRATIS</div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-1">48:00:00</span></div>
                                 </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <span>Cantidad:</span>
-                                <label><input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" /> 1 par</label>
-                                <label><input name="hwA-qty-roma-negras" type="radio" value="2" /> 2 pares</label>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-roma-negras" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                             <div class="size-selector">
                                 <fieldset id="hwA-roma-negras-1">
@@ -310,6 +330,9 @@
 
                     <!-- PRODUCTO 2: Roma Suela -->
                     <div class="product-item" id="modeload-roma-suela">
+                        <div class="product-badges">
+                            <span class="badge badge-bestseller">MÁS VENDIDO</span>
+                        </div>
                         <h2>Botineta Roma suela</h2>
                         <div class="swiper" id="swiper-roma-suela">
                             <div class="swiper-wrapper">
@@ -331,19 +354,31 @@
                                 </div>
                                 <p class="product-description">El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado.</p>
                             </div>
-                            <div class="product-price">
-                                <div class="price-single">1 par: 🔥 $70.000</div>
-                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item">3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item">ENVÍO GRATIS</div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-2">48:00:00</span></div>
                                 </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <span>Cantidad:</span>
-                                <label><input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" /> 1 par</label>
-                                <label><input name="hwA-qty-roma-suela" type="radio" value="2" /> 2 pares</label>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-roma-suela" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                             <div class="size-selector">
                                 <fieldset id="hwA-roma-suela-1">
@@ -382,6 +417,9 @@
 
                     <!-- PRODUCTO 3: Siena 2025 -->
                     <div class="product-item" id="modeload-siena2025">
+                        <div class="product-badges">
+                            <span class="badge badge-limited">STOCK LIMITADO</span>
+                        </div>
                         <h2>Borcego Siena 2025</h2>
                         <div class="swiper" id="swiper-siena2025">
                             <div class="swiper-wrapper">
@@ -401,19 +439,31 @@
                                 </div>
                                 <p class="product-description">Robusto, chic y con carácter. El borcego Siena está listo para acompañarte en cualquier aventura urbana con actitud.</p>
                             </div>
-                            <div class="product-price">
-                                <div class="price-single">1 par: 🔥 $70.000</div>
-                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item">3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item">ENVÍO GRATIS</div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-3">48:00:00</span></div>
                                 </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <span>Cantidad:</span>
-                                <label><input checked="checked" name="hwA-qty-siena2025" type="radio" value="1" /> 1 par</label>
-                                <label><input name="hwA-qty-siena2025" type="radio" value="2" /> 2 pares</label>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-siena2025" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-siena2025" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                             <div class="size-selector">
                                 <fieldset id="hwA-siena2025-1">
@@ -473,19 +523,31 @@
                                 </div>
                                 <p class="product-description">Elegancia y comodidad en un diseño moderno. El modelo Venecia es perfecto para complementar tus looks más sofisticados.</p>
                             </div>
-                            <div class="product-price">
-                                <div class="price-single">1 par: 🔥 $70.000</div>
-                                <div class="price-double">2 pares: 🔥 <span class="price-highlight">$110.000</span> ($55.000 c/u)</div>
-                                <div class="product-benefits">
-                                    <div class="benefit-item">3 CUOTAS SIN INTERÉS</div>
-                                    <div class="benefit-divider">|</div>
-                                    <div class="benefit-item">ENVÍO GRATIS</div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-4">48:00:00</span></div>
                                 </div>
-                            </div>
-                            <div class="quantity-selector">
-                                <span>Cantidad:</span>
-                                <label><input checked="checked" name="hwA-qty-venecia-negras" type="radio" value="1" /> 1 par</label>
-                                <label><input name="hwA-qty-venecia-negras" type="radio" value="2" /> 2 pares</label>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-venecia-negras" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-venecia-negras" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
                             </div>
                             <div class="size-selector">
                                 <fieldset id="hwA-venecia-negras-1">
@@ -517,6 +579,283 @@
                                         </select>
                                     </div>
                                     <button type="button" class="add-to-cart-btn" data-model="venecia-negras-2">🛒 Agregar al carrito</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTO 5: Paris Negras -->
+                    <div class="product-item" id="modeload-paris-negras">
+                        <div class="product-badges">
+                            <span class="badge badge-bestseller">NUEVO</span>
+                        </div>
+                        <h2>Paris negras</h2>
+                        <div class="swiper" id="swiper-paris-negras">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Paris Negras - Vista 1" src="paris2025-negras.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        <div class="product-selection" id="talles-paris-negras">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
+                                    <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                </div>
+                                <p class="product-description">Elegancia urbana con un toque de sofisticación. El modelo Paris combina estilo y comodidad para tus looks diarios.</p>
+                            </div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-5">48:00:00</span></div>
+                                </div>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-paris-negras" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-paris-negras" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="size-selector">
+                                <fieldset id="hwA-paris-negras-1">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-negras-1" class="sr-only">Talle Par 1</label>
+                                        <select id="talle-select-paris-negras-1" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 1 --</option>
+                                            <option value="35-paris-negras">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-negras">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-negras">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-negras">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-negras">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-negras">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-negras">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-negras">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-negras">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-negras">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-negras-1">🛒 Agregar al carrito</button>
+                                </fieldset>
+                                <fieldset class="fieldsetstalles" id="hwA-paris-negras-2">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-negras-2" class="sr-only">Talle Par 2</label>
+                                        <select id="talle-select-paris-negras-2" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 2 --</option>
+                                            <option value="35-paris-negras">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-negras">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-negras">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-negras">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-negras">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-negras">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-negras">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-negras">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-negras">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-negras">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-negras-2">🛒 Agregar al carrito</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTO 6: Paris Camel -->
+                    <div class="product-item" id="modeload-paris-camel">
+                        <div class="product-badges">
+                            <span class="badge badge-bestseller">NUEVO</span>
+                        </div>
+                        <h2>Paris camel</h2>
+                        <div class="swiper" id="swiper-paris-camel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Paris Camel - Vista 1" src="paris2025-camel.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        <div class="product-selection" id="talles-paris-camel">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
+                                    <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                </div>
+                                <p class="product-description">El tono cálido camel aporta versatilidad y elegancia a este modelo, perfecto para combinar con cualquier outfit de temporada.</p>
+                            </div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-6">48:00:00</span></div>
+                                </div>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-paris-camel" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-paris-camel" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="size-selector">
+                                <fieldset id="hwA-paris-camel-1">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-camel-1" class="sr-only">Talle Par 1</label>
+                                        <select id="talle-select-paris-camel-1" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 1 --</option>
+                                            <option value="35-paris-camel">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-camel">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-camel">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-camel">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-camel">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-camel">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-camel">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-camel">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-camel">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-camel">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-camel-1">🛒 Agregar al carrito</button>
+                                </fieldset>
+                                <fieldset class="fieldsetstalles" id="hwA-paris-camel-2">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-camel-2" class="sr-only">Talle Par 2</label>
+                                        <select id="talle-select-paris-camel-2" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 2 --</option>
+                                            <option value="35-paris-camel">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-camel">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-camel">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-camel">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-camel">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-camel">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-camel">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-camel">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-camel">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-camel">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-camel-2">🛒 Agregar al carrito</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PRODUCTO 7: Paris Verde -->
+                    <div class="product-item" id="modeload-paris-verde">
+                        <div class="product-badges">
+                            <span class="badge badge-bestseller">NUEVO</span>
+                            <span class="badge badge-limited">EDICIÓN LIMITADA</span>
+                        </div>
+                        <h2>Paris verde</h2>
+                        <div class="swiper" id="swiper-paris-verde">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Paris Verde - Vista 1" src="paris2025-verde.webp" width="600" height="800" fetchpriority="high" decoding="async"></div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        <div class="product-selection" id="talles-paris-verde">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Cuero</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Base liviana de expanso</span>
+                                    <span class="spec-item"><strong>Altura:</strong> Media</span>
+                                </div>
+                                <p class="product-description">Un toque de color que aporta personalidad y estilo. El verde intenso de este modelo Paris es perfecto para quienes buscan destacar.</p>
+                            </div>
+                            <div class="product-price-quantity">
+                                <div class="product-promo">
+                                    <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-7">48:00:00</span></div>
+                                </div>
+                                <div class="promo-explanation">
+                                    <p>Selecciona la cantidad:</p>
+                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
+                                </div>
+                                <div class="quantity-price-selector">
+                                    <label class="quantity-price-option">
+                                        <input checked="checked" name="hwA-qty-paris-verde" type="radio" value="1" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">1 par</div>
+                                            <div class="option-price">$70.000</div>
+                                        </div>
+                                    </label>
+                                    <label class="quantity-price-option">
+                                        <input name="hwA-qty-paris-verde" type="radio" value="2" />
+                                        <div class="option-content">
+                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                            <div class="option-price">$110.000</div>
+                                            <div class="option-save">(¡AHORRA $30.000!)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="size-selector">
+                                <fieldset id="hwA-paris-verde-1">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-verde-1" class="sr-only">Talle Par 1</label>
+                                        <select id="talle-select-paris-verde-1" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 1 --</option>
+                                            <option value="35-paris-verde">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-verde">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-verde">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-verde">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-verde">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-verde">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-verde">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-verde">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-verde">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-verde">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-verde-1">🛒 Agregar al carrito</button>
+                                </fieldset>
+                                <fieldset class="fieldsetstalles" id="hwA-paris-verde-2">
+                                    <div class="form-group">
+                                        <label for="talle-select-paris-verde-2" class="sr-only">Talle Par 2</label>
+                                        <select id="talle-select-paris-verde-2" class="form-control talle">
+                                            <option value="">-- Selecciona Talle Par 2 --</option>
+                                            <option value="35-paris-verde">35 (22,8 cm de plantilla)</option>
+                                            <option value="36-paris-verde">36 (23,4 cm de plantilla)</option>
+                                            <option value="37-paris-verde">37 (24,3 cm de plantilla)</option>
+                                            <option value="38-paris-verde">38 (24,7 cm de plantilla)</option>
+                                            <option value="39-paris-verde">39 (25,2 cm de plantilla)</option>
+                                            <option value="40-paris-verde">40 (26 cm de plantilla)</option>
+                                            <option value="41-paris-verde">41 (27,5 cm de plantilla)</option>
+                                            <option value="42-paris-verde">42 (28,4 cm de plantilla)</option>
+                                            <option value="43-paris-verde">43 (29,2 cm de plantilla)</option>
+                                            <option value="44-paris-verde">44 (29,8 cm de plantilla)</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" class="add-to-cart-btn" data-model="paris-verde-2">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -711,6 +1050,47 @@
     <script src="swiper-init.js"></script>
     <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
+
+    <!-- Countdown script -->
+    <script>
+        // Inicializar cuenta regresiva para cada producto
+        document.addEventListener('DOMContentLoaded', function() {
+            // Establecer la fecha de fin (48 horas desde ahora)
+            const countdownElements = document.querySelectorAll('.countdown');
+
+            // Actualizar cada segundo
+            setInterval(function() {
+                countdownElements.forEach(function(element) {
+                    // Obtener valores actuales
+                    const timeString = element.textContent;
+                    const timeParts = timeString.split(':');
+                    let hours = parseInt(timeParts[0]);
+                    let minutes = parseInt(timeParts[1]);
+                    let seconds = parseInt(timeParts[2]);
+
+                    // Restar un segundo
+                    seconds--;
+                    if (seconds < 0) {
+                        seconds = 59;
+                        minutes--;
+                        if (minutes < 0) {
+                            minutes = 59;
+                            hours--;
+                            if (hours < 0) {
+                                // Reiniciar a 48 horas cuando llegue a cero
+                                hours = 48;
+                                minutes = 0;
+                                seconds = 0;
+                            }
+                        }
+                    }
+
+                    // Formatear y actualizar
+                    element.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                });
+            }, 1000);
+        });
+    </script>
 
 </body>
 </html>

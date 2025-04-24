@@ -1573,9 +1573,22 @@ $(document).ready(function(){
     // Find the select element with this value
     $('#todoslosmodelos select.talle').each(function() {
       if ($(this).val() === itemId) {
-        $(this).val('').trigger('change');
+        $(this).val('').data('pre', '').trigger('change');
       }
     });
+
+    // Process the summary content to remove the item
+    var summaryContent = $("#1471599855").val() || "";
+    var summaryArray = summaryContent.split(', ').filter(Boolean);
+
+    // Remove the item from the array
+    summaryArray = summaryArray.filter(item => item !== itemId);
+
+    // Update the summary input
+    $("#1471599855").val(summaryArray.join(', '));
+
+    // Update the cart display
+    updateCart(summaryArray);
 
     showNotification('Producto eliminado del carrito', 'info');
   }
@@ -1586,7 +1599,10 @@ $(document).ready(function(){
       'roma-negras': 'Botineta Roma Negras',
       'roma-suela': 'Botineta Roma Suela',
       'siena2025': 'Borcego Siena 2025',
-      'venecia-negras': 'Venecia Negras'
+      'venecia-negras': 'Venecia Negras',
+      'paris-negras': 'Paris Negras',
+      'paris-camel': 'Paris Camel',
+      'paris-verde': 'Paris Verde'
     };
 
     return names[model] || model;
@@ -1598,7 +1614,10 @@ $(document).ready(function(){
       'roma-negras': 'roma-negras-1.jpg',
       'roma-suela': 'roma-suela-1a.jpg',
       'siena2025': 'siena2025-1.webp',
-      'venecia-negras': 'venecia-negras-1a.jpg'
+      'venecia-negras': 'venecia-negras-1a.jpg',
+      'paris-negras': 'paris2025-negras.webp',
+      'paris-camel': 'paris2025-camel.webp',
+      'paris-verde': 'paris2025-verde.webp'
     };
 
     return images[model] || '';

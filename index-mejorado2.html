@@ -56,6 +56,202 @@
 
     <!-- Estilos adicionales para mejoras UX -->
     <style>
+        /* Estilos para el mini-carrito simplificado */
+        #mini-cart {
+            position: fixed;
+            top: auto;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
+            max-width: 85vw;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1001;
+            transform: translateY(120%);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+
+        #mini-cart.active {
+            transform: translateY(0);
+        }
+
+        .mini-cart-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background-color: #a05941;
+            color: white;
+            position: relative;
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+
+        .cart-title {
+            font-weight: 600;
+            flex-grow: 1;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .cart-close:hover {
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .mini-cart-body {
+            padding: 15px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        .empty-cart-message {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 10px 0;
+        }
+
+        .cart-items {
+            margin-bottom: 10px;
+        }
+
+        .cart-promo-info {
+            margin-top: 10px;
+            padding: 8px;
+            background-color: #f9f5f2;
+            border-radius: 4px;
+            border: 1px dashed #e0d5cc;
+        }
+
+        .promo-note {
+            font-size: 0.8rem;
+            color: #b71c1c;
+            text-align: center;
+            margin: 0;
+        }
+
+        .mini-cart-footer {
+            padding: 12px 15px;
+            border-top: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #checkout-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #a05941;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #checkout-btn:hover:not(:disabled) {
+            background-color: #8a4a38;
+        }
+
+        #checkout-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Estilos para el indicador minimalista */
+        #cart-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #a05941;
+            color: white;
+            border-radius: 30px;
+            padding: 8px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #cart-indicator:hover {
+            background-color: #8a4a38;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+        }
+
+        .indicator-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .indicator-count {
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .indicator-max {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .indicator-price {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 480px) {
+            #cart-indicator {
+                bottom: 15px;
+                right: 15px;
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+
+            #mini-cart {
+                bottom: 15px;
+                right: 15px;
+                max-height: 80vh;
+            }
+
+            .cart-close {
+                width: 36px;
+                height: 36px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Ocultar selectores de cantidad individuales */
+        .product-selection .promo-explanation,
+        .product-selection .quantity-price-selector {
+            display: none;
+        }
+
         /* Banner de promoción destacado */
         .promo-banner {
             background: linear-gradient(135deg, #a05941 0%, #8a4a38 100%);
@@ -1096,34 +1292,37 @@
         </div>
     </div>
 
-    <!-- Mini Cart -->
+
+
+    <!-- Mini Cart Simplificado -->
     <div id="mini-cart">
         <div class="mini-cart-header">
             <span class="cart-icon">🛒</span>
             <span class="cart-title">Tu Carrito</span>
-            <span class="cart-count">0</span>
-            <button class="cart-close">×</button>
+            <button class="cart-close" aria-label="Cerrar carrito">×</button>
         </div>
         <div class="mini-cart-body">
             <p class="empty-cart-message">Tu carrito está vacío</p>
             <div class="cart-items"></div>
-            <div class="cart-instructions">
-                <p class="instruction-step"><span class="step-number">1</span> Selecciona tus productos favoritos</p>
-                <p class="instruction-step"><span class="step-number">2</span> Revisa tu carrito</p>
-                <p class="instruction-step"><span class="step-number">3</span> Haz clic en "Finalizar Compra"</p>
+            <div class="cart-promo-info">
+                <p class="promo-note">Oferta: 2 pares por $110.000 (cualquier combinación)</p>
             </div>
         </div>
         <div class="mini-cart-footer">
             <div class="cart-total">Total: <span>$0</span></div>
-            <button id="checkout-btn" class="btn-disabled" onclick="goToCheckoutForm()">Finalizar →</button>
+            <button id="checkout-btn" class="btn-disabled" onclick="goToCheckoutForm()">Finalizar</button>
         </div>
     </div>
 
-    <!-- Botón de carrito independiente -->
-    <div id="cart-button">
-        <span class="cart-button-icon">🛒</span>
-        <span class="cart-button-count">0</span>
+    <!-- Indicador minimalista de carrito -->
+    <div id="cart-indicator">
+        <div class="indicator-content">
+            <span class="indicator-count">0</span><span class="indicator-max">/2</span>
+            <span class="indicator-price">$0</span>
+        </div>
     </div>
+
+
 
     <!-- Botón flotante de continuar al envío -->
     <button id="fixed-checkout-button" onclick="goToCheckoutForm()" style="display: none;">
@@ -1294,38 +1493,16 @@
                                 </div>
                             </div>
                             <div class="product-price-quantity">
-
                                 <div class="product-promo">
                                     <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-1">48:00:00</span></div>
                                 </div>
-                                <div class="promo-explanation">
-                                    <p>Selecciona la cantidad:</p>
-                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
-                                </div>
-                                <div class="quantity-price-selector">
-                                    <label class="quantity-price-option">
-                                        <input checked="checked" name="hwA-qty-roma-negras" type="radio" value="1" />
-                                        <div class="option-content">
-                                            <div class="option-quantity">1 par</div>
-                                            <div class="option-price">$70.000</div>
-                                        </div>
-                                    </label>
-                                    <label class="quantity-price-option">
-                                        <input name="hwA-qty-roma-negras" type="radio" value="2" />
-                                        <div class="option-content">
-                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                            <div class="option-price">$110.000</div>
-                                            <div class="option-save">(¡AHORRA $30.000!)</div>
-                                        </div>
-                                    </label>
-                                </div>
                             </div>
                             <div class="size-selector">
-                                <fieldset id="hwA-roma-negras-1">
+                                <fieldset id="hwA-roma-negras">
                                     <div class="form-group">
-                                        <label for="talle-select-roma-negras-1">Talle Par 1:</label>
-                                        <select id="talle-select-roma-negras-1" class="form-control talle">
-                                            <option value="">-- Selecciona Talle Par 1 --</option>
+                                        <label for="talle-select-roma-negras">Selecciona tu talle:</label>
+                                        <select id="talle-select-roma-negras" class="form-control talle">
+                                            <option value="">-- Selecciona un talle --</option>
                                             <option value="35-roma-negras">35 (23 cm de plantilla)</option>
                                             <option value="36-roma-negras">36 (23,5 cm de plantilla)</option>
                                             <option value="37-roma-negras">37 (24 cm de plantilla) - Últimas 2 unidades!</option>
@@ -1334,22 +1511,7 @@
                                             <option value="40-roma-negras">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
-                                </fieldset>
-                                <fieldset class="fieldsetstalles" id="hwA-roma-negras-2">
-                                    <div class="form-group">
-                                        <label for="talle-select-roma-negras-2">Talle Par 2:</label>
-                                        <select id="talle-select-roma-negras-2" class="form-control talle">
-                                            <option value="">-- Selecciona Talle Par 2 --</option>
-                                            <option value="35-roma-negras">35 (23 cm de plantilla)</option>
-                                            <option value="36-roma-negras">36 (23,5 cm de plantilla)</option>
-                                            <option value="37-roma-negras">37 (24 cm de plantilla) - Últimas 2 unidades!</option>
-                                            <option value="38-roma-negras">38 (25 cm de plantilla) - Última unidad!</option>
-                                            <option value="39-roma-negras">39 (25,5 cm de plantilla)</option>
-                                            <option value="40-roma-negras">40 (26 cm de plantilla)</option>
-                                        </select>
-                                    </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-negras" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -1388,38 +1550,16 @@
                                 </div>
                             </div>
                             <div class="product-price-quantity">
-
                                 <div class="product-promo">
                                     <div class="promo-timer">Oferta válida por: <span class="countdown" id="promo-countdown-product-2">48:00:00</span></div>
                                 </div>
-                                <div class="promo-explanation">
-                                    <p>Selecciona la cantidad:</p>
-                                    <p class="promo-note">* La oferta de 2 pares por $110.000 aplica a cualquier combinación de modelos</p>
-                                </div>
-                                <div class="quantity-price-selector">
-                                    <label class="quantity-price-option">
-                                        <input checked="checked" name="hwA-qty-roma-suela" type="radio" value="1" />
-                                        <div class="option-content">
-                                            <div class="option-quantity">1 par</div>
-                                            <div class="option-price">$70.000</div>
-                                        </div>
-                                    </label>
-                                    <label class="quantity-price-option">
-                                        <input name="hwA-qty-roma-suela" type="radio" value="2" />
-                                        <div class="option-content">
-                                            <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                            <div class="option-price">$110.000</div>
-                                            <div class="option-save">(¡AHORRA $30.000!)</div>
-                                        </div>
-                                    </label>
-                                </div>
                             </div>
                             <div class="size-selector">
-                                <fieldset id="hwA-roma-suela-1">
+                                <fieldset id="hwA-roma-suela">
                                     <div class="form-group">
-                                        <label for="talle-select-roma-suela-1">Talle Par 1:</label>
-                                        <select id="talle-select-roma-suela-1" class="form-control talle">
-                                            <option value="">-- Selecciona Talle Par 1 --</option>
+                                        <label for="talle-select-roma-suela">Selecciona tu talle:</label>
+                                        <select id="talle-select-roma-suela" class="form-control talle">
+                                            <option value="">-- Selecciona un talle --</option>
                                             <option value="35-roma-suela">35 (23 cm de plantilla)</option>
                                             <option value="36-roma-suela">36 (23,5 cm de plantilla)</option>
                                             <option value="37-roma-suela">37 (24 cm de plantilla) - Últimas 2 unidades!</option>
@@ -1428,22 +1568,7 @@
                                             <option value="40-roma-suela">40 (26 cm de plantilla)</option>
                                         </select>
                                     </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-1" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
-                                </fieldset>
-                                <fieldset class="fieldsetstalles" id="hwA-roma-suela-2">
-                                    <div class="form-group">
-                                        <label for="talle-select-roma-suela-2">Talle Par 2:</label>
-                                        <select id="talle-select-roma-suela-2" class="form-control talle">
-                                            <option value="">-- Selecciona Talle Par 2 --</option>
-                                            <option value="35-roma-suela">35 (23 cm de plantilla)</option>
-                                            <option value="36-roma-suela">36 (23,5 cm de plantilla)</option>
-                                            <option value="37-roma-suela">37 (24 cm de plantilla) - Últimas 2 unidades!</option>
-                                            <option value="38-roma-suela">38 (25 cm de plantilla) - Última unidad!</option>
-                                            <option value="39-roma-suela">39 (25,5 cm de plantilla)</option>
-                                            <option value="40-roma-suela">40 (26 cm de plantilla)</option>
-                                        </select>
-                                    </div>
-                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela-2" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
+                                    <button type="button" class="add-to-cart-btn" data-model="roma-suela" aria-label="Agregar al carrito">🛒 Agregar al carrito</button>
                                 </fieldset>
                             </div>
                         </div>
@@ -2554,11 +2679,152 @@
             generateRandomPurchases();
         }
 
+        // Función para ir al formulario de checkout
+        function goToCheckoutForm() {
+            // Verificar si hay productos en el carrito
+            const cartItems = document.querySelectorAll('.cart-items .cart-item');
+            if (cartItems.length === 0) {
+                showNotification('Agrega al menos un par de zapatos para continuar', 'warning');
+                return;
+            }
+
+            // Ir al paso 2 (formulario de envío)
+            const step2Button = document.querySelector('.step-button[data-step="2"]');
+            if (step2Button) {
+                step2Button.click();
+            }
+        }
+
+        // Función para configurar el carrito minimalista
+        function setupMinimalistCart() {
+            // Variables globales
+            const MAX_PAIRS = 2;
+            let totalPrice = 0;
+
+            // Elementos del DOM
+            const miniCart = document.getElementById('mini-cart');
+            const cartIndicator = document.getElementById('cart-indicator');
+            const indicatorCount = document.querySelector('.indicator-count');
+            const indicatorPrice = document.querySelector('.indicator-price');
+            const cartTotalElement = document.querySelector('.cart-total span');
+            const checkoutButton = document.getElementById('checkout-btn');
+            const emptyCartMessage = document.querySelector('.empty-cart-message');
+            const cartCloseButton = document.querySelector('.cart-close');
+
+            // Función para actualizar la interfaz
+            function updateCartInterface() {
+                // Obtener los items del carrito
+                const cartItems = document.querySelectorAll('.cart-items .cart-item');
+                const itemCount = cartItems.length;
+
+                // Actualizar contador de pares en el indicador
+                indicatorCount.textContent = itemCount;
+
+                // Actualizar precio total
+                if (itemCount === 1) {
+                    totalPrice = 70000;
+                    cartTotalElement.textContent = '$70.000';
+                    indicatorPrice.textContent = '$70.000';
+                } else if (itemCount === 2) {
+                    totalPrice = 110000;
+                    cartTotalElement.textContent = '$110.000';
+                    indicatorPrice.textContent = '$110.000';
+                } else {
+                    totalPrice = 0;
+                    cartTotalElement.textContent = '$0';
+                    indicatorPrice.textContent = '$0';
+                }
+
+                // Mostrar/ocultar mensajes según el estado del carrito
+                if (itemCount === 0) {
+                    emptyCartMessage.style.display = 'block';
+                    cartIndicator.style.display = 'flex'; // Siempre visible
+                } else {
+                    emptyCartMessage.style.display = 'none';
+                    cartIndicator.style.display = 'flex';
+                }
+
+                // Actualizar botón de checkout
+                if (itemCount > 0) {
+                    checkoutButton.disabled = false;
+                    checkoutButton.classList.remove('btn-disabled');
+                } else {
+                    checkoutButton.disabled = true;
+                    checkoutButton.classList.add('btn-disabled');
+                }
+
+                // Actualizar el contador en el botón de carrito independiente
+                const cartButtonCount = document.querySelector('.cart-button-count');
+                if (cartButtonCount) {
+                    cartButtonCount.textContent = itemCount;
+                }
+            }
+
+            // Configurar el indicador para abrir el carrito
+            cartIndicator.addEventListener('click', function() {
+                miniCart.classList.add('active');
+            });
+
+            // Configurar el botón de cierre del carrito
+            cartCloseButton.addEventListener('click', function() {
+                miniCart.classList.remove('active');
+            });
+
+            // Cerrar el carrito al hacer clic fuera de él
+            document.addEventListener('click', function(event) {
+                if (miniCart.classList.contains('active') &&
+                    !miniCart.contains(event.target) &&
+                    event.target !== cartIndicator &&
+                    !cartIndicator.contains(event.target)) {
+                    miniCart.classList.remove('active');
+                }
+            });
+
+            // Modificar la función de agregar al carrito
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    // Verificar si ya se alcanzó el límite de pares
+                    const cartItems = document.querySelectorAll('.cart-items .cart-item');
+                    if (cartItems.length >= MAX_PAIRS) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        showNotification('Ya has seleccionado el máximo de 2 pares. Elimina alguno para cambiar tu selección.', 'warning');
+                        return false;
+                    }
+
+                    // NO abrir el mini-carrito automáticamente, solo mostrar notificación
+                    setTimeout(function() {
+                        const itemCount = document.querySelectorAll('.cart-items .cart-item').length;
+                        if (itemCount === 1) {
+                            showNotification('1 par agregado. Puedes agregar otro par con descuento.', 'success');
+                        } else if (itemCount === 2) {
+                            showNotification('2 pares agregados con descuento. ¡Listo para finalizar!', 'success');
+                        }
+                    }, 500);
+                });
+            });
+
+            // Observar cambios en el carrito para actualizar la interfaz
+            const cartItemsContainer = document.querySelector('.cart-items');
+            if (cartItemsContainer) {
+                const observer = new MutationObserver(function(mutations) {
+                    updateCartInterface();
+                });
+
+                observer.observe(cartItemsContainer, { childList: true, subtree: true });
+            }
+
+            // Inicializar la interfaz
+            updateCartInterface();
+        }
+
         // Inicializar todas las mejoras cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
             startCountdown();
             setupFormSteps();
             setupStockIndicators();
+            setupMinimalistCart();
 
             // Actualizar el formulario cuando se agrega un producto al carrito
             document.querySelectorAll('.add-to-cart-btn').forEach(button => {

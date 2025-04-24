@@ -112,11 +112,18 @@ $(document).ready(function() {
                 const monto = parseFloat(montoTexto.replace(/\./g, ''));
 
                 // Construir la URL para el webhook de MercadoPago
-                const webhookUrl = `https://hook.us1.make.com/rvnwt9kkf9yjdvpnqp6ixcpg3uy9qqrr?nombre=${encodeURIComponent(nombreComprador)}&monto=${monto}`;
+                const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
 
                 try {
                     // Llamar al webhook para generar el link de pago
-                    const response = await fetch(webhookUrl);
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            comprador: nombreComprador,
+                            monto: monto
+                        })
+                    });
                     if (!response.ok) {
                         throw new Error(`Error en la respuesta del webhook: ${response.status}`);
                     }
