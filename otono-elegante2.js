@@ -374,7 +374,8 @@ $(document).ready(function(){
     // Removed duplicate check to allow adding the same product twice
 
     // Remove previous value if it exists (only remove one instance)
-    if (prevVal) {
+    // Only remove if prevVal is different from currentVal
+    if (prevVal && prevVal !== currentVal) {
       const index = summaryArray.indexOf(prevVal);
       if (index !== -1) {
         summaryArray.splice(index, 1);
@@ -1302,7 +1303,7 @@ $(document).ready(function(){
     cartItemsContainer.empty();
 
     // Process each item
-    itemsArray.forEach(function(item) {
+    itemsArray.forEach(function(item, index) {
       if (item) {
         var parts = item.split('-');
         var size = parts[0];
@@ -1311,7 +1312,10 @@ $(document).ready(function(){
         // Get product details
         var productName = getProductName(model);
         var productImage = getProductImage(model);
-        var productPrice = itemsArray.length === 1 ? 70000 : 55000;
+
+        // El primer producto siempre cuesta 70000, el segundo 55000
+        // independientemente de si es el mismo modelo/talle o no
+        var productPrice = index === 0 ? 70000 : 55000;
 
         // Add to cart items array
         cartItems.push({
@@ -1345,9 +1349,14 @@ $(document).ready(function(){
     $('.cart-button-count').text(cartItems.length);
 
     // Update cart total
-    var total = cartItems.reduce(function(sum, item) {
-      return sum + item.price;
-    }, 0);
+    var total;
+    if (cartItems.length === 2) {
+      total = 110000; // Precio fijo para 2 pares según la oferta
+    } else {
+      total = cartItems.reduce(function(sum, item) {
+        return sum + item.price;
+      }, 0);
+    }
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
