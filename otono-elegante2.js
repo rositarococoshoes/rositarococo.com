@@ -371,16 +371,14 @@ $(document).ready(function(){
     var summaryContent = summaryInput.val() || "";
     var summaryArray = summaryContent.split(', ').filter(Boolean);
 
-    // Verificar si el producto ya está en el carrito
-    if (summaryArray.includes(currentVal)) {
-      // Si el producto ya está en el carrito, mostrar notificación
-      showNotification('Este producto ya está en tu carrito', 'info');
-      return false;
-    }
+    // Removed duplicate check to allow adding the same product twice
 
-    // Remove previous value if it exists
+    // Remove previous value if it exists (only remove one instance)
     if (prevVal) {
-      summaryArray = summaryArray.filter(item => item !== prevVal);
+      const index = summaryArray.indexOf(prevVal);
+      if (index !== -1) {
+        summaryArray.splice(index, 1);
+      }
     }
 
     // Add new value
