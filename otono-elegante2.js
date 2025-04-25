@@ -1313,9 +1313,14 @@ $(document).ready(function(){
         var productName = getProductName(model);
         var productImage = getProductImage(model);
 
-        // El primer producto siempre cuesta 70000, el segundo 55000
-        // independientemente de si es el mismo modelo/talle o no
-        var productPrice = index === 0 ? 70000 : 55000;
+        // Cuando hay dos productos, el precio total es 110000 (55000 cada uno)
+        // Cuando hay un solo producto, el precio es 70000
+        var productPrice;
+        if (itemsArray.length === 2) {
+          productPrice = 55000; // Cada par cuesta 55000 cuando hay dos
+        } else {
+          productPrice = 70000; // Un solo par cuesta 70000
+        }
 
         // Add to cart items array
         cartItems.push({
@@ -1349,14 +1354,9 @@ $(document).ready(function(){
     $('.cart-button-count').text(cartItems.length);
 
     // Update cart total
-    var total;
-    if (cartItems.length === 2) {
-      total = 110000; // Precio fijo para 2 pares según la oferta
-    } else {
-      total = cartItems.reduce(function(sum, item) {
-        return sum + item.price;
-      }, 0);
-    }
+    var total = cartItems.reduce(function(sum, item) {
+      return sum + item.price;
+    }, 0);
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
@@ -1397,7 +1397,7 @@ $(document).ready(function(){
 
       // Si hay exactamente 1 producto, mostrar mensaje sobre descuento por segundo par
       if (cartItems.length === 1) {
-        showNotification('¡Agrega otro par y obtén un 21% de descuento! Segundo par a solo $55.000', 'info');
+        showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $55.000 en la oferta de 2 pares', 'info');
       }
 
       // Cuando hay 2 productos, mostrar notificación pero NO activar el formulario automáticamente
