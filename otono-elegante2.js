@@ -383,8 +383,14 @@ $(document).ready(function(){
       }
     }
 
-    // Add new value
-    summaryArray.push(currentVal);
+    // Add new value if it's not empty
+    if (currentVal && currentVal.trim() !== '') {
+      summaryArray.push(currentVal);
+      console.log("Valor agregado al array:", currentVal);
+      console.log("Array actualizado:", summaryArray);
+    } else {
+      console.log("Valor vacío, no se agrega al array");
+    }
 
     // Mostrar notificación de éxito
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
@@ -398,11 +404,17 @@ $(document).ready(function(){
       $select.data('pre', currentVal);
     }
 
+    // Filtrar cualquier valor vacío antes de actualizar el campo
+    summaryArray = summaryArray.filter(item => item && item.trim() !== '');
+
     // Update the summary input and display
     summaryInput.val(summaryArray.join(', '));
     var finalSummary = summaryInput.val();
     // Actualizar el elemento de visualización con el ID correcto
     summaryDisplay.text(finalSummary || 'Aquí verás tu selección...');
+
+    // Debug log para verificar el valor actualizado
+    console.log("Valor actualizado en el campo:", finalSummary);
 
     // Update cart items
     updateCart(summaryArray);
@@ -410,7 +422,6 @@ $(document).ready(function(){
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
-    var totalPrice = 0;
 
     if (pairCount >= 1) {
       // Activate checkout button
@@ -658,7 +669,13 @@ $(document).ready(function(){
 
     // Check if products were selected
     const talleselegidos = $('#1471599855').val(); // Correct ID
-    if (!talleselegidos || talleselegidos.split(',').filter(Boolean).length === 0) {
+    console.log("Talles elegidos:", talleselegidos); // Debug log
+
+    // Mejorar la validación para manejar correctamente el formato "valor1, valor2, "
+    const itemsArray = talleselegidos ? talleselegidos.split(', ').filter(item => item && item.trim() !== '') : [];
+    console.log("Items filtrados para validación:", itemsArray);
+
+    if (!talleselegidos || itemsArray.length === 0) {
       alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
       $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Updated button text
       $('html, body').animate({
@@ -1226,12 +1243,15 @@ $(document).ready(function(){
     // Asegurarse de que el botón del carrito sea visible
     ensureCartButtonVisible();
 
+    // Debug log para verificar los items recibidos
+    console.log("Items recibidos en updateCart:", itemsArray);
+
     // Clear current cart items
     cartItems = [];
     cartItemsContainer.empty();
 
     // Process each item
-    itemsArray.forEach(function(item, index) {
+    itemsArray.forEach(function(item) { // Eliminado el parámetro 'index' no utilizado
       if (item) {
         var parts = item.split('-');
         var size = parts[0];
@@ -1361,13 +1381,19 @@ $(document).ready(function(){
 
     // Process the summary content to remove the item
     var summaryContent = $("#1471599855").val() || ""; // Correct ID
-    var summaryArray = summaryContent.split(', ').filter(Boolean);
+    console.log("Contenido del campo al remover:", summaryContent);
+
+    // Mejorar el filtrado para manejar espacios en blanco
+    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
+    console.log("Array antes de remover:", summaryArray);
 
     // Remove the item from the array
     summaryArray = summaryArray.filter(item => item !== itemId);
+    console.log("Array después de remover:", summaryArray);
 
     // Update the summary input
     $("#1471599855").val(summaryArray.join(', ')); // Correct ID
+    console.log("Nuevo valor del campo:", $("#1471599855").val());
 
     // Update the cart display
     updateCart(summaryArray);
