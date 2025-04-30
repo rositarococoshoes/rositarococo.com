@@ -401,7 +401,7 @@ $(document).ready(function(){
     // Update the summary input and display
     summaryInput.val(summaryArray.join(', '));
     var finalSummary = summaryInput.val();
-    //$("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
+    $("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
     summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
 
     // Update cart items
@@ -1339,14 +1339,23 @@ $(document).ready(function(){
     });
 
     // Process the summary content to remove the item
-    var summaryContent = $("#286442883").val() || ""; // Updated ID
-    var summaryArray = summaryContent.split(', ').filter(Boolean);
+    var summaryContent = $("#1471599855").val() || ""; // Correct ID
+    console.log("Contenido del campo al remover:", summaryContent);
+
+    // Mejorar el filtrado para manejar espacios en blanco
+    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
+    console.log("Array antes de remover:", summaryArray);
 
     // Remove the item from the array
     summaryArray = summaryArray.filter(item => item !== itemId);
+    console.log("Array después de remover:", summaryArray);
 
     // Update the summary input
-    $("#286442883").val(summaryArray.join(', ')); // Updated ID
+    $("#1471599855").val(summaryArray.join(', ')); // Correct ID
+    console.log("Nuevo valor del campo:", $("#1471599855").val());
+
+    // Update the summary display
+    $("#help-modelostallesseleccionados").text(summaryArray.join(', ') || '-'); // Updated ID
 
     // Update the cart display
     updateCart(summaryArray);
