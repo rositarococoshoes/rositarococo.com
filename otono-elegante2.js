@@ -300,8 +300,12 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
+<<<<<<< HEAD
   var summaryInput = $("#1471599855"); // Correct ID for selected items
   var summaryDisplay = $("#help-modelostallesseleccionados"); // Correct ID for display
+=======
+  var summaryInput = $("#1471599855");
+>>>>>>> parent of 5d7b782 (2942025)
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
   var cartCountElement = $(".cart-count");
@@ -410,11 +414,15 @@ $(document).ready(function(){
     // Update the summary input and display
     summaryInput.val(summaryArray.join(', '));
     var finalSummary = summaryInput.val();
+<<<<<<< HEAD
     // Actualizar el elemento de visualización con el ID correcto
     summaryDisplay.text(finalSummary || 'Aquí verás tu selección...');
 
     // Debug log para verificar el valor actualizado
     console.log("Valor actualizado en el campo:", finalSummary);
+=======
+    $("#help-modelostallesseleccionados").text(finalSummary || '-');
+>>>>>>> parent of 5d7b782 (2942025)
 
     // Update cart items
     updateCart(summaryArray);
@@ -429,8 +437,8 @@ $(document).ready(function(){
 
       // Make checkout section active if there are items in cart
       if (pairCount === 1) {
-        totalPrice = 70000; // Correct price for 1 pair
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>'; // Updated text
+        totalPrice = 70000;
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
 
         // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
         // Mostrar y activar la sección de checkout, pero sin forzar el foco
@@ -441,8 +449,8 @@ $(document).ready(function(){
 
         // No forzamos el scroll al formulario, solo lo hacemos visible
       } else if (pairCount === 2) {
-        totalPrice = 95000; // Correct price for 2 pairs
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
+        totalPrice = 110000;
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
 
         // If this is the second pair being added, show a more prominent notification
         if (currentVal && prevVal === "" && summaryArray.length === 2) {
@@ -474,8 +482,8 @@ $(document).ready(function(){
 
     $("#preciototal").html(totalPriceText);
 
-    // Recalculate price based on payment method - REMOVED as #comoabona is gone
-    // $("#comoabona").trigger('change');
+    // Recalculate price based on payment method
+    $("#comoabona").trigger('change');
 
     // Mostrar notificación de éxito
     showNotification('¡Producto agregado al carrito!', 'success');
@@ -608,7 +616,6 @@ $(document).ready(function(){
     $("#help-provincia").text($("#59648134 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
     $("#help-cp").text($("#1005165410").val() || '-');
     $("#help-dni").text($("#541001873").val() || '-');
-    $("#help-diayhora").text($("#1756027935").val() || '-'); // Added for delivery date
 
     // Combine address fields for display
     let fullAddress = [
@@ -621,14 +628,62 @@ $(document).ready(function(){
     $("#help-address-combined").text(fullAddress || '-');
   });
 
-  // Initial trigger for province and delivery date
-  $("#59648134, #1756027935").trigger('change');
+  // Initial trigger for province
+  $("#59648134").trigger('change');
 
-  // --- Discount Logic Removed ---
-  // $("#comoabona").change(function() { ... });
+  // --- Discount Logic ---
+  $("#comoabona").change(function() {
+    var selectedPayment = $(this).val();
+    var isCBU = (selectedPayment === "cbu");
+    var discountText = isCBU ? ' <span style="color:#5a8f3e; font-weight:bold;">(10% OFF Incluido)</span>' : '';
 
-  // Show WhatsApp button after a delay - REMOVED, no WhatsApp button in this version
-  // $("#whatsapp").delay(3000).fadeIn(400);
+    $(".preciototalaobservar").each(function() {
+      var $priceSpan = $(this);
+      var originalPrice = $priceSpan.data('original-price');
+
+      if (typeof originalPrice === 'undefined') {
+        originalPrice = parseFloat($priceSpan.text().replace(/\./g, '').replace(',', '.'));
+        $priceSpan.data('original-price', originalPrice);
+      }
+
+      var priceToShow = isCBU ? Math.round(originalPrice * 0.90) : originalPrice;
+      $priceSpan.text(priceToShow.toLocaleString('es-AR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).replace(/,/g, '.'));
+    });
+
+    // Update the main total display to show the discount text if applicable
+    var $totalPriceElement = $("#preciototal");
+    var currentHtml = $totalPriceElement.html();
+
+    // Remove previous discount text before adding new one
+    currentHtml = currentHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
+
+    if (isCBU) {
+      // Add discount text after the price span
+      currentHtml = currentHtml.replace(/(<\/span>)/, '$1' + discountText);
+    }
+
+    $totalPriceElement.html(currentHtml);
+
+    // Update floating summary if it exists
+    var $floatingPriceSummary = $("#floating-price-summary");
+    if ($floatingPriceSummary.length > 0) {
+      var floatingHtml = $floatingPriceSummary.html();
+
+      floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
+
+      if (isCBU) {
+        floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
+      }
+
+      $floatingPriceSummary.html(floatingHtml);
+    }
+  });
+
+  // Show WhatsApp button after a delay
+  $("#whatsapp").delay(3000).fadeIn(400);
 
   // Store page URL for tracking without query parameters
   // This is also used as an anti-spam measure - real users will always have this field filled
@@ -685,16 +740,14 @@ $(document).ready(function(){
     }
 
     // Check WhatsApp validation status before submitting
-    const whatsappInput = getInputElement("53830725"); // ID for WhatsApp input
-    const errorElement = getErrorElement(); // Get the specific error element for WhatsApp
+    const whatsappInput = getInputElement("53830725");
+    const errorElement = getErrorElement();
     if (!whatsappInput || !errorElement || !errorElement.classList.contains('valid')) {
-        alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
-        $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Corrected button text for pago previo
-        if (whatsappInput) whatsappInput.focus();
-        return;
+      alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
+      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
+      if (whatsappInput) whatsappInput.focus();
+      return;
     }
-
-
     // Proceed with form submission
     $submitButton.val('Procesando...').prop('disabled', true);
     $('.loading-overlay').addClass('visible');
@@ -705,6 +758,28 @@ $(document).ready(function(){
     // Get the potentially discounted price
     const montoTexto = $(".preciototalaobservar").first().text();
     const monto = parseFloat(montoTexto.replace(/\./g, ''));
+
+    // Calcular el precio correcto según la cantidad de pares
+    // Los precios correctos para index.html son:
+    // - 1 par: $70,000
+    // - 2 pares: $110,000
+    const pairCount = itemsArray.length;
+    let precioBase;
+    if (pairCount === 1) {
+        precioBase = 70000; // Precio para 1 par
+    } else if (pairCount === 2) {
+        precioBase = 110000; // Precio para 2 pares
+    } else {
+        precioBase = 70000 * pairCount; // Fallback
+    }
+
+    // Aplicar descuento si es transferencia bancaria (CBU)
+    let precioFinal = precioBase;
+    if (formaPago === "cbu") {
+        precioFinal = Math.round(precioBase * 0.9); // 10% de descuento
+    }
+
+    console.log(`Monto calculado (${pairCount} pares, ${formaPago}):`, precioFinal);
 
     try {
       const formAction = $form.attr('action');
@@ -723,7 +798,6 @@ $(document).ready(function(){
           body: formData
         });
 
-        const pairCount = itemsArray.length;
         const redirectUrl = pairCount === 2 ?
           'https://rositarococo.com/transferenciacbu-2pares.html' :
           'https://rositarococo.com/transferenciacbu-1par.html';
@@ -743,13 +817,13 @@ $(document).ready(function(){
 
         try {
           // Obtener link de MercadoPago
-          console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: monto });
+          console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: precioFinal });
           const response = await fetch("https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               comprador: nombreComprador,
-              monto: monto
+              monto: precioFinal
             })
           });
 
@@ -855,8 +929,6 @@ $(document).ready(function(){
       $('.loading-overlay').removeClass('visible');
       $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
     }
-
-
   });
 
   // --- Sales Notification Popups ---
@@ -1386,11 +1458,11 @@ $(document).ready(function(){
         var productName = getProductName(model);
         var productImage = getProductImage(model);
 
-        // Cuando hay dos productos, el precio total es 95000 (47500 cada uno)
+        // Cuando hay dos productos, el precio total es 110000 (55000 cada uno)
         // Cuando hay un solo producto, el precio es 70000
         var productPrice;
         if (itemsArray.length === 2) {
-          productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
+          productPrice = 55000; // Cada par cuesta 55000 cuando hay dos
         } else {
           productPrice = 70000; // Un solo par cuesta 70000
         }
@@ -1426,15 +1498,10 @@ $(document).ready(function(){
     $('.tab-count').text(cartItems.length);
     $('.cart-button-count').text(cartItems.length);
 
-    // Update cart total based on the number of pairs (not sum of individual prices)
-    var total;
-    if (cartItems.length === 1) {
-        total = 70000;
-    } else if (cartItems.length === 2) {
-        total = 95000;
-    } else {
-        total = 0;
-    }
+    // Update cart total
+    var total = cartItems.reduce(function(sum, item) {
+      return sum + item.price;
+    }, 0);
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
