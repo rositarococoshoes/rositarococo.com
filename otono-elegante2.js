@@ -300,8 +300,8 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
-  var summaryInput = $("#286442883"); // Updated ID for selected items
-  var summaryDisplay = $("#display-selected-items"); // Updated ID for display
+  var summaryInput = $("#1471599855"); // Correct ID for selected items
+  var summaryDisplay = $("#help-modelostallesseleccionados"); // Correct ID for display
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
   var cartCountElement = $(".cart-count");
@@ -401,8 +401,8 @@ $(document).ready(function(){
     // Update the summary input and display
     summaryInput.val(summaryArray.join(', '));
     var finalSummary = summaryInput.val();
-    //$("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
-    summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
+    // Actualizar el elemento de visualización con el ID correcto
+    summaryDisplay.text(finalSummary || 'Aquí verás tu selección...');
 
     // Update cart items
     updateCart(summaryArray);
@@ -657,7 +657,7 @@ $(document).ready(function(){
     }
 
     // Check if products were selected
-    const talleselegidos = $('#286442883').val(); // Updated ID
+    const talleselegidos = $('#1471599855').val(); // Correct ID
     if (!talleselegidos || talleselegidos.split(',').filter(Boolean).length === 0) {
       alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
       $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Updated button text
@@ -1360,14 +1360,14 @@ $(document).ready(function(){
     });
 
     // Process the summary content to remove the item
-    var summaryContent = $("#286442883").val() || ""; // Updated ID
+    var summaryContent = $("#1471599855").val() || ""; // Correct ID
     var summaryArray = summaryContent.split(', ').filter(Boolean);
 
     // Remove the item from the array
     summaryArray = summaryArray.filter(item => item !== itemId);
 
     // Update the summary input
-    $("#286442883").val(summaryArray.join(', ')); // Updated ID
+    $("#1471599855").val(summaryArray.join(', ')); // Correct ID
 
     // Update the cart display
     updateCart(summaryArray);
