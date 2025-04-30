@@ -677,7 +677,7 @@ $(document).ready(function(){
 
     if (!talleselegidos || itemsArray.length === 0) {
       alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
-      $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Updated button text
+      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Corrected button text for pago previo
       $('html, body').animate({
         scrollTop: $("#todoslosmodelos").offset().top - 20
       }, 500);
@@ -689,47 +689,172 @@ $(document).ready(function(){
     const errorElement = getErrorElement(); // Get the specific error element for WhatsApp
     if (!whatsappInput || !errorElement || !errorElement.classList.contains('valid')) {
         alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
-        $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Updated button text
+        $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Corrected button text for pago previo
         if (whatsappInput) whatsappInput.focus();
         return;
     }
 
 
-    // Proceed with form submission - Logic will be replaced/added later
-    // For now, just show processing state
+    // Proceed with form submission
     $submitButton.val('Procesando...').prop('disabled', true);
     $('.loading-overlay').addClass('visible');
 
-    // --- REMOVED MercadoPago/CBU specific logic ---
-    // const formaPago = $('#comoabona').val();
-    // const nombreComprador = $('#1460904554').val();
-    // let monto;
-    // ... (price calculation based on formaPago removed) ...
-    // console.log(`Monto a enviar (${formaPago}):`, monto);
+    const formaPago = $('#comoabona').val();
+    const nombreComprador = $('#1460904554').val();
 
-    // The actual submission (POST to Google Apps Script) and redirection
-    // will be handled by the script block imported from contrareembolso.html,
-    // likely replacing the content of form-handler.js or added inline.
-    // For now, this submit handler only performs validation.
-    // We need to ensure the default form submission is prevented until
-    // the contrareembolso submission logic is added.
-    // The event.preventDefault() at the start handles this.
+    // Get the potentially discounted price
+    const montoTexto = $(".preciototalaobservar").first().text();
+    const monto = parseFloat(montoTexto.replace(/\./g, ''));
 
-    // Simulate processing and allow the actual submission logic (to be added later) to take over.
-    // If form-handler.js is responsible, it should handle the rest.
-    // If we replace form-handler.js or add inline script, that script will handle it.
-    console.log("Form validated. Allowing submission (to be handled by contrareembolso logic).");
-    // return true; // Let the form submit (or let the specific contrareembolso JS handle it)
-    // Actually, we need to explicitly call the contrareembolso submission function here or ensure form-handler.js does it.
-    // Since we haven't added that logic yet, we'll just log and keep preventDefault active.
-    // The next step will be to add the specific submission script.
-    // For now, let's just re-enable the button after a delay for testing.
-    setTimeout(function() {
-         console.log("Simulating submission completion (actual logic pending).");
-         $('.loading-overlay').removeClass('visible');
-         $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false);
-         // alert("Simulación: Pedido enviado (lógica real pendiente).");
-    }, 1500);
+    try {
+      const formAction = $form.attr('action');
+      const formData = new URLSearchParams($form.serialize());
+
+      if (formaPago === "cbu") {
+        // Process bank transfer payment
+        console.log('Processing CBU payment...');
+        // Check if Facebook Pixel is available before calling it
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout');
+        }
+        fetch(formAction, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+
+        const pairCount = itemsArray.length;
+        const redirectUrl = pairCount === 2 ?
+          'https://rositarococo.com/transferenciacbu-2pares.html' :
+          'https://rositarococo.com/transferenciacbu-1par.html';
+
+        setTimeout(() => {
+          window.location.href = redirectUrl;
+        }, 500);
+
+        return;
+      } else if (formaPago === "tarjeta" || formaPago === "mercadopago") {
+        // Process MercadoPago/Card payment
+        console.log('Processing MercadoPago/Card payment...');
+        // Check if Facebook Pixel is available before calling it
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'InitiateCheckout');
+        }
+
+        try {
+          // Obtener link de MercadoPago
+          console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: monto });
+          const response = await fetch("https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              comprador: nombreComprador,
+              monto: monto
+            })
+          });
+
+          if (!response.ok) throw new Error(`Webhook status ${response.status}`);
+
+          const responseText = await response.text();
+          console.log('Respuesta del servidor:', responseText);
+
+          let mercadoPagoUrl;
+          try {
+            const jsonData = JSON.parse(responseText);
+            mercadoPagoUrl = jsonData.linkpersonalizadomp;
+
+            if (!mercadoPagoUrl) {
+              throw new Error('No se pudo obtener el link de MercadoPago');
+            }
+
+            console.log('Link de MercadoPago obtenido:', mercadoPagoUrl);
+          } catch (parseError) {
+            console.error('Error al procesar la respuesta:', parseError);
+            throw new Error('Error al procesar la respuesta del servidor. Por favor, intente nuevamente.');
+          }
+
+          // Guardar link en el formulario
+          $('#link-mercadopago').val(mercadoPagoUrl);
+          document.getElementById('link-mercadopago').value = mercadoPagoUrl;
+
+          // Primero enviar el formulario a Google Forms
+          try {
+            console.log('Enviando formulario a Google Forms...');
+            await fetch(formAction, {
+              method: 'POST',
+              mode: 'no-cors',
+              body: new URLSearchParams($form.serialize())
+            });
+            console.log('Formulario enviado correctamente');
+          } catch (formError) {
+            console.error('Error al enviar formulario:', formError);
+            // Continuamos con la redirección aunque falle el envío del formulario
+          }
+
+          // Luego redireccionar a MercadoPago (separado del envío del formulario)
+          console.log('Redirigiendo a MercadoPago:', mercadoPagoUrl);
+
+          // Usar una redirección directa sin setTimeout para evitar problemas
+          try {
+            // Crear un enlace y hacer clic en él (método alternativo de redirección)
+            const redirectLink = document.createElement('a');
+            redirectLink.href = mercadoPagoUrl;
+            redirectLink.target = '_self';
+            redirectLink.style.display = 'none';
+            document.body.appendChild(redirectLink);
+
+            console.log('Ejecutando redirección a MercadoPago...');
+            setTimeout(() => {
+              redirectLink.click();
+            }, 500);
+          } catch (redirectError) {
+            console.error('Error en la redirección:', redirectError);
+
+            // Intentar método alternativo de redirección
+            console.log('Intentando método alternativo de redirección...');
+            setTimeout(() => {
+              window.location.replace(mercadoPagoUrl);
+            }, 500);
+          }
+        } catch (webhookError) {
+          console.error("MP link fetch error:", webhookError);
+
+          // Mensaje de error más específico
+          let errorMessage = 'Hubo un problema al generar el link de pago. Intenta nuevamente.';
+
+          // Si es un error de conexión con el webservice
+          if (webhookError.message && webhookError.message.includes('fetch')) {
+            errorMessage = 'Error de conexión con el servidor de pagos. Verifica tu conexión a internet e intenta nuevamente.';
+          }
+
+          // Si es un error al procesar la respuesta JSON
+          if (webhookError.message && webhookError.message.includes('JSON')) {
+            errorMessage = 'Error al procesar la respuesta del servidor. Por favor, intenta nuevamente en unos minutos.';
+          }
+
+          // Si es un error relacionado con MercadoPago
+          if (webhookError.message && webhookError.message.includes('MercadoPago')) {
+            errorMessage = 'No se pudo generar el link de pago. Por favor, intenta nuevamente o elige otro método de pago.';
+          }
+
+          // Mostrar error al usuario
+          alert(errorMessage);
+
+          // Ocultar overlay y reactivar botón
+          $('.loading-overlay').removeClass('visible');
+          $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
+        }
+
+        return;
+      }
+
+      throw new Error("Forma de pago no válida.");
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert('Ocurrió un error inesperado. Por favor, inténtalo de nuevo.');
+      $('.loading-overlay').removeClass('visible');
+      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
+    }
 
 
   });

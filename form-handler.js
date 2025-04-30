@@ -46,38 +46,24 @@ $(document).ready(function() {
 
 
         // Get selected items count for redirection (Keep from original form-handler.js, but use correct ID)
-        const talleselegidos = $('#1471599855').val(); // Correct ID for selected items
-        console.log("Form-handler.js - Talles elegidos:", talleselegidos);
-        const words = talleselegidos ? talleselegidos.split(', ').filter(item => item && item.trim() !== '') : [];
-        console.log("Form-handler.js - Items filtrados:", words);
+        const talleselegidos = $('#286442883').val(); // Updated ID
+        const words = talleselegidos ? talleselegidos.split(',').filter(Boolean) : [];
         const pairCount = words.length;
 
-         if (!talleselegidos || words.length === 0) {
+         if (pairCount === 0) {
              alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
              $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Updated button text
              $('html, body').animate({
                  scrollTop: $("#todoslosmodelos").offset().top - 20
              }, 500);
-             console.log("Form-handler.js - Validación fallida: no hay productos seleccionados");
              return false;
-         } else {
-             console.log("Form-handler.js - Validación exitosa: hay productos seleccionados");
          }
 
 
         // Combine address fields for the 'Calle y Altura' field (Keep from contrareembolso.html)
         var calleAltura = $('#951592426').val(); // Use the ID from index-contrarreembolso.html
-
-        // Verificar si el campo entre-calles existe
-        var entreCalles = $('#entre-calles').length > 0 ? $('#entre-calles').val() : '';
-
-        // Solo agregar "entre calles" si el campo existe y tiene valor
-        var direccionCompleta = calleAltura;
-        if (entreCalles && entreCalles.trim() !== '') {
-            direccionCompleta += " entre calles " + entreCalles;
-        }
-
-        console.log("Form-handler.js - Dirección completa:", direccionCompleta);
+        var entreCalles = $('#entre-calles').val();
+        var direccionCompleta = calleAltura + " entre calles " + entreCalles;
 
         // Update the value of the 'Calle y Altura' field with the combined address
         // Note: The ID for Calle y Altura is #951592426 in index-contrarreembolso.html
@@ -88,39 +74,21 @@ $(document).ready(function() {
 
 
         var formData = $(this).serialize(); // get all the form data
-        console.log("Form-handler.js - Datos del formulario:", formData);
-
-        // Verificar una última vez que hay productos seleccionados
-        if (!talleselegidos || words.length === 0) {
-            console.log("Form-handler.js - ERROR: No hay productos seleccionados antes de enviar");
-            alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
-            $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false);
-            $('html, body').animate({
-                scrollTop: $("#todoslosmodelos").offset().top - 20
-            }, 500);
-            return false;
-        }
-
-        console.log("Form-handler.js - Enviando datos al servidor...");
 
         // send the form data to the Google Apps Script URL
         $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
             .done(function() {
-                console.log("Form-handler.js - Éxito en el envío");
                 // once the data has been sent, redirect to the new URL
                 if(pairCount === 1){
-                    console.log("Form-handler.js - Redirigiendo a gracias-1par-c.html (1 par)");
                     window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + $.param({ 'items': talleselegidos }); // Pass selected items in query string
                 }
                 else if(pairCount === 2){
-                    console.log("Form-handler.js - Redirigiendo a gracias-2pares-c.html (2 pares)");
                     window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + $.param({ 'items': talleselegidos }); // Pass selected items in query string
                 }
                  // Note: Original contrareembolso.html had a case for >= 4 pairs redirecting to gracias-3pares.html.
                  // Since we limit to 2 pairs, this case is not needed.
             })
             .fail(function(jqXHR, textStatus, errorThrown) {
-                 console.log("Form-handler.js - Error en el envío:", textStatus, errorThrown);
                  console.error("Form submission failed:", textStatus, errorThrown, jqXHR.responseText);
                  alert("Ocurrió un error al enviar tu pedido. Por favor, inténtalo de nuevo.");
                  $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false); // Re-enable button on failure
