@@ -300,12 +300,8 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
-<<<<<<< HEAD
   var summaryInput = $("#1471599855"); // Correct ID for selected items
-  var summaryDisplay = $("#help-modelostallesseleccionados"); // Correct ID for display
-=======
-  var summaryInput = $("#1471599855");
->>>>>>> parent of 5d7b782 (2942025)
+  var summaryDisplay = $("#display-selected-items"); // Updated ID for display
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
   var cartCountElement = $(".cart-count");
@@ -387,14 +383,8 @@ $(document).ready(function(){
       }
     }
 
-    // Add new value if it's not empty
-    if (currentVal && currentVal.trim() !== '') {
-      summaryArray.push(currentVal);
-      console.log("Valor agregado al array:", currentVal);
-      console.log("Array actualizado:", summaryArray);
-    } else {
-      console.log("Valor vacío, no se agrega al array");
-    }
+    // Add new value
+    summaryArray.push(currentVal);
 
     // Mostrar notificación de éxito
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
@@ -408,21 +398,11 @@ $(document).ready(function(){
       $select.data('pre', currentVal);
     }
 
-    // Filtrar cualquier valor vacío antes de actualizar el campo
-    summaryArray = summaryArray.filter(item => item && item.trim() !== '');
-
     // Update the summary input and display
     summaryInput.val(summaryArray.join(', '));
     var finalSummary = summaryInput.val();
-<<<<<<< HEAD
-    // Actualizar el elemento de visualización con el ID correcto
-    summaryDisplay.text(finalSummary || 'Aquí verás tu selección...');
-
-    // Debug log para verificar el valor actualizado
-    console.log("Valor actualizado en el campo:", finalSummary);
-=======
-    $("#help-modelostallesseleccionados").text(finalSummary || '-');
->>>>>>> parent of 5d7b782 (2942025)
+    //$("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
+    summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
 
     // Update cart items
     updateCart(summaryArray);
@@ -430,6 +410,7 @@ $(document).ready(function(){
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
+    var totalPrice = 0;
 
     if (pairCount >= 1) {
       // Activate checkout button
@@ -437,8 +418,8 @@ $(document).ready(function(){
 
       // Make checkout section active if there are items in cart
       if (pairCount === 1) {
-        totalPrice = 70000;
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $55.000!</small>';
+        totalPrice = 70000; // Correct price for 1 pair
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>'; // Updated text
 
         // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
         // Mostrar y activar la sección de checkout, pero sin forzar el foco
@@ -449,8 +430,8 @@ $(document).ready(function(){
 
         // No forzamos el scroll al formulario, solo lo hacemos visible
       } else if (pairCount === 2) {
-        totalPrice = 110000;
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+        totalPrice = 110000; // Correct price for 2 pairs
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>'; // Updated text
 
         // If this is the second pair being added, show a more prominent notification
         if (currentVal && prevVal === "" && summaryArray.length === 2) {
@@ -482,8 +463,8 @@ $(document).ready(function(){
 
     $("#preciototal").html(totalPriceText);
 
-    // Recalculate price based on payment method
-    $("#comoabona").trigger('change');
+    // Recalculate price based on payment method - REMOVED as #comoabona is gone
+    // $("#comoabona").trigger('change');
 
     // Mostrar notificación de éxito
     showNotification('¡Producto agregado al carrito!', 'success');
@@ -616,6 +597,7 @@ $(document).ready(function(){
     $("#help-provincia").text($("#59648134 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
     $("#help-cp").text($("#1005165410").val() || '-');
     $("#help-dni").text($("#541001873").val() || '-');
+    $("#help-diayhora").text($("#1756027935").val() || '-'); // Added for delivery date
 
     // Combine address fields for display
     let fullAddress = [
@@ -628,62 +610,14 @@ $(document).ready(function(){
     $("#help-address-combined").text(fullAddress || '-');
   });
 
-  // Initial trigger for province
-  $("#59648134").trigger('change');
+  // Initial trigger for province and delivery date
+  $("#59648134, #1756027935").trigger('change');
 
-  // --- Discount Logic ---
-  $("#comoabona").change(function() {
-    var selectedPayment = $(this).val();
-    var isCBU = (selectedPayment === "cbu");
-    var discountText = isCBU ? ' <span style="color:#5a8f3e; font-weight:bold;">(10% OFF Incluido)</span>' : '';
+  // --- Discount Logic Removed ---
+  // $("#comoabona").change(function() { ... });
 
-    $(".preciototalaobservar").each(function() {
-      var $priceSpan = $(this);
-      var originalPrice = $priceSpan.data('original-price');
-
-      if (typeof originalPrice === 'undefined') {
-        originalPrice = parseFloat($priceSpan.text().replace(/\./g, '').replace(',', '.'));
-        $priceSpan.data('original-price', originalPrice);
-      }
-
-      var priceToShow = isCBU ? Math.round(originalPrice * 0.90) : originalPrice;
-      $priceSpan.text(priceToShow.toLocaleString('es-AR', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-      }).replace(/,/g, '.'));
-    });
-
-    // Update the main total display to show the discount text if applicable
-    var $totalPriceElement = $("#preciototal");
-    var currentHtml = $totalPriceElement.html();
-
-    // Remove previous discount text before adding new one
-    currentHtml = currentHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
-
-    if (isCBU) {
-      // Add discount text after the price span
-      currentHtml = currentHtml.replace(/(<\/span>)/, '$1' + discountText);
-    }
-
-    $totalPriceElement.html(currentHtml);
-
-    // Update floating summary if it exists
-    var $floatingPriceSummary = $("#floating-price-summary");
-    if ($floatingPriceSummary.length > 0) {
-      var floatingHtml = $floatingPriceSummary.html();
-
-      floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
-
-      if (isCBU) {
-        floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
-      }
-
-      $floatingPriceSummary.html(floatingHtml);
-    }
-  });
-
-  // Show WhatsApp button after a delay
-  $("#whatsapp").delay(3000).fadeIn(400);
+  // Show WhatsApp button after a delay - REMOVED, no WhatsApp button in this version
+  // $("#whatsapp").delay(3000).fadeIn(400);
 
   // Store page URL for tracking without query parameters
   // This is also used as an anti-spam measure - real users will always have this field filled
@@ -732,7 +666,7 @@ $(document).ready(function(){
 
     if (!talleselegidos || itemsArray.length === 0) {
       alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
-      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Corrected button text for pago previo
+      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Correct button text
       $('html, body').animate({
         scrollTop: $("#todoslosmodelos").offset().top - 20
       }, 500);
@@ -740,195 +674,53 @@ $(document).ready(function(){
     }
 
     // Check WhatsApp validation status before submitting
-    const whatsappInput = getInputElement("53830725");
-    const errorElement = getErrorElement();
+    const whatsappInput = getInputElement("53830725"); // ID for WhatsApp input
+    const errorElement = getErrorElement(); // Get the specific error element for WhatsApp
     if (!whatsappInput || !errorElement || !errorElement.classList.contains('valid')) {
-      alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
-      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
-      if (whatsappInput) whatsappInput.focus();
-      return;
+        alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
+        $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Correct button text
+        if (whatsappInput) whatsappInput.focus();
+        return;
     }
-    // Proceed with form submission
+
+
+    // Proceed with form submission - Logic will be replaced/added later
+    // For now, just show processing state
     $submitButton.val('Procesando...').prop('disabled', true);
     $('.loading-overlay').addClass('visible');
 
-    const formaPago = $('#comoabona').val();
-    const nombreComprador = $('#1460904554').val();
+    // --- REMOVED MercadoPago/CBU specific logic ---
+    // const formaPago = $('#comoabona').val();
+    // const nombreComprador = $('#1460904554').val();
+    // let monto;
+    // ... (price calculation based on formaPago removed) ...
+    // console.log(`Monto a enviar (${formaPago}):`, monto);
 
-    // Get the potentially discounted price
-    const montoTexto = $(".preciototalaobservar").first().text();
-    const monto = parseFloat(montoTexto.replace(/\./g, ''));
+    // The actual submission (POST to Google Apps Script) and redirection
+    // will be handled by the script block imported from contrareembolso.html,
+    // likely replacing the content of form-handler.js or added inline.
+    // For now, this submit handler only performs validation.
+    // We need to ensure the default form submission is prevented until
+    // the contrareembolso submission logic is added.
+    // The event.preventDefault() at the start handles this.
 
-    // Calcular el precio correcto según la cantidad de pares
-    // Los precios correctos para index.html son:
-    // - 1 par: $70,000
-    // - 2 pares: $110,000
-    const pairCount = itemsArray.length;
-    let precioBase;
-    if (pairCount === 1) {
-        precioBase = 70000; // Precio para 1 par
-    } else if (pairCount === 2) {
-        precioBase = 110000; // Precio para 2 pares
-    } else {
-        precioBase = 70000 * pairCount; // Fallback
-    }
+    // Simulate processing and allow the actual submission logic (to be added later) to take over.
+    // If form-handler.js is responsible, it should handle the rest.
+    // If we replace form-handler.js or add inline script, that script will handle it.
+    console.log("Form validated. Allowing submission (to be handled by contrareembolso logic).");
+    // return true; // Let the form submit (or let the specific contrareembolso JS handle it)
+    // Actually, we need to explicitly call the contrareembolso submission function here or ensure form-handler.js does it.
+    // Since we haven't added that logic yet, we'll just log and keep preventDefault active.
+    // The next step will be to add the specific submission script.
+    // For now, let's just re-enable the button after a delay for testing.
+    setTimeout(function() {
+         console.log("Simulating submission completion (actual logic pending).");
+         $('.loading-overlay').removeClass('visible');
+         $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false);
+         // alert("Simulación: Pedido enviado (lógica real pendiente).");
+    }, 1500);
 
-    // Aplicar descuento si es transferencia bancaria (CBU)
-    let precioFinal = precioBase;
-    if (formaPago === "cbu") {
-        precioFinal = Math.round(precioBase * 0.9); // 10% de descuento
-    }
 
-    console.log(`Monto calculado (${pairCount} pares, ${formaPago}):`, precioFinal);
-
-    try {
-      const formAction = $form.attr('action');
-      const formData = new URLSearchParams($form.serialize());
-
-      if (formaPago === "cbu") {
-        // Process bank transfer payment
-        console.log('Processing CBU payment...');
-        // Check if Facebook Pixel is available before calling it
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'InitiateCheckout');
-        }
-        fetch(formAction, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
-
-        const redirectUrl = pairCount === 2 ?
-          'https://rositarococo.com/transferenciacbu-2pares.html' :
-          'https://rositarococo.com/transferenciacbu-1par.html';
-
-        setTimeout(() => {
-          window.location.href = redirectUrl;
-        }, 500);
-
-        return;
-      } else if (formaPago === "tarjeta" || formaPago === "mercadopago") {
-        // Process MercadoPago/Card payment
-        console.log('Processing MercadoPago/Card payment...');
-        // Check if Facebook Pixel is available before calling it
-        if (typeof fbq !== 'undefined') {
-          fbq('track', 'InitiateCheckout');
-        }
-
-        try {
-          // Obtener link de MercadoPago
-          console.log('Enviando datos a MercadoPago:', { comprador: nombreComprador, monto: precioFinal });
-          const response = await fetch("https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30", {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              comprador: nombreComprador,
-              monto: precioFinal
-            })
-          });
-
-          if (!response.ok) throw new Error(`Webhook status ${response.status}`);
-
-          const responseText = await response.text();
-          console.log('Respuesta del servidor:', responseText);
-
-          let mercadoPagoUrl;
-          try {
-            const jsonData = JSON.parse(responseText);
-            mercadoPagoUrl = jsonData.linkpersonalizadomp;
-
-            if (!mercadoPagoUrl) {
-              throw new Error('No se pudo obtener el link de MercadoPago');
-            }
-
-            console.log('Link de MercadoPago obtenido:', mercadoPagoUrl);
-          } catch (parseError) {
-            console.error('Error al procesar la respuesta:', parseError);
-            throw new Error('Error al procesar la respuesta del servidor. Por favor, intente nuevamente.');
-          }
-
-          // Guardar link en el formulario
-          $('#link-mercadopago').val(mercadoPagoUrl);
-          document.getElementById('link-mercadopago').value = mercadoPagoUrl;
-
-          // Primero enviar el formulario a Google Forms
-          try {
-            console.log('Enviando formulario a Google Forms...');
-            await fetch(formAction, {
-              method: 'POST',
-              mode: 'no-cors',
-              body: new URLSearchParams($form.serialize())
-            });
-            console.log('Formulario enviado correctamente');
-          } catch (formError) {
-            console.error('Error al enviar formulario:', formError);
-            // Continuamos con la redirección aunque falle el envío del formulario
-          }
-
-          // Luego redireccionar a MercadoPago (separado del envío del formulario)
-          console.log('Redirigiendo a MercadoPago:', mercadoPagoUrl);
-
-          // Usar una redirección directa sin setTimeout para evitar problemas
-          try {
-            // Crear un enlace y hacer clic en él (método alternativo de redirección)
-            const redirectLink = document.createElement('a');
-            redirectLink.href = mercadoPagoUrl;
-            redirectLink.target = '_self';
-            redirectLink.style.display = 'none';
-            document.body.appendChild(redirectLink);
-
-            console.log('Ejecutando redirección a MercadoPago...');
-            setTimeout(() => {
-              redirectLink.click();
-            }, 500);
-          } catch (redirectError) {
-            console.error('Error en la redirección:', redirectError);
-
-            // Intentar método alternativo de redirección
-            console.log('Intentando método alternativo de redirección...');
-            setTimeout(() => {
-              window.location.replace(mercadoPagoUrl);
-            }, 500);
-          }
-        } catch (webhookError) {
-          console.error("MP link fetch error:", webhookError);
-
-          // Mensaje de error más específico
-          let errorMessage = 'Hubo un problema al generar el link de pago. Intenta nuevamente.';
-
-          // Si es un error de conexión con el webservice
-          if (webhookError.message && webhookError.message.includes('fetch')) {
-            errorMessage = 'Error de conexión con el servidor de pagos. Verifica tu conexión a internet e intenta nuevamente.';
-          }
-
-          // Si es un error al procesar la respuesta JSON
-          if (webhookError.message && webhookError.message.includes('JSON')) {
-            errorMessage = 'Error al procesar la respuesta del servidor. Por favor, intenta nuevamente en unos minutos.';
-          }
-
-          // Si es un error relacionado con MercadoPago
-          if (webhookError.message && webhookError.message.includes('MercadoPago')) {
-            errorMessage = 'No se pudo generar el link de pago. Por favor, intenta nuevamente o elige otro método de pago.';
-          }
-
-          // Mostrar error al usuario
-          alert(errorMessage);
-
-          // Ocultar overlay y reactivar botón
-          $('.loading-overlay').removeClass('visible');
-          $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
-        }
-
-        return;
-      }
-
-      throw new Error("Forma de pago no válida.");
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert('Ocurrió un error inesperado. Por favor, inténtalo de nuevo.');
-      $('.loading-overlay').removeClass('visible');
-      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
-    }
   });
 
   // --- Sales Notification Popups ---
@@ -1440,15 +1232,12 @@ $(document).ready(function(){
     // Asegurarse de que el botón del carrito sea visible
     ensureCartButtonVisible();
 
-    // Debug log para verificar los items recibidos
-    console.log("Items recibidos en updateCart:", itemsArray);
-
     // Clear current cart items
     cartItems = [];
     cartItemsContainer.empty();
 
     // Process each item
-    itemsArray.forEach(function(item) { // Eliminado el parámetro 'index' no utilizado
+    itemsArray.forEach(function(item, index) {
       if (item) {
         var parts = item.split('-');
         var size = parts[0];
@@ -1458,11 +1247,11 @@ $(document).ready(function(){
         var productName = getProductName(model);
         var productImage = getProductImage(model);
 
-        // Cuando hay dos productos, el precio total es 110000 (55000 cada uno)
+        // Cuando hay dos productos, el precio total es 95000 (47500 cada uno)
         // Cuando hay un solo producto, el precio es 70000
         var productPrice;
         if (itemsArray.length === 2) {
-          productPrice = 55000; // Cada par cuesta 55000 cuando hay dos
+          productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
         } else {
           productPrice = 70000; // Un solo par cuesta 70000
         }
@@ -1498,10 +1287,15 @@ $(document).ready(function(){
     $('.tab-count').text(cartItems.length);
     $('.cart-button-count').text(cartItems.length);
 
-    // Update cart total
-    var total = cartItems.reduce(function(sum, item) {
-      return sum + item.price;
-    }, 0);
+    // Update cart total based on the number of pairs (not sum of individual prices)
+    var total;
+    if (cartItems.length === 1) {
+        total = 70000;
+    } else if (cartItems.length === 2) {
+        total = 95000;
+    } else {
+        total = 0;
+    }
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
@@ -1572,20 +1366,14 @@ $(document).ready(function(){
     });
 
     // Process the summary content to remove the item
-    var summaryContent = $("#1471599855").val() || ""; // Correct ID
-    console.log("Contenido del campo al remover:", summaryContent);
-
-    // Mejorar el filtrado para manejar espacios en blanco
-    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    console.log("Array antes de remover:", summaryArray);
+    var summaryContent = $("#286442883").val() || ""; // Updated ID
+    var summaryArray = summaryContent.split(', ').filter(Boolean);
 
     // Remove the item from the array
     summaryArray = summaryArray.filter(item => item !== itemId);
-    console.log("Array después de remover:", summaryArray);
 
     // Update the summary input
-    $("#1471599855").val(summaryArray.join(', ')); // Correct ID
-    console.log("Nuevo valor del campo:", $("#1471599855").val());
+    $("#286442883").val(summaryArray.join(', ')); // Updated ID
 
     // Update the cart display
     updateCart(summaryArray);
