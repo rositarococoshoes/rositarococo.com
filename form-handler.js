@@ -168,9 +168,17 @@ $(document).ready(function() {
 
                     console.log('Formulario enviado a Google Forms (MercadoPago)');
 
-                    // Redireccionar a MercadoPago inmediatamente después de enviar el formulario
+                    // Redireccionar a MercadoPago después de enviar el formulario
+                    // Mantener el spinner visible durante la redirección
                     console.log('Redireccionando a MercadoPago...');
-                    window.location.href = mercadoPagoUrl;
+
+                    // Asegurarnos de que el overlay de carga permanezca visible
+                    $('.loading-overlay').addClass('visible');
+
+                    // Usar setTimeout para dar tiempo a que se muestre el spinner
+                    setTimeout(function() {
+                        window.location.href = mercadoPagoUrl;
+                    }, 500);
 
                 } catch (error) {
                     console.error('Error al generar el link de pago:', error);

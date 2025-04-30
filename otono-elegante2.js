@@ -629,8 +629,11 @@ $(document).ready(function(){
   }
 
   // --- Form Submission Logic ---
-  $('#bootstrapForm').submit(async function (event) {
-    event.preventDefault();
+  // Nota: La lógica de envío del formulario ahora está en form-handler.js
+  // Este código solo realiza validaciones iniciales y luego permite que form-handler.js maneje el resto
+  $('#bootstrapForm').submit(function (event) {
+    // No usamos event.preventDefault() aquí para permitir que form-handler.js maneje el envío
+
     var $form = $(this);
     var $submitButton = $('#botoncomprar');
 
@@ -653,7 +656,7 @@ $(document).ready(function(){
       alert('Por favor, completa todos los campos obligatorios (*) correctamente.');
       $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
       $form.find(':invalid').first().focus();
-      return;
+      return false;
     }
 
     // Check if products were selected
@@ -670,7 +673,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $("#todoslosmodelos").offset().top - 20
       }, 500);
-      return;
+      return false;
     }
 
     // Check WhatsApp validation status before submitting
@@ -680,47 +683,17 @@ $(document).ready(function(){
         alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
         $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Correct button text
         if (whatsappInput) whatsappInput.focus();
-        return;
+        return false;
     }
 
-
-    // Proceed with form submission - Logic will be replaced/added later
-    // For now, just show processing state
+    // Mostrar el spinner de carga
     $submitButton.val('Procesando...').prop('disabled', true);
     $('.loading-overlay').addClass('visible');
 
-    // --- REMOVED MercadoPago/CBU specific logic ---
-    // const formaPago = $('#comoabona').val();
-    // const nombreComprador = $('#1460904554').val();
-    // let monto;
-    // ... (price calculation based on formaPago removed) ...
-    // console.log(`Monto a enviar (${formaPago}):`, monto);
+    console.log("Validación inicial completada. Permitiendo que form-handler.js maneje el envío.");
 
-    // The actual submission (POST to Google Apps Script) and redirection
-    // will be handled by the script block imported from contrareembolso.html,
-    // likely replacing the content of form-handler.js or added inline.
-    // For now, this submit handler only performs validation.
-    // We need to ensure the default form submission is prevented until
-    // the contrareembolso submission logic is added.
-    // The event.preventDefault() at the start handles this.
-
-    // Simulate processing and allow the actual submission logic (to be added later) to take over.
-    // If form-handler.js is responsible, it should handle the rest.
-    // If we replace form-handler.js or add inline script, that script will handle it.
-    console.log("Form validated. Allowing submission (to be handled by contrareembolso logic).");
-    // return true; // Let the form submit (or let the specific contrareembolso JS handle it)
-    // Actually, we need to explicitly call the contrareembolso submission function here or ensure form-handler.js does it.
-    // Since we haven't added that logic yet, we'll just log and keep preventDefault active.
-    // The next step will be to add the specific submission script.
-    // For now, let's just re-enable the button after a delay for testing.
-    setTimeout(function() {
-         console.log("Simulating submission completion (actual logic pending).");
-         $('.loading-overlay').removeClass('visible');
-         $submitButton.val('Confirmar Pedido Contrareembolso 🛒').prop('disabled', false);
-         // alert("Simulación: Pedido enviado (lógica real pendiente).");
-    }, 1500);
-
-
+    // Permitir que form-handler.js maneje el resto del proceso
+    // No hacemos return false aquí para permitir que el evento continúe
   });
 
   // --- Sales Notification Popups ---
