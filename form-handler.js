@@ -106,9 +106,11 @@ $(document).ready(function() {
                 // Redireccionar a la página de gracias
                 setTimeout(function() {
                     const pairCount = selectedProducts.split(',').length;
+                    // Usar el ID correcto para los productos seleccionados
+                    const productsParam = $('#1471599855').val();
                     const redirectUrl = pairCount >= 2 ?
-                        'http://www.rositarococo.com/gracias-2pares-c.html?' + $('#286442883').serialize() :
-                        'http://www.rositarococo.com/gracias-1par-c.html?' + $('#286442883').serialize();
+                        'http://www.rositarococo.com/gracias-2pares-c.html?products=' + encodeURIComponent(productsParam) :
+                        'http://www.rositarococo.com/gracias-1par-c.html?products=' + encodeURIComponent(productsParam);
 
                     window.location.href = redirectUrl;
                 }, 1000);
@@ -241,9 +243,11 @@ $(document).ready(function() {
                 // Redireccionar a la página de gracias
                 setTimeout(function() {
                     const pairCount = selectedProducts.split(',').length;
+                    // Usar el ID correcto para los productos seleccionados
+                    const productsParam = $('#1471599855').val();
                     const redirectUrl = pairCount >= 2 ?
-                        'http://www.rositarococo.com/gracias-2pares-c.html?' + $('#286442883').serialize() :
-                        'http://www.rositarococo.com/gracias-1par-c.html?' + $('#286442883').serialize();
+                        'http://www.rositarococo.com/gracias-2pares-c.html?products=' + encodeURIComponent(productsParam) :
+                        'http://www.rositarococo.com/gracias-1par-c.html?products=' + encodeURIComponent(productsParam);
 
                     window.location.href = redirectUrl;
                 }, 1000);

@@ -299,6 +299,8 @@
             <input name="fvv" type="hidden" value="1" />
             <input name="fbzx" type="hidden" value="5661184097173102736" />
             <input name="pageHistory" type="hidden" value="0" />
+            <!-- Campo oculto para compatibilidad con contrareembolso.html -->
+            <input type="hidden" id="286442883" name="entry.286442883" />
 
             <fieldset id="todoslosmodelos">
                 <legend class="sr-only">Selección de Modelos</legend>
@@ -1265,6 +1267,108 @@
 
         // Asignar el primer valor al elemento #entregamasrapida
         $('.entregamasrapida').text(primerValor).css({ 'text-transform': 'uppercase', 'font-size': '12px'});
+    });
+    </script>
+
+    <!-- Script para manejar los precios y el envío del formulario -->
+    <script>
+    $(document).ready(function() {
+      // Manejar cambios en los selectores de productos
+      $('#todoslosmodelos select').change(function() {
+        var value = $('#1471599855').val();
+        // Sincronizar con el campo 286442883 para compatibilidad con contrareembolso.html
+        $('#286442883').val(value);
+        var pairs = value.split(', '); // split the input by ", " (comma and space)
+
+        // remove empty elements from the array
+        pairs = pairs.filter(Boolean);
+
+        // store the values in an array
+        var values = [];
+        var montoacobrar;
+        var costodepares = 0;
+        for (var i = 0; i < pairs.length; i++) {
+          var parts = pairs[i].split('-');
+          if (parts.length < 2) {
+            // the input is not properly formatted, skip this pair
+            continue;
+          }
+          var talle = parts[0].trim(); // remove leading and trailing spaces from the size value
+          var modelo = parts[1];
+          var color = parts.slice(2).join(' '); // use all the words as the color
+
+          var modeloId;
+          var costo;
+          switch(modelo) {
+            case 'roma':
+              modeloId = '#4016';
+              costo = 16000;
+              break;
+            case 'venecia':
+              modeloId = '#4015';
+              costo = 16000;
+              break;
+            case 'siena':
+              modeloId = '#SIENA';
+              costo = 3700;
+              break;
+            case 'paris':
+              modeloId = '#PARIS';
+              costo = 3700;
+              break;
+            default:
+              modeloId = 'desconocido';
+              break;
+          }
+          costodepares += costo;
+          var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+          values.push(modelosangies);
+        }
+
+        // join the array elements with the desired separator
+        var output = values.join(' || '); // use " || " as the separator between pairs
+
+        // calcular monto a cobrar para contrareembolso
+        if (pairs.length == 0) {
+          montoacobrar = 0;
+        } else if (pairs.length == 1) {
+          montoacobrar = 60000; // Precio para 1 par en contrareembolso
+        } else if (pairs.length == 2) {
+          montoacobrar = 85000; // Precio para 2 pares en contrareembolso
+        } else {
+          montoacobrar = 0;
+        }
+
+        // Crear campos ocultos si no existen
+        if ($('#1885018612').length === 0) {
+          $('<input>').attr({
+            type: 'hidden',
+            id: '1885018612',
+            name: 'entry.1885018612'
+          }).appendTo('#bootstrapForm');
+        }
+
+        if ($('#1715320252').length === 0) {
+          $('<input>').attr({
+            type: 'hidden',
+            id: '1715320252',
+            name: 'entry.1715320252'
+          }).appendTo('#bootstrapForm');
+        }
+
+        if ($('#736134777').length === 0) {
+          $('<input>').attr({
+            type: 'hidden',
+            id: '736134777',
+            name: 'entry.736134777'
+          }).appendTo('#bootstrapForm');
+        }
+
+        // asignar valores a los inputs
+        $('#1885018612').val(output);
+        $('#1715320252').val(montoacobrar);
+        $('#736134777').val(costodepares);
+      });
     });
     </script>
 

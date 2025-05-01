@@ -412,14 +412,23 @@ $(document).ready(function(){
     var totalPriceText = "Elige tus modelos y talles para ver el total";
     var totalPrice = 0;
 
+    // Detectar si estamos en la página de contrareembolso
+    var isContrareembolso = window.location.href.includes('contrareembolso');
+
     if (pairCount >= 1) {
       // Activate checkout button
       checkoutBtn.removeClass('btn-disabled').text('Finalizar Compra');
 
       // Make checkout section active if there are items in cart
       if (pairCount === 1) {
-        totalPrice = 70000; // Correct price for 1 pair
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>'; // Updated text
+        // Usar precios diferentes según la página
+        if (isContrareembolso) {
+          totalPrice = 60000; // Precio para 1 par en contrareembolso
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>'; // Updated text
+        } else {
+          totalPrice = 70000; // Precio para 1 par en prepago
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>'; // Updated text
+        }
 
         // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
         // Mostrar y activar la sección de checkout, pero sin forzar el foco
@@ -430,8 +439,14 @@ $(document).ready(function(){
 
         // No forzamos el scroll al formulario, solo lo hacemos visible
       } else if (pairCount === 2) {
-        totalPrice = 110000; // Correct price for 2 pairs
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>'; // Updated text
+        // Usar precios diferentes según la página
+        if (isContrareembolso) {
+          totalPrice = 85000; // Precio para 2 pares en contrareembolso
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>'; // Updated text
+        } else {
+          totalPrice = 110000; // Precio para 2 pares en prepago
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>'; // Updated text
+        }
 
         // If this is the second pair being added, show a more prominent notification
         if (currentVal && prevVal === "" && summaryArray.length === 2) {
