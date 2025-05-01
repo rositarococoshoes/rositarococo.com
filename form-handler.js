@@ -85,8 +85,36 @@ $(document).ready(function() {
         $('#botoncomprar').val('Procesando...').prop('disabled', true);
 
         try {
-            const formaPago = $('#comoabona').val();
+            // Para la página de contrareembolso, asumimos que el método de pago es contrareembolso
+            const formaPago = window.location.href.includes('contrareembolso') ? 'contrareembolso' : $('#comoabona').val();
             const nombreComprador = $('#1460904554').val();
+
+            // Si es contrareembolso (pago en efectivo al recibir)
+            if (formaPago === 'contrareembolso') {
+                // Preparar el formulario para envío a Google Forms
+                const iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+
+                // Configurar el formulario para enviar a través del iframe
+                this.target = 'hidden_iframe';
+                this.submit();
+
+                console.log('Formulario enviado a Google Forms (Contrareembolso)');
+
+                // Redireccionar a la página de gracias
+                setTimeout(function() {
+                    const pairCount = selectedProducts.split(',').length;
+                    const redirectUrl = pairCount >= 2 ?
+                        'http://www.rositarococo.com/gracias-2pares-c.html?' + $('#286442883').serialize() :
+                        'http://www.rositarococo.com/gracias-1par-c.html?' + $('#286442883').serialize();
+
+                    window.location.href = redirectUrl;
+                }, 1000);
+
+                return false;
+            }
 
             // Si es transferencia bancaria (CBU)
             if (formaPago === 'cbu') {
@@ -153,8 +181,10 @@ $(document).ready(function() {
                     }
 
                     // Guardar el link en el formulario
-                    $('#link-mercadopago').val(mercadoPagoUrl);
-                    document.getElementById('link-mercadopago').value = mercadoPagoUrl;
+                    if (document.getElementById('link-mercadopago')) {
+                        $('#link-mercadopago').val(mercadoPagoUrl);
+                        document.getElementById('link-mercadopago').value = mercadoPagoUrl;
+                    }
 
                     // Enviar el formulario a Google Forms usando un iframe oculto
                     const iframe = document.createElement('iframe');
@@ -191,9 +221,35 @@ $(document).ready(function() {
             }
 
             // Si llegamos aquí, es porque no se seleccionó un método de pago válido
-            alert('Por favor, selecciona un método de pago válido.');
-            $('.loading-overlay').removeClass('visible');
-            $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
+            if (!window.location.href.includes('contrareembolso')) {
+                alert('Por favor, selecciona un método de pago válido.');
+                $('.loading-overlay').removeClass('visible');
+                $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
+            } else {
+                // Si estamos en la página de contrareembolso pero no se detectó correctamente
+                console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
+
+                // Enviar el formulario directamente
+                const iframe = document.createElement('iframe');
+                iframe.name = 'hidden_iframe';
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+
+                this.target = 'hidden_iframe';
+                this.submit();
+
+                // Redireccionar a la página de gracias
+                setTimeout(function() {
+                    const pairCount = selectedProducts.split(',').length;
+                    const redirectUrl = pairCount >= 2 ?
+                        'http://www.rositarococo.com/gracias-2pares-c.html?' + $('#286442883').serialize() :
+                        'http://www.rositarococo.com/gracias-1par-c.html?' + $('#286442883').serialize();
+
+                    window.location.href = redirectUrl;
+                }, 1000);
+
+                return false;
+            }
 
         } catch (error) {
             console.error('Error en el proceso de envío:', error);

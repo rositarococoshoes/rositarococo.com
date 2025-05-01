@@ -277,7 +277,7 @@
         <div class="progress-connector"></div>
         <div class="progress-step" data-step="3">
             <span class="step-number">3</span>
-            <span class="step-name">Pago</span>
+            <span class="step-name">Contrareembolso</span>
         </div>
     </div>
 
@@ -298,7 +298,6 @@
             <textarea id="1209868979" name="entry.1209868979" class="hidden"></textarea>
             <input name="fvv" type="hidden" value="1" />
             <input name="fbzx" type="hidden" value="5661184097173102736" />
-            <input type="hidden" name="entry.978809450" id="link-mercadopago">
             <input name="pageHistory" type="hidden" value="0" />
 
             <fieldset id="todoslosmodelos">
@@ -1081,12 +1080,9 @@
                 </fieldset>
 
                 <fieldset id="payment-section">
-                    <legend>Forma de Pago</legend>
-                    <div class="form-group">
-                        <p class="payment-info">💸 <strong>PAGO:</strong> Contrareembolso al recibir <u>sólo en efectivo</u>.</p>
-                        <p class="payment-info">🚚 <strong>ENVÍO GRATIS:</strong> <span class="entregamasrapida"></span></p>
-                        <p class="help-block">Pagas en efectivo al recibir tu pedido. Debes contar con el dinero exacto.</p>
-                    </div>
+                    <legend>ENVÍO: selecciona uno de los días presentados en las opciones para recibir y asegurate que si vos no estás haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs.<br><br> El pago es <u>sólo en efectivo</u> y debes contar con todo el dinero. Vamos a contactarte por Whatsapp para confirmar el envío y debes respondernos para confirmarlo o no se envía.</legend>
+                    <p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrareembolso?</a></p>
+                    <input type="hidden" id="comoabona" name="entry.comoabona" value="contrareembolso">
                 </fieldset>
 
                 <fieldset>
@@ -1110,9 +1106,11 @@
 
                     <p id="preciototal">Elige modelos y talles para ver el total</p>
 
-                    <p class="help-block" style="font-size: 0.9em; margin-top: 15px;">
-                        <strong style="color:#a05941; display:inline; min-width:auto;">¡Importante!</strong> Tu pedido es un compromiso de pago. Verifica que todo sea correcto.<br>
-                        Recuerda que despachamos en aprox. 15 días (producimos a pedido) y te enviaremos el seguimiento por email.
+                    <p style="font-size:14px;"><span style="background-color:#FFFF00;">PAGÁS <u>SÓLO EN EFECTIVO AL RECIBIR</u>. SI NO DISPONES DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.</span></p>
+
+                    <p class="help-block">
+                        ✓ RECIBE EN: <span class="entregamasrapida"></span>. Te contactaremos para confirmar.<br>
+                        ✓ Asegúrate de tener el efectivo listo para pagar al delivery.
                     </p>
                 </div>
 
@@ -1245,7 +1243,13 @@
 
         // Agregar las opciones al selector de fechas
         $.each(availableDates, function(index, value) {
-          var optionText = value.format("dddd D [de] MMMM") + " de 15hs a 22hs";
+          // Formatear el día con la primera letra en mayúscula
+          var dayName = value.format("dddd");
+          dayName = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+          var monthName = value.format("MMMM");
+          var dayNumber = value.format("D");
+
+          var optionText = dayName + " " + dayNumber + " de " + monthName + " de 15hs a 22hs";
           var option = $("<option></option>").attr("value", optionText).text(optionText);
           // Seleccionar automáticamente la primera opción
           if (index === 0) {
@@ -1268,8 +1272,7 @@
     <!-- Script para instrucciones de contrareembolso -->
     <script>
     $(document).ready(function() {
-      // Agregar enlace de instrucciones
-      $('<p><a href="#" class="instructions-link"><i class="fas fa-info-circle"></i> ¿Cómo funciona el contrareembolso?</a></p>').insertAfter('#payment-section');
+      // El enlace de instrucciones ya está incluido en el HTML
 
       // Crear el pop-over de instrucciones
       $('body').append(`
