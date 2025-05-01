@@ -299,8 +299,11 @@
             <input name="fvv" type="hidden" value="1" />
             <input name="fbzx" type="hidden" value="5661184097173102736" />
             <input name="pageHistory" type="hidden" value="0" />
-            <!-- Campo oculto para compatibilidad con contrareembolso.html -->
+            <!-- Campos ocultos para compatibilidad con contrareembolso.html -->
             <input type="hidden" id="286442883" name="entry.286442883" />
+            <input type="hidden" id="1885018612" name="entry.1885018612" />
+            <input type="hidden" id="1715320252" name="entry.1715320252" />
+            <input type="hidden" id="736134777" name="entry.736134777" />
 
             <fieldset id="todoslosmodelos">
                 <legend class="sr-only">Selección de Modelos</legend>
@@ -1273,8 +1276,8 @@
     <!-- Script para manejar los precios y el envío del formulario -->
     <script>
     $(document).ready(function() {
-      // Manejar cambios en los selectores de productos
-      $('#todoslosmodelos select').change(function() {
+      // Función para actualizar los campos ocultos
+      function updateHiddenFields() {
         var value = $('#1471599855').val();
         // Sincronizar con el campo 286442883 para compatibilidad con contrareembolso.html
         $('#286442883').val(value);
@@ -1339,36 +1342,37 @@
           montoacobrar = 0;
         }
 
-        // Crear campos ocultos si no existen
-        if ($('#1885018612').length === 0) {
-          $('<input>').attr({
-            type: 'hidden',
-            id: '1885018612',
-            name: 'entry.1885018612'
-          }).appendTo('#bootstrapForm');
-        }
-
-        if ($('#1715320252').length === 0) {
-          $('<input>').attr({
-            type: 'hidden',
-            id: '1715320252',
-            name: 'entry.1715320252'
-          }).appendTo('#bootstrapForm');
-        }
-
-        if ($('#736134777').length === 0) {
-          $('<input>').attr({
-            type: 'hidden',
-            id: '736134777',
-            name: 'entry.736134777'
-          }).appendTo('#bootstrapForm');
-        }
-
         // asignar valores a los inputs
         $('#1885018612').val(output);
         $('#1715320252').val(montoacobrar);
         $('#736134777').val(costodepares);
+
+        console.log('Campos ocultos actualizados:');
+        console.log('1885018612 (detalles):', output);
+        console.log('1715320252 (monto):', montoacobrar);
+        console.log('736134777 (costo):', costodepares);
+        console.log('286442883 (productos):', value);
+      }
+
+      // Manejar cambios en los selectores de productos
+      $('#todoslosmodelos select').change(function() {
+        updateHiddenFields();
       });
+
+      // También actualizar cuando se agrega un producto al carrito
+      $('.add-to-cart-btn').on('click', function() {
+        setTimeout(updateHiddenFields, 100); // Pequeño retraso para asegurar que #1471599855 se haya actualizado
+      });
+
+      // Actualizar cuando cambia el carrito
+      $(document).on('cart:updated', function() {
+        setTimeout(updateHiddenFields, 100);
+      });
+
+      // Actualizar al cargar la página si ya hay productos seleccionados
+      if ($('#1471599855').val()) {
+        updateHiddenFields();
+      }
     });
     </script>
 
@@ -1376,6 +1380,49 @@
     <script>
     $(document).ready(function() {
       // El enlace de instrucciones ya está incluido en el HTML
+
+      // Script para manejar el envío del formulario
+      $('#bootstrapForm').submit(function(event) {
+        event.preventDefault(); // Prevenir el envío normal del formulario
+
+        // Deshabilitar el botón de compra
+        $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
+
+        // Asegurarse de que los campos ocultos estén actualizados
+        var value = $('#1471599855').val();
+        $('#286442883').val(value);
+
+        // Verificar que haya productos seleccionados
+        if (!value || value.trim() === '') {
+          alert('Por favor, selecciona al menos un producto antes de finalizar la compra.');
+          $('#checkout-btn').removeAttr('disabled').text('Finalizar Compra');
+          return false;
+        }
+
+        // Preparar el formulario para envío a Google Forms
+        const iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+
+        // Configurar el formulario para enviar a través del iframe
+        this.target = 'hidden_iframe';
+
+        // Enviar el formulario
+        this.submit();
+
+        console.log('Formulario enviado a Google Forms (Contrareembolso)');
+
+        // Redireccionar a la página de gracias
+        setTimeout(function() {
+          var pairs = value.split(',').filter(Boolean);
+          var redirectUrl = pairs.length >= 2 ?
+            'http://www.rositarococo.com/gracias-2pares-c.html?products=' + encodeURIComponent(value) :
+            'http://www.rositarococo.com/gracias-1par-c.html?products=' + encodeURIComponent(value);
+
+          window.location.href = redirectUrl;
+        }, 1000);
+      });
 
       // Crear el pop-over de instrucciones
       $('body').append(`
