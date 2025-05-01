@@ -1040,6 +1040,10 @@
                         <input class="form-control" id="951592426" name="entry.951592426" placeholder="Ej: Av. Siempreviva 742, 3B" required type="text"/>
                     </div>
                     <div class="form-group">
+                        <label for="entre-calles">Entre Calles (obligatorio)</label>
+                        <input class="form-control" id="entre-calles" name="entry.entreCalles" placeholder="Ej: Entre Av. Corrientes y Lavalle" type="text" required/>
+                    </div>
+                    <div class="form-group">
                         <label for="1005165410">Código Postal</label>
                         <input class="form-control" id="1005165410" name="entry.1005165410" placeholder="Ej: 1425" required type="text" />
                     </div>
@@ -1109,6 +1113,7 @@
                     <p><strong>WhatsApp:</strong> <span id="help-wapp">-</span></p>
                     <p><strong>Dirección:</strong> <span id="help-calleyaltura">-</span>, <span id="help-localidad">-</span> (<span id="help-cp">-</span>), <span id="help-provincia">-</span></p>
                     <p><strong>DNI:</strong> <span id="help-dni">-</span></p>
+                    <p><strong>Día y Hora de Entrega:</strong> <span id="help-diayhora">-</span></p>
 
                     <p id="preciototal">Elige modelos y talles para ver el total</p>
 
@@ -1123,7 +1128,7 @@
                 <p class="help-block text-center" style="font-size: 0.9em; margin-top: 20px;">¡Recuerda! Envío GRATIS a todo el país. Pagas en efectivo al recibir.</p>
                 <div class="checkout-navigation">
                     <a href="#" class="text-link" id="back-to-products">← Volver a productos</a>
-                    <button class="btn btn-primary" id="botoncomprar" type="submit">Finalizar 🛒</button>
+                    <input class="btn btn-primary" id="botoncomprar" type="submit" value="COMPRAR 🛒" />
                 </div>
             </div>
         </form>
@@ -1281,6 +1286,7 @@
       // Guardar la URL actual en el campo oculto
       var fbclidpedido = window.location.href;
       $("#227154461").val(fbclidpedido);
+
       // Manejar cambios en los selectores de productos
       $('#todoslosmodelos select').change(function() {
         var value = $('#1471599855').val();
@@ -1370,51 +1376,76 @@
     });
     </script>
 
+    <!-- Script para manejar el envío del formulario exactamente como en contrareembolso.html -->
+    <script>
+    $('#bootstrapForm').submit(function (event) {
+      event.preventDefault(); // prevent the form from submitting normally
+      $('#botoncomprar').attr('value', 'Espere...');
+      $('#botoncomprar').attr('disabled', 'true');
+      $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
+
+      var talleselegidos = $('#286442883').val();
+      var value2 = (talleselegidos).replace(" ", "");
+      var words = value2.split(",");
+      var queryString = $('#286442883').serialize();
+
+      // Concatenar valores de dirección
+      var calleAltura = $('#951592426').val();
+      var entreCalles = $('#entre-calles').val() || '';
+      var direccionCompleta = calleAltura;
+      if (entreCalles) {
+        direccionCompleta += " entre calles " + entreCalles;
+      }
+
+      // Actualiza el valor del campo "Calle y Altura" con la dirección completa
+      $('#951592426').val(direccionCompleta);
+
+      var formData = $(this).serialize(); // get all the form data
+
+      // send the form data to the server
+      $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
+        .done(function() {
+          // once the data has been sent, redirect to the new URL
+          if(words.length === 2){
+              window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+          }
+          else if(words.length === 3){
+              window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+          }
+          else if(words.length >= 4){
+              window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+          }
+        });
+    });
+    </script>
+
+    <!-- Script para actualizar los campos de ayuda en la sección de revisión del pedido -->
+    <script>
+    $(document).ready(function() {
+      // Actualizar los campos de ayuda cuando cambian los valores de los campos
+      $("#1471599855, #1460904554, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873, #1756027935").keyup(function() {
+        $("#help-modelostallesseleccionados").html($("#1471599855").val());
+        $("#help-nombre").html($("#1460904554").val());
+        $("#help-wapp").html($("#53830725").val());
+        $("#help-calleyaltura").html($("#951592426").val());
+        $("#help-localidad").html($("#1743418466").val());
+        $("#help-provincia").html($("#59648134").val());
+        $("#help-cp").html($("#1005165410").val());
+        $("#help-dni").html($("#541001873").val());
+      });
+
+      // También actualizar cuando cambia el selector de fecha
+      $("#1756027935").change(function() {
+        $("#help-diayhora").html($("#1756027935").val());
+      });
+    });
+    </script>
+
     <!-- Script para instrucciones de contrareembolso -->
     <script>
     $(document).ready(function() {
       // El enlace de instrucciones ya está incluido en el HTML
-
-      // Script para manejar el envío del formulario
-      $('#bootstrapForm').submit(function(event) {
-        event.preventDefault(); // prevent the form from submitting normally
-        $('#botoncomprar').attr('value', 'Espere...');
-        $('#botoncomprar').attr('disabled', 'true');
-        $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
-
-        var talleselegidos = $('#286442883').val();
-        var value2 = (talleselegidos).replace(" ", "");
-        var words = value2.split(",");
-        var queryString = $('#286442883').serialize();
-
-        // Concatenar valores de dirección
-        var calleAltura = $('#394819614').val();
-        var entreCalles = $('#entre-calles').val();
-        var direccionCompleta = calleAltura + " entre calles " + entreCalles;
-
-        // Actualiza el valor del campo "Calle y Altura" con la dirección completa
-        $('#394819614').val(direccionCompleta);
-
-        var formData = $(this).serialize(); // get all the form data
-
-        // send the form data to the server
-        $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
-          .done(function() {
-            // once the data has been sent, redirect to the new URL
-            if(words.length === 2){
-                window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
-            }
-            else if(words.length === 3){
-                window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
-            }
-            else if(words.length >= 4){
-                window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
-            }
-          });
-      });
     });
-
-    // Crear el pop-over de instrucciones
       $('body').append(`
         <div id="instructions-popover" style="display: none;">
           <!-- Capa transparente que cubre toda la pantalla -->
