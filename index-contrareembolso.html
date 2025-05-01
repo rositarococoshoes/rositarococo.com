@@ -1376,48 +1376,8 @@
     });
     </script>
 
-    <!-- Script para manejar el envío del formulario exactamente como en contrareembolso.html -->
-    <script>
-    $('#bootstrapForm').submit(function (event) {
-      event.preventDefault(); // prevent the form from submitting normally
-      $('#botoncomprar').attr('value', 'Espere...');
-      $('#botoncomprar').attr('disabled', 'true');
-      $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
-
-      var talleselegidos = $('#286442883').val();
-      var value2 = (talleselegidos).replace(" ", "");
-      var words = value2.split(",");
-      var queryString = $('#286442883').serialize();
-
-      // Concatenar valores de dirección
-      var calleAltura = $('#951592426').val();
-      var entreCalles = $('#entre-calles').val() || '';
-      var direccionCompleta = calleAltura;
-      if (entreCalles) {
-        direccionCompleta += " entre calles " + entreCalles;
-      }
-
-      // Actualiza el valor del campo "Calle y Altura" con la dirección completa
-      $('#951592426').val(direccionCompleta);
-
-      var formData = $(this).serialize(); // get all the form data
-
-      // send the form data to the server
-      $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
-        .done(function() {
-          // once the data has been sent, redirect to the new URL
-          if(words.length === 2){
-              window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
-          }
-          else if(words.length === 3){
-              window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
-          }
-          else if(words.length >= 4){
-              window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
-          }
-        });
-    });
-    </script>
+    <!-- Script para manejar el envío del formulario eliminado para evitar doble posteo -->
+    <!-- El envío del formulario ahora se maneja exclusivamente en form-handler.js -->
 
     <!-- Script para actualizar los campos de ayuda en la sección de revisión del pedido -->
     <script>
