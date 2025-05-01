@@ -1387,17 +1387,98 @@
 
         // Deshabilitar el botón de compra
         $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
+        $('#botoncomprar').attr('disabled', 'true').val('Procesando...');
 
-        // Asegurarse de que los campos ocultos estén actualizados
+        // Obtener el valor de los productos seleccionados
         var value = $('#1471599855').val();
-        $('#286442883').val(value);
 
         // Verificar que haya productos seleccionados
         if (!value || value.trim() === '') {
           alert('Por favor, selecciona al menos un producto antes de finalizar la compra.');
           $('#checkout-btn').removeAttr('disabled').text('Finalizar Compra');
+          $('#botoncomprar').removeAttr('disabled').val('Finalizar Compra');
           return false;
         }
+
+        // Actualizar todos los campos ocultos manualmente
+        function updateFieldsManually() {
+          // Sincronizar con el campo 286442883 para compatibilidad con contrareembolso.html
+          $('#286442883').val(value);
+
+          var pairs = value.split(', ').filter(Boolean);
+
+          // Procesar los productos seleccionados
+          var values = [];
+          var montoacobrar;
+          var costodepares = 0;
+
+          for (var i = 0; i < pairs.length; i++) {
+            var parts = pairs[i].split('-');
+            if (parts.length < 2) continue;
+
+            var talle = parts[0].trim();
+            var modelo = parts[1];
+            var color = parts.slice(2).join(' ');
+
+            var modeloId;
+            var costo;
+
+            // Asignar ID y costo según el modelo
+            switch(modelo) {
+              case 'roma':
+                modeloId = '#4016';
+                costo = 16000;
+                break;
+              case 'venecia':
+                modeloId = '#4015';
+                costo = 16000;
+                break;
+              case 'siena':
+                modeloId = '#SIENA';
+                costo = 3700;
+                break;
+              case 'paris':
+                modeloId = '#PARIS';
+                costo = 3700;
+                break;
+              default:
+                modeloId = 'desconocido';
+                break;
+            }
+
+            costodepares += costo;
+            var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+            values.push(modelosangies);
+          }
+
+          // Unir los valores con el separador deseado
+          var output = values.join(' || ');
+
+          // Calcular monto a cobrar
+          if (pairs.length === 0) {
+            montoacobrar = 0;
+          } else if (pairs.length === 1) {
+            montoacobrar = 60000; // Precio para 1 par en contrareembolso
+          } else if (pairs.length === 2) {
+            montoacobrar = 85000; // Precio para 2 pares en contrareembolso
+          } else {
+            montoacobrar = 0;
+          }
+
+          // Asignar valores a los inputs
+          $('#1885018612').val(output);
+          $('#1715320252').val(montoacobrar);
+          $('#736134777').val(costodepares);
+
+          console.log('Campos actualizados manualmente antes de enviar:');
+          console.log('286442883 (productos):', $('#286442883').val());
+          console.log('1885018612 (detalles):', $('#1885018612').val());
+          console.log('1715320252 (monto):', $('#1715320252').val());
+          console.log('736134777 (costo):', $('#736134777').val());
+        }
+
+        // Actualizar los campos ocultos manualmente
+        updateFieldsManually();
 
         // Preparar el formulario para envío a Google Forms
         const iframe = document.createElement('iframe');
@@ -1409,6 +1490,7 @@
         this.target = 'hidden_iframe';
 
         // Enviar el formulario
+        console.log('Enviando formulario a Google Forms...');
         this.submit();
 
         console.log('Formulario enviado a Google Forms (Contrareembolso)');
