@@ -304,6 +304,8 @@
             <input type="hidden" id="1885018612" name="entry.1885018612" />
             <input type="hidden" id="1715320252" name="entry.1715320252" />
             <input type="hidden" id="736134777" name="entry.736134777" />
+            <input type="hidden" id="227154461" name="entry.227154461" />
+            <input type="hidden" id="1620487876" name="entry.1620487876" value="Pendiente" />
 
             <fieldset id="todoslosmodelos">
                 <legend class="sr-only">Selección de Modelos</legend>
@@ -1276,8 +1278,11 @@
     <!-- Script para manejar los precios y el envío del formulario -->
     <script>
     $(document).ready(function() {
-      // Función para actualizar los campos ocultos
-      function updateHiddenFields() {
+      // Guardar la URL actual en el campo oculto
+      var fbclidpedido = window.location.href;
+      $("#227154461").val(fbclidpedido);
+      // Manejar cambios en los selectores de productos
+      $('#todoslosmodelos select').change(function() {
         var value = $('#1471599855').val();
         // Sincronizar con el campo 286442883 para compatibilidad con contrareembolso.html
         $('#286442883').val(value);
@@ -1352,27 +1357,16 @@
         console.log('1715320252 (monto):', montoacobrar);
         console.log('736134777 (costo):', costodepares);
         console.log('286442883 (productos):', value);
-      }
-
-      // Manejar cambios en los selectores de productos
-      $('#todoslosmodelos select').change(function() {
-        updateHiddenFields();
       });
 
       // También actualizar cuando se agrega un producto al carrito
       $('.add-to-cart-btn').on('click', function() {
-        setTimeout(updateHiddenFields, 100); // Pequeño retraso para asegurar que #1471599855 se haya actualizado
+        setTimeout(function() {
+          var value = $('#1471599855').val();
+          $('#286442883').val(value);
+          $('#todoslosmodelos select').trigger('change');
+        }, 100);
       });
-
-      // Actualizar cuando cambia el carrito
-      $(document).on('cart:updated', function() {
-        setTimeout(updateHiddenFields, 100);
-      });
-
-      // Actualizar al cargar la página si ya hay productos seleccionados
-      if ($('#1471599855').val()) {
-        updateHiddenFields();
-      }
     });
     </script>
 
@@ -1383,130 +1377,44 @@
 
       // Script para manejar el envío del formulario
       $('#bootstrapForm').submit(function(event) {
-        event.preventDefault(); // Prevenir el envío normal del formulario
-
-        // Deshabilitar el botón de compra
+        event.preventDefault(); // prevent the form from submitting normally
+        $('#botoncomprar').attr('value', 'Espere...');
+        $('#botoncomprar').attr('disabled', 'true');
         $('#checkout-btn').attr('disabled', 'true').text('Procesando...');
-        $('#botoncomprar').attr('disabled', 'true').val('Procesando...');
 
-        // Obtener el valor de los productos seleccionados
-        var value = $('#1471599855').val();
+        var talleselegidos = $('#286442883').val();
+        var value2 = (talleselegidos).replace(" ", "");
+        var words = value2.split(",");
+        var queryString = $('#286442883').serialize();
 
-        // Verificar que haya productos seleccionados
-        if (!value || value.trim() === '') {
-          alert('Por favor, selecciona al menos un producto antes de finalizar la compra.');
-          $('#checkout-btn').removeAttr('disabled').text('Finalizar Compra');
-          $('#botoncomprar').removeAttr('disabled').val('Finalizar Compra');
-          return false;
-        }
+        // Concatenar valores de dirección
+        var calleAltura = $('#394819614').val();
+        var entreCalles = $('#entre-calles').val();
+        var direccionCompleta = calleAltura + " entre calles " + entreCalles;
 
-        // Actualizar todos los campos ocultos manualmente
-        function updateFieldsManually() {
-          // Sincronizar con el campo 286442883 para compatibilidad con contrareembolso.html
-          $('#286442883').val(value);
+        // Actualiza el valor del campo "Calle y Altura" con la dirección completa
+        $('#394819614').val(direccionCompleta);
 
-          var pairs = value.split(', ').filter(Boolean);
+        var formData = $(this).serialize(); // get all the form data
 
-          // Procesar los productos seleccionados
-          var values = [];
-          var montoacobrar;
-          var costodepares = 0;
-
-          for (var i = 0; i < pairs.length; i++) {
-            var parts = pairs[i].split('-');
-            if (parts.length < 2) continue;
-
-            var talle = parts[0].trim();
-            var modelo = parts[1];
-            var color = parts.slice(2).join(' ');
-
-            var modeloId;
-            var costo;
-
-            // Asignar ID y costo según el modelo
-            switch(modelo) {
-              case 'roma':
-                modeloId = '#4016';
-                costo = 16000;
-                break;
-              case 'venecia':
-                modeloId = '#4015';
-                costo = 16000;
-                break;
-              case 'siena':
-                modeloId = '#SIENA';
-                costo = 3700;
-                break;
-              case 'paris':
-                modeloId = '#PARIS';
-                costo = 3700;
-                break;
-              default:
-                modeloId = 'desconocido';
-                break;
+        // send the form data to the server
+        $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
+          .done(function() {
+            // once the data has been sent, redirect to the new URL
+            if(words.length === 2){
+                window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
             }
-
-            costodepares += costo;
-            var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
-            values.push(modelosangies);
-          }
-
-          // Unir los valores con el separador deseado
-          var output = values.join(' || ');
-
-          // Calcular monto a cobrar
-          if (pairs.length === 0) {
-            montoacobrar = 0;
-          } else if (pairs.length === 1) {
-            montoacobrar = 60000; // Precio para 1 par en contrareembolso
-          } else if (pairs.length === 2) {
-            montoacobrar = 85000; // Precio para 2 pares en contrareembolso
-          } else {
-            montoacobrar = 0;
-          }
-
-          // Asignar valores a los inputs
-          $('#1885018612').val(output);
-          $('#1715320252').val(montoacobrar);
-          $('#736134777').val(costodepares);
-
-          console.log('Campos actualizados manualmente antes de enviar:');
-          console.log('286442883 (productos):', $('#286442883').val());
-          console.log('1885018612 (detalles):', $('#1885018612').val());
-          console.log('1715320252 (monto):', $('#1715320252').val());
-          console.log('736134777 (costo):', $('#736134777').val());
-        }
-
-        // Actualizar los campos ocultos manualmente
-        updateFieldsManually();
-
-        // Preparar el formulario para envío a Google Forms
-        const iframe = document.createElement('iframe');
-        iframe.name = 'hidden_iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-
-        // Configurar el formulario para enviar a través del iframe
-        this.target = 'hidden_iframe';
-
-        // Enviar el formulario
-        console.log('Enviando formulario a Google Forms...');
-        this.submit();
-
-        console.log('Formulario enviado a Google Forms (Contrareembolso)');
-
-        // Redireccionar a la página de gracias
-        setTimeout(function() {
-          var pairs = value.split(',').filter(Boolean);
-          var redirectUrl = pairs.length >= 2 ?
-            'http://www.rositarococo.com/gracias-2pares-c.html?products=' + encodeURIComponent(value) :
-            'http://www.rositarococo.com/gracias-1par-c.html?products=' + encodeURIComponent(value);
-
-          window.location.href = redirectUrl;
-        }, 1000);
+            else if(words.length === 3){
+                window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+            }
+            else if(words.length >= 4){
+                window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+            }
+          });
       });
+    });
 
-      // Crear el pop-over de instrucciones
+    // Crear el pop-over de instrucciones
       $('body').append(`
         <div id="instructions-popover" style="display: none;">
           <!-- Capa transparente que cubre toda la pantalla -->
@@ -1567,7 +1475,7 @@
       $("#overlay").on("click", function() {
         $("#instructions-popover").hide();
       });
-    });
+
     </script>
 
 </body>
