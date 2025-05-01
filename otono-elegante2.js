@@ -1224,6 +1224,10 @@ $(document).ready(function(){
     cartItems = [];
     cartItemsContainer.empty();
 
+    // Detectar si estamos en la página de contrareembolso
+    var isContrareembolso = window.location.href.includes('contrareembolso');
+    console.log("¿Es contrareembolso?", isContrareembolso);
+
     // Process each item
     itemsArray.forEach(function(item, index) {
       if (item) {
@@ -1235,13 +1239,22 @@ $(document).ready(function(){
         var productName = getProductName(model);
         var productImage = getProductImage(model);
 
-        // Cuando hay dos productos, el precio total es 95000 (47500 cada uno)
-        // Cuando hay un solo producto, el precio es 70000
+        // Precios según el sistema (prepago o contrareembolso)
         var productPrice;
-        if (itemsArray.length === 2) {
-          productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
+        if (isContrareembolso) {
+          // Precios para contrareembolso
+          if (itemsArray.length === 2) {
+            productPrice = 42500; // Cada par cuesta 42500 cuando hay dos (total 85k)
+          } else {
+            productPrice = 60000; // Un solo par cuesta 60000
+          }
         } else {
-          productPrice = 70000; // Un solo par cuesta 70000
+          // Precios para prepago (index.html)
+          if (itemsArray.length === 2) {
+            productPrice = 55000; // Cada par cuesta 55000 cuando hay dos (total 110k)
+          } else {
+            productPrice = 70000; // Un solo par cuesta 70000
+          }
         }
 
         // Add to cart items array
@@ -1277,12 +1290,27 @@ $(document).ready(function(){
 
     // Update cart total based on the number of pairs (not sum of individual prices)
     var total;
-    if (cartItems.length === 1) {
-        total = 70000;
-    } else if (cartItems.length === 2) {
-        total = 95000;
+    // Detectar si estamos en la página de contrareembolso
+    var isContrareembolso = window.location.href.includes('contrareembolso');
+
+    if (isContrareembolso) {
+        // Precios para contrareembolso
+        if (cartItems.length === 1) {
+            total = 60000;
+        } else if (cartItems.length === 2) {
+            total = 85000;
+        } else {
+            total = 0;
+        }
     } else {
-        total = 0;
+        // Precios para prepago (index.html)
+        if (cartItems.length === 1) {
+            total = 70000;
+        } else if (cartItems.length === 2) {
+            total = 110000;
+        } else {
+            total = 0;
+        }
     }
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
