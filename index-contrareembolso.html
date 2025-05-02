@@ -1390,6 +1390,54 @@
     <!-- Script para manejar el envío del formulario eliminado para evitar doble posteo -->
     <!-- El envío del formulario ahora se maneja exclusivamente en form-handler.js -->
 
+    <!-- Script para manejar el caso en que el spinner se quede girando -->
+    <script>
+    $(document).ready(function() {
+      // Establecer un temporizador para verificar si el spinner se queda girando
+      $('#bootstrapForm').on('submit', function() {
+        // Después de 15 segundos, verificar si el spinner sigue visible
+        setTimeout(function() {
+          if ($('.loading-overlay').hasClass('visible')) {
+            console.log('El spinner sigue visible después de 15 segundos, intentando redireccionar manualmente');
+
+            // Obtener los productos seleccionados
+            var selectedProducts = $('#286442883').val();
+            if (selectedProducts) {
+              var pairs = selectedProducts.split(', ').filter(Boolean);
+
+              // Construir la URL de redirección
+              var redirectUrl;
+              if (pairs.length === 1) {
+                redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?286442883=' + encodeURIComponent(selectedProducts);
+              } else if (pairs.length === 2) {
+                redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?286442883=' + encodeURIComponent(selectedProducts);
+              } else {
+                redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?286442883=' + encodeURIComponent(selectedProducts);
+              }
+
+              // Mostrar un mensaje al usuario
+              if (confirm('Tu pedido ha sido enviado, pero parece que hay un problema con la redirección. ¿Quieres ir a la página de confirmación?')) {
+                // Ocultar el spinner
+                $('.loading-overlay').removeClass('visible');
+
+                // Redireccionar
+                window.location.href = redirectUrl;
+              } else {
+                // Si el usuario cancela, ocultar el spinner
+                $('.loading-overlay').removeClass('visible');
+                $('#botoncomprar').val('COMPRAR 🛒').prop('disabled', false);
+              }
+            } else {
+              // Si no hay productos seleccionados, simplemente ocultar el spinner
+              $('.loading-overlay').removeClass('visible');
+              $('#botoncomprar').val('COMPRAR 🛒').prop('disabled', false);
+            }
+          }
+        }, 15000);
+      });
+    });
+    </script>
+
     <!-- Script para actualizar los campos de ayuda en la sección de revisión del pedido -->
     <script>
     $(document).ready(function() {
@@ -1419,6 +1467,60 @@
 
       // Script de depuración para verificar que los productos se agreguen correctamente
       console.log("Inicializando script de depuración para contrareembolso");
+
+      // Agregar un manejador para el formulario que asegure la redirección
+      $('#bootstrapForm').on('submit', function() {
+        // Guardar los productos seleccionados en localStorage para recuperarlos si hay problemas
+        var selectedProducts = $('#286442883').val();
+        if (selectedProducts) {
+          localStorage.setItem('selectedProducts', selectedProducts);
+          console.log('Productos guardados en localStorage:', selectedProducts);
+
+          // Establecer un temporizador para verificar si la redirección no ocurrió
+          localStorage.setItem('formSubmitTime', Date.now());
+        }
+      });
+
+      // Verificar si hubo un envío previo que no redireccionó
+      var lastSubmitTime = localStorage.getItem('formSubmitTime');
+      if (lastSubmitTime) {
+        var currentTime = Date.now();
+        var timeDiff = currentTime - parseInt(lastSubmitTime);
+
+        // Si han pasado más de 10 segundos desde el último envío, intentar redireccionar manualmente
+        if (timeDiff > 10000) {
+          console.log('Detectado envío previo sin redirección, intentando redireccionar manualmente');
+
+          var savedProducts = localStorage.getItem('selectedProducts');
+          if (savedProducts) {
+            var pairs = savedProducts.split(', ').filter(Boolean);
+            console.log('Productos recuperados:', pairs);
+
+            // Construir la URL de redirección
+            var redirectUrl;
+            if (pairs.length === 1) {
+              redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?286442883=' + encodeURIComponent(savedProducts);
+            } else if (pairs.length === 2) {
+              redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?286442883=' + encodeURIComponent(savedProducts);
+            } else {
+              redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?286442883=' + encodeURIComponent(savedProducts);
+            }
+
+            // Mostrar un mensaje al usuario
+            if (confirm('Parece que tu pedido fue enviado correctamente, pero hubo un problema con la redirección. ¿Quieres ir a la página de confirmación?')) {
+              // Limpiar el localStorage
+              localStorage.removeItem('formSubmitTime');
+              localStorage.removeItem('selectedProducts');
+
+              // Redireccionar
+              window.location.href = redirectUrl;
+            } else {
+              // Si el usuario cancela, limpiar solo el tiempo de envío
+              localStorage.removeItem('formSubmitTime');
+            }
+          }
+        }
+      }
 
       // Verificar el valor inicial del campo de productos
       console.log("Valor inicial del campo de productos:", $("#286442883").val());

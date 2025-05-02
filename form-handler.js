@@ -197,16 +197,51 @@ $(document).ready(function() {
 
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
-                        var words = talleselegidos.replace(" ", "").split(",");
+                        var pairs = talleselegidos.split(', ').filter(Boolean);
+                        console.log('Redireccionando con', pairs.length, 'productos');
 
-                        if(words.length === 2){
-                            window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                        // Determinar la URL de redirección
+                        var redirectUrl;
+                        if(pairs.length === 1){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
                         }
-                        else if(words.length === 3){
-                            window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+                        else if(pairs.length === 2){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
                         }
-                        else if(words.length >= 4){
-                            window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                        else if(pairs.length >= 3){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                        }
+                        else {
+                            // Fallback por si no se detectan productos
+                            redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                        }
+
+                        console.log('Redireccionando a:', redirectUrl);
+
+                        // Intentar redireccionar de varias formas para asegurar que funcione
+                        try {
+                            // Método 1: window.location.href
+                            window.location.href = redirectUrl;
+
+                            // Método 2: setTimeout como respaldo
+                            setTimeout(function() {
+                                console.log('Intentando redirección con setTimeout');
+                                window.location = redirectUrl;
+                            }, 1000);
+
+                            // Método 3: crear un enlace y hacer clic en él
+                            setTimeout(function() {
+                                console.log('Intentando redirección con enlace');
+                                var link = document.createElement('a');
+                                link.href = redirectUrl;
+                                link.style.display = 'none';
+                                document.body.appendChild(link);
+                                link.click();
+                            }, 2000);
+                        } catch (e) {
+                            console.error('Error al redireccionar:', e);
+                            alert('Hubo un problema al redireccionar. Por favor, haz clic en Aceptar para continuar.');
+                            window.location = redirectUrl;
                         }
                     })
                     .fail(function(error) {
@@ -439,16 +474,51 @@ $(document).ready(function() {
 
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
-                        var words = talleselegidos.replace(" ", "").split(",");
+                        var pairs = talleselegidos.split(', ').filter(Boolean);
+                        console.log('Redireccionando con', pairs.length, 'productos');
 
-                        if(words.length === 2){
-                            window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                        // Determinar la URL de redirección
+                        var redirectUrl;
+                        if(pairs.length === 1){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
                         }
-                        else if(words.length === 3){
-                            window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+                        else if(pairs.length === 2){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
                         }
-                        else if(words.length >= 4){
-                            window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                        else if(pairs.length >= 3){
+                            redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                        }
+                        else {
+                            // Fallback por si no se detectan productos
+                            redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                        }
+
+                        console.log('Redireccionando a:', redirectUrl);
+
+                        // Intentar redireccionar de varias formas para asegurar que funcione
+                        try {
+                            // Método 1: window.location.href
+                            window.location.href = redirectUrl;
+
+                            // Método 2: setTimeout como respaldo
+                            setTimeout(function() {
+                                console.log('Intentando redirección con setTimeout');
+                                window.location = redirectUrl;
+                            }, 1000);
+
+                            // Método 3: crear un enlace y hacer clic en él
+                            setTimeout(function() {
+                                console.log('Intentando redirección con enlace');
+                                var link = document.createElement('a');
+                                link.href = redirectUrl;
+                                link.style.display = 'none';
+                                document.body.appendChild(link);
+                                link.click();
+                            }, 2000);
+                        } catch (e) {
+                            console.error('Error al redireccionar:', e);
+                            alert('Hubo un problema al redireccionar. Por favor, haz clic en Aceptar para continuar.');
+                            window.location = redirectUrl;
                         }
                     })
                     .fail(function(error) {
