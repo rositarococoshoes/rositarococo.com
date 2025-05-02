@@ -402,6 +402,7 @@ $(document).ready(function(){
       alert("Puedes seleccionar un máximo de 2 pares. Por favor, revisa tu selección.");
       summaryArray = summaryArray.filter(item => item !== currentVal);
       $select.closest('.form-group').find('.avisoagregado').remove();
+      return false; // No se agregó el producto
     } else {
       $select.data('pre', currentVal);
     }
@@ -433,6 +434,16 @@ $(document).ready(function(){
     // Update cart items
     updateCart(summaryArray);
 
+    // Mostrar una única notificación de éxito
+    if (summaryArray.length === 1) {
+      showNotification('¡Producto agregado! Puedes agregar otro par o completar tus datos para finalizar la compra.', 'success');
+    } else if (summaryArray.length === 2) {
+      showNotification('¡Genial! Has completado tu selección de 2 pares. Completa tus datos para finalizar la compra.', 'success');
+    }
+
+    // Indicar que se agregó el producto correctamente
+    return true;
+
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
@@ -460,8 +471,7 @@ $(document).ready(function(){
         // Mostrar y activar la sección de checkout, pero sin forzar el foco
         restOfForm.removeClass('hidden inactive').addClass('active');
 
-        // Mostrar notificación
-        showNotification('¡Producto agregado! Completa tus datos para finalizar la compra.', 'success');
+        // Ya no mostramos notificación aquí, se mostrará solo una vez más abajo
 
         // No forzamos el scroll al formulario, solo lo hacemos visible
       } else if (pairCount === 2) {
@@ -474,23 +484,15 @@ $(document).ready(function(){
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>'; // Updated text
         }
 
-        // If this is the second pair being added, show a more prominent notification
-        if (currentVal && prevVal === "" && summaryArray.length === 2) {
-          showNotification('¡Genial! Has completado tu selección de 2 pares. Completa tus datos para finalizar la compra.', 'success');
+        // Asegurarse de que el formulario esté visible
+        restOfForm.removeClass('hidden inactive').addClass('active');
 
-          // Asegurarse de que el formulario esté visible
-          restOfForm.removeClass('hidden inactive').addClass('active');
-
-          // No forzamos el scroll al formulario, solo lo hacemos visible
-        }
+        // No forzamos el scroll al formulario, solo lo hacemos visible
       } else {
         totalPriceText = "Has seleccionado más de 2 pares. Revisa tu selección.";
       }
 
-      // Show notification that user can proceed
-      if (currentVal && !prevVal) {
-        showNotification('¡Producto agregado! Puedes continuar con tu compra o seguir explorando.', 'success');
-      }
+      // Ya no mostramos notificación aquí, se mostrará solo una vez más abajo
     } else {
       totalPrice = 0;
       totalPriceText = "Elige tus modelos y talles para ver el total";
@@ -1534,9 +1536,24 @@ $(document).ready(function(){
     }
   }
 
+  // Variable para controlar las notificaciones
+  var lastNotificationMessage = '';
+  var lastNotificationTime = 0;
+
   // Show notification
   function showNotification(message, type) {
     console.log('Showing notification:', message, type);
+
+    // Evitar mostrar la misma notificación dos veces en un corto período de tiempo
+    var currentTime = Date.now();
+    if (message === lastNotificationMessage && currentTime - lastNotificationTime < 3000) {
+      console.log('Ignorando notificación duplicada');
+      return;
+    }
+
+    // Actualizar el seguimiento de notificaciones
+    lastNotificationMessage = message;
+    lastNotificationTime = currentTime;
 
     // Create notification container if it doesn't exist
     if (!$('#notification-container').length) {
