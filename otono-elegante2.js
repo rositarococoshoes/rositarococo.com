@@ -435,10 +435,19 @@ $(document).ready(function(){
     updateCart(summaryArray);
 
     // Mostrar una única notificación de éxito
+    var isContrareembolso = window.location.href.includes('contrareembolso');
     if (summaryArray.length === 1) {
-      showNotification('¡Producto agregado! Puedes agregar otro par o completar tus datos para finalizar la compra.', 'success');
+      if (isContrareembolso) {
+        showNotification('¡Producto agregado! Puedes agregar otro par por solo $25.000 más o completar tus datos para finalizar la compra.', 'success');
+      } else {
+        showNotification('¡Producto agregado! Puedes agregar otro par por solo $40.000 más o completar tus datos para finalizar la compra.', 'success');
+      }
     } else if (summaryArray.length === 2) {
-      showNotification('¡Genial! Has completado tu selección de 2 pares. Completa tus datos para finalizar la compra.', 'success');
+      if (isContrareembolso) {
+        showNotification('¡Genial! Has completado tu selección de 2 pares por $85.000 ($42.500 c/u). Completa tus datos para finalizar la compra.', 'success');
+      } else {
+        showNotification('¡Genial! Has completado tu selección de 2 pares por $110.000 ($55.000 c/u). Completa tus datos para finalizar la compra.', 'success');
+      }
     }
 
     // Indicar que se agregó el producto correctamente
@@ -552,10 +561,19 @@ $(document).ready(function(){
       }, 500);
 
       // Mostrar notificación según la cantidad de productos
+      var isContrareembolso = window.location.href.includes('contrareembolso');
       if (cartItems.length === 1) {
-        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
+        if (isContrareembolso) {
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $25.000 más!', 'info');
+        } else {
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $40.000 más!', 'info');
+        }
       } else {
-        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
+        if (isContrareembolso) {
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
+        } else {
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $110.000 por 2 pares', 'success');
+        }
       }
 
       // Ocultar el botón flotante cuando se muestra el formulario
@@ -607,10 +625,19 @@ $(document).ready(function(){
       updateCheckoutProgress(currentStep);
 
       // Mostrar notificación según la cantidad de productos
+      var isContrareembolso = window.location.href.includes('contrareembolso');
       if (cartItems.length === 1) {
-        showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par con descuento!', 'info');
+        if (isContrareembolso) {
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $25.000 más!', 'info');
+        } else {
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $40.000 más!', 'info');
+        }
       } else {
-        showNotification('Completa tus datos para finalizar la compra con tu descuento por 2 pares', 'success');
+        if (isContrareembolso) {
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
+        } else {
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $110.000 por 2 pares', 'success');
+        }
       }
     } else {
       showNotification('Agrega productos a tu carrito para continuar', 'error');
