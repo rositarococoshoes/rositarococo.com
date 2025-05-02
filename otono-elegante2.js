@@ -1441,7 +1441,12 @@ $(document).ready(function(){
 
       // Si hay exactamente 1 producto, mostrar mensaje sobre descuento por segundo par
       if (cartItems.length === 1) {
-        showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $55.000 en la oferta de 2 pares', 'info');
+        var isContrareembolso = window.location.href.includes('contrareembolso');
+        if (isContrareembolso) {
+          showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $42.500 en la oferta de 2 pares', 'info');
+        } else {
+          showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $55.000 en la oferta de 2 pares', 'info');
+        }
       }
 
       // Cuando hay 2 productos, mostrar notificación pero NO activar el formulario automáticamente
