@@ -1288,11 +1288,15 @@
 
       // Manejar cambios en los selectores de productos
       $('#todoslosmodelos select').change(function() {
-        var value = $('#286442883').val();
+        // Asegurarse de que el valor se obtenga correctamente
+        var value = $('#286442883').val() || '';
+        console.log('Valor actual del campo de productos:', value);
+
         var pairs = value.split(', '); // split the input by ", " (comma and space)
 
         // remove empty elements from the array
         pairs = pairs.filter(Boolean);
+        console.log('Pares detectados:', pairs);
 
         // store the values in an array
         var values = [];
@@ -1365,9 +1369,21 @@
       // También actualizar cuando se agrega un producto al carrito
       $('.add-to-cart-btn').on('click', function() {
         setTimeout(function() {
+          // Asegurarse de que el valor se sincronice correctamente
+          var summaryContent = $('#286442883').val() || "";
+          console.log('Valor del campo de productos después de agregar al carrito:', summaryContent);
+
           $('#todoslosmodelos select').trigger('change');
         }, 100);
       });
+
+      // Verificar periódicamente si hay productos en el carrito
+      setInterval(function() {
+        var summaryContent = $('#286442883').val() || "";
+        if (summaryContent) {
+          console.log('Productos en el carrito detectados:', summaryContent);
+        }
+      }, 2000);
     });
     </script>
 
@@ -1400,6 +1416,87 @@
     <script>
     $(document).ready(function() {
       // El enlace de instrucciones ya está incluido en el HTML
+
+      // Script de depuración para verificar que los productos se agreguen correctamente
+      console.log("Inicializando script de depuración para contrareembolso");
+
+      // Verificar el valor inicial del campo de productos
+      console.log("Valor inicial del campo de productos:", $("#286442883").val());
+
+      // Monitorear cambios en el campo de productos
+      $("#286442883").on('change', function() {
+        console.log("Campo de productos actualizado:", $(this).val());
+      });
+
+      // Monitorear clics en los botones de agregar al carrito
+      $('.add-to-cart-btn').on('click', function() {
+        var modelId = $(this).data('model');
+        console.log("Botón de agregar al carrito clickeado:", modelId);
+
+        // Verificar si se encuentra el selector de talle
+        var $select;
+        if (modelId.includes('-1') || modelId.includes('-2')) {
+          // Si el ID incluye -1 o -2 (para el primer o segundo par)
+          $select = $('#talle-select-' + modelId);
+          if ($select.length === 0) {
+            // Intentar encontrar el selector dentro del fieldset correspondiente
+            var fieldsetId = 'hwA-' + modelId;
+            $select = $('#' + fieldsetId + ' select.talle');
+          }
+        } else {
+          // Fallback para buscar cualquier selector con ese modelo
+          $select = $('select.talle[id*="' + modelId + '"]').first();
+        }
+
+        // Si aún no encontramos el selector, buscar dentro del botón que se hizo clic
+        if ($select.length === 0) {
+          $select = $(this).closest('fieldset').find('select.talle');
+        }
+
+        console.log("Selector encontrado:", $select.length > 0 ? "Sí" : "No");
+        if ($select.length > 0) {
+          console.log("Valor del selector:", $select.val());
+        }
+      });
+
+      // Verificar todos los selectores de talle
+      $('#todoslosmodelos select.talle').each(function() {
+        console.log("Selector de talle encontrado:", $(this).attr('id'));
+      });
+
+      // Verificar todos los botones de agregar al carrito
+      $('.add-to-cart-btn').each(function() {
+        console.log("Botón de agregar al carrito:", $(this).data('model'));
+      });
+
+      // Agregar un manejador de eventos directo para los botones de agregar al carrito
+      $(document).on('click', '.add-to-cart-btn', function() {
+        var modelId = $(this).data('model');
+        console.log("Botón clickeado directamente:", modelId);
+
+        // Obtener el selector de talle correspondiente
+        var $select = $('#talle-select-' + modelId);
+        console.log("Selector encontrado:", $select.length > 0 ? "Sí" : "No");
+
+        if ($select.length > 0) {
+          var selectedValue = $select.val();
+          console.log("Valor seleccionado:", selectedValue);
+
+          if (selectedValue) {
+            // Actualizar manualmente el campo de productos
+            var currentValue = $('#286442883').val() || "";
+            var productsArray = currentValue.split(', ').filter(Boolean);
+
+            // Agregar el nuevo valor si no existe
+            if (!productsArray.includes(selectedValue)) {
+              productsArray.push(selectedValue);
+              var newValue = productsArray.join(', ');
+              $('#286442883').val(newValue);
+              console.log("Campo de productos actualizado manualmente:", newValue);
+            }
+          }
+        }
+      });
     });
       $('body').append(`
         <div id="instructions-popover" style="display: none;">

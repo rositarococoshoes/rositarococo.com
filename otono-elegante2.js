@@ -284,10 +284,10 @@ $(document).ready(function(){
   // --- Add to Cart Button Logic ---
   $('.add-to-cart-btn').on('click', function() {
     var modelId = $(this).data('model');
-    var $select = $('#talle-select-' + modelId);
+    console.log('Botón clickeado con data-model:', modelId);
 
     // Llamar a la función para agregar al carrito
-    var added = addToCartFromButton(modelId);
+    var added = addToCartFromButton(this);
 
     // Solo mostrar notificación y animar el botón si se agregó el producto
     if (added) {
@@ -300,7 +300,7 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
-  var summaryInput = $("#1471599855"); // Correct ID for selected items
+  var summaryInput = window.location.href.includes('contrareembolso') ? $("#286442883") : $("#1471599855"); // ID dinámico según la página
   var summaryDisplay = $("#display-selected-items"); // Updated ID for display
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
@@ -323,10 +323,14 @@ $(document).ready(function(){
   });
 
   // Función para agregar al carrito cuando se hace clic en el botón
-  function addToCartFromButton(modelId) {
+  function addToCartFromButton(button) {
+    // Obtener el ID del modelo del botón
+    var modelId = $(button).data('model');
+    console.log('Agregando al carrito desde botón con data-model:', modelId);
+
     // Obtener el selector correcto basado en el ID del modelo
     var $select;
-    if (modelId.includes('-1') || modelId.includes('-2')) {
+    if (modelId && (modelId.includes('-1') || modelId.includes('-2'))) {
       // Si el ID incluye -1 o -2 (para el primer o segundo par)
       $select = $('#talle-select-' + modelId);
       if ($select.length === 0) {
@@ -336,15 +340,16 @@ $(document).ready(function(){
       }
     } else {
       // Fallback para buscar cualquier selector con ese modelo
-      $select = $('select.talle[id*="' + modelId + '"]').first();
+      $select = $(button).closest('fieldset').find('select.talle');
     }
 
     // Si aún no encontramos el selector, buscar dentro del botón que se hizo clic
     if ($select.length === 0) {
-      $select = $('.add-to-cart-btn[data-model="' + modelId + '"]').closest('fieldset').find('select.talle');
+      $select = $(button).closest('fieldset').find('select.talle');
     }
 
-    console.log('Selector encontrado:', $select.length > 0 ? 'Sí' : 'No');
+    console.log('Selector encontrado para ' + modelId + ':', $select.length > 0 ? 'Sí' : 'No');
+    console.log('ID del selector:', $select.attr('id'));
 
     // Obtener el elemento del producto actual
     var $currentItem = $select.closest('.product-item');
@@ -370,7 +375,9 @@ $(document).ready(function(){
 
     // Process the summary content
     var summaryContent = summaryInput.val() || "";
+    console.log('Contenido actual del campo de productos:', summaryContent);
     var summaryArray = summaryContent.split(', ').filter(Boolean);
+    console.log('Array de productos antes de agregar:', summaryArray);
 
     // Removed duplicate check to allow adding the same product twice
 
@@ -385,6 +392,7 @@ $(document).ready(function(){
 
     // Add new value
     summaryArray.push(currentVal);
+    console.log('Array de productos después de agregar:', summaryArray);
 
     // Mostrar notificación de éxito
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
@@ -399,10 +407,28 @@ $(document).ready(function(){
     }
 
     // Update the summary input and display
-    summaryInput.val(summaryArray.join(', '));
+    var finalSummaryText = summaryArray.join(', ');
+    console.log('Texto final para el campo de productos:', finalSummaryText);
+
+    // Actualizar ambos campos independientemente de la página
+    $('#286442883').val(finalSummaryText);
+    $('#1471599855').val(finalSummaryText);
+
+    // Asegurarse de que el campo de resumen también esté actualizado
+    summaryInput.val(finalSummaryText);
+
+    console.log('Campo #286442883 actualizado a:', $('#286442883').val());
+    console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
+    console.log('Campo summaryInput actualizado a:', summaryInput.val());
+
     var finalSummary = summaryInput.val();
     $("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
     summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
+
+    // Disparar evento change para que otros scripts lo detecten
+    summaryInput.trigger('change');
+    $('#286442883').trigger('change');
+    $('#1471599855').trigger('change');
 
     // Update cart items
     updateCart(summaryArray);
@@ -516,7 +542,11 @@ $(document).ready(function(){
 
       // Focus the first field
       setTimeout(function() {
-        $("#1465946249").focus();
+        if (window.location.href.includes('contrareembolso')) {
+          $("#1214200077").focus();
+        } else {
+          $("#1465946249").focus();
+        }
       }, 500);
 
       // Mostrar notificación según la cantidad de productos
@@ -603,17 +633,38 @@ $(document).ready(function(){
   });
 
   // Update summary as user fills in form fields
-  $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873").on('keyup change input', function() {
-    $("#help-nombre").text($("#1460904554").val() || '-');
-    $("#help-wapp").text($("#53830725").val() || '-');
-    $("#help-email").text($("#1465946249").val() || '-');
-    $("#help-calleyaltura").text($("#951592426").val() || '-');
-    $("#help-localidad").text($("#1743418466").val() || '-');
-    $("#help-provincia").text($("#59648134 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
-    $("#help-cp").text($("#1005165410").val() || '-');
-    $("#help-dni").text($("#541001873").val() || '-');
-    $("#help-diayhora").text($("#1756027935").val() || '-'); // Added for delivery date
+  // Usar selectores dinámicos según la página
+  if (window.location.href.includes('contrareembolso')) {
+    $("#1211347450, #1214200077, #501094818, #394819614, #2081271241, #1440375758, #183290493, #423544000").on('keyup change input', function() {
+      $("#help-nombre").text($("#1211347450").val() || '-');
+      $("#help-wapp").text($("#501094818").val() || '-');
+      $("#help-email").text($("#1214200077").val() || '-');
+      $("#help-calleyaltura").text($("#394819614").val() || '-');
+      $("#help-localidad").text($("#2081271241").val() || '-');
+      $("#help-provincia").text($("#1440375758 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
+      $("#help-cp").text($("#183290493").val() || '-');
+      $("#help-dni").text($("#423544000").val() || '-');
+    });
+  } else {
+    $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873").on('keyup change input', function() {
+      $("#help-nombre").text($("#1460904554").val() || '-');
+      $("#help-wapp").text($("#53830725").val() || '-');
+      $("#help-email").text($("#1465946249").val() || '-');
+      $("#help-calleyaltura").text($("#951592426").val() || '-');
+      $("#help-localidad").text($("#1743418466").val() || '-');
+      $("#help-provincia").text($("#59648134 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
+      $("#help-cp").text($("#1005165410").val() || '-');
+      $("#help-dni").text($("#541001873").val() || '-');
+    });
+  }
 
+  // Actualizar el campo de fecha de entrega
+  $("#1756027935").on('keyup change input', function() {
+    $("#help-diayhora").text($("#1756027935").val() || '-'); // Added for delivery date
+  });
+
+  // Función para actualizar la dirección combinada
+  function updateCombinedAddress() {
     // Combine address fields for display
     let fullAddress = [
       $("#help-calleyaltura").text(),
@@ -623,10 +674,17 @@ $(document).ready(function(){
     ].filter(Boolean).join(', ').replace(/ ,/g, ',');
 
     $("#help-address-combined").text(fullAddress || '-');
-  });
+  }
+
+  // Actualizar la dirección combinada cuando cambie cualquier campo de dirección
+  $("#help-calleyaltura, #help-localidad, #help-cp, #help-provincia").on('DOMSubtreeModified', updateCombinedAddress);
 
   // Initial trigger for province and delivery date
-  $("#59648134, #1756027935").trigger('change');
+  if (window.location.href.includes('contrareembolso')) {
+    $("#1440375758, #1756027935").trigger('change');
+  } else {
+    $("#59648134, #1756027935").trigger('change');
+  }
 
   // --- Discount Logic Removed ---
   // $("#comoabona").change(function() { ... });
@@ -675,7 +733,7 @@ $(document).ready(function(){
     }
 
     // Check if products were selected
-    const talleselegidos = $('#1471599855').val(); // Correct ID
+    const talleselegidos = window.location.href.includes('contrareembolso') ? $('#286442883').val() : $('#1471599855').val(); // ID dinámico según la página
     console.log("Talles elegidos:", talleselegidos); // Debug log
 
     // Mejorar la validación para manejar correctamente el formato "valor1, valor2, "
@@ -692,7 +750,7 @@ $(document).ready(function(){
     }
 
     // Check WhatsApp validation status before submitting
-    const whatsappInput = getInputElement("53830725"); // ID for WhatsApp input
+    const whatsappInput = window.location.href.includes('contrareembolso') ? getInputElement("501094818") : getInputElement("53830725"); // ID dinámico según la página
     const errorElement = getErrorElement(); // Get the specific error element for WhatsApp
     if (!whatsappInput || !errorElement || !errorElement.classList.contains('valid')) {
         alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
@@ -867,7 +925,7 @@ $(document).ready(function(){
   }
 
   function getErrorElement() {
-    const whatsappInputId = "53830725";
+    const whatsappInputId = window.location.href.includes('contrareembolso') ? "501094818" : "53830725";
     const errorClass = "error-message";
     let errorElement = document.querySelector(`.${errorClass}[data-target="${whatsappInputId}"]`);
 
@@ -885,8 +943,10 @@ $(document).ready(function(){
   }
 
   (function() {
-    const whatsappInputId = "53830725";
-    const dependentElementIds = ["59648134", "1743418466", "1005165410", "951592426", "541001873", "comoabona", "botoncomprar"];
+    const whatsappInputId = window.location.href.includes('contrareembolso') ? "501094818" : "53830725";
+    const dependentElementIds = window.location.href.includes('contrareembolso') ?
+      ["1440375758", "2081271241", "183290493", "394819614", "423544000", "botoncomprar"] :
+      ["59648134", "1743418466", "1005165410", "951592426", "541001873", "comoabona", "botoncomprar"];
     const errorClass = "error-message";
     const apiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
 
@@ -1381,8 +1441,11 @@ $(document).ready(function(){
       }
     });
 
+    // Usar el ID dinámico según la página
+    var summaryInput = window.location.href.includes('contrareembolso') ? $("#286442883") : $("#1471599855");
+
     // Process the summary content to remove the item
-    var summaryContent = $("#1471599855").val() || ""; // Correct ID
+    var summaryContent = summaryInput.val() || "";
     console.log("Contenido del campo al remover:", summaryContent);
 
     // Mejorar el filtrado para manejar espacios en blanco
@@ -1394,8 +1457,15 @@ $(document).ready(function(){
     console.log("Array después de remover:", summaryArray);
 
     // Update the summary input
-    $("#1471599855").val(summaryArray.join(', ')); // Correct ID
-    console.log("Nuevo valor del campo:", $("#1471599855").val());
+    summaryInput.val(summaryArray.join(', '));
+    console.log("Nuevo valor del campo:", summaryInput.val());
+
+    // Si estamos en la página de contrareembolso, actualizar también el otro campo
+    if (window.location.href.includes('contrareembolso')) {
+      $('#286442883').val(summaryArray.join(', '));
+    } else {
+      $('#1471599855').val(summaryArray.join(', '));
+    }
 
     // Update the summary display
     $("#help-modelostallesseleccionados").text(summaryArray.join(', ') || '-'); // Updated ID
