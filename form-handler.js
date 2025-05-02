@@ -65,8 +65,8 @@ $(document).ready(function() {
         }
 
         // Verificar WhatsApp
-        const whatsappInput = document.getElementById('53830725');
-        const errorElement = document.querySelector('.error-message[data-target="53830725"]');
+        const whatsappInput = document.getElementById('501094818');
+        const errorElement = document.querySelector('.error-message[data-target="501094818"]');
         if (errorElement && !errorElement.classList.contains('valid')) {
             alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
             if (whatsappInput) whatsappInput.focus();
@@ -74,7 +74,7 @@ $(document).ready(function() {
         }
 
         // Verificar que haya productos en el carrito
-        const selectedProducts = $('#1471599855').val();
+        const selectedProducts = $('#286442883').val();
         if (!selectedProducts || selectedProducts.trim() === '') {
             alert('¡No has seleccionado ningún producto! Por favor, elige al menos un par.');
             return false;
@@ -87,14 +87,11 @@ $(document).ready(function() {
         try {
             // Para la página de contrareembolso, asumimos que el método de pago es contrareembolso
             const formaPago = window.location.href.includes('contrareembolso') ? 'contrareembolso' : $('#comoabona').val();
-            const nombreComprador = $('#1460904554').val();
+            const nombreComprador = $('#1211347450').val();
 
             // Si es contrareembolso (pago en efectivo al recibir)
             if (formaPago === 'contrareembolso') {
                 console.log('Procesando formulario de contrareembolso...');
-
-                // Actualizar campos ocultos para compatibilidad con contrareembolso.html
-                $('#286442883').val($('#1471599855').val());
 
                 // Procesar los productos seleccionados
                 var talleselegidos = $('#286442883').val();
@@ -172,7 +169,7 @@ $(document).ready(function() {
                 console.log('286442883 (productos):', talleselegidos);
 
                 // Concatenar valores de dirección
-                var calleAltura = $('#951592426').val();
+                var calleAltura = $('#394819614').val();
                 var entreCalles = $('#entre-calles').val() || '';
                 var direccionCompleta = calleAltura;
                 if (entreCalles) {
@@ -180,7 +177,7 @@ $(document).ready(function() {
                 }
 
                 // Actualiza el valor del campo "Calle y Altura" con la dirección completa
-                $('#951592426').val(direccionCompleta);
+                $('#394819614').val(direccionCompleta);
 
                 // Preparar el formulario para envío a Google Forms
                 const iframe = document.createElement('iframe');
@@ -336,8 +333,7 @@ $(document).ready(function() {
                 console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
 
                 // Usar el mismo código que en la sección de contrareembolso
-                // Actualizar campos ocultos para compatibilidad con contrareembolso.html
-                $('#286442883').val($('#1471599855').val());
+                // No es necesario actualizar campos ocultos para compatibilidad
 
                 // Procesar los productos seleccionados
                 var talleselegidos = $('#286442883').val();
@@ -415,7 +411,7 @@ $(document).ready(function() {
                 console.log('286442883 (productos):', talleselegidos);
 
                 // Concatenar valores de dirección
-                var calleAltura = $('#951592426').val();
+                var calleAltura = $('#394819614').val();
                 var entreCalles = $('#entre-calles').val() || '';
                 var direccionCompleta = calleAltura;
                 if (entreCalles) {
@@ -423,7 +419,7 @@ $(document).ready(function() {
                 }
 
                 // Actualiza el valor del campo "Calle y Altura" con la dirección completa
-                $('#951592426').val(direccionCompleta);
+                $('#394819614').val(direccionCompleta);
 
                 // Preparar el formulario para envío a Google Forms
                 const iframe = document.createElement('iframe');
