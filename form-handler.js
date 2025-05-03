@@ -195,10 +195,20 @@ $(document).ready(function() {
                     .done(function() {
                         console.log('Formulario enviado a Google Forms (Contrareembolso)');
 
+                        // Guardar detalles del pedido en localStorage
+                        localStorage.setItem('orderDetails', output);
+                        localStorage.setItem('rawProducts', talleselegidos);
+
+                        // También guardar el nombre del cliente si está disponible
+                        if ($('#1211347450').val()) {
+                            localStorage.setItem('customerName', $('#1211347450').val());
+                        }
+
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
                         var pairs = talleselegidos.split(', ').filter(Boolean);
                         console.log('Redireccionando con', pairs.length, 'productos');
+                        console.log('Detalles guardados en localStorage:', output);
 
                         // Determinar la URL de redirección
                         var redirectUrl;
@@ -472,10 +482,20 @@ $(document).ready(function() {
                     .done(function() {
                         console.log('Formulario enviado a Google Forms (Contrareembolso)');
 
+                        // Guardar detalles del pedido en localStorage
+                        localStorage.setItem('orderDetails', output);
+                        localStorage.setItem('rawProducts', talleselegidos);
+
+                        // También guardar el nombre del cliente si está disponible
+                        if ($('#1211347450').val()) {
+                            localStorage.setItem('customerName', $('#1211347450').val());
+                        }
+
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
                         var pairs = talleselegidos.split(', ').filter(Boolean);
                         console.log('Redireccionando con', pairs.length, 'productos');
+                        console.log('Detalles guardados en localStorage:', output);
 
                         // Determinar la URL de redirección
                         var redirectUrl;

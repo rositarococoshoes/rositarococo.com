@@ -1117,6 +1117,52 @@
             if (selectedProducts) {
               var pairs = selectedProducts.split(', ').filter(Boolean);
 
+              // Procesar los detalles del pedido para localStorage
+              var values = [];
+              var montoacobrar;
+              var costodepares = 0;
+
+              for (var i = 0; i < pairs.length; i++) {
+                var parts = pairs[i].split('-');
+                if (parts.length < 2) continue;
+
+                var talle = parts[0].trim();
+                var modelo = parts[1];
+                var color = parts.slice(2).join(' ');
+
+                var modeloId;
+                var costo;
+                switch(modelo) {
+                  case 'roma':
+                    modeloId = '#4016';
+                    costo = 16000;
+                    break;
+                  case 'venecia':
+                    modeloId = '#4015';
+                    costo = 16000;
+                    break;
+                  case 'siena':
+                    modeloId = '#SIENA';
+                    costo = 3700;
+                    break;
+                  case 'paris':
+                    modeloId = '#PARIS';
+                    costo = 3700;
+                    break;
+                  default:
+                    modeloId = 'desconocido';
+                    break;
+                }
+                costodepares += costo;
+                var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+                values.push(modelosangies);
+              }
+
+              // Guardar detalles en localStorage
+              var output = values.join(' || ');
+              localStorage.setItem('orderDetails', output);
+              localStorage.setItem('rawProducts', selectedProducts);
+
               // Construir la URL de redirección
               var redirectUrl;
               if (pairs.length === 1) {
@@ -1207,6 +1253,54 @@
           if (savedProducts) {
             var pairs = savedProducts.split(', ').filter(Boolean);
             console.log('Productos recuperados:', pairs);
+
+            // Procesar los detalles del pedido para localStorage si no existen ya
+            if (!localStorage.getItem('orderDetails')) {
+              var values = [];
+              var montoacobrar;
+              var costodepares = 0;
+
+              for (var i = 0; i < pairs.length; i++) {
+                var parts = pairs[i].split('-');
+                if (parts.length < 2) continue;
+
+                var talle = parts[0].trim();
+                var modelo = parts[1];
+                var color = parts.slice(2).join(' ');
+
+                var modeloId;
+                var costo;
+                switch(modelo) {
+                  case 'roma':
+                    modeloId = '#4016';
+                    costo = 16000;
+                    break;
+                  case 'venecia':
+                    modeloId = '#4015';
+                    costo = 16000;
+                    break;
+                  case 'siena':
+                    modeloId = '#SIENA';
+                    costo = 3700;
+                    break;
+                  case 'paris':
+                    modeloId = '#PARIS';
+                    costo = 3700;
+                    break;
+                  default:
+                    modeloId = 'desconocido';
+                    break;
+                }
+                costodepares += costo;
+                var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+                values.push(modelosangies);
+              }
+
+              // Guardar detalles en localStorage
+              var output = values.join(' || ');
+              localStorage.setItem('orderDetails', output);
+              localStorage.setItem('rawProducts', savedProducts);
+            }
 
             // Construir la URL de redirección
             var redirectUrl;

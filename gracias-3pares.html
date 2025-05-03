@@ -126,39 +126,117 @@ Whatsapp aqu&iacute; =&gt; <a href="http://bit.ly/wspb-rosita" style="background
 
 </div>
 <script>
-// Get order details from sessionStorage instead of URL parameters
-var talleselegidos = sessionStorage.getItem('orderDetails') || '';
-$("#talleselegidos").replaceWith(talleselegidos);
+// Función para obtener parámetros de URL
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-// If no data in sessionStorage, try legacy URL parameter method as fallback
-if (!talleselegidos) {
-    var getUrlParameter = function getUrlParameter(sParam) {
-        var sPageURL = window.location.search.substring(1),
-            sURLVariables = sPageURL.split('&'),
-            sParameterName,
-            i;
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
 
-        for (i = 0; i < sURLVariables.length; i++) {
-            sParameterName = sURLVariables[i].split('=');
-
-            if (sParameterName[0] === sParam) {
-                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-            }
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
         }
-    };
+    }
+    return '';
+};
 
-    talleselegidos = getUrlParameter('entry.1471599855') || '';
-    $("#talleselegidos").replaceWith(talleselegidos);
+// Función para procesar productos y generar detalles formateados
+function procesarProductos(productos) {
+    if (!productos) return '';
+
+    var pairs = productos.split(', ').filter(Boolean);
+    var values = [];
+
+    for (var i = 0; i < pairs.length; i++) {
+        var parts = pairs[i].split('-');
+        if (parts.length < 2) continue;
+
+        var talle = parts[0].trim();
+        var modelo = parts[1];
+        var color = parts.slice(2).join(' ');
+
+        var modeloId;
+        switch(modelo) {
+            case 'roma':
+                modeloId = '#4016';
+                break;
+            case 'venecia':
+                modeloId = '#4015';
+                break;
+            case 'siena':
+                modeloId = '#SIENA';
+                break;
+            case 'paris':
+                modeloId = '#PARIS';
+                break;
+            default:
+                modeloId = 'desconocido';
+                break;
+        }
+
+        var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+        values.push(modelosangies);
+    }
+
+    return values.join(' || ');
+}
+
+// Get order details from localStorage (primary) or sessionStorage (fallback)
+var talleselegidos = localStorage.getItem('orderDetails') || sessionStorage.getItem('orderDetails') || '';
+console.log('Datos recuperados de localStorage:', {
+    orderDetails: localStorage.getItem('orderDetails'),
+    rawProducts: localStorage.getItem('rawProducts'),
+    customerName: localStorage.getItem('customerName')
+});
+
+if (talleselegidos) {
+    $("#talleselegidos").html(talleselegidos);
+    console.log('Usando detalles de localStorage:', talleselegidos);
+} else {
+    // Fallback to URL parameters if storage is empty
+    var urlParams = getUrlParameter('286442883') || getUrlParameter('entry.1471599855') || '';
+    if (urlParams) {
+        // Procesar los productos para mostrar detalles formateados
+        var detallesFormateados = procesarProductos(urlParams);
+        if (detallesFormateados) {
+            $("#talleselegidos").html(detallesFormateados);
+            console.log('Detalles procesados de URL:', detallesFormateados);
+
+            // Guardar en localStorage para futuras referencias
+            localStorage.setItem('orderDetails', detallesFormateados);
+            localStorage.setItem('rawProducts', urlParams);
+        } else {
+            // Si no se pueden procesar, mostrar los parámetros crudos
+            $("#talleselegidos").html(urlParams);
+            console.log('Usando parámetros crudos de URL:', urlParams);
+        }
+    } else {
+        $("#talleselegidos").html('Detalles del pedido no disponibles');
+        console.log('No se encontraron detalles del pedido');
+    }
 }
 
 // Display customer name if available
-var customerName = sessionStorage.getItem('customerName');
+var customerName = localStorage.getItem('customerName') || sessionStorage.getItem('customerName');
 if (customerName) {
     var greetingElement = document.createElement('p');
     greetingElement.innerHTML = '¡Gracias por tu compra, <strong>' + customerName + '</strong>!';
     greetingElement.style.textAlign = 'center';
     greetingElement.style.marginTop = '10px';
-    document.querySelector('.form-group, #talleselegidos').parentNode.insertBefore(greetingElement, document.querySelector('.form-group, #talleselegidos').nextSibling);
+
+    var targetElement = document.querySelector('.form-group, #talleselegidos');
+    if (targetElement && targetElement.parentNode) {
+        targetElement.parentNode.insertBefore(greetingElement, targetElement.nextSibling);
+    } else {
+        // Si no se encuentra el elemento objetivo, agregar al principio del contenedor
+        var container = document.querySelector('div[style*="max-width: 400px"]');
+        if (container) {
+            container.insertBefore(greetingElement, container.firstChild.nextSibling);
+        }
+    }
 }
 </script>
 </body>
