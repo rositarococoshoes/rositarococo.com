@@ -63,6 +63,10 @@
     <link rel="preload" href="price-quantity.css" as="style">
     <link rel="stylesheet" href="price-quantity.css" />
 
+    <!-- Floating Button CSS -->
+    <link rel="preload" href="floating-button.css" as="style">
+    <link rel="stylesheet" href="floating-button.css" />
+
     <!-- Scripts optimizados para carga rápida -->
     <!-- Los scripts se cargarán al final del documento para mejorar el rendimiento -->
 </head>
@@ -127,7 +131,7 @@
     </div>
 
     <!-- Botón flotante de continuar al envío -->
-    <button id="fixed-checkout-button" onclick="goToCheckoutForm()" style="display: none;">
+    <button id="fixed-checkout-button" onclick="goToCheckoutForm()">
         <span class="button-content">
             <span>Continuar al Envío</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,8 +176,13 @@
 
             // Verificar si floatingButton existe
             if (floatingButton) {
-                // Ocultar el botón flotante
-                floatingButton.style.display = 'none';
+                // Ocultar el botón flotante con transición suave
+                floatingButton.style.opacity = '0';
+                floatingButton.style.pointerEvents = 'none';
+                // Ocultar completamente después de la transición
+                setTimeout(function() {
+                    floatingButton.style.display = 'none';
+                }, 300);
                 buttonVisible = false;
             }
 
@@ -213,7 +222,22 @@
             var shouldShow = itemCount > 0 && (!isFormActive || isAboveForm);
 
             if (shouldShow !== buttonVisible) {
-                floatingButton.style.display = shouldShow ? 'block' : 'none';
+                // Usar opacity y pointer-events para una transición más suave
+                if (shouldShow) {
+                    floatingButton.style.display = 'flex';
+                    // Pequeño retraso para permitir que la transición funcione
+                    setTimeout(function() {
+                        floatingButton.style.opacity = '1';
+                        floatingButton.style.pointerEvents = 'auto';
+                    }, 10);
+                } else {
+                    floatingButton.style.opacity = '0';
+                    floatingButton.style.pointerEvents = 'none';
+                    // Ocultar completamente después de la transición
+                    setTimeout(function() {
+                        floatingButton.style.display = 'none';
+                    }, 300);
+                }
                 buttonVisible = shouldShow;
             }
         }

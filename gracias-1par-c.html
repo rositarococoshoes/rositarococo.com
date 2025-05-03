@@ -56,12 +56,17 @@
         <p class="thank-you">¡Gracias por tu compra!</p>
     </div>
 <script>
-// Get order details from sessionStorage
-var talleselegidos = sessionStorage.getItem('orderDetails') || '';
+// Get order details from localStorage (primary) or sessionStorage (fallback)
+var talleselegidos = localStorage.getItem('orderDetails') || sessionStorage.getItem('orderDetails') || '';
+console.log('Datos recuperados de localStorage:', {
+    orderDetails: localStorage.getItem('orderDetails'),
+    customerName: localStorage.getItem('customerName')
+});
+
 if (talleselegidos) {
     $("#talleselegidos").html(talleselegidos);
 } else {
-    // Fallback to URL parameters if sessionStorage is empty
+    // Fallback to URL parameters if storage is empty
     var getUrlParameter = function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1),
             sURLVariables = sPageURL.split('&'),
@@ -88,12 +93,21 @@ if (talleselegidos) {
 }
 
 // Display customer name if available
-var customerName = sessionStorage.getItem('customerName');
+var customerName = localStorage.getItem('customerName') || sessionStorage.getItem('customerName');
 if (customerName) {
     $("#customer-greeting").html('¡Gracias por tu compra, <strong>' + customerName + '</strong>!');
 } else {
     $("#customer-greeting").hide();
 }
+
+// Limpiar localStorage después de mostrar los datos (para evitar problemas en futuras visitas)
+// Dejamos un pequeño retraso para asegurarnos de que los datos se muestren correctamente
+setTimeout(function() {
+    // No eliminamos los datos completamente para permitir que el usuario pueda actualizar la página
+    // y seguir viendo los detalles de su pedido
+    // localStorage.removeItem('orderDetails');
+    // localStorage.removeItem('customerName');
+}, 2000);
 
 // Update WhatsApp link to include order details
 var wspLink = document.getElementById('wsplink');

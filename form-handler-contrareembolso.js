@@ -126,19 +126,26 @@ $(document).ready(function() {
                     var pairs = talleselegidos.split(', ').filter(Boolean);
                     var queryString = $('#286442883').serialize();
 
-                    // Guardar los detalles del pedido en sessionStorage para la página de agradecimiento
-                    sessionStorage.setItem('orderDetails', talleselegidos);
-                    sessionStorage.setItem('customerName', $('#1211347450').val());
+                    // Guardar los detalles del pedido en localStorage para la página de agradecimiento
+                    localStorage.setItem('orderDetails', talleselegidos);
+                    localStorage.setItem('customerName', $('#1211347450').val());
+                    console.log('Datos guardados en localStorage:', {
+                        orderDetails: talleselegidos,
+                        customerName: $('#1211347450').val()
+                    });
 
-                    if(pairs.length === 1){
-                        window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
-                    }
-                    else if(pairs.length === 2){
-                        window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
-                    }
-                    else if(pairs.length >= 3){
-                        window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
-                    }
+                    // Pequeño retraso para asegurar que los datos se guarden correctamente antes de la redirección
+                    setTimeout(function() {
+                        if(pairs.length === 1){
+                            window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                        }
+                        else if(pairs.length === 2){
+                            window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+                        }
+                        else if(pairs.length >= 3){
+                            window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                        }
+                    }, 100);
                 })
                 .fail(function() {
                     // En caso de error
