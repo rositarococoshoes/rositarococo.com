@@ -376,10 +376,15 @@ $(document).ready(function(){
     // Process the summary content
     var summaryContent = summaryInput.val() || "";
     console.log('Contenido actual del campo de productos:', summaryContent);
-    var summaryArray = summaryContent.split(', ').filter(Boolean);
+    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
     console.log('Array de productos antes de agregar:', summaryArray);
 
-    // Removed duplicate check to allow adding the same product twice
+    // Check if we exceed the maximum allowed pairs BEFORE adding the new item
+    if (summaryArray.length >= 2) {
+      alert("Puedes seleccionar un máximo de 2 pares. Por favor, elimina un producto antes de agregar otro.");
+      $select.val(''); // Reset the select to empty
+      return false; // No se agregó el producto
+    }
 
     // Remove previous value if it exists (only remove one instance)
     // Only remove if prevVal is different from currentVal
@@ -395,17 +400,11 @@ $(document).ready(function(){
     console.log('Array de productos después de agregar:', summaryArray);
 
     // Mostrar notificación de éxito
+    $select.closest('.form-group').find('.avisoagregado').remove(); // Remove any existing message
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
 
-    // Check if we exceed the maximum allowed pairs
-    if (summaryArray.length > 2) {
-      alert("Puedes seleccionar un máximo de 2 pares. Por favor, revisa tu selección.");
-      summaryArray = summaryArray.filter(item => item !== currentVal);
-      $select.closest('.form-group').find('.avisoagregado').remove();
-      return false; // No se agregó el producto
-    } else {
-      $select.data('pre', currentVal);
-    }
+    // Store the current value as previous value for future reference
+    $select.data('pre', currentVal);
 
     // Update the summary input and display
     var finalSummaryText = summaryArray.join(', ');
@@ -424,7 +423,9 @@ $(document).ready(function(){
 
     var finalSummary = summaryInput.val();
     $("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
-    summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
+    if (summaryDisplay) {
+      summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
+    }
 
     // Disparar evento change para que otros scripts lo detecten
     summaryInput.trigger('change');
@@ -664,7 +665,7 @@ $(document).ready(function(){
   // Update summary as user fills in form fields
   // Usar selectores dinámicos según la página
   if (window.location.href.includes('contrareembolso')) {
-    $("#1211347450, #1214200077, #501094818, #394819614, #2081271241, #1440375758, #183290493, #423544000").on('keyup change input', function() {
+    $("#1211347450, #1214200077, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change input', function() {
       $("#help-nombre").text($("#1211347450").val() || '-');
       $("#help-wapp").text($("#501094818").val() || '-');
       $("#help-email").text($("#1214200077").val() || '-');
@@ -672,7 +673,7 @@ $(document).ready(function(){
       $("#help-localidad").text($("#2081271241").val() || '-');
       $("#help-provincia").text($("#1440375758 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
       $("#help-cp").text($("#183290493").val() || '-');
-      $("#help-dni").text($("#423544000").val() || '-');
+
     });
   } else {
     $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873").on('keyup change input', function() {
@@ -1468,10 +1469,13 @@ $(document).ready(function(){
 
   // Remove item from cart
   function removeFromCart(itemId) {
-    // Find the select element with this value
+    // Find the select element with this value and reset it
     $('#todoslosmodelos select.talle').each(function() {
       if ($(this).val() === itemId) {
-        $(this).val('').data('pre', '').trigger('change');
+        $(this).val('').data('pre', '');
+
+        // Remove any "added to cart" message
+        $(this).closest('.form-group').find('.avisoagregado').remove();
       }
     });
 
@@ -1490,19 +1494,23 @@ $(document).ready(function(){
     summaryArray = summaryArray.filter(item => item !== itemId);
     console.log("Array después de remover:", summaryArray);
 
-    // Update the summary input
-    summaryInput.val(summaryArray.join(', '));
-    console.log("Nuevo valor del campo:", summaryInput.val());
+    // Update the summary input - ensure both fields are updated
+    var finalSummaryText = summaryArray.join(', ');
+    summaryInput.val(finalSummaryText);
 
-    // Si estamos en la página de contrareembolso, actualizar también el otro campo
-    if (window.location.href.includes('contrareembolso')) {
-      $('#286442883').val(summaryArray.join(', '));
-    } else {
-      $('#1471599855').val(summaryArray.join(', '));
-    }
+    // Always update both fields to ensure consistency
+    $('#286442883').val(finalSummaryText);
+    $('#1471599855').val(finalSummaryText);
+
+    console.log("Nuevo valor del campo:", finalSummaryText);
 
     // Update the summary display
-    $("#help-modelostallesseleccionados").text(summaryArray.join(', ') || '-'); // Updated ID
+    $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
+
+    // Trigger change events to ensure all dependent code is updated
+    summaryInput.trigger('change');
+    $('#286442883').trigger('change');
+    $('#1471599855').trigger('change');
 
     // Update the cart display
     updateCart(summaryArray);

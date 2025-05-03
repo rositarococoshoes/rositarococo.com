@@ -114,26 +114,29 @@ $(document).ready(function() {
 
             // Configurar el formulario para enviar a través del iframe
             this.target = 'hidden_iframe';
-            
+
             // Obtener los datos del formulario
             var formData = $(this).serialize();
-            
+
             // Enviar los datos al script de Google
             $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
                 .done(function() {
                     // Una vez que los datos se han enviado, redirigir a la URL correspondiente
                     var talleselegidos = $('#286442883').val();
-                    var value2 = (talleselegidos).replace(" ", "");
-                    var words = value2.split(",");
+                    var pairs = talleselegidos.split(', ').filter(Boolean);
                     var queryString = $('#286442883').serialize();
-                    
-                    if(words.length === 2){
+
+                    // Guardar los detalles del pedido en sessionStorage para la página de agradecimiento
+                    sessionStorage.setItem('orderDetails', talleselegidos);
+                    sessionStorage.setItem('customerName', $('#1211347450').val());
+
+                    if(pairs.length === 1){
                         window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
                     }
-                    else if(words.length === 3){
+                    else if(pairs.length === 2){
                         window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
                     }
-                    else if(words.length >= 4){
+                    else if(pairs.length >= 3){
                         window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
                     }
                 })

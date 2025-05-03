@@ -1078,11 +1078,7 @@
                             <option value="Tucumán">Tucumán</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="423544000">DNI</label>
-                        <input class="form-control" id="423544000" name="entry.423544000" placeholder="Del titular de la tarjeta o quien recibe" required type="text" />
-                        <p class="help-block">Necesario para el envío y/o verificación de pago.</p>
-                    </div>
+
                     <!-- Hidden field for shipping method -->
                     <div class="form-group hidden">
                         <select class="form-control" id="2315500325" name="entry.17650825"><option selected value="A DOMICILIO">A DOMICILIO</option></select>
@@ -1111,7 +1107,7 @@
                     <p><strong>Nombre:</strong> <span id="help-nombre">-</span></p>
                     <p><strong>WhatsApp:</strong> <span id="help-wapp">-</span></p>
                     <p><strong>Dirección:</strong> <span id="help-calleyaltura">-</span>, <span id="help-localidad">-</span> (<span id="help-cp">-</span>), <span id="help-provincia">-</span></p>
-                    <p><strong>DNI:</strong> <span id="help-dni">-</span></p>
+
                     <p><strong>Día y Hora de Entrega:</strong> <span id="help-diayhora">-</span></p>
 
                     <p id="preciototal">Elige modelos y talles para ver el total</p>
@@ -1442,7 +1438,7 @@
     <script>
     $(document).ready(function() {
       // Actualizar los campos de ayuda cuando cambian los valores de los campos
-      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493, #423544000, #1756027935").keyup(function() {
+      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493, #1756027935").keyup(function() {
         $("#help-modelostallesseleccionados").html($("#286442883").val());
         $("#help-nombre").html($("#1211347450").val());
         $("#help-wapp").html($("#501094818").val());
@@ -1450,7 +1446,7 @@
         $("#help-localidad").html($("#2081271241").val());
         $("#help-provincia").html($("#1440375758").val());
         $("#help-cp").html($("#183290493").val());
-        $("#help-dni").html($("#423544000").val());
+
       });
 
       // También actualizar cuando cambia el selector de fecha
