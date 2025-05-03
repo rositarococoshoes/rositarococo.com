@@ -19,25 +19,25 @@ body {
 
 .main-header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .main-header img {
-    max-width: 200px;
+    max-width: 180px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 20px;
     color: #333;
-    margin: 0 0 10px;
+    margin: 0 0 5px;
     text-align: center;
 }
 
 h4 {
-    font-size: 22px;
-    margin: 20px 0;
+    font-size: 20px;
+    margin: 10px 0;
     text-align: center;
 }
 
@@ -47,25 +47,47 @@ h4 {
 }
 
 .order-details {
-    padding: 15px;
+    padding: 10px;
     background-color: lightyellow;
-    margin: 20px auto;
+    margin: 15px auto;
     border: 1px solid lightgrey;
     border-radius: 5px;
+    font-size: 14px;
+    max-height: 150px;
+    overflow-y: auto;
 }
 
 .whatsapp-button {
     text-align: center;
-    margin: 30px 0;
+    margin: 20px 0;
+    /* Añadir un poco de animación para llamar la atención */
+    animation: pulse 2s infinite;
 }
 
 .whatsapp-button img {
     max-width: 240px;
     transition: transform 0.2s;
+    /* Añadir sombra para destacar el botón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .whatsapp-button img:hover {
     transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación de pulso para llamar la atención */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .payment-info {
@@ -127,23 +149,23 @@ h4 {
         padding: 15px;
         margin: 0 10px;
     }
-    
+
     h1 {
         font-size: 20px;
     }
-    
+
     h4 {
         font-size: 18px;
     }
-    
+
     .benefit-container {
         flex-direction: column;
     }
-    
+
     .benefit-item {
         margin: 5px 0;
     }
-    
+
     .benefit-divider {
         display: none;
     }
