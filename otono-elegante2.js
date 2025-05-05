@@ -7,6 +7,32 @@ $(document).ready(function(){
   var currentStep = 1;
   var maxStep = 3;
 
+  // Asegurar que el campo 286442883 esté sincronizado con 1471599855
+  // Esto es crucial para la compatibilidad con el código existente
+  function syncHiddenFields() {
+    if ($('#286442883').length && $('#1471599855').length) {
+      var value1471599855 = $('#1471599855').val();
+      var value286442883 = $('#286442883').val();
+
+      // Si hay un valor en 1471599855 pero no en 286442883, sincronizar
+      if (value1471599855 && !value286442883) {
+        $('#286442883').val(value1471599855);
+        console.log('Campo #286442883 sincronizado con #1471599855:', value1471599855);
+      }
+      // Si hay un valor en 286442883 pero no en 1471599855, sincronizar
+      else if (value286442883 && !value1471599855) {
+        $('#1471599855').val(value286442883);
+        console.log('Campo #1471599855 sincronizado con #286442883:', value286442883);
+      }
+    }
+  }
+
+  // Llamar a la sincronización al inicio
+  syncHiddenFields();
+
+  // Configurar un intervalo para mantener los campos sincronizados
+  setInterval(syncHiddenFields, 2000);
+
   // Initialize checkout progress
   updateCheckoutProgress(currentStep);
 
@@ -411,15 +437,28 @@ $(document).ready(function(){
     console.log('Texto final para el campo de productos:', finalSummaryText);
 
     // Actualizar ambos campos independientemente de la página
-    $('#286442883').val(finalSummaryText);
-    $('#1471599855').val(finalSummaryText);
+    // Asegurarse de que ambos campos existan antes de actualizarlos
+    if ($('#286442883').length) {
+        $('#286442883').val(finalSummaryText);
+        console.log('Campo #286442883 actualizado a:', $('#286442883').val());
+    } else {
+        console.warn('Campo #286442883 no encontrado');
+    }
+
+    if ($('#1471599855').length) {
+        $('#1471599855').val(finalSummaryText);
+        console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
+    } else {
+        console.warn('Campo #1471599855 no encontrado');
+    }
 
     // Asegurarse de que el campo de resumen también esté actualizado
-    summaryInput.val(finalSummaryText);
-
-    console.log('Campo #286442883 actualizado a:', $('#286442883').val());
-    console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
-    console.log('Campo summaryInput actualizado a:', summaryInput.val());
+    if (summaryInput.length) {
+        summaryInput.val(finalSummaryText);
+        console.log('Campo summaryInput actualizado a:', summaryInput.val());
+    } else {
+        console.warn('Campo summaryInput no encontrado');
+    }
 
     var finalSummary = summaryInput.val();
     $("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
@@ -1496,11 +1535,26 @@ $(document).ready(function(){
 
     // Update the summary input - ensure both fields are updated
     var finalSummaryText = summaryArray.join(', ');
-    summaryInput.val(finalSummaryText);
+
+    // Actualizar todos los campos relevantes
+    if (summaryInput.length) {
+        summaryInput.val(finalSummaryText);
+    } else {
+        console.warn('Campo summaryInput no encontrado al eliminar producto');
+    }
 
     // Always update both fields to ensure consistency
-    $('#286442883').val(finalSummaryText);
-    $('#1471599855').val(finalSummaryText);
+    if ($('#286442883').length) {
+        $('#286442883').val(finalSummaryText);
+    } else {
+        console.warn('Campo #286442883 no encontrado al eliminar producto');
+    }
+
+    if ($('#1471599855').length) {
+        $('#1471599855').val(finalSummaryText);
+    } else {
+        console.warn('Campo #1471599855 no encontrado al eliminar producto');
+    }
 
     console.log("Nuevo valor del campo:", finalSummaryText);
 

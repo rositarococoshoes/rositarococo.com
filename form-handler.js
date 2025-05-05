@@ -44,6 +44,11 @@ $(document).ready(function() {
     // Asegurarse de que el campo landingurl tenga la URL actual
     $('#1209868979').val(window.location.href);
 
+    // Verificar los campos de productos al cargar la página
+    console.log('Verificando campos de productos al cargar la página:');
+    console.log('Campo #1471599855:', $('#1471599855').val());
+    console.log('Campo #286442883:', $('#286442883').val());
+
     // Manejar el envío del formulario
     $('#bootstrapForm').submit(async function(event) {
         event.preventDefault();
@@ -74,7 +79,12 @@ $(document).ready(function() {
         }
 
         // Verificar que haya productos en el carrito
-        const selectedProducts = $('#286442883').val();
+        // Usar el ID correcto según la página
+        const selectedProducts = window.location.href.includes('contrareembolso') ?
+            $('#286442883').val() : $('#1471599855').val();
+
+        console.log('Productos seleccionados:', selectedProducts);
+
         if (!selectedProducts || selectedProducts.trim() === '') {
             alert('¡No has seleccionado ningún producto! Por favor, elige al menos un par.');
             return false;
@@ -94,7 +104,8 @@ $(document).ready(function() {
                 console.log('Procesando formulario de contrareembolso...');
 
                 // Procesar los productos seleccionados
-                var talleselegidos = $('#286442883').val();
+                var talleselegidos = window.location.href.includes('contrareembolso') ?
+                    $('#286442883').val() : $('#1471599855').val();
                 var pairs = talleselegidos.split(', '); // split the input by ", " (comma and space)
 
                 // remove empty elements from the array
@@ -283,7 +294,13 @@ $(document).ready(function() {
 
                 // Redireccionar a la página de transferencia CBU
                 setTimeout(function() {
-                    const pairCount = selectedProducts.split(',').length;
+                    // Asegurarse de usar el valor correcto para contar los pares
+                    const productsValue = window.location.href.includes('contrareembolso') ?
+                        $('#286442883').val() : $('#1471599855').val();
+
+                    const pairCount = productsValue.split(',').length;
+                    console.log('Número de pares para CBU:', pairCount);
+
                     const redirectUrl = pairCount >= 2 ?
                         'https://rositarococo.com/transferenciacbu-2pares.html' :
                         'https://rositarococo.com/transferenciacbu-1par.html';
@@ -297,7 +314,13 @@ $(document).ready(function() {
             // Si es MercadoPago o tarjeta
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
                 // Obtener el precio basado en la cantidad de productos
-                const pairCount = selectedProducts.split(',').length;
+                // Asegurarse de usar el valor correcto para contar los pares
+                const productsValue = window.location.href.includes('contrareembolso') ?
+                    $('#286442883').val() : $('#1471599855').val();
+
+                const pairCount = productsValue.split(',').length;
+                console.log('Número de pares para MercadoPago:', pairCount);
+
                 const monto = pairCount >= 2 ? 110000 : 70000;
                 console.log('Usando monto:', monto);
 
@@ -381,7 +404,8 @@ $(document).ready(function() {
                 // No es necesario actualizar campos ocultos para compatibilidad
 
                 // Procesar los productos seleccionados
-                var talleselegidos = $('#286442883').val();
+                var talleselegidos = window.location.href.includes('contrareembolso') ?
+                    $('#286442883').val() : $('#1471599855').val();
                 var pairs = talleselegidos.split(', '); // split the input by ", " (comma and space)
 
                 // remove empty elements from the array
