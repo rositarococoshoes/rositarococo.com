@@ -97,7 +97,7 @@ $(document).ready(function() {
         try {
             // Para la página de contrareembolso, asumimos que el método de pago es contrareembolso
             const formaPago = window.location.href.includes('contrareembolso') ? 'contrareembolso' : $('#comoabona').val();
-            const nombreComprador = $('#1211347450').val();
+            const nombreComprador = $('#1460904554').val(); // Corregido: Usar el ID correcto del campo de nombre y apellido
 
             // Si es contrareembolso (pago en efectivo al recibir)
             if (formaPago === 'contrareembolso') {
@@ -327,16 +327,21 @@ $(document).ready(function() {
                 // Construir la URL para el webhook de MercadoPago
                 const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
                 console.log('Llamando al webhook:', webhookUrl);
+                console.log('Datos del comprador:', nombreComprador);
 
                 try {
+                    // Preparar el cuerpo de la solicitud
+                    const requestBody = {
+                        comprador: nombreComprador,
+                        monto: monto
+                    };
+                    console.log('Enviando datos a MercadoPago:', requestBody);
+
                     // Llamar al webhook para generar el link de pago
                     const response = await fetch(webhookUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            comprador: nombreComprador,
-                            monto: monto
-                        })
+                        body: JSON.stringify(requestBody)
                     });
 
                     if (!response.ok) {
