@@ -88,26 +88,39 @@ function procesarProductos(productos) {
         var modelo = parts[1];
         var color = parts.slice(2).join(' ');
 
+        // Mapeo de códigos de modelo a nombres legibles
+        var modeloNombre;
         var modeloId;
+
         switch(modelo) {
             case 'roma':
+                modeloNombre = 'Botineta Roma';
                 modeloId = '#4016';
                 break;
             case 'venecia':
+                modeloNombre = 'Venecia';
                 modeloId = '#4015';
                 break;
             case 'siena':
+                modeloNombre = 'Borcego Siena';
                 modeloId = '#SIENA';
                 break;
             case 'paris':
+                modeloNombre = 'Paris';
                 modeloId = '#PARIS';
                 break;
             default:
+                modeloNombre = modelo.charAt(0).toUpperCase() + modelo.slice(1);
                 modeloId = 'desconocido';
                 break;
         }
 
-        var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+        // Agregar el color al nombre del modelo si existe
+        if (color) {
+            modeloNombre += ' ' + color;
+        }
+
+        var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloNombre;
         values.push(modelosangies);
     }
 
@@ -169,20 +182,33 @@ setTimeout(function() {
 // Update WhatsApp link to include order details
 var wspLink = document.getElementById('wsplink');
 if (wspLink) {
-    var detallesPedido = talleselegidos || '';
+    var detallesPedido = '';
 
-    // Si no hay detalles, intentar obtenerlos de los parámetros URL
-    if (!detallesPedido) {
+    // Intentar obtener detalles de localStorage primero
+    if (talleselegidos) {
+        detallesPedido = talleselegidos;
+    } else {
+        // Si no hay detalles en localStorage, intentar obtenerlos de los parámetros URL
         var urlParams = getUrlParameter('286442883') || getUrlParameter('entry.1471599855') || '';
         if (urlParams) {
             detallesPedido = procesarProductos(urlParams);
         }
     }
 
-    // Si aún no hay detalles, usar un mensaje genérico
-    var mensajeWhatsApp = 'Hola quiero confirmar mi pedido contrareembolso que recién hice';
+    // Obtener el nombre del cliente si está disponible
+    var nombreCliente = localStorage.getItem('customerName') || sessionStorage.getItem('customerName') || '';
+
+    // Construir el mensaje de WhatsApp
+    var mensajeWhatsApp = 'Hola, quiero confirmar mi pedido contrareembolso que recién hice';
+
+    // Agregar el nombre si está disponible
+    if (nombreCliente) {
+        mensajeWhatsApp = 'Hola, soy ' + nombreCliente + ' y quiero confirmar mi pedido contrareembolso que recién hice';
+    }
+
+    // Agregar los detalles del pedido si están disponibles
     if (detallesPedido) {
-        mensajeWhatsApp += ': ' + detallesPedido;
+        mensajeWhatsApp += '.\n\nDetalles del pedido: ' + detallesPedido;
     }
 
     var baseUrl = wspLink.href.split('?')[0];
@@ -190,6 +216,7 @@ if (wspLink) {
     wspLink.href = newUrl;
 
     console.log('URL de WhatsApp actualizada:', newUrl);
+    console.log('Mensaje de WhatsApp:', mensajeWhatsApp);
 }
 </script>
 </body>
