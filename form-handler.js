@@ -39,6 +39,33 @@ function generateUniqueId() {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
 
+// Función para enviar datos al nuevo endpoint
+async function enviarDatosAlNuevoEndpoint(form) {
+    try {
+        // Recopilar todos los datos del formulario
+        const formData = $(form).serialize();
+
+        // Enviar los datos al nuevo endpoint
+        const response = await fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: formData
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error en la respuesta del endpoint: ${response.status}`);
+        }
+
+        console.log('Datos enviados correctamente al nuevo endpoint');
+        return true;
+    } catch (error) {
+        console.error('Error al enviar datos al nuevo endpoint:', error);
+        return false;
+    }
+}
+
 // Función para manejar el envío del formulario
 $(document).ready(function() {
     // Asegurarse de que el campo landingurl tenga la URL actual
@@ -277,22 +304,38 @@ $(document).ready(function() {
 
             // Si es transferencia bancaria (CBU)
             if (formaPago === 'cbu') {
-                // Preparar el formulario para envío a Google Forms
+                // Verificar si estamos en la página de contrareembolso
+                const esContrareembolso = window.location.href.includes('contrareembolso');
 
-                // Enviar formulario a Google Forms usando un iframe oculto
-                // Esta técnica permite enviar a Google Forms sin redireccionar la página
-                const iframe = document.createElement('iframe');
-                iframe.name = 'hidden_iframe';
-                iframe.style.display = 'none';
-                document.body.appendChild(iframe);
+                if (esContrareembolso) {
+                    // Mantener el comportamiento original para contrareembolso
+                    // Preparar el formulario para envío a Google Forms
+                    const iframe = document.createElement('iframe');
+                    iframe.name = 'hidden_iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
 
-                // Configurar el formulario para enviar a través del iframe
-                this.target = 'hidden_iframe';
-                this.submit();
+                    // Configurar el formulario para enviar a través del iframe
+                    this.target = 'hidden_iframe';
+                    this.submit();
 
-                console.log('Formulario enviado a Google Forms (CBU)');
+                    console.log('Formulario enviado a Google Forms (CBU - Contrareembolso)');
+                } else {
+                    // Para index.html, enviar al nuevo endpoint
+                    console.log('Enviando datos al nuevo endpoint (CBU)');
+                    const enviado = await enviarDatosAlNuevoEndpoint(this);
 
-                // Redireccionar a la página de transferencia CBU
+                    if (!enviado) {
+                        alert('Hubo un problema al enviar tu pedido. Por favor, intenta nuevamente.');
+                        $('.loading-overlay').removeClass('visible');
+                        $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
+                        return false;
+                    }
+
+                    console.log('Datos enviados correctamente al nuevo endpoint (CBU)');
+                }
+
+                // Redireccionar a la página de transferencia CBU (mismo comportamiento para ambos casos)
                 setTimeout(function() {
                     // Asegurarse de usar el valor correcto para contar los pares
                     const productsValue = window.location.href.includes('contrareembolso') ?
@@ -324,12 +367,15 @@ $(document).ready(function() {
                 const monto = pairCount >= 2 ? 110000 : 70000;
                 console.log('Usando monto:', monto);
 
-                // Construir la URL para el webhook de MercadoPago
-                const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
-                console.log('Llamando al webhook:', webhookUrl);
-                console.log('Datos del comprador:', nombreComprador);
+                // Verificar si estamos en la página de contrareembolso
+                const esContrareembolso = window.location.href.includes('contrareembolso');
 
                 try {
+                    // Construir la URL para el webhook de MercadoPago
+                    const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
+                    console.log('Llamando al webhook:', webhookUrl);
+                    console.log('Datos del comprador:', nombreComprador);
+
                     // Preparar el cuerpo de la solicitud
                     const requestBody = {
                         comprador: nombreComprador,
@@ -362,17 +408,31 @@ $(document).ready(function() {
                         document.getElementById('link-mercadopago').value = mercadoPagoUrl;
                     }
 
-                    // Enviar el formulario a Google Forms usando un iframe oculto
-                    const iframe = document.createElement('iframe');
-                    iframe.name = 'hidden_iframe';
-                    iframe.style.display = 'none';
-                    document.body.appendChild(iframe);
+                    // Enviar los datos del formulario
+                    if (esContrareembolso) {
+                        // Para contrareembolso, mantener el comportamiento original
+                        // Enviar el formulario a Google Forms usando un iframe oculto
+                        const iframe = document.createElement('iframe');
+                        iframe.name = 'hidden_iframe';
+                        iframe.style.display = 'none';
+                        document.body.appendChild(iframe);
 
-                    // Configurar el formulario para enviar a través del iframe
-                    this.target = 'hidden_iframe';
-                    this.submit();
+                        // Configurar el formulario para enviar a través del iframe
+                        this.target = 'hidden_iframe';
+                        this.submit();
 
-                    console.log('Formulario enviado a Google Forms (MercadoPago)');
+                        console.log('Formulario enviado a Google Forms (MercadoPago - Contrareembolso)');
+                    } else {
+                        // Para index.html, enviar al nuevo endpoint
+                        console.log('Enviando datos al nuevo endpoint (MercadoPago)');
+                        const enviado = await enviarDatosAlNuevoEndpoint(this);
+
+                        if (!enviado) {
+                            throw new Error('Error al enviar datos al nuevo endpoint');
+                        }
+
+                        console.log('Datos enviados correctamente al nuevo endpoint (MercadoPago)');
+                    }
 
                     // Redireccionar a MercadoPago después de enviar el formulario
                     // Mantener el spinner visible durante la redirección
@@ -387,8 +447,8 @@ $(document).ready(function() {
                     }, 500);
 
                 } catch (error) {
-                    console.error('Error al generar el link de pago:', error);
-                    alert('Hubo un problema al generar el link de pago. Por favor, intenta nuevamente o elige otro método de pago.');
+                    console.error('Error al procesar el pago:', error);
+                    alert('Hubo un problema al procesar el pago. Por favor, intenta nuevamente o elige otro método de pago.');
                     $('.loading-overlay').removeClass('visible');
                     $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
                 }
