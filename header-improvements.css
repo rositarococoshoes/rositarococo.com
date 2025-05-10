@@ -1,0 +1,304 @@
+/* Mejoras para el header y barras de navegación */
+
+/* Barra superior de beneficios mejorada */
+.top-benefits-bar {
+  background-color: rgba(160, 89, 65, 0.85);
+  color: rgba(255, 255, 255, 1);
+  padding: 4px 15px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 32px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.benefit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefit-item {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 3px 6px;
+}
+
+.benefit-icon {
+  margin-right: 5px;
+  font-size: 0.9rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.benefit-divider {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  font-size: 0.8rem;
+  margin: 0 2px;
+}
+
+/* Checkout Progress Bar mejorado */
+#checkout-progress {
+  position: fixed;
+  top: 32px; /* Posicionado debajo de la barra de beneficios */
+  left: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 900;
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  height: 32px;
+}
+
+/* Estilos para simplificar la información de productos */
+.product-info-details {
+  margin-bottom: 10px !important;
+}
+
+.product-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px !important;
+}
+
+.spec-item {
+  font-size: 0.85rem !important;
+  background-color: rgba(160, 89, 65, 0.08);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.spec-item strong {
+  font-weight: 600;
+}
+
+.shipping-free {
+  color: #5a8f3e;
+  font-weight: 600;
+}
+
+.product-description {
+  font-size: 0.9rem !important;
+  margin-bottom: 10px !important;
+  line-height: 1.4;
+  color: #666;
+}
+
+/* Estilos para destacar la promoción */
+.promo-explanation {
+  margin-bottom: 8px !important;
+}
+
+.promo-explanation p {
+  margin-bottom: 3px !important;
+  font-size: 0.9rem !important;
+}
+
+.promo-note {
+  font-size: 0.8rem !important;
+  color: #666;
+  font-style: italic;
+}
+
+.quantity-price-selector {
+  border: 1px solid rgba(160, 89, 65, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.quantity-price-option {
+  padding: 8px !important;
+  border-bottom: 1px solid rgba(160, 89, 65, 0.1);
+}
+
+.quantity-price-option:last-child {
+  border-bottom: none;
+}
+
+.option-price {
+  font-weight: 700;
+  font-size: 1.2rem !important;
+  color: var(--color-primary);
+  display: inline-block;
+  background-color: rgba(160, 89, 65, 0.08);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.promo-tag {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.option-save {
+  font-size: 0.8rem !important;
+  color: #5a8f3e;
+  font-weight: 600;
+}
+
+/* Mini header de promoción */
+.mini-promo-header {
+  background-color: #fff8dc; /* Cornsilk, un amarillo más suave */
+  padding: 12px 15px;
+  border-radius: 6px;
+  margin: 12px auto 20px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  max-width: 95%;
+  border: 1px solid rgba(160, 89, 65, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.mini-promo-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(160, 89, 65, 0.7), rgba(160, 89, 65, 0.3));
+}
+
+.mini-promo-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+.mini-promo-header .highlight {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Ajuste para el body */
+body {
+  padding-top: 75px !important; /* Espacio para las dos barras fijas */
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px !important;
+  }
+
+  .benefit-container {
+    gap: 8px;
+  }
+
+  .benefit-item {
+    font-size: 0.7rem;
+    padding: 2px 4px;
+  }
+
+  .benefit-icon {
+    font-size: 0.8rem;
+    width: 16px;
+    height: 16px;
+  }
+
+  .mini-promo-header {
+    padding: 8px 10px;
+    margin: 8px auto 15px;
+  }
+
+  .mini-promo-header p {
+    font-size: 0.85rem;
+  }
+
+  #checkout-progress {
+    top: 32px; /* Aumentado para evitar superposición en móviles */
+    padding: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding-top: 105px !important;
+  }
+
+  .top-benefits-bar {
+    padding: 3px 10px;
+    font-size: 0.65rem;
+    height: 40px;
+  }
+
+  .benefit-item {
+    font-size: 0.65rem;
+    padding: 1px 3px;
+  }
+
+  .benefit-icon {
+    font-size: 0.75rem;
+    margin-right: 3px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .mini-promo-header {
+    padding: 6px 8px;
+    margin: 6px auto 12px;
+  }
+
+  .mini-promo-header p {
+    font-size: 0.8rem;
+  }
+
+  #checkout-progress {
+    top: 40px;
+    padding: 4px 0;
+    height: 65px;
+  }
+
+  #checkout-progress .step-name {
+    font-size: 0.7rem;
+  }
+
+  #checkout-progress .step-number {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
+
+
