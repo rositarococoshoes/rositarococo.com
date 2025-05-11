@@ -474,6 +474,54 @@ $(document).ready(function(){
     // Update cart items
     updateCart(summaryArray);
 
+    // Rastrear evento de Facebook Pixel - AddToCart
+    if (typeof fbq !== 'undefined') {
+      // Extraer información del producto
+      var productInfo = currentVal.split('-');
+      var size = productInfo[0];
+      var productName = '';
+
+      // Determinar el nombre del producto basado en el valor seleccionado
+      if (currentVal.includes('roma-negras')) {
+        productName = 'Botineta Roma Negras';
+      } else if (currentVal.includes('roma-suela')) {
+        productName = 'Botineta Roma Suela';
+      } else if (currentVal.includes('siena2025')) {
+        productName = 'Borcego Siena 2025';
+      } else if (currentVal.includes('venecia-negras')) {
+        productName = 'Venecia Negras';
+      } else if (currentVal.includes('paris-negras')) {
+        productName = 'Paris Negras';
+      } else if (currentVal.includes('paris-camel')) {
+        productName = 'Paris Camel';
+      } else if (currentVal.includes('paris-verde')) {
+        productName = 'Paris Verde';
+      }
+
+      // Determinar el precio basado en la cantidad de productos en el carrito
+      var price = summaryArray.length === 1 ? 70000 : 55000;
+      if (window.location.href.includes('contrareembolso')) {
+        price = summaryArray.length === 1 ? 60000 : 42500;
+      }
+
+      // Enviar el evento AddToCart a Facebook
+      console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
+      fbq('track', 'AddToCart', {
+        content_name: productName,
+        content_type: 'product',
+        content_ids: [currentVal],
+        contents: [
+          {
+            id: currentVal,
+            quantity: 1,
+            item_price: price
+          }
+        ],
+        value: price,
+        currency: 'ARS'
+      });
+    }
+
     // Mostrar una única notificación de éxito
     var isContrareembolso = window.location.href.includes('contrareembolso');
     if (summaryArray.length === 1) {
