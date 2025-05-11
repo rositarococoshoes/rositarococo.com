@@ -130,6 +130,12 @@ $(document).ready(function() {
             if (formaPago === 'contrareembolso') {
                 console.log('Procesando formulario de contrareembolso...');
 
+                // Disparar evento de Facebook Pixel - InitiateCheckout
+                if (typeof fbq !== 'undefined') {
+                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
+                    fbq('track', 'InitiateCheckout');
+                }
+
                 // Procesar los productos seleccionados
                 var talleselegidos = window.location.href.includes('contrareembolso') ?
                     $('#286442883').val() : $('#1471599855').val();
@@ -304,6 +310,12 @@ $(document).ready(function() {
 
             // Si es transferencia bancaria (CBU)
             if (formaPago === 'cbu') {
+                // Disparar evento de Facebook Pixel - InitiateCheckout
+                if (typeof fbq !== 'undefined') {
+                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
+                    fbq('track', 'InitiateCheckout');
+                }
+
                 // Verificar si estamos en la página de contrareembolso
                 const esContrareembolso = window.location.href.includes('contrareembolso');
 
@@ -356,6 +368,12 @@ $(document).ready(function() {
 
             // Si es MercadoPago o tarjeta
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
+                // Disparar evento de Facebook Pixel - InitiateCheckout
+                if (typeof fbq !== 'undefined') {
+                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
+                    fbq('track', 'InitiateCheckout');
+                }
+
                 // Obtener el precio basado en la cantidad de productos
                 // Asegurarse de usar el valor correcto para contar los pares
                 const productsValue = window.location.href.includes('contrareembolso') ?
@@ -464,6 +482,12 @@ $(document).ready(function() {
             } else {
                 // Si estamos en la página de contrareembolso pero no se detectó correctamente
                 console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
+
+                // Disparar evento de Facebook Pixel - InitiateCheckout
+                if (typeof fbq !== 'undefined') {
+                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Fallback Contrareembolso)');
+                    fbq('track', 'InitiateCheckout');
+                }
 
                 // Usar el mismo código que en la sección de contrareembolso
                 // No es necesario actualizar campos ocultos para compatibilidad
