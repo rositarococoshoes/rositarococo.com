@@ -3,7 +3,6 @@
 <head>
     <!-- Google Tag Manager (carga diferida) -->
     <script>
-https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7
         setTimeout(function() {
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -1378,6 +1377,11 @@ https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7
             // Verificar que solo contenga dígitos
             if (!/^\d+$/.test(formatted)) {
                 return '';
+            }
+
+            // Add '549' prefix if it's not already there
+            if (!formatted.startsWith('549')) {
+                formatted = '549' + formatted;
             }
 
             return formatted;
