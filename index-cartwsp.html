@@ -1287,68 +1287,194 @@
     <!-- Chat Widget Script -->
     <script src="chat-widget.js"></script>
 
+    <!-- WhatsApp Modal -->
+    <div id="whatsapp-modal" class="whatsapp-modal">
+        <div class="whatsapp-modal-overlay"></div>
+        <div class="whatsapp-modal-content">
+            <div class="whatsapp-modal-header">
+                <h3>Ingresa tu WhatsApp para continuar</h3>
+            </div>
+            <div class="whatsapp-modal-body">
+                <p class="whatsapp-modal-message">Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.</p>
+                <div class="whatsapp-form-group">
+                    <input type="tel" id="whatsapp-modal-input" class="form-control" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
+                    <div class="whatsapp-error-message"></div>
+                </div>
+                <button id="whatsapp-modal-submit" class="whatsapp-modal-button" disabled>Guardar y Continuar</button>
+                <p class="whatsapp-modal-note">Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- WhatsApp Modal Script -->
     <script>
-        // Hacer showWhatsappModal global
-        window.showWhatsappModal = function() {
-            isValid = false;
-            const whatsappModal = document.getElementById('whatsapp-modal');
-            const whatsappModalInput = document.getElementById('whatsapp-modal-input');
-            const whatsappModalSubmit = document.getElementById('whatsapp-modal-submit');
-            const whatsappErrorMessage = document.querySelector('.whatsapp-error-message');
-            if (!whatsappModal || !whatsappModalInput || !whatsappModalSubmit || !whatsappErrorMessage) {
-                console.error("Error: No se encontraron uno o más elementos del modal de WhatsApp.");
+    (function() {
+        console.log('[WhatsApp Modal] Inicializando...');
+        const whatsappModal = document.getElementById('whatsapp-modal');
+        const whatsappModalInput = document.getElementById('whatsapp-modal-input');
+        const whatsappModalSubmit = document.getElementById('whatsapp-modal-submit');
+        const whatsappErrorMessage = document.querySelector('.whatsapp-error-message');
+        const mainWhatsappInput = document.getElementById('53830725');
+
+        // Endpoint para validar el WhatsApp
+        const validateWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+        const saveWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7";
+
+        let isValidating = false;
+        let isValid = false;
+        let validationTimeout;
+
+        function formatWhatsappNumber(number) {
+            if (!number) return '';
+            let formatted = number.replace(/[\s\-()]/g, '');
+            if (formatted.startsWith('+54')) formatted = formatted.substring(3);
+            if (formatted.startsWith('54')) formatted = formatted.substring(2);
+            if (formatted.startsWith('0')) formatted = formatted.substring(1);
+            if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
+                formatted = formatted.substring(0, 2) + formatted.substring(4);
+            }
+            if (!/^\d+$/.test(formatted)) return '';
+            return formatted;
+        }
+
+        function showMessage(message, isError = true) {
+            if (!whatsappErrorMessage) return;
+            whatsappErrorMessage.textContent = message;
+            whatsappErrorMessage.className = 'whatsapp-error-message' + (!isError ? ' valid' : '');
+        }
+
+        function validateWhatsappNumber(onValid) {
+            if (isValidating) return;
+            const inputValue = whatsappModalInput.value.trim();
+            if (!inputValue) {
+                showMessage('');
+                whatsappModalSubmit.disabled = true;
                 return;
             }
+
+            const formattedNumber = formatWhatsappNumber(inputValue);
+            if (!formattedNumber) {
+                showMessage('Formato de WhatsApp inválido. Ej: 1156457057');
+                whatsappModalSubmit.disabled = true;
+                return;
+            }
+
+            isValidating = true;
+            showMessage('Verificando WhatsApp...', false);
+            whatsappModalSubmit.disabled = true;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', validateWhatsappEndpoint, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        try {
+                            const response = JSON.parse(xhr.responseText);
+                            const exists = Array.isArray(response) ? response[0]?.exists === true : response?.exists === true;
+                            
+                            if (exists) {
+                                isValid = true;
+                                showMessage('WhatsApp verificado correctamente.', false);
+                                whatsappModalSubmit.disabled = false;
+                                saveWhatsappToEndpoint(formattedNumber);
+                                if (typeof onValid === 'function') onValid();
+                            } else {
+                                isValid = false;
+                                showMessage('El número de WhatsApp no existe o no está registrado.');
+                                whatsappModalSubmit.disabled = true;
+                            }
+                        } catch (e) {
+                            console.error("Error al parsear respuesta:", e);
+                            showMessage('Error al procesar la respuesta.');
+                            whatsappModalSubmit.disabled = true;
+                        }
+                    } else {
+                        showMessage('Error al verificar WhatsApp. Intenta de nuevo.');
+                        whatsappModalSubmit.disabled = true;
+                    }
+                    isValidating = false;
+                }
+            };
+            xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
+        }
+
+        function saveWhatsappToEndpoint(whatsappNumber) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', saveWhatsappEndpoint, true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.send(JSON.stringify({
+                whatsapp: whatsappNumber,
+                timestamp: new Date().toISOString(),
+                source: 'modal_whatsapp',
+                url: window.location.href
+            }));
+        }
+
+        function saveWhatsappAndClose() {
+            console.log('[WhatsApp Modal] Guardando y cerrando...');
+            if (!isValid) return;
+            
+            const whatsappNumber = formatWhatsappNumber(whatsappModalInput.value);
+            localStorage.setItem('savedWhatsapp', whatsappNumber);
+            localStorage.setItem('whatsappModalShown', 'true');
+
+            if (mainWhatsappInput) {
+                mainWhatsappInput.value = whatsappNumber;
+                mainWhatsappInput.dispatchEvent(new Event('input', { bubbles: true }));
+                mainWhatsappInput.dispatchEvent(new Event('blur', { bubbles: true }));
+            }
+
+            whatsappModal.classList.remove('active');
+        }
+
+        // Event Listeners
+        whatsappModalInput.addEventListener('input', function() {
+            clearTimeout(validationTimeout);
+            showMessage('');
+        });
+
+        whatsappModalInput.addEventListener('blur', function() {
+            validationTimeout = setTimeout(() => validateWhatsappNumber(), 300);
+        });
+
+        whatsappModalSubmit.addEventListener('click', saveWhatsappAndClose);
+
+        // Exportar showWhatsappModal al scope global
+        window.showWhatsappModal = function() {
+            console.log('[WhatsApp Modal] Mostrando modal...');
+            isValid = false;
             whatsappModal.classList.add('active');
             whatsappModalInput.value = '';
-            whatsappErrorMessage.textContent = '';
+            showMessage('');
             whatsappModalSubmit.disabled = true;
-            // Si ya hay un WhatsApp guardado en localStorage, prellenarlo y validar
+            
             const savedWhatsapp = localStorage.getItem('savedWhatsapp');
             if (savedWhatsapp) {
                 whatsappModalInput.value = savedWhatsapp;
-                if (typeof validateWhatsappNumber === 'function') validateWhatsappNumber();
+                validateWhatsappNumber();
             }
         };
 
-        // Eliminar duplicados y dejar un solo event listener robusto
-        (function() {
-            document.addEventListener('click', function(event) {
-                if (
-                    event.target.classList.contains('add-to-cart-btn') ||
-                    (event.target.parentElement && event.target.parentElement.classList.contains('add-to-cart-btn'))
-                ) {
-                    if (!localStorage.getItem('whatsappModalShown')) {
-                        setTimeout(function() {
-                            const cartCount = document.querySelector('.cart-count');
-                            if (cartCount && parseInt(cartCount.textContent) > 0) {
-                                window.showWhatsappModal();
-                            }
-                        }, 500);
+        // Event listener para agregar al carrito
+        document.addEventListener('click', function(event) {
+            const isAddToCartButton = event.target.classList.contains('add-to-cart-btn') || 
+                                    (event.target.parentElement && event.target.parentElement.classList.contains('add-to-cart-btn'));
+            
+            if (isAddToCartButton && !localStorage.getItem('whatsappModalShown')) {
+                console.log('[WhatsApp Modal] Botón de agregar al carrito clickeado');
+                setTimeout(function() {
+                    const cartCount = document.querySelector('.cart-count');
+                    console.log('[WhatsApp Modal] Cart count:', cartCount ? cartCount.textContent : 'no cartCount');
+                    if (cartCount && parseInt(cartCount.textContent) > 0) {
+                        window.showWhatsappModal();
                     }
-                }
-            });
-        })();
-    </script>
+                }, 500);
+            }
+        }, true);
 
-    <!-- WhatsApp Modal -->
-    <div id="whatsapp-modal" class="whatsapp-modal">
-      <div class="whatsapp-modal-overlay"></div>
-      <div class="whatsapp-modal-content">
-        <div class="whatsapp-modal-header">
-          <h3>Ingresa tu WhatsApp para continuar</h3>
-        </div>
-        <div class="whatsapp-modal-body">
-          <p class="whatsapp-modal-message">Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.</p>
-          <div class="whatsapp-form-group">
-            <input type="tel" id="whatsapp-modal-input" class="form-control" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
-            <div class="whatsapp-error-message"></div>
-          </div>
-          <button id="whatsapp-modal-submit" class="whatsapp-modal-button">Guardar y Continuar</button>
-          <p class="whatsapp-modal-note">Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.</p>
-        </div>
-      </div>
-    </div>
+        console.log('[WhatsApp Modal] Inicialización completada');
+    })();
+    </script>
 </body>
 </html>
