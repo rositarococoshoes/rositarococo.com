@@ -1362,7 +1362,6 @@
                 }
     
                 function validateWhatsappNumber() {
-                    // ... (tu función validateWhatsappNumber con la corrección anterior)
                     if (isValidating) return;
                     const inputValue = whatsappModalInput.value.trim();
                     if (!inputValue) {
@@ -1387,18 +1386,21 @@
                             if (xhr.status === 200) {
                                 try {
                                     const response = JSON.parse(xhr.responseText);
-                                    if (Array.isArray(response) && response.length > 0 && response[0].exists === true) {
+                                    // Aceptar tanto array como objeto directo
+                                    let exists = false;
+                                    if (Array.isArray(response) && response.length > 0 && typeof response[0].exists !== 'undefined') {
+                                        exists = response[0].exists === true;
+                                    } else if (typeof response.exists !== 'undefined') {
+                                        exists = response.exists === true;
+                                    }
+                                    if (exists) {
                                         isValid = true;
                                         showMessage('WhatsApp verificado correctamente.', false);
                                         whatsappModalSubmit.disabled = false;
                                         saveWhatsappToEndpoint(formattedNumber);
                                     } else {
                                         isValid = false;
-                                        if (Array.isArray(response) && response.length > 0 && response[0].exists === false) {
-                                            showMessage('El número de WhatsApp no existe o no está registrado.');
-                                        } else {
-                                            showMessage('Respuesta inesperada del servidor de validación.');
-                                        }
+                                        showMessage('El número de WhatsApp no existe o no está registrado.');
                                         whatsappModalSubmit.disabled = true;
                                     }
                                 } catch (e) {
