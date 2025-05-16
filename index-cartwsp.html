@@ -1315,7 +1315,12 @@
                 }
     
                 function showWhatsappModal() {
+                    isValid = false; // Reiniciar validación cada vez que se abre el modal
                     whatsappModal.classList.add('active');
+                    whatsappModalInput.value = '';
+                    showMessage('');
+                    whatsappModalSubmit.disabled = true;
+                    // Si ya hay un WhatsApp guardado en localStorage, prellenarlo y validar
                     const savedWhatsapp = localStorage.getItem('savedWhatsapp');
                     if (savedWhatsapp) {
                         whatsappModalInput.value = savedWhatsapp;
