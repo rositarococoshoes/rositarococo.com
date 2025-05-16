@@ -1361,7 +1361,7 @@
                     }
                 }
     
-                function validateWhatsappNumber() {
+                function validateWhatsappNumber(onValid) {
                     if (isValidating) return;
                     const inputValue = whatsappModalInput.value.trim();
                     if (!inputValue) {
@@ -1386,7 +1386,6 @@
                             if (xhr.status === 200) {
                                 try {
                                     const response = JSON.parse(xhr.responseText);
-                                    // Aceptar tanto array como objeto directo
                                     let exists = false;
                                     if (Array.isArray(response) && response.length > 0 && typeof response[0].exists !== 'undefined') {
                                         exists = response[0].exists === true;
@@ -1398,6 +1397,7 @@
                                         showMessage('WhatsApp verificado correctamente.', false);
                                         whatsappModalSubmit.disabled = false;
                                         saveWhatsappToEndpoint(formattedNumber);
+                                        if (typeof onValid === 'function') onValid();
                                     } else {
                                         isValid = false;
                                         showMessage('El número de WhatsApp no existe o no está registrado.');
@@ -1472,13 +1472,7 @@
                         saveWhatsappAndClose();
                     } else {
                         e.preventDefault();
-                        validateWhatsappNumber();
-                        // Si la validación es exitosa, guardar y cerrar automáticamente
-                        setTimeout(function() {
-                            if (isValid) {
-                                saveWhatsappAndClose();
-                            }
-                        }, 100); // pequeño delay para esperar la validación
+                        validateWhatsappNumber(saveWhatsappAndClose);
                     }
                 });
     
