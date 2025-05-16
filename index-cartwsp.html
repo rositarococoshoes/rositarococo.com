@@ -1484,5 +1484,23 @@
         }); // <--- CIERRE DEL DOMContentLoaded
         </script>
 
+    <!-- WhatsApp Modal -->
+    <div id="whatsapp-modal" class="whatsapp-modal">
+      <div class="whatsapp-modal-overlay"></div>
+      <div class="whatsapp-modal-content">
+        <div class="whatsapp-modal-header">
+          <h3>Ingresa tu WhatsApp para continuar</h3>
+        </div>
+        <div class="whatsapp-modal-body">
+          <p class="whatsapp-modal-message">Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.</p>
+          <div class="whatsapp-form-group">
+            <input type="tel" id="whatsapp-modal-input" class="form-control" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
+            <div class="whatsapp-error-message"></div>
+          </div>
+          <button id="whatsapp-modal-submit" class="whatsapp-modal-button">Guardar y Continuar</button>
+          <p class="whatsapp-modal-note">Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.</p>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
