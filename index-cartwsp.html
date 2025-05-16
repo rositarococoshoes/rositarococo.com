@@ -1287,26 +1287,6 @@
     <!-- Chat Widget Script -->
     <script src="chat-widget.js"></script>
 
-    <!-- WhatsApp Modal -->
-    <div id="whatsapp-modal" class="whatsapp-modal">
-        <div class="whatsapp-modal-overlay"></div>
-        <div class="whatsapp-modal-content">
-            <div class="whatsapp-modal-header">
-                <h3>Ingresa tu WhatsApp para continuar</h3>
-                <!-- Close button removed to make modal mandatory -->
-            </div>
-            <div class="whatsapp-modal-body">
-                <p class="whatsapp-modal-message">Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.</p>
-                <div class="whatsapp-form-group">
-                    <input type="tel" id="whatsapp-modal-input" class="form-control" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
-                    <div class="whatsapp-error-message"></div>
-                </div>
-                <button id="whatsapp-modal-submit" class="whatsapp-modal-button">Guardar y Continuar</button>
-                <p class="whatsapp-modal-note">Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.</p>
-            </div>
-        </div>
-    </div>
-
     <!-- WhatsApp Modal Script -->
     <script>
     (function() {
@@ -1420,59 +1400,73 @@
             showMessage('Verificando WhatsApp...', false);
             whatsappModalSubmit.disabled = true;
 
+            console.log('Modal: Validating WhatsApp number:', formattedNumber); // Added console log
+
             // Hacer la petición al API para validar el número
             const xhr = new XMLHttpRequest();
             xhr.open('POST', validateWhatsappEndpoint, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
 
             xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        try {
-                            const response = JSON.parse(xhr.responseText);
+    if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+            try {
+                const response = JSON.parse(xhr.responseText);
 
-                            if (response.valid === true) {
-                                isValid = true;
-                                showMessage('WhatsApp verificado correctamente', false);
-                                whatsappModalSubmit.disabled = false;
+                // AQUÍ ESTÁ EL CAMBIO:
+                // La API devuelve un array, así que verificamos el primer elemento y su propiedad 'exists'
+                if (Array.isArray(response) && response.length > 0 && response[0].exists === true) {
+                    isValid = true;
+                    showMessage('WhatsApp verificado correctamente.', false); // Mensaje más corto y amigable
+                    whatsappModalSubmit.disabled = false;
 
-                                // Guardar el WhatsApp en el endpoint inmediatamente después de la validación
-                                saveWhatsappToEndpoint(formattedNumber);
-                            } else {
-                                isValid = false;
-                                showMessage('WhatsApp inválido o no registrado');
-                                whatsappModalSubmit.disabled = true;
-                            }
-                        } catch (e) {
-                            isValid = false;
-                            showMessage('Error al procesar la respuesta');
-                            whatsappModalSubmit.disabled = true;
-                        }
+                    // Guardar el WhatsApp en el endpoint inmediatamente después de la validación
+                    saveWhatsappToEndpoint(formattedNumber);
+                } else {
+                    isValid = false;
+                    // Podrías dar un mensaje más específico si 'exists' es false
+                    if (Array.isArray(response) && response.length > 0 && response[0].exists === false) {
+                        showMessage('El número de WhatsApp no existe o no está registrado.');
                     } else {
-                        isValid = false;
-                        showMessage('Error al verificar WhatsApp. Intenta de nuevo.');
-                        whatsappModalSubmit.disabled = true;
+                        showMessage('Respuesta inesperada del servidor de validación.'); // O un mensaje más genérico
                     }
-
-                    isValidating = false;
+                    whatsappModalSubmit.disabled = true;
                 }
-            };
+            } catch (e) {
+                isValid = false;
+                console.error("Error al parsear JSON de validación:", e, xhr.responseText); // Ayuda a depurar
+                showMessage('Error al procesar la respuesta de validación.');
+                whatsappModalSubmit.disabled = true;
+            }
+        } else {
+            isValid = false;
+            console.error("Error en la petición de validación:", xhr.status, xhr.statusText); // Ayuda a depurar
+            showMessage('Error al verificar WhatsApp (' + xhr.status + '). Intenta de nuevo.');
+            whatsappModalSubmit.disabled = true;
+        }
+
+        isValidating = false;
+    }
+};
 
             xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
         }
 
         // Función para guardar el WhatsApp en el endpoint
         function saveWhatsappToEndpoint(whatsappNumber) {
+            console.log('Modal: Saving WhatsApp number to endpoint:', whatsappNumber); // Added console log
             const xhr = new XMLHttpRequest();
             xhr.open('POST', saveWhatsappEndpoint, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
+                    console.log('Modal: Save API response status:', xhr.status); // Added console log
+                    console.log('Modal: Save API response text:', xhr.responseText); // Added console log
                     if (xhr.status === 200) {
-                        console.log('WhatsApp guardado correctamente en el endpoint');
+                        console.log('Modal: WhatsApp saved successfully to endpoint'); // Modified console log
                     } else {
-                        console.error('Error al guardar WhatsApp en el endpoint');
+                        console.error('Modal: Error saving WhatsApp to endpoint'); // Modified console log
                     }
                 }
             };
@@ -1490,15 +1484,18 @@
         function saveWhatsappAndClose() {
             if (!isValid) return;
 
+            console.log('Modal: Saving WhatsApp and closing modal...'); // Added console log
             const whatsappNumber = formatWhatsappNumber(whatsappModalInput.value);
 
             // Guardar en localStorage
             localStorage.setItem('savedWhatsapp', whatsappNumber);
             localStorage.setItem('whatsappModalShown', 'true');
+            console.log('Modal: WhatsApp saved to localStorage:', whatsappNumber); // Added console log
 
             // Autocompletar el campo de WhatsApp en el formulario principal
             if (mainWhatsappInput) {
                 mainWhatsappInput.value = whatsappNumber;
+                console.log('Modal: Main WhatsApp input updated:', mainWhatsappInput.value); // Added console log
 
                 // Disparar eventos para que el formulario principal detecte el cambio
                 const event = new Event('input', { bubbles: true });
@@ -1514,6 +1511,7 @@
 
             // Cerrar el modal
             hideWhatsappModal();
+            console.log('Modal: WhatsApp modal hidden.'); // Added console log
         }
 
         // Event Listeners
