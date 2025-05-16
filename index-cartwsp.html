@@ -1334,7 +1334,6 @@
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
             if (!/^\d+$/.test(formatted)) return '';
-            // Asegurar que el número tenga el prefijo 549 para el endpoint
             return '549' + formatted;
         }
 
@@ -1344,32 +1343,34 @@
             whatsappErrorMessage.className = 'whatsapp-error-message' + (!isError ? ' valid' : '');
         }
 
+        function validateInput(inputValue) {
+            if (!inputValue) return false;
+            const formattedNumber = formatWhatsappNumber(inputValue);
+            // Validar que el número tenga el formato correcto y la longitud adecuada
+            return formattedNumber && formattedNumber.length >= 12;
+        }
+
         function validateWhatsappNumber(onValid) {
             const inputValue = whatsappModalInput.value.trim();
-            if (!inputValue) {
-                showMessage('');
-                whatsappModalSubmit.disabled = true;
-                return;
-            }
-
-            const formattedNumber = formatWhatsappNumber(inputValue);
-            if (!formattedNumber) {
+            
+            // Validación local del formato
+            if (!validateInput(inputValue)) {
                 showMessage('Formato de WhatsApp inválido. Ej: 1156457057');
                 whatsappModalSubmit.disabled = true;
                 return;
             }
 
-            // Habilitar el botón si el formato es válido
+            // Si el formato es válido, habilitar el botón inmediatamente
             whatsappModalSubmit.disabled = false;
+            showMessage('Formato válido', false);
 
             if (isValidating) return;
             isValidating = true;
-            showMessage('Verificando WhatsApp...', false);
 
+            const formattedNumber = formatWhatsappNumber(inputValue);
             const xhr = new XMLHttpRequest();
             xhr.open('POST', validateWhatsappEndpoint, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.timeout = 5000; // 5 segundos de timeout
 
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4) {
@@ -1383,46 +1384,16 @@
                                 showMessage('WhatsApp verificado correctamente.', false);
                                 saveWhatsappToEndpoint(formattedNumber);
                                 if (typeof onValid === 'function') onValid();
-                            } else {
-                                isValid = false;
-                                showMessage('El número ingresado parece ser válido. Puedes continuar.');
                             }
                         } catch (e) {
                             console.error("Error al parsear respuesta:", e);
-                            showMessage('El número ingresado parece ser válido. Puedes continuar.');
-                            isValid = true; // Permitir continuar si el formato es válido
                         }
-                    } else {
-                        console.error("Error del servidor:", xhr.status);
-                        showMessage('El número ingresado parece ser válido. Puedes continuar.');
-                        isValid = true; // Permitir continuar si el formato es válido
                     }
                     isValidating = false;
                 }
             };
 
-            xhr.ontimeout = function() {
-                console.error("Timeout en la validación");
-                showMessage('El número ingresado parece ser válido. Puedes continuar.');
-                isValid = true; // Permitir continuar si el formato es válido
-                isValidating = false;
-            };
-
-            xhr.onerror = function() {
-                console.error("Error de red en la validación");
-                showMessage('El número ingresado parece ser válido. Puedes continuar.');
-                isValid = true; // Permitir continuar si el formato es válido
-                isValidating = false;
-            };
-
-            try {
-                xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
-            } catch (e) {
-                console.error("Error al enviar la petición:", e);
-                showMessage('El número ingresado parece ser válido. Puedes continuar.');
-                isValid = true; // Permitir continuar si el formato es válido
-                isValidating = false;
-            }
+            xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
         }
 
         function saveWhatsappToEndpoint(whatsappNumber) {
@@ -1438,8 +1409,7 @@
         }
 
         function saveWhatsappAndClose() {
-            console.log('[WhatsApp Modal] Guardando y cerrando...');
-            if (!isValid) return;
+            if (!validateInput(whatsappModalInput.value.trim())) return;
             
             const whatsappNumber = formatWhatsappNumber(whatsappModalInput.value);
             localStorage.setItem('savedWhatsapp', whatsappNumber);
@@ -1456,20 +1426,22 @@
 
         // Event Listeners
         whatsappModalInput.addEventListener('input', function() {
-            clearTimeout(validationTimeout);
-            showMessage('');
-        });
-
-        whatsappModalInput.addEventListener('blur', function() {
-            validationTimeout = setTimeout(() => validateWhatsappNumber(), 300);
+            const inputValue = this.value.trim();
+            const isValidFormat = inputValue.length >= 10 && /^\d+$/.test(inputValue.replace(/[\s\-()]/g, ''));
+            whatsappModalSubmit.disabled = !isValidFormat;
+            if (isValidFormat) {
+                showMessage('Formato válido', false);
+            } else if (inputValue) {
+                showMessage('Formato de WhatsApp inválido. Ej: 1156457057');
+            } else {
+                showMessage('');
+            }
         });
 
         whatsappModalSubmit.addEventListener('click', saveWhatsappAndClose);
 
-        // Exportar showWhatsappModal al scope global
         window.showWhatsappModal = function() {
             console.log('[WhatsApp Modal] Mostrando modal...');
-            isValid = false;
             whatsappModal.classList.add('active');
             whatsappModalInput.value = '';
             showMessage('');
@@ -1484,14 +1456,13 @@
 
         // Event listener para agregar al carrito
         document.addEventListener('click', function(event) {
-            const isAddToCartButton = event.target.classList.contains('add-to-cart-btn') || 
-                                    (event.target.parentElement && event.target.parentElement.classList.contains('add-to-cart-btn'));
-            
-            if (isAddToCartButton && !localStorage.getItem('whatsappModalShown')) {
-                console.log('[WhatsApp Modal] Botón de agregar al carrito clickeado');
+            if (
+                (event.target.classList.contains('add-to-cart-btn') ||
+                (event.target.parentElement && event.target.parentElement.classList.contains('add-to-cart-btn'))) &&
+                !localStorage.getItem('whatsappModalShown')
+            ) {
                 setTimeout(function() {
                     const cartCount = document.querySelector('.cart-count');
-                    console.log('[WhatsApp Modal] Cart count:', cartCount ? cartCount.textContent : 'no cartCount');
                     if (cartCount && parseInt(cartCount.textContent) > 0) {
                         window.showWhatsappModal();
                     }
@@ -1499,7 +1470,6 @@
             }
         }, true);
 
-        console.log('[WhatsApp Modal] Inicialización completada');
     })();
     </script>
 </body>
