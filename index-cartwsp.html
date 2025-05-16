@@ -1467,7 +1467,20 @@
                 whatsappModalInput.addEventListener('blur', function() {
                     validationTimeout = setTimeout(validateWhatsappNumber, 300);
                 });
-                whatsappModalSubmit.addEventListener('click', saveWhatsappAndClose);
+                whatsappModalSubmit.addEventListener('click', function(e) {
+                    if (isValid) {
+                        saveWhatsappAndClose();
+                    } else {
+                        e.preventDefault();
+                        validateWhatsappNumber();
+                        // Si la validación es exitosa, guardar y cerrar automáticamente
+                        setTimeout(function() {
+                            if (isValid) {
+                                saveWhatsappAndClose();
+                            }
+                        }, 100); // pequeño delay para esperar la validación
+                    }
+                });
     
                 document.addEventListener('click', function(event) {
                     if (event.target.classList.contains('add-to-cart-btn') ||
