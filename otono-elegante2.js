@@ -335,6 +335,50 @@ $(document).ready(function(){
   var checkoutBtn = $("#checkout-btn");
   var restOfForm = $("#restodelform");
 
+  // Inicializar el carrito al cargar la página
+  (function initializeCart() {
+    // Obtener los productos del campo oculto
+    var summaryContent = summaryInput.val() || "";
+    console.log('Inicializando carrito con productos:', summaryContent);
+
+    // Convertir a array y filtrar valores vacíos
+    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
+    console.log('Array de productos inicial:', summaryArray);
+
+    // Actualizar el carrito con los productos existentes
+    if (summaryArray.length > 0) {
+      updateCart(summaryArray);
+
+      // Actualizar el texto del total en el resumen del pedido
+      var isContrareembolso = window.location.href.includes('contrareembolso');
+      var totalPriceText = "";
+
+      if (summaryArray.length === 1) {
+        if (isContrareembolso) {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
+        } else {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
+        }
+      } else if (summaryArray.length === 2) {
+        if (isContrareembolso) {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+        } else {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+        }
+      }
+
+      // Actualizar el elemento #preciototal con el texto correspondiente
+      if (totalPriceText) {
+        $("#preciototal").html(totalPriceText);
+        console.log("Inicializando #preciototal con:", totalPriceText);
+      }
+    } else {
+      // Si no hay productos, mostrar mensaje predeterminado
+      $("#preciototal").html("Elige modelos y talles para ver el total");
+      console.log("No hay productos iniciales, mostrando mensaje predeterminado en #preciototal");
+    }
+  })();
+
   $("#todoslosmodelos select.talle").change(function(){
     var $currentItem = $(this).closest('.product-item');
     var $select = $(this);
@@ -538,9 +582,6 @@ $(document).ready(function(){
       }
     }
 
-    // Indicar que se agregó el producto correctamente
-    return true;
-
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
@@ -601,7 +642,9 @@ $(document).ready(function(){
       restOfForm.addClass('hidden').removeClass('active');
     }
 
+    // Actualizar el total en el resumen del pedido
     $("#preciototal").html(totalPriceText);
+    console.log("Actualizando #preciototal con:", totalPriceText);
 
     // Recalculate price based on payment method - REMOVED as #comoabona is gone
     // $("#comoabona").trigger('change');
@@ -612,7 +655,7 @@ $(document).ready(function(){
     // Actualizar la visibilidad del botón flotante y el formulario
     updateFormVisibility();
 
-    // Retornar true para indicar que el producto se agregó correctamente
+    // Indicar que se agregó el producto correctamente
     return true;
   }
 
@@ -1505,6 +1548,10 @@ $(document).ready(function(){
       // Resaltar la primera instrucción cuando el carrito está vacío
       $('.instruction-step:first-child').addClass('highlight');
       $('.instruction-step:not(:first-child)').removeClass('highlight');
+
+      // Actualizar el texto del total en el resumen del pedido
+      $("#preciototal").html("Elige modelos y talles para ver el total");
+      console.log("Carrito vacío, actualizando #preciototal");
     } else {
       $('.empty-cart-message').hide();
       $('.cart-instructions').show();
@@ -1527,20 +1574,32 @@ $(document).ready(function(){
       $('.instruction-step:last-child').addClass('highlight');
       $('.instruction-step:not(:first-child)').removeClass('highlight');
 
-      // Si hay exactamente 1 producto, mostrar mensaje sobre descuento por segundo par
+      // Actualizar el texto del total en el resumen del pedido según la cantidad de productos
+      var isContrareembolso = window.location.href.includes('contrareembolso');
+      var totalPriceText = "";
+
       if (cartItems.length === 1) {
-        var isContrareembolso = window.location.href.includes('contrareembolso');
         if (isContrareembolso) {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
           showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $42.500 en la oferta de 2 pares', 'info');
         } else {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
           showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $55.000 en la oferta de 2 pares', 'info');
         }
-      }
-
-      // Cuando hay 2 productos, mostrar notificación pero NO activar el formulario automáticamente
-      if (cartItems.length === 2) {
+      } else if (cartItems.length === 2) {
+        if (isContrareembolso) {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+        } else {
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+        }
         // Mostrar notificación de éxito
         showNotification('¡Excelente elección! Has completado tu selección de 2 pares con descuento. Puedes continuar cuando estés listo.', 'success');
+      }
+
+      // Actualizar el elemento #preciototal con el texto correspondiente
+      if (totalPriceText) {
+        $("#preciototal").html(totalPriceText);
+        console.log("Actualizando #preciototal en updateCart con:", totalPriceText);
       }
 
       // Actualizar la visibilidad del botón flotante
@@ -1614,7 +1673,7 @@ $(document).ready(function(){
     $('#286442883').trigger('change');
     $('#1471599855').trigger('change');
 
-    // Update the cart display
+    // Update the cart display - esto actualizará también el #preciototal
     updateCart(summaryArray);
 
     showNotification('Producto eliminado del carrito', 'info');
