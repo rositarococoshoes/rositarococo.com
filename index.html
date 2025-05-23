@@ -10,7 +10,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-W2CVWDJ');
         }, 2000); // Retraso de 2 segundos para mejorar la carga inicial
- 
+
     </script>
     <!-- End Google Tag Manager -->
 
@@ -1247,7 +1247,7 @@
 
                     <p class="help-block" style="font-size: 0.9em; margin-top: 15px;">
                         <strong style="color:#a05941; display:inline; min-width:auto;">¡Importante!</strong> Tu pedido es un compromiso de pago. Verifica que todo sea correcto.<br>
-                        Recuerda que despachamos en aprox. 15 días (producimos a pedido) y te enviaremos el seguimiento por email.
+                        A partir de los 7 días hábiles lo recibirás (producimos a pedido) y te enviaremos el seguimiento por email.
                     </p>
                 </div>
 
@@ -1354,14 +1354,14 @@
             const xhr = new XMLHttpRequest();
             xhr.open('POST', saveWhatsappEndpoint, true);
             xhr.setRequestHeader('Content-Type', 'application/json');
-            
+
             const data = {
                 whatsapp: whatsappNumber,
                 timestamp: new Date().toISOString(),
                 source: 'modal_whatsapp',
                 url: window.location.href
             };
-            
+
             console.log('[WhatsApp Modal] Enviando datos al endpoint:', data);
             xhr.send(JSON.stringify(data));
         }
@@ -1373,10 +1373,10 @@
                 console.log('[WhatsApp Modal] Formato inválido, no se guardará');
                 return;
             }
-            
+
             const whatsappNumber = formatWhatsappNumber(inputValue);
             console.log('[WhatsApp Modal] Número formateado:', whatsappNumber);
-            
+
             // Guardar en localStorage
             localStorage.setItem('savedWhatsapp', whatsappNumber);
             localStorage.setItem('whatsappModalShown', 'true');
@@ -1416,7 +1416,7 @@
             whatsappModal.classList.add('active');
             whatsappModalInput.value = '';
             showMessage('');
-            
+
             const savedWhatsapp = localStorage.getItem('savedWhatsapp');
             if (savedWhatsapp) {
                 whatsappModalInput.value = savedWhatsapp;
