@@ -232,12 +232,12 @@ $(document).ready(function() {
                 // Configurar el formulario para enviar a través del iframe
                 this.target = 'hidden_iframe';
 
-                // Enviar el formulario directamente a Google Forms
+                // Enviar el formulario al nuevo endpoint para contrareembolso
                 var formData = $(this).serialize();
 
-                $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
+                $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
                     .done(function() {
-                        console.log('Formulario enviado a Google Forms (Contrareembolso)');
+                        console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
 
                         // Guardar detalles del pedido en localStorage
                         localStorage.setItem('orderDetails', output);
@@ -588,12 +588,12 @@ $(document).ready(function() {
                 // Configurar el formulario para enviar a través del iframe
                 this.target = 'hidden_iframe';
 
-                // Enviar el formulario directamente a Google Forms
+                // Enviar el formulario al nuevo endpoint para contrareembolso
                 var formData = $(this).serialize();
 
-                $.post('https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec', formData)
+                $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
                     .done(function() {
-                        console.log('Formulario enviado a Google Forms (Contrareembolso)');
+                        console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
 
                         // Guardar detalles del pedido en localStorage
                         localStorage.setItem('orderDetails', output);
