@@ -1,7 +1,6 @@
 // Inicialización de Swiper para todos los carruseles
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM cargado, inicializando Swiper...');
 
     // Esperar a que Swiper esté completamente cargado
     setTimeout(function() {
@@ -50,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Inicializar el carrusel de testimonios
         const testimoniosEl = document.getElementById('swiper-testimonios');
         if (testimoniosEl) {
-            console.log('Inicializando Swiper de testimonios');
 
             // Configuración específica para el carrusel de testimonios
             const testimoniosConfig = {
@@ -88,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (prevBtn) {
                 prevBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Clic en botón anterior de testimonios');
                     testimoniosSwiper.slidePrev();
                 });
             }
@@ -96,12 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nextBtn) {
                 nextBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Clic en botón siguiente de testimonios');
                     testimoniosSwiper.slideNext();
                 });
             }
         } else {
-            console.warn('No se encontró el carrusel de testimonios');
+            // Carrusel de testimonios no encontrado (normal si se usa el nuevo diseño)
         }
     }
 
@@ -109,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function initProductSwiper(id, config) {
         const el = document.getElementById(id);
         if (el) {
-            console.log(`Inicializando Swiper: ${id}`);
 
             // Configurar selectores específicos para este carrusel
             const swiperConfig = {
@@ -130,10 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const swiper = new Swiper(`#${id}`, swiperConfig);
 
             // Verificar que los botones de navegación funcionen
-            console.log(`Botones de navegación para ${id}:`, {
-                prev: el.querySelector('.swiper-button-prev'),
-                next: el.querySelector('.swiper-button-next')
-            });
 
             // Agregar event listeners adicionales para asegurar que funcionen
             const prevBtn = el.querySelector('.swiper-button-prev');
@@ -142,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (prevBtn) {
                 prevBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Clic en botón anterior');
                     swiper.slidePrev();
                 });
             }
@@ -150,14 +140,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (nextBtn) {
                 nextBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Clic en botón siguiente');
                     swiper.slideNext();
                 });
             }
 
             return swiper;
         } else {
-            console.warn(`No se encontró el elemento: ${id}`);
             return null;
         }
     }
@@ -187,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Reinicializar los carruseles cuando la página esté completamente cargada
     window.addEventListener('load', function() {
-        console.log('Página completamente cargada, reinicializando Swiper...');
         setTimeout(function() {
             initSwipers();
         }, 500);
