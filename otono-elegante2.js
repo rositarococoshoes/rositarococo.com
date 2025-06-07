@@ -17,12 +17,12 @@ $(document).ready(function(){
       // Si hay un valor en 1471599855 pero no en 286442883, sincronizar
       if (value1471599855 && !value286442883) {
         $('#286442883').val(value1471599855);
-        console.log('Campo #286442883 sincronizado con #1471599855:', value1471599855);
+        // console.log('Campo #286442883 sincronizado con #1471599855:', value1471599855);
       }
       // Si hay un valor en 286442883 pero no en 1471599855, sincronizar
       else if (value286442883 && !value1471599855) {
         $('#1471599855').val(value286442883);
-        console.log('Campo #1471599855 sincronizado con #286442883:', value286442883);
+        // console.log('Campo #1471599855 sincronizado con #286442883:', value286442883);
       }
     }
   }
@@ -141,11 +141,11 @@ $(document).ready(function(){
           'opacity': '1',
           'z-index': '9999'
         }).removeClass('hidden');
-        console.log('Mostrando botón flotante - formulario no visible');
+        // console.log('Mostrando botón flotante - formulario no visible');
       } else {
         // Ocultar el botón si estamos viendo el formulario
         $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-        console.log('Ocultando botón flotante - formulario visible');
+        // console.log('Ocultando botón flotante - formulario visible');
       }
     } else {
       // Ocultar el botón si no hay productos en el carrito
@@ -187,7 +187,7 @@ $(document).ready(function(){
           'visibility': 'visible',
           'opacity': '1'
         });
-        console.log('Mostrando botón: estamos arriba del formulario y no es visible');
+        // console.log('Mostrando botón: estamos arriba del formulario y no es visible');
       } else {
         // Ocultar el botón si el formulario es visible o estamos debajo de él
         $('#fixed-checkout-button').css({
@@ -195,7 +195,7 @@ $(document).ready(function(){
           'visibility': 'hidden',
           'opacity': '0'
         });
-        console.log('Ocultando botón: formulario visible o estamos debajo');
+        // console.log('Ocultando botón: formulario visible o estamos debajo');
       }
     } else {
       // Ocultar el formulario y el botón cuando no hay productos
@@ -205,7 +205,7 @@ $(document).ready(function(){
         'visibility': 'hidden',
         'opacity': '0'
       });
-      console.log('Ocultando botón: no hay productos');
+      // console.log('Ocultando botón: no hay productos');
     }
   }
 
@@ -278,11 +278,11 @@ $(document).ready(function(){
           'opacity': '1',
           'z-index': '9999'
         }).removeClass('hidden');
-        console.log('Mostrando botón flotante al hacer scroll - formulario no visible');
+        // console.log('Mostrando botón flotante al hacer scroll - formulario no visible');
       } else {
         // Ocultar el botón si estamos viendo el formulario
         $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-        console.log('Ocultando botón flotante al hacer scroll - formulario visible');
+        // console.log('Ocultando botón flotante al hacer scroll - formulario visible');
       }
     } else {
       // Si no hay productos en el carrito, ocultar el botón flotante
@@ -310,7 +310,7 @@ $(document).ready(function(){
   // --- Add to Cart Button Logic ---
   $('.add-to-cart-btn').on('click', function() {
     var modelId = $(this).data('model');
-    console.log('Botón clickeado con data-model:', modelId);
+    // console.log('Botón clickeado con data-model:', modelId);
 
     // Llamar a la función para agregar al carrito
     var added = addToCartFromButton(this);
@@ -339,11 +339,11 @@ $(document).ready(function(){
   (function initializeCart() {
     // Obtener los productos del campo oculto
     var summaryContent = summaryInput.val() || "";
-    console.log('Inicializando carrito con productos:', summaryContent);
+    // console.log('Inicializando carrito con productos:', summaryContent);
 
     // Convertir a array y filtrar valores vacíos
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    console.log('Array de productos inicial:', summaryArray);
+    // console.log('Array de productos inicial:', summaryArray);
 
     // Actualizar el carrito con los productos existentes
     if (summaryArray.length > 0) {
@@ -370,12 +370,12 @@ $(document).ready(function(){
       // Actualizar el elemento #preciototal con el texto correspondiente
       if (totalPriceText) {
         $("#preciototal").html(totalPriceText);
-        console.log("Inicializando #preciototal con:", totalPriceText);
+        // console.log("Inicializando #preciototal con:", totalPriceText);
       }
     } else {
       // Si no hay productos, mostrar mensaje predeterminado
       $("#preciototal").html("Elige modelos y talles para ver el total");
-      console.log("No hay productos iniciales, mostrando mensaje predeterminado en #preciototal");
+      // console.log("No hay productos iniciales, mostrando mensaje predeterminado en #preciototal");
     }
   })();
 
@@ -396,7 +396,7 @@ $(document).ready(function(){
   function addToCartFromButton(button) {
     // Obtener el ID del modelo del botón
     var modelId = $(button).data('model');
-    console.log('Agregando al carrito desde botón con data-model:', modelId);
+    // console.log('Agregando al carrito desde botón con data-model:', modelId);
 
     // Obtener el selector correcto basado en el ID del modelo
     var $select;
@@ -418,8 +418,8 @@ $(document).ready(function(){
       $select = $(button).closest('fieldset').find('select.talle');
     }
 
-    console.log('Selector encontrado para ' + modelId + ':', $select.length > 0 ? 'Sí' : 'No');
-    console.log('ID del selector:', $select.attr('id'));
+    // console.log('Selector encontrado para ' + modelId + ':', $select.length > 0 ? 'Sí' : 'No');
+    // console.log('ID del selector:', $select.attr('id'));
 
     // Obtener el elemento del producto actual
     var $currentItem = $select.closest('.product-item');
@@ -445,9 +445,9 @@ $(document).ready(function(){
 
     // Process the summary content
     var summaryContent = summaryInput.val() || "";
-    console.log('Contenido actual del campo de productos:', summaryContent);
+    // console.log('Contenido actual del campo de productos:', summaryContent);
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    console.log('Array de productos antes de agregar:', summaryArray);
+    // console.log('Array de productos antes de agregar:', summaryArray);
 
     // Check if we exceed the maximum allowed pairs BEFORE adding the new item
     if (summaryArray.length >= 2) {
@@ -467,7 +467,7 @@ $(document).ready(function(){
 
     // Add new value
     summaryArray.push(currentVal);
-    console.log('Array de productos después de agregar:', summaryArray);
+    // console.log('Array de productos después de agregar:', summaryArray);
 
     // Mostrar notificación de éxito
     $select.closest('.form-group').find('.avisoagregado').remove(); // Remove any existing message
@@ -478,30 +478,30 @@ $(document).ready(function(){
 
     // Update the summary input and display
     var finalSummaryText = summaryArray.join(', ');
-    console.log('Texto final para el campo de productos:', finalSummaryText);
+    // console.log('Texto final para el campo de productos:', finalSummaryText);
 
     // Actualizar ambos campos independientemente de la página
     // Asegurarse de que ambos campos existan antes de actualizarlos
     if ($('#286442883').length) {
         $('#286442883').val(finalSummaryText);
-        console.log('Campo #286442883 actualizado a:', $('#286442883').val());
+        // console.log('Campo #286442883 actualizado a:', $('#286442883').val());
     } else {
-        console.warn('Campo #286442883 no encontrado');
+        // console.warn('Campo #286442883 no encontrado');
     }
 
     if ($('#1471599855').length) {
         $('#1471599855').val(finalSummaryText);
-        console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
+        // console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
     } else {
-        console.warn('Campo #1471599855 no encontrado');
+        // console.warn('Campo #1471599855 no encontrado');
     }
 
     // Asegurarse de que el campo de resumen también esté actualizado
     if (summaryInput.length) {
         summaryInput.val(finalSummaryText);
-        console.log('Campo summaryInput actualizado a:', summaryInput.val());
+        // console.log('Campo summaryInput actualizado a:', summaryInput.val());
     } else {
-        console.warn('Campo summaryInput no encontrado');
+        // console.warn('Campo summaryInput no encontrado');
     }
 
     var finalSummary = summaryInput.val();
@@ -549,7 +549,7 @@ $(document).ready(function(){
       }
 
       // Enviar el evento AddToCart a Facebook
-      console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
+      // console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
       fbq('track', 'AddToCart', {
         content_name: productName,
         content_type: 'product',
@@ -585,7 +585,6 @@ $(document).ready(function(){
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
-    var totalPrice = 0;
 
     // Detectar si estamos en la página de contrareembolso
     var isContrareembolso = window.location.href.includes('contrareembolso');
@@ -644,7 +643,7 @@ $(document).ready(function(){
 
     // Actualizar el total en el resumen del pedido
     $("#preciototal").html(totalPriceText);
-    console.log("Actualizando #preciototal con:", totalPriceText);
+    // console.log("Actualizando #preciototal con:", totalPriceText);
 
     // Recalculate price based on payment method - REMOVED as #comoabona is gone
     // $("#comoabona").trigger('change');
@@ -665,7 +664,7 @@ $(document).ready(function(){
   // Continue to checkout button click handlers - para el botón flotante
   $("#floating-continue-to-checkout, #fixed-checkout-button").on('click', function(e) {
     e.preventDefault();
-    console.log('Botón de continuar al envío clickeado');
+    // console.log('Botón de continuar al envío clickeado');
 
     // Check if there are items in the cart
     if (cartItems.length > 0) {
@@ -894,11 +893,11 @@ $(document).ready(function(){
 
     // Check if products were selected
     const talleselegidos = window.location.href.includes('contrareembolso') ? $('#286442883').val() : $('#1471599855').val(); // ID dinámico según la página
-    console.log("Talles elegidos:", talleselegidos); // Debug log
+    // console.log("Talles elegidos:", talleselegidos); // Debug log
 
     // Mejorar la validación para manejar correctamente el formato "valor1, valor2, "
     const itemsArray = talleselegidos ? talleselegidos.split(', ').filter(item => item && item.trim() !== '') : [];
-    console.log("Items filtrados para validación:", itemsArray);
+    // console.log("Items filtrados para validación:", itemsArray);
 
     if (!talleselegidos || itemsArray.length === 0) {
       alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
@@ -923,7 +922,7 @@ $(document).ready(function(){
     $submitButton.val('Procesando...').prop('disabled', true);
     $('.loading-overlay').addClass('visible');
 
-    console.log("Validación inicial completada. Permitiendo que form-handler.js maneje el envío.");
+    // console.log("Validación inicial completada. Permitiendo que form-handler.js maneje el envío.");
 
     // Permitir que form-handler.js maneje el resto del proceso
     // No hacemos return false aquí para permitir que el evento continúe
@@ -1446,7 +1445,7 @@ $(document).ready(function(){
 
     // Detectar si estamos en la página de contrareembolso
     var isContrareembolso = window.location.href.includes('contrareembolso');
-    console.log("¿Es contrareembolso?", isContrareembolso);
+    // console.log("¿Es contrareembolso?", isContrareembolso);
 
     // Process each item
     itemsArray.forEach(function(item, index) {
@@ -1551,7 +1550,7 @@ $(document).ready(function(){
 
       // Actualizar el texto del total en el resumen del pedido
       $("#preciototal").html("Elige modelos y talles para ver el total");
-      console.log("Carrito vacío, actualizando #preciototal");
+      // console.log("Carrito vacío, actualizando #preciototal");
     } else {
       $('.empty-cart-message').hide();
       $('.cart-instructions').show();
@@ -1599,7 +1598,7 @@ $(document).ready(function(){
       // Actualizar el elemento #preciototal con el texto correspondiente
       if (totalPriceText) {
         $("#preciototal").html(totalPriceText);
-        console.log("Actualizando #preciototal en updateCart con:", totalPriceText);
+        // console.log("Actualizando #preciototal en updateCart con:", totalPriceText);
       }
 
       // Actualizar la visibilidad del botón flotante
@@ -1630,15 +1629,15 @@ $(document).ready(function(){
 
     // Process the summary content to remove the item
     var summaryContent = summaryInput.val() || "";
-    console.log("Contenido del campo al remover:", summaryContent);
+    // console.log("Contenido del campo al remover:", summaryContent);
 
     // Mejorar el filtrado para manejar espacios en blanco
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    console.log("Array antes de remover:", summaryArray);
+    // console.log("Array antes de remover:", summaryArray);
 
     // Remove the item from the array
     summaryArray = summaryArray.filter(item => item !== itemId);
-    console.log("Array después de remover:", summaryArray);
+    // console.log("Array después de remover:", summaryArray);
 
     // Update the summary input - ensure both fields are updated
     var finalSummaryText = summaryArray.join(', ');
@@ -1663,7 +1662,7 @@ $(document).ready(function(){
         console.warn('Campo #1471599855 no encontrado al eliminar producto');
     }
 
-    console.log("Nuevo valor del campo:", finalSummaryText);
+    // console.log("Nuevo valor del campo:", finalSummaryText);
 
     // Update the summary display
     $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
@@ -1743,12 +1742,12 @@ $(document).ready(function(){
 
   // Show notification
   function showNotification(message, type) {
-    console.log('Showing notification:', message, type);
+    // console.log('Showing notification:', message, type);
 
     // Evitar mostrar la misma notificación dos veces en un corto período de tiempo
     var currentTime = Date.now();
     if (message === lastNotificationMessage && currentTime - lastNotificationTime < 3000) {
-      console.log('Ignorando notificación duplicada');
+      // console.log('Ignorando notificación duplicada');
       return;
     }
 
