@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
-<!-- End Google Tag Manager -->
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1052677351596434');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>&iquest;C&oacute;mo comprar?</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -305,10 +315,7 @@ tr:nth-child(even) {  background-color: #dddddd;}
 	
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+<!-- GTM noscript removido - Facebook Pixel ya incluido arriba -->
 <p id="text" style="display: block;font-size: 11px;position: fixed;width: 100%;max-width: 395px;padding: 5px 10px;text-align: center;bottom: 0px;background-color: yellow;margin: auto;z-index: 30000;">Luego de seleccionar tus modelos complet&aacute; tus datosabajo &darr;</p>
 <div style="font-size: 11px; display:none; background-color: rgb(0, 100, 0); color: white; padding: 5px; position: fixed; font-weight: bold; margin: auto; z-index: 5000; bottom: 0; width: 100%;" id="region"></div>
 <div id="whatsapp" style="display:none;position: fixed; width: 40px; height: 40px; bottom: 22px; right: 3px; z-index: 30000;"><a href="https://api.whatsapp.com/send?phone=5491127505502&text=Quiero%20consultar%20por%20el%20calzado%20contrareembolso" id="linktowhatsapp"><img alt="whatsapp" height="40px" src="/whatsapp.png" width="40px" /></a></div>
@@ -801,13 +808,44 @@ $('#' + modeload).insertBefore("#tituloh4");
 </script>
 
 <script>
-$('#bootstrapForm').submit(function (event) {  
+$('#bootstrapForm').submit(function (event) {
   event.preventDefault(); // prevent the form from submitting normally
   $('#botoncomprar').attr('value', 'Espere...');
   $('#botoncomprar').attr('disabled', 'true');
-  
+
   var talleselegidos = $('#286442883').val();
   var value2 = (talleselegidos).replace(" ", "");
+
+  // Implementar InitiateCheckout para contrareembolso.html
+  if (talleselegidos && talleselegidos.trim() !== '') {
+    var pairs = talleselegidos.split(',').filter(Boolean);
+    var totalItems = pairs.length;
+    var unitPrice = totalItems === 1 ? 60000 : 42500; // Precios contrareembolso
+    var totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+    var eventData = {
+      content_type: 'product',
+      content_ids: pairs,
+      contents: pairs.map(function(pair) {
+        return {
+          id: pair.trim(),
+          quantity: 1,
+          item_price: unitPrice
+        };
+      }),
+      value: totalValue,
+      currency: 'ARS',
+      num_items: totalItems
+    };
+
+    // Disparar evento dual InitiateCheckout
+    if (window.sendDualEvent) {
+      window.sendDualEvent('InitiateCheckout', eventData);
+    } else if (typeof fbq !== 'undefined') {
+      // Fallback al método anterior
+      fbq('track', 'InitiateCheckout', eventData);
+    }
+  }
   var words = value2.split(",");
   var queryString = $('#286442883').serialize();
   
@@ -1477,6 +1515,96 @@ jQuery(document).ready(function() {
     }
 
     setupListeners();
+})();
+
+// Facebook Pixel Dual Tracking Functions
+(function() {
+    // Función para generar Event ID único
+    window.generateEventId = function() {
+        return 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    };
+
+    // Función auxiliar para obtener cookies
+    window.getCookie = function(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return '';
+    };
+
+    // Función de envío dual (cliente + servidor)
+    window.sendDualEvent = async function(eventName, eventData) {
+        const eventId = generateEventId();
+
+        // 1. Enviar a Facebook (Cliente)
+        if (typeof fbq !== 'undefined') {
+            fbq('track', eventName, {
+                ...eventData,
+                event_id: eventId
+            });
+        }
+
+        // 2. Preparar payload completo de Facebook para N8N
+        const facebookPayload = {
+            pixel_id: '1052677351596434',
+            event_name: eventName,
+            event_id: eventId,
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: 'website',
+            event_source_url: window.location.href,
+            user_data: {
+                client_ip_address: '', // N8N puede obtener esto
+                client_user_agent: navigator.userAgent,
+                fbc: getCookie('_fbc') || '',
+                fbp: getCookie('_fbp') || ''
+            },
+            custom_data: eventData
+        };
+
+        // 3. Enviar al webhook (Servidor) - Payload listo para Facebook Events API
+        try {
+            await fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    facebook_payload: facebookPayload, // Listo para usar en N8N
+                    debug_info: {
+                        page_type: window.location.href.includes('contrareembolso') ? 'contrareembolso' : 'previo_pago',
+                        timestamp: new Date().toISOString()
+                    }
+                })
+            });
+        } catch (error) {
+            // Error silencioso para no afectar UX
+        }
+    };
+
+    // Función para calcular precios según página y cantidad
+    window.calculatePrice = function(quantity) {
+        const isContrareembolso = window.location.href.includes('contrareembolso');
+
+        if (isContrareembolso) {
+            // Contrareembolso: 1 par = $60.000 | 2+ pares = $42.500 c/u
+            return quantity === 1 ? 60000 : 42500;
+        } else {
+            // Previo pago: 1 par = $70.000 | 2+ pares = $55.000 c/u
+            return quantity === 1 ? 70000 : 55000;
+        }
+    };
+
+    // Función para calcular total del carrito
+    window.calculateCartTotal = function(cartItems) {
+        const isContrareembolso = window.location.href.includes('contrareembolso');
+        const totalItems = cartItems.length;
+
+        if (isContrareembolso) {
+            return totalItems === 1 ? 60000 : totalItems * 42500;
+        } else {
+            return totalItems === 1 ? 70000 : totalItems * 55000;
+        }
+    };
 })();
 </script>
 </body>
