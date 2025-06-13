@@ -542,15 +542,16 @@ $(document).ready(function(){
         productName = 'Paris Verde';
       }
 
-      // Determinar el precio basado en la cantidad de productos en el carrito
-      var price = summaryArray.length === 1 ? 70000 : 55000;
-      if (window.location.href.includes('contrareembolso')) {
+      // Determinar el precio basado en la cantidad de productos en el carrito usando función global
+      var price = window.calculatePrice ? window.calculatePrice(summaryArray.length) :
+                  (summaryArray.length === 1 ? 70000 : 55000);
+
+      if (window.location.href.includes('contrareembolso') && !window.calculatePrice) {
         price = summaryArray.length === 1 ? 60000 : 42500;
       }
 
-      // Enviar el evento AddToCart a Facebook
-      // console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
-      fbq('track', 'AddToCart', {
+      // Preparar datos del evento AddToCart
+      var eventData = {
         content_name: productName,
         content_type: 'product',
         content_ids: [currentVal],
@@ -562,8 +563,19 @@ $(document).ready(function(){
           }
         ],
         value: price,
-        currency: 'ARS'
-      });
+        currency: 'ARS',
+        num_items: 1
+      };
+
+      // Enviar evento dual (cliente + servidor) con deduplicación
+      if (window.sendDualEvent) {
+        window.sendDualEvent('AddToCart', eventData);
+      } else {
+        // Fallback al método anterior si las funciones no están disponibles
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'AddToCart', eventData);
+        }
+      }
     }
 
     // Mostrar una única notificación de éxito

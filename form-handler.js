@@ -130,12 +130,6 @@ $(document).ready(function() {
             if (formaPago === 'contrareembolso') {
                 console.log('Procesando formulario de contrareembolso...');
 
-                // Disparar evento de Facebook Pixel - InitiateCheckout
-                if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
-                    fbq('track', 'InitiateCheckout');
-                }
-
                 // Procesar los productos seleccionados
                 var talleselegidos = window.location.href.includes('contrareembolso') ?
                     $('#286442883').val() : $('#1471599855').val();
@@ -143,6 +137,36 @@ $(document).ready(function() {
 
                 // remove empty elements from the array
                 pairs = pairs.filter(Boolean);
+
+                // Preparar datos para InitiateCheckout
+                var totalItems = pairs.length;
+                var unitPrice = window.calculatePrice ? window.calculatePrice(totalItems) :
+                               (totalItems === 1 ? 60000 : 42500); // Contrareembolso
+                var totalValue = window.calculateCartTotal ? window.calculateCartTotal(pairs) :
+                                (totalItems === 1 ? 60000 : totalItems * 42500);
+
+                var eventData = {
+                    content_type: 'product',
+                    content_ids: pairs,
+                    contents: pairs.map(function(pair) {
+                        return {
+                            id: pair,
+                            quantity: 1,
+                            item_price: unitPrice
+                        };
+                    }),
+                    value: totalValue,
+                    currency: 'ARS',
+                    num_items: totalItems
+                };
+
+                // Disparar evento dual InitiateCheckout
+                if (window.sendDualEvent) {
+                    window.sendDualEvent('InitiateCheckout', eventData);
+                } else if (typeof fbq !== 'undefined') {
+                    // Fallback al método anterior
+                    fbq('track', 'InitiateCheckout', eventData);
+                }
 
                 // store the values in an array
                 var values = [];
@@ -310,14 +334,40 @@ $(document).ready(function() {
 
             // Si es transferencia bancaria (CBU)
             if (formaPago === 'cbu') {
-                // Disparar evento de Facebook Pixel - InitiateCheckout
-                if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
-                    fbq('track', 'InitiateCheckout');
-                }
-
                 // Verificar si estamos en la página de contrareembolso
                 const esContrareembolso = window.location.href.includes('contrareembolso');
+
+                // Preparar datos para InitiateCheckout CBU
+                const productsValue = esContrareembolso ? $('#286442883').val() : $('#1471599855').val();
+                const pairs = productsValue.split(',').filter(Boolean);
+                const totalItems = pairs.length;
+
+                // Precios CBU: 1 par = $63.000 | 2 pares = $99.000 ($49.500 c/u)
+                var unitPrice = totalItems === 1 ? 63000 : 49500;
+                var totalValue = totalItems === 1 ? 63000 : totalItems * 49500;
+
+                var eventData = {
+                    content_type: 'product',
+                    content_ids: pairs,
+                    contents: pairs.map(function(pair) {
+                        return {
+                            id: pair.trim(),
+                            quantity: 1,
+                            item_price: unitPrice
+                        };
+                    }),
+                    value: totalValue,
+                    currency: 'ARS',
+                    num_items: totalItems
+                };
+
+                // Disparar evento dual InitiateCheckout
+                if (window.sendDualEvent) {
+                    window.sendDualEvent('InitiateCheckout', eventData);
+                } else if (typeof fbq !== 'undefined') {
+                    // Fallback al método anterior
+                    fbq('track', 'InitiateCheckout', eventData);
+                }
 
                 if (esContrareembolso) {
                     // Mantener el comportamiento original para contrareembolso
@@ -368,19 +418,42 @@ $(document).ready(function() {
 
             // Si es MercadoPago o tarjeta
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
-                // Disparar evento de Facebook Pixel - InitiateCheckout
-                if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
-                    fbq('track', 'InitiateCheckout');
-                }
-
                 // Obtener el precio basado en la cantidad de productos
                 // Asegurarse de usar el valor correcto para contar los pares
                 const productsValue = window.location.href.includes('contrareembolso') ?
                     $('#286442883').val() : $('#1471599855').val();
 
-                const pairCount = productsValue.split(',').length;
-                console.log('Número de pares para MercadoPago:', pairCount);
+                const pairs = productsValue.split(',').filter(Boolean);
+                const pairCount = pairs.length;
+
+                // Preparar datos para InitiateCheckout MercadoPago/Tarjeta
+                var unitPrice = window.calculatePrice ? window.calculatePrice(pairCount) :
+                               (pairCount === 1 ? 70000 : 55000); // Previo pago por defecto
+                var totalValue = window.calculateCartTotal ? window.calculateCartTotal(pairs) :
+                                (pairCount === 1 ? 70000 : pairCount * 55000);
+
+                var eventData = {
+                    content_type: 'product',
+                    content_ids: pairs,
+                    contents: pairs.map(function(pair) {
+                        return {
+                            id: pair.trim(),
+                            quantity: 1,
+                            item_price: unitPrice
+                        };
+                    }),
+                    value: totalValue,
+                    currency: 'ARS',
+                    num_items: pairCount
+                };
+
+                // Disparar evento dual InitiateCheckout
+                if (window.sendDualEvent) {
+                    window.sendDualEvent('InitiateCheckout', eventData);
+                } else if (typeof fbq !== 'undefined') {
+                    // Fallback al método anterior
+                    fbq('track', 'InitiateCheckout', eventData);
+                }
 
                 const monto = pairCount >= 2 ? 110000 : 70000;
                 console.log('Usando monto:', monto);
@@ -483,19 +556,41 @@ $(document).ready(function() {
                 // Si estamos en la página de contrareembolso pero no se detectó correctamente
                 console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
 
-                // Disparar evento de Facebook Pixel - InitiateCheckout
-                if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Fallback Contrareembolso)');
-                    fbq('track', 'InitiateCheckout');
-                }
-
                 // Usar el mismo código que en la sección de contrareembolso
                 // No es necesario actualizar campos ocultos para compatibilidad
 
                 // Procesar los productos seleccionados
                 var talleselegidos = window.location.href.includes('contrareembolso') ?
                     $('#286442883').val() : $('#1471599855').val();
-                var pairs = talleselegidos.split(', '); // split the input by ", " (comma and space)
+                var pairs = talleselegidos.split(', ').filter(Boolean); // split the input by ", " (comma and space)
+
+                // Preparar datos para InitiateCheckout Fallback Contrareembolso
+                var totalItems = pairs.length;
+                var unitPrice = totalItems === 1 ? 60000 : 42500; // Contrareembolso
+                var totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+                var eventData = {
+                    content_type: 'product',
+                    content_ids: pairs,
+                    contents: pairs.map(function(pair) {
+                        return {
+                            id: pair,
+                            quantity: 1,
+                            item_price: unitPrice
+                        };
+                    }),
+                    value: totalValue,
+                    currency: 'ARS',
+                    num_items: totalItems
+                };
+
+                // Disparar evento dual InitiateCheckout
+                if (window.sendDualEvent) {
+                    window.sendDualEvent('InitiateCheckout', eventData);
+                } else if (typeof fbq !== 'undefined') {
+                    // Fallback al método anterior
+                    fbq('track', 'InitiateCheckout', eventData);
+                }
 
                 // remove empty elements from the array
                 pairs = pairs.filter(Boolean);

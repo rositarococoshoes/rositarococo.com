@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Google Tag Manager (carga diferida) -->
-    <script>
-        setTimeout(function() {
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-W2CVWDJ');
-        }, 2000); // Retraso de 2 segundos para mejorar la carga inicial
-
-    </script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager REMOVIDO - Ahora usando Facebook Pixel directo -->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Rosita Rococó - Colección Otoño-Invierno 2025</title>
@@ -442,19 +431,7 @@
 <body>
     <!-- Google Tag Manager (noscript) cargado de forma diferida -->
     <script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            var noscript = document.createElement('noscript');
-            var iframe = document.createElement('iframe');
-            iframe.src = "https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ";
-            iframe.height = "0";
-            iframe.width = "0";
-            iframe.style.display = "none";
-            iframe.style.visibility = "hidden";
-            noscript.appendChild(iframe);
-            document.body.appendChild(noscript);
-        }, 2000);
-    });
+    // GTM noscript removido - Ahora usando Facebook Pixel directo
     </script>
     <!-- End Google Tag Manager (noscript) -->
 
@@ -1636,6 +1613,98 @@
             }
         }, true);
 
+    })();
+    </script>
+
+    <!-- Facebook Pixel Dual Tracking Functions -->
+    <script>
+    (function() {
+        // Función para generar Event ID único
+        window.generateEventId = function() {
+            return 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        };
+
+        // Función auxiliar para obtener cookies
+        window.getCookie = function(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        };
+
+        // Función de envío dual (cliente + servidor)
+        window.sendDualEvent = async function(eventName, eventData) {
+            const eventId = generateEventId();
+
+            // 1. Enviar a Facebook (Cliente)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, {
+                    ...eventData,
+                    event_id: eventId
+                });
+            }
+
+            // 2. Preparar payload completo de Facebook para N8N
+            const facebookPayload = {
+                pixel_id: '1052677351596434',
+                event_name: eventName,
+                event_id: eventId,
+                event_time: Math.floor(Date.now() / 1000),
+                action_source: 'website',
+                event_source_url: window.location.href,
+                user_data: {
+                    client_ip_address: '', // N8N puede obtener esto
+                    client_user_agent: navigator.userAgent,
+                    fbc: getCookie('_fbc') || '',
+                    fbp: getCookie('_fbp') || ''
+                },
+                custom_data: eventData
+            };
+
+            // 3. Enviar al webhook (Servidor) - Payload listo para Facebook Events API
+            try {
+                await fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        facebook_payload: facebookPayload, // Listo para usar en N8N
+                        debug_info: {
+                            page_type: window.location.href.includes('contrareembolso') ? 'contrareembolso' : 'previo_pago',
+                            timestamp: new Date().toISOString()
+                        }
+                    })
+                });
+            } catch (error) {
+                // Error silencioso para no afectar UX
+            }
+        };
+
+        // Función para calcular precios según página y cantidad
+        window.calculatePrice = function(quantity) {
+            const isContrareembolso = window.location.href.includes('contrareembolso');
+
+            if (isContrareembolso) {
+                // Contrareembolso: 1 par = $60.000 | 2+ pares = $42.500 c/u
+                return quantity === 1 ? 60000 : 42500;
+            } else {
+                // Previo pago: 1 par = $70.000 | 2+ pares = $55.000 c/u
+                return quantity === 1 ? 70000 : 55000;
+            }
+        };
+
+        // Función para calcular total del carrito
+        window.calculateCartTotal = function(cartItems) {
+            const isContrareembolso = window.location.href.includes('contrareembolso');
+            const totalItems = cartItems.length;
+
+            if (isContrareembolso) {
+                return totalItems === 1 ? 60000 : totalItems * 42500;
+            } else {
+                return totalItems === 1 ? 70000 : totalItems * 55000;
+            }
+        };
     })();
     </script>
 
