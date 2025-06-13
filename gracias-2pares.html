@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Tag Manager REMOVIDO - Ahora usando Facebook Pixel directo -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+<!-- End Google Tag Manager -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>&iquest;C&oacute;mo comprar?</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -72,7 +78,10 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
 </head>
 <body style="cursor: auto;background-color:white;">
-<!-- GTM noscript removido - Ahora usando Facebook Pixel directo -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div style="max-width: 400px; padding: 0px 5px;">
 <p><img alt="" src="rosita-form.png" /></p>
 
@@ -162,92 +171,6 @@ if (customerName) {
     greetingElement.style.marginTop = '10px';
     document.querySelector('.form-group, #talleselegidos').parentNode.insertBefore(greetingElement, document.querySelector('.form-group, #talleselegidos').nextSibling);
 }
-
-// Facebook Pixel Purchase Event - Previo Pago 2 Pares
-(function() {
-    // Función para generar Event ID único
-    function generateEventId() {
-        return 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-    }
-
-    // Función auxiliar para obtener cookies
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-        return '';
-    }
-
-    // Función de envío dual para Purchase
-    async function sendPurchaseEvent() {
-        const eventId = generateEventId();
-
-        // Datos del evento Purchase - Previo Pago 2 Pares ($110.000 total, $55.000 c/u)
-        const eventData = {
-            content_type: 'product',
-            content_ids: ['2-pares-previo-pago'],
-            contents: [{
-                id: '2-pares-previo-pago',
-                quantity: 2,
-                item_price: 55000
-            }],
-            value: 110000,
-            currency: 'ARS',
-            num_items: 2
-        };
-
-        // 1. Enviar a Facebook (Cliente)
-        if (typeof fbq !== 'undefined') {
-            fbq('track', 'Purchase', {
-                ...eventData,
-                event_id: eventId
-            });
-        }
-
-        // 2. Preparar payload completo de Facebook para N8N
-        const facebookPayload = {
-            pixel_id: '1052677351596434',
-            event_name: 'Purchase',
-            event_id: eventId,
-            event_time: Math.floor(Date.now() / 1000),
-            action_source: 'website',
-            event_source_url: window.location.href,
-            user_data: {
-                client_ip_address: '',
-                client_user_agent: navigator.userAgent,
-                fbc: getCookie('_fbc') || '',
-                fbp: getCookie('_fbp') || ''
-            },
-            custom_data: eventData
-        };
-
-        // 3. Enviar al webhook (Servidor)
-        try {
-            await fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    facebook_payload: facebookPayload,
-                    debug_info: {
-                        page_type: 'previo_pago_2pares',
-                        timestamp: new Date().toISOString()
-                    }
-                })
-            });
-        } catch (error) {
-            // Error silencioso
-        }
-    }
-
-    // Ejecutar cuando la página esté cargada
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', sendPurchaseEvent);
-    } else {
-        sendPurchaseEvent();
-    }
-})();
 </script>
 </body>
 </html>
