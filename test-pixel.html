@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Facebook Pixel - Rosita Rococó</title>
+    
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1052677351596434');
+    fbq('track', 'PageView');
+    console.log('Facebook Pixel cargado correctamente');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+</head>
+<body>
+    <h1>Test Facebook Pixel</h1>
+    <p>Esta página es para probar que Facebook Pixel se carga correctamente.</p>
+    <p>Pixel ID: <strong>1052677351596434</strong></p>
+    
+    <button onclick="testAddToCart()">Test AddToCart Event</button>
+    <button onclick="testInitiateCheckout()">Test InitiateCheckout Event</button>
+    <button onclick="testPurchase()">Test Purchase Event</button>
+    
+    <div id="console-output"></div>
+    
+    <script>
+        // Función para mostrar mensajes en la página
+        function log(message) {
+            console.log(message);
+            const output = document.getElementById('console-output');
+            output.innerHTML += '<p>' + message + '</p>';
+        }
+        
+        // Verificar que fbq esté disponible
+        if (typeof fbq !== 'undefined') {
+            log('✅ Facebook Pixel (fbq) está disponible');
+        } else {
+            log('❌ Facebook Pixel (fbq) NO está disponible');
+        }
+        
+        // Test AddToCart
+        function testAddToCart() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'AddToCart', {
+                    content_name: 'Test Product',
+                    content_type: 'product',
+                    content_ids: ['test-product'],
+                    contents: [{
+                        id: 'test-product',
+                        quantity: 1,
+                        item_price: 70000
+                    }],
+                    value: 70000,
+                    currency: 'ARS'
+                });
+                log('✅ AddToCart event enviado');
+            } else {
+                log('❌ No se puede enviar AddToCart - fbq no disponible');
+            }
+        }
+        
+        // Test InitiateCheckout
+        function testInitiateCheckout() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', {
+                    content_type: 'product',
+                    content_ids: ['test-product'],
+                    contents: [{
+                        id: 'test-product',
+                        quantity: 1,
+                        item_price: 70000
+                    }],
+                    value: 70000,
+                    currency: 'ARS',
+                    num_items: 1
+                });
+                log('✅ InitiateCheckout event enviado');
+            } else {
+                log('❌ No se puede enviar InitiateCheckout - fbq no disponible');
+            }
+        }
+        
+        // Test Purchase
+        function testPurchase() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Purchase', {
+                    content_type: 'product',
+                    content_ids: ['test-product'],
+                    contents: [{
+                        id: 'test-product',
+                        quantity: 1,
+                        item_price: 70000
+                    }],
+                    value: 70000,
+                    currency: 'ARS',
+                    num_items: 1
+                });
+                log('✅ Purchase event enviado');
+            } else {
+                log('❌ No se puede enviar Purchase - fbq no disponible');
+            }
+        }
+        
+        // Verificar que el script se haya cargado
+        window.addEventListener('load', function() {
+            log('✅ Página cargada completamente');
+            
+            // Verificar si el script de Facebook se cargó
+            const fbScript = document.querySelector('script[src*="fbevents.js"]');
+            if (fbScript) {
+                log('✅ Script de Facebook Pixel encontrado en el DOM');
+            } else {
+                log('❌ Script de Facebook Pixel NO encontrado en el DOM');
+            }
+        });
+    </script>
+</body>
+</html>
