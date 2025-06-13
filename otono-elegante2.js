@@ -1,5 +1,13 @@
 // --- Rosita Rococó - Rediseño Otoñal Elegante 2.0 ---
 
+// Función auxiliar para obtener cookies
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+  return '';
+}
+
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
   // --- Cart & Checkout Process Variables ---
@@ -548,9 +556,13 @@ $(document).ready(function(){
         price = summaryArray.length === 1 ? 60000 : 42500;
       }
 
-      // Enviar el evento AddToCart a Facebook
+      // Enviar el evento AddToCart con tracking dual (cliente + servidor)
       // console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
-      fbq('track', 'AddToCart', {
+
+      // Generar Event ID único para deduplicación
+      const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+      const eventData = {
         content_name: productName,
         content_type: 'product',
         content_ids: [currentVal],
@@ -563,6 +575,50 @@ $(document).ready(function(){
         ],
         value: price,
         currency: 'ARS'
+      };
+
+      // 1. Enviar a Facebook (Cliente)
+      fbq('track', 'AddToCart', {
+        ...eventData,
+        event_id: eventId
+      });
+
+      // 2. Obtener parámetros de Facebook (FBC/FBP)
+      const fbParams = typeof getFacebookParams === 'function' ? getFacebookParams() : {
+        fbc: getCookie('_fbc') || '',
+        fbp: getCookie('_fbp') || ''
+      };
+
+      // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+      const facebookEventData = {
+        event_name: 'AddToCart',
+        event_id: eventId,
+        event_time: Math.floor(Date.now() / 1000),
+        action_source: 'website',
+        event_source_url: window.location.href,
+        user_data: {
+          client_ip_address: '', // N8N puede obtener esto del request
+          client_user_agent: navigator.userAgent,
+          fbc: fbParams.fbc,
+          fbp: fbParams.fbp
+        },
+        custom_data: eventData
+      };
+
+      // Enviar al webhook en formato N8N
+      fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          data: [facebookEventData] // Array con el evento, listo para Facebook Events API
+        })
+      }).then(() => {
+        console.log('✅ AddToCart enviado al servidor - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+      }).catch(error => {
+        // Error silencioso para no afectar UX
+        console.error('Error enviando AddToCart al servidor:', error);
       });
     }
 

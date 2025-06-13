@@ -5,8 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Facebook Pixel - Rosita Rococó</title>
     
+    <!-- Preconexiones para Facebook -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.facebook.com">
+
     <!-- Facebook Pixel Code -->
     <script>
+    console.log('🔵 INICIANDO FACEBOOK PIXEL TEST...');
+
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -15,9 +21,21 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1052677351596434');
-    fbq('track', 'PageView');
-    console.log('Facebook Pixel cargado correctamente');
+
+    console.log('🔵 Script de Facebook insertado en DOM');
+
+    // Esperar un poco antes de inicializar
+    setTimeout(function() {
+        if (typeof fbq !== 'undefined') {
+            console.log('✅ fbq disponible, inicializando...');
+            fbq('init', '1052677351596434');
+            console.log('✅ Facebook Pixel inicializado con ID: 1052677351596434');
+            fbq('track', 'PageView');
+            console.log('✅ PageView event enviado');
+        } else {
+            console.error('❌ fbq NO está disponible después de timeout');
+        }
+    }, 100);
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"

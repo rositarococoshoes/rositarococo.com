@@ -143,19 +143,24 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
             });
         }
 
-        // 2. Preparar payload completo de Facebook para N8N
-        const facebookPayload = {
-            pixel_id: '1052677351596434',
+        // 2. Obtener parámetros de Facebook (FBC/FBP)
+        const fbParams = {
+            fbc: getCookie('_fbc') || localStorage.getItem('facebook_fbc') || '',
+            fbp: getCookie('_fbp') || localStorage.getItem('facebook_fbp') || ''
+        };
+
+        // 3. Preparar payload para Facebook Events API (formato N8N)
+        const facebookEventData = {
             event_name: 'Purchase',
             event_id: eventId,
             event_time: Math.floor(Date.now() / 1000),
             action_source: 'website',
             event_source_url: window.location.href,
             user_data: {
-                client_ip_address: '',
+                client_ip_address: '', // N8N puede obtener esto del request
                 client_user_agent: navigator.userAgent,
-                fbc: getCookie('_fbc') || '',
-                fbp: getCookie('_fbp') || ''
+                fbc: fbParams.fbc,
+                fbp: fbParams.fbp
             },
             custom_data: eventData
         };
@@ -168,15 +173,13 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    facebook_payload: facebookPayload,
-                    debug_info: {
-                        page_type: 'pago_exitoso_1par',
-                        timestamp: new Date().toISOString()
-                    }
+                    data: [facebookEventData] // Array con el evento, listo para Facebook Events API
                 })
             });
+            console.log('✅ Purchase enviado al servidor - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
         } catch (error) {
             // Error silencioso
+            console.error('Error enviando Purchase al servidor:', error);
         }
     }
 

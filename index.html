@@ -5,6 +5,8 @@
 
     <!-- Facebook Pixel Code -->
     <script>
+    console.log('🔵 Iniciando carga de Facebook Pixel...');
+
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -13,8 +15,29 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1052677351596434');
-    fbq('track', 'PageView');
+
+    console.log('🔵 Facebook Pixel script insertado');
+
+    // Verificar que fbq esté disponible
+    if (typeof fbq !== 'undefined') {
+        console.log('✅ fbq está disponible');
+        fbq('init', '1052677351596434');
+        console.log('✅ Facebook Pixel inicializado con ID: 1052677351596434');
+        fbq('track', 'PageView');
+        console.log('✅ PageView event enviado');
+    } else {
+        console.error('❌ fbq no está disponible');
+    }
+
+    // Verificar cuando el script se carga
+    window.addEventListener('load', function() {
+        console.log('🔵 Página cargada completamente');
+        if (typeof fbq !== 'undefined') {
+            console.log('✅ Facebook Pixel confirmado después de load');
+        } else {
+            console.error('❌ Facebook Pixel NO disponible después de load');
+        }
+    });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
@@ -27,9 +50,10 @@
     <meta name="description" content="Descubre nuestra exclusiva colección otoño-invierno de calzado femenino. Diseños elegantes y cómodos con envío gratis a todo el país.">
 
     <!-- Preconexiones para mejorar velocidad -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.facebook.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -1611,6 +1635,180 @@
             }
         }, true);
 
+    })();
+    </script>
+
+    <!-- Facebook Pixel Dual Tracking Functions -->
+    <script>
+    (function() {
+        // Función para generar Event ID único
+        window.generateEventId = function() {
+            return 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        };
+
+        // Función auxiliar para obtener cookies
+        window.getCookie = function(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return '';
+        };
+
+        // Función para establecer cookies
+        window.setCookie = function(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+        };
+
+        // Función para obtener parámetro de URL
+        window.getUrlParameter = function(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        };
+
+        // Función para generar y gestionar FBC (Facebook Click ID)
+        window.generateFBC = function() {
+            let fbc = getCookie('_fbc');
+
+            // Si no existe FBC, intentar crearlo desde fbclid
+            if (!fbc) {
+                const fbclid = getUrlParameter('fbclid');
+                if (fbclid) {
+                    // Formato: fb.1.timestamp.fbclid
+                    fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+                    setCookie('_fbc', fbc, 90); // Guardar por 90 días
+                    console.log('✅ FBC generado desde fbclid:', fbc);
+                }
+            }
+
+            return fbc || '';
+        };
+
+        // Función para generar y gestionar FBP (Facebook Browser ID)
+        window.generateFBP = function() {
+            let fbp = getCookie('_fbp');
+
+            // Si no existe FBP, generarlo
+            if (!fbp) {
+                // Formato: fb.1.timestamp.random
+                const timestamp = Math.floor(Date.now() / 1000);
+                const random = Math.random().toString(36).substr(2, 9);
+                fbp = `fb.1.${timestamp}.${random}`;
+                setCookie('_fbp', fbp, 90); // Guardar por 90 días
+                console.log('✅ FBP generado:', fbp);
+            }
+
+            return fbp;
+        };
+
+        // Función para inicializar tracking de Facebook
+        window.initializeFacebookTracking = function() {
+            // Generar/obtener FBC y FBP
+            const fbc = generateFBC();
+            const fbp = generateFBP();
+
+            // Guardar en localStorage como respaldo
+            if (fbc) localStorage.setItem('facebook_fbc', fbc);
+            if (fbp) localStorage.setItem('facebook_fbp', fbp);
+
+            console.log('🔵 Facebook Tracking inicializado:', { fbc, fbp });
+
+            return { fbc, fbp };
+        };
+
+        // Función mejorada para obtener FBC/FBP
+        window.getFacebookParams = function() {
+            return {
+                fbc: getCookie('_fbc') || localStorage.getItem('facebook_fbc') || '',
+                fbp: getCookie('_fbp') || localStorage.getItem('facebook_fbp') || ''
+            };
+        };
+
+        // Función de envío dual (cliente + servidor) - FORMATO N8N
+        window.sendDualEvent = async function(eventName, eventData) {
+            const eventId = generateEventId();
+
+            // 1. Enviar a Facebook (Cliente)
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, {
+                    ...eventData,
+                    event_id: eventId
+                });
+            }
+
+            // 2. Obtener parámetros de Facebook (FBC/FBP)
+            const fbParams = getFacebookParams();
+
+            // 3. Preparar payload para Facebook Events API (formato N8N)
+            const facebookEventData = {
+                event_name: eventName,
+                event_id: eventId,
+                event_time: Math.floor(Date.now() / 1000),
+                action_source: 'website',
+                event_source_url: window.location.href,
+                user_data: {
+                    client_ip_address: '', // N8N puede obtener esto del request
+                    client_user_agent: navigator.userAgent,
+                    fbc: fbParams.fbc,
+                    fbp: fbParams.fbp
+                },
+                custom_data: eventData
+            };
+
+            // 4. Enviar al webhook en formato para N8N Facebook Events
+            try {
+                await fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: [facebookEventData] // Array con el evento, listo para Facebook Events API
+                    })
+                });
+                console.log('✅ Evento enviado al servidor:', eventName, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+            } catch (error) {
+                console.error('❌ Error enviando evento al servidor:', error);
+            }
+        };
+
+        // Función para calcular precios según página y cantidad
+        window.calculatePrice = function(quantity) {
+            const isContrareembolso = window.location.href.includes('contrareembolso');
+
+            if (isContrareembolso) {
+                // Contrareembolso: 1 par = $60.000 | 2+ pares = $42.500 c/u
+                return quantity === 1 ? 60000 : 42500;
+            } else {
+                // Previo pago: 1 par = $70.000 | 2+ pares = $55.000 c/u
+                return quantity === 1 ? 70000 : 55000;
+            }
+        };
+
+        // Función para calcular total del carrito
+        window.calculateCartTotal = function(cartItems) {
+            const isContrareembolso = window.location.href.includes('contrareembolso');
+            const totalItems = cartItems.length;
+
+            if (isContrareembolso) {
+                return totalItems === 1 ? 60000 : totalItems * 42500;
+            } else {
+                return totalItems === 1 ? 70000 : totalItems * 55000;
+            }
+        };
+
+        // Inicializar tracking de Facebook cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFacebookTracking();
+        });
+
+        // Si la página ya está cargada, inicializar inmediatamente
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeFacebookTracking);
+        } else {
+            initializeFacebookTracking();
+        }
     })();
     </script>
 

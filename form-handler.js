@@ -1,3 +1,19 @@
+// Función auxiliar para obtener cookies
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+    return '';
+}
+
+// Función para obtener parámetros de Facebook (FBC/FBP)
+function getFacebookParams() {
+    return {
+        fbc: getCookie('_fbc') || localStorage.getItem('facebook_fbc') || '',
+        fbp: getCookie('_fbp') || localStorage.getItem('facebook_fbp') || ''
+    };
+}
+
 // Función para detectar bots
 function isBot() {
     // 1. Verificar si el campo honeypot está lleno
@@ -130,10 +146,73 @@ $(document).ready(function() {
             if (formaPago === 'contrareembolso') {
                 console.log('Procesando formulario de contrareembolso...');
 
-                // Disparar evento de Facebook Pixel - InitiateCheckout
+                // Disparar evento de Facebook Pixel - InitiateCheckout (Tracking Dual)
                 if (typeof fbq !== 'undefined') {
                     console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
-                    fbq('track', 'InitiateCheckout');
+
+                    // Generar Event ID único para deduplicación
+                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                    // Calcular datos del carrito para contrareembolso
+                    const talleselegidos = window.location.href.includes('contrareembolso') ?
+                        $('#286442883').val() : $('#1471599855').val();
+                    const pairs = talleselegidos.split(', ').filter(Boolean);
+                    const totalItems = pairs.length;
+                    const unitPrice = totalItems === 1 ? 60000 : 42500;
+                    const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+                    const eventData = {
+                        content_type: 'product',
+                        content_ids: ['contrareembolso-checkout'],
+                        contents: [{
+                            id: 'contrareembolso-checkout',
+                            quantity: totalItems,
+                            item_price: unitPrice
+                        }],
+                        value: totalValue,
+                        currency: 'ARS',
+                        num_items: totalItems
+                    };
+
+                    // 1. Enviar a Facebook (Cliente)
+                    fbq('track', 'InitiateCheckout', {
+                        ...eventData,
+                        event_id: eventId
+                    });
+
+                    // 2. Obtener parámetros de Facebook (FBC/FBP)
+                    const fbParams = getFacebookParams();
+
+                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    const facebookEventData = {
+                        event_name: 'InitiateCheckout',
+                        event_id: eventId,
+                        event_time: Math.floor(Date.now() / 1000),
+                        action_source: 'website',
+                        event_source_url: window.location.href,
+                        user_data: {
+                            client_ip_address: '',
+                            client_user_agent: navigator.userAgent,
+                            fbc: fbParams.fbc,
+                            fbp: fbParams.fbp
+                        },
+                        custom_data: eventData
+                    };
+
+                    // Enviar al webhook en formato N8N
+                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            data: [facebookEventData]
+                        })
+                    }).then(() => {
+                        console.log('✅ InitiateCheckout (Contrareembolso) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                    }).catch(error => {
+                        console.error('Error enviando InitiateCheckout al servidor:', error);
+                    });
                 }
 
                 // Procesar los productos seleccionados
@@ -310,10 +389,73 @@ $(document).ready(function() {
 
             // Si es transferencia bancaria (CBU)
             if (formaPago === 'cbu') {
-                // Disparar evento de Facebook Pixel - InitiateCheckout
+                // Disparar evento de Facebook Pixel - InitiateCheckout (CBU - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
                     console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
-                    fbq('track', 'InitiateCheckout');
+
+                    // Generar Event ID único para deduplicación
+                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                    // Calcular datos del carrito para CBU
+                    const productsValue = window.location.href.includes('contrareembolso') ?
+                        $('#286442883').val() : $('#1471599855').val();
+                    const pairs = productsValue.split(', ').filter(Boolean);
+                    const totalItems = pairs.length;
+                    const unitPrice = totalItems === 1 ? 63000 : 49500; // Precios CBU
+                    const totalValue = totalItems === 1 ? 63000 : totalItems * 49500;
+
+                    const eventData = {
+                        content_type: 'product',
+                        content_ids: ['cbu-checkout'],
+                        contents: [{
+                            id: 'cbu-checkout',
+                            quantity: totalItems,
+                            item_price: unitPrice
+                        }],
+                        value: totalValue,
+                        currency: 'ARS',
+                        num_items: totalItems
+                    };
+
+                    // 1. Enviar a Facebook (Cliente)
+                    fbq('track', 'InitiateCheckout', {
+                        ...eventData,
+                        event_id: eventId
+                    });
+
+                    // 2. Obtener parámetros de Facebook (FBC/FBP)
+                    const fbParams = getFacebookParams();
+
+                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    const facebookEventData = {
+                        event_name: 'InitiateCheckout',
+                        event_id: eventId,
+                        event_time: Math.floor(Date.now() / 1000),
+                        action_source: 'website',
+                        event_source_url: window.location.href,
+                        user_data: {
+                            client_ip_address: '',
+                            client_user_agent: navigator.userAgent,
+                            fbc: fbParams.fbc,
+                            fbp: fbParams.fbp
+                        },
+                        custom_data: eventData
+                    };
+
+                    // Enviar al webhook en formato N8N
+                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            data: [facebookEventData]
+                        })
+                    }).then(() => {
+                        console.log('✅ InitiateCheckout (CBU) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                    }).catch(error => {
+                        console.error('Error enviando InitiateCheckout CBU al servidor:', error);
+                    });
                 }
 
                 // Verificar si estamos en la página de contrareembolso
@@ -368,10 +510,73 @@ $(document).ready(function() {
 
             // Si es MercadoPago o tarjeta
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
-                // Disparar evento de Facebook Pixel - InitiateCheckout
+                // Disparar evento de Facebook Pixel - InitiateCheckout (MercadoPago/Tarjeta - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
                     console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
-                    fbq('track', 'InitiateCheckout');
+
+                    // Generar Event ID único para deduplicación
+                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                    // Calcular datos del carrito para MercadoPago/Tarjeta
+                    const productsValue = window.location.href.includes('contrareembolso') ?
+                        $('#286442883').val() : $('#1471599855').val();
+                    const pairs = productsValue.split(', ').filter(Boolean);
+                    const totalItems = pairs.length;
+                    const unitPrice = totalItems === 1 ? 70000 : 55000; // Precios previo pago
+                    const totalValue = totalItems === 1 ? 70000 : totalItems * 55000;
+
+                    const eventData = {
+                        content_type: 'product',
+                        content_ids: ['mercadopago-checkout'],
+                        contents: [{
+                            id: 'mercadopago-checkout',
+                            quantity: totalItems,
+                            item_price: unitPrice
+                        }],
+                        value: totalValue,
+                        currency: 'ARS',
+                        num_items: totalItems
+                    };
+
+                    // 1. Enviar a Facebook (Cliente)
+                    fbq('track', 'InitiateCheckout', {
+                        ...eventData,
+                        event_id: eventId
+                    });
+
+                    // 2. Obtener parámetros de Facebook (FBC/FBP)
+                    const fbParams = getFacebookParams();
+
+                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    const facebookEventData = {
+                        event_name: 'InitiateCheckout',
+                        event_id: eventId,
+                        event_time: Math.floor(Date.now() / 1000),
+                        action_source: 'website',
+                        event_source_url: window.location.href,
+                        user_data: {
+                            client_ip_address: '',
+                            client_user_agent: navigator.userAgent,
+                            fbc: fbParams.fbc,
+                            fbp: fbParams.fbp
+                        },
+                        custom_data: eventData
+                    };
+
+                    // Enviar al webhook en formato N8N
+                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            data: [facebookEventData]
+                        })
+                    }).then(() => {
+                        console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                    }).catch(error => {
+                        console.error('Error enviando InitiateCheckout MercadoPago al servidor:', error);
+                    });
                 }
 
                 // Obtener el precio basado en la cantidad de productos
@@ -483,10 +688,72 @@ $(document).ready(function() {
                 // Si estamos en la página de contrareembolso pero no se detectó correctamente
                 console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
 
-                // Disparar evento de Facebook Pixel - InitiateCheckout
+                // Disparar evento de Facebook Pixel - InitiateCheckout (Fallback Contrareembolso - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
                     console.log('Enviando evento InitiateCheckout a Facebook Pixel (Fallback Contrareembolso)');
-                    fbq('track', 'InitiateCheckout');
+
+                    // Generar Event ID único para deduplicación
+                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                    // Calcular datos del carrito para contrareembolso fallback
+                    const talleselegidos = $('#286442883').val() || $('#1471599855').val();
+                    const pairs = talleselegidos.split(', ').filter(Boolean);
+                    const totalItems = pairs.length;
+                    const unitPrice = totalItems === 1 ? 60000 : 42500;
+                    const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+                    const eventData = {
+                        content_type: 'product',
+                        content_ids: ['contrareembolso-fallback'],
+                        contents: [{
+                            id: 'contrareembolso-fallback',
+                            quantity: totalItems,
+                            item_price: unitPrice
+                        }],
+                        value: totalValue,
+                        currency: 'ARS',
+                        num_items: totalItems
+                    };
+
+                    // 1. Enviar a Facebook (Cliente)
+                    fbq('track', 'InitiateCheckout', {
+                        ...eventData,
+                        event_id: eventId
+                    });
+
+                    // 2. Obtener parámetros de Facebook (FBC/FBP)
+                    const fbParams = getFacebookParams();
+
+                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    const facebookEventData = {
+                        event_name: 'InitiateCheckout',
+                        event_id: eventId,
+                        event_time: Math.floor(Date.now() / 1000),
+                        action_source: 'website',
+                        event_source_url: window.location.href,
+                        user_data: {
+                            client_ip_address: '',
+                            client_user_agent: navigator.userAgent,
+                            fbc: fbParams.fbc,
+                            fbp: fbParams.fbp
+                        },
+                        custom_data: eventData
+                    };
+
+                    // Enviar al webhook en formato N8N
+                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            data: [facebookEventData]
+                        })
+                    }).then(() => {
+                        console.log('✅ InitiateCheckout (Fallback) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                    }).catch(error => {
+                        console.error('Error enviando InitiateCheckout Fallback al servidor:', error);
+                    });
                 }
 
                 // Usar el mismo código que en la sección de contrareembolso
