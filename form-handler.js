@@ -166,12 +166,12 @@ $(document).ready(function() {
                         content_ids: ['contrareembolso-checkout'],
                         contents: [{
                             id: 'contrareembolso-checkout',
-                            quantity: totalItems,
-                            item_price: unitPrice
+                            quantity: 1,
+                            item_price: totalValue
                         }],
                         value: totalValue,
                         currency: 'ARS',
-                        num_items: totalItems
+                        num_items: 1
                     };
 
                     // 1. Enviar a Facebook (Cliente)
@@ -401,20 +401,19 @@ $(document).ready(function() {
                         $('#286442883').val() : $('#1471599855').val();
                     const pairs = productsValue.split(', ').filter(Boolean);
                     const totalItems = pairs.length;
-                    const unitPrice = totalItems === 1 ? 63000 : 49500; // Precios CBU
-                    const totalValue = totalItems === 1 ? 63000 : totalItems * 49500;
+                    const totalValue = totalItems === 1 ? 63000 : 99000; // Precios CBU correctos
 
                     const eventData = {
                         content_type: 'product',
                         content_ids: ['cbu-checkout'],
                         contents: [{
                             id: 'cbu-checkout',
-                            quantity: totalItems,
-                            item_price: unitPrice
+                            quantity: 1,
+                            item_price: totalValue
                         }],
                         value: totalValue,
                         currency: 'ARS',
-                        num_items: totalItems
+                        num_items: 1
                     };
 
                     // 1. Enviar a Facebook (Cliente)
@@ -530,12 +529,12 @@ $(document).ready(function() {
                         content_ids: ['mercadopago-checkout'],
                         contents: [{
                             id: 'mercadopago-checkout',
-                            quantity: totalItems,
-                            item_price: unitPrice
+                            quantity: 1,
+                            item_price: totalValue
                         }],
                         value: totalValue,
                         currency: 'ARS',
-                        num_items: totalItems
+                        num_items: 1
                     };
 
                     // 1. Enviar a Facebook (Cliente)

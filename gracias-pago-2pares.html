@@ -189,18 +189,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     async function sendPurchaseEvent() {
         const eventId = generateEventId();
 
-        // Datos del evento Purchase - Pago Exitoso 2 Pares ($55.000 c/u = $110.000)
+        // Datos del evento Purchase - Pago Exitoso 2 Pares (Monto Total: $110.000)
         const eventData = {
             content_type: 'product',
             content_ids: ['2-pares-pago-exitoso'],
             contents: [{
                 id: '2-pares-pago-exitoso',
-                quantity: 2,
-                item_price: 55000
+                quantity: 1,
+                item_price: 110000
             }],
             value: 110000,
             currency: 'ARS',
-            num_items: 2
+            num_items: 1
         };
 
         // 1. Enviar a Facebook (Cliente)
