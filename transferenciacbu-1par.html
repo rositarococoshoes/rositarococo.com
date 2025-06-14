@@ -239,7 +239,19 @@ if (customerName) {
 
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
+        // Verificar si ya se envió este evento (para evitar duplicados en recargas)
+        const purchaseSent = sessionStorage.getItem('purchase_event_sent');
+        if (purchaseSent === 'true') {
+            console.log('✅ Evento Purchase ya fue enviado anteriormente, evitando duplicación');
+            return;
+        }
+
+        // Generar un ID único para esta transacción
         const eventId = generateEventId();
+
+        // Marcar como enviado para evitar duplicados en recargas
+        sessionStorage.setItem('purchase_event_sent', 'true');
+        sessionStorage.setItem('purchase_event_id', eventId);
 
         // Datos del evento Purchase - CBU 1 Par ($63.000)
         const eventData = {

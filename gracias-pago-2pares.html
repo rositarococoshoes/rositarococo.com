@@ -185,9 +185,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         };
     }
 
+    // Función para obtener timestamp correcto para Argentina (UTC-3)
+    function getArgentinaTimestamp() {
+        const now = new Date();
+        // Argentina está en UTC-3 (GMT-3)
+        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+        return Math.floor(argentinaTime.getTime() / 1000);
+    }
+
+    // Función para obtener la IP del cliente
+    async function getClientIP() {
+        try {
+            // Usar un servicio público para obtener la IP
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        } catch (error) {
+            console.error('Error obteniendo IP:', error);
+            // Fallback: intentar con otro servicio
+            try {
+                const response2 = await fetch('https://httpbin.org/ip');
+                const data2 = await response2.json();
+                return data2.origin;
+            } catch (error2) {
+                console.error('Error con servicio fallback:', error2);
+                return '';
+            }
+        }
+    }
+
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
+        // Verificar si ya se envió este evento (para evitar duplicados en recargas)
+        const purchaseSent = sessionStorage.getItem('purchase_event_sent');
+        if (purchaseSent === 'true') {
+            console.log('✅ Evento Purchase ya fue enviado anteriormente, evitando duplicación');
+            return;
+        }
+
+        // Generar un ID único para esta transacción
         const eventId = generateEventId();
+
+        // Marcar como enviado para evitar duplicados en recargas
+        sessionStorage.setItem('purchase_event_sent', 'true');
+        sessionStorage.setItem('purchase_event_id', eventId);
 
         // Datos del evento Purchase - Pago Exitoso 2 Pares (Monto Total: $110.000)
         const eventData = {
@@ -214,15 +255,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         // 2. Obtener parámetros de Facebook (FBC/FBP) con generación automática
         const fbParams = getFacebookParams();
 
-        // 3. Preparar payload para Facebook Events API (formato N8N)
+        // 3. Obtener la IP del cliente
+        const clientIP = await getClientIP();
+
+        // 4. Preparar payload para Facebook Events API (formato N8N)
         const facebookEventData = {
             event_name: 'Purchase',
             event_id: eventId,
-            event_time: Math.floor(Date.now() / 1000),
+            event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
             action_source: 'website',
             event_source_url: window.location.href,
             user_data: {
-                client_ip_address: '', // N8N puede obtener esto del request
+                client_ip_address: clientIP, // IP del cliente obtenida
                 client_user_agent: navigator.userAgent,
                 fbc: fbParams.fbc,
                 fbp: fbParams.fbp

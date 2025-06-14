@@ -183,15 +183,41 @@ $(document).ready(function() {
                     // 2. Obtener parámetros de Facebook (FBC/FBP)
                     const fbParams = getFacebookParams();
 
-                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                    function getArgentinaTimestamp() {
+                        const now = new Date();
+                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                        return Math.floor(argentinaTime.getTime() / 1000);
+                    }
+
+                    // 4. Función para obtener IP del cliente
+                    async function getClientIP() {
+                        try {
+                            const response = await fetch('https://api.ipify.org?format=json');
+                            const data = await response.json();
+                            return data.ip;
+                        } catch (error) {
+                            try {
+                                const response2 = await fetch('https://httpbin.org/ip');
+                                const data2 = await response2.json();
+                                return data2.origin;
+                            } catch (error2) {
+                                return '';
+                            }
+                        }
+                    }
+
+                    const clientIP = await getClientIP();
+
+                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
-                        event_time: Math.floor(Date.now() / 1000),
+                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
                         action_source: 'website',
                         event_source_url: window.location.href,
                         user_data: {
-                            client_ip_address: '',
+                            client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
@@ -209,7 +235,7 @@ $(document).ready(function() {
                             data: [facebookEventData]
                         })
                     }).then(() => {
-                        console.log('✅ InitiateCheckout (Contrareembolso) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                        console.log('✅ InitiateCheckout (Contrareembolso) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                     }).catch(error => {
                         console.error('Error enviando InitiateCheckout al servidor:', error);
                     });
@@ -425,15 +451,41 @@ $(document).ready(function() {
                     // 2. Obtener parámetros de Facebook (FBC/FBP)
                     const fbParams = getFacebookParams();
 
-                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                    function getArgentinaTimestamp() {
+                        const now = new Date();
+                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                        return Math.floor(argentinaTime.getTime() / 1000);
+                    }
+
+                    // 4. Función para obtener IP del cliente
+                    async function getClientIP() {
+                        try {
+                            const response = await fetch('https://api.ipify.org?format=json');
+                            const data = await response.json();
+                            return data.ip;
+                        } catch (error) {
+                            try {
+                                const response2 = await fetch('https://httpbin.org/ip');
+                                const data2 = await response2.json();
+                                return data2.origin;
+                            } catch (error2) {
+                                return '';
+                            }
+                        }
+                    }
+
+                    const clientIP = await getClientIP();
+
+                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
-                        event_time: Math.floor(Date.now() / 1000),
+                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
                         action_source: 'website',
                         event_source_url: window.location.href,
                         user_data: {
-                            client_ip_address: '',
+                            client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
@@ -451,7 +503,7 @@ $(document).ready(function() {
                             data: [facebookEventData]
                         })
                     }).then(() => {
-                        console.log('✅ InitiateCheckout (CBU) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                        console.log('✅ InitiateCheckout (CBU) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                     }).catch(error => {
                         console.error('Error enviando InitiateCheckout CBU al servidor:', error);
                     });
@@ -546,15 +598,41 @@ $(document).ready(function() {
                     // 2. Obtener parámetros de Facebook (FBC/FBP)
                     const fbParams = getFacebookParams();
 
-                    // 3. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                    function getArgentinaTimestamp() {
+                        const now = new Date();
+                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                        return Math.floor(argentinaTime.getTime() / 1000);
+                    }
+
+                    // 4. Función para obtener IP del cliente
+                    async function getClientIP() {
+                        try {
+                            const response = await fetch('https://api.ipify.org?format=json');
+                            const data = await response.json();
+                            return data.ip;
+                        } catch (error) {
+                            try {
+                                const response2 = await fetch('https://httpbin.org/ip');
+                                const data2 = await response2.json();
+                                return data2.origin;
+                            } catch (error2) {
+                                return '';
+                            }
+                        }
+                    }
+
+                    const clientIP = await getClientIP();
+
+                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
-                        event_time: Math.floor(Date.now() / 1000),
+                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
                         action_source: 'website',
                         event_source_url: window.location.href,
                         user_data: {
-                            client_ip_address: '',
+                            client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
@@ -572,7 +650,7 @@ $(document).ready(function() {
                             data: [facebookEventData]
                         })
                     }).then(() => {
-                        console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                        console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                     }).catch(error => {
                         console.error('Error enviando InitiateCheckout MercadoPago al servidor:', error);
                     });
