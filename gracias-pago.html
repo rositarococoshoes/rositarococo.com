@@ -117,6 +117,65 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
         return '';
     }
 
+    // Función para establecer cookies
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+    }
+
+    // Función para obtener parámetro de URL
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Función para generar y gestionar FBC (Facebook Click ID)
+    function generateFBC() {
+        let fbc = getCookie('_fbc');
+
+        // Si no existe FBC, intentar crearlo desde fbclid guardado o URL
+        if (!fbc) {
+            // Primero intentar desde localStorage (fbclid guardado de visita inicial)
+            const savedFbclid = localStorage.getItem('initial_fbclid');
+            let fbclid = savedFbclid || getUrlParameter('fbclid');
+
+            if (fbclid) {
+                // Formato: fb.1.timestamp.fbclid
+                fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+                setCookie('_fbc', fbc, 90); // Guardar por 90 días
+                console.log('✅ FBC generado desde fbclid:', fbc);
+            }
+        }
+
+        return fbc || '';
+    }
+
+    // Función para generar y gestionar FBP (Facebook Browser ID)
+    function generateFBP() {
+        let fbp = getCookie('_fbp');
+
+        // Si no existe FBP, generarlo
+        if (!fbp) {
+            // Formato: fb.1.timestamp.random
+            const timestamp = Math.floor(Date.now() / 1000);
+            const random = Math.random().toString(36).substr(2, 9);
+            fbp = `fb.1.${timestamp}.${random}`;
+            setCookie('_fbp', fbp, 90); // Guardar por 90 días
+            console.log('✅ FBP generado:', fbp);
+        }
+
+        return fbp;
+    }
+
+    // Función para obtener FBC/FBP con generación automática
+    function getFacebookParams() {
+        return {
+            fbc: generateFBC() || localStorage.getItem('facebook_fbc') || '',
+            fbp: generateFBP() || localStorage.getItem('facebook_fbp') || ''
+        };
+    }
+
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
         const eventId = generateEventId();
@@ -143,11 +202,8 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
             });
         }
 
-        // 2. Obtener parámetros de Facebook (FBC/FBP)
-        const fbParams = {
-            fbc: getCookie('_fbc') || localStorage.getItem('facebook_fbc') || '',
-            fbp: getCookie('_fbp') || localStorage.getItem('facebook_fbp') || ''
-        };
+        // 2. Obtener parámetros de Facebook (FBC/FBP) con generación automática
+        const fbParams = getFacebookParams();
 
         // 3. Preparar payload para Facebook Events API (formato N8N)
         const facebookEventData = {

@@ -327,6 +327,65 @@ if (customerName) {
         return '';
     }
 
+    // Función para establecer cookies
+    function setCookie(name, value, days) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/;SameSite=Lax`;
+    }
+
+    // Función para obtener parámetro de URL
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Función para generar y gestionar FBC (Facebook Click ID)
+    function generateFBC() {
+        let fbc = getCookie('_fbc');
+
+        // Si no existe FBC, intentar crearlo desde fbclid guardado o URL
+        if (!fbc) {
+            // Primero intentar desde localStorage (fbclid guardado de visita inicial)
+            const savedFbclid = localStorage.getItem('initial_fbclid');
+            let fbclid = savedFbclid || getUrlParameter('fbclid');
+
+            if (fbclid) {
+                // Formato: fb.1.timestamp.fbclid
+                fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+                setCookie('_fbc', fbc, 90); // Guardar por 90 días
+                console.log('✅ FBC generado desde fbclid:', fbc);
+            }
+        }
+
+        return fbc || '';
+    }
+
+    // Función para generar y gestionar FBP (Facebook Browser ID)
+    function generateFBP() {
+        let fbp = getCookie('_fbp');
+
+        // Si no existe FBP, generarlo
+        if (!fbp) {
+            // Formato: fb.1.timestamp.random
+            const timestamp = Math.floor(Date.now() / 1000);
+            const random = Math.random().toString(36).substr(2, 9);
+            fbp = `fb.1.${timestamp}.${random}`;
+            setCookie('_fbp', fbp, 90); // Guardar por 90 días
+            console.log('✅ FBP generado:', fbp);
+        }
+
+        return fbp;
+    }
+
+    // Función para obtener FBC/FBP con generación automática
+    function getFacebookParams() {
+        return {
+            fbc: generateFBC() || localStorage.getItem('facebook_fbc') || '',
+            fbp: generateFBP() || localStorage.getItem('facebook_fbp') || ''
+        };
+    }
+
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
         const eventId = generateEventId();
@@ -354,19 +413,21 @@ if (customerName) {
             });
         }
 
-        // 2. Preparar payload completo de Facebook para N8N
-        const facebookPayload = {
-            pixel_id: '1052677351596434',
+        // 2. Obtener parámetros de Facebook (FBC/FBP) con generación automática
+        const fbParams = getFacebookParams();
+
+        // 3. Preparar payload para Facebook Events API (formato N8N)
+        const facebookEventData = {
             event_name: 'Purchase',
             event_id: eventId,
             event_time: Math.floor(Date.now() / 1000),
             action_source: 'website',
             event_source_url: window.location.href,
             user_data: {
-                client_ip_address: '',
+                client_ip_address: '', // N8N puede obtener esto del request
                 client_user_agent: navigator.userAgent,
-                fbc: getCookie('_fbc') || '',
-                fbp: getCookie('_fbp') || ''
+                fbc: fbParams.fbc,
+                fbp: fbParams.fbp
             },
             custom_data: eventData
         };
@@ -379,15 +440,13 @@ if (customerName) {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    facebook_payload: facebookPayload,
-                    debug_info: {
-                        page_type: 'previo_pago_3pares',
-                        timestamp: new Date().toISOString()
-                    }
+                    data: [facebookEventData] // Array con el evento, listo para Facebook Events API
                 })
             });
+            console.log('✅ Purchase enviado al servidor - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
         } catch (error) {
             // Error silencioso
+            console.error('Error enviando Purchase al servidor:', error);
         }
     }
 

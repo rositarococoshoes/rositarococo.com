@@ -1944,10 +1944,14 @@
             if (!fbc) {
                 const fbclid = getUrlParameter('fbclid');
                 if (fbclid) {
+                    // Guardar fbclid inicial para uso posterior en páginas de gracias
+                    localStorage.setItem('initial_fbclid', fbclid);
+
                     // Formato: fb.1.timestamp.fbclid
                     fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
                     setCookie('_fbc', fbc, 90); // Guardar por 90 días
                     console.log('✅ FBC generado desde fbclid:', fbc);
+                    console.log('✅ fbclid inicial guardado en localStorage:', fbclid);
                 }
             }
 
