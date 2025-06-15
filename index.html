@@ -1675,11 +1675,27 @@
             if (!fbc) {
                 const fbclid = getUrlParameter('fbclid');
                 if (fbclid) {
+                    // Verificar si ya tenemos un timestamp guardado para este fbclid
+                    const savedTimestamp = localStorage.getItem('initial_fbclid_timestamp');
+                    const savedFbclid = localStorage.getItem('initial_fbclid');
+
+                    let timestamp;
+                    if (savedFbclid === fbclid && savedTimestamp) {
+                        // Usar el timestamp original si es el mismo fbclid
+                        timestamp = savedTimestamp;
+                        console.log('✅ Reutilizando timestamp original:', timestamp);
+                    } else {
+                        // Nuevo fbclid, crear nuevo timestamp
+                        timestamp = Math.floor(Date.now() / 1000);
+                        localStorage.setItem('initial_fbclid_timestamp', timestamp);
+                        console.log('✅ Nuevo timestamp creado:', timestamp);
+                    }
+
                     // Guardar fbclid inicial para uso posterior en páginas de gracias
                     localStorage.setItem('initial_fbclid', fbclid);
 
-                    // Formato: fb.1.timestamp.fbclid
-                    fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+                    // Formato: fb.1.timestamp.fbclid (usando timestamp original)
+                    fbc = `fb.1.${timestamp}.${fbclid}`;
                     setCookie('_fbc', fbc, 90); // Guardar por 90 días
                     console.log('✅ FBC generado desde fbclid:', fbc);
                     console.log('✅ fbclid inicial guardado en localStorage:', fbclid);

@@ -228,10 +228,20 @@ if (customerName) {
             let fbclid = savedFbclid || getUrlParameter('fbclid');
 
             if (fbclid) {
-                // Formato: fb.1.timestamp.fbclid
-                fbc = `fb.1.${Math.floor(Date.now() / 1000)}.${fbclid}`;
+                // Usar el timestamp original guardado, o crear uno nuevo si no existe
+                const savedTimestamp = localStorage.getItem('initial_fbclid_timestamp');
+                const timestamp = savedTimestamp || Math.floor(Date.now() / 1000);
+
+                // Si no teníamos timestamp guardado, guardarlo ahora
+                if (!savedTimestamp) {
+                    localStorage.setItem('initial_fbclid_timestamp', timestamp);
+                    console.log('✅ Timestamp guardado para páginas futuras:', timestamp);
+                }
+
+                // Formato: fb.1.timestamp.fbclid (usando timestamp original)
+                fbc = `fb.1.${timestamp}.${fbclid}`;
                 setCookie('_fbc', fbc, 90); // Guardar por 90 días
-                console.log('✅ FBC generado desde fbclid:', fbc);
+                console.log('✅ FBC generado desde fbclid con timestamp original:', fbc);
             }
         }
 
