@@ -14,6 +14,23 @@ function getFacebookParams() {
     };
 }
 
+// Función para hashear email con SHA-256 (requerido por Meta) - Definida globalmente
+async function hashEmail(email) {
+    if (!email) return '';
+
+    // Normalizar email: lowercase y trim
+    const normalizedEmail = email.toLowerCase().trim();
+
+    // Crear hash SHA-256
+    const encoder = new TextEncoder();
+    const data = encoder.encode(normalizedEmail);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+}
+
 // Función para detectar bots
 function isBot() {
     // 1. Verificar si el campo honeypot está lleno
@@ -148,124 +165,114 @@ $(document).ready(function() {
 
                 // Disparar evento de Facebook Pixel - InitiateCheckout (Tracking Dual)
                 if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
-
-                    // Generar Event ID único para deduplicación
-                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-
-                    // Guardar email en localStorage para eventos de Facebook
-                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
-                    if (customerEmail) {
-                        localStorage.setItem('customer_email', customerEmail);
-                    }
-
-                    // Calcular datos del carrito para contrareembolso
-                    const talleselegidos = window.location.href.includes('contrareembolso') ?
-                        $('#286442883').val() : $('#1471599855').val();
-                    const pairs = talleselegidos.split(', ').filter(Boolean);
-                    const totalItems = pairs.length;
-                    const unitPrice = totalItems === 1 ? 60000 : 42500;
-                    const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
-
-                    const eventData = {
-                        content_type: 'product',
-                        content_ids: ['contrareembolso-checkout'],
-                        contents: [{
-                            id: 'contrareembolso-checkout',
-                            quantity: 1,
-                            item_price: totalValue
-                        }],
-                        value: totalValue,
-                        currency: 'ARS',
-                        num_items: 1
-                    };
-
-                    // 1. Enviar a Facebook (Cliente)
-                    fbq('track', 'InitiateCheckout', {
-                        ...eventData,
-                        event_id: eventId
-                    });
-
-                    // 2. Obtener parámetros de Facebook (FBC/FBP)
-                    const fbParams = getFacebookParams();
-
-                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
-                    function getArgentinaTimestamp() {
-                        const now = new Date();
-                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
-                        return Math.floor(argentinaTime.getTime() / 1000);
-                    }
-
-                    // 4. Función para obtener IP del cliente
-                    async function getClientIP() {
+                    // Función asíncrona para manejar el tracking de Facebook
+                    (async function() {
                         try {
-                            const response = await fetch('https://api.ipify.org?format=json');
-                            const data = await response.json();
-                            return data.ip;
-                        } catch (error) {
-                            try {
-                                const response2 = await fetch('https://httpbin.org/ip');
-                                const data2 = await response2.json();
-                                return data2.origin;
-                            } catch (error2) {
-                                return '';
+                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
+
+                            // Generar Event ID único para deduplicación
+                            const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                            // Guardar email en localStorage para eventos de Facebook
+                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                            if (customerEmail) {
+                                localStorage.setItem('customer_email', customerEmail);
                             }
+
+                            // Calcular datos del carrito para contrareembolso
+                            const talleselegidos = window.location.href.includes('contrareembolso') ?
+                                $('#286442883').val() : $('#1471599855').val();
+                            const pairs = talleselegidos.split(', ').filter(Boolean);
+                            const totalItems = pairs.length;
+                            const unitPrice = totalItems === 1 ? 60000 : 42500;
+                            const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+                            const eventData = {
+                                content_type: 'product',
+                                content_ids: ['contrareembolso-checkout'],
+                                contents: [{
+                                    id: 'contrareembolso-checkout',
+                                    quantity: 1,
+                                    item_price: totalValue
+                                }],
+                                value: totalValue,
+                                currency: 'ARS',
+                                num_items: 1
+                            };
+
+                            // 1. Enviar a Facebook (Cliente)
+                            fbq('track', 'InitiateCheckout', {
+                                ...eventData,
+                                event_id: eventId
+                            });
+
+                            // 2. Obtener parámetros de Facebook (FBC/FBP)
+                            const fbParams = getFacebookParams();
+
+                            // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                            function getArgentinaTimestamp() {
+                                const now = new Date();
+                                const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                                return Math.floor(argentinaTime.getTime() / 1000);
+                            }
+
+                            // 4. Función para obtener IP del cliente
+                            async function getClientIP() {
+                                try {
+                                    const response = await fetch('https://api.ipify.org?format=json');
+                                    const data = await response.json();
+                                    return data.ip;
+                                } catch (error) {
+                                    try {
+                                        const response2 = await fetch('https://httpbin.org/ip');
+                                        const data2 = await response2.json();
+                                        return data2.origin;
+                                    } catch (error2) {
+                                        return '';
+                                    }
+                                }
+                            }
+
+                            const clientIP = await getClientIP();
+
+                            // 6. Obtener y hashear email del cliente
+                            const hashedEmail = await hashEmail(customerEmail);
+
+                            // 7. Enviar al servidor (N8N) en formato para Facebook Events API
+                            const facebookEventData = {
+                                event_name: 'InitiateCheckout',
+                                event_id: eventId,
+                                event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
+                                action_source: 'website',
+                                event_source_url: window.location.href,
+                                user_data: {
+                                    client_ip_address: clientIP, // IP del cliente obtenida
+                                    client_user_agent: navigator.userAgent,
+                                    em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
+                                    fbc: fbParams.fbc,
+                                    fbp: fbParams.fbp
+                                },
+                                custom_data: eventData
+                            };
+
+                            // Enviar al webhook en formato N8N
+                            fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    data: [facebookEventData]
+                                })
+                            }).then(() => {
+                                console.log('✅ InitiateCheckout (Contrareembolso) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                            }).catch(error => {
+                                console.error('Error enviando InitiateCheckout al servidor:', error);
+                            });
+                        } catch (error) {
+                            console.error('Error en el tracking de Facebook (Contrareembolso):', error);
                         }
-                    }
-
-                    // 5. Función para hashear email con SHA-256 (requerido por Meta)
-                    async function hashEmail(email) {
-                        if (!email) return '';
-
-                        // Normalizar email: lowercase y trim
-                        const normalizedEmail = email.toLowerCase().trim();
-
-                        // Crear hash SHA-256
-                        const encoder = new TextEncoder();
-                        const data = encoder.encode(normalizedEmail);
-                        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-                        const hashArray = Array.from(new Uint8Array(hashBuffer));
-                        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-                        return hashHex;
-                    }
-
-                    const clientIP = await getClientIP();
-
-                    // 6. Obtener y hashear email del cliente
-                    const hashedEmail = await hashEmail(customerEmail);
-
-                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
-                    const facebookEventData = {
-                        event_name: 'InitiateCheckout',
-                        event_id: eventId,
-                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
-                        action_source: 'website',
-                        event_source_url: window.location.href,
-                        user_data: {
-                            client_ip_address: clientIP, // IP del cliente obtenida
-                            client_user_agent: navigator.userAgent,
-                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
-                            fbc: fbParams.fbc,
-                            fbp: fbParams.fbp
-                        },
-                        custom_data: eventData
-                    };
-
-                    // Enviar al webhook en formato N8N
-                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            data: [facebookEventData]
-                        })
-                    }).then(() => {
-                        console.log('✅ InitiateCheckout (Contrareembolso) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
-                    }).catch(error => {
-                        console.error('Error enviando InitiateCheckout al servidor:', error);
-                    });
+                    })();
                 }
 
                 // Procesar los productos seleccionados
@@ -444,106 +451,113 @@ $(document).ready(function() {
             if (formaPago === 'cbu') {
                 // Disparar evento de Facebook Pixel - InitiateCheckout (CBU - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
-
-                    // Generar Event ID único para deduplicación
-                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-
-                    // Guardar email en localStorage para eventos de Facebook
-                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
-                    if (customerEmail) {
-                        localStorage.setItem('customer_email', customerEmail);
-                    }
-
-                    // Calcular datos del carrito para CBU
-                    const productsValue = window.location.href.includes('contrareembolso') ?
-                        $('#286442883').val() : $('#1471599855').val();
-                    const pairs = productsValue.split(', ').filter(Boolean);
-                    const totalItems = pairs.length;
-                    const totalValue = totalItems === 1 ? 63000 : 99000; // Precios CBU correctos
-
-                    const eventData = {
-                        content_type: 'product',
-                        content_ids: ['cbu-checkout'],
-                        contents: [{
-                            id: 'cbu-checkout',
-                            quantity: 1,
-                            item_price: totalValue
-                        }],
-                        value: totalValue,
-                        currency: 'ARS',
-                        num_items: 1
-                    };
-
-                    // 1. Enviar a Facebook (Cliente)
-                    fbq('track', 'InitiateCheckout', {
-                        ...eventData,
-                        event_id: eventId
-                    });
-
-                    // 2. Obtener parámetros de Facebook (FBC/FBP)
-                    const fbParams = getFacebookParams();
-
-                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
-                    function getArgentinaTimestamp() {
-                        const now = new Date();
-                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
-                        return Math.floor(argentinaTime.getTime() / 1000);
-                    }
-
-                    // 4. Función para obtener IP del cliente
-                    async function getClientIP() {
+                    // Función asíncrona para manejar el tracking de Facebook
+                    (async function() {
                         try {
-                            const response = await fetch('https://api.ipify.org?format=json');
-                            const data = await response.json();
-                            return data.ip;
-                        } catch (error) {
-                            try {
-                                const response2 = await fetch('https://httpbin.org/ip');
-                                const data2 = await response2.json();
-                                return data2.origin;
-                            } catch (error2) {
-                                return '';
+                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
+
+                            // Generar Event ID único para deduplicación
+                            const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                            // Guardar email en localStorage para eventos de Facebook
+                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                            if (customerEmail) {
+                                localStorage.setItem('customer_email', customerEmail);
                             }
+
+                            // Calcular datos del carrito para CBU
+                            const productsValue = window.location.href.includes('contrareembolso') ?
+                                $('#286442883').val() : $('#1471599855').val();
+                            const pairs = productsValue.split(', ').filter(Boolean);
+                            const totalItems = pairs.length;
+                            const totalValue = totalItems === 1 ? 63000 : 99000; // Precios CBU correctos
+
+                            const eventData = {
+                                content_type: 'product',
+                                content_ids: ['cbu-checkout'],
+                                contents: [{
+                                    id: 'cbu-checkout',
+                                    quantity: 1,
+                                    item_price: totalValue
+                                }],
+                                value: totalValue,
+                                currency: 'ARS',
+                                num_items: 1
+                            };
+
+                            // 1. Enviar a Facebook (Cliente)
+                            fbq('track', 'InitiateCheckout', {
+                                ...eventData,
+                                event_id: eventId
+                            });
+
+                            // 2. Obtener parámetros de Facebook (FBC/FBP)
+                            const fbParams = getFacebookParams();
+
+                            // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                            function getArgentinaTimestamp() {
+                                const now = new Date();
+                                const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                                return Math.floor(argentinaTime.getTime() / 1000);
+                            }
+
+                            // 4. Función para obtener IP del cliente
+                            async function getClientIP() {
+                                try {
+                                    const response = await fetch('https://api.ipify.org?format=json');
+                                    const data = await response.json();
+                                    return data.ip;
+                                } catch (error) {
+                                    try {
+                                        const response2 = await fetch('https://httpbin.org/ip');
+                                        const data2 = await response2.json();
+                                        return data2.origin;
+                                    } catch (error2) {
+                                        return '';
+                                    }
+                                }
+                            }
+
+                            const clientIP = await getClientIP();
+
+                            // 6. Obtener y hashear email del cliente
+                            const hashedEmail = await hashEmail(customerEmail);
+
+                            // 7. Enviar al servidor (N8N) en formato para Facebook Events API
+                            const facebookEventData = {
+                                event_name: 'InitiateCheckout',
+                                event_id: eventId,
+                                event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
+                                action_source: 'website',
+                                event_source_url: window.location.href,
+                                user_data: {
+                                    client_ip_address: clientIP, // IP del cliente obtenida
+                                    client_user_agent: navigator.userAgent,
+                                    em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
+                                    fbc: fbParams.fbc,
+                                    fbp: fbParams.fbp
+                                },
+                                custom_data: eventData
+                            };
+
+                            // Enviar al webhook en formato N8N
+                            fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    data: [facebookEventData]
+                                })
+                            }).then(() => {
+                                console.log('✅ InitiateCheckout (CBU) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                            }).catch(error => {
+                                console.error('Error enviando InitiateCheckout CBU al servidor:', error);
+                            });
+                        } catch (error) {
+                            console.error('Error en el tracking de Facebook (CBU):', error);
                         }
-                    }
-
-                    const clientIP = await getClientIP();
-
-                    // 6. Obtener y hashear email del cliente
-                    const hashedEmail = await hashEmail(customerEmail);
-
-                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
-                    const facebookEventData = {
-                        event_name: 'InitiateCheckout',
-                        event_id: eventId,
-                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
-                        action_source: 'website',
-                        event_source_url: window.location.href,
-                        user_data: {
-                            client_ip_address: clientIP, // IP del cliente obtenida
-                            client_user_agent: navigator.userAgent,
-                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
-                            fbc: fbParams.fbc,
-                            fbp: fbParams.fbp
-                        },
-                        custom_data: eventData
-                    };
-
-                    // Enviar al webhook en formato N8N
-                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            data: [facebookEventData]
-                        })
-                    }).then(() => {
-                        console.log('✅ InitiateCheckout (CBU) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
-                    }).catch(error => {
-                        console.error('Error enviando InitiateCheckout CBU al servidor:', error);
-                    });
+                    })();
                 }
 
                 // Verificar si estamos en la página de contrareembolso
@@ -600,107 +614,114 @@ $(document).ready(function() {
             if (formaPago === 'tarjeta' || formaPago === 'mercadopago') {
                 // Disparar evento de Facebook Pixel - InitiateCheckout (MercadoPago/Tarjeta - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
-
-                    // Generar Event ID único para deduplicación
-                    const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-
-                    // Guardar email en localStorage para eventos de Facebook
-                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
-                    if (customerEmail) {
-                        localStorage.setItem('customer_email', customerEmail);
-                    }
-
-                    // Calcular datos del carrito para MercadoPago/Tarjeta
-                    const productsValue = window.location.href.includes('contrareembolso') ?
-                        $('#286442883').val() : $('#1471599855').val();
-                    const pairs = productsValue.split(', ').filter(Boolean);
-                    const totalItems = pairs.length;
-                    const unitPrice = totalItems === 1 ? 70000 : 55000; // Precios previo pago
-                    const totalValue = totalItems === 1 ? 70000 : totalItems * 55000;
-
-                    const eventData = {
-                        content_type: 'product',
-                        content_ids: ['mercadopago-checkout'],
-                        contents: [{
-                            id: 'mercadopago-checkout',
-                            quantity: 1,
-                            item_price: totalValue
-                        }],
-                        value: totalValue,
-                        currency: 'ARS',
-                        num_items: 1
-                    };
-
-                    // 1. Enviar a Facebook (Cliente)
-                    fbq('track', 'InitiateCheckout', {
-                        ...eventData,
-                        event_id: eventId
-                    });
-
-                    // 2. Obtener parámetros de Facebook (FBC/FBP)
-                    const fbParams = getFacebookParams();
-
-                    // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
-                    function getArgentinaTimestamp() {
-                        const now = new Date();
-                        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
-                        return Math.floor(argentinaTime.getTime() / 1000);
-                    }
-
-                    // 4. Función para obtener IP del cliente
-                    async function getClientIP() {
+                    // Función asíncrona para manejar el tracking de Facebook
+                    (async function() {
                         try {
-                            const response = await fetch('https://api.ipify.org?format=json');
-                            const data = await response.json();
-                            return data.ip;
-                        } catch (error) {
-                            try {
-                                const response2 = await fetch('https://httpbin.org/ip');
-                                const data2 = await response2.json();
-                                return data2.origin;
-                            } catch (error2) {
-                                return '';
+                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
+
+                            // Generar Event ID único para deduplicación
+                            const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+                            // Guardar email en localStorage para eventos de Facebook
+                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                            if (customerEmail) {
+                                localStorage.setItem('customer_email', customerEmail);
                             }
+
+                            // Calcular datos del carrito para MercadoPago/Tarjeta
+                            const productsValue = window.location.href.includes('contrareembolso') ?
+                                $('#286442883').val() : $('#1471599855').val();
+                            const pairs = productsValue.split(', ').filter(Boolean);
+                            const totalItems = pairs.length;
+                            const unitPrice = totalItems === 1 ? 70000 : 55000; // Precios previo pago
+                            const totalValue = totalItems === 1 ? 70000 : totalItems * 55000;
+
+                            const eventData = {
+                                content_type: 'product',
+                                content_ids: ['mercadopago-checkout'],
+                                contents: [{
+                                    id: 'mercadopago-checkout',
+                                    quantity: 1,
+                                    item_price: totalValue
+                                }],
+                                value: totalValue,
+                                currency: 'ARS',
+                                num_items: 1
+                            };
+
+                            // 1. Enviar a Facebook (Cliente)
+                            fbq('track', 'InitiateCheckout', {
+                                ...eventData,
+                                event_id: eventId
+                            });
+
+                            // 2. Obtener parámetros de Facebook (FBC/FBP)
+                            const fbParams = getFacebookParams();
+
+                            // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
+                            function getArgentinaTimestamp() {
+                                const now = new Date();
+                                const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                                return Math.floor(argentinaTime.getTime() / 1000);
+                            }
+
+                            // 4. Función para obtener IP del cliente
+                            async function getClientIP() {
+                                try {
+                                    const response = await fetch('https://api.ipify.org?format=json');
+                                    const data = await response.json();
+                                    return data.ip;
+                                } catch (error) {
+                                    try {
+                                        const response2 = await fetch('https://httpbin.org/ip');
+                                        const data2 = await response2.json();
+                                        return data2.origin;
+                                    } catch (error2) {
+                                        return '';
+                                    }
+                                }
+                            }
+
+                            const clientIP = await getClientIP();
+
+                            // 6. Obtener y hashear email del cliente
+                            const hashedEmail = await hashEmail(customerEmail);
+
+                            // 7. Enviar al servidor (N8N) en formato para Facebook Events API
+                            const facebookEventData = {
+                                event_name: 'InitiateCheckout',
+                                event_id: eventId,
+                                event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
+                                action_source: 'website',
+                                event_source_url: window.location.href,
+                                user_data: {
+                                    client_ip_address: clientIP, // IP del cliente obtenida
+                                    client_user_agent: navigator.userAgent,
+                                    em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
+                                    fbc: fbParams.fbc,
+                                    fbp: fbParams.fbp
+                                },
+                                custom_data: eventData
+                            };
+
+                            // Enviar al webhook en formato N8N
+                            fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    data: [facebookEventData]
+                                })
+                            }).then(() => {
+                                console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+                            }).catch(error => {
+                                console.error('Error enviando InitiateCheckout MercadoPago al servidor:', error);
+                            });
+                        } catch (error) {
+                            console.error('Error en el tracking de Facebook (MercadoPago):', error);
                         }
-                    }
-
-                    const clientIP = await getClientIP();
-
-                    // 6. Obtener y hashear email del cliente
-                    const hashedEmail = await hashEmail(customerEmail);
-
-                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
-                    const facebookEventData = {
-                        event_name: 'InitiateCheckout',
-                        event_id: eventId,
-                        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
-                        action_source: 'website',
-                        event_source_url: window.location.href,
-                        user_data: {
-                            client_ip_address: clientIP, // IP del cliente obtenida
-                            client_user_agent: navigator.userAgent,
-                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
-                            fbc: fbParams.fbc,
-                            fbp: fbParams.fbp
-                        },
-                        custom_data: eventData
-                    };
-
-                    // Enviar al webhook en formato N8N
-                    fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            data: [facebookEventData]
-                        })
-                    }).then(() => {
-                        console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
-                    }).catch(error => {
-                        console.error('Error enviando InitiateCheckout MercadoPago al servidor:', error);
-                    });
+                    })();
                 }
 
                 // Obtener el precio basado en la cantidad de productos
