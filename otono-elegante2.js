@@ -626,6 +626,7 @@ $(document).ready(function(){
         user_data: {
           client_ip_address: clientIP, // IP del cliente obtenida
           client_user_agent: navigator.userAgent,
+          // NO incluir email en AddToCart - aún no se ha capturado
           fbc: fbParams.fbc,
           fbp: fbParams.fbp
         },

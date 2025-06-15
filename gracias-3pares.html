@@ -459,7 +459,11 @@ if (customerName) {
         // 3. Obtener la IP del cliente
         const clientIP = await getClientIP();
 
-        // 4. Preparar payload para Facebook Events API (formato N8N)
+        // 4. Obtener y hashear email del cliente
+        const customerEmail = getStoredEmail();
+        const hashedEmail = await hashEmail(customerEmail);
+
+        // 5. Preparar payload para Facebook Events API (formato N8N)
         const facebookEventData = {
             event_name: 'Purchase',
             event_id: eventId,
@@ -469,6 +473,7 @@ if (customerName) {
             user_data: {
                 client_ip_address: clientIP, // IP del cliente obtenida
                 client_user_agent: navigator.userAgent,
+                em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
                 fbc: fbParams.fbc,
                 fbp: fbParams.fbp
             },
@@ -486,7 +491,7 @@ if (customerName) {
                     data: [facebookEventData] // Array con el evento, listo para Facebook Events API
                 })
             });
-            console.log('✅ Purchase enviado al servidor - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+            console.log('✅ Purchase enviado al servidor - IP:', clientIP, 'Email:', hashedEmail ? 'hasheado' : 'no disponible', 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
         } catch (error) {
             // Error silencioso
             console.error('Error enviando Purchase al servidor:', error);

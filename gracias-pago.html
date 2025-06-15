@@ -205,6 +205,28 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
         }
     }
 
+    // Función para hashear email con SHA-256 (requerido por Meta)
+    async function hashEmail(email) {
+        if (!email) return '';
+
+        // Normalizar email: lowercase y trim
+        const normalizedEmail = email.toLowerCase().trim();
+
+        // Crear hash SHA-256
+        const encoder = new TextEncoder();
+        const data = encoder.encode(normalizedEmail);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        return hashHex;
+    }
+
+    // Función para obtener email del localStorage (guardado durante el checkout)
+    function getStoredEmail() {
+        return localStorage.getItem('customer_email') || '';
+    }
+
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
         // Verificar si ya se envió este evento (para evitar duplicados en recargas)
@@ -249,7 +271,11 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
         // 3. Obtener la IP del cliente
         const clientIP = await getClientIP();
 
-        // 4. Preparar payload para Facebook Events API (formato N8N)
+        // 4. Obtener y hashear email del cliente
+        const customerEmail = getStoredEmail();
+        const hashedEmail = await hashEmail(customerEmail);
+
+        // 5. Preparar payload para Facebook Events API (formato N8N)
         const facebookEventData = {
             event_name: 'Purchase',
             event_id: eventId,
@@ -259,6 +285,7 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
             user_data: {
                 client_ip_address: clientIP, // IP del cliente obtenida
                 client_user_agent: navigator.userAgent,
+                em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
                 fbc: fbParams.fbc,
                 fbp: fbParams.fbp
             },

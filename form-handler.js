@@ -153,6 +153,12 @@ $(document).ready(function() {
                     // Generar Event ID único para deduplicación
                     const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
+                    // Guardar email en localStorage para eventos de Facebook
+                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                    if (customerEmail) {
+                        localStorage.setItem('customer_email', customerEmail);
+                    }
+
                     // Calcular datos del carrito para contrareembolso
                     const talleselegidos = window.location.href.includes('contrareembolso') ?
                         $('#286442883').val() : $('#1471599855').val();
@@ -207,9 +213,29 @@ $(document).ready(function() {
                         }
                     }
 
+                    // 5. Función para hashear email con SHA-256 (requerido por Meta)
+                    async function hashEmail(email) {
+                        if (!email) return '';
+
+                        // Normalizar email: lowercase y trim
+                        const normalizedEmail = email.toLowerCase().trim();
+
+                        // Crear hash SHA-256
+                        const encoder = new TextEncoder();
+                        const data = encoder.encode(normalizedEmail);
+                        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+                        const hashArray = Array.from(new Uint8Array(hashBuffer));
+                        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+                        return hashHex;
+                    }
+
                     const clientIP = await getClientIP();
 
-                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 6. Obtener y hashear email del cliente
+                    const hashedEmail = await hashEmail(customerEmail);
+
+                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
@@ -219,6 +245,7 @@ $(document).ready(function() {
                         user_data: {
                             client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
+                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
                         },
@@ -422,6 +449,12 @@ $(document).ready(function() {
                     // Generar Event ID único para deduplicación
                     const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
+                    // Guardar email en localStorage para eventos de Facebook
+                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                    if (customerEmail) {
+                        localStorage.setItem('customer_email', customerEmail);
+                    }
+
                     // Calcular datos del carrito para CBU
                     const productsValue = window.location.href.includes('contrareembolso') ?
                         $('#286442883').val() : $('#1471599855').val();
@@ -477,7 +510,10 @@ $(document).ready(function() {
 
                     const clientIP = await getClientIP();
 
-                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 6. Obtener y hashear email del cliente
+                    const hashedEmail = await hashEmail(customerEmail);
+
+                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
@@ -487,6 +523,7 @@ $(document).ready(function() {
                         user_data: {
                             client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
+                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
                         },
@@ -568,6 +605,12 @@ $(document).ready(function() {
                     // Generar Event ID único para deduplicación
                     const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
+                    // Guardar email en localStorage para eventos de Facebook
+                    const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                    if (customerEmail) {
+                        localStorage.setItem('customer_email', customerEmail);
+                    }
+
                     // Calcular datos del carrito para MercadoPago/Tarjeta
                     const productsValue = window.location.href.includes('contrareembolso') ?
                         $('#286442883').val() : $('#1471599855').val();
@@ -624,7 +667,10 @@ $(document).ready(function() {
 
                     const clientIP = await getClientIP();
 
-                    // 5. Enviar al servidor (N8N) en formato para Facebook Events API
+                    // 6. Obtener y hashear email del cliente
+                    const hashedEmail = await hashEmail(customerEmail);
+
+                    // 7. Enviar al servidor (N8N) en formato para Facebook Events API
                     const facebookEventData = {
                         event_name: 'InitiateCheckout',
                         event_id: eventId,
@@ -634,6 +680,7 @@ $(document).ready(function() {
                         user_data: {
                             client_ip_address: clientIP, // IP del cliente obtenida
                             client_user_agent: navigator.userAgent,
+                            em: hashedEmail, // Email hasheado con SHA-256 (requerido por Meta)
                             fbc: fbParams.fbc,
                             fbp: fbParams.fbp
                         },
