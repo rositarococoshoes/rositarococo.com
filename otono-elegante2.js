@@ -730,8 +730,8 @@ $(document).ready(function(){
     $("#preciototal").html(totalPriceText);
     // console.log("Actualizando #preciototal con:", totalPriceText);
 
-    // Recalculate price based on payment method - REMOVED as #comoabona is gone
-    // $("#comoabona").trigger('change');
+    // Recalculate price based on payment method
+    $("#comoabona").trigger('change');
 
     // Mostrar notificación de éxito
     showNotification('¡Producto agregado al carrito!', 'success');
@@ -930,8 +930,53 @@ $(document).ready(function(){
     $("#59648134, #1756027935").trigger('change');
   }
 
-  // --- Discount Logic Removed ---
-  // $("#comoabona").change(function() { ... });
+  // --- Discount Logic ---
+  $("#comoabona").change(function() {
+    var selectedPayment = $(this).val();
+    var isCBU = (selectedPayment === "cbu");
+    var discountText = isCBU ? ' <span style="color:#5a8f3e; font-weight:bold;">(10% OFF Incluido)</span>' : '';
+
+    $(".preciototalaobservar").each(function() {
+      var $priceSpan = $(this);
+      var originalPrice = $priceSpan.data('original-price');
+
+      if (typeof originalPrice === 'undefined') {
+        originalPrice = parseFloat($priceSpan.text().replace(/\./g, '').replace(',', '.'));
+        $priceSpan.data('original-price', originalPrice);
+      }
+
+      var priceToShow = isCBU ? Math.round(originalPrice * 0.90) : originalPrice;
+      $priceSpan.text(priceToShow.toLocaleString('es-AR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+      }).replace(/,/g, '.'));
+    });
+
+    // Update the main total display to show the discount text if applicable
+    var $totalPriceElement = $("#preciototal");
+    var currentHtml = $totalPriceElement.html();
+
+    // Remove previous discount text before adding new one
+    currentHtml = currentHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
+
+    if (isCBU) {
+      // Add discount text after the price span
+      currentHtml = currentHtml.replace(/(<\/span>)/, '$1' + discountText);
+    }
+
+    $totalPriceElement.html(currentHtml);
+
+    // Update floating summary as well if it exists
+    var $floatingPriceSummary = $("#floating-price-summary");
+    if ($floatingPriceSummary.length > 0) {
+      var floatingHtml = $floatingPriceSummary.html();
+      floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
+      if (isCBU) {
+        floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
+      }
+      $floatingPriceSummary.html(floatingHtml);
+    }
+  });
 
   // Show WhatsApp button after a delay - REMOVED, no WhatsApp button in this version
   // $("#whatsapp").delay(3000).fadeIn(400);
@@ -1689,6 +1734,9 @@ $(document).ready(function(){
       // Actualizar la visibilidad del botón flotante
       updateFormVisibility();
     }
+
+    // Recalculate price based on payment method after updating cart
+    $("#comoabona").trigger('change');
 
     // Setup remove buttons
     $('.cart-item-remove').on('click', function() {
