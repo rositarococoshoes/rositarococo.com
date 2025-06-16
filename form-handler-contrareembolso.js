@@ -97,6 +97,38 @@ $(document).ready(function() {
         $('#botoncomprar').val('Procesando...').prop('disabled', true);
 
         try {
+            // 📊 ENVIAR EVENTO INITIATECHECKOUT ANTES DEL ENVÍO
+            const talleselegidos = $('#286442883').val();
+            if (talleselegidos && talleselegidos.trim() !== '') {
+                const pairs = talleselegidos.split(', ').filter(Boolean);
+                const totalItems = pairs.length;
+                const unitPrice = totalItems === 1 ? 60000 : 42500; // Precios contrareembolso
+                const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+
+                const eventData = {
+                    content_type: 'product',
+                    content_ids: ['contrareembolso-checkout'],
+                    contents: [{
+                        id: 'contrareembolso-checkout',
+                        quantity: 1,
+                        item_price: totalValue
+                    }],
+                    value: totalValue,
+                    currency: 'ARS',
+                    num_items: 1
+                };
+
+                // Enviar InitiateCheckout a Facebook
+                if (typeof fbq !== 'undefined') {
+                    const checkoutEventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    fbq('track', 'InitiateCheckout', {
+                        ...eventData,
+                        event_id: checkoutEventId
+                    });
+                    console.log('✅ InitiateCheckout enviado:', checkoutEventId);
+                }
+            }
+
             // Concatenar valores de dirección
             var calleAltura = $('#951592426').val();
             var entreCalles = $('#entre-calles').val();
@@ -129,9 +161,16 @@ $(document).ready(function() {
                     // Guardar los detalles del pedido en localStorage para la página de agradecimiento
                     localStorage.setItem('orderDetails', talleselegidos);
                     localStorage.setItem('customerName', $('#1211347450').val());
+
+                    // 🔐 GENERAR TOKEN DE VALIDACIÓN PARA EVITAR EVENTOS FALSOS
+                    const purchaseToken = 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    localStorage.setItem('valid_purchase_token', purchaseToken);
+                    localStorage.setItem('purchase_timestamp', Date.now().toString());
+
                     console.log('Datos guardados en localStorage:', {
                         orderDetails: talleselegidos,
-                        customerName: $('#1211347450').val()
+                        customerName: $('#1211347450').val(),
+                        purchaseToken: purchaseToken
                     });
 
                     // Pequeño retraso para asegurar que los datos se guarden correctamente antes de la redirección

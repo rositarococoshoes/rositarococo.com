@@ -427,6 +427,36 @@ if (customerName) {
 
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
+        // 🔐 VALIDACIÓN 1: Verificar que viene de un pedido legítimo
+        const validToken = localStorage.getItem('valid_purchase_token');
+        if (!validToken) {
+            console.log('❌ Acceso directo bloqueado - No hay token de validación');
+            return;
+        }
+
+        // 🔐 VALIDACIÓN 2: Verificar que el token no sea muy antiguo (máximo 10 minutos)
+        const purchaseTimestamp = localStorage.getItem('purchase_timestamp');
+        if (purchaseTimestamp) {
+            const timeDiff = Date.now() - parseInt(purchaseTimestamp);
+            if (timeDiff > 600000) { // 10 minutos
+                console.log('❌ Token expirado - Pedido muy antiguo');
+                localStorage.removeItem('valid_purchase_token');
+                localStorage.removeItem('purchase_timestamp');
+                return;
+            }
+        }
+
+        // 🔐 VALIDACIÓN 3: Una sola vez por fbclid único
+        const currentFbclid = localStorage.getItem('initial_fbclid') || getUrlParameter('fbclid');
+        if (currentFbclid) {
+            const purchaseKey = 'purchase_sent_' + currentFbclid;
+            const alreadySent = localStorage.getItem(purchaseKey);
+            if (alreadySent === 'true') {
+                console.log('❌ Evento Purchase ya enviado para este fbclid:', currentFbclid);
+                return;
+            }
+        }
+
         // Verificar si ya se envió este evento (para evitar duplicados en recargas)
         const purchaseSent = sessionStorage.getItem('purchase_event_sent');
         if (purchaseSent === 'true') {
@@ -440,6 +470,17 @@ if (customerName) {
         // Marcar como enviado para evitar duplicados en recargas
         sessionStorage.setItem('purchase_event_sent', 'true');
         sessionStorage.setItem('purchase_event_id', eventId);
+
+        // 🔐 MARCAR FBCLID COMO USADO (deduplicación permanente)
+        if (currentFbclid) {
+            const purchaseKey = 'purchase_sent_' + currentFbclid;
+            localStorage.setItem(purchaseKey, 'true');
+            console.log('✅ Fbclid marcado como usado:', currentFbclid);
+        }
+
+        // 🔐 LIMPIAR TOKEN DE VALIDACIÓN (ya fue usado)
+        localStorage.removeItem('valid_purchase_token');
+        localStorage.removeItem('purchase_timestamp');
 
         // Datos del evento Purchase - Previo Pago 3+ Pares (Monto Total: $165.000)
         const eventData = {
