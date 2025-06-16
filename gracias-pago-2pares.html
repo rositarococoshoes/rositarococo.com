@@ -315,5 +315,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 })();
 </script>
+<script>
+(function() {
+    const token = localStorage.getItem('valid_purchase_token');
+    const tokenTime = parseInt(localStorage.getItem('purchase_timestamp'), 10);
+    const now = Date.now();
+    const maxAge = 10 * 60 * 1000;
+    if (token && tokenTime && (now - tokenTime) < maxAge) {
+        if (!localStorage.getItem('purchase_sent_' + token)) {
+            sendPurchaseEvent();
+            localStorage.setItem('purchase_sent_' + token, '1');
+            localStorage.removeItem('valid_purchase_token');
+            localStorage.removeItem('purchase_timestamp');
+        }
+    }
+})();
+</script>
 </body>
 </html>

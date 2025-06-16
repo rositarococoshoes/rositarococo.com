@@ -821,6 +821,11 @@ $(document).ready(function() {
                     $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
                 }
 
+                // 🔐 GENERAR TOKEN DE VALIDACIÓN PARA EVITAR EVENTOS FALSOS (MercadoPago)
+                const purchaseToken = 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('valid_purchase_token', purchaseToken);
+                localStorage.setItem('purchase_timestamp', Date.now().toString());
+
                 return false;
             }
 

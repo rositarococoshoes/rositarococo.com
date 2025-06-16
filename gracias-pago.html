@@ -328,5 +328,23 @@ src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
     }
 })();
 </script>
+<script>
+(function() {
+    // Validar token de compra
+    const token = localStorage.getItem('valid_purchase_token');
+    const tokenTime = parseInt(localStorage.getItem('purchase_timestamp'), 10);
+    const now = Date.now();
+    const maxAge = 10 * 60 * 1000; // 10 minutos
+    if (token && tokenTime && (now - tokenTime) < maxAge) {
+        if (!localStorage.getItem('purchase_sent_' + token)) {
+            // Dispara el evento Purchase (el código existente)
+            sendPurchaseEvent();
+            localStorage.setItem('purchase_sent_' + token, '1');
+            localStorage.removeItem('valid_purchase_token');
+            localStorage.removeItem('purchase_timestamp');
+        }
+    }
+})();
+</script>
 </body>
 </html>
