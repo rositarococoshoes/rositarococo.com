@@ -173,11 +173,6 @@ $(document).ready(function() {
                             // Generar Event ID único para deduplicación
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
-                            // Guardar email en localStorage para eventos de Facebook
-                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
-                            if (customerEmail) {
-                                localStorage.setItem('customer_email', customerEmail);
-                            }
 
                             // Calcular datos del carrito para contrareembolso
                             const talleselegidos = window.location.href.includes('contrareembolso') ?
@@ -386,6 +381,11 @@ $(document).ready(function() {
                         if ($('#1211347450').val()) {
                             localStorage.setItem('customerName', $('#1211347450').val());
                         }
+
+                        // 🔐 GENERAR TOKEN DE VALIDACIÓN PARA EVITAR EVENTOS FALSOS
+                        const purchaseToken = 'purchase_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                        localStorage.setItem('valid_purchase_token', purchaseToken);
+                        localStorage.setItem('purchase_timestamp', Date.now().toString());
 
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
