@@ -381,18 +381,31 @@ if (customerName) {
 </script>
 <script>
 (function() {
+    // 🔐 VALIDACIÓN ROBUSTA DE TOKEN DE COMPRA
     const token = localStorage.getItem('valid_purchase_token');
     const tokenTime = parseInt(localStorage.getItem('purchase_timestamp'), 10);
     const now = Date.now();
-    const maxAge = 10 * 60 * 1000;
-    if (token && tokenTime && (now - tokenTime) < maxAge) {
-        if (!localStorage.getItem('purchase_sent_' + token)) {
-            sendPurchaseEvent();
-            localStorage.setItem('purchase_sent_' + token, '1');
-            localStorage.removeItem('valid_purchase_token');
-            localStorage.removeItem('purchase_timestamp');
-        }
+    const maxAge = 15 * 60 * 1000; // 15 minutos (extendido para consistencia)
+
+    if (!token || !tokenTime || (now - tokenTime) > maxAge) {
+        console.log('❌ Bloqueado: Token de compra inválido, ausente o expirado.');
+        return;
     }
+
+    if (sessionStorage.getItem('purchase_sent_' + token) === 'true') {
+        console.log('❌ Bloqueado: Este evento de compra ya se envió en esta sesión.');
+        return;
+    }
+
+    console.log('✅ Validaciones superadas. Disparando evento Purchase...');
+
+    // Dispara el evento Purchase
+    sendPurchaseEvent();
+
+    // Marcar como enviado y limpiar tokens
+    sessionStorage.setItem('purchase_sent_' + token, 'true');
+    localStorage.removeItem('valid_purchase_token');
+    localStorage.removeItem('purchase_timestamp');
 })();
 </script>
 </body>

@@ -316,19 +316,50 @@ if (customerName) {
 
     // Función de envío dual para Purchase
     async function sendPurchaseEvent() {
-        // Verificar si ya se envió este evento (para evitar duplicados en recargas)
-        const purchaseSent = sessionStorage.getItem('purchase_event_sent');
-        if (purchaseSent === 'true') {
-            console.log('✅ Evento Purchase ya fue enviado anteriormente, evitando duplicación');
+        // 🔐 VALIDACIÓN 1: Verificar token de compra legítima
+        const token = localStorage.getItem('valid_purchase_token');
+        const tokenTime = parseInt(localStorage.getItem('purchase_timestamp'), 10);
+        if (!token || !tokenTime || (Date.now() - tokenTime) > 15 * 60 * 1000) {
+            console.log('❌ Bloqueado: Token de compra inválido, ausente o expirado.');
             return;
         }
+
+        // 🔐 VALIDACIÓN 2: Prevención de duplicados por sesión y por token
+        if (sessionStorage.getItem('purchase_sent_' + token) === 'true') {
+            console.log('❌ Bloqueado: Este evento de compra ya se envió en esta sesión.');
+            return;
+        }
+
+        // 🔐 VALIDACIÓN 3: Una sola vez por fbclid único
+        const currentFbclid = localStorage.getItem('initial_fbclid') || getUrlParameter('fbclid');
+        if (currentFbclid) {
+            const purchaseKey = 'purchase_sent_' + currentFbclid;
+            const alreadySent = localStorage.getItem(purchaseKey);
+            if (alreadySent === 'true') {
+                console.log('❌ Bloqueado: Evento Purchase ya enviado para este fbclid:', currentFbclid);
+                return;
+            }
+        }
+
+        console.log('✅ Validaciones superadas. Disparando evento Purchase...');
 
         // Generar un ID único para esta transacción
         const eventId = generateEventId();
 
-        // Marcar como enviado para evitar duplicados en recargas
-        sessionStorage.setItem('purchase_event_sent', 'true');
+        // Marcar como enviado para evitar duplicados
+        sessionStorage.setItem('purchase_sent_' + token, 'true');
         sessionStorage.setItem('purchase_event_id', eventId);
+
+        // 🔐 MARCAR FBCLID COMO USADO (deduplicación permanente)
+        if (currentFbclid) {
+            const purchaseKey = 'purchase_sent_' + currentFbclid;
+            localStorage.setItem(purchaseKey, 'true');
+            console.log('✅ Fbclid marcado como usado:', currentFbclid);
+        }
+
+        // Limpiar token de validación (ya fue usado)
+        localStorage.removeItem('valid_purchase_token');
+        localStorage.removeItem('purchase_timestamp');
 
         // Datos del evento Purchase - Contrareembolso 2 Pares (Monto Total: $85.000)
         const eventData = {
