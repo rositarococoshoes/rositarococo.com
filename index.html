@@ -1319,9 +1319,26 @@
 
             <!-- Shipping and Payment Form Section -->
             <div id="restodelform" class="checkout-section hidden">
+                <!-- ========== INICIO DEL BLOQUE DE UPSELL ========== -->
+                <div id="upsell-message-container" class="hidden">
+                    <div class="upsell-simple">
+                        <div class="upsell-icon">💰</div>
+                        <div class="upsell-text">
+                            <h3>¡Agregá cualquier otro par y ahorrá $15.000 por par!</h3>
+                            <p>Podés combinar <strong>cualquier modelo y talle</strong>. Llevate 2 pares por solo <strong>$55.000 cada uno</strong> en lugar de $70.000.</p>
+                            <div class="cbu-note">
+                                🏦 <strong>Con CBU/transferencia:</strong> $49.500 cada par
+                            </div>
+                        </div>
+                        <a href="#todoslosmodelos" class="upsell-btn" onclick="document.getElementById('todoslosmodelos').scrollIntoView({behavior: 'smooth'}); return false;">
+                            Elegir segundo par
+                        </a>
+                    </div>
+                </div>
+                <!-- ========== FIN DEL BLOQUE DE UPSELL ========== -->
+
                 <h2 id="datos-envio">¡Casi listos! Completa tus datos</h2>
-				<p>Recordá que agregando dos pares a tu pedido de cualquier modelo o talle accedés a un descuento importante en el precio por par y el envío es gratis.</p>
-                <div class="checkout-steps">
+				<div class="checkout-steps">
                     <div class="checkout-step active" id="shipping-step">
                         <span class="step-number">1</span>
                         <span class="step-name">Información de Envío</span>
@@ -1494,8 +1511,10 @@
                 <h3>Ingresa tu WhatsApp para continuar</h3>
             </div>
             <div class="whatsapp-modal-body">
-                <p class="whatsapp-modal-message">Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp. Recordá que agregando dos pares a tu pedido de cualquier modelo o talle accedés a un descuento importante en el precio por par y el envío es gratis.</p>
-                <div class="whatsapp-form-group">
+              <p class="whatsapp-modal-message">
+Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de cualquier modelo o talle, tenés descuento importante por par y envío gratis.
+</p>
+ <div class="whatsapp-form-group">
                     <input type="tel" id="whatsapp-modal-input" class="form-control" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
                     <div class="whatsapp-error-message"></div>
                 </div>

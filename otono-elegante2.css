@@ -3266,3 +3266,136 @@ right: 15px;
 .notification-info {
   border-left-color: #5bc0de;
 }
+
+/* ========== ESTILOS PARA EL MENSAJE DE UPSELL ========== */
+
+#upsell-message-container {
+    display: none;
+    margin: 0 auto 35px auto;
+    max-width: 750px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+
+/* Espaciado específico para el título "¡Casi listos!" */
+h2#datos-envio {
+    margin-top: 80px !important;
+    padding-top: 50px !important;
+    border-top: 3px solid #e9ecef !important;
+    margin-bottom: 30px !important;
+}
+
+/* Asegurar que el contenedor del upsell tenga margen inferior */
+#upsell-message-container.visible {
+    margin-bottom: 100px !important;
+}
+
+#upsell-message-container.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    margin-bottom: 100px !important;
+}
+
+.upsell-simple {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: white;
+}
+
+.upsell-icon {
+    font-size: 3em;
+    flex-shrink: 0;
+    animation: money-pulse 2s ease-in-out infinite;
+}
+
+@keyframes money-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.upsell-text {
+    flex: 1;
+}
+
+.upsell-text h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.upsell-text p {
+    margin: 0 0 15px 0;
+    font-size: 1em;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.upsell-text strong {
+    color: #ffff00;
+    font-weight: 800;
+}
+
+.cbu-note {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+}
+
+.upsell-btn {
+    background: white;
+    color: #28a745;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid white;
+}
+
+.upsell-btn::before {
+    content: '👆';
+    font-size: 1.1em;
+}
+
+.upsell-btn:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    color: #1e7e34;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .upsell-simple {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .upsell-icon {
+        font-size: 2.5em;
+    }
+
+    .upsell-text h3 {
+        font-size: 1.2em;
+    }
+}

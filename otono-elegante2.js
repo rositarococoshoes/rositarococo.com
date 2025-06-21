@@ -11,7 +11,8 @@ function getCookie(name) {
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
   // --- Cart & Checkout Process Variables ---
-  var cartItems = [];
+  window.cartItems = []; // Hacer global para depuración
+  var cartItems = window.cartItems;
   var currentStep = 1;
   var maxStep = 3;
 
@@ -1564,8 +1565,8 @@ $(document).ready(function(){
 
   // --- Helper Functions ---
 
-  // Update cart display
-  function updateCart(itemsArray) {
+  // Update cart display (hacer global para depuración)
+  window.updateCart = function updateCart(itemsArray) {
     // Asegurarse de que el botón del carrito sea visible
     ensureCartButtonVisible();
 
@@ -1743,6 +1744,34 @@ $(document).ready(function(){
       var itemId = $(this).data('id');
       removeFromCart(itemId);
     });
+
+    // ========== INICIO DEL CÓDIGO DE LÓGICA DE UPSELL ==========
+    // Esta lógica debe ir al final de la función updateCart para asegurar que se ejecuta
+    // después de que el carrito y sus precios han sido actualizados.
+
+    console.log('🔍 UPSELL DEBUG: Ejecutando lógica de upsell');
+    const upsellContainer = $('#upsell-message-container');
+    const restOfFormContainer = $('#restodelform');
+    const cartItemsCount = cartItems.length;
+
+    console.log('🔍 UPSELL DEBUG: Items en carrito:', cartItemsCount);
+    console.log('🔍 UPSELL DEBUG: Elemento upsell encontrado:', upsellContainer.length > 0);
+
+    if (cartItemsCount === 1) {
+        // Si hay exactamente UN par en el carrito, mostramos el mensaje de upsell.
+        console.log('🎯 UPSELL DEBUG: Mostrando mensaje de upsell');
+        upsellContainer.removeClass('hidden').addClass('visible');
+        console.log('🎯 UPSELL DEBUG: Clases del elemento:', upsellContainer.attr('class'));
+
+        // También nos aseguramos de que el formulario de envío sea visible.
+        restOfFormContainer.removeClass('hidden inactive').addClass('active');
+
+    } else {
+        // Si hay 0 o 2 pares, ocultamos el mensaje.
+        console.log('❌ UPSELL DEBUG: Ocultando mensaje de upsell, items:', cartItemsCount);
+        upsellContainer.removeClass('visible').addClass('hidden');
+    }
+    // ========== FIN DEL CÓDIGO DE LÓGICA DE UPSELL ==========
   }
 
   // Remove item from cart
