@@ -1128,11 +1128,23 @@
           // Martes de la próxima semana y Jueves de la próxima semana
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente
-        } else { // Domingo (todayNum == 7)
-          // Martes de esta semana y Jueves de esta semana
-          availableDates.push(today.clone().add(2, "days")); // Martes
-          availableDates.push(today.clone().add(4, "days")); // Jueves
-        }
+       } else { // Domingo (todayNum == 7)
+  const currentHour = today.hour();
+  const currentMinute = today.minute();
+
+  const isBefore12_01 = currentHour < 12 || (currentHour === 12 && currentMinute === 0);
+
+  if (isBefore12_01) {
+    // Antes de las 12:01 → Martes y Jueves de esta semana
+    availableDates.push(today.clone().add(2, "days")); // Martes
+    availableDates.push(today.clone().add(4, "days")); // Jueves
+  } else {
+    // Desde las 12:01 → Jueves de esta semana y Martes de la próxima
+    availableDates.push(today.clone().add(4, "days")); // Jueves
+    availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
+  }
+}
+
 
         // Agregar las opciones al selector de fechas
         $.each(availableDates, function(index, value) {
