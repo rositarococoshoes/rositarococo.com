@@ -1,0 +1,25 @@
+#whatsapp-direct-icon {
+    position: fixed;
+    bottom: 85px; /* Aumentado para no superponerse con el botón del carrito */
+    right: 10px;
+    width: 60px; /* Aumentado de tamaño */
+    height: 60px; /* Aumentado de tamaño */
+    background-color: transparent; /* El fondo ahora es transparente */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 9990;
+    transition: transform 0.2s ease-out;
+}
+
+#whatsapp-direct-icon:hover {
+    transform: scale(1.1);
+}
+
+#whatsapp-direct-icon img {
+    width: 50px; /* Tamaño de la imagen especificado */
+    height: 50px; /* Tamaño de la imagen especificado */
+}

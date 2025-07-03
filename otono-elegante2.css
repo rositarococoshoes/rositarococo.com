@@ -1487,7 +1487,7 @@ fieldset {
 #mini-cart {
   position: fixed;
   bottom: 80px;
-  right: 20px;
+  right: 10px;
   width: 320px;
   background-color: #fff;
   border-radius: var(--border-radius-medium);
@@ -1512,7 +1512,7 @@ fieldset {
 #cart-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 10px;
   background-color: #a05941; /* Cambiado a color primario para consistencia */
   color: white;
   width: 60px;

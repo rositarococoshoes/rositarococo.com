@@ -97,15 +97,13 @@
     <link rel="preload" href="floating-button.css" as="style">
     <link rel="stylesheet" href="floating-button.css" />
 
-    <!-- Chat Widget CSS -->
-    <link rel="preload" href="chat-widget.css" as="style">
-    <link rel="stylesheet" href="chat-widget.css" />
 
     <!-- Header Improvements CSS -->
     <link rel="preload" href="header-improvements.css" as="style">
     <link rel="stylesheet" href="header-improvements.css" />
 
     <!-- WhatsApp Modal CSS -->
+    <link rel="stylesheet" href="whatsapp-float.css">
     <style>
         .whatsapp-modal {
             display: none;
@@ -1500,8 +1498,6 @@
 
 
 
-    <!-- Chat Widget Script -->
-    <script src="chat-widget.js"></script>
 
     <!-- WhatsApp Modal -->
     <div id="whatsapp-modal" class="whatsapp-modal">
@@ -1852,7 +1848,32 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
     })();
     </script>
 
+    <!-- Popover para el Ícono Flotante de WhatsApp (con IDs únicos) -->
+    <div id="whatsapp-direct-modal" class="whatsapp-modal">
+        <div class="whatsapp-modal-overlay"></div>
+        <div class="whatsapp-modal-content">
+            <div class="whatsapp-modal-header">
+                <h3>Completa para ir a WhatsApp</h3>
+                <button class="whatsapp-modal-close">×</button>
+            </div>
+            <div class="whatsapp-modal-body">
+                <p class="whatsapp-modal-message">Ingresa tu número. Te redirigiremos para que hagas tu pedido por WhatsApp.</p>
+                <div class="whatsapp-form-group">
+                    <input type="tel" id="whatsapp-direct-input" placeholder="Ej: 1156457057 (sin 0 ni 15)" />
+                    <div id="whatsapp-direct-error" class="whatsapp-error-message"></div>
+                </div>
+                <button id="whatsapp-direct-submit" class="whatsapp-modal-button">Ir a WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ícono flotante de WhatsApp para contacto directo -->
+    <div id="whatsapp-direct-icon">
+        <img src="wspflotante.png" alt="Contactar por WhatsApp">
+    </div>
+
     <!-- Testimonials Dynamic Loading Script -->
+    <script src="whatsapp-float.js"></script>
     <script>
     (function() {
         // Lista completa de comentarios disponibles
