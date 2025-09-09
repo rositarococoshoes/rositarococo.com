@@ -319,12 +319,14 @@ if (customerName) {
         };
 
         // 1. Enviar a Facebook (Cliente)
+        /*
         if (typeof fbq !== 'undefined') {
             fbq('track', 'Purchase', {
                 ...eventData,
                 event_id: eventId
             });
         }
+        */
 
         // 2. Obtener parámetros de Facebook (FBC/FBP) con generación automática
         const fbParams = getFacebookParams();
