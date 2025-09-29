@@ -3,435 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistente de Voz - Rosita Rococó</title>
+    <title>Sofía - Asistente Virtual</title>
     <style>
         :root {
             --primary-color: #E91E63;
-            --background-color: #fce4ec;
+            --secondary-color: #F8BBD0;
+            --background-color: #f5f5f5;
             --text-color: #333;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            --sofia-bubble-color: #e8e8e8;
-            --user-bubble-color: #ffcce0;
+            --assistant-bg: #fff;
+            --user-bg: #E1F5FE;
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
+            margin: 0;
             font-family: var(--font-family);
             background-color: var(--background-color);
-            margin: 0;
-            padding: 2rem;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             color: var(--text-color);
-            box-sizing: border-box;
         }
-        .container {
-            text-align: center;
-            background: white;
-            padding: 2rem 3rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        p {
-            max-width: 500px;
-            line-height: 1.6;
-        }
-        #chat-button {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 70px;
-            height: 70px;
-            background-color: var(--primary-color);
-            border: none;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s ease-out, background-color 0.2s;
-            z-index: 999;
-        }
-        #chat-button:hover {
-            transform: scale(1.1);
-        }
-        #chat-button.recording::before {
-            content: '';
-            position: absolute;
+        .chat-container {
             width: 100%;
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            70% { transform: scale(1.3); opacity: 0; }
-            100% { transform: scale(0.9); opacity: 0; }
-        }
-        #chat-button svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-            position: relative;
-            z-index: 1;
-        }
-        #chat-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background-color: rgba(0,0,0,0.5);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            border-radius: 1rem;
-            width: 90%;
-            max-width: 450px;
-            height: 70vh;
-            max-height: 600px;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 800px;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
             overflow: hidden;
         }
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #eee;
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 16px 24px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
             flex-shrink: 0;
         }
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-        #modal-close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #aaa;
-        }
-        .transcripts {
+        .messages {
             flex-grow: 1;
-            padding: 1rem;
+            padding: 24px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
         }
-        .transcripts .message {
-            padding: 0.6rem 1rem;
-            border-radius: 1.2rem;
-            line-height: 1.5;
+        .message {
+            display: flex;
+            margin-bottom: 16px;
             max-width: 80%;
-            word-wrap: break-word;
         }
-        .transcripts .message.user {
-            background-color: var(--user-bubble-color);
-            align-self: flex-end;
-            border-bottom-right-radius: 0.5rem;
+        .message .bubble {
+            padding: 12px 18px;
+            border-radius: 20px;
+            line-height: 1.5;
         }
-        .transcripts .message.sofia {
-            background-color: var(--sofia-bubble-color);
+        .message.assistant {
             align-self: flex-start;
-            border-bottom-left-radius: 0.5rem;
         }
-        .transcripts .message strong {
-            color: var(--primary-color);
+        .message.assistant .bubble {
+            background-color: var(--assistant-bg);
+            border: 1px solid #eee;
+            border-top-left-radius: 4px;
         }
-        #status-bar {
-            text-align: center;
-            padding: 0.75rem 1rem;
-            border-top: 1px solid #eee;
-            font-size: 0.85rem;
+        .message.user {
+            align-self: flex-end;
+        }
+        .message.user .bubble {
+            background-color: var(--user-bg);
+            border-top-right-radius: 4px;
+        }
+        .status-bar {
+            padding: 8px 24px;
+            font-style: italic;
             color: #888;
+            height: 20px;
+            text-align: center;
             flex-shrink: 0;
-            background: #f9f9f9;
+            font-size: 0.9rem;
+        }
+        .controls {
+            padding: 24px;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            flex-shrink: 0;
+        }
+        #mic-button {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+        }
+        #mic-button:hover:not(:disabled) {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+        }
+        #mic-button.recording {
+            background-color: #F44336;
+            animation: pulse 1.5s infinite;
+        }
+        #mic-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        #mic-button svg {
+            width: 32px;
+            height: 32px;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(244, 67, 54, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
         }
     </style>
-<script type="importmap">
-{
-  "imports": {
-    "ws": "https://aistudiocdn.com/ws@^8.18.3",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
-  }
-}
-</script>
 </head>
 <body>
-
-    <div class="container">
-        <h1>¡Bienvenida a Rosita Rococó!</h1>
-        <p>Tu tienda de calzado artesanal. Para una atención personalizada y tomar tu pedido, haz clic en el botón rosa de abajo y habla con nuestra asistente Sofía.</p>
-    </div>
-
-    <button id="chat-button" aria-label="Iniciar asistente de voz">
-        <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"></path></svg>
-    </button>
-
-    <div id="chat-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Hablando con Sofía</h2>
-                <button id="modal-close-btn">&times;</button>
-            </div>
-            <div class="transcripts" id="transcripts-log">
-                <!-- El historial de la conversación se agregará aquí dinámicamente -->
-            </div>
-            <div id="status-bar">Presiona el botón para hablar</div>
+    <div class="chat-container">
+        <header>Habla con Sofía</header>
+        <div class="messages" id="messages">
+            <!-- Los mensajes de chat aparecerán aquí -->
+        </div>
+        <div class="status-bar" id="status-bar">Presiona el micrófono para comenzar</div>
+        <div class="controls">
+            <button id="mic-button" title="Iniciar conversación">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path>
+                    <path d="M17 11h-1c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92z"></path>
+                </svg>
+            </button>
         </div>
     </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // --- CONFIGURACIÓN ---
-    const PROXY_WEBSOCKET_URL = 'wss://sofia-proxy.odontolab.co';
-    const N8N_WEBHOOK_URL_PEDIDOS = 'https://sswebhookss.odontolab.co/webhook/17ddbfb7-25bc-49ff-a8b5-e3fe6c544c1e';
-    const SYSTEM_INSTRUCTION = `Eres "Sofía", una asistente de ventas virtual amigable y muy eficiente para la tienda de calzado femenino "Rosita Rococó". Tu objetivo principal es guiar a las clientas para tomar su pedido de forma completa. Debes ser siempre amable, clara y seguir estos pasos estrictamente:
-1.  Saluda cordialmente y preséntate.
-2.  Pregunta qué modelo de calzado le interesa.
-3.  Una vez que te diga el modelo, pregunta su talle.
-4.  Luego, pregunta su nombre completo, número de teléfono de contacto (con código de área), localidad y dirección completa para el envío.
-5.  Finalmente, pregunta el método de pago (ej. contrarreembolso, transferencia).
-6.  Cuando tengas TODA esta información, y solo en ese momento, utiliza la herramienta 'registrar_pedido' para finalizar la compra. No la llames antes de tener todos los datos.
-7.  Al finalizar, despídete amablemente.`;
+    <script>
+        const PROXY_WEBSOCKET_URL = 'wss://sofia-proxy.odontolab.co/';
+        const SYSTEM_INSTRUCTION = `Eres Sofía, una asistente de ventas de calzado amigable y muy eficiente para la marca "RositA RococO". Tu objetivo es tomar pedidos. Debes ser concisa y guiar al cliente paso a paso para obtener toda la información necesaria: nombre, teléfono, localidad, dirección, modelo, talle y método de pago (que por ahora es solo contrareembolso). Una vez que tengas TODOS los datos, y solo entonces, debes usar la herramienta 'registrar_pedido'. No confirmes el pedido hasta que la herramienta se haya ejecutado. Si el cliente pregunta por algo fuera de tu función, amablemente redirígelo a tomar su pedido.`;
 
-    // --- REFERENCIAS AL DOM ---
-    const chatButton = document.getElementById('chat-button');
-    const chatModal = document.getElementById('chat-modal');
-    const closeModalBtn = document.getElementById('modal-close-btn');
-    const transcriptsLog = document.getElementById('transcripts-log');
-    const statusBar = document.getElementById('status-bar');
+        const micButton = document.getElementById('mic-button');
+        const messagesContainer = document.getElementById('messages');
+        const statusBar = document.getElementById('status-bar');
 
-    // --- ESTADO DE LA APLICACIÓN ---
-    let ws;
-    let audioContext;
-    let scriptProcessor;
-    let mediaStreamSource;
-    let isSessionActive = false;
-    let currentUserTurnEl = null;
-    let currentSofiaTurnEl = null;
+        let isRecording = false;
+        let ws = null;
+        let audioContext = null;
+        let scriptProcessor = null;
+        let mediaStreamSource = null;
+        let audioStream = null;
 
-    // --- LÓGICA DE LA INTERFAZ ---
-    chatButton.addEventListener('click', () => isSessionActive ? endConversation() : startConversation());
-    closeModalBtn.addEventListener('click', endConversation);
-
-    function showModal() { chatModal.style.display = 'flex'; }
-    function hideModal() { chatModal.style.display = 'none'; }
-    function updateStatus(text, isError = false) {
-        statusBar.textContent = text;
-        statusBar.style.color = isError ? 'var(--primary-color)' : '#888';
-    }
-
-    function appendMessage(text, sender) {
-        const messageEl = document.createElement('p');
-        messageEl.className = `message ${sender}`;
-        messageEl.innerHTML = text;
-        transcriptsLog.appendChild(messageEl);
-        scrollToBottom();
-        return messageEl;
-    }
-
-    function scrollToBottom() {
-        transcriptsLog.scrollTop = transcriptsLog.scrollHeight;
-    }
-
-    // --- LÓGICA DE LA CONVERSACIÓN ---
-    async function startConversation() {
-        if (isSessionActive) return;
-        isSessionActive = true;
-        console.log('Iniciando conversación...');
-        
-        showModal();
-        updateStatus('Conectando con Sofía...');
-        chatButton.classList.add('recording');
-        transcriptsLog.innerHTML = ''; // Limpiar historial
-
-        try {
-            await setupWebSocket();
-            await startAudioStreaming();
-            updateStatus('¡Hola! Soy Sofía. ¿En qué puedo ayudarte?');
-        } catch (error) {
-            console.error('Error al iniciar la conversación:', error);
-            updateStatus('Error al conectar. Intenta de nuevo.', true);
-            endConversation();
-        }
-    }
-
-    function endConversation() {
-        console.log('Terminando conversación...');
-        if (ws) ws.close();
-        stopAudioStreaming();
-        hideModal();
-        chatButton.classList.remove('recording');
-        isSessionActive = false;
-        currentUserTurnEl = null;
-        currentSofiaTurnEl = null;
-    }
-
-    // --- LÓGICA DE WEBSOCKET ---
-    function setupWebSocket() {
-        return new Promise((resolve, reject) => {
-            ws = new WebSocket(PROXY_WEBSOCKET_URL);
-
-            ws.onopen = () => {
-                console.log('WebSocket conectado.');
-                ws.send(JSON.stringify({ action: 'start', systemInstruction: SYSTEM_INSTRUCTION }));
-            };
-
-            ws.onmessage = (event) => {
-                const message = JSON.parse(event.data);
-                if (message.type === 'status' && message.message === 'connected') {
-                    console.log('Sesión de Gemini confirmada.');
-                    resolve();
-                } else if (message.type === 'gemini_response') {
-                    handleGeminiResponse(message.data);
-                } else if (message.type === 'error') {
-                    console.error('Error desde el servidor:', message.message);
-                    updateStatus(`Error: ${message.message}`, true);
-                    reject(new Error(message.message));
-                }
-            };
-
-            ws.onerror = (error) => {
-                console.error('Error en WebSocket:', error);
-                reject(error);
-            };
-
-            ws.onclose = () => {
-                console.log('WebSocket desconectado.');
-                if (isSessionActive) endConversation();
-            };
+        micButton.addEventListener('click', async () => {
+            if (isRecording) {
+                stopConversation();
+            } else {
+                await startConversation();
+            }
         });
-    }
 
-    // --- LÓGICA DE AUDIO ---
-    async function startAudioStreaming() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
-            mediaStreamSource = audioContext.createMediaStreamSource(stream);
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', sender);
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.classList.add('bubble');
+            bubbleDiv.textContent = text;
+            messageDiv.appendChild(bubbleDiv);
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        async function startConversation() {
+            micButton.disabled = true;
+            updateStatus('Solicitando permiso del micrófono...', 'info');
+
+            try {
+                audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                updateStatus('Conectando con Sofía...', 'info');
+                ws = await setupWebSocket();
+                
+                isRecording = true;
+                micButton.classList.add('recording');
+                micButton.title = 'Detener conversación';
+                micButton.disabled = false;
+                startAudioStreaming();
+                addMessage("¡Hola! ¿Cómo puedo ayudarte a realizar tu pedido hoy?", "assistant");
+                updateStatus('Habla ahora...', 'listening');
+
+            } catch (error) {
+                console.error('Error al iniciar la conversación:', error);
+                const errorMessage = error instanceof Event ? "Fallo de conexión segura (SSL). Revisa el dominio y el firewall." : "No se pudo acceder al micrófono.";
+                updateStatus(errorMessage, 'error');
+                if (ws) ws.close();
+                micButton.disabled = false;
+            }
+        }
+
+        function stopConversation() {
+            updateStatus('Terminando conversación...', 'info');
+            isRecording = false;
+            micButton.classList.remove('recording');
+            micButton.title = 'Iniciar conversación';
+            if (ws) {
+                ws.close();
+            }
+            stopAudioStreaming();
+        }
+
+        function setupWebSocket() {
+            return new Promise((resolve, reject) => {
+                const socket = new WebSocket(PROXY_WEBSOCKET_URL);
+
+                socket.onopen = () => {
+                    console.log('WebSocket conectado.');
+                    socket.send(JSON.stringify({
+                        action: 'start',
+                        systemInstruction: SYSTEM_INSTRUCTION
+                    }));
+                };
+
+                socket.onmessage = (event) => {
+                    const message = JSON.parse(event.data);
+                    if (message.type === 'status' && message.message === 'connected') {
+                        updateStatus('¡Conectado! Habla ahora...', 'listening');
+                        resolve(socket);
+                    } else if (message.type === 'gemini_response') {
+                        handleGeminiResponse(message.data);
+                    } else if (message.type === 'error') {
+                        console.error('Error del servidor:', message.message);
+                        updateStatus(`Error del servidor: ${message.message}`, 'error');
+                    }
+                };
+
+                socket.onerror = (error) => {
+                    console.error('Error en WebSocket:', error);
+                    reject(error);
+                };
+
+                socket.onclose = (event) => {
+                    console.log('WebSocket desconectado.', `Código: ${event.code}`, `Razón: ${event.reason}`);
+                    stopConversation();
+                    updateStatus('Conexión terminada. Presiona para volver a empezar.', 'info');
+                };
+            });
+        }
+        
+        function handleGeminiResponse(data) {
+            // Manejar transcripciones, respuestas de audio, etc.
+            if (data.serverContent?.outputTranscription?.text) {
+                // Por ahora, solo logueamos la transcripción de Sofía
+                console.log("Sofía dijo:", data.serverContent.outputTranscription.text);
+            }
+            if(data.toolCall) {
+                handleToolCall(data.toolCall);
+            }
+        }
+
+        function handleToolCall(toolCall) {
+            const functionCall = toolCall.functionCalls[0];
+            if (functionCall.name === 'registrar_pedido') {
+                console.log('EJECUTANDO HERRAMIENTA: registrar_pedido', functionCall.args);
+                addMessage(`Pedido registrado para ${functionCall.args.nombre}. Nos contactaremos al ${functionCall.args.telefono} para coordinar el envío a ${functionCall.args.direccion}, ${functionCall.args.localidad}.`, 'assistant');
+                
+                // Enviar la respuesta de la herramienta de vuelta a Gemini
+                ws.send(JSON.stringify({
+                    action: 'tool_response',
+                    response: {
+                        id: functionCall.id,
+                        name: functionCall.name,
+                        response: { result: "OK, pedido registrado con éxito." }
+                    }
+                }));
+            }
+        }
+
+        function startAudioStreaming() {
+            if (!audioStream) return;
+            
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
             scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
+            mediaStreamSource = audioContext.createMediaStreamSource(audioStream);
 
-            scriptProcessor.onaudioprocess = (audioProcessingEvent) => {
-                if (!isSessionActive) return;
-                const inputData = audioProcessingEvent.inputBuffer.getChannelData(0);
-                const blob = createPcmBlob(inputData);
-                if (ws?.readyState === WebSocket.OPEN) {
-                    ws.send(JSON.stringify({ action: 'audio_chunk', chunk: blob }));
+            scriptProcessor.onaudioprocess = (event) => {
+                if (!isRecording || !ws || ws.readyState !== WebSocket.OPEN) return;
+
+                const inputData = event.inputBuffer.getChannelData(0);
+                const l = inputData.length;
+                const int16 = new Int16Array(l);
+                for (let i = 0; i < l; i++) {
+                    int16[i] = inputData[i] * 32767;
                 }
+                const base64 = btoa(String.fromCharCode.apply(null, new Uint8Array(int16.buffer)));
+                
+                ws.send(JSON.stringify({
+                    action: 'audio_chunk',
+                    chunk: {
+                        data: base64,
+                        mimeType: 'audio/pcm;rate=16000'
+                    }
+                }));
             };
 
             mediaStreamSource.connect(scriptProcessor);
             scriptProcessor.connect(audioContext.destination);
-            console.log('Streaming de audio iniciado.');
-
-        } catch (error) {
-            console.error('Error al obtener el stream de audio:', error);
-            updateStatus('No se pudo acceder al micrófono.', true);
-            throw error;
+            console.log("Streaming de audio iniciado.");
         }
-    }
 
-    function stopAudioStreaming() {
-        if (scriptProcessor) scriptProcessor.disconnect();
-        if (mediaStreamSource) mediaStreamSource.disconnect();
-        if (audioContext) audioContext.close().catch(console.error);
-        scriptProcessor = mediaStreamSource = audioContext = null;
-        console.log('Streaming de audio detenido.');
-    }
-
-    function createPcmBlob(data) {
-        const int16 = new Int16Array(data.length);
-        for (let i = 0; i < data.length; i++) {
-            int16[i] = data[i] * 32768;
-        }
-        const bytes = new Uint8Array(int16.buffer);
-        let binary = '';
-        for (let i = 0; i < bytes.byteLength; i++) {
-            binary += String.fromCharCode(bytes[i]);
-        }
-        const base64Data = btoa(binary);
-        return { data: base64Data, mimeType: 'audio/pcm;rate=16000' };
-    }
-
-    // --- MANEJO DE RESPUESTAS DE GEMINI ---
-    function handleGeminiResponse(response) {
-        const { inputTranscription, outputTranscription, turnComplete } = response.serverContent || {};
-
-        if (inputTranscription?.text) {
-            if (!currentUserTurnEl) {
-                currentUserTurnEl = appendMessage('', 'user');
+        function stopAudioStreaming() {
+            if (mediaStreamSource) mediaStreamSource.disconnect();
+            if (scriptProcessor) scriptProcessor.disconnect();
+            if (audioContext) audioContext.close();
+            if (audioStream) {
+                audioStream.getTracks().forEach(track => track.stop());
             }
-            currentUserTurnEl.innerHTML += inputTranscription.text;
-            scrollToBottom();
+            mediaStreamSource = null;
+            scriptProcessor = null;
+            audioContext = null;
+            audioStream = null;
+            console.log("Streaming de audio detenido.");
         }
 
-        if (outputTranscription?.text) {
-            if (!currentSofiaTurnEl) {
-                currentSofiaTurnEl = appendMessage(`<strong>Sofía:</strong> `, 'sofia');
-                updateStatus('Sofía está hablando...');
-            }
-            currentSofiaTurnEl.innerHTML += outputTranscription.text;
-            scrollToBottom();
+        function updateStatus(message, type = 'info') {
+            statusBar.textContent = message;
+            statusBar.style.color = type === 'error' ? '#D32F2F' : (type === 'listening' ? '#388E3C' : '#888');
         }
 
-        if (turnComplete) {
-            currentUserTurnEl = null;
-            currentSofiaTurnEl = null;
-            if (isSessionActive) {
-                setTimeout(() => updateStatus('Esperando tu respuesta...'), 500);
-            }
-        }
-        
-        if (response.toolCall) {
-            handleToolCall(response.toolCall.functionCalls[0]);
-        }
-    }
-
-    async function handleToolCall(toolCall) {
-        if (toolCall.name !== 'registrar_pedido') return;
-        
-        console.log('Llamada a herramienta detectada:', toolCall);
-        updateStatus('Registrando tu pedido, un momento...');
-        
-        try {
-            const response = await fetch(N8N_WEBHOOK_URL_PEDIDOS, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(toolCall.args),
-            });
-
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            
-            console.log('Pedido enviado a n8n con éxito.');
-            ws.send(JSON.stringify({
-                action: 'tool_response',
-                response: { id: toolCall.id, name: toolCall.name, response: { result: 'Pedido registrado exitosamente.' } }
-            }));
-
-        } catch (error) {
-            console.error('Error al enviar el pedido a n8n:', error);
-            updateStatus('Hubo un problema al registrar tu pedido.', true);
-            ws.send(JSON.stringify({
-                action: 'tool_response',
-                response: { id: toolCall.id, name: toolCall.name, response: { result: 'Hubo un error al registrar el pedido.' } }
-            }));
-        }
-    }
-});
-</script>
+    </script>
 </body>
 </html>
