@@ -133,6 +133,15 @@
             100% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0); }
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "ws": "https://aistudiocdn.com/ws@^8.18.3",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0",
+    "http": "https://aistudiocdn.com/http@^0.0.1-security"
+  }
+}
+</script>
 </head>
 <body>
     <div class="chat-container">
@@ -152,9 +161,9 @@
     </div>
 
     <script>
-        // URL del WebSocket que apunta a una RUTA dentro de un dominio que YA FUNCIONA.
-        // Esto reutiliza un certificado SSL válido y soluciona el problema del "candado rojo".
-        const PROXY_WEBSOCKET_URL = 'wss://workstation.odontolab.co/sofia-proxy/';
+        // URL del WebSocket que apunta al subdominio dedicado.
+        // Esta es la configuración final y correcta, consistente con la infraestructura.
+        const PROXY_WEBSOCKET_URL = 'wss://sofia-proxy.odontolab.co/';
         const SYSTEM_INSTRUCTION = `Eres Sofía, una asistente de ventas de calzado amigable y muy eficiente para la marca "RositA RococO". Tu objetivo es tomar pedidos. Debes ser concisa y guiar al cliente paso a paso para obtener toda la información necesaria: nombre, teléfono, localidad, dirección, modelo, talle y método de pago (que por ahora es solo contrareembolso). Una vez que tengas TODOS los datos, y solo entonces, debes usar la herramienta 'registrar_pedido'. No confirmes el pedido hasta que la herramienta se haya ejecutado. Si el cliente pregunta por algo fuera de tu función, amablemente redirígelo a tomar su pedido.`;
 
         const micButton = document.getElementById('mic-button');
