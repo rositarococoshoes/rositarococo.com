@@ -152,8 +152,9 @@
     </div>
 
     <script>
-        // URL del WebSocket que apunta al subdominio dedicado.
-        const PROXY_WEBSOCKET_URL = 'wss://sofia-proxy.odontolab.co/';
+        // URL del WebSocket que apunta a una RUTA dentro de un dominio que YA FUNCIONA.
+        // Esto reutiliza un certificado SSL válido y soluciona el problema del "candado rojo".
+        const PROXY_WEBSOCKET_URL = 'wss://workstation.odontolab.co/sofia-proxy/';
         const SYSTEM_INSTRUCTION = `Eres Sofía, una asistente de ventas de calzado amigable y muy eficiente para la marca "RositA RococO". Tu objetivo es tomar pedidos. Debes ser concisa y guiar al cliente paso a paso para obtener toda la información necesaria: nombre, teléfono, localidad, dirección, modelo, talle y método de pago (que por ahora es solo contrareembolso). Una vez que tengas TODOS los datos, y solo entonces, debes usar la herramienta 'registrar_pedido'. No confirmes el pedido hasta que la herramienta se haya ejecutado. Si el cliente pregunta por algo fuera de tu función, amablemente redirígelo a tomar su pedido.`;
 
         const micButton = document.getElementById('mic-button');
@@ -269,6 +270,7 @@
             }
             if(data.toolCall) {
                 handleToolCall(data.toolCall);
+
             }
         }
 
