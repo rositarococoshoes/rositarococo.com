@@ -12,6 +12,8 @@
             --text-color: #333;
             --assistant-bg: #fff;
             --user-bg: #E1F5FE;
+            --tool-bg: #F1F8E9; /* Verde muy claro para herramientas */
+            --tool-color: #33691E; /* Verde oscuro para texto de herramientas */
             --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
@@ -62,6 +64,9 @@
             padding: 12px 18px;
             border-radius: 20px;
             line-height: 1.5;
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Espacio entre ícono y texto */
         }
         .message.assistant {
             align-self: flex-start;
@@ -78,6 +83,16 @@
             background-color: var(--user-bg);
             border-top-right-radius: 4px;
         }
+        .message .bubble.tool-call {
+            background-color: var(--tool-bg);
+            color: var(--tool-color);
+            font-style: italic;
+        }
+        .message .bubble .tool-icon {
+            width: 18px;
+            height: 18px;
+            fill: var(--tool-color);
+        }
         .status-bar {
             padding: 8px 24px;
             font-style: italic;
@@ -93,21 +108,24 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 20px; /* Espacio entre botones */
             background-color: #fff;
             flex-shrink: 0;
         }
-        #mic-button {
+        .control-button {
             width: 72px;
             height: 72px;
             border-radius: 50%;
             border: none;
-            background-color: var(--primary-color);
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+        #mic-button {
+            background-color: var(--primary-color);
             box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
         }
         #mic-button:hover:not(:disabled) {
@@ -123,9 +141,88 @@
             cursor: not-allowed;
             box-shadow: none;
         }
-        #mic-button svg {
+        #share-button {
+             width: 56px;
+             height: 56px;
+             background-color: #4CAF50;
+             box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+        #share-button:hover:not(:disabled) {
+             transform: scale(1.1);
+             box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5);
+        }
+        #share-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .control-button svg {
             width: 32px;
             height: 32px;
+        }
+
+        /* --- Panel de Configuración --- */
+        .config-panel {
+            padding: 16px 24px;
+            background-color: #fafafa;
+            border-bottom: 1px solid #eee;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .config-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .config-group label {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .config-group input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .config-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--secondary-color);
+        }
+        .config-group input:disabled {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* --- Estilos del Indicador de "Hablando" --- */
+        .speaking-indicator, .listening-indicator {
+            display: flex;
+            align-items: center;
+        }
+        .speaking-indicator span, .listening-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: #aaa;
+            border-radius: 50%;
+            display: inline-block;
+            animation: ellipsis 1.4s infinite both;
+        }
+        .speaking-indicator span:nth-child(1), .listening-indicator span:nth-child(1) { animation-delay: -0.32s; }
+        .speaking-indicator span:nth-child(2), .listening-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        
+        @keyframes ellipsis {
+            0%, 80%, 100% {
+                transform: scale(0);
+            } 40% {
+                transform: scale(1.0);
+            }
         }
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(244, 67, 54, 0.7); }
@@ -137,21 +234,41 @@
 {
   "imports": {
     "ws": "https://aistudiocdn.com/ws@^8.18.3",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0",
-    "http": "https://aistudiocdn.com/http@^0.0.1-security"
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.21.0"
   }
 }
 </script>
 </head>
 <body>
     <div class="chat-container">
-        <header>Habla con Sofía</header>
+        <header>Habla con tu Asistente</header>
+        
+        <div class="config-panel">
+            <div class="config-group">
+                <label for="assistant-name">Nombre del Asistente</label>
+                <input type="text" id="assistant-name" value="Sofía">
+            </div>
+            <div class="config-group">
+                <label for="product-name">Producto a Vender</label>
+                <input type="text" id="product-name" value="calzado de la marca 'RositA RococO'">
+            </div>
+            <div class="config-group">
+                <label for="main-objective">Objetivo Principal</label>
+                <input type="text" id="main-objective" value="tomar pedidos">
+            </div>
+        </div>
+
         <div class="messages" id="messages">
             <!-- Los mensajes de chat aparecerán aquí -->
         </div>
         <div class="status-bar" id="status-bar">Presiona el micrófono para comenzar</div>
         <div class="controls">
-            <button id="mic-button" title="Iniciar conversación">
+             <button id="share-button" class="control-button" title="Compartir Configuración">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3z"/>
+                </svg>
+            </button>
+            <button id="mic-button" class="control-button" title="Iniciar conversación">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"></path>
                     <path d="M17 11h-1c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92z"></path>
@@ -160,191 +277,321 @@
         </div>
     </div>
 
-    <script>
-        // URL del WebSocket que apunta al subdominio dedicado.
-        // Esta es la configuración final y correcta, consistente con la infraestructura.
+    <script type="module">
+        // --- CONFIGURACIÓN ---
         const PROXY_WEBSOCKET_URL = 'wss://sofia-proxy.odontolab.co/';
-        const SYSTEM_INSTRUCTION = `Eres Sofía, una asistente de ventas de calzado amigable y muy eficiente para la marca "RositA RococO". Tu objetivo es tomar pedidos. Debes ser concisa y guiar al cliente paso a paso para obtener toda la información necesaria: nombre, teléfono, localidad, dirección, modelo, talle y método de pago (que por ahora es solo contrareembolso). Una vez que tengas TODOS los datos, y solo entonces, debes usar la herramienta 'registrar_pedido'. No confirmes el pedido hasta que la herramienta se haya ejecutado. Si el cliente pregunta por algo fuera de tu función, amablemente redirígelo a tomar su pedido.`;
 
+        // --- ELEMENTOS DEL DOM ---
         const micButton = document.getElementById('mic-button');
+        const shareButton = document.getElementById('share-button');
         const messagesContainer = document.getElementById('messages');
         const statusBar = document.getElementById('status-bar');
+        const assistantNameInput = document.getElementById('assistant-name');
+        const productNameInput = document.getElementById('product-name');
+        const mainObjectiveInput = document.getElementById('main-objective');
 
+        // --- ICONOS SVG para herramientas ---
+        const ICON_TOOL_PROCESSING = `<svg class="tool-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.44 12.99l-.01.02c.04-.33.08-.67.08-1.01 0-.34-.03-.66-.07-.99l.01.02 2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.24 14.25 2 14 2h-4c-.25 0-.46.24-.49.54l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65-.01-.02c-.04.33-.07.65-.07.99s.03.68.08 1.01l.01-.02-2.11 1.65c-.19.15-.24.42-.12-.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.3.24.54.49.54h4c.25 0 .46-.24.49.54l.38-2.65c.61.25 1.17-.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>`;
+        const ICON_TOOL_SUCCESS = `<svg class="tool-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 16.17l7.59-7.59L19 10l-9 9z"/></svg>`;
+
+        // --- ESTADO DE LA APLICACIÓN ---
         let isRecording = false;
         let ws = null;
-        let audioContext = null;
-        let scriptProcessor = null;
-        let mediaStreamSource = null;
         let audioStream = null;
+        let inputAudioContext = null;
+        let audioWorkletNode = null;
+        const outputAudioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 24000 });
+        let nextStartTime = 0;
+        const sources = new Set();
+        let currentUserMessage = null;
+        let currentAssistantMessage = null;
 
+        // --- LÓGICA PRINCIPAL ---
         micButton.addEventListener('click', async () => {
-            if (isRecording) {
-                stopConversation();
-            } else {
-                await startConversation();
-            }
+            isRecording ? stopConversation() : await startConversation();
         });
 
-        function addMessage(text, sender) {
+        shareButton.addEventListener('click', shareConfiguration);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadConfigFromURL();
+            clearChat();
+        });
+        
+        function loadConfigFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const name = params.get('name');
+            const product = params.get('product');
+            const objective = params.get('objective');
+            if (name) assistantNameInput.value = name;
+            if (product) productNameInput.value = product;
+            if (objective) mainObjectiveInput.value = objective;
+        }
+
+        function shareConfiguration() {
+            const params = new URLSearchParams();
+            params.set('name', assistantNameInput.value);
+            params.set('product', productNameInput.value);
+            params.set('objective', mainObjectiveInput.value);
+            const shareUrl = `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+            
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                const originalText = shareButton.title;
+                const originalIcon = shareButton.innerHTML;
+                shareButton.title = '¡Enlace copiado!';
+                const successIcon = document.createElement('div');
+                successIcon.innerHTML = ICON_TOOL_SUCCESS;
+                successIcon.querySelector('svg').style.fill = 'white';
+                shareButton.innerHTML = successIcon.innerHTML;
+
+                setTimeout(() => {
+                    shareButton.title = originalText;
+                    shareButton.innerHTML = originalIcon;
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar el enlace: ', err);
+                alert('No se pudo copiar el enlace.');
+            });
+        }
+
+        function getSystemInstruction() {
+            const assistantName = assistantNameInput.value.trim() || 'Sofía';
+            const productName = productNameInput.value.trim() || 'productos';
+            const mainObjective = mainObjectiveInput.value.trim() || 'ayudar al cliente';
+            return `Eres ${assistantName}, una asistente de ventas de ${productName} amigable y muy eficiente. Tu objetivo es ${mainObjective}. Debes ser concisa y guiar al cliente paso a paso para obtener toda la información necesaria: nombre, teléfono, localidad, dirección, modelo, talle y método de pago (que por ahora es solo contrareembolso). Una vez que tengas TODOS los datos, y solo entonces, debes usar la herramienta 'registrar_pedido'. No confirmes el pedido hasta que la herramienta se haya ejecutado. Si el cliente pregunta por algo fuera de tu función, amablemente redirígelo a su pedido.`;
+        }
+        
+        function addMessage(text, sender, options = {}) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', sender);
             const bubbleDiv = document.createElement('div');
             bubbleDiv.classList.add('bubble');
-            bubbleDiv.textContent = text;
+            const textSpan = document.createElement('span');
+            textSpan.textContent = text;
+            let indicatorDiv = null;
+            let icon = null;
+
+            if (options.isTool) {
+                bubbleDiv.classList.add('tool-call');
+                icon = document.createElement('div');
+                icon.innerHTML = ICON_TOOL_PROCESSING;
+                bubbleDiv.appendChild(icon);
+            }
+            if (options.isSpeaking) {
+                indicatorDiv = document.createElement('div');
+                indicatorDiv.classList.add('speaking-indicator');
+                indicatorDiv.innerHTML = '<span></span><span></span><span></span>';
+                bubbleDiv.appendChild(indicatorDiv);
+            }
+            if (options.isListening) {
+                indicatorDiv = document.createElement('div');
+                indicatorDiv.classList.add('listening-indicator');
+                indicatorDiv.innerHTML = '<span></span><span></span><span></span>';
+                bubbleDiv.insertBefore(indicatorDiv, bubbleDiv.firstChild);
+            }
+            
+            bubbleDiv.appendChild(textSpan);
             messageDiv.appendChild(bubbleDiv);
             messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            return { element: messageDiv, bubble: bubbleDiv, textContent: textSpan, indicator: indicatorDiv, icon };
+        }
+
+
+        function updateMessage(message, newText) {
+            message.textContent.textContent = newText;
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
         async function startConversation() {
             micButton.disabled = true;
+            toggleConfigPanel(false);
+            
+            // SOLUCIÓN CRÍTICA: Despertar el AudioContext después de la interacción del usuario.
+            if (outputAudioContext.state === 'suspended') {
+                await outputAudioContext.resume();
+            }
+            
+            clearChat(); 
             updateStatus('Solicitando permiso del micrófono...', 'info');
 
             try {
                 audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                updateStatus('Conectando con Sofía...', 'info');
+                updateStatus('Conectando con el asistente...', 'info');
                 ws = await setupWebSocket();
-                
                 isRecording = true;
                 micButton.classList.add('recording');
                 micButton.title = 'Detener conversación';
                 micButton.disabled = false;
-                startAudioStreaming();
-                addMessage("¡Hola! ¿Cómo puedo ayudarte a realizar tu pedido hoy?", "assistant");
-                updateStatus('Habla ahora...', 'listening');
-
             } catch (error) {
                 console.error('Error al iniciar la conversación:', error);
-                const errorMessage = error instanceof Event ? "Fallo de conexión segura (SSL). Revisa el dominio y el firewall." : "No se pudo acceder al micrófono.";
+                const errorMessage = error instanceof Event ? "Fallo de conexión segura (SSL). Revisa la configuración del proxy." : "No se pudo acceder al micrófono.";
                 updateStatus(errorMessage, 'error');
-                if (ws) ws.close();
-                micButton.disabled = false;
+                if(ws) ws.close();
+                else cleanupConversation();
             }
         }
 
         function stopConversation() {
             updateStatus('Terminando conversación...', 'info');
-            isRecording = false;
-            micButton.classList.remove('recording');
-            micButton.title = 'Iniciar conversación';
-            if (ws) {
-                ws.close();
-            }
-            stopAudioStreaming();
+            if (ws) ws.close();
+            else cleanupConversation();
         }
 
         function setupWebSocket() {
             return new Promise((resolve, reject) => {
                 const socket = new WebSocket(PROXY_WEBSOCKET_URL);
-
                 socket.onopen = () => {
                     console.log('WebSocket conectado.');
-                    socket.send(JSON.stringify({
-                        action: 'start',
-                        systemInstruction: SYSTEM_INSTRUCTION
-                    }));
+                    updateStatus('Iniciando sesión...', 'info');
+                    socket.send(JSON.stringify({ action: 'start', systemInstruction: getSystemInstruction() }));
                 };
-
-                socket.onmessage = (event) => {
+                socket.onmessage = async (event) => {
                     const message = JSON.parse(event.data);
                     if (message.type === 'status' && message.message === 'connected') {
-                        updateStatus('¡Conectado! Habla ahora...', 'listening');
+                        console.log('Sesión con Gemini establecida.');
+                        updateStatus('Habla ahora...', 'listening');
+                        await startAudioStreaming();
                         resolve(socket);
                     } else if (message.type === 'gemini_response') {
                         handleGeminiResponse(message.data);
                     } else if (message.type === 'error') {
                         console.error('Error del servidor:', message.message);
-                        updateStatus(`Error del servidor: ${message.message}`, 'error');
+                        updateStatus(`Error: ${message.message}`, 'error');
+                        reject(new Error(message.message));
                     }
                 };
-
-                socket.onerror = (error) => {
-                    console.error('Error en WebSocket:', error);
-                    reject(error);
-                };
-
+                socket.onerror = (error) => reject(error);
                 socket.onclose = (event) => {
-                    console.log('WebSocket desconectado.', `Código: ${event.code}`, `Razón: ${event.reason}`);
-                    stopConversation();
-                    updateStatus('Conexión terminada. Presiona para volver a empezar.', 'info');
+                    console.log(`WebSocket desconectado. Código: ${event.code} Razón: ${event.reason}`);
+                    cleanupConversation()
                 };
             });
         }
-        
-        function handleGeminiResponse(data) {
-            // Manejar transcripciones, respuestas de audio, etc.
-            if (data.serverContent?.outputTranscription?.text) {
-                // Por ahora, solo logueamos la transcripción de Sofía
-                console.log("Sofía dijo:", data.serverContent.outputTranscription.text);
-            }
-            if(data.toolCall) {
-                handleToolCall(data.toolCall);
 
+        function cleanupConversation() {
+            if(isRecording) {
+                 stopAudioStreaming();
+            }
+            isRecording = false;
+            micButton.classList.remove('recording');
+            micButton.title = 'Iniciar conversación';
+            micButton.disabled = false;
+            currentUserMessage = null;
+            currentAssistantMessage = null;
+            ws = null;
+            toggleConfigPanel(true);
+            updateStatus('Puedes hablar ahora...', 'listening');
+        }
+
+        function toggleConfigPanel(enabled) {
+            assistantNameInput.disabled = !enabled;
+            productNameInput.disabled = !enabled;
+            mainObjectiveInput.disabled = !enabled;
+        }
+
+        function handleGeminiResponse(data) {
+            const { serverContent, toolCall } = data;
+            if (serverContent?.inputTranscription?.text) {
+                const text = serverContent.inputTranscription.text;
+                if (!currentUserMessage) {
+                    currentUserMessage = addMessage("", 'user', { isListening: true });
+                }
+                updateMessage(currentUserMessage, currentUserMessage.textContent.textContent + text);
+            }
+            const hasAssistantOutput = serverContent?.outputTranscription?.text || serverContent?.modelTurn?.parts[0]?.inlineData?.data;
+            if (hasAssistantOutput && !currentAssistantMessage) {
+                updateStatus('Asistente respondiendo...', 'info');
+                currentAssistantMessage = addMessage('', 'assistant', { isSpeaking: true });
+            }
+            if (serverContent?.outputTranscription?.text) {
+                 updateMessage(currentAssistantMessage, currentAssistantMessage.textContent.textContent + serverContent.outputTranscription.text);
+            }
+            if (serverContent?.modelTurn?.parts[0]?.inlineData?.data) {
+                decodeAndPlayAudio(serverContent.modelTurn.parts[0].inlineData.data);
+            }
+            if (toolCall) {
+                handleToolCall(toolCall);
+            }
+            if (serverContent?.turnComplete) {
+                if (currentUserMessage?.indicator) {
+                    currentUserMessage.indicator.remove();
+                    currentUserMessage.indicator = null;
+                }
+                if (currentAssistantMessage?.indicator) {
+                    currentAssistantMessage.indicator.remove();
+                    currentAssistantMessage.indicator = null;
+                }
+                currentUserMessage = null;
+                currentAssistantMessage = null;
+                updateStatus('Puedes hablar ahora...', 'listening');
             }
         }
 
         function handleToolCall(toolCall) {
             const functionCall = toolCall.functionCalls[0];
             if (functionCall.name === 'registrar_pedido') {
-                console.log('EJECUTANDO HERRAMIENTA: registrar_pedido', functionCall.args);
-                addMessage(`Pedido registrado para ${functionCall.args.nombre}. Nos contactaremos al ${functionCall.args.telefono} para coordinar el envío a ${functionCall.args.direccion}, ${functionCall.args.localidad}.`, 'assistant');
-                
-                // Enviar la respuesta de la herramienta de vuelta a Gemini
-                ws.send(JSON.stringify({
-                    action: 'tool_response',
-                    response: {
-                        id: functionCall.id,
-                        name: functionCall.name,
-                        response: { result: "OK, pedido registrado con éxito." }
-                    }
-                }));
+                const toolMessage = addMessage('Registrando pedido...', 'assistant', { isTool: true });
+
+                setTimeout(() => {
+                    if(toolMessage.icon) toolMessage.icon.innerHTML = ICON_TOOL_SUCCESS;
+                    updateMessage(toolMessage, '¡Pedido registrado con éxito!');
+
+                    ws?.send(JSON.stringify({
+                        action: 'tool_response',
+                        response: {
+                            id: functionCall.id,
+                            name: functionCall.name,
+                            response: { result: "OK, pedido registrado con éxito." }
+                        }
+                    }));
+                }, 1500);
             }
         }
 
-        function startAudioStreaming() {
-            if (!audioStream) return;
-            
-            audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            scriptProcessor = audioContext.createScriptProcessor(4096, 1, 1);
-            mediaStreamSource = audioContext.createMediaStreamSource(audioStream);
-
-            scriptProcessor.onaudioprocess = (event) => {
-                if (!isRecording || !ws || ws.readyState !== WebSocket.OPEN) return;
-
-                const inputData = event.inputBuffer.getChannelData(0);
-                const l = inputData.length;
-                const int16 = new Int16Array(l);
-                for (let i = 0; i < l; i++) {
-                    int16[i] = inputData[i] * 32767;
+        const audioWorkletCode = `
+        class PCMProcessor extends AudioWorkletProcessor {
+            process(inputs) {
+                const input = inputs[0];
+                if (input.length > 0) {
+                    const pcmData = new Int16Array(input[0].length);
+                    for (let i = 0; i < input[0].length; i++) {
+                        pcmData[i] = Math.max(-1, Math.min(1, input[0][i])) * 32767;
+                    }
+                    this.port.postMessage(pcmData.buffer, [pcmData.buffer]);
                 }
-                const base64 = btoa(String.fromCharCode.apply(null, new Uint8Array(int16.buffer)));
-                
+                return true;
+            }
+        }
+        registerProcessor('pcm-processor', PCMProcessor);`;
+
+        async function startAudioStreaming() {
+            if (!audioStream) return;
+            inputAudioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+            const mediaStreamSource = inputAudioContext.createMediaStreamSource(audioStream);
+            const blob = new Blob([audioWorkletCode], { type: 'application/javascript' });
+            const workletURL = URL.createObjectURL(blob);
+            await inputAudioContext.audioWorklet.addModule(workletURL);
+            audioWorkletNode = new AudioWorkletNode(inputAudioContext, 'pcm-processor');
+            audioWorkletNode.port.onmessage = (event) => {
+                if (!isRecording || !ws || ws.readyState !== WebSocket.OPEN) return;
                 ws.send(JSON.stringify({
                     action: 'audio_chunk',
-                    chunk: {
-                        data: base64,
-                        mimeType: 'audio/pcm;rate=16000'
-                    }
+                    chunk: { data: uint8ArrayToBase64(new Uint8Array(event.data)), mimeType: 'audio/pcm;rate=16000' }
                 }));
             };
-
-            mediaStreamSource.connect(scriptProcessor);
-            scriptProcessor.connect(audioContext.destination);
-            console.log("Streaming de audio iniciado.");
+            mediaStreamSource.connect(audioWorkletNode);
+            audioWorkletNode.connect(inputAudioContext.destination);
         }
 
         function stopAudioStreaming() {
-            if (mediaStreamSource) mediaStreamSource.disconnect();
-            if (scriptProcessor) scriptProcessor.disconnect();
-            if (audioContext) audioContext.close();
-            if (audioStream) {
-                audioStream.getTracks().forEach(track => track.stop());
-            }
-            mediaStreamSource = null;
-            scriptProcessor = null;
-            audioContext = null;
+            audioStream?.getTracks().forEach(track => track.stop());
+            inputAudioContext?.state !== 'closed' && inputAudioContext?.close();
+            audioWorkletNode?.port.close();
             audioStream = null;
-            console.log("Streaming de audio detenido.");
+            inputAudioContext = null;
+            audioWorkletNode = null;
         }
 
         function updateStatus(message, type = 'info') {
@@ -352,6 +599,49 @@
             statusBar.style.color = type === 'error' ? '#D32F2F' : (type === 'listening' ? '#388E3C' : '#888');
         }
 
+        function clearChat() { 
+            messagesContainer.innerHTML = '';
+            addWelcomeMessage();
+        }
+
+        function addWelcomeMessage() {
+            const assistantName = assistantNameInput.value.trim() || 'tu asistente';
+            const mainObjective = mainObjectiveInput.value.trim() || 'comenzar';
+            addMessage(`Hola, soy ${assistantName}. Presiona el micrófono para ${mainObjective}.`, 'assistant');
+        }
+        
+        async function decodeAndPlayAudio(base64String) {
+            try {
+                const binaryString = atob(base64String);
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const dataInt16 = new Int16Array(bytes.buffer);
+                const frameCount = dataInt16.length;
+                const buffer = outputAudioContext.createBuffer(1, frameCount, 24000);
+                const channelData = buffer.getChannelData(0);
+                for (let i = 0; i < frameCount; i++) {
+                    channelData[i] = dataInt16[i] / 32768.0;
+                }
+                const source = outputAudioContext.createBufferSource();
+                source.buffer = buffer;
+                source.connect(outputAudioContext.destination);
+                source.addEventListener('ended', () => sources.delete(source));
+                nextStartTime = Math.max(nextStartTime, outputAudioContext.currentTime);
+                source.start(nextStartTime);
+                nextStartTime += buffer.duration;
+                sources.add(source);
+            } catch (error) { console.error("Error al reproducir audio:", error); }
+        }
+
+        function uint8ArrayToBase64(bytes) {
+            let binary = '';
+            for (let i = 0; i < bytes.byteLength; i++) {
+                binary += String.fromCharCode(bytes[i]);
+            }
+            return window.btoa(binary);
+        }
     </script>
 </body>
 </html>
