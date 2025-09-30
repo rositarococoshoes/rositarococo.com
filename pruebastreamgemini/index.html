@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -382,6 +383,11 @@
 
         function handleGeminiResponse(data) {
             const { serverContent, toolCall } = data;
+
+            if (serverContent?.interrupted) {
+                stopAllPlayback();
+            }
+
             if (serverContent?.inputTranscription?.text) {
                 const text = serverContent.inputTranscription.text;
                 if (!currentUserMessage) {
@@ -416,6 +422,14 @@
                 currentAssistantMessage = null;
                 updateStatus('Puedes hablar ahora...', 'listening');
             }
+        }
+        
+        function stopAllPlayback() {
+            for (const source of sources) {
+                source.stop(0);
+            }
+            sources.clear();
+            nextStartTime = 0;
         }
 
         function handleToolCall(toolCall) {
