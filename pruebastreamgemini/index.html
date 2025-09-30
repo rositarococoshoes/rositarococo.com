@@ -291,7 +291,7 @@
         const mainObjectiveInput = document.getElementById('main-objective');
 
         // --- ICONOS SVG para herramientas ---
-        const ICON_TOOL_PROCESSING = `<svg class="tool-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.44 12.99l-.01.02c.04-.33.08-.67.08-1.01 0-.34-.03-.66-.07-.99l.01.02 2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.24 14.25 2 14 2h-4c-.25 0-.46.24-.49.54l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65-.01-.02c-.04.33-.07.65-.07.99s.03.68.08 1.01l.01-.02-2.11 1.65c-.19.15-.24.42-.12-.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.3.24.54.49.54h4c.25 0 .46-.24.49.54l.38-2.65c.61.25 1.17-.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>`;
+        const ICON_TOOL_PROCESSING = `<svg class="tool-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.44 12.99l-.01.02c.04-.33.08-.67.08-1.01 0-.34-.03-.66-.07-.99l.01.02 2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.24 14.25 2 14 2h-4c-.25 0-.46.24-.49.54l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65-.01-.02c-.04.33-.07.65-.07.99s.03.68.08 1.01l.01-.02-2.11 1.65c-.19-.15-.24-.42-.12-.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.3.24.54.49.54h4c.25 0 .46-.24.49.54l.38-2.65c.61.25 1.17-.59 1.69.98l2.49 1c.23.09.49 0 .61.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>`;
         const ICON_TOOL_SUCCESS = `<svg class="tool-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 16.17l7.59-7.59L19 10l-9 9z"/></svg>`;
 
         // --- ESTADO DE LA APLICACIÓN ---
@@ -408,7 +408,6 @@
             micButton.disabled = true;
             toggleConfigPanel(false);
             
-            // SOLUCIÓN CRÍTICA: Despertar el AudioContext después de la interacción del usuario.
             if (outputAudioContext.state === 'suspended') {
                 await outputAudioContext.resume();
             }
@@ -426,7 +425,7 @@
                 micButton.disabled = false;
             } catch (error) {
                 console.error('Error al iniciar la conversación:', error);
-                const errorMessage = error instanceof Event ? "Fallo de conexión segura (SSL). Revisa la configuración del proxy." : "No se pudo acceder al micrófono.";
+                const errorMessage = error instanceof Event ? "No se pudo conectar con el asistente. Revisa la URL y el estado del servidor." : "No se pudo acceder al micrófono.";
                 updateStatus(errorMessage, 'error');
                 if(ws) ws.close();
                 else cleanupConversation();
@@ -465,12 +464,12 @@
                 socket.onerror = (error) => reject(error);
                 socket.onclose = (event) => {
                     console.log(`WebSocket desconectado. Código: ${event.code} Razón: ${event.reason}`);
-                    cleanupConversation()
+                    cleanupConversation(event.code);
                 };
             });
         }
 
-        function cleanupConversation() {
+        function cleanupConversation(closeCode) {
             if(isRecording) {
                  stopAudioStreaming();
             }
@@ -482,7 +481,18 @@
             currentAssistantMessage = null;
             ws = null;
             toggleConfigPanel(true);
-            updateStatus('Puedes hablar ahora...', 'listening');
+            
+            let statusMessage = 'Conexión terminada. Presiona el micrófono para empezar de nuevo.';
+            let statusType = 'info';
+
+            if (closeCode === 1006) { // Cierre anormal (ej. red, servidor caído)
+                statusMessage = 'Se perdió la conexión. Revisa tu red o el estado del servidor.';
+                statusType = 'error';
+            } else if (closeCode && closeCode !== 1000 && closeCode !== 1005) { // Otros códigos de error
+                statusMessage = `Conexión cerrada inesperadamente (Código: ${closeCode}). Intenta de nuevo.`;
+                statusType = 'error';
+            }
+            updateStatus(statusMessage, statusType);
         }
 
         function toggleConfigPanel(enabled) {
