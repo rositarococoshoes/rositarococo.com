@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,6 +14,8 @@
             --user-bg: #E1F5FE;
             --tool-bg: #F1F8E9; /* Verde muy claro para herramientas */
             --tool-color: #33691E; /* Verde oscuro para texto de herramientas */
+            --system-bg: #f3f3f3; /* Gris claro para mensajes de sistema */
+            --system-color: #666;   /* Gris oscuro para texto de sistema */
             --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
         body {
@@ -59,7 +60,8 @@
         .message {
             display: flex;
             margin-bottom: 16px;
-            max-width: 80%;
+            max-width: 90%;
+            font-size: 1rem;
         }
         .message .bubble {
             padding: 12px 18px;
@@ -83,6 +85,19 @@
         .message.user .bubble {
             background-color: var(--user-bg);
             border-top-right-radius: 4px;
+        }
+        .message.system {
+            align-self: center;
+            max-width: 100%;
+            font-size: 0.85rem;
+            margin: 4px 0;
+        }
+        .message.system .bubble {
+            background-color: var(--system-bg);
+            color: var(--system-color);
+            font-style: italic;
+            border-radius: 8px;
+            padding: 6px 12px;
         }
         .message .bubble.tool-call {
             background-color: var(--tool-bg);
@@ -299,7 +314,8 @@
                 await outputAudioContext.resume();
             }
             
-            clearChat(); 
+            clearChat();
+            addMessage('Iniciando conexión...', 'system');
             updateStatus('Solicitando permiso del micrófono...', 'info');
 
             try {
@@ -313,6 +329,7 @@
             } catch (error) {
                 console.error('Error al iniciar la conversación:', error);
                 const errorMessage = error instanceof Event ? "No se pudo conectar con el asistente. Revisa la URL y el estado del servidor." : "No se pudo acceder al micrófono.";
+                addMessage(`Error al iniciar: ${errorMessage}`, 'system');
                 updateStatus(errorMessage, 'error');
                 if(ws) ws.close();
                 else cleanupConversation();
@@ -330,6 +347,7 @@
                 const socket = new WebSocket(PROXY_WEBSOCKET_URL);
                 socket.onopen = () => {
                     console.log('WebSocket conectado.');
+                    addMessage('WebSocket conectado.', 'system');
                     updateStatus('Iniciando sesión...', 'info');
                     socket.send(JSON.stringify({ action: 'start', systemInstruction: getSystemInstruction() }));
                 };
@@ -337,6 +355,7 @@
                     const message = JSON.parse(event.data);
                     if (message.type === 'status' && message.message === 'connected') {
                         console.log('Sesión con Gemini establecida.');
+                        addMessage('Sesión con Gemini establecida.', 'system');
                         updateStatus('Habla ahora...', 'listening');
                         await startAudioStreaming();
                         resolve(socket);
@@ -344,13 +363,20 @@
                         handleGeminiResponse(message.data);
                     } else if (message.type === 'error') {
                         console.error('Error del servidor:', message.message);
+                        addMessage(`Error del servidor: ${message.message}`, 'system');
                         updateStatus(`Error: ${message.message}`, 'error');
                         reject(new Error(message.message));
                     }
                 };
-                socket.onerror = (error) => reject(error);
+                socket.onerror = (error) => {
+                     console.error('WebSocket Error:', error);
+                     addMessage('Error de WebSocket. La conexión falló.', 'system');
+                     reject(error);
+                };
                 socket.onclose = (event) => {
                     console.log(`WebSocket desconectado. Código: ${event.code} Razón: ${event.reason}`);
+                    const reason = event.reason || 'Sin razón especificada';
+                    addMessage(`Conexión cerrada. Código: ${event.code}. Razón: ${reason}`, 'system');
                     cleanupConversation(event.code);
                 };
             });
