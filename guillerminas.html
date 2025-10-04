@@ -105,6 +105,27 @@
     <!-- WhatsApp Modal CSS -->
     <link rel="stylesheet" href="whatsapp-float.css">
     <style>
+        /* Correcciones de Diseño para Guillerminas */
+
+        /*
+         * 1. Solución para el recorte de imágenes en el carrusel:
+         * Se anula cualquier altura fija en el contenedor del carrusel y sus slides,
+         * permitiendo que la altura se ajuste al contenido.
+         */
+        #swiper-guillermina-negras.swiper,
+        #swiper-guillermina-negras .swiper-slide {
+            height: auto;
+        }
+
+        /*
+         * Se asegura que la imagen controle las dimensiones, manteniendo la proporción.
+         */
+        #swiper-guillermina-negras .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
         .size-guide-container {
             margin: 20px 0;
             padding: 15px;
@@ -722,10 +743,10 @@
                         </div>
                         <h2>Guillerminas Negras</h2>
                         <div class="swiper" id="swiper-guillermina-negras">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 1" src="guillerminafotos/1.jpg" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 2" src="guillerminafotos/2.jpg" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 3" src="guillerminafotos/3.jpg" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 1" src="guillerminafotos/1.jpg" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 2" src="guillerminafotos/2.jpg" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 3" src="guillerminafotos/3.jpg" loading="lazy"></div>
                             </div>
                             <div class="swiper-pagination"></div>
                             <div class="swiper-button-prev"></div>
@@ -1040,9 +1061,10 @@
     <script src="form-handler.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Inicialización del carrusel
             const swiperGuillermina = new Swiper('#swiper-guillermina-negras', {
                 loop: true,
-                autoHeight: true, // Esto es clave para adaptar la altura a cada slide
+                autoHeight: true, // Clave para adaptar la altura a cada slide
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
@@ -1052,6 +1074,30 @@
                     prevEl: '.swiper-button-prev',
                 },
             });
+
+            // Corrección dinámica para la superposición del encabezado
+            function adjustBodyPadding() {
+                const topBar = document.querySelector('.top-benefits-bar');
+                const progress = document.querySelector('#checkout-progress');
+                let totalHeight = 0;
+                if (topBar) {
+                    totalHeight += topBar.offsetHeight;
+                }
+
+                // Asumimos que la barra de progreso no es visible al inicio en esta página de producto
+                // pero dejamos un espacio por si acaso y para consistencia visual.
+                // Si la barra de progreso se vuelve visible, un observer debería recalcular.
+                const progressHeight = progress ? progress.offsetHeight : 0;
+
+                // Usamos un valor base seguro y añadimos la altura de la barra superior
+                let paddingTop = 50 + (topBar ? topBar.offsetHeight : 32);
+
+                document.body.style.paddingTop = `${paddingTop}px`;
+            }
+
+            // Ejecutar al cargar y al cambiar el tamaño de la ventana
+            adjustBodyPadding();
+            window.addEventListener('resize', adjustBodyPadding);
         });
     </script>
 
