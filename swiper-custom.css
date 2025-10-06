@@ -3,7 +3,7 @@
 /* Estilos generales para todos los carruseles */
 .swiper {
     width: 100%;
-    height: 320px;
+    height: auto;
     margin: 0 0 10px 0;
     padding: 0;
     overflow: hidden;
@@ -18,6 +18,11 @@
 #swiper-siena2025,
 #swiper-venecia-negras {
     height: 320px;
+}
+
+#swiper-guillermina-negras {
+    height: auto;
+    max-height: 675px;
 }
 
 #swiper-testimonios {
@@ -113,6 +118,10 @@
     height: 12px;
 }
 
+#swiper-guillermina-negras .swiper-pagination {
+    display: none;
+}
+
 /* Estilos específicos para el carrusel de testimonios */
 .testimonials-carousel {
     max-width: 800px;
@@ -190,4 +199,28 @@
     .testimonials-carousel .swiper-slide img {
         max-height: 250px;
     }
+}
+
+/* Styles for thumbnail carousel */
+#swiper-thumbnails-guillermina-negras {
+    height: 100px;
+    margin-top: 10px;
+}
+
+#swiper-thumbnails-guillermina-negras .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+#swiper-thumbnails-guillermina-negras .swiper-slide-thumb-active {
+    opacity: 1;
+    border: 2px solid #a05941;
+}
+
+#swiper-thumbnails-guillermina-negras .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

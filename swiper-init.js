@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Inicializar carruseles de productos por ID
         initProductSwiper('swiper-roma-negras', commonConfig);
         initProductSwiper('swiper-roma-suela', commonConfig);
+        initProductSwiperWithThumbs('swiper-guillermina-negras', 'swiper-thumbnails-guillermina-negras', commonConfig);
         initProductSwiper('swiper-siena2025', commonConfig);
         initProductSwiper('swiper-venecia-negras', commonConfig);
 
@@ -147,6 +148,41 @@ document.addEventListener('DOMContentLoaded', function() {
             return swiper;
         } else {
             return null;
+        }
+    }
+
+    function initProductSwiperWithThumbs(mainSwiperId, thumbsSwiperId, config) {
+        const mainSwiperEl = document.getElementById(mainSwiperId);
+        const thumbsSwiperEl = document.getElementById(thumbsSwiperId);
+
+        if (mainSwiperEl && thumbsSwiperEl) {
+            const thumbsSwiper = new Swiper(thumbsSwiperEl, {
+                spaceBetween: 10,
+                slidesPerView: 4,
+                freeMode: true,
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
+                slideToClickedSlide: true,
+            });
+
+            const mainSwiper = new Swiper(mainSwiperEl, {
+                ...config,
+                loop: true,
+                thumbs: {
+                    swiper: thumbsSwiper,
+                },
+            });
+
+            setTimeout(function() {
+                thumbsSwiper.slideTo(0);
+                thumbsSwiper.update();
+
+                thumbsSwiper.on('tap', function () {
+                    if (thumbsSwiper.clickedIndex >= thumbsSwiper.slides.length - thumbsSwiper.params.slidesPerView + 1) {
+                        thumbsSwiper.slideNext();
+                    }
+                });
+            }, 100);
         }
     }
 

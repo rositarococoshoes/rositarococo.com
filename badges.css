@@ -34,8 +34,6 @@
     .product-badges {
         flex-direction: column;
         gap: 0px;
-        top: 50px;
-        left: 3px;
     }
 
     .badge {
@@ -145,7 +143,7 @@
     .swiper-slide img {
         width: 100%;
         height: auto;
-        object-fit: cover;
+        object-fit: contain;
     }
 }
 

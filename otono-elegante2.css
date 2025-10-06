@@ -1955,10 +1955,7 @@ fieldset {
 }
 
 /* Checkout Progress Bar */
-#checkout-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
+  top: 25px; /* Ajustado para la barra de beneficios */
   width: 100%;
   background-color: white;
   display: flex;
