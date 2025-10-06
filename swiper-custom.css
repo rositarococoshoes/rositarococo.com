@@ -202,24 +202,32 @@
 }
 
 /* Styles for thumbnail carousel */
-#swiper-thumbnails-guillermina-negras {
+#swiper-thumbnails-guillermina-negras,
+#swiper-thumbnails-guillermina-camel,
+#swiper-thumbnails-guillermina-blancas {
     height: 100px;
     margin-top: 10px;
 }
 
-#swiper-thumbnails-guillermina-negras .swiper-slide {
+#swiper-thumbnails-guillermina-negras .swiper-slide,
+#swiper-thumbnails-guillermina-camel .swiper-slide,
+#swiper-thumbnails-guillermina-blancas .swiper-slide {
     width: 25%;
     height: 100%;
     opacity: 0.4;
     cursor: pointer;
 }
 
-#swiper-thumbnails-guillermina-negras .swiper-slide-thumb-active {
+#swiper-thumbnails-guillermina-negras .swiper-slide-thumb-active,
+#swiper-thumbnails-guillermina-camel .swiper-slide-thumb-active,
+#swiper-thumbnails-guillermina-blancas .swiper-slide-thumb-active {
     opacity: 1;
     border: 2px solid #a05941;
 }
 
-#swiper-thumbnails-guillermina-negras .swiper-slide img {
+#swiper-thumbnails-guillermina-negras .swiper-slide img,
+#swiper-thumbnails-guillermina-camel .swiper-slide img,
+#swiper-thumbnails-guillermina-blancas .swiper-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;

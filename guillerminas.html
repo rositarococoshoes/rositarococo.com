@@ -107,15 +107,39 @@
     <style>
         .size-guide-container {
             margin: 20px 0;
-            padding: 15px;
             border: 1px solid #eee;
             border-radius: 8px;
             background-color: #f9f9f9;
+            overflow: hidden;
         }
-        .size-guide-container h3 {
-            text-align: center;
-            margin-bottom: 15px;
+        .size-guide-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .size-guide-toggle h3 {
+            margin: 0;
             font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+        .toggle-icon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        .size-guide-content {
+            display: none;
+            padding: 0 15px 15px;
+            border-top: 1px solid #eee;
+        }
+        .size-guide-container.open .size-guide-content {
+            display: block;
+        }
+        .size-guide-container.open .toggle-icon {
+            transform: rotate(45deg);
         }
         .size-guide-container table {
             width: 100%;
@@ -716,10 +740,7 @@
                 <div class="product-grid" style="justify-content: center;">
                     <!-- PRODUCTO: Guillerminas Negras -->
                     <div class="product-item" id="modeload-guillermina-negras">
-                        <div class="product-badges">
-                            <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                            <span class="badge badge-limited">STOCK LIMITADO</span>
-                        </div>
+
                         <h2>Guillerminas Negras</h2>
                         <div class="swiper" id="swiper-guillermina-negras">
                             <div class="swiper-wrapper" style="height: auto;">
@@ -817,40 +838,48 @@
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 43" src="guillerminafotos/43.webp"></div>
                             </div>
                         </div>
-                        <div class="product-selection" id="talles-guillermina-negras">
-                            <div class="product-info-details">
-                                <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
-                                    <span class="spec-item"><strong>Suela:</strong> Expanso</span>
-                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                </div>
-                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+                                    <div class="product-selection" id="talles-guillermina-negras">
+                                        <div class="product-info-details">
+                                            <div class="product-specs">
+                                                <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
+                                                <span class="spec-item"><strong>Suela:</strong> Expanso</span>
+                                                <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
+                                            </div>
+                                            <div class="product-badges-new">
+                                                <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
+                                                <span class="badge badge-limited">STOCK LIMITADO</span>
+                                            </div>                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
 
                                 <div class="size-guide-container">
-                                    <h3>GUÍA DE TALLES</h3>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>TALLE</th>
-                                                <th>CENTÍMETROS</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr><td>35</td><td>23</td></tr>
-                                            <tr><td>36</td><td>23,5</td></tr>
-                                            <tr><td>37</td><td>24</td></tr>
-                                            <tr><td>38</td><td>24,7</td></tr>
-                                            <tr><td>39</td><td>25,3</td></tr>
-                                            <tr><td>40</td><td>26</td></tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="size-instructions">
-                                        <h4>¿CÓMO MEDIR?</h4>
-                                        <ol>
-                                            <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
-                                            <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
-                                            <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
-                                        </ol>
+                                    <div class="size-guide-toggle">
+                                        <h3>GUÍA DE TALLES</h3>
+                                        <span class="toggle-icon">+</span>
+                                    </div>
+                                    <div class="size-guide-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>TALLE</th>
+                                                    <th>CENTÍMETROS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>35</td><td>23</td></tr>
+                                                <tr><td>36</td><td>23,5</td></tr>
+                                                <tr><td>37</td><td>24</td></tr>
+                                                <tr><td>38</td><td>24,7</td></tr>
+                                                <tr><td>39</td><td>25,3</td></tr>
+                                                <tr><td>40</td><td>26</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="size-instructions">
+                                            <h4>¿CÓMO MEDIR?</h4>
+                                            <ol>
+                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
+                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
+                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
+                                            </ol>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="product-price-quantity">
@@ -881,12 +910,12 @@
                                             <label for="talle-select-guillermina-negras-1" class="sr-only">Talle Par 1</label>
                                             <select id="talle-select-guillermina-negras-1" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-guillermia-negras">35 (23 cm)</option>
-                                                <option value="36-guillermia-negras">36 (23,5 cm)</option>
-                                                <option value="37-guillermia-negras">37 (24 cm)</option>
-                                                <option value="38-guillermia-negras">38 (24,7 cm)</option>
-                                                <option value="39-guillermia-negras">39 (25,3 cm)</option>
-                                                <option value="40-guillermia-negras">40 (26 cm)</option>
+                                                <option value="35-guillermina-negras">35 (23 cm de largo de plantilla)</option>
+                                                <option value="36-guillermina-negras">36 (23,5 cm de largo de plantilla)</option>
+                                                <option value="37-guillermina-negras">37 (24 cm de largo de plantilla)</option>
+                                                <option value="38-guillermina-negras">38 (24,7 cm de largo de plantilla)</option>
+                                                <option value="39-guillermina-negras">39 (25,3 cm de largo de plantilla)</option>
+                                                <option value="40-guillermina-negras">40 (26 cm de largo de plantilla)</option>
                                             </select>
                                         </div>
                                         <button type="button" class="add-to-cart-btn" data-model="guillermina-negras-1">🛒 Agregar al carrito</button>
@@ -896,15 +925,315 @@
                                             <label for="talle-select-guillermina-negras-2" class="sr-only">Talle Par 2</label>
                                             <select id="talle-select-guillermina-negras-2" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-guillermia-negras">35 (23 cm)</option>
-                                                <option value="36-guillermia-negras">36 (23,5 cm)</option>
-                                                <option value="37-guillermia-negras">37 (24 cm)</option>
-                                                <option value="38-guillermia-negras">38 (24,7 cm)</option>
-                                                <option value="39-guillermia-negras">39 (25,3 cm)</option>
-                                                <option value="40-guillermia-negras">40 (26 cm)</option>
+                                                <option value="35-guillermina-negras">35 (23 cm de largo de plantilla)</option>
+                                                <option value="36-guillermina-negras">36 (23,5 cm de largo de plantilla)</option>
+                                                <option value="37-guillermina-negras">37 (24 cm de largo de plantilla)</option>
+                                                <option value="38-guillermina-negras">38 (24,7 cm de largo de plantilla)</option>
+                                                <option value="39-guillermina-negras">39 (25,3 cm de largo de plantilla)</option>
+                                                <option value="40-guillermina-negras">40 (26 cm de largo de plantilla)</option>
                                             </select>
                                         </div>
                                         <button type="button" class="add-to-cart-btn" data-model="guillermina-negras-2">🛒 Agregar al carrito</button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PRODUCTO: Guillerminas Camel -->
+                    <div class="product-item" id="modeload-guillermina-camel">
+
+                        <h2>Guillerminas Camel</h2>
+                        <div class="swiper" id="swiper-guillermina-camel">
+                            <div class="swiper-wrapper" style="height: auto;">
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 1" src="guillerminafotos/guillerminascamel/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 2" src="guillerminafotos/guillerminascamel/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 3" src="guillerminafotos/guillerminascamel/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 4" src="guillerminafotos/guillerminascamel/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 5" src="guillerminafotos/guillerminascamel/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 6" src="guillerminafotos/guillerminascamel/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 7" src="guillerminafotos/guillerminascamel/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 8" src="guillerminafotos/guillerminascamel/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 9" src="guillerminafotos/guillerminascamel/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 10" src="guillerminafotos/guillerminascamel/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 11" src="guillerminafotos/guillerminascamel/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 12" src="guillerminafotos/guillerminascamel/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 13" src="guillerminafotos/guillerminascamel/13.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 14" src="guillerminafotos/guillerminascamel/14.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 15" src="guillerminafotos/guillerminascamel/15.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 16" src="guillerminafotos/guillerminascamel/16.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 17" src="guillerminafotos/guillerminascamel/17.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 18" src="guillerminafotos/guillerminascamel/18.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        <div class="swiper-container" id="swiper-thumbnails-guillermina-camel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 1" src="guillerminafotos/guillerminascamel/1.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 2" src="guillerminafotos/guillerminascamel/2.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 3" src="guillerminafotos/guillerminascamel/3.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 4" src="guillerminafotos/guillerminascamel/4.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 5" src="guillerminafotos/guillerminascamel/5.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 6" src="guillerminafotos/guillerminascamel/6.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 7" src="guillerminafotos/guillerminascamel/7.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 8" src="guillerminafotos/guillerminascamel/8.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 9" src="guillerminafotos/guillerminascamel/9.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 10" src="guillerminafotos/guillerminascamel/10.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 11" src="guillerminafotos/guillerminascamel/11.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 12" src="guillerminafotos/guillerminascamel/12.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 13" src="guillerminafotos/guillerminascamel/13.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 14" src="guillerminafotos/guillerminascamel/14.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 15" src="guillerminafotos/guillerminascamel/15.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 16" src="guillerminafotos/guillerminascamel/16.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 17" src="guillerminafotos/guillerminascamel/17.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 18" src="guillerminafotos/guillerminascamel/18.webp"></div>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="talles-guillermina-camel">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Expanso</span>
+                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
+                                </div>
+                                <div class="product-badges-new">
+                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
+                                    <span class="badge badge-limited">STOCK LIMITADO</span>
+                                </div>
+                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+
+                                <div class="size-guide-container">
+                                    <div class="size-guide-toggle">
+                                        <h3>GUÍA DE TALLES</h3>
+                                        <span class="toggle-icon">+</span>
+                                    </div>
+                                    <div class="size-guide-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>TALLE</th>
+                                                    <th>CENTÍMETROS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>35</td><td>23</td></tr>
+                                                <tr><td>36</td><td>23,5</td></tr>
+                                                <tr><td>37</td><td>24</td></tr>
+                                                <tr><td>38</td><td>24,7</td></tr>
+                                                <tr><td>39</td><td>25,3</td></tr>
+                                                <tr><td>40</td><td>26</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="size-instructions">
+                                            <h4>¿CÓMO MEDIR?</h4>
+                                            <ol>
+                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
+                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
+                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-price-quantity">
+                                    <div class="promo-explanation">
+                                        <p class="promo-note">* 2 pares por $110.000 (cualquier combinación)</p>
+                                    </div>
+                                    <div class="quantity-price-selector">
+                                        <label class="quantity-price-option">
+                                            <input checked="checked" name="hwA-qty-guillermina-camel" type="radio" value="1" />
+                                            <div class="option-content">
+                                                <div class="option-quantity">1 par</div>
+                                                <div class="option-price">$70.000</div>
+                                            </div>
+                                        </label>
+                                        <label class="quantity-price-option">
+                                            <input name="hwA-qty-guillermina-camel" type="radio" value="2" />
+                                            <div class="option-content">
+                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                                <div class="option-price">$110.000</div>
+                                                <div class="option-save">($55.000 c/par - ¡AHORRÁS $30.000!)</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="size-selector">
+                                    <fieldset id="hwA-guillermina-camel-1">
+                                        <div class="form-group">
+                                            <label for="talle-select-guillermina-camel-1" class="sr-only">Talle Par 1</label>
+                                            <select id="talle-select-guillermina-camel-1" class="form-control talle">
+                                                <option value="">-- Selecciona Talle Par 1 --</option>
+                                                <option value="35-guillermina-camel">35 (23 cm de largo de plantilla)</option>
+                                                <option value="36-guillermina-camel">36 (23,5 cm de largo de plantilla)</option>
+                                                <option value="37-guillermina-camel">37 (24 cm de largo de plantilla)</option>
+                                                <option value="38-guillermina-camel">38 (24,7 cm de largo de plantilla)</option>
+                                                <option value="39-guillermina-camel">39 (25,3 cm de largo de plantilla)</option>
+                                                <option value="40-guillermina-camel">40 (26 cm de largo de plantilla)</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-camel-1">🛒 Agregar al carrito</button>
+                                    </fieldset>
+                                    <fieldset class="fieldsetstalles" id="hwA-guillermina-camel-2">
+                                        <div class="form-group">
+                                            <label for="talle-select-guillermina-camel-2" class="sr-only">Talle Par 2</label>
+                                            <select id="talle-select-guillermina-camel-2" class="form-control talle">
+                                                <option value="">-- Selecciona Talle Par 2 --</option>
+                                                <option value="35-guillermina-camel">35 (23 cm)</option>
+                                                <option value="36-guillermina-camel">36 (23,5 cm)</option>
+                                                <option value="37-guillermina-camel">37 (24 cm)</option>
+                                                <option value="38-guillermina-camel">38 (24,7 cm)</option>
+                                                <option value="39-guillermina-camel">39 (25,3 cm)</option>
+                                                <option value="40-guillermina-camel">40 (26 cm)</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-camel-2">🛒 Agregar al carrito</button>
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PRODUCTO: Guillerminas Blancas -->
+                    <div class="product-item" id="modeload-guillermina-blancas">
+
+                        <h2>Guillerminas Blancas</h2>
+                        <div class="swiper" id="swiper-guillermina-blancas">
+                            <div class="swiper-wrapper" style="height: auto;">
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 1" src="guillerminafotos/guillerminasblancas/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 2" src="guillerminafotos/guillerminasblancas/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 3" src="guillerminafotos/guillerminasblancas/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 4" src="guillerminafotos/guillerminasblancas/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 5" src="guillerminafotos/guillerminasblancas/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 6" src="guillerminafotos/guillerminasblancas/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 7" src="guillerminafotos/guillerminasblancas/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 8" src="guillerminafotos/guillerminasblancas/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 9" src="guillerminafotos/guillerminasblancas/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 10" src="guillerminafotos/guillerminasblancas/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 11" src="guillerminafotos/guillerminasblancas/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 12" src="guillerminafotos/guillerminasblancas/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 13" src="guillerminafotos/guillerminasblancas/13.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 14" src="guillerminafotos/guillerminasblancas/14.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 15" src="guillerminafotos/guillerminasblancas/15.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 16" src="guillerminafotos/guillerminasblancas/16.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                        <div class="swiper-container" id="swiper-thumbnails-guillermina-blancas">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 1" src="guillerminafotos/guillerminasblancas/1.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 2" src="guillerminafotos/guillerminasblancas/2.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 3" src="guillerminafotos/guillerminasblancas/3.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 4" src="guillerminafotos/guillerminasblancas/4.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 5" src="guillerminafotos/guillerminasblancas/5.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 6" src="guillerminafotos/guillerminasblancas/6.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 7" src="guillerminafotos/guillerminasblancas/7.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 8" src="guillerminafotos/guillerminasblancas/8.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 9" src="guillerminafotos/guillerminasblancas/9.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 10" src="guillerminafotos/guillerminasblancas/10.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 11" src="guillerminafotos/guillerminasblancas/11.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 12" src="guillerminafotos/guillerminasblancas/12.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 13" src="guillerminafotos/guillerminasblancas/13.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 14" src="guillerminafotos/guillerminasblancas/14.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 15" src="guillerminafotos/guillerminasblancas/15.webp"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 16" src="guillerminafotos/guillerminasblancas/16.webp"></div>
+                            </div>
+                        </div>
+                        <div class="product-selection" id="talles-guillermina-blancas">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Expanso</span>
+                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
+                                </div>
+                                <div class="product-badges-new">
+                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
+                                    <span class="badge badge-limited">STOCK LIMITADO</span>
+                                </div>
+                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+
+                                <div class="size-guide-container">
+                                    <div class="size-guide-toggle">
+                                        <h3>GUÍA DE TALLES</h3>
+                                        <span class="toggle-icon">+</span>
+                                    </div>
+                                    <div class="size-guide-content">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>TALLE</th>
+                                                    <th>CENTÍMETROS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr><td>35</td><td>23</td></tr>
+                                                <tr><td>36</td><td>23,5</td></tr>
+                                                <tr><td>37</td><td>24</td></tr>
+                                                <tr><td>38</td><td>24,7</td></tr>
+                                                <tr><td>39</td><td>25,3</td></tr>
+                                                <tr><td>40</td><td>26</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="size-instructions">
+                                            <h4>¿CÓMO MEDIR?</h4>
+                                            <ol>
+                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
+                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
+                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-price-quantity">
+                                    <div class="promo-explanation">
+                                        <p class="promo-note">* 2 pares por $110.000 (cualquier combinación)</p>
+                                    </div>
+                                    <div class="quantity-price-selector">
+                                        <label class="quantity-price-option">
+                                            <input checked="checked" name="hwA-qty-guillermina-blancas" type="radio" value="1" />
+                                            <div class="option-content">
+                                                <div class="option-quantity">1 par</div>
+                                                <div class="option-price">$70.000</div>
+                                            </div>
+                                        </label>
+                                        <label class="quantity-price-option">
+                                            <input name="hwA-qty-guillermina-blancas" type="radio" value="2" />
+                                            <div class="option-content">
+                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
+                                                <div class="option-price">$110.000</div>
+                                                <div class="option-save">($55.000 c/par - ¡AHORRÁS $30.000!)</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="size-selector">
+                                    <fieldset id="hwA-guillermina-blancas-1">
+                                        <div class="form-group">
+                                            <label for="talle-select-guillermina-blancas-1" class="sr-only">Talle Par 1</label>
+                                            <select id="talle-select-guillermina-blancas-1" class="form-control talle">
+                                                <option value="">-- Selecciona Talle Par 1 --</option>
+                                                <option value="35-guillermina-blancas">35 (23 cm de largo de plantilla)</option>
+                                                <option value="36-guillermina-blancas">36 (23,5 cm de largo de plantilla)</option>
+                                                <option value="37-guillermina-blancas">37 (24 cm de largo de plantilla)</option>
+                                                <option value="38-guillermina-blancas">38 (24,7 cm de largo de plantilla)</option>
+                                                <option value="39-guillermina-blancas">39 (25,3 cm de largo de plantilla)</option>
+                                                <option value="40-guillermina-blancas">40 (26 cm de largo de plantilla)</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-blancas-1">🛒 Agregar al carrito</button>
+                                    </fieldset>
+                                    <fieldset class="fieldsetstalles" id="hwA-guillermina-blancas-2">
+                                        <div class="form-group">
+                                            <label for="talle-select-guillermina-blancas-2" class="sr-only">Talle Par 2</label>
+                                            <select id="talle-select-guillermina-blancas-2" class="form-control talle">
+                                                <option value="">-- Selecciona Talle Par 2 --</option>
+                                                <option value="35-guillermina-blancas">35 (23 cm)</option>
+                                                <option value="36-guillermina-blancas">36 (23,5 cm)</option>
+                                                <option value="37-guillermina-blancas">37 (24 cm)</option>
+                                                <option value="38-guillermina-blancas">38 (24,7 cm)</option>
+                                                <option value="39-guillermina-blancas">39 (25,3 cm)</option>
+                                                <option value="40-guillermina-blancas">40 (26 cm)</option>
+                                            </select>
+                                        </div>
+                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-blancas-2">🛒 Agregar al carrito</button>
                                     </fieldset>
                                 </div>
                             </div>
@@ -1126,25 +1455,10 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <!-- Custom scripts -->
-    <script src="swiper-init.js"></script>
+    <script src="guillerminas-swiper.js"></script>
     <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const swiperGuillermina = new Swiper('#swiper-guillermina-negras', {
-                loop: true,
-                autoHeight: true, // Esto es clave para adaptar la altura a cada slide
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
-        });
-    </script>
+
 
 
 

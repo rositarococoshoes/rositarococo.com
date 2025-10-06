@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initProductSwiper('swiper-roma-negras', commonConfig);
         initProductSwiper('swiper-roma-suela', commonConfig);
         initProductSwiperWithThumbs('swiper-guillermina-negras', 'swiper-thumbnails-guillermina-negras', commonConfig);
+        initProductSwiperWithThumbs('swiper-guillermina-camel', 'swiper-thumbnails-guillermina-camel', commonConfig);
         initProductSwiper('swiper-siena2025', commonConfig);
         initProductSwiper('swiper-venecia-negras', commonConfig);
 
@@ -173,16 +174,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
             });
 
+            // Asegurarse de que el thumbnail swiper se actualice
             setTimeout(function() {
-                thumbsSwiper.slideTo(0);
                 thumbsSwiper.update();
+            }, 300);
 
-                thumbsSwiper.on('tap', function () {
-                    if (thumbsSwiper.clickedIndex >= thumbsSwiper.slides.length - thumbsSwiper.params.slidesPerView + 1) {
-                        thumbsSwiper.slideNext();
-                    }
-                });
-            }, 100);
+
+            // Forzar el deslizamiento del carrusel de miniaturas al hacer clic
+            thumbsSwiper.on('click', function () {
+                // Si el slide clickeado es el último visible, deslizar el carrusel de miniaturas
+                if (this.clickedIndex >= this.slides.length - this.params.slidesPerView) {
+                    this.slideNext();
+                }
+                // Si el slide clickeado es el primero visible, deslizar hacia atrás
+                if (this.clickedIndex < this.params.slidesPerView -1) {
+                    this.slidePrev();
+                }
+            });
         }
     }
 

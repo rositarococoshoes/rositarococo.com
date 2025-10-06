@@ -300,7 +300,7 @@ $(document).ready(function(){
   });
 
   // --- Product Selection Logic ---
-  var fieldsetsToShow = ['roma-negras', 'roma-suela', 'siena2025', 'venecia-negras', 'paris-negras', 'paris-camel', 'paris-verde']; // Add all product IDs
+  var fieldsetsToShow = ['guillermina-negras', 'guillermina-camel', 'guillermina-blancas', 'roma-negras', 'roma-suela', 'siena2025', 'venecia-negras', 'paris-negras', 'paris-camel', 'paris-verde']; // Add all product IDs
   fieldsetsToShow.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selectedQty = parseInt($(this).val());
@@ -536,7 +536,13 @@ $(document).ready(function(){
       var productName = '';
 
       // Determinar el nombre del producto basado en el valor seleccionado
-      if (currentVal.includes('roma-negras')) {
+      if (currentVal.includes('guillermina-negras')) {
+        productName = 'Guillerminas Negras';
+      } else if (currentVal.includes('guillermina-camel')) {
+        productName = 'Guillerminas Camel';
+      } else if (currentVal.includes('guillermina-blancas')) {
+        productName = 'Guillerminas Blancas';
+      } else if (currentVal.includes('roma-negras')) {
         productName = 'Botineta Roma Negras';
       } else if (currentVal.includes('roma-suela')) {
         productName = 'Botineta Roma Suela';
@@ -1843,6 +1849,9 @@ $(document).ready(function(){
   // Get product name from model ID
   function getProductName(model) {
     var names = {
+      'guillermina-negras': 'Guillerminas Negras',
+      'guillermina-camel': 'Guillerminas Camel',
+      'guillermina-blancas': 'Guillerminas Blancas',
       'roma-negras': 'Botineta Roma Negras',
       'roma-suela': 'Botineta Roma Suela',
       'siena2025': 'Borcego Siena 2025',
@@ -1858,6 +1867,9 @@ $(document).ready(function(){
   // Get product image from model ID
   function getProductImage(model) {
     var images = {
+      'guillermina-negras': 'guillerminafotos/1.webp',
+      'guillermina-camel': 'guillerminafotos/guillerminascamel/1.webp',
+      'guillermina-blancas': 'guillerminafotos/guillerminasblancas/1.webp',
       'roma-negras': 'roma-negras-1.jpg',
       'roma-suela': 'roma-suela-1a.jpg',
       'siena2025': 'siena2025-1.webp',
@@ -1981,3 +1993,15 @@ $(document).ready(function(){
   // Fin de las funciones de notificación
 
 }); // End document ready
+
+  // --- Size Guide Toggle ---
+  $('.size-guide-toggle').on('click', function() {
+    var $container = $(this).closest('.size-guide-container');
+    $container.toggleClass('open');
+    var $icon = $(this).find('.toggle-icon');
+    if ($container.hasClass('open')) {
+      $icon.text('−'); // Minus sign for open state
+    } else {
+      $icon.text('+');
+    }
+  });
