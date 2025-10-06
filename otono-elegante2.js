@@ -1067,12 +1067,15 @@ $(document).ready(function(){
 
   // --- Sales Notification Popups ---
   const salesData = [
-    { product: "Botineta Roma Negras", city: "CABA", image: "roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Córdoba", image: "siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Rosario", image: "roma-suela-1a.jpg" },
-    { product: "Botineta Roma Negras", city: "La Plata", image: "roma-negras-1.jpg" },
-    { product: "Borcego Siena 2025", city: "Mendoza", image: "siena2025-1.webp" },
-    { product: "Botineta Roma Suela", city: "Mar del Plata", image: "roma-suela-1a.jpg" }
+    { product: "Guillerminas Negras", city: "CABA", image: "guillerminafotos/1.webp" },
+    { product: "Guillerminas Camel", city: "Córdoba", image: "guillerminafotos/guillerminascamel/1.webp" },
+    { product: "Guillerminas Blancas", city: "Rosario", image: "guillerminafotos/guillerminasblancas/1.webp" },
+    { product: "Guillerminas Negras", city: "La Plata", image: "guillerminafotos/2.webp" },
+    { product: "Guillerminas Camel", city: "Mendoza", image: "guillerminafotos/guillerminascamel/2.webp" },
+    { product: "Guillerminas Blancas", city: "Mar del Plata", image: "guillerminafotos/guillerminasblancas/2.webp" },
+    { product: "Guillerminas Negras", city: "Buenos Aires", image: "guillerminafotos/3.webp" },
+    { product: "Guillerminas Camel", city: "Santa Fe", image: "guillerminafotos/guillerminascamel/3.webp" },
+    { product: "Guillerminas Blancas", city: "Tucumán", image: "guillerminafotos/guillerminasblancas/3.webp" }
   ];
 
   // Función para mostrar notificaciones de compra
@@ -1203,15 +1206,41 @@ $(document).ready(function(){
   }
 
   // Mostrar notificación de compra solo una vez por sesión
-  setTimeout(function() {
-    // Verificar si ya se mostró la notificación en esta sesión
+  // Mostrar notificación de compra solo una vez por sesión, pero con repetición
+  let notificationInterval;
+  const initialDelay = 13000; // 13 segundos
+  const minRepeatDelay = 10000; // 10 segundos
+  const maxRepeatDelay = 20000; // 20 segundos
+
+  function startSalesNotifications() {
     if (!sessionStorage.getItem('saleNotificationShown')) {
       showSaleNotification();
+      sessionStorage.setItem('saleNotificationShown', 'true'); // Mark as shown for the session
 
-      // Marcar que ya se mostró la notificación
-      sessionStorage.setItem('saleNotificationShown', 'true');
+      // Start repeating notifications after the initial one
+      notificationInterval = setInterval(function() {
+        showSaleNotification();
+      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
+    } else {
+      // If already shown in this session, just start repeating
+      notificationInterval = setInterval(function() {
+        showSaleNotification();
+      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
     }
-  }, 3000);
+  }
+
+  // Clear sessionStorage on page load to allow notifications in new sessions
+  // This ensures that if a user closes and reopens the tab, they see notifications again.
+  window.addEventListener('load', function() {
+    sessionStorage.removeItem('saleNotificationShown');
+    setTimeout(startSalesNotifications, initialDelay);
+  });
+
+  // Also, if the DOM is already loaded (e.g., user navigates back), start immediately
+  if (document.readyState === 'complete') {
+    sessionStorage.removeItem('saleNotificationShown');
+    setTimeout(startSalesNotifications, initialDelay);
+  }
 
   // Fin de la configuración de notificaciones
 
@@ -1991,6 +2020,48 @@ $(document).ready(function(){
   }
 
   // Fin de las funciones de notificación
+
+  let notificationsShownCount = 0;
+  const maxNotifications = 3;
+
+  function startSalesNotifications() {
+    if (!sessionStorage.getItem('saleNotificationShown')) {
+      showSaleNotificationWithCount();
+      sessionStorage.setItem('saleNotificationShown', 'true'); // Mark as shown for the session
+
+      // Start repeating notifications after the initial one
+      notificationInterval = setInterval(function() {
+        showSaleNotificationWithCount();
+      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
+    } else {
+      // If already shown in this session, just start repeating
+      notificationInterval = setInterval(function() {
+        showSaleNotificationWithCount();
+      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
+    }
+  }
+
+  function showSaleNotificationWithCount() {
+    if (notificationsShownCount < maxNotifications) {
+      showSaleNotification();
+      notificationsShownCount++;
+    } else {
+      clearInterval(notificationInterval); // Stop showing notifications after max count
+    }
+  }
+
+  // Clear sessionStorage on page load to allow notifications in new sessions
+  // This ensures that if a user closes and reopens the tab, they see notifications again.
+  window.addEventListener('load', function() {
+    sessionStorage.removeItem('saleNotificationShown');
+    setTimeout(startSalesNotifications, initialDelay);
+  });
+
+  // Also, if the DOM is already loaded (e.g., user navigates back), start immediately
+  if (document.readyState === 'complete') {
+    sessionStorage.removeItem('saleNotificationShown');
+    setTimeout(startSalesNotifications, initialDelay);
+  }
 
 }); // End document ready
 
