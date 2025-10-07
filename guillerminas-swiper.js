@@ -196,4 +196,14 @@ document.addEventListener('DOMContentLoaded', function () {
       this.slidePrev();
     }
   });
+
+  // Paris Negras (solo imagen, sin miniaturas)
+  var mainSwiperParisNegras = new Swiper('#swiper-paris-negras', {
+    loop: false,
+    spaceBetween: 10,
+    navigation: {
+      nextEl: '#modeload-paris-negras .swiper-button-next',
+      prevEl: '#modeload-paris-negras .swiper-button-prev',
+    },
+  });
 });
