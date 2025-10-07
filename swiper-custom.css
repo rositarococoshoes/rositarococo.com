@@ -232,3 +232,35 @@
     height: 100%;
     object-fit: cover;
 }
+
+/* Styles for Birk thumbnail carousels - same as guillermina */
+#swiper-thumbnails-birk-negras,
+#swiper-thumbnails-birk-camel,
+#swiper-thumbnails-birk-blancas {
+    height: 100px;
+    margin-top: 10px;
+}
+
+#swiper-thumbnails-birk-negras .swiper-slide,
+#swiper-thumbnails-birk-camel .swiper-slide,
+#swiper-thumbnails-birk-blancas .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+#swiper-thumbnails-birk-negras .swiper-slide-thumb-active,
+#swiper-thumbnails-birk-camel .swiper-slide-thumb-active,
+#swiper-thumbnails-birk-blancas .swiper-slide-thumb-active {
+    opacity: 1;
+    border: 2px solid #a05941;
+}
+
+#swiper-thumbnails-birk-negras .swiper-slide img,
+#swiper-thumbnails-birk-camel .swiper-slide img,
+#swiper-thumbnails-birk-blancas .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
