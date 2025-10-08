@@ -557,7 +557,7 @@
     </div>
 
     <!-- Botón flotante de continuar al envío -->
-    <button id="fixed-checkout-button" onclick="goToCheckoutForm()">
+    <button id="fixed-checkout-button" onclick="goToCheckoutForm()" disabled>
         <span class="button-content">
             <span>Continuar al Envío</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -579,49 +579,126 @@
         var buttonVisible = false;
         var scrollTimeout = null;
 
-        // Función optimizada para ir al formulario de envío
+        // Función mejorada para ir al formulario de envío
         function goToCheckoutForm() {
-            // Verificar si formSection existe
-            if (!formSection) {
-                formSection = document.getElementById('restodelform');
-                if (!formSection) {
-                    return;
-                }
+            // Prevenir múltiples ejecuciones simultáneas
+            if (floatingButton && floatingButton.disabled) {
+                console.log('⏳ Función ya en ejecución, ignorando...');
+                return;
             }
 
-            // Mostrar la sección del formulario
-            formSection.classList.remove('hidden');
-            formSection.classList.add('active');
+            console.log('🔵 Ejecutando goToCheckoutForm()');
 
-            // Desplazarse al formulario
-            window.scrollTo({
-                top: formSection.offsetTop - 20,
-                behavior: 'smooth'
-            });
-
-            // Verificar si floatingButton existe
+            // Deshabilitar el botón para prevenir múltiples ejecuciones
             if (floatingButton) {
-                // Ocultar el botón flotante con transición suave
+                floatingButton.disabled = true;
+            }
+
+            // Función auxiliar para encontrar y preparar el formulario
+            function prepareAndScrollToForm() {
+                // Buscar el formulario con múltiples métodos
+                let form = formSection || document.getElementById('restodelform');
+
+                if (!form) {
+                    console.error('❌ Formulario restodelform no encontrado');
+                    // Buscar por clase como alternativa
+                    form = document.querySelector('.checkout-section');
+                    if (!form) {
+                        console.error('❌ No se encontró ningún formulario de checkout');
+                        return false;
+                    }
+                }
+
+                console.log('✅ Formulario encontrado:', form.id || form.className);
+
+                // Asegurar que el formulario sea visible
+                form.classList.remove('hidden');
+                form.classList.add('active');
+
+                // Forzar estilos de visibilidad si es necesario
+                if (window.getComputedStyle(form).display === 'none') {
+                    console.warn('⚠️ Formulario estaba oculto, forzando visibilidad');
+                    form.style.display = 'block';
+                    form.style.visibility = 'visible';
+                    form.style.opacity = '1';
+                }
+
+                // Calcular posición con múltiples métodos para mayor precisión
+                let offsetTop = form.offsetTop;
+                let rect = form.getBoundingClientRect();
+
+                // Usar la posición más confiable
+                let targetPosition = offsetTop - 20;
+
+                console.log('📍 Posición calculada:', {
+                    offsetTop: offsetTop,
+                    rectTop: rect.top,
+                    targetPosition: targetPosition,
+                    windowHeight: window.innerHeight
+                });
+
+                // Hacer scroll con opciones mejoradas
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+
+                // Verificar que el scroll se haya realizado correctamente
+                setTimeout(function() {
+                    let newPosition = window.scrollY;
+                    let formPosition = form.offsetTop - 20;
+                    console.log('🔍 Verificación de scroll:', {
+                        posicionActual: newPosition,
+                        posicionObjetivo: formPosition,
+                        diferencia: Math.abs(newPosition - formPosition)
+                    });
+
+                    // Si el scroll no llegó correctamente, intentar de nuevo
+                    if (Math.abs(newPosition - formPosition) > 100) {
+                        console.warn('⚠️ Scroll no fue preciso, ajustando...');
+                        window.scrollTo({
+                            top: formPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 500);
+
+                return true;
+            }
+
+            // Ejecutar la función de preparación y scroll
+            if (!prepareAndScrollToForm()) {
+                console.error('❌ No se pudo preparar el formulario para el scroll');
+                // Rehabilitar el botón si hubo error
+                if (floatingButton) {
+                    floatingButton.disabled = false;
+                }
+                return;
+            }
+
+            // Ocultar el botón flotante con transición suave
+            if (floatingButton) {
                 floatingButton.style.opacity = '0';
                 floatingButton.style.pointerEvents = 'none';
-                // Ocultar completamente después de la transición
                 setTimeout(function() {
                     floatingButton.style.display = 'none';
                 }, 300);
                 buttonVisible = false;
             }
 
-            // Mostrar notificación
+            // Mostrar notificación de éxito
             var container = document.getElementById('notification-container');
             if (container) {
                 var notification = document.createElement('div');
                 notification.className = 'notification info';
-                notification.innerHTML = 'Completa tus datos para finalizar la compra';
+                notification.innerHTML = '✅ Formulario de envío abierto correctamente';
                 container.appendChild(notification);
                 setTimeout(function() {
                     if (notification.parentNode) notification.parentNode.removeChild(notification);
-                }, 5000);
+                }, 3000);
             }
+
+            console.log('✅ goToCheckoutForm() ejecutado completamente');
         }
 
         // Función optimizada para actualizar la visibilidad del botón flotante
@@ -629,6 +706,11 @@
             // Obtener el contador del carrito
             var itemCount = cartCountElement ? parseInt(cartCountElement.textContent || '0') : 0;
             var scrollY = window.scrollY || window.pageYOffset;
+
+            // Actualizar posición del formulario si es necesario
+            if (formSection && formSection.classList.contains('active')) {
+                formTopPosition = formSection.offsetTop;
+            }
 
             // Optimización: solo actualizar si algo ha cambiado
             if (itemCount === lastItemCount && scrollY === lastScrollY && formTopPosition) {
@@ -639,17 +721,30 @@
             lastItemCount = itemCount;
             lastScrollY = scrollY;
 
-            // Obtener el estado del formulario
-            var isFormActive = formSection && formSection.classList.contains('active');
+            // Obtener el estado del formulario con mejor detección
+            var isFormActive = formSection && (
+                formSection.classList.contains('active') ||
+                window.getComputedStyle(formSection).display !== 'none'
+            );
             var isAboveForm = scrollY < formTopPosition - 100;
 
             // Mostrar u ocultar el botón según las condiciones
             var shouldShow = itemCount > 0 && (!isFormActive || isAboveForm);
 
             if (shouldShow !== buttonVisible) {
+                console.log('🔄 Actualizando botón flotante:', {
+                    shouldShow: shouldShow,
+                    itemCount: itemCount,
+                    isFormActive: isFormActive,
+                    isAboveForm: isAboveForm,
+                    scrollY: scrollY,
+                    formTopPosition: formTopPosition
+                });
+
                 // Usar opacity y pointer-events para una transición más suave
                 if (shouldShow) {
                     floatingButton.style.display = 'flex';
+                    floatingButton.disabled = false; // Rehabilitar el botón cuando se muestra
                     // Pequeño retraso para permitir que la transición funcione
                     setTimeout(function() {
                         floatingButton.style.opacity = '1';
