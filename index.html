@@ -307,6 +307,168 @@
             text-align: center;
         }
 
+        /* Cart Messages Area - Professional Styles */
+        #cart-messages {
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        /* Área de mensajes principal */
+        .cart-messages-area {
+            background: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(222, 226, 230, 0.8);
+            padding: 16px 20px;
+            min-height: 24px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #495057;
+            position: relative;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-messages-area:empty {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .cart-messages-area:not(:empty) {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mensajes individuales */
+        .cart-message {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideInMessage 0.4s ease-out;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-message:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes slideInMessage {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Texto del mensaje */
+        .message-text {
+            flex-grow: 1;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Botón de cierre */
+        .message-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            color: rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 50%;
+            transition: all 0.2s ease;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .message-close:hover {
+            background: rgba(0, 0, 0, 0.1);
+            color: rgba(0, 0, 0, 0.7);
+            transform: scale(1.1);
+        }
+
+        /* Tipos de mensaje específicos */
+        .cart-message-success {
+            background: linear-gradient(135deg, rgba(212, 237, 218, 0.95), rgba(193, 230, 198, 0.95));
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .cart-message-info {
+            background: linear-gradient(135deg, rgba(209, 236, 241, 0.95), rgba(190, 229, 235, 0.95));
+            border-left: 4px solid #17a2b8;
+            color: #0c5460;
+        }
+
+        .cart-message-warning {
+            background: linear-gradient(135deg, rgba(255, 243, 205, 0.95), rgba(255, 235, 186, 0.95));
+            border-left: 4px solid #ffc107;
+            color: #856404;
+        }
+
+        .cart-message-error {
+            background: linear-gradient(135deg, rgba(248, 215, 218, 0.95), rgba(241, 196, 200, 0.95));
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .cart-messages-area {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+                border-radius: 0 0 8px 8px;
+            }
+
+            .cart-message {
+                padding: 12px 14px;
+                margin-bottom: 10px;
+                font-size: 0.85rem;
+            }
+
+            .message-close {
+                top: 6px;
+                right: 10px;
+                font-size: 16px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-messages-area {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+
+            .cart-message {
+                padding: 10px 12px;
+                margin-bottom: 8px;
+            }
+
+            .message-text {
+                font-size: 0.8rem;
+            }
+        }
+
         /* Testimonials Section Redesign */
         .testimonials-section {
             padding: 60px 20px;
@@ -529,6 +691,10 @@
 
     <!-- Mini Cart -->
     <div id="mini-cart">
+        <!-- Cart Messages Area -->
+        <div id="cart-messages" class="cart-messages-area">
+            <!-- Messages will be dynamically inserted here -->
+        </div>
         <div class="mini-cart-header">
             <span class="cart-icon">🛒</span>
             <span class="cart-title">Tu Carrito</span>
@@ -2632,6 +2798,97 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
             }
         });
 
+    })();
+
+    // Cart Messages System
+    (function() {
+        const cartMessagesArea = document.getElementById('cart-messages');
+
+        // Function to show messages in cart
+        window.showCartMessage = function(message, type = 'info', duration = 0) {
+            if (!cartMessagesArea) {
+                console.error('Cart messages area not found');
+                return;
+            }
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `cart-message cart-message-${type}`;
+
+            // Create message content
+            const messageContent = document.createElement('span');
+            messageContent.className = 'message-text';
+            messageContent.textContent = message;
+
+            // Create close button
+            const closeBtn = document.createElement('button');
+            closeBtn.className = 'message-close';
+            closeBtn.innerHTML = '×';
+            closeBtn.onclick = function() {
+                removeCartMessage(messageDiv);
+            };
+
+            messageDiv.appendChild(messageContent);
+            messageDiv.appendChild(closeBtn);
+
+            // Add to messages area
+            cartMessagesArea.appendChild(messageDiv);
+
+            // Show messages area if it was empty
+            if (cartMessagesArea.children.length > 0) {
+                cartMessagesArea.style.display = 'block';
+            }
+
+            // Auto remove after duration (if specified)
+            if (duration > 0) {
+                setTimeout(function() {
+                    removeCartMessage(messageDiv);
+                }, duration);
+            }
+
+            console.log(`Cart message added: ${type} - ${message}`);
+        };
+
+        // Function to remove a specific message
+        function removeCartMessage(messageDiv) {
+            if (messageDiv && messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+
+                // Hide messages area if no messages left
+                if (cartMessagesArea.children.length === 0) {
+                    cartMessagesArea.style.display = 'none';
+                }
+            }
+        }
+
+        // Function to clear all messages
+        window.clearCartMessages = function() {
+            if (cartMessagesArea) {
+                cartMessagesArea.innerHTML = '';
+                cartMessagesArea.style.display = 'none';
+            }
+        };
+
+        // Function to show success message
+        window.showCartSuccess = function(message, duration = 5000) {
+            showCartMessage(message, 'success', duration);
+        };
+
+        // Function to show error message
+        window.showCartError = function(message, duration = 0) {
+            showCartMessage(message, 'error', duration);
+        };
+
+        // Function to show warning message
+        window.showCartWarning = function(message, duration = 0) {
+            showCartMessage(message, 'warning', duration);
+        };
+
+        // Function to show info message
+        window.showCartInfo = function(message, duration = 0) {
+            showCartMessage(message, 'info', duration);
+        };
+
+        console.log('Cart messages system initialized');
     })();
     </script>
 </body>

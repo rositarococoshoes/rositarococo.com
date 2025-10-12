@@ -45,104 +45,148 @@ $(document).ready(function(){
   // Initialize checkout progress
   updateCheckoutProgress(currentStep);
 
-  // Mini-cart toggle functionality - Nuevo botón independiente
-  $('#cart-button').on('click', function(e) {
-    e.stopPropagation(); // Evitar que el clic se propague
-    $('#mini-cart').toggleClass('active');
-  });
+  // Sistema unificado de eventos del carrito
+  var cartEventHandlers = {
+    init: function() {
+      // Configurar eventos del botón principal del carrito
+      $('#cart-button, .cart-button-icon, .cart-button-count').on('click.cart', function(e) {
+        e.stopPropagation();
+        cartState.toggle();
+      });
 
-  // También permitir clic en los elementos dentro del botón
-  $('.cart-button-icon, .cart-button-count').on('click', function(e) {
-    e.stopPropagation(); // Evitar que el clic se propague
-    $('#mini-cart').toggleClass('active');
-  });
+      // Mantener compatibilidad con botones antiguos
+      $('.mini-cart-tab, .tab-icon, .tab-text').on('click.cart', function(e) {
+        e.stopPropagation();
+        cartState.toggle();
+      });
 
-  // Mantener compatibilidad con el botón antiguo si existe
-  $('.mini-cart-tab').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').toggleClass('active');
-  });
+      // Cerrar carrito al hacer clic fuera
+      $(document).on('click.cart', function(e) {
+        if (!$(e.target).closest('#mini-cart').length && cartState.isOpen) {
+          cartState.close();
+        }
+      });
 
-  $('.tab-icon, .tab-text').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').toggleClass('active');
-  });
+      // Cerrar carrito con el botón de cierre
+      $('.cart-close').on('click.cart', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        cartState.close();
+        console.log('🛒 Carrito cerrado manualmente');
+      });
 
-  // Close mini-cart when clicking outside
-  $(document).on('click', function(e) {
-    if (!$(e.target).closest('#mini-cart').length && $('#mini-cart').hasClass('active')) {
-      $('#mini-cart').removeClass('active');
+      // Prevenir que los clics dentro del carrito lo cierren
+      $('#mini-cart').on('click.cart', function(e) {
+        e.stopPropagation();
+      });
+    },
+
+    destroy: function() {
+      // Remover todos los event handlers del carrito
+      $('#cart-button, .cart-button-icon, .cart-button-count, .mini-cart-tab, .tab-icon, .tab-text').off('click.cart');
+      $(document).off('click.cart');
+      $('.cart-close').off('click.cart');
+      $('#mini-cart').off('click.cart');
     }
-  });
+  };
 
-  // Close mini-cart when clicking the close button
-  $('.cart-close').on('click', function(e) {
-    e.stopPropagation();
-    $('#mini-cart').removeClass('active');
-  });
+  // Inicializar eventos del carrito
+  cartEventHandlers.init();
 
-  // Asegurarse de que el botón del carrito sea visible
-  function ensureCartButtonVisible() {
-    // Forzar visibilidad del botón del carrito independiente
-    $('#cart-button').css({
-      'display': 'flex',
-      'visibility': 'visible',
-      'opacity': '1',
-      'z-index': '9999'
-    });
+  // Sistema unificado de gestión del estado del carrito
+  var cartState = {
+    isOpen: false,
+    hasItems: false,
+    isAnimating: false,
 
-    // También asegurar visibilidad del botón antiguo por compatibilidad
-    $('.mini-cart-tab').css({
-      'display': 'flex',
-      'visibility': 'visible',
-      'opacity': '1',
-      'z-index': '9999'
-    });
+    // Método para actualizar el estado completo del carrito
+    update: function() {
+      var itemCount = cartItems.length;
+      this.hasItems = itemCount > 0;
 
-    // Forzar animación
-    if (!$('#cart-button').hasClass('animated')) {
-      $('#cart-button').addClass('animated');
-    }
+      // Actualizar elementos del carrito
+      this.updateCartElements();
+      this.updateButtonVisibility();
+      this.updateFloatingButton();
+      this.updateCartMessages();
+    },
 
-    // Actualizar contador
-    $('.cart-button-count').text($('.cart-count').text());
+    // Actualizar elementos del carrito (contadores, clases, etc.)
+    updateCartElements: function() {
+      var itemCount = cartItems.length;
 
-    // Asegurar visibilidad del botón flotante de continuar al envío
-    if (cartItems.length > 0) {
+      // Actualizar contadores
+      $('.cart-count, .cart-button-count, .tab-count').text(itemCount);
+
+      // Actualizar clases del mini-cart
+      if (itemCount > 0) {
+        $('#mini-cart').addClass('has-items');
+        $('.empty-cart-message').hide();
+        $('.cart-instructions').show();
+      } else {
+        $('#mini-cart').removeClass('has-items');
+        $('.empty-cart-message').show();
+        $('.cart-instructions').show();
+      }
+    },
+
+    // Gestionar visibilidad de botones del carrito
+    updateButtonVisibility: function() {
+      // Asegurar visibilidad del botón principal del carrito
+      $('#cart-button').css({
+        'display': 'flex',
+        'visibility': 'visible',
+        'opacity': '1',
+        'z-index': '9999'
+      });
+
+      // Compatibilidad con botón antiguo
+      $('.mini-cart-tab').css({
+        'display': 'flex',
+        'visibility': 'visible',
+        'opacity': '1',
+        'z-index': '9999'
+      });
+
+      // Agregar animación si no la tiene
+      if (!$('#cart-button').hasClass('animated')) {
+        $('#cart-button').addClass('animated');
+      }
+    },
+
+    // Gestionar botón flotante de continuar al envío
+    updateFloatingButton: function() {
       var formElement = $('#restodelform');
       var windowTopPosition = $(window).scrollTop();
       var windowBottomPosition = windowTopPosition + $(window).height();
+
+      if (!this.hasItems) {
+        $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
+        return;
+      }
 
       // Verificar si el formulario está visible y activo
       var formVisible = false;
 
       if (formElement.length > 0) {
-        // Comprobar si el formulario está activo o no oculto
         var formIsActive = formElement.hasClass('active') || !formElement.hasClass('hidden');
 
         if (formIsActive) {
-          // Si el formulario está activo, verificar si está en la pantalla
           var formTop = formElement.offset().top;
           var formBottom = formTop + formElement.outerHeight();
 
-          // El formulario está visible si:
-          // 1. La parte superior del formulario está visible en la pantalla, o
-          // 2. La parte inferior del formulario está visible en la pantalla, o
-          // 3. El formulario abarca toda la pantalla (más grande que la ventana)
-          // 4. Estamos cerca del formulario (dentro de 200px)
           formVisible =
-            (formTop >= windowTopPosition && formTop <= windowBottomPosition) || // Parte superior visible
-            (formBottom >= windowTopPosition && formBottom <= windowBottomPosition) || // Parte inferior visible
-            (formTop <= windowTopPosition && formBottom >= windowBottomPosition) || // Formulario abarca toda la pantalla
-            (formTop - windowBottomPosition < 200 && formTop > windowBottomPosition) || // Estamos justo encima del formulario
-            (windowTopPosition - formBottom < 200 && windowTopPosition > formBottom); // Estamos justo debajo del formulario
+            (formTop >= windowTopPosition && formTop <= windowBottomPosition) ||
+            (formBottom >= windowTopPosition && formBottom <= windowBottomPosition) ||
+            (formTop <= windowTopPosition && formBottom >= windowBottomPosition) ||
+            (formTop - windowBottomPosition < 200 && formTop > windowBottomPosition) ||
+            (windowTopPosition - formBottom < 200 && windowTopPosition > formBottom);
         }
 
-        // Si el formulario está activo, considerarlo visible aunque no esté en la pantalla
         formVisible = formVisible || formIsActive;
       }
 
-      // Mostrar el botón flotante solo si hay productos en el carrito y no estamos viendo el formulario
+      // Mostrar/ocultar botón flotante
       if (!formVisible) {
         $('#fixed-checkout-button').css({
           'display': 'block',
@@ -150,82 +194,81 @@ $(document).ready(function(){
           'opacity': '1',
           'z-index': '9999'
         }).removeClass('hidden');
-        // console.log('Mostrando botón flotante - formulario no visible');
       } else {
-        // Ocultar el botón si estamos viendo el formulario
         $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-        // console.log('Ocultando botón flotante - formulario visible');
       }
-    } else {
-      // Ocultar el botón si no hay productos en el carrito
-      $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-    }
-  }
+    },
 
-  // Llamar inmediatamente y también después de un retraso para asegurar que funcione
-  ensureCartButtonVisible();
-  setTimeout(ensureCartButtonVisible, 500);
-  setTimeout(ensureCartButtonVisible, 1000);
-  setTimeout(ensureCartButtonVisible, 2000);
-  setTimeout(ensureCartButtonVisible, 3000);
+    // Gestionar mensajes del carrito
+    updateCartMessages: function() {
+      if (!this.hasItems) {
+        $('.instruction-step:first-child').addClass('highlight');
+        $('.instruction-step:not(:first-child)').removeClass('highlight');
+        $("#preciototal").html("Elige modelos y talles para ver el total");
+      } else {
+        $('.instruction-step:last-child').addClass('highlight');
+        $('.instruction-step:not(:last-child)').removeClass('highlight');
+      }
+    },
 
-  // Función unificada para controlar la visibilidad del formulario y el botón flotante
-  function updateFormVisibility() {
-    // Verificar si hay productos en el carrito
-    if (cartItems.length > 0) {
-      // Siempre mostrar el formulario cuando hay productos en el carrito
-      restOfForm.removeClass('hidden inactive').addClass('active');
+    // Abrir carrito
+    open: function() {
+      if (this.isAnimating) return;
 
-      // Calcular posiciones para determinar visibilidad
-      var formPosition = $('#datos-envio').offset().top;
-      var windowTopPosition = $(window).scrollTop();
-      var windowHeight = $(window).height();
-      var windowBottomPosition = windowTopPosition + windowHeight;
+      this.isAnimating = true;
+      this.isOpen = true;
 
-      // Determinar si el formulario es visible en la pantalla actual
-      // El formulario es visible si su parte superior está dentro de la ventana visible
-      var formVisible = (formPosition >= windowTopPosition && formPosition <= windowBottomPosition);
+      $('#mini-cart').addClass('active');
 
-      // Mostrar el botón flotante solo si:
-      // 1. Hay productos en el carrito
-      // 2. Estamos por encima del formulario (no lo hemos pasado haciendo scroll)
-      // 3. El formulario no es visible en la pantalla actual
-      if (windowTopPosition < formPosition && !formVisible) {
-        $('#fixed-checkout-button').css({
+      // Aplicar estilos de visibilidad de forma limpia
+      setTimeout(() => {
+        $('#mini-cart').css({
           'display': 'block',
           'visibility': 'visible',
-          'opacity': '1'
+          'opacity': '1',
+          'z-index': '10000',
+          'transform': 'translateY(0)'
         });
-        // console.log('Mostrando botón: estamos arriba del formulario y no es visible');
-      } else {
-        // Ocultar el botón si el formulario es visible o estamos debajo de él
-        $('#fixed-checkout-button').css({
-          'display': 'none',
-          'visibility': 'hidden',
-          'opacity': '0'
-        });
-        // console.log('Ocultando botón: formulario visible o estamos debajo');
-      }
-    } else {
-      // Ocultar el formulario y el botón cuando no hay productos
-      restOfForm.addClass('hidden').removeClass('active');
-      $('#fixed-checkout-button').css({
-        'display': 'none',
-        'visibility': 'hidden',
-        'opacity': '0'
+        this.isAnimating = false;
+      }, 10);
+    },
+
+    // Cerrar carrito
+    close: function() {
+      if (this.isAnimating) return;
+
+      this.isAnimating = true;
+      this.isOpen = false;
+
+      $('#mini-cart').removeClass('active');
+
+      // Aplicar estilos de cierre de forma limpia
+      $('#mini-cart').css({
+        'transform': 'translateY(120%)',
+        'opacity': '0',
+        'visibility': 'hidden'
       });
-      // console.log('Ocultando botón: no hay productos');
+
+      setTimeout(() => {
+        $('#mini-cart').css('display', 'none');
+        this.isAnimating = false;
+      }, 300);
+    },
+
+    // Toggle del carrito
+    toggle: function() {
+      if (this.isOpen) {
+        this.close();
+      } else {
+        this.open();
+      }
     }
-  }
+  };
 
-  // Llamar a la función al cargar la página
-  setTimeout(updateFormVisibility, 500);
+  // Inicializar estado del carrito
+  cartState.update();
 
-  // Llamar a la función cuando se hace scroll o se redimensiona la ventana
-  $(window).on('scroll resize', updateFormVisibility);
-
-  // Llamar a la función cada 500ms para asegurar que el botón se muestre correctamente
-  setInterval(updateFormVisibility, 500);
+  // El sistema cartState ahora maneja toda la visibilidad de forma unificada
 
   // Animate the cart button after page load to draw attention
   setTimeout(function() {
@@ -236,7 +279,7 @@ $(document).ready(function(){
     }, 1000);
   }, 3000);
 
-  // Show checkout progress bar and manage floating button after scrolling
+  // Show checkout progress bar after scrolling
   $(window).scroll(function() {
     if ($(window).scrollTop() > 300) {
       $('#checkout-progress').addClass('visible');
@@ -244,59 +287,7 @@ $(document).ready(function(){
       $('#checkout-progress').removeClass('visible');
     }
 
-    // Mostrar/ocultar el botón flotante según la posición de desplazamiento
-    if (cartItems.length > 0) {
-      var formElement = $('#restodelform');
-      var windowTopPosition = $(window).scrollTop();
-      var windowBottomPosition = windowTopPosition + $(window).height();
-
-      // Verificar si el formulario está visible y activo
-      var formVisible = false;
-
-      if (formElement.length > 0) {
-        // Comprobar si el formulario está activo o no oculto
-        var formIsActive = formElement.hasClass('active') || !formElement.hasClass('hidden');
-
-        if (formIsActive) {
-          // Si el formulario está activo, verificar si está en la pantalla
-          var formTop = formElement.offset().top;
-          var formBottom = formTop + formElement.outerHeight();
-
-          // El formulario está visible si:
-          // 1. La parte superior del formulario está visible en la pantalla, o
-          // 2. La parte inferior del formulario está visible en la pantalla, o
-          // 3. El formulario abarca toda la pantalla (más grande que la ventana)
-          // 4. Estamos cerca del formulario (dentro de 200px)
-          formVisible =
-            (formTop >= windowTopPosition && formTop <= windowBottomPosition) || // Parte superior visible
-            (formBottom >= windowTopPosition && formBottom <= windowBottomPosition) || // Parte inferior visible
-            (formTop <= windowTopPosition && formBottom >= windowBottomPosition) || // Formulario abarca toda la pantalla
-            (formTop - windowBottomPosition < 200 && formTop > windowBottomPosition) || // Estamos justo encima del formulario
-            (windowTopPosition - formBottom < 200 && windowTopPosition > formBottom); // Estamos justo debajo del formulario
-        }
-
-        // Si el formulario está activo, considerarlo visible aunque no esté en la pantalla
-        formVisible = formVisible || formIsActive;
-      }
-
-      // Mostrar el botón flotante solo si hay productos en el carrito y no estamos viendo el formulario
-      if (!formVisible) {
-        $('#fixed-checkout-button').css({
-          'display': 'block',
-          'visibility': 'visible',
-          'opacity': '1',
-          'z-index': '9999'
-        }).removeClass('hidden');
-        // console.log('Mostrando botón flotante al hacer scroll - formulario no visible');
-      } else {
-        // Ocultar el botón si estamos viendo el formulario
-        $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-        // console.log('Ocultando botón flotante al hacer scroll - formulario visible');
-      }
-    } else {
-      // Si no hay productos en el carrito, ocultar el botón flotante
-      $('#fixed-checkout-button').css('display', 'none').addClass('hidden');
-    }
+    // El botón flotante ahora se gestiona automáticamente por cartState.update()
   });
 
   // --- Product Selection Logic ---
@@ -357,6 +348,7 @@ $(document).ready(function(){
     // Actualizar el carrito con los productos existentes
     if (summaryArray.length > 0) {
       updateCart(summaryArray);
+
 
       // Actualizar el texto del total en el resumen del pedido
       var isContrareembolso = window.location.href.includes('contrareembolso');
@@ -658,20 +650,39 @@ $(document).ready(function(){
       })(); // Cerrar función async
     }
 
-    // Mostrar una única notificación de éxito
+    // Mostrar mensajes en el carrito y mostrar el menú automáticamente
     var isContrareembolso = window.location.href.includes('contrareembolso');
+
+    // Para el primer par:
     if (summaryArray.length === 1) {
-      if (isContrareembolso) {
-        showNotification('¡Producto agregado! Puedes agregar otro par por solo $25.000 más o completar tus datos para finalizar la compra.', 'success');
-      } else {
-        showNotification('¡Producto agregado! Puedes agregar otro par por solo $40.000 más o completar tus datos para finalizar la compra.', 'success');
-      }
-    } else if (summaryArray.length === 2) {
-      if (isContrareembolso) {
-        showNotification('¡Genial! Has completado tu selección de 2 pares por $85.000 ($42.500 c/u). Completa tus datos para finalizar la compra.', 'success');
-      } else {
-        showNotification('¡Genial! Has completado tu selección de 2 pares por $110.000 ($55.000 c/u). Completa tus datos para finalizar la compra.', 'success');
-      }
+      // Mostrar el carrito automáticamente usando el sistema unificado
+      cartState.open();
+      console.log('🛒 Carrito mostrado automáticamente después de agregar producto');
+
+      // Mensaje único y claro con toda la información necesaria
+      setTimeout(() => {
+        if (isContrareembolso) {
+          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $25.000 más ($42.500 cada uno) y llevátelos a un precio especial!', 'success');
+        } else {
+          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $40.000 más ($55.000 cada uno) y llevátelos a un precio especial!', 'success');
+        }
+      }, 500);
+    }
+
+    // Para el segundo par:
+    if (summaryArray.length === 2) {
+      // Abrir el carrito automáticamente cuando se agrega el segundo par
+      cartState.open();
+      console.log('🛒 Carrito mostrado automáticamente después de agregar segundo producto');
+
+      // Mensaje único consolidado con toda la información
+      setTimeout(() => {
+        if (isContrareembolso) {
+          showCartMessage('🎉 ¡Perfecto! 2 pares por $85.000 ($42.500 c/u) - ¡Ahorraste $5.000! El descuento se aplicó automáticamente.', 'success');
+        } else {
+          showCartMessage('🎉 ¡Perfecto! 2 pares por $110.000 ($55.000 c/u) - ¡Ahorraste $10.000! El descuento se aplicó automáticamente.', 'success');
+        }
+      }, 500);
     }
 
     // Update price display based on number of pairs
@@ -740,8 +751,7 @@ $(document).ready(function(){
     // Recalculate price based on payment method
     $("#comoabona").trigger('change');
 
-    // Mostrar notificación de éxito
-    showNotification('¡Producto agregado al carrito!', 'success');
+    // No mostrar notificación popup - los mensajes aparecerán en el área de mensajes del carrito
 
     // Actualizar la visibilidad del botón flotante y el formulario
     updateFormVisibility();
@@ -1602,16 +1612,12 @@ $(document).ready(function(){
 
   // Update cart display (hacer global para depuración)
   window.updateCart = function updateCart(itemsArray) {
-    // Asegurarse de que el botón del carrito sea visible
-    ensureCartButtonVisible();
-
     // Clear current cart items
     cartItems = [];
     cartItemsContainer.empty();
 
     // Detectar si estamos en la página de contrareembolso
     var isContrareembolso = window.location.href.includes('contrareembolso');
-    // console.log("¿Es contrareembolso?", isContrareembolso);
 
     // Process each item
     itemsArray.forEach(function(item, index) {
@@ -1668,16 +1674,8 @@ $(document).ready(function(){
       }
     });
 
-    // Update cart count in all places
-    cartCountElement.text(cartItems.length);
-    $('.tab-count').text(cartItems.length);
-    $('.cart-button-count').text(cartItems.length);
-
     // Update cart total based on the number of pairs (not sum of individual prices)
     var total;
-    // Detectar si estamos en la página de contrareembolso
-    var isContrareembolso = window.location.href.includes('contrareembolso');
-
     if (isContrareembolso) {
         // Precios para contrareembolso
         if (cartItems.length === 1) {
@@ -1700,75 +1698,42 @@ $(document).ready(function(){
 
     cartTotalElement.text('$' + total.toLocaleString('es-AR'));
 
-    // Show/hide empty cart message and update cart classes
-    if (cartItems.length === 0) {
-      $('.empty-cart-message').show();
-      $('.cart-instructions').show();
-      restOfForm.removeClass('active').addClass('hidden');
-      miniCart.removeClass('has-items');
+    // Actualizar texto del total según la cantidad de productos
+    var totalPriceText = "";
+    if (cartItems.length === 1) {
+      if (isContrareembolso) {
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
+      } else {
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
+      }
+    } else if (cartItems.length === 2) {
+      if (isContrareembolso) {
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+      } else {
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+      }
+    }
 
-      // Ocultar botón flotante de continuar al envío
-      $('#floating-checkout-button').addClass('hidden');
-
-      // Resaltar la primera instrucción cuando el carrito está vacío
-      $('.instruction-step:first-child').addClass('highlight');
-      $('.instruction-step:not(:first-child)').removeClass('highlight');
-
-      // Actualizar el texto del total en el resumen del pedido
-      $("#preciototal").html("Elige modelos y talles para ver el total");
-      // console.log("Carrito vacío, actualizando #preciototal");
+    // Actualizar el elemento #preciototal
+    if (totalPriceText) {
+      $("#preciototal").html(totalPriceText);
     } else {
-      $('.empty-cart-message').hide();
-      $('.cart-instructions').show();
-      miniCart.addClass('has-items');
+      $("#preciototal").html("Elige modelos y talles para ver el total");
+    }
 
-      // Mostrar botón flotante de continuar al envío si no estamos en la sección del formulario
-      var formPosition = $('#datos-envio').offset().top;
-      var windowTopPosition = $(window).scrollTop();
+    // Actualizar estado del carrito usando el sistema unificado
+    cartState.update();
 
-      // Siempre mostrar el botón flotante cuando hay productos en el carrito
-      // y no estamos en la sección del formulario
-      $('#floating-checkout-button').removeClass('hidden');
-
-      // Verificar si estamos en la sección del formulario
-      if (windowTopPosition >= formPosition - 200) {
-        $('#floating-checkout-button').addClass('hidden');
-      }
-
-      // Resaltar la última instrucción cuando hay productos
-      $('.instruction-step:last-child').addClass('highlight');
-      $('.instruction-step:not(:first-child)').removeClass('highlight');
-
-      // Actualizar el texto del total en el resumen del pedido según la cantidad de productos
-      var isContrareembolso = window.location.href.includes('contrareembolso');
-      var totalPriceText = "";
-
-      if (cartItems.length === 1) {
-        if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
-          showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $42.500 en la oferta de 2 pares', 'info');
-        } else {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
-          showNotification('¡Agrega otro par y obtén un descuento! Cada par a solo $55.000 en la oferta de 2 pares', 'info');
-        }
-      } else if (cartItems.length === 2) {
-        if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
-        } else {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
-        }
-        // Mostrar notificación de éxito
-        showNotification('¡Excelente elección! Has completado tu selección de 2 pares con descuento. Puedes continuar cuando estés listo.', 'success');
-      }
-
-      // Actualizar el elemento #preciototal con el texto correspondiente
-      if (totalPriceText) {
-        $("#preciototal").html(totalPriceText);
-        // console.log("Actualizando #preciototal en updateCart con:", totalPriceText);
-      }
-
-      // Actualizar la visibilidad del botón flotante
-      updateFormVisibility();
+    // Gestionar formulario y botón flotante según cantidad de items
+    if (cartItems.length === 0) {
+      restOfForm.removeClass('active').addClass('hidden');
+      $('#upsell-message-container').removeClass('visible').addClass('hidden');
+    } else if (cartItems.length === 1) {
+      restOfForm.removeClass('hidden inactive').addClass('active');
+      $('#upsell-message-container').removeClass('hidden').addClass('visible');
+    } else {
+      restOfForm.removeClass('hidden inactive').addClass('active');
+      $('#upsell-message-container').removeClass('visible').addClass('hidden');
     }
 
     // Recalculate price based on payment method after updating cart
@@ -1779,34 +1744,6 @@ $(document).ready(function(){
       var itemId = $(this).data('id');
       removeFromCart(itemId);
     });
-
-    // ========== INICIO DEL CÓDIGO DE LÓGICA DE UPSELL ==========
-    // Esta lógica debe ir al final de la función updateCart para asegurar que se ejecuta
-    // después de que el carrito y sus precios han sido actualizados.
-
-    console.log('🔍 UPSELL DEBUG: Ejecutando lógica de upsell');
-    const upsellContainer = $('#upsell-message-container');
-    const restOfFormContainer = $('#restodelform');
-    const cartItemsCount = cartItems.length;
-
-    console.log('🔍 UPSELL DEBUG: Items en carrito:', cartItemsCount);
-    console.log('🔍 UPSELL DEBUG: Elemento upsell encontrado:', upsellContainer.length > 0);
-
-    if (cartItemsCount === 1) {
-        // Si hay exactamente UN par en el carrito, mostramos el mensaje de upsell.
-        console.log('🎯 UPSELL DEBUG: Mostrando mensaje de upsell');
-        upsellContainer.removeClass('hidden').addClass('visible');
-        console.log('🎯 UPSELL DEBUG: Clases del elemento:', upsellContainer.attr('class'));
-
-        // También nos aseguramos de que el formulario de envío sea visible.
-        restOfFormContainer.removeClass('hidden inactive').addClass('active');
-
-    } else {
-        // Si hay 0 o 2 pares, ocultamos el mensaje.
-        console.log('❌ UPSELL DEBUG: Ocultando mensaje de upsell, items:', cartItemsCount);
-        upsellContainer.removeClass('visible').addClass('hidden');
-    }
-    // ========== FIN DEL CÓDIGO DE LÓGICA DE UPSELL ==========
   }
 
   // Remove item from cart
@@ -1872,7 +1809,8 @@ $(document).ready(function(){
     // Update the cart display - esto actualizará también el #preciototal
     updateCart(summaryArray);
 
-    showNotification('Producto eliminado del carrito', 'info');
+
+    // No mostrar notificación popup cuando se elimina un producto
   }
 
   // Get product name from model ID
@@ -1942,6 +1880,47 @@ $(document).ready(function(){
   // Variable para controlar las notificaciones
   var lastNotificationMessage = '';
   var lastNotificationTime = 0;
+
+  // Show cart message (mensajes persistentes - no desaparecen automáticamente)
+  function showCartMessage(message, type = 'info') {
+    const cartMessages = document.getElementById('cart-messages');
+    if (!cartMessages) return;
+
+    // Limpiar mensajes anteriores antes de mostrar el nuevo
+    clearCartMessages();
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `cart-message cart-message-${type}`;
+    messageDiv.innerHTML = `
+      <span class="message-text">${message}</span>
+      <button class="message-close" onclick="this.parentElement.remove(); document.getElementById('cart-messages').style.display='none';">×</button>
+    `;
+
+    cartMessages.appendChild(messageDiv);
+    cartMessages.style.display = 'block';
+  }
+
+  // Clear cart messages
+  function clearCartMessages() {
+    const cartMessages = document.getElementById('cart-messages');
+    if (cartMessages) {
+      cartMessages.innerHTML = '';
+      cartMessages.style.display = 'none';
+    }
+  }
+
+  // Update cart messages based on number of pairs - Simplified to avoid duplicates
+  function updateCartMessages() {
+    // Los mensajes principales ahora se muestran solo en addToCartFromButton
+    // Esta función solo maneja mensajes básicos del estado del carrito
+    const pairCount = window.cartItems ? window.cartItems.length : 0;
+
+    // Solo mostrar mensajes básicos para evitar duplicados
+    if (pairCount === 0) {
+      // El mensaje de carrito vacío se maneja en cartState.update()
+    }
+    // Los otros mensajes se manejan en addToCartFromButton para evitar duplicación
+  }
 
   // Show notification
   function showNotification(message, type) {
