@@ -8,6 +8,71 @@ function getCookie(name) {
   return '';
 }
 
+// Función robusta para detectar si algún modal de WhatsApp está activo
+function isAnyWhatsAppModalActive() {
+  try {
+    // Lista de posibles tipos de modales de WhatsApp
+    const whatsappModalTypes = [
+      'whatsapp-modal',
+      'whatsapp-direct-modal',
+      'whatsapp-popover',
+      'whatsapp-widget',
+      'wa-modal',
+      'wa-popover'
+    ];
+
+    // Verificar cada tipo de modal
+    for (const modalType of whatsappModalTypes) {
+      const modal = document.getElementById(modalType);
+      if (modal) {
+        // Verificar múltiples formas de detectar si el modal está activo
+        const isActive =
+          modal.classList.contains('active') ||
+          modal.classList.contains('show') ||
+          modal.classList.contains('visible') ||
+          modal.classList.contains('open') ||
+          modal.style.display === 'block' ||
+          (modal.style.display !== 'none' && modal.offsetWidth > 0 && modal.offsetHeight > 0);
+
+        if (isActive) {
+          console.log(`🛒 Modal de WhatsApp activo detectado: ${modalType}`);
+          return true;
+        }
+      }
+    }
+
+    // También buscar modales por clase CSS (más amplio)
+    const modalSelectors = [
+      '.whatsapp-modal.active',
+      '.whatsapp-modal.show',
+      '.whatsapp-modal.visible',
+      '.whatsapp-modal.open',
+      '.wa-modal.active',
+      '.wa-modal.show',
+      '.wa-modal.visible',
+      '.wa-modal.open',
+      '[id*="whatsapp"][class*="active"]',
+      '[id*="whatsapp"][class*="show"]',
+      '[id*="whatsapp"][class*="visible"]',
+      '[id*="whatsapp"][class*="open"]'
+    ];
+
+    for (const selector of modalSelectors) {
+      const modals = document.querySelectorAll(selector);
+      if (modals.length > 0) {
+        console.log(`🛒 Modal de WhatsApp activo detectado por selector: ${selector}`);
+        return true;
+      }
+    }
+
+    return false;
+  } catch (error) {
+    console.error('Error al detectar modal de WhatsApp:', error);
+    // En caso de error, asumir que no hay modal activo para no interferir con el carrito
+    return false;
+  }
+}
+
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
   // --- Cart & Checkout Process Variables ---
@@ -62,8 +127,33 @@ $(document).ready(function(){
 
       // Cerrar carrito al hacer clic fuera
       $(document).on('click.cart', function(e) {
+        // Verificar si el carrito está abierto y el clic fue fuera del carrito
         if (!$(e.target).closest('#mini-cart').length && cartState.isOpen) {
-          cartState.close();
+          // Verificar si el clic viene de dentro de algún modal de WhatsApp
+          const isClickInsideWhatsAppModal = $(e.target).closest('.whatsapp-modal').length > 0 ||
+                                            $(e.target).closest('.whatsapp-modal-content').length > 0 ||
+                                            $(e.target).hasClass('whatsapp-modal') ||
+                                            $(e.target).hasClass('whatsapp-modal-overlay') ||
+                                            $(e.target).hasClass('whatsapp-modal-button') ||
+                                            $(e.target).hasClass('whatsapp-modal-input') ||
+                                            $(e.target).parents('.whatsapp-modal').length > 0;
+
+          console.log('🛒 Clic fuera detectado:', {
+            target: e.target,
+            targetId: e.target.id,
+            targetClass: e.target.className,
+            isCartOpen: cartState.isOpen,
+            isClickInsideWhatsAppModal: isClickInsideWhatsAppModal,
+            modalDetails: isClickInsideWhatsAppModal ? 'Clic dentro del modal de WhatsApp' : 'Clic fuera de todos los modales'
+          });
+
+          // Solo cerrar el carrito si el clic NO viene de dentro del modal de WhatsApp
+          if (!isClickInsideWhatsAppModal) {
+            console.log('🛒 Cerrando carrito por clic fuera - clic no viene del modal de WhatsApp');
+            cartState.close();
+          } else {
+            console.log('🛒 Clic dentro del modal de WhatsApp - carrito permanece abierto');
+          }
         }
       });
 
@@ -74,6 +164,90 @@ $(document).ready(function(){
         cartState.close();
         console.log('🛒 Carrito cerrado manualmente');
       });
+
+      // Manejar el cierre del popover de WhatsApp para restaurar comportamiento normal del carrito
+      // Buscar cualquier modal de WhatsApp disponible
+      const whatsappModalTypes = [
+        'whatsapp-modal',
+        'whatsapp-direct-modal',
+        'whatsapp-popover',
+        'whatsapp-widget',
+        'wa-modal',
+        'wa-popover'
+      ];
+
+      let whatsappModal = null;
+      for (const modalType of whatsappModalTypes) {
+        const modal = document.getElementById(modalType);
+        if (modal) {
+          whatsappModal = modal;
+          break;
+        }
+      }
+
+      if (whatsappModal) {
+        // Usar MutationObserver para detectar cuando el popover se cierra
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              // Usar la función robusta para verificar si algún modal está activo
+              const isAnyModalActive = isAnyWhatsAppModalActive();
+              console.log('🛒 MutationObserver detectó cambio en modal:', {
+                isAnyModalActive: isAnyModalActive,
+                modalClassList: whatsappModal.classList.toString(),
+                cartIsOpen: cartState.isOpen
+              });
+
+              if (!isAnyModalActive) {
+                // El popover se cerró - asegurar que el carrito se mantenga abierto
+                console.log('🛒 Popover de WhatsApp cerrado - asegurando que el carrito permanece abierto');
+
+                // Forzar que el carrito se mantenga abierto después de un breve delay
+                setTimeout(() => {
+                  if (!isAnyWhatsAppModalActive()) {
+                    // Solo mantener abierto si no hay otro modal activo
+                    console.log('🛒 Estado del carrito antes de mantener abierto:', {
+                      isOpen: cartState.isOpen,
+                      isAnimating: cartState.isAnimating,
+                      hasItems: cartState.hasItems
+                    });
+
+                    // Verificar si el carrito está realmente cerrado antes de abrirlo
+                    if (!cartState.isOpen) {
+                      console.log('🛒 Carrito está cerrado, abriéndolo...');
+                      cartState.open();
+                      console.log('🛒 Carrito mantenido abierto después del cierre del popover');
+                    } else {
+                      console.log('🛒 Carrito ya estaba abierto, no es necesario abrirlo');
+                    }
+
+                    // Verificación adicional después de abrir
+                    setTimeout(() => {
+                      console.log('🛒 Verificación después de mantener abierto:', {
+                        isOpen: cartState.isOpen,
+                        display: $('#mini-cart').css('display'),
+                        visibility: $('#mini-cart').css('visibility'),
+                        opacity: $('#mini-cart').css('opacity')
+                      });
+                    }, 50);
+                  } else {
+                    console.log('🛒 Otro modal de WhatsApp está activo, no se abre el carrito');
+                  }
+                }, 100);
+              }
+            }
+          });
+        });
+
+        observer.observe(whatsappModal, {
+          attributes: true,
+          attributeFilter: ['class']
+        });
+
+        console.log('🛒 MutationObserver configurado para modal de WhatsApp:', whatsappModal.id);
+      } else {
+        console.log('🛒 No se encontró ningún modal de WhatsApp para observar');
+      }
 
       // Prevenir que los clics dentro del carrito lo cierren
       $('#mini-cart').on('click.cart', function(e) {
@@ -213,8 +387,12 @@ $(document).ready(function(){
 
     // Abrir carrito
     open: function() {
-      if (this.isAnimating) return;
+      if (this.isAnimating) {
+        console.log('🛒 Carrito ya está animando, ignorando apertura');
+        return;
+      }
 
+      console.log('🛒 Abriendo carrito...');
       this.isAnimating = true;
       this.isOpen = true;
 
@@ -230,13 +408,18 @@ $(document).ready(function(){
           'transform': 'translateY(0)'
         });
         this.isAnimating = false;
+        console.log('🛒 Carrito abierto exitosamente');
       }, 10);
     },
 
     // Cerrar carrito
     close: function() {
-      if (this.isAnimating) return;
+      if (this.isAnimating) {
+        console.log('🛒 Carrito ya está animando, ignorando cierre');
+        return;
+      }
 
+      console.log('🛒 Cerrando carrito...');
       this.isAnimating = true;
       this.isOpen = false;
 
@@ -252,6 +435,7 @@ $(document).ready(function(){
       setTimeout(() => {
         $('#mini-cart').css('display', 'none');
         this.isAnimating = false;
+        console.log('🛒 Carrito cerrado exitosamente');
       }, 300);
     },
 
@@ -754,7 +938,7 @@ $(document).ready(function(){
     // No mostrar notificación popup - los mensajes aparecerán en el área de mensajes del carrito
 
     // Actualizar la visibilidad del botón flotante y el formulario
-    updateFormVisibility();
+    cartState.updateFloatingButton();
 
     // Indicar que se agregó el producto correctamente
     return true;
@@ -1825,7 +2009,10 @@ $(document).ready(function(){
       'venecia-negras': 'Venecia Negras',
       'paris-negras': 'Paris Negras',
       'paris-camel': 'Paris Camel',
-      'paris-verde': 'Paris Verde'
+      'paris-verde': 'Paris Verde',
+      'birk-negras': 'Birk Negras',
+      'birk-camel': 'Birk Camel',
+      'birk-blancas': 'Birk Blancas'
     };
 
     return names[model] || model;
@@ -1843,7 +2030,10 @@ $(document).ready(function(){
       'venecia-negras': 'venecia-negras-1a.jpg',
       'paris-negras': 'paris2025-negras.webp',
       'paris-camel': 'paris2025-camel.webp',
-      'paris-verde': 'paris2025-verde.webp'
+      'paris-verde': 'paris2025-verde.webp',
+      'birk-negras': 'birknegras/1.webp',
+      'birk-camel': 'birkcamel/1.webp',
+      'birk-blancas': 'birkblancas/1.webp'
     };
 
     return images[model] || '';

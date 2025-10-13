@@ -1539,7 +1539,7 @@
                                     <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
                                     <span class="badge badge-limited">STOCK LIMITADO</span>
                                 </div>
-                                <p class="product-description">Sandalias de ecocuero negro con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
+                                <p class="product-description">Sandalias de ecocuero camel con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
 
                                 <div class="size-guide-container">
                                     <div class="size-guide-toggle">
@@ -1679,7 +1679,7 @@
                                     <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
                                     <span class="badge badge-limited">STOCK LIMITADO</span>
                                 </div>
-                                <p class="product-description">Sandalias de ecocuero negro con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
+                                <p class="product-description">Sandalias de ecocuero blanco con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
 
                                 <div class="size-guide-container">
                                     <div class="size-guide-toggle">
@@ -2358,7 +2358,7 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
             saveWhatsappToEndpoint(whatsappNumber);
 
             // Cerrar el modal
-            whatsappModal.classList.remove('active');
+            closeWhatsappModal();
         }
 
         // Event Listeners
@@ -2376,6 +2376,15 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
         });
 
         whatsappModalSubmit.addEventListener('click', saveWhatsappAndClose);
+
+        // Función mejorada para cerrar el popover
+        function closeWhatsappModal() {
+            console.log('🛒 Cerrando popover de WhatsApp...');
+            whatsappModal.classList.remove('active');
+            console.log('🛒 Popover de WhatsApp cerrado - el carrito debería mantenerse abierto');
+            // No cerrar automáticamente el carrito cuando se cierra el popover
+            // El carrito solo se cerrará si el usuario hace clic fuera de él
+        }
 
         window.showWhatsappModal = function() {
             whatsappModal.classList.add('active');
