@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Facebook Pixel Code -->
+<!--
+  INICIO: Bloque del Píxel de Facebook (Actualmente DESACTIVADO)
+  Para ACTIVAR el seguimiento del píxel en el lado del cliente, descomente el siguiente bloque de código.
+-->
+<!--
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -17,14 +21,21 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel Code -->
-<!-- Google Tag Manager -->
+-->
+<!-- FIN: Bloque del Píxel de Facebook -->
+
+<!--
+  INICIO: Bloque de Google Tag Manager (Actualmente DESACTIVADO)
+  Para ACTIVAR GTM (y las etiquetas que contiene), descomente el siguiente bloque de código.
+-->
+<!--
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
-<!-- End Google Tag Manager -->
+-->
+<!-- FIN: Bloque de Google Tag Manager -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>&iquest;C&oacute;mo comprar?</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
@@ -163,7 +174,12 @@ if (customerName) {
     document.querySelector('.form-group, #talleselegidos').parentNode.insertBefore(greetingElement, document.querySelector('.form-group, #talleselegidos').nextSibling);
 }
 
-// Facebook Pixel Purchase Event - CBU 1 Par
+<!--
+  INICIO: Bloque de Evento de Compra de Facebook (Actualmente DESACTIVADO)
+  Este script se encarga de enviar el evento 'Purchase' a Facebook.
+  Para ACTIVARLO, descomente el siguiente bloque de código.
+-->
+<!--
 (function() {
     // Función para generar Event ID único
     function generateEventId() {
@@ -380,8 +396,16 @@ if (customerName) {
         sendPurchaseEvent();
     }
 })();
+-->
+<!-- FIN: Bloque de Evento de Compra de Facebook -->
 </script>
 <script>
+<!--
+  INICIO: Bloque de Validación de Compra (Actualmente DESACTIVADO)
+  Este script valida el token de compra y llama al evento de Purchase.
+  Para ACTIVARLO, descomente el siguiente bloque de código.
+-->
+<!--
 (function() {
     // 🔐 VALIDACIÓN ROBUSTA DE TOKEN DE COMPRA
     const token = localStorage.getItem('valid_purchase_token');
@@ -409,6 +433,8 @@ if (customerName) {
     localStorage.removeItem('valid_purchase_token');
     localStorage.removeItem('purchase_timestamp');
 })();
+-->
+<!-- FIN: Bloque de Validación de Compra -->
 </script>
 </body>
 </html>
