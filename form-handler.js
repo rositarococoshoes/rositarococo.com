@@ -776,8 +776,9 @@ $(document).ready(function() {
                     }
 
                     const responseText = await response.text();
+                    console.log('Response from webhook:', responseText);
                     const jsonData = JSON.parse(responseText);
-                    const mercadoPagoUrl = jsonData[0].linkpersonalizadomp;
+                    const mercadoPagoUrl = jsonData.linkpersonalizadomp;
 
                     if (!mercadoPagoUrl) {
                         throw new Error('No se encontró el link de MercadoPago en la respuesta');
