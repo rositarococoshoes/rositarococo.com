@@ -777,7 +777,7 @@ $(document).ready(function() {
 
                     const responseText = await response.text();
                     const jsonData = JSON.parse(responseText);
-                    const mercadoPagoUrl = jsonData.linkpersonalizadomp;
+                    const mercadoPagoUrl = jsonData[0].linkpersonalizadomp;
 
                     if (!mercadoPagoUrl) {
                         throw new Error('No se encontró el link de MercadoPago en la respuesta');
