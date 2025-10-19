@@ -31,6 +31,23 @@ async function hashEmail(email) {
     return hashHex;
 }
 
+// Función para obtener IP del cliente (Global)
+async function getClientIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        try {
+            const response2 = await fetch('https://httpbin.org/ip');
+            const data2 = await response2.json();
+            return data2.origin;
+        } catch (error2) {
+            return '';
+        }
+    }
+}
+
 // Función para detectar bots
 function isBot() {
     // 1. Verificar si el campo honeypot está lleno
@@ -214,23 +231,6 @@ $(document).ready(function() {
                                 const now = new Date();
                                 const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
                                 return Math.floor(argentinaTime.getTime() / 1000);
-                            }
-
-                            // 4. Función para obtener IP del cliente
-                            async function getClientIP() {
-                                try {
-                                    const response = await fetch('https://api.ipify.org?format=json');
-                                    const data = await response.json();
-                                    return data.ip;
-                                } catch (error) {
-                                    try {
-                                        const response2 = await fetch('https://httpbin.org/ip');
-                                        const data2 = await response2.json();
-                                        return data2.origin;
-                                    } catch (error2) {
-                                        return '';
-                                    }
-                                }
                             }
 
                             const clientIP = await getClientIP();
@@ -513,23 +513,6 @@ $(document).ready(function() {
                                 return Math.floor(argentinaTime.getTime() / 1000);
                             }
 
-                            // 4. Función para obtener IP del cliente
-                            async function getClientIP() {
-                                try {
-                                    const response = await fetch('https://api.ipify.org?format=json');
-                                    const data = await response.json();
-                                    return data.ip;
-                                } catch (error) {
-                                    try {
-                                        const response2 = await fetch('https://httpbin.org/ip');
-                                        const data2 = await response2.json();
-                                        return data2.origin;
-                                    } catch (error2) {
-                                        return '';
-                                    }
-                                }
-                            }
-
                             const clientIP = await getClientIP();
 
                             // 6. Obtener y hashear email del cliente
@@ -675,23 +658,6 @@ $(document).ready(function() {
                                 const now = new Date();
                                 const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
                                 return Math.floor(argentinaTime.getTime() / 1000);
-                            }
-
-                            // 4. Función para obtener IP del cliente
-                            async function getClientIP() {
-                                try {
-                                    const response = await fetch('https://api.ipify.org?format=json');
-                                    const data = await response.json();
-                                    return data.ip;
-                                } catch (error) {
-                                    try {
-                                        const response2 = await fetch('https://httpbin.org/ip');
-                                        const data2 = await response2.json();
-                                        return data2.origin;
-                                    } catch (error2) {
-                                        return '';
-                                    }
-                                }
                             }
 
                             const clientIP = await getClientIP();
