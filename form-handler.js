@@ -75,16 +75,21 @@ function generateUniqueId() {
 // Función para enviar datos al nuevo endpoint
 async function enviarDatosAlNuevoEndpoint(form) {
     try {
-        // Recopilar todos los datos del formulario
-        const formData = $(form).serialize();
+        // Crear un objeto URLSearchParams a partir del formulario
+        const formData = new URLSearchParams(new FormData(form));
+
+        // Obtener IP y User Agent
+        const clientIP = await getClientIP();
+        const userAgent = navigator.userAgent;
+
+        // Añadir IP y User Agent a los datos
+        formData.append('client_ip_address', clientIP);
+        formData.append('client_user_agent', userAgent);
 
         // Enviar los datos al nuevo endpoint
         const response = await fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: formData
+            body: formData // El navegador establecerá el Content-Type correcto automáticamente
         });
 
         if (!response.ok) {
@@ -367,9 +372,16 @@ $(document).ready(function() {
                 this.target = 'hidden_iframe';
 
                 // Enviar el formulario al nuevo endpoint para contrareembolso
-                var formData = $(this).serialize();
+                const formDataObj = $(this).serializeArray().reduce(function(obj, item) {
+                    obj[item.name] = item.value;
+                    return obj;
+                }, {});
+                const clientIP = await getClientIP();
+                const userAgent = navigator.userAgent;
+                formDataObj.client_ip_address = clientIP;
+                formDataObj.client_user_agent = userAgent;
 
-                $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
+                $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formDataObj)
                     .done(function() {
                         console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
 
