@@ -98,10 +98,12 @@ async function enviarDatosAlNuevoEndpoint(form) {
         // Obtener IP y User Agent
         const clientIP = await getClientIP();
         const userAgent = navigator.userAgent;
+        const fbParams = getFacebookParams();
 
         // Añadir IP y User Agent a los datos
         formData.append('client_ip_address', clientIP);
         formData.append('client_user_agent', userAgent);
+        formData.append('_fbp', fbParams.fbp);
 
         // Enviar los datos al nuevo endpoint
         const response = await fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
@@ -378,8 +380,10 @@ $(document).ready(function() {
                 }, {});
                 const clientIP = await getClientIP();
                 const userAgent = navigator.userAgent;
+                const fbParams = getFacebookParams();
                 formDataObj.client_ip_address = clientIP;
                 formDataObj.client_user_agent = userAgent;
+                formDataObj._fbp = fbParams.fbp;
 
                 $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formDataObj)
                     .done(function() {
@@ -723,9 +727,11 @@ $(document).ready(function() {
                     console.log('Datos del comprador:', nombreComprador);
 
                     // Preparar el cuerpo de la solicitud
+                    const fbParams = getFacebookParams();
                     const requestBody = {
                         comprador: nombreComprador,
-                        monto: monto
+                        monto: monto,
+                        fbp: fbParams.fbp
                     };
                     console.log('Enviando datos a MercadoPago:', requestBody);
 
@@ -742,7 +748,7 @@ $(document).ready(function() {
 
                     const responseText = await response.text();
                     const jsonData = JSON.parse(responseText);
-                    const mercadoPagoUrl = jsonData.linkpersonalizadomp;
+                    const mercadoPagoUrl = Array.isArray(jsonData) && jsonData.length > 0 ? jsonData[0].linkpersonalizadomp : jsonData.linkpersonalizadomp;
 
                     if (!mercadoPagoUrl) {
                         throw new Error('No se encontró el link de MercadoPago en la respuesta');
