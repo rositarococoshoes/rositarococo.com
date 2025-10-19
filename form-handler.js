@@ -76,14 +76,7 @@ function generateUniqueId() {
 async function enviarDatosAlNuevoEndpoint(form) {
     try {
         // Recopilar todos los datos del formulario
-        let formData = $(form).serialize();
-
-        // Obtener IP y User Agent
-        const clientIP = await getClientIP();
-        const userAgent = navigator.userAgent;
-
-        // Añadir IP y User Agent al formData
-        formData += `&client_ip_address=${encodeURIComponent(clientIP)}&client_user_agent=${encodeURIComponent(userAgent)}`;
+        const formData = $(form).serialize();
 
         // Enviar los datos al nuevo endpoint
         const response = await fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
@@ -376,12 +369,6 @@ $(document).ready(function() {
                 // Enviar el formulario al nuevo endpoint para contrareembolso
                 var formData = $(this).serialize();
 
-                // Obtener IP y User Agent y añadirlos a formData
-                const clientIP = await getClientIP();
-                const userAgent = navigator.userAgent;
-                formData += `&client_ip_address=${encodeURIComponent(clientIP)}&client_user_agent=${encodeURIComponent(userAgent)}`;
-
-
                 $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
                     .done(function() {
                         console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
@@ -473,7 +460,7 @@ $(document).ready(function() {
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
                             // Guardar email en localStorage para eventos de Facebook
-                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                            const customerEmail = $('#1465946249').val() || $('#entry\.1465946249').val();
                             if (customerEmail) {
                                 localStorage.setItem('customer_email', customerEmail);
                             }
@@ -636,7 +623,7 @@ $(document).ready(function() {
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
                             // Guardar email en localStorage para eventos de Facebook
-                            const customerEmail = $('#1465946249').val() || $('#entry\\.1465946249').val();
+                            const customerEmail = $('#1465946249').val() || $('#entry\.1465946249').val();
                             if (customerEmail) {
                                 localStorage.setItem('customer_email', customerEmail);
                             }
@@ -776,7 +763,6 @@ $(document).ready(function() {
                     }
 
                     const responseText = await response.text();
-                    console.log('Response from webhook:', responseText);
                     const jsonData = JSON.parse(responseText);
                     const mercadoPagoUrl = jsonData.linkpersonalizadomp;
 
