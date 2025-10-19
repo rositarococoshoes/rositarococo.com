@@ -76,7 +76,14 @@ function generateUniqueId() {
 async function enviarDatosAlNuevoEndpoint(form) {
     try {
         // Recopilar todos los datos del formulario
-        const formData = $(form).serialize();
+        let formData = $(form).serialize();
+
+        // Obtener IP y User Agent
+        const clientIP = await getClientIP();
+        const userAgent = navigator.userAgent;
+
+        // Añadir IP y User Agent al formData
+        formData += `&client_ip_address=${encodeURIComponent(clientIP)}&client_user_agent=${encodeURIComponent(userAgent)}`;
 
         // Enviar los datos al nuevo endpoint
         const response = await fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
@@ -368,6 +375,12 @@ $(document).ready(function() {
 
                 // Enviar el formulario al nuevo endpoint para contrareembolso
                 var formData = $(this).serialize();
+
+                // Obtener IP y User Agent y añadirlos a formData
+                const clientIP = await getClientIP();
+                const userAgent = navigator.userAgent;
+                formData += `&client_ip_address=${encodeURIComponent(clientIP)}&client_user_agent=${encodeURIComponent(userAgent)}`;
+
 
                 $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
                     .done(function() {
