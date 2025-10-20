@@ -23,8 +23,13 @@
         console.log('✅ fbq está disponible');
         fbq('init', '1052677351596434');
         console.log('✅ Facebook Pixel inicializado con ID: 1052677351596434');
-        fbq('track', 'PageView');
-        console.log('✅ PageView event enviado');
+        if (typeof sendDualEvent === 'function') {
+            sendDualEvent('PageView', {});
+            console.log('✅ PageView event enviado via sendDualEvent');
+        } else {
+            fbq('track', 'PageView');
+            console.log('✅ PageView event enviado via fbq');
+        }
     } else {
         console.error('❌ fbq no está disponible');
     }
@@ -2528,6 +2533,23 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
             };
         };
 
+        // Función para obtener IP del cliente (Global)
+        async function getClientIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                try {
+                    const response2 = await fetch('https://httpbin.org/ip');
+                    const data2 = await response2.json();
+                    return data2.origin;
+                } catch (error2) {
+                    return '';
+                }
+            }
+        }
+
         // Función de envío dual (cliente + servidor) - FORMATO N8N
         window.sendDualEvent = async function(eventName, eventData) {
             const eventId = generateEventId();
@@ -2542,6 +2564,7 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
 
             // 2. Obtener parámetros de Facebook (FBC/FBP)
             const fbParams = getFacebookParams();
+            const clientIP = await getClientIP();
 
             // 3. Preparar payload para Facebook Events API (formato N8N)
             const facebookEventData = {
@@ -2551,7 +2574,7 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
                 action_source: 'website',
                 event_source_url: window.location.href,
                 user_data: {
-                    client_ip_address: '', // N8N puede obtener esto del request
+                    client_ip_address: clientIP,
                     client_user_agent: navigator.userAgent,
                     fbc: fbParams.fbc,
                     fbp: fbParams.fbp
