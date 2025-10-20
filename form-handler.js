@@ -31,22 +31,7 @@ async function hashEmail(email) {
     return hashHex;
 }
 
-// Función para obtener IP del cliente (Global)
-async function getClientIP() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        return data.ip;
-    } catch (error) {
-        try {
-            const response2 = await fetch('https://httpbin.org/ip');
-            const data2 = await response2.json();
-            return data2.origin;
-        } catch (error2) {
-            return '';
-        }
-    }
-}
+
 
 // Función para detectar bots
 function isBot() {
@@ -1074,4 +1059,73 @@ $(document).ready(function() {
 
         return false;
     });
+
+    // Función para enviar el evento PageView al servidor (webhook)
+    async function sendPageViewToServer() {
+        try {
+            // Esperar a que getClientIP esté disponible
+            if (typeof getClientIP !== 'function') {
+                console.log('Esperando a getClientIP...');
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+
+            console.log('🔵 Enviando evento PageView al webhook...');
+
+            // Generar Event ID único para deduplicación
+            const eventId = 'fb_pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+
+            // Obtener parámetros de Facebook (FBC/FBP)
+            const fbParams = getFacebookParams();
+
+            // Función para obtener timestamp correcto para Argentina (UTC-3)
+            function getArgentinaTimestamp() {
+                const now = new Date();
+                const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
+                return Math.floor(argentinaTime.getTime() / 1000);
+            }
+
+            // Obtener IP del cliente
+            const clientIP = await getClientIP();
+
+            // Obtener y hashear email (si existe en localStorage)
+            const customerEmail = localStorage.getItem('customer_email') || '';
+            const hashedEmail = await hashEmail(customerEmail);
+
+            // Preparar datos del evento para la API de Conversiones de Facebook
+            const facebookEventData = {
+                event_name: 'PageView',
+                event_id: eventId,
+                event_time: getArgentinaTimestamp(),
+                action_source: 'website',
+                event_source_url: window.location.href,
+                user_data: {
+                    client_ip_address: clientIP,
+                    client_user_agent: navigator.userAgent,
+                    em: hashedEmail,
+                    fbc: fbParams.fbc,
+                    fbp: fbParams.fbp
+                },
+                custom_data: {}
+            };
+
+            // Enviar al webhook en formato N8N
+            await fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    data: [facebookEventData]
+                })
+            });
+
+            console.log('✅ PageView enviado al webhook - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
+
+        } catch (error) {
+            console.error('Error enviando PageView al webhook:', error);
+        }
+    }
+
+    // Enviar PageView al cargar la página, después de un breve retraso para asegurar que todo esté cargado
+    setTimeout(sendPageViewToServer, 500);
 });
