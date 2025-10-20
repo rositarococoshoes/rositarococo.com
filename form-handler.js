@@ -1,3 +1,19 @@
+async function getClientIP() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return data.ip;
+    } catch (error) {
+        try {
+            const response2 = await fetch('https://httpbin.org/ip');
+            const data2 = await response2.json();
+            return data2.origin;
+        } catch (error2) {
+            return '';
+        }
+    }
+}
+
 // Función auxiliar para obtener cookies
 function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -1063,12 +1079,6 @@ $(document).ready(function() {
     // Función para enviar el evento PageView al servidor (webhook)
     async function sendPageViewToServer() {
         try {
-            // Esperar a que getClientIP esté disponible
-            if (typeof getClientIP !== 'function') {
-                console.log('Esperando a getClientIP...');
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-
             console.log('🔵 Enviando evento PageView al webhook...');
 
             // Generar Event ID único para deduplicación
@@ -1126,6 +1136,6 @@ $(document).ready(function() {
         }
     }
 
-    // Enviar PageView al cargar la página, después de un breve retraso para asegurar que todo esté cargado
-    setTimeout(sendPageViewToServer, 500);
+    // Enviar PageView al cargar la página
+    sendPageViewToServer();
 });
