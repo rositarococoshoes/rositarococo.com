@@ -353,13 +353,14 @@ p {
 }
 
 .main-header h1 {
-  font-size: 1.8em; /* Título más pequeño */
+  font-size: 1.5em;
   color: #333;
   font-weight: 600;
   margin-bottom: 8px;
   letter-spacing: 0.5px;
-  text-shadow: none; /* Sin sombra */
-  text-transform: uppercase;
+  text-shadow: none;
+  text-transform: none;
+  line-height: 1.4;
 }
 
 .main-header .subtitle {
@@ -2503,9 +2504,13 @@ fieldset {
     font-size: 1.6em;
   }
 
-  .btn-primary {
+  .btn-primary, .add-to-cart-btn {
     font-size: 1.1em;
-    padding: 14px 20px;
+    padding: 15px 20px;
+    position: sticky;
+    bottom: 10px;
+    z-index: 100;
+    margin-top: 5px;
   }
 
   #whatsapp {
@@ -2523,6 +2528,8 @@ fieldset {
 
   #confirma-pedido strong {
     min-width: 100px;
+    display: block;
+    margin-bottom: 5px;
   }
 
   .testimonials-section {
@@ -3395,4 +3402,13 @@ h2#datos-envio {
     .upsell-text h3 {
         font-size: 1.2em;
     }
+}
+
+.highlight-offer {
+  background-color: #fff1a7; /* A soft yellow */
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
