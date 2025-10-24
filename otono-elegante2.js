@@ -1025,7 +1025,7 @@ $(document).ready(function(){
 
     if (!$(this).hasClass('btn-disabled')) {
       // Cerrar el mini-carrito
-      $('#mini-cart').removeClass('active');
+      cartState.close();
 
       // Mostrar y activar la sección de checkout
       restOfForm.removeClass('hidden inactive').addClass('active');
