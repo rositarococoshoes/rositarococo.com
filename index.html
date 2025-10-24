@@ -2136,6 +2136,7 @@
                         <input class="form-control" id="53830725" name="entry.53830725" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" />
                         <!-- Error message element -->
                         <div class="error-message" data-target="53830725"></div>
+                        <p class="help-block" style="font-size: 0.8em; color: #666;">El formato de WhatsApp debe ser sin 0 ni 15.</p>
                         <p class="help-block">Fundamental para coordinar el envío si es necesario.</p>
                     </div>
                 </fieldset>
@@ -2912,6 +2913,24 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
         // Function to show warning message
         window.showCartWarning = function(message, duration = 0) {
             showCartMessage(message, 'warning', duration);
+        };
+
+        // Function to show info message
+        window.showCartInfo = function(message, duration = 0) {
+            showCartMessage(message, 'info', duration);
+        };
+
+        console.log('Cart messages system initialized');
+    })();
+    </script>
+</body>
+</html>
+ges system initialized');
+    })();
+    </script>
+</body>
+</html>
+          showCartMessage(message, 'warning', duration);
         };
 
         // Function to show info message
