@@ -958,11 +958,12 @@ $(document).ready(function(){
       restOfForm.removeClass('hidden inactive').addClass('active');
 
       // Scroll to the checkout section
-      window.scrollTo({
-        top: $("#datos-envio").offset().top - 80,
-        behavior: 'smooth'
-      });
+      // window.scrollTo({
+      //  top: $("#restodelform").offset().top,
+     //   behavior: 'smooth'
+     // });
 
+      
       // Update checkout progress
       currentStep = 2;
       updateCheckoutProgress(currentStep);

@@ -718,7 +718,7 @@
         </div>
         <div class="mini-cart-footer">
             <div class="cart-total">Total: <span>$0</span></div>
-            <button id="checkout-btn" class="btn-disabled">Continuar al Envío →</button>
+            <button id="checkout-btn" class="btn-disabled" onclick="goToCheckoutForm()">Continuar al Envío → </button>
         </div>
     </div>
 
@@ -751,8 +751,46 @@
         var buttonVisible = false;
         var scrollTimeout = null;
 
+        // Función para esperar a que las imágenes de testimonios se carguen
+        function waitForTestimonialsImages() {
+            return new Promise((resolve) => {
+                const testimonialsGrid = document.getElementById('testimonials-grid');
+                if (!testimonialsGrid) {
+                    resolve();
+                    return;
+                }
+                const images = testimonialsGrid.querySelectorAll('img');
+                if (images.length === 0) {
+                    resolve();
+                    return;
+                }
+                let loadedCount = 0;
+                images.forEach(img => {
+                    if (img.complete) {
+                        loadedCount++;
+                    } else {
+                        img.onload = () => {
+                            loadedCount++;
+                            if (loadedCount === images.length) {
+                                resolve();
+                            }
+                        };
+                        img.onerror = () => {
+                            loadedCount++;
+                            if (loadedCount === images.length) {
+                                resolve();
+                            }
+                        };
+                    }
+                });
+                if (loadedCount === images.length) {
+                    resolve();
+                }
+            });
+        }
+
         // Función mejorada para ir al formulario de envío
-        function goToCheckoutForm() {
+        async function goToCheckoutForm() {
             // Prevenir múltiples ejecuciones simultáneas
             if (floatingButton && floatingButton.disabled) {
                 console.log('⏳ Función ya en ejecución, ignorando...');
@@ -765,6 +803,9 @@
             if (floatingButton) {
                 floatingButton.disabled = true;
             }
+
+            // Esperar a que las imágenes de testimonios se carguen
+            await waitForTestimonialsImages();
 
             // Función auxiliar para encontrar y preparar el formulario
             function prepareAndScrollToForm() {
@@ -1057,49 +1098,49 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-guillermina-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 1" src="guillerminafotos/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 2" src="guillerminafotos/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 3" src="guillerminafotos/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 4" src="guillerminafotos/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 5" src="guillerminafotos/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 6" src="guillerminafotos/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 7" src="guillerminafotos/7.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 8" src="guillerminafotos/8.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 9" src="guillerminafotos/9.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 10" src="guillerminafotos/10.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 11" src="guillerminafotos/11.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 12" src="guillerminafotos/12.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 13" src="guillerminafotos/13.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 14" src="guillerminafotos/14.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 15" src="guillerminafotos/15.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 16" src="guillerminafotos/16.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 17" src="guillerminafotos/17.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 18" src="guillerminafotos/18.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 19" src="guillerminafotos/19.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 20" src="guillerminafotos/20.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 21" src="guillerminafotos/21.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 22" src="guillerminafotos/22.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 23" src="guillerminafotos/23.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 24" src="guillerminafotos/24.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 25" src="guillerminafotos/25.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 26" src="guillerminafotos/26.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 27" src="guillerminafotos/27.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 28" src="guillerminafotos/28.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 29" src="guillerminafotos/29.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 30" src="guillerminafotos/30.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 31" src="guillerminafotos/31.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 32" src="guillerminafotos/32.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 33" src="guillerminafotos/33.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 34" src="guillerminafotos/34.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 35" src="guillerminafotos/35.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 36" src="guillerminafotos/36.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 37" src="guillerminafotos/37.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 38" src="guillerminafotos/38.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 39" src="guillerminafotos/39.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 40" src="guillerminafotos/40.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 41" src="guillerminafotos/41.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 42" src="guillerminafotos/42.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Thumbnail 43" src="guillerminafotos/43.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 1" src="guillerminafotos/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 2" src="guillerminafotos/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 3" src="guillerminafotos/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 4" src="guillerminafotos/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 5" src="guillerminafotos/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 6" src="guillerminafotos/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 7" src="guillerminafotos/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 8" src="guillerminafotos/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 9" src="guillerminafotos/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 10" src="guillerminafotos/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 11" src="guillerminafotos/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 12" src="guillerminafotos/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 13" src="guillerminafotos/13.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 14" src="guillerminafotos/14.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 15" src="guillerminafotos/15.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 16" src="guillerminafotos/16.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 17" src="guillerminafotos/17.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 18" src="guillerminafotos/18.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 19" src="guillerminafotos/19.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 20" src="guillerminafotos/20.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 21" src="guillerminafotos/21.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 22" src="guillerminafotos/22.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 23" src="guillerminafotos/23.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 24" src="guillerminafotos/24.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 25" src="guillerminafotos/25.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 26" src="guillerminafotos/26.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 27" src="guillerminafotos/27.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 28" src="guillerminafotos/28.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 29" src="guillerminafotos/29.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 30" src="guillerminafotos/30.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 31" src="guillerminafotos/31.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 32" src="guillerminafotos/32.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 33" src="guillerminafotos/33.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 34" src="guillerminafotos/34.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 35" src="guillerminafotos/35.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 36" src="guillerminafotos/36.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 37" src="guillerminafotos/37.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 38" src="guillerminafotos/38.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 39" src="guillerminafotos/39.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 40" src="guillerminafotos/40.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 41" src="guillerminafotos/41.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 42" src="guillerminafotos/42.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 43" src="guillerminafotos/43.webp"></div>
                             </div>
                         </div>
                                     <div class="product-selection" id="talles-guillermina-negras">
@@ -1233,18 +1274,18 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-guillermina-camel">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 1" src="guillerminafotos/guillerminascamel/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 2" src="guillerminafotos/guillerminascamel/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 3" src="guillerminafotos/guillerminascamel/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 4" src="guillerminafotos/guillerminascamel/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 5" src="guillerminafotos/guillerminascamel/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 6" src="guillerminafotos/guillerminascamel/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Thumbnail 7" src="guillerminafotos/guillerminascamel/7.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 1" src="guillerminafotos/guillerminascamel/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 2" src="guillerminafotos/guillerminascamel/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 3" src="guillerminafotos/guillerminascamel/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 4" src="guillerminafotos/guillerminascamel/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 5" src="guillerminafotos/guillerminascamel/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 6" src="guillerminafotos/guillerminascamel/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 7" src="guillerminafotos/guillerminascamel/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-guillermina-camel">
@@ -1377,18 +1418,18 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-guillermina-blancas">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 1" src="guillerminafotos/guillerminasblancas/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 2" src="guillerminafotos/guillerminasblancas/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 3" src="guillerminafotos/guillerminasblancas/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 4" src="guillerminafotos/guillerminasblancas/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 5" src="guillerminafotos/guillerminasblancas/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 6" src="guillerminafotos/guillerminasblancas/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Thumbnail 7" src="guillerminafotos/guillerminasblancas/7.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 1" src="guillerminafotos/guillerminasblancas/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 2" src="guillerminafotos/guillerminasblancas/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 3" src="guillerminafotos/guillerminasblancas/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 4" src="guillerminafotos/guillerminasblancas/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 5" src="guillerminafotos/guillerminasblancas/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 6" src="guillerminafotos/guillerminasblancas/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 7" src="guillerminafotos/guillerminasblancas/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-guillermina-blancas">
@@ -1512,13 +1553,13 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-birk-negras">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 1" src="birknegras/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 2" src="birknegras/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 3" src="birknegras/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 4" src="birknegras/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 5" src="birknegras/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 6" src="birknegras/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Thumbnail 7" src="birknegras/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 1" src="birknegras/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 2" src="birknegras/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 3" src="birknegras/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 4" src="birknegras/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 5" src="birknegras/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 6" src="birknegras/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 7" src="birknegras/7.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-birk-negras">
@@ -1647,18 +1688,18 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-birk-camel">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 1" src="birkcamel/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 2" src="birkcamel/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 3" src="birkcamel/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 4" src="birkcamel/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 5" src="birkcamel/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 6" src="birkcamel/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 7" src="birkcamel/7.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 1" src="birkcamel/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 2" src="birkcamel/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 3" src="birkcamel/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 4" src="birkcamel/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 5" src="birkcamel/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 6" src="birkcamel/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 7" src="birkcamel/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-birk-camel">
@@ -1787,18 +1828,18 @@
                         </div>
                         <div class="swiper-container" id="swiper-thumbnails-birk-blancas">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 1" src="birkblancas/1.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 2" src="birkblancas/2.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 3" src="birkblancas/3.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 4" src="birkblancas/4.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 5" src="birkblancas/5.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 6" src="birkblancas/6.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 7" src="birkblancas/7.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 1" src="birkblancas/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 2" src="birkblancas/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 3" src="birkblancas/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 4" src="birkblancas/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 5" src="birkblancas/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 6" src="birkblancas/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 7" src="birkblancas/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-birk-blancas">
@@ -2662,7 +2703,7 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
     </div>
 
     <!-- Testimonials Dynamic Loading Script -->
-    <script src="whatsapp-float.js"></script>
+    <script defer src="whatsapp-float.js"></script>
     <script>
     (function() {
         // Lista completa de comentarios disponibles
@@ -2921,6 +2962,9 @@ Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de
 
         console.log('Cart messages system initialized');
     })();
+    </script>
+</body>
+</html>    })();
     </script>
 </body>
 </html>
