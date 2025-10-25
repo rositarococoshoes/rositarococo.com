@@ -633,8 +633,8 @@ $(document).ready(function() {
                                 $('#286442883').val() : $('#1471599855').val();
                             const pairs = productsValue.split(', ').filter(Boolean);
                             const totalItems = pairs.length;
-                            const unitPrice = totalItems === 1 ? 70000 : 55000; // Precios previo pago
-                            const totalValue = totalItems === 1 ? 70000 : totalItems * 55000;
+                            const unitPrice = totalItems === 1 ? 70000 : 47500; // Precios previo pago
+                            const totalValue = totalItems === 1 ? 70000 : totalItems * 47500;
 
                             const eventData = {
                                 content_type: 'product',
@@ -715,7 +715,7 @@ $(document).ready(function() {
                 const pairCount = productsValue.split(',').length;
                 console.log('Número de pares para MercadoPago:', pairCount);
 
-                const monto = pairCount >= 2 ? 110000 : 70000;
+                const monto = pairCount >= 2 ? 95000 : 70000;
                 console.log('Usando monto:', monto);
 
                 // Verificar si estamos en la página de contrareembolso

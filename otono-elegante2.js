@@ -475,7 +475,7 @@ $(document).ready(function(){
   });
 
   // --- Product Selection Logic ---
-  var fieldsetsToShow = ['guillermina-negras', 'guillermina-camel', 'guillermina-blancas', 'roma-negras', 'roma-suela', 'siena2025', 'venecia-negras', 'paris-negras', 'paris-camel', 'paris-verde']; // Add all product IDs
+  var fieldsetsToShow = ['guillermina-negras', 'guillermina-camel', 'guillermina-blancas', 'birk-negras', 'birk-camel', 'birk-blancas', 'paris-negras']; // Updated to match actual models in HTML
   fieldsetsToShow.forEach(function(fieldset) {
     $('input[name="hwA-qty-' + fieldset + '"]').click(function() {
       var selectedQty = parseInt($(this).val());
@@ -489,6 +489,11 @@ $(document).ready(function(){
         $parentSelection.find('fieldset#hwA-' + fieldset + '-2 select.talle').trigger('change');
       }
     });
+  });
+
+  // Trigger initial state for checked radios to ensure second fieldsets are hidden if quantity is 1
+  fieldsetsToShow.forEach(function(fieldset) {
+    $('input[name="hwA-qty-' + fieldset + '"]:checked').trigger('click');
   });
 
   // --- Add to Cart Button Logic ---
@@ -540,15 +545,15 @@ $(document).ready(function(){
 
       if (summaryArray.length === 1) {
         if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
         } else {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
         }
       } else if (summaryArray.length === 2) {
         if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
         } else {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
         }
       }
 
@@ -735,9 +740,9 @@ $(document).ready(function(){
       }
 
       // Determinar el precio basado en la cantidad de productos en el carrito
-      var price = summaryArray.length === 1 ? 70000 : 55000;
+      var price = summaryArray.length === 1 ? 60000 : 47500;
       if (window.location.href.includes('contrareembolso')) {
-        price = summaryArray.length === 1 ? 60000 : 42500;
+        price = summaryArray.length === 1 ? 60000 : 47500;
       }
 
       // Enviar el evento AddToCart con tracking dual (cliente + servidor)
@@ -846,9 +851,9 @@ $(document).ready(function(){
       // Mensaje único y claro con toda la información necesaria
       setTimeout(() => {
         if (isContrareembolso) {
-          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $25.000 más ($42.500 cada uno) y llevátelos a un precio especial!', 'success');
+          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
         } else {
-          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $40.000 más ($55.000 cada uno) y llevátelos a un precio especial!', 'success');
+          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
         }
       }, 500);
     }
@@ -862,9 +867,9 @@ $(document).ready(function(){
       // Mensaje único consolidado con toda la información
       setTimeout(() => {
         if (isContrareembolso) {
-          showCartMessage('🎉 ¡Perfecto! 2 pares por $85.000 ($42.500 c/u) - ¡Ahorraste $5.000! El descuento se aplicó automáticamente.', 'success');
+          showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $25.000! El descuento se aplicó automáticamente.', 'success');
         } else {
-          showCartMessage('🎉 ¡Perfecto! 2 pares por $110.000 ($55.000 c/u) - ¡Ahorraste $10.000! El descuento se aplicó automáticamente.', 'success');
+          showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $45.000! El descuento se aplicó automáticamente.', 'success');
         }
       }, 500);
     }
@@ -885,10 +890,10 @@ $(document).ready(function(){
         // Usar precios diferentes según la página
         if (isContrareembolso) {
           totalPrice = 60000; // Precio para 1 par en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>'; // Updated text
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text
         } else {
-          totalPrice = 70000; // Precio para 1 par en prepago
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>'; // Updated text
+          totalPrice = 60000; // Precio para 1 par en prepago
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text
         }
 
         // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
@@ -901,11 +906,11 @@ $(document).ready(function(){
       } else if (pairCount === 2) {
         // Usar precios diferentes según la página
         if (isContrareembolso) {
-          totalPrice = 85000; // Precio para 2 pares en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>'; // Updated text
+          totalPrice = 95000; // Precio para 2 pares en contrareembolso
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
         } else {
-          totalPrice = 110000; // Precio para 2 pares en prepago
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>'; // Updated text
+          totalPrice = 95000; // Precio para 2 pares en prepago
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
         }
 
         // Asegurarse de que el formulario esté visible
@@ -981,15 +986,15 @@ $(document).ready(function(){
       var isContrareembolso = window.location.href.includes('contrareembolso');
       if (cartItems.length === 1) {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $25.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         } else {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $40.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         }
       } else {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         } else {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $110.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         }
       }
 
@@ -1045,15 +1050,15 @@ $(document).ready(function(){
       var isContrareembolso = window.location.href.includes('contrareembolso');
       if (cartItems.length === 1) {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $25.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         } else {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $40.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         }
       } else {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         } else {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $110.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         }
       }
     } else {
@@ -1820,16 +1825,16 @@ $(document).ready(function(){
         if (isContrareembolso) {
           // Precios para contrareembolso
           if (itemsArray.length === 2) {
-            productPrice = 42500; // Cada par cuesta 42500 cuando hay dos (total 85k)
+            productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
           } else {
             productPrice = 60000; // Un solo par cuesta 60000
           }
         } else {
           // Precios para prepago (index.html)
           if (itemsArray.length === 2) {
-            productPrice = 55000; // Cada par cuesta 55000 cuando hay dos (total 110k)
+            productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
           } else {
-            productPrice = 70000; // Un solo par cuesta 70000
+            productPrice = 60000; // Un solo par cuesta 60000
           }
         }
 
@@ -1866,16 +1871,16 @@ $(document).ready(function(){
         if (cartItems.length === 1) {
             total = 60000;
         } else if (cartItems.length === 2) {
-            total = 85000;
+            total = 95000;
         } else {
             total = 0;
         }
     } else {
         // Precios para prepago (index.html)
         if (cartItems.length === 1) {
-            total = 70000;
+            total = 60000;
         } else if (cartItems.length === 2) {
-            total = 110000;
+            total = 95000;
         } else {
             total = 0;
         }
@@ -1887,15 +1892,15 @@ $(document).ready(function(){
     var totalPriceText = "";
     if (cartItems.length === 1) {
       if (isContrareembolso) {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $25.000 más!</small>';
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
       } else {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="70000">70.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $40.000 más!</small>';
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
       }
     } else if (cartItems.length === 2) {
       if (isContrareembolso) {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
       } else {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="110000">110.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($55.000 c/u)!</small>';
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
       }
     }
 
