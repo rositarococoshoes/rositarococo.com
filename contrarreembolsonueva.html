@@ -59,7 +59,7 @@
 
     <!-- Preload de recursos críticos -->
     <link rel="preload" href="rosita-form.webp" as="image">
-    <link rel="preload" href="roma-negras-1.webp" as="image">
+
 
     <!-- Fonts con carga optimizada -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -247,6 +247,85 @@
             color: #777;
             font-size: 0.8rem;
             text-align: center;
+        }
+
+        /* Size Guide Styles */
+        .size-guide-container {
+            margin: 20px 0;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+        .size-guide-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .size-guide-toggle h3 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+        .toggle-icon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        .size-guide-content {
+            display: none !important;
+            padding: 0 15px 15px;
+            border-top: 1px solid #eee;
+        }
+        .size-guide-container.open .size-guide-content {
+            display: block !important;
+        }
+        .size-guide-container.open .toggle-icon {
+            transform: rotate(0deg) !important;
+        }
+        .size-guide-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        .size-guide-container th, .size-guide-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .size-guide-container th {
+            background-color: #f2f2f2;
+        }
+        .size-instructions h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .size-instructions ol {
+            padding-left: 20px;
+            margin: 0;
+        }
+        .size-instructions li {
+            margin-bottom: 5px;
+        }
+
+        /* Fix for fieldset borders in 2 pairs selector */
+        .fieldsetstalles {
+            border: 1px solid #ddd !important;
+            border-radius: 4px;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #fafafa;
+        }
+        .fieldsetstalles select {
+            border: 1px solid #ccc !important;
+            border-radius: 4px;
+        }
+        .fieldsetstalles select:focus {
+            border-color: #a05941 !important;
+            outline: none;
         }
     </style>
 
@@ -504,22 +583,22 @@
                 <legend class="sr-only">Selección de Modelos</legend>
 
 
-                <div class="product-grid" style="justify-content: center;">
+                <div class="product-grid">
                     <!-- PRODUCTO: Guillerminas Negras -->
                     <div class="product-item" id="modeload-guillermina-negras">
 
                         <h2>Guillerminas Negras</h2>
                         <div class="swiper" id="swiper-guillermina-negras">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 1" src="guillerminafotos/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 2" src="guillerminafotos/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 3" src="guillerminafotos/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 1" src="guillerminafotos/1.webp" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 2" src="guillerminafotos/2.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 3" src="guillerminafotos/3.webp" loading="lazy"></div>
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 4" src="guillerminafotos/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 5" src="guillerminafotos/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 5" src="guillerminafotos/5.webp" loading="lazy"></div>
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 6" src="guillerminafotos/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 7" src="guillerminafotos/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 8" src="guillerminafotos/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 9" src="guillerminafotos/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 7" src="guillerminafotos/7.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 8" src="guillerminafotos/8.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 9" src="guillerminafotos/9.webp" loading="lazy"></div>
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 10" src="guillerminafotos/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 11" src="guillerminafotos/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
                                 <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 12" src="guillerminafotos/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
@@ -743,11 +822,11 @@
                                 <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 5" src="guillerminafotos/guillerminascamel/5.webp"></div>
                                 <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 6" src="guillerminafotos/guillerminascamel/6.webp"></div>
                                 <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 7" src="guillerminafotos/guillerminascamel/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 8" src="guillerminafotos/guillerminascamel/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 9" src="guillerminafotos/guillerminascamel/9.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 10" src="guillerminafotos/guillerminascamel/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 11" src="guillerminafotos/guillerminascamel/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 12" src="guillerminafotos/guillerminascamel/12.webp"></div>
                             </div>
                         </div>
                         <div class="product-selection" id="talles-guillermina-camel">
@@ -1713,12 +1792,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
 
     <!-- Custom scripts -->
-    <script src="swiper-init.js"></script>
+    <script src="guillerminas-swiper.js"></script>
     <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
 
     <!-- Chat Widget Script -->
-    <script src="chat-widget-contrareembolso.js"></script>
+    <script src="chat-widget.js"></script>
 
     <!-- Countdown script -->
     <script>
@@ -1888,16 +1967,12 @@
           var modeloId;
           var costo;
           switch(modelo) {
-            case 'roma':
-              modeloId = '#4016';
-              costo = 16000;
+            case 'guillermina':
+              modeloId = '#GUILLERMINA';
+              costo = 3700;
               break;
-            case 'venecia':
-              modeloId = '#4015';
-              costo = 16000;
-              break;
-            case 'siena':
-              modeloId = '#SIENA';
+            case 'birk':
+              modeloId = '#BIRK';
               costo = 3700;
               break;
             case 'paris':
@@ -1906,6 +1981,7 @@
               break;
             default:
               modeloId = 'desconocido';
+              costo = 0;
               break;
           }
           costodepares += costo;
@@ -1978,47 +2054,43 @@
             if (selectedProducts) {
               var pairs = selectedProducts.split(', ').filter(Boolean);
 
-              // Procesar los detalles del pedido para localStorage
-              var values = [];
-              var montoacobrar;
-              var costodepares = 0;
-
-              for (var i = 0; i < pairs.length; i++) {
-                var parts = pairs[i].split('-');
-                if (parts.length < 2) continue;
-
-                var talle = parts[0].trim();
-                var modelo = parts[1];
-                var color = parts.slice(2).join(' ');
-
-                var modeloId;
-                var costo;
-                switch(modelo) {
-                  case 'roma':
-                    modeloId = '#4016';
-                    costo = 16000;
-                    break;
-                  case 'venecia':
-                    modeloId = '#4015';
-                    costo = 16000;
-                    break;
-                  case 'siena':
-                    modeloId = '#SIENA';
-                    costo = 3700;
-                    break;
-                  case 'paris':
-                    modeloId = '#PARIS';
-                    costo = 3700;
-                    break;
-                  default:
-                    modeloId = 'desconocido';
-                    break;
-                }
-                costodepares += costo;
-                var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
-                values.push(modelosangies);
-              }
-
+                          // Procesar los detalles del pedido para localStorage
+                          var values = [];
+                          var montoacobrar;
+                          var costodepares = 0;
+              
+                          for (var i = 0; i < pairs.length; i++) {
+                            var parts = pairs[i].split('-');
+                            if (parts.length < 2) continue;
+              
+                            var talle = parts[0].trim();
+                            var modelo = parts[1];
+                            var color = parts.slice(2).join(' ');
+              
+                            var modeloId;
+                            var costo;
+                            switch(modelo) {
+                              case 'guillermina':
+                                modeloId = '#GUILLERMINA';
+                                costo = 3700;
+                                break;
+                              case 'birk':
+                                modeloId = '#BIRK';
+                                costo = 3700;
+                                break;
+                              case 'paris':
+                                modeloId = '#PARIS';
+                                costo = 3700;
+                                break;
+                              default:
+                                modeloId = 'desconocido';
+                                costo = 0;
+                                break;
+                            }
+                            costodepares += costo;
+                            var modelosangies = 'Talle: ' + talle + ' Modelo: ' + modeloId + ' Color: ' + color;
+                            values.push(modelosangies);
+                          }
               // Guardar detalles en localStorage
               var output = values.join(' || ');
               localStorage.setItem('orderDetails', output);
@@ -2142,18 +2214,6 @@
                 var modeloId;
                 var costo;
                 switch(modelo) {
-                  case 'roma':
-                    modeloId = '#4016';
-                    costo = 16000;
-                    break;
-                  case 'venecia':
-                    modeloId = '#4015';
-                    costo = 16000;
-                    break;
-                  case 'siena':
-                    modeloId = '#SIENA';
-                    costo = 3700;
-                    break;
                   case 'paris':
                     modeloId = '#PARIS';
                     costo = 3700;
@@ -2691,6 +2751,8 @@
         }
     })();
     </script>
+
+
 
 </body>
 </html>

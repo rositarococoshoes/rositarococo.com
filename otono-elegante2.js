@@ -2238,8 +2238,6 @@ $(document).ready(function(){
     setTimeout(startSalesNotifications, initialDelay);
   }
 
-}); // End document ready
-
   // --- Size Guide Toggle ---
   $('.size-guide-toggle').on('click', function() {
     var $container = $(this).closest('.size-guide-container');
@@ -2251,3 +2249,5 @@ $(document).ready(function(){
       $icon.text('+');
     }
   });
+
+}); // End document ready
