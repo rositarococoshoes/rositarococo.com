@@ -19,19 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  thumbsSwiperNegras.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
-  });
-
   // Guillerminas Camel
   var thumbsSwiperCamel = new Swiper('#swiper-thumbnails-guillermina-camel', {
     spaceBetween: 10,
@@ -50,19 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     thumbs: {
       swiper: thumbsSwiperCamel,
     },
-  });
-
-  thumbsSwiperCamel.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
   });
 
   // Guillerminas Blancas
@@ -85,19 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  thumbsSwiperBlancas.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
-  });
-
   // Birk Negras
   var thumbsSwiperBirkNegras = new Swiper('#swiper-thumbnails-birk-negras', {
     spaceBetween: 10,
@@ -116,19 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
     thumbs: {
       swiper: thumbsSwiperBirkNegras,
     },
-  });
-
-  thumbsSwiperBirkNegras.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
   });
 
   // Birk Camel
@@ -151,19 +99,6 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  thumbsSwiperBirkCamel.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
-  });
-
   // Birk Blancas
   var thumbsSwiperBirkBlancas = new Swiper('#swiper-thumbnails-birk-blancas', {
     spaceBetween: 10,
@@ -182,19 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
     thumbs: {
       swiper: thumbsSwiperBirkBlancas,
     },
-  });
-
-  thumbsSwiperBirkBlancas.on('click', function () {
-    const clickedIndex = this.clickedIndex;
-    const activeIndex = this.activeIndex;
-    const slidesPerView = this.params.slidesPerView;
-    const lastVisibleIndex = activeIndex + slidesPerView - 1;
-
-    if (clickedIndex === lastVisibleIndex) {
-      this.slideNext();
-    } else if (clickedIndex === activeIndex) {
-      this.slidePrev();
-    }
   });
 
   // Paris Negras (solo imagen, sin miniaturas)

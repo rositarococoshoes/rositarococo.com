@@ -249,6 +249,205 @@
             text-align: center;
         }
 
+        /* Testimonials Section Redesign */
+        .testimonials-section {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+            margin: 40px 0;
+        }
+
+        .testimonials-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c1810;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .testimonials-subtitle {
+            color: #8b6f47;
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .testimonials-grid {
+            /* Masonry layout usando CSS columns */
+            columns: 3;
+            column-gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .testimonial-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+            /* Masonry layout */
+            break-inside: avoid;
+            margin-bottom: 20px;
+            display: inline-block;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Efecto de overlay sutil en hover */
+        .testimonial-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139, 111, 71, 0.1), rgba(166, 124, 82, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px;
+            z-index: 1;
+        }
+
+        .testimonial-item:hover::before {
+            opacity: 1;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        }
+
+        .testimonial-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .testimonial-item:hover img {
+            transform: scale(1.02);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Staggered animation for testimonials - más sutil para masonry */
+        .testimonial-item:nth-child(3n+1) { animation-delay: 0.1s; }
+        .testimonial-item:nth-child(3n+2) { animation-delay: 0.2s; }
+        .testimonial-item:nth-child(3n+3) { animation-delay: 0.3s; }
+
+        /* Loading indicator */
+        .testimonials-loading {
+            text-align: center;
+            padding: 40px 20px;
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #8b6f47;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .testimonials-loading p {
+            color: #8b6f47;
+            font-style: italic;
+        }
+
+        /* Back to products button */
+        .back-to-products {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 30px;
+        }
+
+        .btn-back-to-products {
+            background: linear-gradient(135deg, #8b6f47 0%, #a67c52 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(139, 111, 71, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .btn-back-to-products:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 111, 71, 0.4);
+            background: linear-gradient(135deg, #a67c52 0%, #8b6f47 100%);
+        }
+
+        .back-to-products-text {
+            color: #8b6f47;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 40px 15px;
+            }
+
+            .testimonials-section h2 {
+                font-size: 2rem;
+            }
+
+            .testimonials-grid {
+                columns: 2;
+                column-gap: 15px;
+                padding: 0 10px;
+            }
+
+            .testimonial-item {
+                margin-bottom: 15px;
+            }
+
+            .testimonials-subtitle {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonials-grid {
+                columns: 1;
+                column-gap: 0;
+                padding: 0 5px;
+            }
+
+            .testimonial-item {
+                margin-bottom: 15px;
+            }
+
+            .testimonials-section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
         /* Size Guide Styles */
         .size-guide-container {
             margin: 20px 0;
@@ -584,117 +783,49 @@
 
 
                 <div class="product-grid">
-                    <!-- PRODUCTO: Guillerminas Negras -->
-                    <div class="product-item" id="modeload-guillermina-negras">
+                    <!-- PRODUCTO: Milán -->
+                    <div class="product-item" id="modeload-milan">
 
-                        <h2>Guillerminas Negras</h2>
-                        <div class="swiper" id="swiper-guillermina-negras">
+                        <h2>Milán</h2>
+                        <div class="swiper" id="swiper-milan">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 1" src="guillerminafotos/1.webp" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 2" src="guillerminafotos/2.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 3" src="guillerminafotos/3.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 4" src="guillerminafotos/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 5" src="guillerminafotos/5.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 6" src="guillerminafotos/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 7" src="guillerminafotos/7.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 8" src="guillerminafotos/8.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 9" src="guillerminafotos/9.webp" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 10" src="guillerminafotos/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 11" src="guillerminafotos/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 12" src="guillerminafotos/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 13" src="guillerminafotos/13.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 14" src="guillerminafotos/14.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 15" src="guillerminafotos/15.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 16" src="guillerminafotos/16.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 17" src="guillerminafotos/17.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 18" src="guillerminafotos/18.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 19" src="guillerminafotos/19.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 20" src="guillerminafotos/20.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 21" src="guillerminafotos/21.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 22" src="guillerminafotos/22.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 23" src="guillerminafotos/23.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 24" src="guillerminafotos/24.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 25" src="guillerminafotos/25.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 26" src="guillerminafotos/26.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 27" src="guillerminafotos/27.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 28" src="guillerminafotos/28.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 29" src="guillerminafotos/29.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 30" src="guillerminafotos/30.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 31" src="guillerminafotos/31.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 32" src="guillerminafotos/32.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 33" src="guillerminafotos/33.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 34" src="guillerminafotos/34.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 35" src="guillerminafotos/35.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 36" src="guillerminafotos/36.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 37" src="guillerminafotos/37.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 38" src="guillerminafotos/38.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 39" src="guillerminafotos/39.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 40" src="guillerminafotos/40.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 41" src="guillerminafotos/41.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 42" src="guillerminafotos/42.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Negras - Vista 43" src="guillerminafotos/43.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 1" src="nuevosmodeloscontra/1.webp" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 2" src="nuevosmodeloscontra/2.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 3" src="nuevosmodeloscontra/3.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 4" src="nuevosmodeloscontra/4.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 5" src="nuevosmodeloscontra/5.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 6" src="nuevosmodeloscontra/6.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 7" src="nuevosmodeloscontra/7.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 8" src="nuevosmodeloscontra/8.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Milán - Vista 9" src="nuevosmodeloscontra/9.webp" loading="lazy"></div>
                             </div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
-                        <div class="swiper-container" id="swiper-thumbnails-guillermina-negras">
+                        <div class="swiper" id="swiper-thumbnails-milan">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 1" src="guillerminafotos/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 2" src="guillerminafotos/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 3" src="guillerminafotos/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 4" src="guillerminafotos/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 5" src="guillerminafotos/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 6" src="guillerminafotos/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 7" src="guillerminafotos/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 8" src="guillerminafotos/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 9" src="guillerminafotos/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 10" src="guillerminafotos/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 11" src="guillerminafotos/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 12" src="guillerminafotos/12.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 13" src="guillerminafotos/13.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 14" src="guillerminafotos/14.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 15" src="guillerminafotos/15.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 16" src="guillerminafotos/16.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 17" src="guillerminafotos/17.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 18" src="guillerminafotos/18.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 19" src="guillerminafotos/19.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 20" src="guillerminafotos/20.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 21" src="guillerminafotos/21.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 22" src="guillerminafotos/22.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 23" src="guillerminafotos/23.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 24" src="guillerminafotos/24.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 25" src="guillerminafotos/25.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 26" src="guillerminafotos/26.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 27" src="guillerminafotos/27.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 28" src="guillerminafotos/28.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 29" src="guillerminafotos/29.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 30" src="guillerminafotos/30.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 31" src="guillerminafotos/31.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 32" src="guillerminafotos/32.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 33" src="guillerminafotos/33.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 34" src="guillerminafotos/34.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 35" src="guillerminafotos/35.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 36" src="guillerminafotos/36.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 37" src="guillerminafotos/37.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 38" src="guillerminafotos/38.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 39" src="guillerminafotos/39.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 40" src="guillerminafotos/40.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 41" src="guillerminafotos/41.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 42" src="guillerminafotos/42.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Negras - Thumbnail 43" src="guillerminafotos/43.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 1" src="nuevosmodeloscontra/1.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 2" src="nuevosmodeloscontra/2.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 3" src="nuevosmodeloscontra/3.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 4" src="nuevosmodeloscontra/4.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 5" src="nuevosmodeloscontra/5.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 6" src="nuevosmodeloscontra/6.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 7" src="nuevosmodeloscontra/7.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 8" src="nuevosmodeloscontra/8.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Milán - Thumbnail 9" src="nuevosmodeloscontra/9.webp"></div>
                             </div>
                         </div>
-                                    <div class="product-selection" id="talles-guillermina-negras">
-                                        <div class="product-info-details">
-                                            <div class="product-specs">
-                                                <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
-                                                <span class="spec-item"><strong>Suela:</strong> Expanso</span>
-                                                <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                            </div>
-                                            <div class="product-badges-new">
-                                                <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                                                <span class="badge badge-limited">STOCK LIMITADO</span>
-                                            </div>                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+                        <div class="product-selection" id="talles-milan">
+                            <div class="product-info-details">
+                                <div class="product-specs">
+                                    <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
+                                    <span class="spec-item"><strong>Suela:</strong> Expanso</span>
+                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
+                                </div>
+                                <div class="product-badges-new">
+                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
+                                    <span class="badge badge-limited">STOCK LIMITADO</span>
+                                </div>                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestro modelo Milán es el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
 
                                 <div class="size-guide-container">
                                     <div class="size-guide-toggle">
@@ -710,12 +841,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
+                                                <tr><td>35</td><td>23 cm</td></tr>
+                                                <tr><td>36</td><td>23,2 cm</td></tr>
+                                                <tr><td>37</td><td>24 cm</td></tr>
+                                                <tr><td>38</td><td>25 cm</td></tr>
+                                                <tr><td>39</td><td>25,5 cm</td></tr>
+                                                <tr><td>40</td><td>26 cm</td></tr>
                                             </tbody>
                                         </table>
                                         <div class="size-instructions">
@@ -734,14 +865,14 @@
                                     </div>
                                     <div class="quantity-price-selector">
                                         <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-guillermina-negras" type="radio" value="1" />
+                                            <input checked="checked" name="hwA-qty-milan" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
                                                 <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
-                                            <input name="hwA-qty-guillermina-negras" type="radio" value="2" />
+                                            <input name="hwA-qty-milan" type="radio" value="2" />
                                             <div class="option-content">
                                                 <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
                                                 <div class="option-price">$85.000</div>
@@ -751,85 +882,69 @@
                                     </div>
                                 </div>
                                 <div class="size-selector">
-                                    <fieldset id="hwA-guillermina-negras-1">
+                                    <fieldset id="hwA-milan-1">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-negras-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-guillermina-negras-1" class="form-control talle">
+                                            <label for="talle-select-milan-1" class="sr-only">Talle Par 1</label>
+                                            <select id="talle-select-milan-1" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-guillermina-negras">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-guillermina-negras">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-guillermina-negras">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-guillermina-negras">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-guillermina-negras">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-guillermina-negras">40 (26 cm de largo de plantilla)</option>
+                                                <option value="35-milan">35 (23 cm)</option>
+                                                <option value="36-milan">36 (23,2 cm)</option>
+                                                <option value="37-milan">37 (24 cm)</option>
+                                                <option value="38-milan">38 (25 cm)</option>
+                                                <option value="39-milan">39 (25,5 cm)</option>
+                                                <option value="40-milan">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-negras-1">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="milan-1">🛒 Agregar al carrito</button>
                                     </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-guillermina-negras-2">
+                                    <fieldset class="fieldsetstalles" id="hwA-milan-2">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-negras-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-guillermina-negras-2" class="form-control talle">
+                                            <label for="talle-select-milan-2" class="sr-only">Talle Par 2</label>
+                                            <select id="talle-select-milan-2" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-guillermina-negras">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-guillermina-negras">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-guillermina-negras">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-guillermina-negras">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-guillermina-negras">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-guillermina-negras">40 (26 cm de largo de plantilla)</option>
+                                                <option value="35-milan">35 (23 cm)</option>
+                                                <option value="36-milan">36 (23,2 cm)</option>
+                                                <option value="37-milan">37 (24 cm)</option>
+                                                <option value="38-milan">38 (25 cm)</option>
+                                                <option value="39-milan">39 (25,5 cm)</option>
+                                                <option value="40-milan">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-negras-2">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="milan-2">🛒 Agregar al carrito</button>
                                     </fieldset>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- PRODUCTO: Guillerminas Camel -->
-                    <div class="product-item" id="modeload-guillermina-camel">
+                    <!-- PRODUCTO: Trento -->
+                    <div class="product-item" id="modeload-trento">
 
-                        <h2>Guillerminas Camel</h2>
-                        <div class="swiper" id="swiper-guillermina-camel">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 1" src="guillerminafotos/guillerminascamel/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 2" src="guillerminafotos/guillerminascamel/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 3" src="guillerminafotos/guillerminascamel/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 4" src="guillerminafotos/guillerminascamel/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 5" src="guillerminafotos/guillerminascamel/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 6" src="guillerminafotos/guillerminascamel/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 7" src="guillerminafotos/guillerminascamel/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 8" src="guillerminafotos/guillerminascamel/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 9" src="guillerminafotos/guillerminascamel/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 10" src="guillerminafotos/guillerminascamel/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 11" src="guillerminafotos/guillerminascamel/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 12" src="guillerminafotos/guillerminascamel/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 13" src="guillerminafotos/guillerminascamel/13.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 14" src="guillerminafotos/guillerminascamel/14.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 15" src="guillerminafotos/guillerminascamel/15.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 16" src="guillerminafotos/guillerminascamel/16.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 17" src="guillerminafotos/guillerminascamel/17.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Camel - Vista 18" src="guillerminafotos/guillerminascamel/18.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                        <h2>Trento</h2>
+                        <div class="swiper" id="swiper-trento">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Trento - Vista 1" src="nuevosmodeloscontra/10.webp" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 2" src="nuevosmodeloscontra/11.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 3" src="nuevosmodeloscontra/12.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 4" src="nuevosmodeloscontra/13.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 5" src="nuevosmodeloscontra/14.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 6" src="nuevosmodeloscontra/15.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Trento - Vista 7" src="nuevosmodeloscontra/16.webp" loading="lazy"></div>
                             </div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
-                        <div class="swiper-container" id="swiper-thumbnails-guillermina-camel">
+                        <div class="swiper-container" id="swiper-thumbnails-trento">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 1" src="guillerminafotos/guillerminascamel/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 2" src="guillerminafotos/guillerminascamel/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 3" src="guillerminafotos/guillerminascamel/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 4" src="guillerminafotos/guillerminascamel/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 5" src="guillerminafotos/guillerminascamel/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 6" src="guillerminafotos/guillerminascamel/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 7" src="guillerminafotos/guillerminascamel/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 8" src="guillerminafotos/guillerminascamel/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 9" src="guillerminafotos/guillerminascamel/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 10" src="guillerminafotos/guillerminascamel/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 11" src="guillerminafotos/guillerminascamel/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Camel - Thumbnail 12" src="guillerminafotos/guillerminascamel/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 1" src="nuevosmodeloscontra/10.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 2" src="nuevosmodeloscontra/11.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 3" src="nuevosmodeloscontra/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 4" src="nuevosmodeloscontra/13.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 5" src="nuevosmodeloscontra/14.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 6" src="nuevosmodeloscontra/15.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Trento - Thumbnail 7" src="nuevosmodeloscontra/16.webp"></div>
                             </div>
                         </div>
-                        <div class="product-selection" id="talles-guillermina-camel">
+                        <div class="product-selection" id="talles-trento">
                             <div class="product-info-details">
                                 <div class="product-specs">
                                     <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
@@ -840,7 +955,7 @@
                                     <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
                                     <span class="badge badge-limited">STOCK LIMITADO</span>
                                 </div>
-                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestro modelo Trento es el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
 
                                 <div class="size-guide-container">
                                     <div class="size-guide-toggle">
@@ -856,12 +971,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
+                                                <tr><td>35</td><td>23 cm</td></tr>
+                                                <tr><td>36</td><td>23,2 cm</td></tr>
+                                                <tr><td>37</td><td>24 cm</td></tr>
+                                                <tr><td>38</td><td>25 cm</td></tr>
+                                                <tr><td>39</td><td>25,5 cm</td></tr>
+                                                <tr><td>40</td><td>26 cm</td></tr>
                                             </tbody>
                                         </table>
                                         <div class="size-instructions">
@@ -880,14 +995,14 @@
                                     </div>
                                     <div class="quantity-price-selector">
                                         <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-guillermina-camel" type="radio" value="1" />
+                                            <input checked="checked" name="hwA-qty-trento" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
                                                 <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
-                                            <input name="hwA-qty-guillermina-camel" type="radio" value="2" />
+                                            <input name="hwA-qty-trento" type="radio" value="2" />
                                             <div class="option-content">
                                                 <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
                                                 <div class="option-price">$85.000</div>
@@ -897,83 +1012,85 @@
                                     </div>
                                 </div>
                                 <div class="size-selector">
-                                    <fieldset id="hwA-guillermina-camel-1">
+                                    <fieldset id="hwA-trento-1">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-camel-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-guillermina-camel-1" class="form-control talle">
+                                            <label for="talle-select-trento-1" class="sr-only">Talle Par 1</label>
+                                            <select id="talle-select-trento-1" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-guillermina-camel">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-guillermina-camel">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-guillermina-camel">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-guillermina-camel">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-guillermina-camel">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-guillermina-camel">40 (26 cm de largo de plantilla)</option>
+                                                <option value="35-trento">35 (23 cm)</option>
+                                                <option value="36-trento">36 (23,2 cm)</option>
+                                                <option value="37-trento">37 (24 cm)</option>
+                                                <option value="38-trento">38 (25 cm)</option>
+                                                <option value="39-trento">39 (25,5 cm)</option>
+                                                <option value="40-trento">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-camel-1">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="trento-1">🛒 Agregar al carrito</button>
                                     </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-guillermina-camel-2">
+                                    <fieldset class="fieldsetstalles" id="hwA-trento-2">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-camel-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-guillermina-camel-2" class="form-control talle">
+                                            <label for="talle-select-trento-2" class="sr-only">Talle Par 2</label>
+                                            <select id="talle-select-trento-2" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-guillermina-camel">35 (23 cm)</option>
-                                                <option value="36-guillermina-camel">36 (23,5 cm)</option>
-                                                <option value="37-guillermina-camel">37 (24 cm)</option>
-                                                <option value="38-guillermina-camel">38 (24,7 cm)</option>
-                                                <option value="39-guillermina-camel">39 (25,3 cm)</option>
-                                                <option value="40-guillermina-camel">40 (26 cm)</option>
+                                                <option value="35-trento">35 (23 cm)</option>
+                                                <option value="36-trento">36 (23,2 cm)</option>
+                                                <option value="37-trento">37 (24 cm)</option>
+                                                <option value="38-trento">38 (25 cm)</option>
+                                                <option value="39-trento">39 (25,5 cm)</option>
+                                                <option value="40-trento">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-camel-2">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="trento-2">🛒 Agregar al carrito</button>
                                     </fieldset>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- PRODUCTO: Guillerminas Blancas -->
-                    <div class="product-item" id="modeload-guillermina-blancas">
+                    <!-- PRODUCTO: Parma -->
+                    <div class="product-item" id="modeload-parma">
 
-                        <h2>Guillerminas Blancas</h2>
-                        <div class="swiper" id="swiper-guillermina-blancas">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 1" src="guillerminafotos/guillerminasblancas/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 2" src="guillerminafotos/guillerminasblancas/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 3" src="guillerminafotos/guillerminasblancas/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 4" src="guillerminafotos/guillerminasblancas/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 5" src="guillerminafotos/guillerminasblancas/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 6" src="guillerminafotos/guillerminasblancas/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 7" src="guillerminafotos/guillerminasblancas/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 8" src="guillerminafotos/guillerminasblancas/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 9" src="guillerminafotos/guillerminasblancas/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 10" src="guillerminafotos/guillerminasblancas/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 11" src="guillerminafotos/guillerminasblancas/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 12" src="guillerminafotos/guillerminasblancas/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 13" src="guillerminafotos/guillerminasblancas/13.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 14" src="guillerminafotos/guillerminasblancas/14.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 15" src="guillerminafotos/guillerminasblancas/15.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Guillerminas Blancas - Vista 16" src="guillerminafotos/guillerminasblancas/16.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
+                        <h2>Parma</h2>
+                        <div class="swiper" id="swiper-parma">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img alt="Parma - Vista 1" src="nuevosmodeloscontra/17.webp" fetchpriority="high" decoding="async"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 2" src="nuevosmodeloscontra/18.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 3" src="nuevosmodeloscontra/19.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 4" src="nuevosmodeloscontra/20.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 5" src="nuevosmodeloscontra/21.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 6" src="nuevosmodeloscontra/22.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 7" src="nuevosmodeloscontra/23.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 8" src="nuevosmodeloscontra/24.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 9" src="nuevosmodeloscontra/25.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 10" src="nuevosmodeloscontra/26.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 11" src="nuevosmodeloscontra/27.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 12" src="nuevosmodeloscontra/28.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 13" src="nuevosmodeloscontra/29.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 14" src="nuevosmodeloscontra/30.webp" loading="lazy"></div>
+                                <div class="swiper-slide"><img alt="Parma - Vista 15" src="nuevosmodeloscontra/31.webp" loading="lazy"></div>
                             </div>
                             <div class="swiper-button-prev"></div>
                             <div class="swiper-button-next"></div>
                         </div>
-                        <div class="swiper-container" id="swiper-thumbnails-guillermina-blancas">
+                        <div class="swiper" id="swiper-thumbnails-parma">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 1" src="guillerminafotos/guillerminasblancas/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 2" src="guillerminafotos/guillerminasblancas/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 3" src="guillerminafotos/guillerminasblancas/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 4" src="guillerminafotos/guillerminasblancas/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 5" src="guillerminafotos/guillerminasblancas/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 6" src="guillerminafotos/guillerminasblancas/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Guillerminas Blancas - Thumbnail 7" src="guillerminafotos/guillerminasblancas/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 1" src="nuevosmodeloscontra/17.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 2" src="nuevosmodeloscontra/18.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 3" src="nuevosmodeloscontra/19.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 4" src="nuevosmodeloscontra/20.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 5" src="nuevosmodeloscontra/21.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 6" src="nuevosmodeloscontra/22.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 7" src="nuevosmodeloscontra/23.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 8" src="nuevosmodeloscontra/24.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 9" src="nuevosmodeloscontra/25.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 10" src="nuevosmodeloscontra/26.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 11" src="nuevosmodeloscontra/27.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 12" src="nuevosmodeloscontra/28.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 13" src="nuevosmodeloscontra/29.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 14" src="nuevosmodeloscontra/30.webp"></div>
+                                <div class="swiper-slide"><img loading="lazy" alt="Parma - Thumbnail 15" src="nuevosmodeloscontra/31.webp"></div>
                             </div>
                         </div>
-                        <div class="product-selection" id="talles-guillermina-blancas">
+                        <div class="product-selection" id="talles-parma">
                             <div class="product-info-details">
                                 <div class="product-specs">
                                     <span class="spec-item"><strong>Material:</strong> Tela reforzada super flexible</span>
@@ -984,7 +1101,7 @@
                                     <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
                                     <span class="badge badge-limited">STOCK LIMITADO</span>
                                 </div>
-                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
+                                <p class="product-description">¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestro modelo Parma es el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.</p>
 
                                 <div class="size-guide-container">
                                     <div class="size-guide-toggle">
@@ -1000,12 +1117,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
+                                                <tr><td>35</td><td>23 cm</td></tr>
+                                                <tr><td>36</td><td>23,2 cm</td></tr>
+                                                <tr><td>37</td><td>24 cm</td></tr>
+                                                <tr><td>38</td><td>25 cm</td></tr>
+                                                <tr><td>39</td><td>25,5 cm</td></tr>
+                                                <tr><td>40</td><td>26 cm</td></tr>
                                             </tbody>
                                         </table>
                                         <div class="size-instructions">
@@ -1024,14 +1141,14 @@
                                     </div>
                                     <div class="quantity-price-selector">
                                         <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-guillermina-blancas" type="radio" value="1" />
+                                            <input checked="checked" name="hwA-qty-parma" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
                                                 <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
-                                            <input name="hwA-qty-guillermina-blancas" type="radio" value="2" />
+                                            <input name="hwA-qty-parma" type="radio" value="2" />
                                             <div class="option-content">
                                                 <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
                                                 <div class="option-price">$85.000</div>
@@ -1041,568 +1158,35 @@
                                     </div>
                                 </div>
                                 <div class="size-selector">
-                                    <fieldset id="hwA-guillermina-blancas-1">
+                                    <fieldset id="hwA-parma-1">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-blancas-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-guillermina-blancas-1" class="form-control talle">
+                                            <label for="talle-select-parma-1" class="sr-only">Talle Par 1</label>
+                                            <select id="talle-select-parma-1" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-guillermina-blancas">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-guillermina-blancas">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-guillermina-blancas">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-guillermina-blancas">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-guillermina-blancas">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-guillermina-blancas">40 (26 cm de largo de plantilla)</option>
+                                                <option value="35-parma">35 (23 cm)</option>
+                                                <option value="36-parma">36 (23,2 cm)</option>
+                                                <option value="37-parma">37 (24 cm)</option>
+                                                <option value="38-parma">38 (25 cm)</option>
+                                                <option value="39-parma">39 (25,5 cm)</option>
+                                                <option value="40-parma">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-blancas-1">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="parma-1">🛒 Agregar al carrito</button>
                                     </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-guillermina-blancas-2">
+                                    <fieldset class="fieldsetstalles" id="hwA-parma-2">
                                         <div class="form-group">
-                                            <label for="talle-select-guillermina-blancas-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-guillermina-blancas-2" class="form-control talle">
+                                            <label for="talle-select-parma-2" class="sr-only">Talle Par 2</label>
+                                            <select id="talle-select-parma-2" class="form-control talle">
                                                 <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-guillermina-blancas">35 (23 cm)</option>
-                                                <option value="36-guillermina-blancas">36 (23,5 cm)</option>
-                                                <option value="37-guillermina-blancas">37 (24 cm)</option>
-                                                <option value="38-guillermina-blancas">38 (24,7 cm)</option>
-                                                <option value="39-guillermina-blancas">39 (25,3 cm)</option>
-                                                <option value="40-guillermina-blancas">40 (26 cm)</option>
+                                                <option value="35-parma">35 (23 cm)</option>
+                                                <option value="36-parma">36 (23,2 cm)</option>
+                                                <option value="37-parma">37 (24 cm)</option>
+                                                <option value="38-parma">38 (25 cm)</option>
+                                                <option value="39-parma">39 (25,5 cm)</option>
+                                                <option value="40-parma">40 (26 cm)</option>
                                             </select>
                                         </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="guillermina-blancas-2">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCTO: Birk Negras -->
-                    <div class="product-item" id="modeload-birk-negras">
-
-                        <h2>Birk Negras</h2>
-                        <div class="swiper" id="swiper-birk-negras">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 1" src="birknegras/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 2" src="birknegras/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 3" src="birknegras/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 4" src="birknegras/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 5" src="birknegras/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 6" src="birknegras/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Negras - Vista 7" src="birknegras/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                        <div class="swiper-container" id="swiper-thumbnails-birk-negras">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 1" src="birknegras/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 2" src="birknegras/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 3" src="birknegras/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 4" src="birknegras/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 5" src="birknegras/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 6" src="birknegras/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Negras - Thumbnail 7" src="birknegras/7.webp"></div>
-                            </div>
-                        </div>
-                        <div class="product-selection" id="talles-birk-negras">
-                            <div class="product-info-details">
-                                <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Ecocuero</span>
-                                    <span class="spec-item"><strong>Suela:</strong> Antideslizante</span>
-                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                </div>
-                                <div class="product-badges-new">
-                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                                    <span class="badge badge-limited">STOCK LIMITADO</span>
-                                </div>
-                                <p class="product-description">Sandalias de ecocuero camel con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
-
-                                <div class="size-guide-container">
-                                    <div class="size-guide-toggle">
-                                        <h3>GUÍA DE TALLES</h3>
-                                        <span class="toggle-icon">+</span>
-                                    </div>
-                                    <div class="size-guide-content">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>TALLE</th>
-                                                    <th>CENTÍMETROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="size-instructions">
-                                            <h4>¿CÓMO MEDIR?</h4>
-                                            <ol>
-                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
-                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
-                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-price-quantity">
-                                    <div class="promo-explanation">
-                                        <p class="promo-note">* 2 pares por $85.000 (cualquier combinación)</p>
-                                    </div>
-                                    <div class="quantity-price-selector">
-                                        <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-birk-negras" type="radio" value="1" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$60.000</div>
-                                            </div>
-                                        </label>
-                                        <label class="quantity-price-option">
-                                            <input name="hwA-qty-birk-negras" type="radio" value="2" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                                <div class="option-price">$85.000</div>
-                                                <div class="option-save">($42.500 c/par - ¡AHORRÁS $35.000!)</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="size-selector">
-                                    <fieldset id="hwA-birk-negras-1">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-negras-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-birk-negras-1" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-birk-negras">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-negras">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-negras">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-negras">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-negras">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-negras">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-negras-1">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-birk-negras-2">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-negras-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-birk-negras-2" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-birk-negras">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-negras">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-negras">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-negras">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-negras">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-negras">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-negras-2">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCTO: Birk Camel -->
-                    <div class="product-item" id="modeload-birk-camel">
-
-                        <h2>Birk Camel</h2>
-                        <div class="swiper" id="swiper-birk-camel">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 1" src="birkcamel/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 2" src="birkcamel/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 3" src="birkcamel/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 4" src="birkcamel/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 5" src="birkcamel/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 6" src="birkcamel/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 7" src="birkcamel/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 8" src="birkcamel/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 9" src="birkcamel/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 10" src="birkcamel/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 11" src="birkcamel/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Camel - Vista 12" src="birkcamel/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                        <div class="swiper-container" id="swiper-thumbnails-birk-camel">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 1" src="birkcamel/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 2" src="birkcamel/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 3" src="birkcamel/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 4" src="birkcamel/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 5" src="birkcamel/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 6" src="birkcamel/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 7" src="birkcamel/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 8" src="birkcamel/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 9" src="birkcamel/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 10" src="birkcamel/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 11" src="birkcamel/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Camel - Thumbnail 12" src="birkcamel/12.webp"></div>
-                            </div>
-                        </div>
-                        <div class="product-selection" id="talles-birk-camel">
-                            <div class="product-info-details">
-                                <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Ecocuero</span>
-                                    <span class="spec-item"><strong>Suela:</strong> Antideslizante</span>
-                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                </div>
-                                <div class="product-badges-new">
-                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                                    <span class="badge badge-limited">STOCK LIMITADO</span>
-                                </div>
-                                <p class="product-description">Sandalias de ecocuero blanco con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
-
-                                <div class="size-guide-container">
-                                    <div class="size-guide-toggle">
-                                        <h3>GUÍA DE TALLES</h3>
-                                        <span class="toggle-icon">+</span>
-                                    </div>
-                                    <div class="size-guide-content">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>TALLE</th>
-                                                    <th>CENTÍMETROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="size-instructions">
-                                            <h4>¿CÓMO MEDIR?</h4>
-                                            <ol>
-                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
-                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
-                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-price-quantity">
-                                    <div class="promo-explanation">
-                                        <p class="promo-note">* 2 pares por $85.000 (cualquier combinación)</p>
-                                    </div>
-                                    <div class="quantity-price-selector">
-                                        <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-birk-camel" type="radio" value="1" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$60.000</div>
-                                            </div>
-                                        </label>
-                                        <label class="quantity-price-option">
-                                            <input name="hwA-qty-birk-camel" type="radio" value="2" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                                <div class="option-price">$85.000</div>
-                                                <div class="option-save">($42.500 c/par - ¡AHORRÁS $35.000!)</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="size-selector">
-                                    <fieldset id="hwA-birk-camel-1">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-camel-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-birk-camel-1" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-birk-camel">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-camel">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-camel">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-camel">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-camel">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-camel">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-camel-1">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-birk-camel-2">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-camel-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-birk-camel-2" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-birk-camel">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-camel">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-camel">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-camel">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-camel">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-camel">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-camel-2">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCTO: Birk Blancas -->
-                    <div class="product-item" id="modeload-birk-blancas">
-
-                        <h2>Birk Blancas</h2>
-                        <div class="swiper" id="swiper-birk-blancas">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 1" src="birkblancas/1.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 2" src="birkblancas/2.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 3" src="birkblancas/3.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 4" src="birkblancas/4.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 5" src="birkblancas/5.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 6" src="birkblancas/6.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 7" src="birkblancas/7.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 8" src="birkblancas/8.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 9" src="birkblancas/9.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 10" src="birkblancas/10.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 11" src="birkblancas/11.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                                <div class="swiper-slide"><img alt="Birk Blancas - Vista 12" src="birkblancas/12.webp" style="width: 100%; height: auto; object-fit: contain;" loading="lazy"></div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-                        <div class="swiper-container" id="swiper-thumbnails-birk-blancas">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 1" src="birkblancas/1.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 2" src="birkblancas/2.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 3" src="birkblancas/3.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 4" src="birkblancas/4.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 5" src="birkblancas/5.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 6" src="birkblancas/6.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 7" src="birkblancas/7.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 8" src="birkblancas/8.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 9" src="birkblancas/9.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 10" src="birkblancas/10.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 11" src="birkblancas/11.webp"></div>
-                                <div class="swiper-slide"><img loading="lazy" alt="Birk Blancas - Thumbnail 12" src="birkblancas/12.webp"></div>
-                            </div>
-                        </div>
-                        <div class="product-selection" id="talles-birk-blancas">
-                            <div class="product-info-details">
-                                <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Ecocuero</span>
-                                    <span class="spec-item"><strong>Suela:</strong> Antideslizante</span>
-                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                </div>
-                                <div class="product-badges-new">
-                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                                    <span class="badge badge-limited">STOCK LIMITADO</span>
-                                </div>
-                                <p class="product-description">Sandalias de ecocuero negro con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad.</p>
-
-                                <div class="size-guide-container">
-                                    <div class="size-guide-toggle">
-                                        <h3>GUÍA DE TALLES</h3>
-                                        <span class="toggle-icon">+</span>
-                                    </div>
-                                    <div class="size-guide-content">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>TALLE</th>
-                                                    <th>CENTÍMETROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>35</td><td>23</td></tr>
-                                                <tr><td>36</td><td>23,5</td></tr>
-                                                <tr><td>37</td><td>24</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,3</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="size-instructions">
-                                            <h4>¿CÓMO MEDIR?</h4>
-                                            <ol>
-                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
-                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
-                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-price-quantity">
-                                    <div class="promo-explanation">
-                                        <p class="promo-note">* 2 pares por $85.000 (cualquier combinación)</p>
-                                    </div>
-                                    <div class="quantity-price-selector">
-                                        <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-birk-blancas" type="radio" value="1" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$60.000</div>
-                                            </div>
-                                        </label>
-                                        <label class="quantity-price-option">
-                                            <input name="hwA-qty-birk-blancas" type="radio" value="2" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                                <div class="option-price">$85.000</div>
-                                                <div class="option-save">($42.500 c/par - ¡AHORRÁS $35.000!)</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="size-selector">
-                                    <fieldset id="hwA-birk-blancas-1">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-blancas-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-birk-blancas-1" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-birk-blancas">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-blancas">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-blancas">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-blancas">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-blancas">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-blancas">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-blancas-1">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-birk-blancas-2">
-                                        <div class="form-group">
-                                            <label for="talle-select-birk-blancas-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-birk-blancas-2" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-birk-blancas">35 (23 cm de largo de plantilla)</option>
-                                                <option value="36-birk-blancas">36 (23,5 cm de largo de plantilla)</option>
-                                                <option value="37-birk-blancas">37 (24 cm de largo de plantilla)</option>
-                                                <option value="38-birk-blancas">38 (24,7 cm de largo de plantilla)</option>
-                                                <option value="39-birk-blancas">39 (25,3 cm de largo de plantilla)</option>
-                                                <option value="40-birk-blancas">40 (26 cm de largo de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="birk-blancas-2">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- PRODUCTO: Paris Negras -->
-                    <div class="product-item" id="modeload-paris-negras">
-
-                        <h2>Paris Negras</h2>
-                        <div class="swiper" id="swiper-paris-negras">
-                            <div class="swiper-wrapper" style="height: auto;">
-                                <div class="swiper-slide"><img alt="Paris Negras - Vista 1" src="paris2025-negras.webp" style="width: 100%; height: auto; object-fit: contain;" fetchpriority="high" decoding="async"></div>
-                            </div>
-                        </div>
-                        <div class="product-selection" id="talles-paris-negras">
-                            <div class="product-info-details">
-                                <div class="product-specs">
-                                    <span class="spec-item"><strong>Material:</strong> Tela elastizada</span>
-                                    <span class="spec-item"><strong>Suela:</strong> Liviana</span>
-                                    <span class="spec-item"><strong>Detalles:</strong> Bicolor</span>
-                                    <span class="spec-item shipping-free"><strong>Envío:</strong> GRATIS 🚚</span>
-                                </div>
-                                <div class="product-badges-new">
-                                    <span class="badge badge-bestseller">NUEVA TEMPORADA</span>
-                                </div>
-                                <p class="product-description">¡Elegancia urbana para la nueva temporada Primavera-Verano 2025! Nuestras Paris negras combinan comodidad y estilo con su diseño bicolor único. Perfectas para looks diarios con un toque sofisticado.</p>
-
-                                <div class="size-guide-container">
-                                    <div class="size-guide-toggle">
-                                        <h3>GUÍA DE TALLES</h3>
-                                        <span class="toggle-icon">+</span>
-                                    </div>
-                                    <div class="size-guide-content">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>TALLE</th>
-                                                    <th>CENTÍMETROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr><td>35</td><td>22,8</td></tr>
-                                                <tr><td>36</td><td>23,4</td></tr>
-                                                <tr><td>37</td><td>24,3</td></tr>
-                                                <tr><td>38</td><td>24,7</td></tr>
-                                                <tr><td>39</td><td>25,2</td></tr>
-                                                <tr><td>40</td><td>26</td></tr>
-                                                <tr><td>41</td><td>27,5</td></tr>
-                                                <tr><td>42</td><td>28,4</td></tr>
-                                                <tr><td>43</td><td>29,2</td></tr>
-                                                <tr><td>44</td><td>29,8</td></tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="size-instructions">
-                                            <h4>¿CÓMO MEDIR?</h4>
-                                            <ol>
-                                                <li>Elegí una plantilla de un calzado que utilices habitualmente.</li>
-                                                <li>Tomá la medida por el centro del largo de la plantilla (no la base).</li>
-                                                <li>Elegí tu talle acorde al número que te dio la plantilla.</li>
-                                            </ol>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-price-quantity">
-                                    <div class="promo-explanation">
-                                        <p class="promo-note">* 2 pares por $85.000 (cualquier combinación)</p>
-                                    </div>
-                                    <div class="quantity-price-selector">
-                                        <label class="quantity-price-option">
-                                            <input checked="checked" name="hwA-qty-paris-negras" type="radio" value="1" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$60.000</div>
-                                            </div>
-                                        </label>
-                                        <label class="quantity-price-option">
-                                            <input name="hwA-qty-paris-negras" type="radio" value="2" />
-                                            <div class="option-content">
-                                                <div class="option-quantity">2 pares <span class="promo-tag">OFERTA</span></div>
-                                                <div class="option-price">$85.000</div>
-                                                <div class="option-save">($42.500 c/par - ¡AHORRÁS $35.000!)</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="size-selector">
-                                    <fieldset id="hwA-paris-negras-1">
-                                        <div class="form-group">
-                                            <label for="talle-select-paris-negras-1" class="sr-only">Talle Par 1</label>
-                                            <select id="talle-select-paris-negras-1" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 1 --</option>
-                                                <option value="35-paris-negras">35 (22,8 cm de plantilla)</option>
-                                                <option value="36-paris-negras">36 (23,4 cm de plantilla)</option>
-                                                <option value="37-paris-negras">37 (24,3 cm de plantilla)</option>
-                                                <option value="38-paris-negras">38 (24,7 cm de plantilla)</option>
-                                                <option value="39-paris-negras">39 (25,2 cm de plantilla)</option>
-                                                <option value="40-paris-negras">40 (26 cm de plantilla)</option>
-                                                <option value="41-paris-negras">41 (27,5 cm de plantilla)</option>
-                                                <option value="42-paris-negras">42 (28,4 cm de plantilla)</option>
-                                                <option value="43-paris-negras">43 (29,2 cm de plantilla)</option>
-                                                <option value="44-paris-negras">44 (29,8 cm de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="paris-negras-1">🛒 Agregar al carrito</button>
-                                    </fieldset>
-                                    <fieldset class="fieldsetstalles" id="hwA-paris-negras-2">
-                                        <div class="form-group">
-                                            <label for="talle-select-paris-negras-2" class="sr-only">Talle Par 2</label>
-                                            <select id="talle-select-paris-negras-2" class="form-control talle">
-                                                <option value="">-- Selecciona Talle Par 2 --</option>
-                                                <option value="35-paris-negras">35 (22,8 cm de plantilla)</option>
-                                                <option value="36-paris-negras">36 (23,4 cm de plantilla)</option>
-                                                <option value="37-paris-negras">37 (24,3 cm de plantilla)</option>
-                                                <option value="38-paris-negras">38 (24,7 cm de plantilla)</option>
-                                                <option value="39-paris-negras">39 (25,2 cm de plantilla)</option>
-                                                <option value="40-paris-negras">40 (26 cm de plantilla)</option>
-                                                <option value="41-paris-negras">41 (27,5 cm de plantilla)</option>
-                                                <option value="42-paris-negras">42 (28,4 cm de plantilla)</option>
-                                                <option value="43-paris-negras">43 (29,2 cm de plantilla)</option>
-                                                <option value="44-paris-negras">44 (29,8 cm de plantilla)</option>
-                                            </select>
-                                        </div>
-                                        <button type="button" class="add-to-cart-btn" data-model="paris-negras-2">🛒 Agregar al carrito</button>
+                                        <button type="button" class="add-to-cart-btn" data-model="parma-2">🛒 Agregar al carrito</button>
                                     </fieldset>
                                 </div>
                             </div>
@@ -1792,7 +1376,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
 
     <!-- Custom scripts -->
-    <script src="guillerminas-swiper.js"></script>
+    <script src="carrusel-nuevos.js"></script>
     <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
 
@@ -1967,16 +1551,16 @@
           var modeloId;
           var costo;
           switch(modelo) {
-            case 'guillermina':
-              modeloId = '#GUILLERMINA';
+            case 'milan':
+              modeloId = '#MILAN';
               costo = 3700;
               break;
-            case 'birk':
-              modeloId = '#BIRK';
+            case 'trento':
+              modeloId = '#TRENTO';
               costo = 3700;
               break;
-            case 'paris':
-              modeloId = '#PARIS';
+            case 'parma':
+              modeloId = '#PARMA';
               costo = 3700;
               break;
             default:
@@ -2070,16 +1654,16 @@
                             var modeloId;
                             var costo;
                             switch(modelo) {
-                              case 'guillermina':
-                                modeloId = '#GUILLERMINA';
+                              case 'milan':
+                                modeloId = '#MILAN';
                                 costo = 3700;
                                 break;
-                              case 'birk':
-                                modeloId = '#BIRK';
+                              case 'trento':
+                                modeloId = '#TRENTO';
                                 costo = 3700;
                                 break;
-                              case 'paris':
-                                modeloId = '#PARIS';
+                              case 'parma':
+                                modeloId = '#PARMA';
                                 costo = 3700;
                                 break;
                               default:
@@ -2214,8 +1798,16 @@
                 var modeloId;
                 var costo;
                 switch(modelo) {
-                  case 'paris':
-                    modeloId = '#PARIS';
+                  case 'milan':
+                    modeloId = '#MILAN';
+                    costo = 3700;
+                    break;
+                  case 'trento':
+                    modeloId = '#TRENTO';
+                    costo = 3700;
+                    break;
+                  case 'parma':
+                    modeloId = '#PARMA';
                     costo = 3700;
                     break;
                   default:
@@ -2753,6 +2345,158 @@
     </script>
 
 
+
+    <!-- Testimonials Dynamic Loading Script -->
+    <script>
+    (function() {
+        // Lista completa de comentarios disponibles
+        const allTestimonials = [
+            { src: 'comentarios/comentariorecibi1.webp', alt: 'Captura de comentario positivo de clienta 1' },
+            { src: 'comentarios/comentariorecibi2.webp', alt: 'Captura de comentario positivo de clienta 2' },
+            { src: 'comentarios/comentariorecibi4.webp', alt: 'Captura de comentario positivo de clienta 3' },
+            { src: 'comentarios/comentariorecibi5.webp', alt: 'Captura de comentario positivo de clienta 4' },
+            { src: 'comentarios/comentariorecibi6.webp', alt: 'Captura de comentario positivo de clienta 5' },
+            { src: 'comentarios/comentariorecibi7.webp', alt: 'Captura de comentario positivo de clienta 6' },
+            { src: 'comentarios/comentariorecibi8.webp', alt: 'Captura de comentario positivo de clienta 7' },
+            { src: 'comentarios/comentariosig.webp', alt: 'Captura de comentarios de Instagram' },
+            { src: 'comentarios/comentario1-min.webp', alt: 'Testimonio destacado 1' },
+            { src: 'comentarios/comentario2-min.webp', alt: 'Testimonio destacado 2' },
+            { src: 'comentarios/comentario3-min.webp', alt: 'Referencia de clienta satisfecha 1' },
+            { src: 'comentarios/comentario4-min.webp', alt: 'Referencia de clienta satisfecha 2' },
+            { src: 'comentarios/comentario5-min.webp', alt: 'Referencia de clienta satisfecha 3' },
+            { src: 'comentarios/comentariosig2.webp', alt: 'Comentarios adicionales de Instagram' },
+            { src: 'comentarios/1000781400.webp', alt: 'Testimonio de clienta satisfecha' },
+            { src: 'comentarios/1000782704.webp', alt: 'Comentario positivo de compra' },
+            { src: 'comentarios/1000783152.webp', alt: 'Experiencia positiva de clienta' },
+            { src: 'comentarios/1000783153.webp', alt: 'Reseña favorable de producto' },
+            { src: 'comentarios/1000783154.webp', alt: 'Comentario de satisfacción' },
+            { src: 'comentarios/1000783155.webp', alt: 'Testimonio de calidad' },
+            { src: 'comentarios/1000783157.webp', alt: 'Experiencia de compra positiva' },
+            { src: 'comentarios/1000783785-b.webp', alt: 'Comentario de recomendación adicional' },
+            { src: 'comentarios/1000783785.webp', alt: 'Comentario de recomendación' },
+            { src: 'comentarios/1000783786.webp', alt: 'Testimonio de entrega' },
+            { src: 'comentarios/1000786213.webp', alt: 'Reseña de producto' },
+            { src: 'comentarios/1000786214.webp', alt: 'Comentario de calidad' },
+            { src: 'comentarios/1000786216-b.webp', alt: 'Experiencia satisfactoria adicional' },
+            { src: 'comentarios/1000786216.webp', alt: 'Experiencia satisfactoria' },
+            { src: 'comentarios/1000792702.webp', alt: 'Testimonio reciente' },
+            { src: 'comentarios/1000792703.webp', alt: 'Comentario de clienta feliz' },
+            { src: 'comentarios/comentariowsp1.webp', alt: 'Comentario de WhatsApp de clienta satisfecha' },
+            { src: 'comentarios/comentariowsp2.webp', alt: 'Testimonio por WhatsApp de clienta feliz' },
+            { src: 'comentarios/igcomentario1.webp', alt: 'Comentario de Instagram de clienta' }
+        ].sort(() => Math.random() - 0.5); // Mezclar aleatoriamente
+
+        let currentIndex = 0;
+        const itemsPerLoad = 6;
+        let isLoading = false;
+        let allLoaded = false;
+
+        const testimonialsGrid = document.getElementById('testimonials-grid');
+        const loadingIndicator = document.getElementById('testimonials-loading');
+        const backToProductsBtn = document.getElementById('back-to-products');
+        const loadMoreLink = document.getElementById('load-more-testimonials');
+
+        function createTestimonialElement(testimonial, index) {
+            const div = document.createElement('div');
+            div.className = 'testimonial-item';
+            div.style.animationDelay = `${(index % itemsPerLoad) * 0.1}s`;
+
+            const img = document.createElement('img');
+            img.src = testimonial.src;
+            img.alt = testimonial.alt;
+            img.loading = 'lazy';
+
+            img.onload = function() {
+                div.style.opacity = '1';
+                div.style.transform = 'translateY(0)';
+                testimonialsGrid.style.height = 'auto';
+            };
+
+            img.onerror = function() {
+                div.style.display = 'none';
+            };
+
+            div.appendChild(img);
+            return div;
+        }
+
+        function loadTestimonials() {
+            if (isLoading || allLoaded) {
+                return;
+            }
+
+            isLoading = true;
+            loadingIndicator.style.display = 'block';
+            if(loadMoreLink) loadMoreLink.style.display = 'none';
+
+            setTimeout(() => {
+                const endIndex = Math.min(currentIndex + itemsPerLoad, allTestimonials.length);
+
+                for (let i = currentIndex; i < endIndex; i++) {
+                    const testimonialElement = createTestimonialElement(allTestimonials[i], i);
+                    testimonialsGrid.appendChild(testimonialElement);
+                }
+
+                currentIndex = endIndex;
+
+                if (currentIndex >= allTestimonials.length) {
+                    allLoaded = true;
+                    if(loadMoreLink) loadMoreLink.style.display = 'none';
+                } else {
+                    if(loadMoreLink) loadMoreLink.style.display = 'block';
+                }
+
+                loadingIndicator.style.display = 'none';
+                isLoading = false;
+
+                updateBackToProductsButton();
+
+            }, 600);
+        }
+
+        function updateBackToProductsButton() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            const hasItems = cartItems.length > 0;
+
+            if (!hasItems && currentIndex >= itemsPerLoad) {
+                backToProductsBtn.style.display = 'block';
+            } else {
+                backToProductsBtn.style.display = 'none';
+            }
+        }
+
+        window.scrollToProducts = function() {
+            const productSection = document.getElementById('todoslosmodelos');
+            if (productSection) {
+                productSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTestimonials();
+
+            if(loadMoreLink) {
+                loadMoreLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    loadTestimonials();
+                });
+            }
+
+            const cartObserver = new MutationObserver(updateBackToProductsButton);
+            const cartContainer = document.querySelector('.cart-items');
+            if (cartContainer) {
+                cartObserver.observe(cartContainer, {
+                    childList: true,
+                    subtree: true
+                });
+            }
+        });
+
+    })();
+    </script>
 
 </body>
 </html>

@@ -1266,17 +1266,60 @@ $(document).ready(function(){
   });
 
   // --- Sales Notification Popups ---
-  const salesData = [
-    { product: "Guillerminas Negras", city: "CABA", image: "guillerminafotos/1.webp" },
-    { product: "Guillerminas Camel", city: "Córdoba", image: "guillerminafotos/guillerminascamel/1.webp" },
-    { product: "Guillerminas Blancas", city: "Rosario", image: "guillerminafotos/guillerminasblancas/1.webp" },
-    { product: "Guillerminas Negras", city: "La Plata", image: "guillerminafotos/2.webp" },
-    { product: "Guillerminas Camel", city: "Mendoza", image: "guillerminafotos/guillerminascamel/2.webp" },
-    { product: "Guillerminas Blancas", city: "Mar del Plata", image: "guillerminafotos/guillerminasblancas/2.webp" },
-    { product: "Guillerminas Negras", city: "Buenos Aires", image: "guillerminafotos/3.webp" },
-    { product: "Guillerminas Camel", city: "Santa Fe", image: "guillerminafotos/guillerminascamel/3.webp" },
-    { product: "Guillerminas Blancas", city: "Tucumán", image: "guillerminafotos/guillerminasblancas/3.webp" }
-  ];
+  // Detectar el tipo de página para usar los modelos correctos
+  function getSalesDataForCurrentPage() {
+    const pathname = window.location.pathname.toLowerCase();
+
+    // Prioritize contrareembolso pages
+    if (pathname.includes('contrareembolso') || pathname.includes('contrarreembolsonueva')) {
+      // Data for Milán, Trento, Parma
+      return [
+        { product: "Milán", city: "CABA", image: "nuevosmodeloscontra/1.webp" },
+        { product: "Trento", city: "Córdoba", image: "nuevosmodeloscontra/10.webp" },
+        { product: "Parma", city: "Rosario", image: "nuevosmodeloscontra/17.webp" },
+        { product: "Milán", city: "La Plata", image: "nuevosmodeloscontra/2.webp" },
+        { product: "Trento", city: "Mendoza", image: "nuevosmodeloscontra/11.webp" },
+        { product: "Parma", city: "Mar del Plata", image: "nuevosmodeloscontra/18.webp" },
+        { product: "Milán", city: "Buenos Aires", image: "nuevosmodeloscontra/3.webp" },
+        { product: "Trento", city: "Santa Fe", image: "nuevosmodeloscontra/12.webp" },
+        { product: "Parma", city: "Tucumán", image: "nuevosmodeloscontra/19.webp" }
+      ];
+    }
+
+    // Fallback to default models for any other page (including index.html)
+    // Data for Guillerminas, Birk, Paris
+    return [
+      { product: "Guillerminas Negras", city: "CABA", image: "guillerminafotos/1.webp" },
+      { product: "Birk Camel", city: "Córdoba", image: "birkcamel/1.webp" },
+      { product: "Paris Negras", city: "Rosario", image: "paris2025-negras.webp" },
+      { product: "Guillerminas Camel", city: "La Plata", image: "guillerminafotos/guillerminascamel/1.webp" },
+      { product: "Birk Blancas", city: "Mendoza", image: "birkblancas/1.webp" },
+      { product: "Guillerminas Blancas", city: "Mar del Plata", image: "guillerminafotos/guillerminasblancas/1.webp" },
+      { product: "Birk Negras", city: "Buenos Aires", image: "birknegras/1.webp" },
+      { product: "Paris Negras", city: "Santa Fe", image: "paris2025-negras.webp" },
+      { product: "Guillerminas Negras", city: "Tucumán", image: "guillerminafotos/1.webp" }
+    ];
+  }
+
+  // Función para obtener la imagen de respaldo correcta según la página
+  function getFallbackImageForCurrentPage() {
+    const currentUrl = window.location.href.toLowerCase();
+    const isContrareembolso = currentUrl.includes('contrareembolso');
+    const isIndexPage = currentUrl.includes('index.html') || 
+                       currentUrl.endsWith('/') || 
+                       (!currentUrl.includes('contrareembolso') && !currentUrl.includes('.html'));
+
+    if (isContrareembolso) {
+      return 'nuevosmodeloscontra/1.webp'; // Milán para páginas de contrareembolso
+    } else if (isIndexPage) {
+      return 'guillerminafotos/1.webp'; // Guillerminas Negras para index.html
+    } else {
+      return 'guillerminafotos/1.webp'; // Guillerminas Negras para otras páginas de la colección
+    }
+  }
+
+  // Obtener los datos de ventas para la página actual
+  let salesData = getSalesDataForCurrentPage();
 
   // Función para mostrar notificaciones de compra
   function showSaleNotification() {
@@ -1299,7 +1342,7 @@ $(document).ready(function(){
     // Crear la notificación
     const notification = $(`
       <div class="sale-notification">
-        <img src="${sale.image}" alt="${sale.product}" onerror="this.src='roma-negras-1.jpg'">
+        <img src="${sale.image}" alt="${sale.product}" onerror="this.src='${getFallbackImageForCurrentPage()}'">
         <div class="order-info">
           <h3>¡Alguien compró!</h3>
           <p>${sale.product}</p>
@@ -1339,8 +1382,9 @@ $(document).ready(function(){
       'background-color': '#f8f8f8'
     }).on('error', function() {
       // Si la imagen no carga, usar una imagen de respaldo
-      $(this).attr('src', 'roma-negras-1.jpg');
-      console.log('Error al cargar la imagen, usando imagen de respaldo');
+      var fallbackImage = getFallbackImageForCurrentPage();
+      $(this).attr('src', fallbackImage);
+      console.log('Error al cargar la imagen, usando imagen de respaldo:', fallbackImage);
     });
 
     // Estilos para la información del pedido
@@ -1697,12 +1741,12 @@ $(document).ready(function(){
       opacity: 1; \
       transform: translateY(0); \
     }\
-    @media (prefers-reduced-motion: reduce) {\
-      .product-item {\
+    @media (prefers-reduced-motion: reduce){\
+      .product-item{\
         transition: opacity 0.2s ease;\
         transform: none;\
       }\
-      .product-item.animated {\
+      .product-item.animated{\
         transform: none;\
       }\
     }\
@@ -2027,6 +2071,9 @@ $(document).ready(function(){
   // Get product image from model ID
   function getProductImage(model) {
     var images = {
+      'milan': 'nuevosmodeloscontra/1.webp',
+      'trento': 'nuevosmodeloscontra/10.webp',
+      'parma': 'nuevosmodeloscontra/17.webp',
       'guillermina-negras': 'guillerminafotos/1.webp',
       'guillermina-camel': 'guillerminafotos/guillerminascamel/1.webp',
       'guillermina-blancas': 'guillerminafotos/guillerminasblancas/1.webp',
