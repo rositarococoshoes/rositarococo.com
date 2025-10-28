@@ -73,6 +73,144 @@ function isAnyWhatsAppModalActive() {
   }
 }
 
+// Función para mostrar mensajes en el carrito
+window.showCartMessage = function(message, type = 'info', duration = 5000) {
+  console.log('🛒 Mostrando mensaje del carrito:', message, 'Tipo:', type);
+  
+  const cartMessagesArea = document.getElementById('cart-messages');
+  if (!cartMessagesArea) {
+    console.warn('🛒 Área de mensajes del carrito no encontrada');
+    return;
+  }
+
+  // Crear estructura HTML completa del mensaje
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `cart-message cart-message-${type}`;
+  
+  // Crear texto del mensaje
+  const messageText = document.createElement('div');
+  messageText.className = 'message-text';
+  messageText.textContent = message;
+  
+  // Crear botón de cierre
+  const closeButton = document.createElement('button');
+  closeButton.className = 'message-close';
+  closeButton.innerHTML = '×';
+  closeButton.title = 'Cerrar mensaje';
+  
+  // Agregar evento de cierre
+  closeButton.addEventListener('click', function() {
+    if (messageDiv.parentNode) {
+      messageDiv.remove();
+    }
+    // Verificar si el área de mensajes está vacía
+    if (cartMessagesArea.children.length === 0) {
+      cartMessagesArea.style.display = 'none';
+    }
+  });
+  
+  // Ensamblar el mensaje
+  messageDiv.appendChild(messageText);
+  messageDiv.appendChild(closeButton);
+
+  // Insertar mensaje al inicio
+  cartMessagesArea.insertBefore(messageDiv, cartMessagesArea.firstChild);
+
+  // Forzar que el área de mensajes sea visible
+  cartMessagesArea.style.display = 'block';
+  cartMessagesArea.style.visibility = 'visible';
+  cartMessagesArea.style.opacity = '1';
+
+  console.log('🛒 Mensaje agregado al área de mensajes. Total de mensajes:', cartMessagesArea.children.length);
+
+  // Auto-remover mensaje si duration > 0
+  if (duration > 0) {
+    setTimeout(() => {
+      if (messageDiv.parentNode) {
+        messageDiv.remove();
+      }
+      // Verificar si el área de mensajes está vacía
+      if (cartMessagesArea.children.length === 0) {
+        cartMessagesArea.style.display = 'none';
+      }
+    }, duration);
+  }
+};
+
+// Funciones auxiliares para mensajes específicos
+window.showCartSuccess = function(message, duration = 5000) {
+  showCartMessage(message, 'success', duration);
+};
+
+window.showCartError = function(message, duration = 0) {
+  showCartMessage(message, 'error', duration);
+};
+
+window.showCartWarning = function(message, duration = 0) {
+  showCartMessage(message, 'warning', duration);
+};
+
+window.showCartInfo = function(message, duration = 3000) {
+  showCartMessage(message, 'info', duration);
+};
+
+// Función para obtener imagen del producto
+function getProductImage(productValue) {
+  const isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
+  
+  // Para páginas de contrareembolso (Milán, Trento, Parma)
+  if (isContrareembolso) {
+    if (productValue.includes('milan')) {
+      return 'nuevosmodeloscontra/1.webp';
+    } else if (productValue.includes('trento')) {
+      return 'nuevosmodeloscontra/10.webp';
+    } else if (productValue.includes('parma')) {
+      return 'nuevosmodeloscontra/17.webp';
+    }
+  } else {
+    // Para otras páginas
+    if (productValue.includes('guillermina-negras')) {
+      return 'guillerminafotos/1.webp';
+    } else if (productValue.includes('guillermina-camel')) {
+      return 'guillerminafotos/guillerminascamel/1.webp';
+    } else if (productValue.includes('guillermina-blancas')) {
+      return 'guillerminafotos/guillerminasblancas/1.webp';
+    } else if (productValue.includes('birk-negras')) {
+      return 'birknegras/1.webp';
+    } else if (productValue.includes('birk-camel')) {
+      return 'birkcamel/1.webp';
+    } else if (productValue.includes('birk-blancas')) {
+      return 'birkblancas/1.webp';
+    } else if (productValue.includes('paris-negras')) {
+      return 'paris2025-negras.webp';
+    }
+  }
+
+  // Imagen por defecto
+  return isContrareembolso ? 'nuevosmodeloscontra/1.webp' : 'guillerminafotos/1.webp';
+}
+
+// Función para obtener nombre del producto
+function getProductName(productValue) {
+  const isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
+  
+  if (isContrareembolso) {
+    if (productValue.includes('milan')) return 'Milán';
+    if (productValue.includes('trento')) return 'Trento';
+    if (productValue.includes('parma')) return 'Parma';
+  } else {
+    if (productValue.includes('guillermina-negras')) return 'Guillerminas Negras';
+    if (productValue.includes('guillermina-camel')) return 'Guillerminas Camel';
+    if (productValue.includes('guillermina-blancas')) return 'Guillerminas Blancas';
+    if (productValue.includes('birk-negras')) return 'Birk Negras';
+    if (productValue.includes('birk-camel')) return 'Birk Camel';
+    if (productValue.includes('birk-blancas')) return 'Birk Blancas';
+    if (productValue.includes('paris-negras')) return 'Paris Negras';
+  }
+  
+  return 'Producto';
+}
+
 // Initialize functionalities once the DOM is ready
 $(document).ready(function(){
   // --- Cart & Checkout Process Variables ---
@@ -109,6 +247,126 @@ $(document).ready(function(){
 
   // Initialize checkout progress
   updateCheckoutProgress(currentStep);
+
+  // Función para actualizar el progreso del checkout
+  function updateCheckoutProgress(step) {
+    // Actualizar la barra de progreso visual
+    var progressBar = $("#checkout-progress-bar");
+    if (progressBar.length) {
+      var progressWidth = (step / maxStep) * 100;
+      progressBar.css("width", progressWidth + "%");
+    }
+
+    // Actualizar los pasos del checkout
+    $(".checkout-step").removeClass("active completed");
+    
+    for (var i = 1; i <= maxStep; i++) {
+      var stepElement = $(".checkout-step[data-step='" + i + "']");
+      if (i < step) {
+        stepElement.addClass("completed");
+      } else if (i === step) {
+        stepElement.addClass("active");
+      }
+    }
+
+    // También actualizar el progreso principal si existe
+    var checkoutProgress = $("#checkout-progress");
+    if (checkoutProgress.length) {
+      checkoutProgress.find(".progress-step").removeClass("active completed");
+      for (var j = 1; j <= 3; j++) {
+        var progressStep = checkoutProgress.find(".progress-step[data-step='" + j + "']");
+        if (j < step) {
+          progressStep.addClass("completed");
+        } else if (j === step) {
+          progressStep.addClass("active");
+        }
+      }
+    }
+
+    console.log('Progreso del checkout actualizado al paso:', step);
+  }
+
+  // Función para actualizar el carrito
+  function updateCart(itemsArray) {
+    // Actualizar el array global de items del carrito
+    cartItems = itemsArray || [];
+    
+    // Limpiar contenedor de items del carrito
+    var cartItemsContainer = $(".cart-items");
+    cartItemsContainer.empty();
+    
+    // Si hay items, mostrarlos
+    if (itemsArray && itemsArray.length > 0) {
+      // Ocultar mensaje de carrito vacío
+      $('.empty-cart-message').hide();
+      
+      // Crear elementos para cada item
+      itemsArray.forEach(function(item, index) {
+        var itemElement = $('<div>').addClass('cart-item').attr('data-id', index + 1);
+        var itemImage = $('<div>').addClass('cart-item-image');
+        var itemDetails = $('<div>').addClass('cart-item-details');
+        var itemName = $('<div>').addClass('cart-item-name').text(getProductName(item) + ' - Talle ' + item.split('-')[0]);
+        var removeButton = $('<button>').addClass('remove-item').html('&times;').attr('data-id', index + 1);
+        
+        // Agregar imagen del producto
+        var productImg = $('<img>').attr('src', getProductImage(item)).attr('alt', getProductName(item));
+        productImg.on('error', function() {
+          $(this).attr('src', getProductImage(item));
+        });
+        itemImage.append(productImg);
+        
+        itemDetails.append(itemName);
+        itemElement.append(itemImage, itemDetails, removeButton);
+        cartItemsContainer.append(itemElement);
+      });
+      
+      // Configurar eventos para botones de remover
+      $('.remove-item').on('click', function() {
+        var itemId = $(this).data('id');
+        var currentItems = cartItems.slice();
+        currentItems.splice(itemId - 1, 1);
+        
+        // Actualizar el campo de resumen
+        if (summaryInput.length) {
+          summaryInput.val(currentItems.join(', '));
+          summaryInput.trigger('change');
+        }
+        
+        // Actualizar carrito
+        updateCart(currentItems);
+        
+        // Actualizar botón de checkout
+        if (currentItems.length > 0) {
+          checkoutBtn.removeClass('btn-disabled').text('Continuar al Envío →');
+        } else {
+          checkoutBtn.addClass('btn-disabled').text('Carrito vacío');
+        }
+      });
+      
+    } else {
+      // Mostrar mensaje de carrito vacío
+      $('.empty-cart-message').show();
+    }
+    
+    // Actualizar contador del carrito
+    var itemCount = itemsArray ? itemsArray.length : 0;
+    $('.cart-count, .cart-button-count').text(itemCount);
+    
+    // Actualizar total del carrito (texto simple)
+    var cartTotalElement = $(".cart-total span");
+    if (cartTotalElement.length) {
+      const isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
+      if (itemCount === 1) {
+        cartTotalElement.text(isContrareembolso ? "$55.000" : "$60.000");
+      } else if (itemCount === 2) {
+        cartTotalElement.text(isContrareembolso ? "$85.000" : "$95.000");
+      } else {
+        cartTotalElement.text("$0");
+      }
+    }
+    
+    console.log('Carrito actualizado con', itemCount, 'items:', itemsArray);
+  }
 
   // Sistema unificado de eventos del carrito
   var cartEventHandlers = {
@@ -164,90 +422,6 @@ $(document).ready(function(){
         cartState.close();
         console.log('🛒 Carrito cerrado manualmente');
       });
-
-      // Manejar el cierre del popover de WhatsApp para restaurar comportamiento normal del carrito
-      // Buscar cualquier modal de WhatsApp disponible
-      const whatsappModalTypes = [
-        'whatsapp-modal',
-        'whatsapp-direct-modal',
-        'whatsapp-popover',
-        'whatsapp-widget',
-        'wa-modal',
-        'wa-popover'
-      ];
-
-      let whatsappModal = null;
-      for (const modalType of whatsappModalTypes) {
-        const modal = document.getElementById(modalType);
-        if (modal) {
-          whatsappModal = modal;
-          break;
-        }
-      }
-
-      if (whatsappModal) {
-        // Usar MutationObserver para detectar cuando el popover se cierra
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-              // Usar la función robusta para verificar si algún modal está activo
-              const isAnyModalActive = isAnyWhatsAppModalActive();
-              console.log('🛒 MutationObserver detectó cambio en modal:', {
-                isAnyModalActive: isAnyModalActive,
-                modalClassList: whatsappModal.classList.toString(),
-                cartIsOpen: cartState.isOpen
-              });
-
-              if (!isAnyModalActive) {
-                // El popover se cerró - asegurar que el carrito se mantenga abierto
-                console.log('🛒 Popover de WhatsApp cerrado - asegurando que el carrito permanece abierto');
-
-                // Forzar que el carrito se mantenga abierto después de un breve delay
-                setTimeout(() => {
-                  if (!isAnyWhatsAppModalActive()) {
-                    // Solo mantener abierto si no hay otro modal activo
-                    console.log('🛒 Estado del carrito antes de mantener abierto:', {
-                      isOpen: cartState.isOpen,
-                      isAnimating: cartState.isAnimating,
-                      hasItems: cartState.hasItems
-                    });
-
-                    // Verificar si el carrito está realmente cerrado antes de abrirlo
-                    if (!cartState.isOpen) {
-                      console.log('🛒 Carrito está cerrado, abriéndolo...');
-                      cartState.open();
-                      console.log('🛒 Carrito mantenido abierto después del cierre del popover');
-                    } else {
-                      console.log('🛒 Carrito ya estaba abierto, no es necesario abrirlo');
-                    }
-
-                    // Verificación adicional después de abrir
-                    setTimeout(() => {
-                      console.log('🛒 Verificación después de mantener abierto:', {
-                        isOpen: cartState.isOpen,
-                        display: $('#mini-cart').css('display'),
-                        visibility: $('#mini-cart').css('visibility'),
-                        opacity: $('#mini-cart').css('opacity')
-                      });
-                    }, 50);
-                  } else {
-                    console.log('🛒 Otro modal de WhatsApp está activo, no se abre el carrito');
-                  }
-                }, 100);
-              }
-            }
-          });
-        });
-
-        observer.observe(whatsappModal, {
-          attributes: true,
-          attributeFilter: ['class']
-        });
-
-        console.log('🛒 MutationObserver configurado para modal de WhatsApp:', whatsappModal.id);
-      } else {
-        console.log('🛒 No se encontró ningún modal de WhatsApp para observar');
-      }
 
       // Prevenir que los clics dentro del carrito lo cierren
       $('#mini-cart').on('click.cart', function(e) {
@@ -515,7 +689,7 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
-  var summaryInput = window.location.href.includes('contrareembolso') ? $("#286442883") : $("#1471599855"); // ID dinámico según la página
+  var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855"); // ID dinámico según la página
   var summaryDisplay = $("#display-selected-items"); // Updated ID for display
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
@@ -538,20 +712,19 @@ $(document).ready(function(){
     if (summaryArray.length > 0) {
       updateCart(summaryArray);
 
-
       // Actualizar el texto del total en el resumen del pedido
-      var isContrareembolso = window.location.href.includes('contrareembolso');
+      var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
       var totalPriceText = "";
 
       if (summaryArray.length === 1) {
         if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="55000">55.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>';
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
         }
       } else if (summaryArray.length === 2) {
         if (isContrareembolso) {
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
         }
@@ -708,139 +881,8 @@ $(document).ready(function(){
     // Update cart items
     updateCart(summaryArray);
 
-    // Rastrear evento de Facebook Pixel - AddToCart
-    if (typeof fbq !== 'undefined') {
-      (async function() {
-      // Extraer información del producto
-      var productInfo = currentVal.split('-');
-      var size = productInfo[0];
-      var productName = '';
-
-      // Determinar el nombre del producto basado en el valor seleccionado
-      if (currentVal.includes('guillermina-negras')) {
-        productName = 'Guillerminas Negras';
-      } else if (currentVal.includes('guillermina-camel')) {
-        productName = 'Guillerminas Camel';
-      } else if (currentVal.includes('guillermina-blancas')) {
-        productName = 'Guillerminas Blancas';
-      } else if (currentVal.includes('roma-negras')) {
-        productName = 'Botineta Roma Negras';
-      } else if (currentVal.includes('roma-suela')) {
-        productName = 'Botineta Roma Suela';
-      } else if (currentVal.includes('siena2025')) {
-        productName = 'Borcego Siena 2025';
-      } else if (currentVal.includes('venecia-negras')) {
-        productName = 'Venecia Negras';
-      } else if (currentVal.includes('paris-negras')) {
-        productName = 'Paris Negras';
-      } else if (currentVal.includes('paris-camel')) {
-        productName = 'Paris Camel';
-      } else if (currentVal.includes('paris-verde')) {
-        productName = 'Paris Verde';
-      }
-
-      // Determinar el precio basado en la cantidad de productos en el carrito
-      var price = summaryArray.length === 1 ? 60000 : 47500;
-      if (window.location.href.includes('contrareembolso')) {
-        price = summaryArray.length === 1 ? 60000 : 47500;
-      }
-
-      // Enviar el evento AddToCart con tracking dual (cliente + servidor)
-      // console.log('Enviando evento AddToCart a Facebook Pixel:', productName, size, price);
-
-      // Generar Event ID único para deduplicación
-      const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-
-      const eventData = {
-        content_name: productName,
-        content_type: 'product',
-        content_ids: [currentVal],
-        contents: [
-          {
-            id: currentVal,
-            quantity: 1,
-            item_price: price
-          }
-        ],
-        value: price,
-        currency: 'ARS'
-      };
-
-      // 1. Enviar a Facebook (Cliente)
-      fbq('track', 'AddToCart', {
-        ...eventData,
-        event_id: eventId
-      });
-
-      // 2. Obtener parámetros de Facebook (FBC/FBP)
-      const fbParams = typeof getFacebookParams === 'function' ? getFacebookParams() : {
-        fbc: getCookie('_fbc') || '',
-        fbp: getCookie('_fbp') || ''
-      };
-
-      // 3. Función para obtener timestamp correcto para Argentina (UTC-3)
-      function getArgentinaTimestamp() {
-        const now = new Date();
-        const argentinaTime = new Date(now.getTime() - (3 * 60 * 60 * 1000));
-        return Math.floor(argentinaTime.getTime() / 1000);
-      }
-
-      // 4. Función para obtener IP del cliente
-      async function getClientIP() {
-        try {
-          const response = await fetch('https://api.ipify.org?format=json');
-          const data = await response.json();
-          return data.ip;
-        } catch (error) {
-          try {
-            const response2 = await fetch('https://httpbin.org/ip');
-            const data2 = await response2.json();
-            return data2.origin;
-          } catch (error2) {
-            return '';
-          }
-        }
-      }
-
-      const clientIP = await getClientIP();
-
-      // 5. Enviar al servidor (N8N) en formato para Facebook Events API
-      const facebookEventData = {
-        event_name: 'AddToCart',
-        event_id: eventId,
-        event_time: getArgentinaTimestamp(), // Timestamp correcto para Argentina
-        action_source: 'website',
-        event_source_url: window.location.href,
-        user_data: {
-          client_ip_address: clientIP, // IP del cliente obtenida
-          client_user_agent: navigator.userAgent,
-          // NO incluir email en AddToCart - aún no se ha capturado
-          fbc: fbParams.fbc,
-          fbp: fbParams.fbp
-        },
-        custom_data: eventData
-      };
-
-      // Enviar al webhook en formato N8N
-      fetch('https://sswebhookss.odontolab.co/webhook/9dfb840b-2a21-4277-8aec-1666bfaaac89', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          data: [facebookEventData] // Array con el evento, listo para Facebook Events API
-        })
-      }).then(() => {
-        console.log('✅ AddToCart enviado al servidor - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
-      }).catch(error => {
-        // Error silencioso para no afectar UX
-        console.error('Error enviando AddToCart al servidor:', error);
-      });
-      })(); // Cerrar función async
-    }
-
     // Mostrar mensajes en el carrito y mostrar el menú automáticamente
-    var isContrareembolso = window.location.href.includes('contrareembolso');
+    var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
 
     // Para el primer par:
     if (summaryArray.length === 1) {
@@ -850,8 +892,9 @@ $(document).ready(function(){
 
       // Mensaje único y claro con toda la información necesaria
       setTimeout(() => {
+        $('#cart-messages').empty();
         if (isContrareembolso) {
-          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
+          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $30.000 más ($42.500 cada uno) y llevátelos a un precio especial!', 'success');
         } else {
           showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
         }
@@ -866,8 +909,9 @@ $(document).ready(function(){
 
       // Mensaje único consolidado con toda la información
       setTimeout(() => {
+        $('#cart-messages').empty();
         if (isContrareembolso) {
-          showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $25.000! El descuento se aplicó automáticamente.', 'success');
+          showCartMessage('🎉 ¡Perfecto! 2 pares por $85.000 ($42.500 c/u) - ¡Ahorraste $35.000! El descuento se aplicó automáticamente.', 'success');
         } else {
           showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $45.000! El descuento se aplicó automáticamente.', 'success');
         }
@@ -877,9 +921,10 @@ $(document).ready(function(){
     // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
+    var totalPrice = 0;
 
     // Detectar si estamos en la página de contrareembolso
-    var isContrareembolso = window.location.href.includes('contrareembolso');
+    var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
 
     if (pairCount >= 1) {
       // Activate checkout button
@@ -890,7 +935,7 @@ $(document).ready(function(){
         // Usar precios diferentes según la página
         if (isContrareembolso) {
           totalPrice = 60000; // Precio para 1 par en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>'; // Updated text
         } else {
           totalPrice = 60000; // Precio para 1 par en prepago
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text
@@ -903,15 +948,15 @@ $(document).ready(function(){
         // Ya no mostramos notificación aquí, se mostrará solo una vez más abajo
 
         // No forzamos el scroll al formulario, solo lo hacemos visible
-      } else if (pairCount === 2) {
-        // Usar precios diferentes según la página
-        if (isContrareembolso) {
-          totalPrice = 95000; // Precio para 2 pares en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
-        } else {
-          totalPrice = 95000; // Precio para 2 pares en prepago
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
-        }
+    } else if (pairCount === 2) {
+      // Usar precios diferentes según la página
+      if (isContrareembolso) {
+        totalPrice = 85000; // Precio para 2 pares en contrareembolso
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>'; // Updated text
+      } else {
+        totalPrice = 95000; // Precio para 2 pares en prepago
+        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
+      }
 
         // Asegurarse de que el formulario esté visible
         restOfForm.removeClass('hidden inactive').addClass('active');
@@ -975,7 +1020,7 @@ $(document).ready(function(){
 
       // Focus the first field
       setTimeout(function() {
-        if (window.location.href.includes('contrareembolso')) {
+        if ((typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE)) {
           $("#1214200077").focus();
         } else {
           $("#1465946249").focus();
@@ -983,16 +1028,16 @@ $(document).ready(function(){
       }, 500);
 
       // Mostrar notificación según la cantidad de productos
-      var isContrareembolso = window.location.href.includes('contrareembolso');
+      var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
       if (cartItems.length === 1) {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $30.000 más!', 'info');
         } else {
           showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         }
       } else {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
         } else {
           showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         }
@@ -1047,16 +1092,16 @@ $(document).ready(function(){
       updateCheckoutProgress(currentStep);
 
       // Mostrar notificación según la cantidad de productos
-      var isContrareembolso = window.location.href.includes('contrareembolso');
+      var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
       if (cartItems.length === 1) {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
+          showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $30.000 más!', 'info');
         } else {
           showNotification('Completa tus datos para finalizar la compra. ¡Recuerda que puedes agregar otro par por solo $35.000 más!', 'info');
         }
       } else {
         if (isContrareembolso) {
-          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
+          showNotification('Completa tus datos para finalizar la compra con tu precio especial de $85.000 por 2 pares', 'success');
         } else {
           showNotification('Completa tus datos para finalizar la compra con tu precio especial de $95.000 por 2 pares', 'success');
         }
@@ -1065,1225 +1110,6 @@ $(document).ready(function(){
       showNotification('Agrega productos a tu carrito para continuar', 'error');
     }
   });
-
-  // --- Form Input Formatting & Live Update ---
-  $('#1465946249').on('input blur', function() {
-    $(this).val($(this).val().trim().toLowerCase());
-  });
-
-  $('#541001873').on('input', function() {
-    $(this).val($(this).val().replace(/[\s.]/g, ''));
-  });
-
-  $('#53830725').on('input', function() {
-    let value = $(this).val().replace(/[\s-+\.]/g, '');
-    if (value.startsWith('549')) value = value.substring(3);
-    else if (value.startsWith('54')) value = value.substring(2);
-    while (value.startsWith('0') && value.length > 1) value = value.substring(1);
-    $(this).val(value.replace(/\D/g, ''));
-  });
-
-  // Update summary as user fills in form fields
-  // Usar selectores dinámicos según la página
-  if (window.location.href.includes('contrareembolso')) {
-    $("#1211347450, #1214200077, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change input', function() {
-      $("#help-nombre").text($("#1211347450").val() || '-');
-      $("#help-wapp").text($("#501094818").val() || '-');
-      $("#help-email").text($("#1214200077").val() || '-');
-      $("#help-calleyaltura").text($("#394819614").val() || '-');
-      $("#help-localidad").text($("#2081271241").val() || '-');
-      $("#help-provincia").text($("#1440375758 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
-      $("#help-cp").text($("#183290493").val() || '-');
-
-    });
-  } else {
-    $("#1460904554, #1465946249, #53830725, #951592426, #1743418466, #59648134, #1005165410, #541001873").on('keyup change input', function() {
-      $("#help-nombre").text($("#1460904554").val() || '-');
-      $("#help-wapp").text($("#53830725").val() || '-');
-      $("#help-email").text($("#1465946249").val() || '-');
-      $("#help-calleyaltura").text($("#951592426").val() || '-');
-      $("#help-localidad").text($("#1743418466").val() || '-');
-      $("#help-provincia").text($("#59648134 option:selected").text().replace('-- Selecciona tu Provincia --','') || '-');
-      $("#help-cp").text($("#1005165410").val() || '-');
-      $("#help-dni").text($("#541001873").val() || '-');
-    });
-  }
-
-  // Actualizar el campo de fecha de entrega
-  $("#1756027935").on('keyup change input', function() {
-    $("#help-diayhora").text($("#1756027935").val() || '-'); // Added for delivery date
-  });
-
-  // Función para actualizar la dirección combinada
-  function updateCombinedAddress() {
-    // Combine address fields for display
-    let fullAddress = [
-      $("#help-calleyaltura").text(),
-      $("#help-localidad").text(),
-      $("#help-cp").text(),
-      $("#help-provincia").text()
-    ].filter(Boolean).join(', ').replace(/ ,/g, ',');
-
-    $("#help-address-combined").text(fullAddress || '-');
-  }
-
-  // Actualizar la dirección combinada cuando cambie cualquier campo de dirección
-  $("#help-calleyaltura, #help-localidad, #help-cp, #help-provincia").on('DOMSubtreeModified', updateCombinedAddress);
-
-  // Initial trigger for province and delivery date
-  if (window.location.href.includes('contrareembolso')) {
-    $("#1440375758, #1756027935").trigger('change');
-  } else {
-    $("#59648134, #1756027935").trigger('change');
-  }
-
-  // --- Discount Logic ---
-  $("#comoabona").change(function() {
-    var selectedPayment = $(this).val();
-    var isCBU = (selectedPayment === "cbu");
-    var discountText = isCBU ? ' <span style="color:#5a8f3e; font-weight:bold;">(10% OFF Incluido)</span>' : '';
-
-    $(".preciototalaobservar").each(function() {
-      var $priceSpan = $(this);
-      var originalPrice = $priceSpan.data('original-price');
-
-      if (typeof originalPrice === 'undefined') {
-        originalPrice = parseFloat($priceSpan.text().replace(/\./g, '').replace(',', '.'));
-        $priceSpan.data('original-price', originalPrice);
-      }
-
-      var priceToShow = isCBU ? Math.round(originalPrice * 0.90) : originalPrice;
-      $priceSpan.text(priceToShow.toLocaleString('es-AR', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-      }).replace(/,/g, '.'));
-    });
-
-    // Update the main total display to show the discount text if applicable
-    var $totalPriceElement = $("#preciototal");
-    var currentHtml = $totalPriceElement.html();
-
-    // Remove previous discount text before adding new one
-    currentHtml = currentHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
-
-    if (isCBU) {
-      // Add discount text after the price span
-      currentHtml = currentHtml.replace(/(<\/span>)/, '$1' + discountText);
-    }
-
-    $totalPriceElement.html(currentHtml);
-
-    // Update floating summary as well if it exists
-    var $floatingPriceSummary = $("#floating-price-summary");
-    if ($floatingPriceSummary.length > 0) {
-      var floatingHtml = $floatingPriceSummary.html();
-      floatingHtml = floatingHtml.replace(/ <span style="color:#5a8f3e; font-weight:bold;">\(10% OFF Incluido\)<\/span>/g, '');
-      if (isCBU) {
-        floatingHtml = floatingHtml.replace(/(<\/span>)/, '$1' + discountText);
-      }
-      $floatingPriceSummary.html(floatingHtml);
-    }
-  });
-
-  // Show WhatsApp button after a delay - REMOVED, no WhatsApp button in this version
-  // $("#whatsapp").delay(3000).fadeIn(400);
-
-  // Store page URL for tracking without query parameters
-  // This is also used as an anti-spam measure - real users will always have this field filled
-  $("#1209868979").val(window.location.origin + window.location.pathname);
-
-  // Ensure the landing URL is always set for real users
-  if (!$("#1209868979").val()) {
-    $("#1209868979").val(window.location.origin + window.location.pathname);
-  }
-
-  // --- Form Submission Logic ---
-  // Nota: La lógica de envío del formulario ahora está en form-handler.js
-  // Este código solo realiza validaciones iniciales y luego permite que form-handler.js maneje el resto
-  $('#bootstrapForm').submit(function (event) {
-    // No usamos event.preventDefault() aquí para permitir que form-handler.js maneje el envío
-
-    var $form = $(this);
-    var $submitButton = $('#botoncomprar');
-
-    // Bot detection - Multiple methods
-    // 1. Honeypot field check
-    if ($('#website').val() !== '') {
-      console.log('Bot detected via honeypot field.');
-      return false;
-    }
-
-    // 2. Landing URL check - Real users will always have this field filled
-    const landingUrl = $('#1209868979').val();
-    if (!landingUrl || landingUrl.trim() === '') {
-      console.log('Bot detected: Empty landing URL field.');
-      return false;
-    }
-
-    // Form validation
-    if (!this.checkValidity()) {
-      alert('Por favor, completa todos los campos obligatorios (*) correctamente.');
-      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false);
-      $form.find(':invalid').first().focus();
-      return false;
-    }
-
-    // Check if products were selected
-    const talleselegidos = window.location.href.includes('contrareembolso') ? $('#286442883').val() : $('#1471599855').val(); // ID dinámico según la página
-    // console.log("Talles elegidos:", talleselegidos); // Debug log
-
-    // Mejorar la validación para manejar correctamente el formato "valor1, valor2, "
-    const itemsArray = talleselegidos ? talleselegidos.split(', ').filter(item => item && item.trim() !== '') : [];
-    // console.log("Items filtrados para validación:", itemsArray);
-
-    if (!talleselegidos || itemsArray.length === 0) {
-      alert('¡No has seleccionado ningún par! Elige tus modelos y talles.');
-      $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Correct button text
-      $('html, body').animate({
-        scrollTop: $("#todoslosmodelos").offset().top - 20
-      }, 500);
-      return false;
-    }
-
-    // Check WhatsApp validation status before submitting
-    const whatsappInput = window.location.href.includes('contrareembolso') ? getInputElement("501094818") : getInputElement("53830725"); // ID dinámico según la página
-    const errorElement = getErrorElement(); // Get the specific error element for WhatsApp
-    if (!whatsappInput || !errorElement || !errorElement.classList.contains('valid')) {
-        alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
-        $submitButton.val('Confirmar y Pagar 🛒').prop('disabled', false); // Correct button text
-        if (whatsappInput) whatsappInput.focus();
-        return false;
-    }
-
-    // Mostrar el spinner de carga
-    $submitButton.val('Procesando...').prop('disabled', true);
-    $('.loading-overlay').addClass('visible');
-
-    // console.log("Validación inicial completada. Permitiendo que form-handler.js maneje el envío.");
-
-    // Permitir que form-handler.js maneje el resto del proceso
-    // No hacemos return false aquí para permitir que el evento continúe
-  });
-
-  // --- Sales Notification Popups ---
-  // Detectar el tipo de página para usar los modelos correctos
-  function getSalesDataForCurrentPage() {
-    const pathname = window.location.pathname.toLowerCase();
-
-    // Prioritize contrareembolso pages
-    if (pathname.includes('contrareembolso') || pathname.includes('contrarreembolsonueva')) {
-      // Data for Milán, Trento, Parma
-      return [
-        { product: "Milán", city: "CABA", image: "nuevosmodeloscontra/1.webp" },
-        { product: "Trento", city: "Córdoba", image: "nuevosmodeloscontra/10.webp" },
-        { product: "Parma", city: "Rosario", image: "nuevosmodeloscontra/17.webp" },
-        { product: "Milán", city: "La Plata", image: "nuevosmodeloscontra/2.webp" },
-        { product: "Trento", city: "Mendoza", image: "nuevosmodeloscontra/11.webp" },
-        { product: "Parma", city: "Mar del Plata", image: "nuevosmodeloscontra/18.webp" },
-        { product: "Milán", city: "Buenos Aires", image: "nuevosmodeloscontra/3.webp" },
-        { product: "Trento", city: "Santa Fe", image: "nuevosmodeloscontra/12.webp" },
-        { product: "Parma", city: "Tucumán", image: "nuevosmodeloscontra/19.webp" }
-      ];
-    }
-
-    // Fallback to default models for any other page (including index.html)
-    // Data for Guillerminas, Birk, Paris
-    return [
-      { product: "Guillerminas Negras", city: "CABA", image: "guillerminafotos/1.webp" },
-      { product: "Birk Camel", city: "Córdoba", image: "birkcamel/1.webp" },
-      { product: "Paris Negras", city: "Rosario", image: "paris2025-negras.webp" },
-      { product: "Guillerminas Camel", city: "La Plata", image: "guillerminafotos/guillerminascamel/1.webp" },
-      { product: "Birk Blancas", city: "Mendoza", image: "birkblancas/1.webp" },
-      { product: "Guillerminas Blancas", city: "Mar del Plata", image: "guillerminafotos/guillerminasblancas/1.webp" },
-      { product: "Birk Negras", city: "Buenos Aires", image: "birknegras/1.webp" },
-      { product: "Paris Negras", city: "Santa Fe", image: "paris2025-negras.webp" },
-      { product: "Guillerminas Negras", city: "Tucumán", image: "guillerminafotos/1.webp" }
-    ];
-  }
-
-  // Función para obtener la imagen de respaldo correcta según la página
-  function getFallbackImageForCurrentPage() {
-    const currentUrl = window.location.href.toLowerCase();
-    const isContrareembolso = currentUrl.includes('contrareembolso');
-    const isIndexPage = currentUrl.includes('index.html') || 
-                       currentUrl.endsWith('/') || 
-                       (!currentUrl.includes('contrareembolso') && !currentUrl.includes('.html'));
-
-    if (isContrareembolso) {
-      return 'nuevosmodeloscontra/1.webp'; // Milán para páginas de contrareembolso
-    } else if (isIndexPage) {
-      return 'guillerminafotos/1.webp'; // Guillerminas Negras para index.html
-    } else {
-      return 'guillerminafotos/1.webp'; // Guillerminas Negras para otras páginas de la colección
-    }
-  }
-
-  // Obtener los datos de ventas para la página actual
-  let salesData = getSalesDataForCurrentPage();
-
-  // Función para mostrar notificaciones de compra
-  function showSaleNotification() {
-    // Crear el contenedor de notificaciones si no existe
-    if (!$('#sale-notification-container').length) {
-      $('<div id="sale-notification-container"></div>').css({
-        'position': 'fixed',
-        'bottom': '90px',
-        'right': '20px',
-        'z-index': '9998',
-        'width': '280px',
-        'pointer-events': 'none'
-      }).appendTo('body');
-    }
-
-    // Seleccionar una venta aleatoria
-    const sale = salesData[Math.floor(Math.random() * salesData.length)];
-    console.log('Mostrando notificación de compra con imagen:', sale.image);
-
-    // Crear la notificación
-    const notification = $(`
-      <div class="sale-notification">
-        <img src="${sale.image}" alt="${sale.product}" onerror="this.src='${getFallbackImageForCurrentPage()}'">
-        <div class="order-info">
-          <h3>¡Alguien compró!</h3>
-          <p>${sale.product}</p>
-          <div class="customer-info">
-            <span>en ${sale.city}</span>
-          </div>
-        </div>
-        <span class="close">&times;</span>
-      </div>
-    `);
-
-    // Estilos para la notificación
-    notification.css({
-      'display': 'flex',
-      'align-items': 'center',
-      'background-color': 'white',
-      'border-radius': '8px',
-      'box-shadow': '0 2px 10px rgba(0,0,0,0.2)',
-      'padding': '12px',
-      'margin-bottom': '10px',
-      'border-left': '3px solid #4CAF50',
-      'transform': 'translateX(120%)',
-      'opacity': '0',
-      'transition': 'transform 0.3s ease, opacity 0.3s ease',
-      'pointer-events': 'auto',
-      'position': 'relative'
-    });
-
-    // Estilos para la imagen
-    notification.find('img').css({
-      'width': '50px',
-      'height': '50px',
-      'object-fit': 'cover',
-      'border-radius': '4px',
-      'margin-right': '10px',
-      'border': '1px solid #ddd',
-      'background-color': '#f8f8f8'
-    }).on('error', function() {
-      // Si la imagen no carga, usar una imagen de respaldo
-      var fallbackImage = getFallbackImageForCurrentPage();
-      $(this).attr('src', fallbackImage);
-      console.log('Error al cargar la imagen, usando imagen de respaldo:', fallbackImage);
-    });
-
-    // Estilos para la información del pedido
-    notification.find('.order-info').css({
-      'flex': '1'
-    });
-
-    notification.find('h3').css({
-      'margin': '0 0 3px 0',
-      'font-size': '14px',
-      'font-weight': '600'
-    });
-
-    notification.find('p').css({
-      'margin': '0 0 3px 0',
-      'font-size': '13px'
-    });
-
-    notification.find('.customer-info').css({
-      'font-size': '12px',
-      'color': '#666'
-    });
-
-    // Estilos para el botón de cierre
-    notification.find('.close').css({
-      'position': 'absolute',
-      'top': '5px',
-      'right': '8px',
-      'font-size': '16px',
-      'cursor': 'pointer',
-      'color': '#999'
-    }).on('click', function() {
-      notification.css({
-        'transform': 'translateX(120%)',
-        'opacity': '0'
-      });
-      setTimeout(function() {
-        notification.remove();
-      }, 300);
-    });
-
-    // Agregar al contenedor
-    $('#sale-notification-container').append(notification);
-
-    // Mostrar con animación
-    setTimeout(function() {
-      notification.css({
-        'transform': 'translateX(0)',
-        'opacity': '1'
-      });
-
-      // Ocultar automáticamente después de 5 segundos
-      setTimeout(function() {
-        notification.css({
-          'transform': 'translateX(120%)',
-          'opacity': '0'
-        });
-        setTimeout(function() {
-          notification.remove();
-        }, 300);
-      }, 5000);
-    }, 100);
-  }
-
-  // Mostrar notificación de compra solo una vez por sesión
-  // Mostrar notificación de compra solo una vez por sesión, pero con repetición
-  let notificationInterval;
-  const initialDelay = 13000; // 13 segundos
-  const minRepeatDelay = 10000; // 10 segundos
-  const maxRepeatDelay = 20000; // 20 segundos
-
-  function startSalesNotifications() {
-    if (!sessionStorage.getItem('saleNotificationShown')) {
-      showSaleNotification();
-      sessionStorage.setItem('saleNotificationShown', 'true'); // Mark as shown for the session
-
-      // Start repeating notifications after the initial one
-      notificationInterval = setInterval(function() {
-        showSaleNotification();
-      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
-    } else {
-      // If already shown in this session, just start repeating
-      notificationInterval = setInterval(function() {
-        showSaleNotification();
-      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
-    }
-  }
-
-  // Clear sessionStorage on page load to allow notifications in new sessions
-  // This ensures that if a user closes and reopens the tab, they see notifications again.
-  window.addEventListener('load', function() {
-    sessionStorage.removeItem('saleNotificationShown');
-    setTimeout(startSalesNotifications, initialDelay);
-  });
-
-  // Also, if the DOM is already loaded (e.g., user navigates back), start immediately
-  if (document.readyState === 'complete') {
-    sessionStorage.removeItem('saleNotificationShown');
-    setTimeout(startSalesNotifications, initialDelay);
-  }
-
-  // Fin de la configuración de notificaciones
-
-  // --- WhatsApp Number Validation ---
-  function getInputElement(id) {
-    return document.getElementById(id);
-  }
-
-  function getErrorElement() {
-    const whatsappInputId = window.location.href.includes('contrareembolso') ? "501094818" : "53830725";
-    const errorClass = "error-message";
-    let errorElement = document.querySelector(`.${errorClass}[data-target="${whatsappInputId}"]`);
-
-    if (!errorElement) {
-      const inputElement = getInputElement(whatsappInputId);
-      if (inputElement && inputElement.parentNode) {
-        errorElement = document.createElement("div");
-        errorElement.className = errorClass;
-        errorElement.setAttribute('data-target', whatsappInputId);
-        inputElement.parentNode.insertBefore(errorElement, inputElement.nextSibling);
-      }
-    }
-
-    return errorElement;
-  }
-
-  (function() {
-    const whatsappInputId = window.location.href.includes('contrareembolso') ? "501094818" : "53830725";
-    const dependentElementIds = window.location.href.includes('contrareembolso') ?
-      ["1440375758", "2081271241", "183290493", "394819614", "423544000", "botoncomprar"] :
-      ["59648134", "1743418466", "1005165410", "951592426", "541001873", "comoabona", "botoncomprar"];
-    const errorClass = "error-message";
-    const apiUrl = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
-
-    let isValid = false;
-    let isChecking = false;
-    let timeout; // Timeout para debounce
-
-    function getInputElement(id) {
-        return document.getElementById(id);
-    }
-
-    function getErrorElement() {
-        return document.querySelector("." + errorClass);
-    }
-
-    function createErrorElement(inputElement) {
-        if (!getErrorElement()) {
-            const errorDiv = document.createElement("div");
-            errorDiv.className = errorClass;
-            errorDiv.style.display = "none";
-            errorDiv.style.marginTop = "5px";
-            errorDiv.style.padding = "8px 12px";
-            errorDiv.style.borderRadius = "4px";
-            errorDiv.style.fontSize = "0.9em";
-            inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
-        }
-    }
-
-    function hideError() {
-        const errorElement = getErrorElement();
-        if (errorElement) {
-            errorElement.style.display = "none";
-        }
-    }
-
-    function showError(message, color = "red") {
-        const errorElement = getErrorElement();
-        if (errorElement) {
-            errorElement.textContent = message;
-
-            // Si está verificando WhatsApp, agregar clase especial
-            if (message === "Verificando WhatsApp...") {
-                errorElement.className = "error-message verifying";
-            } else {
-                // Add 'valid' class when the message indicates success (green color)
-                errorElement.className = color === "green" ? "error-message valid" : "error-message";
-                errorElement.style.backgroundColor = color === "green" ? "#d4edda" : "#f8d7da";
-                errorElement.style.color = color === "green" ? "#155724" : "#721c24";
-                errorElement.style.border = color === "green" ? "1px solid #c3e6cb" : "1px solid #f5c6cb";
-            }
-
-            errorElement.style.display = "block";
-        }
-    }
-
-    function formatNumber(number) {
-        let rawNumber = number.replace(/\D/g, "");
-        if (rawNumber.length === 0) return null;
-
-        // Si empieza con 549, lo dejamos como está
-        if (rawNumber.startsWith("549")) {
-            return rawNumber;
-        }
-
-        // Si empieza con 54 y tiene al menos 12 dígitos, lo dejamos como está
-        if (rawNumber.startsWith("54") && rawNumber.length >= 12) {
-            return rawNumber;
-        }
-
-        // Si tiene 10 dígitos, agregamos 549 al principio
-        if (rawNumber.length === 10) {
-            return "549" + rawNumber;
-        }
-
-        // Si tiene 11 dígitos y empieza con 9, agregamos 54 al principio
-        if (rawNumber.length === 11 && rawNumber.startsWith("9")) {
-            return "54" + rawNumber;
-        }
-
-        // En cualquier otro caso, devolvemos null (número inválido)
-        return null;
-    }
-
-    function setDependentElementsDisabled(disabled) {
-        dependentElementIds.forEach(id => {
-            const element = getInputElement(id);
-            if (element) {
-                element.disabled = disabled;
-            }
-        });
-    }
-
-    function validateWhatsApp() {
-        console.log("validateWhatsApp called");
-        if (isChecking) {
-            console.log("validateWhatsApp: Already checking, returning.");
-            return;
-        }
-        isChecking = true;
-
-        const inputElement = getInputElement(whatsappInputId);
-        if (!inputElement) {
-            console.error("WhatsApp input element not found.");
-            isChecking = false;
-            return;
-        }
-
-        createErrorElement(inputElement);
-        showError("Verificando WhatsApp...", "#666");
-
-        const formattedNumber = formatNumber(inputElement.value);
-        console.log("Validating number:", formattedNumber);
-
-        if (!formattedNumber) {
-            showError("Formato de WhatsApp inválido. Ej: 1156457057", "red");
-            setDependentElementsDisabled(true);
-            isChecking = false;
-            return;
-        }
-
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", apiUrl, true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.onreadystatechange = function() {
-            console.log("xhr.onreadystatechange called.  readyState:", xhr.readyState, "status:", xhr.status);
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    const data = JSON.parse(xhr.responseText);
-                    console.log("API response:", data);
-                    isValid = data.exists === true;
-                    if (isValid) {
-                        showError("WhatsApp válido. ¡Puedes continuar!", "green");
-                        setDependentElementsDisabled(false); // Habilitar campos si es válido
-                    } else {
-                        showError("WhatsApp no válido. Verifica el número.", "red");
-                        setDependentElementsDisabled(true); // Deshabilitar campos si no es válido
-                    }
-                } else {
-                    console.error("API error. Status:", xhr.status);
-                    showError("Error al verificar WhatsApp. Intenta de nuevo.", "orange");
-                    setDependentElementsDisabled(true); // Deshabilitar campos en caso de error
-                }
-                isChecking = false;
-            }
-        };
-        xhr.send(JSON.stringify({ whatsapp_check: formattedNumber }));
-    }
-
-    function clearErrorAndValidate() {
-        hideError(); // Oculta el mensaje de error
-        clearTimeout(timeout); // Limpia cualquier validación pendiente
-        // No es necesario llamar a validateWhatsApp() aquí
-    }
-
-    function setupListeners() {
-        const whatsappInput = getInputElement(whatsappInputId);
-        if (!whatsappInput) {
-            console.error("WhatsApp input element not found in setupListeners.");
-            return;
-        }
-
-        // Agrega el listener para 'input'
-        whatsappInput.addEventListener("input", clearErrorAndValidate);
-
-        whatsappInput.addEventListener("blur", () => {
-            console.log("blur event triggered");
-            // Ahora sí, llama a validateWhatsApp después del 'blur'
-            timeout = setTimeout(validateWhatsApp, 200); // Pequeño retraso para asegurar que se procese el valor final
-        });
-    }
-
-    // Inicializar
-    setupListeners();
-  })();
-
-  // --- Additional UI Enhancements ---
-
-  // Smooth scroll for all anchor links
-  $('a[href^="#"]').on('click', function(e) {
-    e.preventDefault();
-    var target = $(this.hash);
-    if (target.length) {
-      $('html, body').animate({
-        scrollTop: target.offset().top - 20
-      }, 500);
-    }
-  });
-
-  // Add animation to product items on scroll with improved performance
-  function animateOnScroll() {
-    $('.product-item').each(function() {
-      var position = $(this).offset().top;
-      var scroll = $(window).scrollTop();
-      var windowHeight = $(window).height();
-
-      if (scroll + windowHeight > position + 80) { // Activar un poco antes para una transición más suave
-        $(this).addClass('animated');
-      }
-    });
-  }
-
-  // Initial call and optimized scroll event with throttling
-  animateOnScroll();
-
-  let scrollTimer;
-  $(window).on('scroll', function() {
-    if (!scrollTimer) {
-      scrollTimer = setTimeout(function() {
-        animateOnScroll();
-        scrollTimer = null;
-      }, 50); // Limitar la frecuencia de ejecución para mejor rendimiento
-    }
-  });
-
-  // Add enhanced CSS classes for animations
-  $("<style>\
-    .product-item { \
-      opacity: 0; \
-      transform: translateY(25px); \
-      transition: opacity 0.7s ease, transform 0.7s ease, box-shadow 0.4s ease; \
-    } \
-    .product-item.animated { \
-      opacity: 1; \
-      transform: translateY(0); \
-    }\
-    @media (prefers-reduced-motion: reduce){\
-      .product-item{\
-        transition: opacity 0.2s ease;\
-        transform: none;\
-      }\
-      .product-item.animated{\
-        transform: none;\
-      }\
-    }\
-  </style>").appendTo('head');
-
-  // Mejorar la carga de imágenes
-  function loadVisibleImages() {
-    $('img[data-lazy]').each(function() {
-      var $img = $(this);
-      if (!$img.attr('src')) {
-        var position = $img.offset().top;
-        var scroll = $(window).scrollTop();
-        var windowHeight = $(window).height();
-
-        // Cargar imágenes con un margen más amplio para precargar
-        if (scroll + windowHeight > position - 300 && scroll < position + $img.height() + 300) {
-          var imgSrc = $img.attr('data-lazy');
-          if (imgSrc) {
-            // Crear una imagen temporal para precargar
-            var tempImg = new Image();
-            tempImg.onload = function() {
-              // Una vez cargada, actualizar la imagen visible
-              $img.attr('src', imgSrc).removeAttr('data-lazy');
-            };
-            tempImg.src = imgSrc;
-          }
-        }
-      }
-    });
-  }
-
-  // Cargar imágenes visibles inicialmente y en scroll
-  loadVisibleImages();
-  $(window).on('scroll', function() {
-    if (!scrollTimer) {
-      scrollTimer = setTimeout(function() {
-        loadVisibleImages();
-        scrollTimer = null;
-      }, 100);
-    }
-  });
-
-  // Forzar carga de todas las imágenes después de un tiempo
-  setTimeout(function() {
-    $('img[data-lazy]').each(function() {
-      var $img = $(this);
-      if (!$img.attr('src')) {
-        var imgSrc = $img.attr('data-lazy');
-        if (imgSrc) {
-          $img.attr('src', imgSrc).removeAttr('data-lazy');
-        }
-      }
-    });
-  }, 2000);
-
-  // WhatsApp button removed as requested
-
-  // Final fallback to ensure all images are loaded
-  setTimeout(function() {
-    $('img[data-lazy]').each(function() {
-      var $img = $(this);
-      if (!$img.attr('src')) {
-        var imgSrc = $img.attr('data-lazy');
-        if (imgSrc) {
-          $img.attr('src', imgSrc).removeAttr('data-lazy');
-        }
-      }
-    });
-  }, 3000);
-
-  // Scroll to form when clicking on finalize button
-  $('#finalizarpedido').click(function(e) {
-    e.preventDefault();
-    var targetId = $(this).attr('href');
-    $('html, body').animate({
-      scrollTop: $(targetId).offset().top - 50
-    }, 800);
-    // --- CSS Carousel Button Logic ---
-    $('.css-carousel .carousel-btn').on('click', function() {
-      const $button = $(this);
-      const $carousel = $button.closest('.css-carousel');
-      const $container = $carousel.find('.scroll-container');
-      const scrollAmount = $container.width(); // Scroll by the width of the container (one item)
-
-      if ($button.hasClass('next-btn')) {
-        // Smooth scroll right
-        $container.animate({ scrollLeft: $container.scrollLeft() + scrollAmount }, 300);
-      } else if ($button.hasClass('prev-btn')) {
-        // Smooth scroll left
-        $container.animate({ scrollLeft: $container.scrollLeft() - scrollAmount }, 300);
-      }
-    });
-
-  });
-
-  // --- Helper Functions ---
-
-  // Update cart display (hacer global para depuración)
-  window.updateCart = function updateCart(itemsArray) {
-    // Clear current cart items
-    cartItems = [];
-    cartItemsContainer.empty();
-
-    // Detectar si estamos en la página de contrareembolso
-    var isContrareembolso = window.location.href.includes('contrareembolso');
-
-    // Process each item
-    itemsArray.forEach(function(item, index) {
-      if (item) {
-        var parts = item.split('-');
-        var size = parts[0];
-        var model = parts.slice(1).join('-');
-
-        // Get product details
-        var productName = getProductName(model);
-        var productImage = getProductImage(model);
-
-        // Precios según el sistema (prepago o contrareembolso)
-        var productPrice;
-        if (isContrareembolso) {
-          // Precios para contrareembolso
-          if (itemsArray.length === 2) {
-            productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
-          } else {
-            productPrice = 60000; // Un solo par cuesta 60000
-          }
-        } else {
-          // Precios para prepago (index.html)
-          if (itemsArray.length === 2) {
-            productPrice = 47500; // Cada par cuesta 47500 cuando hay dos (total 95k)
-          } else {
-            productPrice = 60000; // Un solo par cuesta 60000
-          }
-        }
-
-        // Add to cart items array
-        cartItems.push({
-          id: item,
-          name: productName,
-          size: size,
-          price: productPrice,
-          image: productImage
-        });
-
-        // Create cart item HTML
-        var cartItemHTML = `
-          <div class="cart-item" data-id="${item}">
-            <img src="${productImage}" class="cart-item-image" alt="${productName}">
-            <div class="cart-item-details">
-              <div class="cart-item-name">${productName}</div>
-              <div class="cart-item-size">Talle: ${size}</div>
-            </div>
-            <div class="cart-item-price">$${productPrice.toLocaleString('es-AR')}</div>
-            <button class="cart-item-remove" data-id="${item}">×</button>
-          </div>
-        `;
-
-        cartItemsContainer.append(cartItemHTML);
-      }
-    });
-
-    // Update cart total based on the number of pairs (not sum of individual prices)
-    var total;
-    if (isContrareembolso) {
-        // Precios para contrareembolso
-        if (cartItems.length === 1) {
-            total = 60000;
-        } else if (cartItems.length === 2) {
-            total = 95000;
-        } else {
-            total = 0;
-        }
-    } else {
-        // Precios para prepago (index.html)
-        if (cartItems.length === 1) {
-            total = 60000;
-        } else if (cartItems.length === 2) {
-            total = 95000;
-        } else {
-            total = 0;
-        }
-    }
-
-    cartTotalElement.text('$' + total.toLocaleString('es-AR'));
-
-    // Actualizar texto del total según la cantidad de productos
-    var totalPriceText = "";
-    if (cartItems.length === 1) {
-      if (isContrareembolso) {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
-      } else {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
-      }
-    } else if (cartItems.length === 2) {
-      if (isContrareembolso) {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
-      } else {
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
-      }
-    }
-
-    // Actualizar el elemento #preciototal
-    if (totalPriceText) {
-      $("#preciototal").html(totalPriceText);
-    } else {
-      $("#preciototal").html("Elige modelos y talles para ver el total");
-    }
-
-    // Actualizar estado del carrito usando el sistema unificado
-    cartState.update();
-
-    // Gestionar formulario y botón flotante según cantidad de items
-    if (cartItems.length === 0) {
-      restOfForm.removeClass('active').addClass('hidden');
-      $('#upsell-message-container').removeClass('visible').addClass('hidden');
-    } else if (cartItems.length === 1) {
-      restOfForm.removeClass('hidden inactive').addClass('active');
-      $('#upsell-message-container').removeClass('hidden').addClass('visible');
-    } else {
-      restOfForm.removeClass('hidden inactive').addClass('active');
-      $('#upsell-message-container').removeClass('visible').addClass('hidden');
-    }
-
-    // Recalculate price based on payment method after updating cart
-    $("#comoabona").trigger('change');
-
-    // Setup remove buttons
-    $('.cart-item-remove').on('click', function() {
-      var itemId = $(this).data('id');
-      removeFromCart(itemId);
-    });
-  }
-
-  // Remove item from cart
-  function removeFromCart(itemId) {
-    // Find the select element with this value and reset it
-    $('#todoslosmodelos select.talle').each(function() {
-      if ($(this).val() === itemId) {
-        $(this).val('').data('pre', '');
-
-        // Remove any "added to cart" message
-        $(this).closest('.form-group').find('.avisoagregado').remove();
-      }
-    });
-
-    // Usar el ID dinámico según la página
-    var summaryInput = window.location.href.includes('contrareembolso') ? $("#286442883") : $("#1471599855");
-
-    // Process the summary content to remove the item
-    var summaryContent = summaryInput.val() || "";
-    // console.log("Contenido del campo al remover:", summaryContent);
-
-    // Mejorar el filtrado para manejar espacios en blanco
-    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    // console.log("Array antes de remover:", summaryArray);
-
-    // Remove the item from the array
-    summaryArray = summaryArray.filter(item => item !== itemId);
-    // console.log("Array después de remover:", summaryArray);
-
-    // Update the summary input - ensure both fields are updated
-    var finalSummaryText = summaryArray.join(', ');
-
-    // Actualizar todos los campos relevantes
-    if (summaryInput.length) {
-        summaryInput.val(finalSummaryText);
-    } else {
-        console.warn('Campo summaryInput no encontrado al eliminar producto');
-    }
-
-    // Always update both fields to ensure consistency
-    if ($('#286442883').length) {
-        $('#286442883').val(finalSummaryText);
-    } else {
-        console.warn('Campo #286442883 no encontrado al eliminar producto');
-    }
-
-    if ($('#1471599855').length) {
-        $('#1471599855').val(finalSummaryText);
-    } else {
-        console.warn('Campo #1471599855 no encontrado al eliminar producto');
-    }
-
-    // console.log("Nuevo valor del campo:", finalSummaryText);
-
-    // Update the summary display
-    $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
-
-    // Trigger change events to ensure all dependent code is updated
-    summaryInput.trigger('change');
-    $('#286442883').trigger('change');
-    $('#1471599855').trigger('change');
-
-    // Update the cart display - esto actualizará también el #preciototal
-    updateCart(summaryArray);
-
-
-    // No mostrar notificación popup cuando se elimina un producto
-  }
-
-  // Get product name from model ID
-  function getProductName(model) {
-    var names = {
-      'guillermina-negras': 'Guillerminas Negras',
-      'guillermina-camel': 'Guillerminas Camel',
-      'guillermina-blancas': 'Guillerminas Blancas',
-      'roma-negras': 'Botineta Roma Negras',
-      'roma-suela': 'Botineta Roma Suela',
-      'siena2025': 'Borcego Siena 2025',
-      'venecia-negras': 'Venecia Negras',
-      'paris-negras': 'Paris Negras',
-      'paris-camel': 'Paris Camel',
-      'paris-verde': 'Paris Verde',
-      'birk-negras': 'Birk Negras',
-      'birk-camel': 'Birk Camel',
-      'birk-blancas': 'Birk Blancas'
-    };
-
-    return names[model] || model;
-  }
-
-  // Get product image from model ID
-  function getProductImage(model) {
-    var images = {
-      'milan': 'nuevosmodeloscontra/1.webp',
-      'trento': 'nuevosmodeloscontra/10.webp',
-      'parma': 'nuevosmodeloscontra/17.webp',
-      'guillermina-negras': 'guillerminafotos/1.webp',
-      'guillermina-camel': 'guillerminafotos/guillerminascamel/1.webp',
-      'guillermina-blancas': 'guillerminafotos/guillerminasblancas/1.webp',
-      'roma-negras': 'roma-negras-1.jpg',
-      'roma-suela': 'roma-suela-1a.jpg',
-      'siena2025': 'siena2025-1.webp',
-      'venecia-negras': 'venecia-negras-1a.jpg',
-      'paris-negras': 'paris2025-negras.webp',
-      'paris-camel': 'paris2025-camel.webp',
-      'paris-verde': 'paris2025-verde.webp',
-      'birk-negras': 'birknegras/1.webp',
-      'birk-camel': 'birkcamel/1.webp',
-      'birk-blancas': 'birkblancas/1.webp'
-    };
-
-    return images[model] || '';
-  }
-
-  // Update checkout progress display
-  function updateCheckoutProgress(step) {
-    // Update progress bar
-    $('.progress-step').removeClass('active completed');
-    $('.progress-connector').removeClass('active');
-
-    for (var i = 1; i <= maxStep; i++) {
-      if (i < step) {
-        $(`.progress-step[data-step="${i}"]`).addClass('completed');
-        if (i < maxStep) {
-          $(`.progress-step[data-step="${i}"]`).next('.progress-connector').addClass('active');
-        }
-      } else if (i === step) {
-        $(`.progress-step[data-step="${i}"]`).addClass('active');
-      }
-    }
-
-    // Update checkout steps in form
-    $('.checkout-step').removeClass('active completed');
-
-    if (step === 2) {
-      $('#shipping-step').addClass('active');
-    } else if (step === 3) {
-      $('#shipping-step').addClass('completed');
-      $('#payment-step').addClass('active');
-    }
-  }
-
-  // Variable para controlar las notificaciones
-  var lastNotificationMessage = '';
-  var lastNotificationTime = 0;
-
-  // Show cart message (mensajes persistentes - no desaparecen automáticamente)
-  function showCartMessage(message, type = 'info') {
-    const cartMessages = document.getElementById('cart-messages');
-    if (!cartMessages) return;
-
-    // Limpiar mensajes anteriores antes de mostrar el nuevo
-    clearCartMessages();
-
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `cart-message cart-message-${type}`;
-    messageDiv.innerHTML = `
-      <span class="message-text">${message}</span>
-      <button class="message-close" onclick="this.parentElement.remove(); document.getElementById('cart-messages').style.display='none';">×</button>
-    `;
-
-    cartMessages.appendChild(messageDiv);
-    cartMessages.style.display = 'block';
-  }
-
-  // Clear cart messages
-  function clearCartMessages() {
-    const cartMessages = document.getElementById('cart-messages');
-    if (cartMessages) {
-      cartMessages.innerHTML = '';
-      cartMessages.style.display = 'none';
-    }
-  }
-
-  // Update cart messages based on number of pairs - Simplified to avoid duplicates
-  function updateCartMessages() {
-    // Los mensajes principales ahora se muestran solo en addToCartFromButton
-    // Esta función solo maneja mensajes básicos del estado del carrito
-    const pairCount = window.cartItems ? window.cartItems.length : 0;
-
-    // Solo mostrar mensajes básicos para evitar duplicados
-    if (pairCount === 0) {
-      // El mensaje de carrito vacío se maneja en cartState.update()
-    }
-    // Los otros mensajes se manejan en addToCartFromButton para evitar duplicación
-  }
-
-  // Show notification
-  function showNotification(message, type) {
-    // console.log('Showing notification:', message, type);
-
-    // Evitar mostrar la misma notificación dos veces en un corto período de tiempo
-    var currentTime = Date.now();
-    if (message === lastNotificationMessage && currentTime - lastNotificationTime < 3000) {
-      // console.log('Ignorando notificación duplicada');
-      return;
-    }
-
-    // Actualizar el seguimiento de notificaciones
-    lastNotificationMessage = message;
-    lastNotificationTime = currentTime;
-
-    // Create notification container if it doesn't exist
-    if (!$('#notification-container').length) {
-      $('<div id="notification-container"></div>').css({
-        'position': 'fixed',
-        'bottom': '90px',
-        'right': '20px',
-        'z-index': '9998',
-        'width': '280px',
-        'pointer-events': 'none'
-      }).appendTo('body');
-    }
-
-    // Determinar el color del borde según el tipo
-    var borderColor = '#5bc0de'; // info (default)
-    if (type === 'error') borderColor = '#d9534f';
-    if (type === 'success') borderColor = '#4CAF50';
-
-    // Crear la notificación
-    var notification = $(`<div class="system-notification">${message}</div>`);
-
-    // Aplicar estilos
-    notification.css({
-      'display': 'block',
-      'background-color': 'white',
-      'border-radius': '8px',
-      'box-shadow': '0 2px 10px rgba(0,0,0,0.2)',
-      'padding': '12px 15px',
-      'margin-bottom': '10px',
-      'border-left': '3px solid ' + borderColor,
-      'transform': 'translateX(120%)',
-      'opacity': '0',
-      'transition': 'transform 0.3s ease, opacity 0.3s ease',
-      'pointer-events': 'auto',
-      'position': 'relative',
-      'font-size': '14px',
-      'text-align': 'left'
-    });
-
-    // Agregar al contenedor
-    $('#notification-container').append(notification);
-
-    // Mostrar con animación
-    setTimeout(function() {
-      notification.css({
-        'transform': 'translateX(0)',
-        'opacity': '1'
-      });
-
-      // Ocultar automáticamente después de 5 segundos
-      setTimeout(function() {
-        notification.css({
-          'transform': 'translateX(120%)',
-          'opacity': '0'
-        });
-        setTimeout(function() {
-          notification.remove();
-        }, 300);
-      }, 5000);
-    }, 100);
-  }
-
-  // Fin de las funciones de notificación
-
-  let notificationsShownCount = 0;
-  const maxNotifications = 3;
-
-  function startSalesNotifications() {
-    if (!sessionStorage.getItem('saleNotificationShown')) {
-      showSaleNotificationWithCount();
-      sessionStorage.setItem('saleNotificationShown', 'true'); // Mark as shown for the session
-
-      // Start repeating notifications after the initial one
-      notificationInterval = setInterval(function() {
-        showSaleNotificationWithCount();
-      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
-    } else {
-      // If already shown in this session, just start repeating
-      notificationInterval = setInterval(function() {
-        showSaleNotificationWithCount();
-      }, Math.random() * (maxRepeatDelay - minRepeatDelay) + minRepeatDelay);
-    }
-  }
-
-  function showSaleNotificationWithCount() {
-    if (notificationsShownCount < maxNotifications) {
-      showSaleNotification();
-      notificationsShownCount++;
-    } else {
-      clearInterval(notificationInterval); // Stop showing notifications after max count
-    }
-  }
-
-  // Clear sessionStorage on page load to allow notifications in new sessions
-  // This ensures that if a user closes and reopens the tab, they see notifications again.
-  window.addEventListener('load', function() {
-    sessionStorage.removeItem('saleNotificationShown');
-    setTimeout(startSalesNotifications, initialDelay);
-  });
-
-  // Also, if the DOM is already loaded (e.g., user navigates back), start immediately
-  if (document.readyState === 'complete') {
-    sessionStorage.removeItem('saleNotificationShown');
-    setTimeout(startSalesNotifications, initialDelay);
-  }
 
   // --- Size Guide Toggle ---
   $('.size-guide-toggle').on('click', function() {

@@ -44,11 +44,6 @@
     /></noscript>
     <!-- End Facebook Pixel Code -->
 
-    <script>
-        // Variable global para identificar esta página como de contrareembolso
-        var IS_CONTRAREEMBOLSO_PAGE = true;
-    </script>
-
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Rosita Rococó - Colección Otoño-Invierno 2025</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -252,168 +247,6 @@
             color: #777;
             font-size: 0.8rem;
             text-align: center;
-        }
-
-        /* Cart Messages Area - Professional Styles */
-        #cart-messages {
-            position: relative;
-            z-index: 10;
-            pointer-events: auto;
-        }
-
-        /* Área de mensajes principal */
-        .cart-messages-area {
-            background: rgba(248, 249, 250, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(222, 226, 230, 0.8);
-            padding: 16px 20px;
-            min-height: 24px;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #495057;
-            position: relative;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .cart-messages-area:empty {
-            display: none;
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        .cart-messages-area:not(:empty) {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Mensajes individuales */
-        .cart-message {
-            position: relative;
-            display: flex;
-            align-items: center;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: slideInMessage 0.4s ease-out;
-            backdrop-filter: blur(5px);
-        }
-
-        .cart-message:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        @keyframes slideInMessage {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Texto del mensaje */
-        .message-text {
-            flex-grow: 1;
-            font-weight: 500;
-            line-height: 1.4;
-        }
-
-        /* Botón de cierre */
-        .message-close {
-            position: absolute;
-            top: 8px;
-            right: 12px;
-            background: transparent;
-            border: none;
-            font-size: 18px;
-            color: rgba(0, 0, 0, 0.4);
-            cursor: pointer;
-            padding: 4px;
-            border-radius: 50%;
-            transition: all 0.2s ease;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .message-close:hover {
-            background: rgba(0, 0, 0, 0.1);
-            color: rgba(0, 0, 0, 0.7);
-            transform: scale(1.1);
-        }
-
-        /* Tipos de mensaje específicos */
-        .cart-message-success {
-            background: linear-gradient(135deg, rgba(212, 237, 218, 0.95), rgba(193, 230, 198, 0.95));
-            border-left: 4px solid #28a745;
-            color: #155724;
-        }
-
-        .cart-message-info {
-            background: linear-gradient(135deg, rgba(209, 236, 241, 0.95), rgba(190, 229, 235, 0.95));
-            border-left: 4px solid #17a2b8;
-            color: #0c5460;
-        }
-
-        .cart-message-warning {
-            background: linear-gradient(135deg, rgba(255, 243, 205, 0.95), rgba(255, 235, 186, 0.95));
-            border-left: 4px solid #ffc107;
-            color: #856404;
-        }
-
-        .cart-message-error {
-            background: linear-gradient(135deg, rgba(248, 215, 218, 0.95), rgba(241, 196, 200, 0.95));
-            border-left: 4px solid #dc3545;
-            color: #721c24;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .cart-messages-area {
-                padding: 12px 16px;
-                font-size: 0.85rem;
-                border-radius: 0 0 8px 8px;
-            }
-
-            .cart-message {
-                padding: 12px 14px;
-                margin-bottom: 10px;
-                font-size: 0.85rem;
-            }
-
-            .message-close {
-                top: 6px;
-                right: 10px;
-                font-size: 16px;
-                width: 20px;
-                height: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .cart-messages-area {
-                padding: 10px 12px;
-                font-size: 0.8rem;
-            }
-
-            .cart-message {
-                padding: 10px 12px;
-                margin-bottom: 8px;
-            }
-
-            .message-text {
-                font-size: 0.8rem;
-            }
         }
 
         /* Testimonials Section Redesign */
@@ -739,10 +572,6 @@
 
     <!-- Mini Cart -->
     <div id="mini-cart">
-        <!-- Cart Messages Area -->
-        <div id="cart-messages" class="cart-messages-area">
-            <!-- Messages will be dynamically inserted here -->
-        </div>
         <div class="mini-cart-header">
             <span class="cart-icon">🛒</span>
             <span class="cart-title">Tu Carrito</span>
@@ -948,10 +777,6 @@
             <input type="hidden" id="736134777" name="entry.736134777" />
             <input type="hidden" id="227154461" name="entry.227154461" />
             <input type="hidden" id="1620487876" name="entry.1620487876" value="Pendiente" />
-            <!-- Campo para sincronización con sistema index.html -->
-            <input type="hidden" id="1471599855" name="entry.1471599855" />
-            <!-- Campo específico para productos seleccionados -->
-            <input type="hidden" id="286442883" name="entry.286442883" />
 
             <fieldset id="todoslosmodelos">
                 <legend class="sr-only">Selección de Modelos</legend>
@@ -1043,7 +868,7 @@
                                             <input checked="checked" name="hwA-qty-milan" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$55.000</div>
+                                                <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
@@ -1173,7 +998,7 @@
                                             <input checked="checked" name="hwA-qty-trento" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$55.000</div>
+                                                <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
@@ -1319,7 +1144,7 @@
                                             <input checked="checked" name="hwA-qty-parma" type="radio" value="1" />
                                             <div class="option-content">
                                                 <div class="option-quantity">1 par</div>
-                                                <div class="option-price">$55.000</div>
+                                                <div class="option-price">$60.000</div>
                                             </div>
                                         </label>
                                         <label class="quantity-price-option">
@@ -1552,10 +1377,8 @@
 
     <!-- Custom scripts -->
     <script src="carrusel-nuevos.js"></script>
-    <script src="otono-elegante2.js?v=1.1"></script>
+    <script src="otono-elegante2.js"></script>
     <script src="form-handler.js"></script>
-<script src="fix-contrareembolso-cart.js?v=1.1"></script>
-<script src="fix-precios-contrareembolso.js"></script>
 
     <!-- Chat Widget Script -->
     <script src="chat-widget.js"></script>
@@ -1700,7 +1523,7 @@
       $("#227154461").val(fbclidpedido);
 
       // Manejar cambios en los selectores de productos
-      $('#286442883').change(function() {
+      $('#todoslosmodelos select').change(function() {
         // Asegurarse de que el valor se obtenga correctamente
         var value = $('#286442883').val() || '';
         console.log('Valor actual del campo de productos:', value);
@@ -1757,19 +1580,11 @@
         if (pairs.length == 0) {
           montoacobrar = 0;
         } else if (pairs.length == 1) {
-          montoacobrar = 55000; // Precio para 1 par en contrareembolso
+          montoacobrar = 60000; // Precio para 1 par en contrareembolso
         } else if (pairs.length == 2) {
-          montoacobrar = 85000; // Precio para 2 pares en contrareembolso ($42.500 c/u)
+          montoacobrar = 85000; // Precio para 2 pares en contrareembolso
         } else {
           montoacobrar = 0;
-        }
-        
-        // Actualizar el precio total visible en el resumen
-        if (pairs.length > 0) {
-          var precioTotal = (pairs.length === 1) ? "$55.000" : "$85.000";
-          $("#preciototal").html("Precio Total: " + precioTotal);
-        } else {
-          $("#preciototal").html("Elige modelos y talles para ver el total");
         }
 
         // asignar valores a los inputs
@@ -1782,6 +1597,17 @@
         console.log('1715320252 (monto):', montoacobrar);
         console.log('736134777 (costo):', costodepares);
         console.log('286442883 (productos):', value);
+      });
+
+      // También actualizar cuando se agrega un producto al carrito
+      $('.add-to-cart-btn').on('click', function() {
+        setTimeout(function() {
+          // Asegurarse de que el valor se sincronice correctamente
+          var summaryContent = $('#286442883').val() || "";
+          console.log('Valor del campo de productos después de agregar al carrito:', summaryContent);
+
+          $('#todoslosmodelos select').trigger('change');
+        }, 100);
       });
 
       // Verificar periódicamente si hay productos en el carrito
@@ -2489,8 +2315,8 @@
             const isContrareembolso = window.location.href.includes('contrareembolso');
 
             if (isContrareembolso) {
-                // Contrareembolso: 1 par = $55.000 | 2+ pares = $42.500 c/u
-                return quantity === 1 ? 55000 : 42500;
+                // Contrareembolso: 1 par = $60.000 | 2+ pares = $42.500 c/u
+                return quantity === 1 ? 60000 : 42500;
             } else {
                 // Previo pago: 1 par = $70.000 | 2+ pares = $55.000 c/u
                 return quantity === 1 ? 70000 : 55000;
@@ -2503,7 +2329,7 @@
             const totalItems = cartItems.length;
 
             if (isContrareembolso) {
-                return totalItems === 1 ? 55000 : totalItems * 42500;
+                return totalItems === 1 ? 60000 : totalItems * 42500;
             } else {
                 return totalItems === 1 ? 70000 : totalItems * 55000;
             }
