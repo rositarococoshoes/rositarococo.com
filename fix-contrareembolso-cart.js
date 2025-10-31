@@ -138,10 +138,20 @@
 
         // Actualizar el campo de productos
         var finalSummaryText = summaryArray.join(', ');
-        summaryInput.val(finalSummaryText);
+        console.log('🔧 [FIX-CART] Texto final calculado:', finalSummaryText);
 
-        // Asegurar que ambos campos estén sincronizados
-        syncHiddenFields();
+        // CORRECCIÓN CRÍTICA: Sincronización bidireccional completa
+        // 1. Actualizar el campo principal del casillero (el que ve el usuario)
+        $("#286442883").val(finalSummaryText);
+        console.log('🔧 [FIX-CART] Campo #286442883 actualizado:', finalSummaryText || '[VACÍO]');
+        
+        // 2. Actualizar el campo oculto de sincronización
+        $("#1471599855").val(finalSummaryText);
+        console.log('🔧 [FIX-CART] Campo #1471599855 actualizado:', finalSummaryText || '[VACÍO]');
+        
+        // 3. Actualizar summaryInput también
+        summaryInput.val(finalSummaryText);
+        console.log('🔧 [FIX-CART] summaryInput actualizado:', finalSummaryText || '[VACÍO]');
 
         // Actualizar el resumen del pedido
         $("#help-modelostallesseleccionados").text(finalSummaryText || '-');

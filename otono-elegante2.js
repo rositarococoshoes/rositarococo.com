@@ -219,23 +219,36 @@ $(document).ready(function(){
   var currentStep = 1;
   var maxStep = 3;
 
-  // Asegurar que el campo 286442883 esté sincronizado con 1471599855
-  // Esto es crucial para la compatibilidad con el código existente
+  // DEBUGGING EXTENSIVO: Función de sincronización de campos con logging
   function syncHiddenFields() {
+    console.log('🔄 [DEBUG] syncHiddenFields() ejecutándose...');
+    
     if ($('#286442883').length && $('#1471599855').length) {
       var value1471599855 = $('#1471599855').val();
       var value286442883 = $('#286442883').val();
 
+      console.log('🔍 [DEBUG] Estado actual de campos:');
+      console.log('  - #1471599855 (casillero principal):', value1471599855 || '[VACÍO]');
+      console.log('  - #286442883 (campo oculto):', value286442883 || '[VACÍO]');
+
       // Si hay un valor en 1471599855 pero no en 286442883, sincronizar
       if (value1471599855 && !value286442883) {
         $('#286442883').val(value1471599855);
-        // console.log('Campo #286442883 sincronizado con #1471599855:', value1471599855);
+        console.log('✅ [DEBUG] Campo #286442883 sincronizado con #1471599855:', value1471599855);
       }
       // Si hay un valor en 286442883 pero no en 1471599855, sincronizar
       else if (value286442883 && !value1471599855) {
         $('#1471599855').val(value286442883);
-        // console.log('Campo #1471599855 sincronizado con #286442883:', value286442883);
+        console.log('✅ [DEBUG] Campo #1471599855 sincronizado con #286442883:', value286442883);
+      } else if (!value1471599855 && !value286442883) {
+        console.log('⚠️ [DEBUG] Ambos campos están vacíos - sin sincronización necesaria');
+      } else {
+        console.log('ℹ️ [DEBUG] Campos ya están sincronizados o tienen valores diferentes que requieren validación manual');
       }
+    } else {
+      console.error('❌ [DEBUG] ERROR: No se encontraron los campos requeridos:');
+      console.error('  - #286442883 existe:', $('#286442883').length > 0);
+      console.error('  - #1471599855 existe:', $('#1471599855').length > 0);
     }
   }
 
@@ -691,6 +704,7 @@ $(document).ready(function(){
   // --- Update Order Summary ---
   var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855"); // ID dinámico según la página
   var summaryDisplay = $("#display-selected-items"); // Updated ID for display
+  var casilleroElement = $("#help-modelostallesseleccionados"); // ELEMENTO CRÍTICO: Casillero visible
   var miniCart = $("#mini-cart");
   var cartItemsContainer = $(".cart-items");
   var cartCountElement = $(".cart-count");
@@ -698,23 +712,36 @@ $(document).ready(function(){
   var checkoutBtn = $("#checkout-btn");
   var restOfForm = $("#restodelform");
 
-  // Inicializar el carrito al cargar la página
+  // DEBUGGING EXTENSIVO: Inicialización del carrito con logging detallado
   (function initializeCart() {
+    console.log('🚀 [DEBUG] 🚀 INICIANDO CARRO - initializeCart() ejecutándose...');
+    console.log('🔍 [DEBUG] Estado del summaryInput:', summaryInput ? 'Encontrado' : 'NO ENCONTRADO');
+    console.log('🔍 [DEBUG] ID del summaryInput:', summaryInput ? summaryInput.attr('id') : 'N/A');
+    
     // Obtener los productos del campo oculto
     var summaryContent = summaryInput.val() || "";
-    // console.log('Inicializando carrito con productos:', summaryContent);
-
+    console.log('📦 [DEBUG] Contenido del campo de productos:', summaryContent || '[VACÍO]');
+    
+    // DEBUGGING: Verificar estado de ambos campos importantes
+    console.log('🔍 [DEBUG] Estado de campos específicos:');
+    console.log('  - #286442883:', $('#286442883').val() || '[VACÍO]');
+    console.log('  - #1471599855:', $('#1471599855').val() || '[VACÍO]');
+    
     // Convertir a array y filtrar valores vacíos
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    // console.log('Array de productos inicial:', summaryArray);
+    console.log('📋 [DEBUG] Array de productos inicial:', summaryArray);
+    console.log('📊 [DEBUG] Cantidad de productos encontrados:', summaryArray.length);
 
     // Actualizar el carrito con los productos existentes
     if (summaryArray.length > 0) {
+      console.log('✅ [DEBUG] Productos encontrados, actualizando carrito...');
       updateCart(summaryArray);
 
       // Actualizar el texto del total en el resumen del pedido
       var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
       var totalPriceText = "";
+      
+      console.log('💰 [DEBUG] Calculando precios (isContrareembolso:', isContrareembolso, ')');
 
       if (summaryArray.length === 1) {
         if (isContrareembolso) {
@@ -722,24 +749,33 @@ $(document).ready(function(){
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
         }
+        console.log('💵 [DEBUG] Precio calculado para 1 par:', totalPriceText);
       } else if (summaryArray.length === 2) {
         if (isContrareembolso) {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
         }
+        console.log('💵 [DEBUG] Precio calculado para 2 pares:', totalPriceText);
       }
 
       // Actualizar el elemento #preciototal con el texto correspondiente
       if (totalPriceText) {
         $("#preciototal").html(totalPriceText);
-        // console.log("Inicializando #preciototal con:", totalPriceText);
+        console.log('✅ [DEBUG] #preciototal actualizado con:', totalPriceText);
       }
     } else {
       // Si no hay productos, mostrar mensaje predeterminado
+      console.log('⚠️ [DEBUG] No hay productos, mostrando mensaje predeterminado');
       $("#preciototal").html("Elige modelos y talles para ver el total");
-      // console.log("No hay productos iniciales, mostrando mensaje predeterminado en #preciototal");
+      console.log('✅ [DEBUG] Mensaje predeterminado establecido en #preciototal');
     }
+    
+    console.log('🎯 [DEBUG] 🎯 INICIALIZACIÓN COMPLETADA - Estado final del carrito:', window.cartItems);
+    console.log('📊 [DEBUG] Estado final de elementos UI:');
+    console.log('  - Cart count:', $('.cart-count').text());
+    console.log('  - Button count:', $('.cart-button-count').text());
+    console.log('  - Mini cart items:', $('.cart-items').children().length);
   })();
 
   $("#todoslosmodelos select.talle").change(function(){
@@ -755,244 +791,127 @@ $(document).ready(function(){
     $currentItem.find('.avisoagregado').remove();
   });
 
-  // Función para agregar al carrito cuando se hace clic en el botón
+  // DEBUGGING EXTENSIVO: Función principal de agregar al carrito con logging detallado
   function addToCartFromButton(button) {
-    // Obtener el ID del modelo del botón
-    var modelId = $(button).data('model');
-    // console.log('Agregando al carrito desde botón con data-model:', modelId);
+    var $button = $(button);
+    var modelId = $button.data('model');
+    var $select = $('#talle-select-' + modelId);
 
-    // Obtener el selector correcto basado en el ID del modelo
-    var $select;
-    if (modelId && (modelId.includes('-1') || modelId.includes('-2'))) {
-      // Si el ID incluye -1 o -2 (para el primer o segundo par)
-      $select = $('#talle-select-' + modelId);
-      if ($select.length === 0) {
-        // Intentar encontrar el selector dentro del fieldset correspondiente
+    if ($select.length === 0) {
         var fieldsetId = 'hwA-' + modelId;
         $select = $('#' + fieldsetId + ' select.talle');
-      }
-    } else {
-      // Fallback para buscar cualquier selector con ese modelo
-      $select = $(button).closest('fieldset').find('select.talle');
     }
 
-    // Si aún no encontramos el selector, buscar dentro del botón que se hizo clic
     if ($select.length === 0) {
-      $select = $(button).closest('fieldset').find('select.talle');
+        $select = $button.closest('fieldset').find('select.talle');
     }
 
-    // console.log('Selector encontrado para ' + modelId + ':', $select.length > 0 ? 'Sí' : 'No');
-    // console.log('ID del selector:', $select.attr('id'));
-
-    // Obtener el elemento del producto actual
-    var $currentItem = $select.closest('.product-item');
+    if ($select.length === 0) {
+        console.error('No se encontró el selector para el modelo:', modelId);
+        alert('Error al agregar al carrito. Por favor, intenta de nuevo.');
+        return false;
+    }
 
     var currentVal = $select.val();
-    var prevVal = $select.data('pre') || "";
-
-    // Verificar si se seleccionó un talle
     if (!currentVal) {
-      alert('Por favor, selecciona un talle antes de agregar al carrito');
-      if ($select.length > 0) {
+        alert('Por favor, selecciona un talle antes de agregar al carrito');
         $select.focus();
-      }
-      return false;
+        return false;
     }
 
-    // Verificar si el selector existe
-    if ($select.length === 0) {
-      console.error('No se encontró el selector para el modelo:', modelId);
-      alert('Error al agregar al carrito. Por favor, intenta de nuevo.');
-      return false;
-    }
-
-    // Process the summary content
+    var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
     var summaryContent = summaryInput.val() || "";
-    // console.log('Contenido actual del campo de productos:', summaryContent);
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    // console.log('Array de productos antes de agregar:', summaryArray);
 
-    // Check if we exceed the maximum allowed pairs BEFORE adding the new item
+    if (summaryArray.includes(currentVal)) {
+        alert("Ya has seleccionado este producto. Puedes seleccionar otro par o modificar tu pedido.");
+        return false;
+    }
+
     if (summaryArray.length >= 2) {
-      alert("Puedes seleccionar un máximo de 2 pares. Por favor, elimina un producto antes de agregar otro.");
-      $select.val(''); // Reset the select to empty
-      return false; // No se agregó el producto
+        alert("Puedes seleccionar un máximo de 2 pares. Por favor, elimina un producto antes de agregar otro.");
+        $select.val('');
+        return false;
     }
 
-    // Remove previous value if it exists (only remove one instance)
-    // Only remove if prevVal is different from currentVal
-    if (prevVal && prevVal !== currentVal) {
-      const index = summaryArray.indexOf(prevVal);
-      if (index !== -1) {
-        summaryArray.splice(index, 1);
-      }
-    }
-
-    // Add new value
     summaryArray.push(currentVal);
-    // console.log('Array de productos después de agregar:', summaryArray);
 
-    // Mostrar notificación de éxito
-    $select.closest('.form-group').find('.avisoagregado').remove(); // Remove any existing message
+    $select.closest('.form-group').find('.avisoagregado').remove();
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
 
-    // Store the current value as previous value for future reference
-    $select.data('pre', currentVal);
-
-    // Update the summary input and display
     var finalSummaryText = summaryArray.join(', ');
-    // console.log('Texto final para el campo de productos:', finalSummaryText);
 
-    // Actualizar ambos campos independientemente de la página
-    // Asegurarse de que ambos campos existan antes de actualizarlos
-    if ($('#286442883').length) {
-        $('#286442883').val(finalSummaryText);
-        // console.log('Campo #286442883 actualizado a:', $('#286442883').val());
-    } else {
-        // console.warn('Campo #286442883 no encontrado');
-    }
+    $("#286442883").val(finalSummaryText);
+    $("#1471599855").val(finalSummaryText);
+    summaryInput.val(finalSummaryText);
 
-    if ($('#1471599855').length) {
-        $('#1471599855').val(finalSummaryText);
-        // console.log('Campo #1471599855 actualizado a:', $('#1471599855').val());
-    } else {
-        // console.warn('Campo #1471599855 no encontrado');
-    }
+    $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
 
-    // Asegurarse de que el campo de resumen también esté actualizado
-    if (summaryInput.length) {
-        summaryInput.val(finalSummaryText);
-        // console.log('Campo summaryInput actualizado a:', summaryInput.val());
-    } else {
-        // console.warn('Campo summaryInput no encontrado');
-    }
-
-    var finalSummary = summaryInput.val();
-    $("#help-modelostallesseleccionados").text(finalSummary || '-'); // Original display element
-    if (summaryDisplay) {
-      summaryDisplay.text(finalSummary || 'Aquí verás tu selección...'); // Update new display element
-    }
-
-    // Disparar evento change para que otros scripts lo detecten
     summaryInput.trigger('change');
     $('#286442883').trigger('change');
     $('#1471599855').trigger('change');
 
-    // Update cart items
     updateCart(summaryArray);
 
-    // Mostrar mensajes en el carrito y mostrar el menú automáticamente
     var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
-
-    // Para el primer par:
     if (summaryArray.length === 1) {
-      // Mostrar el carrito automáticamente usando el sistema unificado
-      cartState.open();
-      console.log('🛒 Carrito mostrado automáticamente después de agregar producto');
-
-      // Mensaje único y claro con toda la información necesaria
-      setTimeout(() => {
-        $('#cart-messages').empty();
-        if (isContrareembolso) {
-          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $30.000 más ($42.500 cada uno) y llevátelos a un precio especial!', 'success');
-        } else {
-          showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
-        }
-      }, 500);
+        cartState.open();
+        setTimeout(() => {
+            $('#cart-messages').empty();
+            if (isContrareembolso) {
+                showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $30.000 más ($42.500 cada uno) y llevátelos a un precio especial!', 'success');
+            } else {
+                showCartMessage('¡Perfecto! Has agregado tu primer par. ¡Agregá un segundo par por solo $35.000 más ($47.500 cada uno) y llevátelos a un precio especial!', 'success');
+            }
+        }, 500);
     }
 
-    // Para el segundo par:
     if (summaryArray.length === 2) {
-      // Abrir el carrito automáticamente cuando se agrega el segundo par
-      cartState.open();
-      console.log('🛒 Carrito mostrado automáticamente después de agregar segundo producto');
-
-      // Mensaje único consolidado con toda la información
-      setTimeout(() => {
-        $('#cart-messages').empty();
-        if (isContrareembolso) {
-          showCartMessage('🎉 ¡Perfecto! 2 pares por $85.000 ($42.500 c/u) - ¡Ahorraste $35.000! El descuento se aplicó automáticamente.', 'success');
-        } else {
-          showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $45.000! El descuento se aplicó automáticamente.', 'success');
-        }
-      }, 500);
+        cartState.open();
+        setTimeout(() => {
+            $('#cart-messages').empty();
+            if (isContrareembolso) {
+                showCartMessage('🎉 ¡Perfecto! 2 pares por $85.000 ($42.500 c/u) - ¡Ahorraste $35.000! El descuento se aplicó automáticamente.', 'success');
+            } else {
+                showCartMessage('🎉 ¡Perfecto! 2 pares por $95.000 ($47.500 c/u) - ¡Ahorraste $45.000! El descuento se aplicó automáticamente.', 'success');
+            }
+        }, 500);
     }
 
-    // Update price display based on number of pairs
     var pairCount = summaryArray.length;
     var totalPriceText = "Elige tus modelos y talles para ver el total";
-    var totalPrice = 0;
-
-    // Detectar si estamos en la página de contrareembolso
-    var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
+    var checkoutBtn = $("#checkout-btn");
+    var restOfForm = $("#restodelform");
 
     if (pairCount >= 1) {
-      // Activate checkout button
-      checkoutBtn.removeClass('btn-disabled').text('Finalizar Compra');
-
-      // Make checkout section active if there are items in cart
-      if (pairCount === 1) {
-        // Usar precios diferentes según la página
-        if (isContrareembolso) {
-          totalPrice = 55000; // Precio para 1 par en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="55000">55.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>'; // Updated text
-        } else {
-          totalPrice = 60000; // Precio para 1 par en prepago
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text
+        checkoutBtn.removeClass('btn-disabled').text('Finalizar Compra');
+        if (pairCount === 1) {
+            if (isContrareembolso) {
+                totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="55000">55.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>';
+            } else {
+                totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
+            }
+            restOfForm.removeClass('hidden inactive').addClass('active');
+        } else if (pairCount === 2) {
+            if (isContrareembolso) {
+                totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
+            } else {
+                totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
+            }
+            restOfForm.removeClass('hidden inactive').addClass('active');
         }
-
-        // Siempre mostrar el formulario cuando hay al menos un producto en el carrito
-        // Mostrar y activar la sección de checkout, pero sin forzar el foco
-        restOfForm.removeClass('hidden inactive').addClass('active');
-
-        // Ya no mostramos notificación aquí, se mostrará solo una vez más abajo
-
-        // No forzamos el scroll al formulario, solo lo hacemos visible
-    } else if (pairCount === 2) {
-      // Usar precios diferentes según la página
-      if (isContrareembolso) {
-        totalPrice = 85000; // Precio para 2 pares en contrareembolso
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>'; // Updated text
-      } else {
-        totalPrice = 95000; // Precio para 2 pares en prepago
-        totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>'; // Updated text
-      }
-
-        // Asegurarse de que el formulario esté visible
-        restOfForm.removeClass('hidden inactive').addClass('active');
-
-        // No forzamos el scroll al formulario, solo lo hacemos visible
-      } else {
-        totalPriceText = "Has seleccionado más de 2 pares. Revisa tu selección.";
-      }
-
-      // Ya no mostramos notificación aquí, se mostrará solo una vez más abajo
     } else {
-      totalPrice = 0;
-      totalPriceText = "Elige tus modelos y talles para ver el total";
-
-      // Disable checkout button
-      checkoutBtn.addClass('btn-disabled').text('Carrito vacío');
-
-      // Ocultar el formulario si no hay productos en el carrito
-      restOfForm.addClass('hidden').removeClass('active');
+        totalPriceText = "Elige tus modelos y talles para ver el total";
+        checkoutBtn.addClass('btn-disabled').text('Carrito vacío');
+        restOfForm.addClass('hidden').removeClass('active');
     }
 
-    // Actualizar el total en el resumen del pedido
     $("#preciototal").html(totalPriceText);
-    // console.log("Actualizando #preciototal con:", totalPriceText);
-
-    // Recalculate price based on payment method
     $("#comoabona").trigger('change');
-
-    // No mostrar notificación popup - los mensajes aparecerán en el área de mensajes del carrito
-
-    // Actualizar la visibilidad del botón flotante y el formulario
     cartState.updateFloatingButton();
 
-    // Indicar que se agregó el producto correctamente
     return true;
-  }
+}
 
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
