@@ -102,8 +102,8 @@ $(document).ready(function() {
             if (talleselegidos && talleselegidos.trim() !== '') {
                 const pairs = talleselegidos.split(', ').filter(Boolean);
                 const totalItems = pairs.length;
-                const unitPrice = totalItems === 1 ? 60000 : 42500; // Precios contrareembolso
-                const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+                const unitPrice = totalItems === 1 ? 55000 : 42500; // Precios contrareembolso
+                const totalValue = totalItems === 1 ? 55000 : totalItems * 42500;
 
                 const eventData = {
                     content_type: 'product',

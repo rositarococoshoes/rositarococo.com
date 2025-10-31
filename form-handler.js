@@ -204,8 +204,8 @@ $(document).ready(function() {
                                 $('#286442883').val() : $('#1471599855').val();
                             const pairs = talleselegidos.split(', ').filter(Boolean);
                             const totalItems = pairs.length;
-                            const unitPrice = totalItems === 1 ? 60000 : 42500;
-                            const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+                            const unitPrice = totalItems === 1 ? 55000 : 42500;
+                            const totalValue = totalItems === 1 ? 55000 : totalItems * 42500;
 
                             const eventData = {
                                 content_type: 'product',
@@ -336,7 +336,7 @@ $(document).ready(function() {
                 if (pairs.length == 0) {
                     montoacobrar = 0;
                 } else if (pairs.length == 1) {
-                    montoacobrar = 60000; // Precio para 1 par en contrareembolso
+                    montoacobrar = 55000; // Precio para 1 par en contrareembolso
                 } else if (pairs.length == 2) {
                     montoacobrar = 85000; // Precio para 2 pares en contrareembolso
                 } else {
@@ -834,8 +834,8 @@ $(document).ready(function() {
                     const talleselegidos = $('#286442883').val() || $('#1471599855').val();
                     const pairs = talleselegidos.split(', ').filter(Boolean);
                     const totalItems = pairs.length;
-                    const unitPrice = totalItems === 1 ? 60000 : 42500;
-                    const totalValue = totalItems === 1 ? 60000 : totalItems * 42500;
+                    const unitPrice = totalItems === 1 ? 55000 : 42500;
+                    const totalValue = totalItems === 1 ? 55000 : totalItems * 42500;
 
                     const eventData = {
                         content_type: 'product',
@@ -952,7 +952,7 @@ $(document).ready(function() {
                 if (pairs.length == 0) {
                     montoacobrar = 0;
                 } else if (pairs.length == 1) {
-                    montoacobrar = 60000; // Precio para 1 par en contrareembolso
+                    montoacobrar = 55000; // Precio para 1 par en contrareembolso
                 } else if (pairs.length == 2) {
                     montoacobrar = 85000; // Precio para 2 pares en contrareembolso
                 } else {

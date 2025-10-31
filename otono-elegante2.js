@@ -934,8 +934,8 @@ $(document).ready(function(){
       if (pairCount === 1) {
         // Usar precios diferentes según la página
         if (isContrareembolso) {
-          totalPrice = 60000; // Precio para 1 par en contrareembolso
-          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>'; // Updated text
+          totalPrice = 55000; // Precio para 1 par en contrareembolso
+          totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="55000">55.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $30.000 más!</small>'; // Updated text
         } else {
           totalPrice = 60000; // Precio para 1 par en prepago
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>'; // Updated text

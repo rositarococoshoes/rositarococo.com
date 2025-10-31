@@ -67,7 +67,7 @@
         <div class="order-details" id="talleselegidos"></div>
 
         <div class="payment-info">
-            <p>Es importante tener en cuenta que debes contar con <strong>$60.000</strong> listos para el momento en que pase el delivery a dejar tu pedido para no demorar en la entrega por cuestiones de seguridad.</p>
+            <p>Es importante tener en cuenta que debes contar con <strong>$55.000</strong> listos para el momento en que pase el delivery a dejar tu pedido para no demorar en la entrega por cuestiones de seguridad.</p>
         </div>
 
         <p class="thank-you">¡Gracias por tu compra!</p>
@@ -428,16 +428,16 @@ if (wspLink) {
         localStorage.removeItem('valid_purchase_token');
         localStorage.removeItem('purchase_timestamp');
 
-        // Datos del evento Purchase - Contrareembolso 1 Par ($60.000)
+        // Datos del evento Purchase - Contrareembolso 1 Par ($55.000)
         const eventData = {
             content_type: 'product',
             content_ids: ['1-par-contrareembolso'],
             contents: [{
                 id: '1-par-contrareembolso',
                 quantity: 1,
-                item_price: 60000
+                item_price: 55000
             }],
-            value: 60000,
+            value: 55000,
             currency: 'ARS',
             num_items: 1
         };

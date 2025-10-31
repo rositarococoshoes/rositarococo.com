@@ -759,7 +759,7 @@ $("#todoslosmodelos select").change(function(){
  if(words.length === 3){ $("#preciototal,#preciototal2").html("TOTAL: <span style='background-color: #ff00dc;color:white;'>🔥 $80.000 x 2 pares  </span><span style='color: rgb(0, 100, 0);'>+&nbsp; ENV&Iacute;O GRATIS</span><p style='font-size:13px; line-height: 17px; color: grey; margin: 0px; padding-top: 10px;'>2 pares que es el máximo de pares por pedido.</p>"); $("#restodelform").show();}
  if(words.length > 3){ $("#preciototal,#preciototal2").html("Sólo puede agregar 2 pares máximo a su pedido. Remueva "+remuevapares+" para poder comprar"); $("#restodelform").hide();}
 
-$("#text").append('<a id="finalizarpedido" onclick="remove(this)" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR COMPRA</a>');
+$("#text").append('<a id="finalizarpedido" onclick="$(this.closest(\'#text\')).hide()" class="btn btn-primary" href="#restodelform" style="width: 100%;margin-top:10px;">FINALIZAR COMPRA</a>');
  var topOfOthDiv = $("#restodelform").offset().top;
     $(window).scroll(function() {
         if($(window).scrollTop() > topOfOthDiv) { //scrolled past the other div?
