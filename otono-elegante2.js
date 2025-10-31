@@ -35,7 +35,6 @@ function isAnyWhatsAppModalActive() {
           (modal.style.display !== 'none' && modal.offsetWidth > 0 && modal.offsetHeight > 0);
 
         if (isActive) {
-          console.log(`🛒 Modal de WhatsApp activo detectado: ${modalType}`);
           return true;
         }
       }
@@ -60,14 +59,12 @@ function isAnyWhatsAppModalActive() {
     for (const selector of modalSelectors) {
       const modals = document.querySelectorAll(selector);
       if (modals.length > 0) {
-        console.log(`🛒 Modal de WhatsApp activo detectado por selector: ${selector}`);
         return true;
       }
     }
 
     return false;
   } catch (error) {
-    console.error('Error al detectar modal de WhatsApp:', error);
     // En caso de error, asumir que no hay modal activo para no interferir con el carrito
     return false;
   }
@@ -75,11 +72,8 @@ function isAnyWhatsAppModalActive() {
 
 // Función para mostrar mensajes en el carrito
 window.showCartMessage = function(message, type = 'info', duration = 5000) {
-  console.log('🛒 Mostrando mensaje del carrito:', message, 'Tipo:', type);
-  
   const cartMessagesArea = document.getElementById('cart-messages');
   if (!cartMessagesArea) {
-    console.warn('🛒 Área de mensajes del carrito no encontrada');
     return;
   }
 
@@ -120,8 +114,6 @@ window.showCartMessage = function(message, type = 'info', duration = 5000) {
   cartMessagesArea.style.display = 'block';
   cartMessagesArea.style.visibility = 'visible';
   cartMessagesArea.style.opacity = '1';
-
-  console.log('🛒 Mensaje agregado al área de mensajes. Total de mensajes:', cartMessagesArea.children.length);
 
   // Auto-remover mensaje si duration > 0
   if (duration > 0) {
@@ -219,36 +211,20 @@ $(document).ready(function(){
   var currentStep = 1;
   var maxStep = 3;
 
-  // DEBUGGING EXTENSIVO: Función de sincronización de campos con logging
+  // Función de sincronización de campos
   function syncHiddenFields() {
-    console.log('🔄 [DEBUG] syncHiddenFields() ejecutándose...');
-    
     if ($('#286442883').length && $('#1471599855').length) {
       var value1471599855 = $('#1471599855').val();
       var value286442883 = $('#286442883').val();
 
-      console.log('🔍 [DEBUG] Estado actual de campos:');
-      console.log('  - #1471599855 (casillero principal):', value1471599855 || '[VACÍO]');
-      console.log('  - #286442883 (campo oculto):', value286442883 || '[VACÍO]');
-
       // Si hay un valor en 1471599855 pero no en 286442883, sincronizar
       if (value1471599855 && !value286442883) {
         $('#286442883').val(value1471599855);
-        console.log('✅ [DEBUG] Campo #286442883 sincronizado con #1471599855:', value1471599855);
       }
       // Si hay un valor en 286442883 pero no en 1471599855, sincronizar
       else if (value286442883 && !value1471599855) {
         $('#1471599855').val(value286442883);
-        console.log('✅ [DEBUG] Campo #1471599855 sincronizado con #286442883:', value286442883);
-      } else if (!value1471599855 && !value286442883) {
-        console.log('⚠️ [DEBUG] Ambos campos están vacíos - sin sincronización necesaria');
-      } else {
-        console.log('ℹ️ [DEBUG] Campos ya están sincronizados o tienen valores diferentes que requieren validación manual');
       }
-    } else {
-      console.error('❌ [DEBUG] ERROR: No se encontraron los campos requeridos:');
-      console.error('  - #286442883 existe:', $('#286442883').length > 0);
-      console.error('  - #1471599855 existe:', $('#1471599855').length > 0);
     }
   }
 
@@ -296,7 +272,6 @@ $(document).ready(function(){
       }
     }
 
-    console.log('Progreso del checkout actualizado al paso:', step);
   }
 
   // Función para actualizar el carrito
@@ -377,8 +352,6 @@ $(document).ready(function(){
         cartTotalElement.text("$0");
       }
     }
-    
-    console.log('Carrito actualizado con', itemCount, 'items:', itemsArray);
   }
 
   // Sistema unificado de eventos del carrito
@@ -409,21 +382,9 @@ $(document).ready(function(){
                                             $(e.target).hasClass('whatsapp-modal-input') ||
                                             $(e.target).parents('.whatsapp-modal').length > 0;
 
-          console.log('🛒 Clic fuera detectado:', {
-            target: e.target,
-            targetId: e.target.id,
-            targetClass: e.target.className,
-            isCartOpen: cartState.isOpen,
-            isClickInsideWhatsAppModal: isClickInsideWhatsAppModal,
-            modalDetails: isClickInsideWhatsAppModal ? 'Clic dentro del modal de WhatsApp' : 'Clic fuera de todos los modales'
-          });
-
           // Solo cerrar el carrito si el clic NO viene de dentro del modal de WhatsApp
           if (!isClickInsideWhatsAppModal) {
-            console.log('🛒 Cerrando carrito por clic fuera - clic no viene del modal de WhatsApp');
             cartState.close();
-          } else {
-            console.log('🛒 Clic dentro del modal de WhatsApp - carrito permanece abierto');
           }
         }
       });
@@ -433,7 +394,6 @@ $(document).ready(function(){
         e.stopPropagation();
         e.preventDefault();
         cartState.close();
-        console.log('🛒 Carrito cerrado manualmente');
       });
 
       // Prevenir que los clics dentro del carrito lo cierren
@@ -575,11 +535,9 @@ $(document).ready(function(){
     // Abrir carrito
     open: function() {
       if (this.isAnimating) {
-        console.log('🛒 Carrito ya está animando, ignorando apertura');
         return;
       }
 
-      console.log('🛒 Abriendo carrito...');
       this.isAnimating = true;
       this.isOpen = true;
 
@@ -595,18 +553,15 @@ $(document).ready(function(){
           'transform': 'translateY(0)'
         });
         this.isAnimating = false;
-        console.log('🛒 Carrito abierto exitosamente');
       }, 10);
     },
 
     // Cerrar carrito
     close: function() {
       if (this.isAnimating) {
-        console.log('🛒 Carrito ya está animando, ignorando cierre');
         return;
       }
 
-      console.log('🛒 Cerrando carrito...');
       this.isAnimating = true;
       this.isOpen = false;
 
@@ -622,7 +577,6 @@ $(document).ready(function(){
       setTimeout(() => {
         $('#mini-cart').css('display', 'none');
         this.isAnimating = false;
-        console.log('🛒 Carrito cerrado exitosamente');
       }, 300);
     },
 
@@ -686,7 +640,6 @@ $(document).ready(function(){
   // --- Add to Cart Button Logic ---
   $('.add-to-cart-btn').on('click', function() {
     var modelId = $(this).data('model');
-    // console.log('Botón clickeado con data-model:', modelId);
 
     // Llamar a la función para agregar al carrito
     var added = addToCartFromButton(this);
@@ -712,36 +665,21 @@ $(document).ready(function(){
   var checkoutBtn = $("#checkout-btn");
   var restOfForm = $("#restodelform");
 
-  // DEBUGGING EXTENSIVO: Inicialización del carrito con logging detallado
+  // Inicialización del carrito
   (function initializeCart() {
-    console.log('🚀 [DEBUG] 🚀 INICIANDO CARRO - initializeCart() ejecutándose...');
-    console.log('🔍 [DEBUG] Estado del summaryInput:', summaryInput ? 'Encontrado' : 'NO ENCONTRADO');
-    console.log('🔍 [DEBUG] ID del summaryInput:', summaryInput ? summaryInput.attr('id') : 'N/A');
-    
     // Obtener los productos del campo oculto
     var summaryContent = summaryInput.val() || "";
-    console.log('📦 [DEBUG] Contenido del campo de productos:', summaryContent || '[VACÍO]');
-    
-    // DEBUGGING: Verificar estado de ambos campos importantes
-    console.log('🔍 [DEBUG] Estado de campos específicos:');
-    console.log('  - #286442883:', $('#286442883').val() || '[VACÍO]');
-    console.log('  - #1471599855:', $('#1471599855').val() || '[VACÍO]');
     
     // Convertir a array y filtrar valores vacíos
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
-    console.log('📋 [DEBUG] Array de productos inicial:', summaryArray);
-    console.log('📊 [DEBUG] Cantidad de productos encontrados:', summaryArray.length);
 
     // Actualizar el carrito con los productos existentes
     if (summaryArray.length > 0) {
-      console.log('✅ [DEBUG] Productos encontrados, actualizando carrito...');
       updateCart(summaryArray);
 
       // Actualizar el texto del total en el resumen del pedido
       var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
       var totalPriceText = "";
-      
-      console.log('💰 [DEBUG] Calculando precios (isContrareembolso:', isContrareembolso, ')');
 
       if (summaryArray.length === 1) {
         if (isContrareembolso) {
@@ -749,33 +687,22 @@ $(document).ready(function(){
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="60000">60.000</span> x 1 par</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Añade otro par por solo $35.000 más!</small>';
         }
-        console.log('💵 [DEBUG] Precio calculado para 1 par:', totalPriceText);
       } else if (summaryArray.length === 2) {
         if (isContrareembolso) {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="85000">85.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($42.500 c/u)!</small>';
         } else {
           totalPriceText = 'TOTAL: <span class="price">🔥 $<span class="preciototalaobservar" data-original-price="95000">95.000</span> x 2 pares</span> + <span class="shipping">ENVÍO GRATIS</span> <br><small>¡Excelente precio ($47.500 c/u)!</small>';
         }
-        console.log('💵 [DEBUG] Precio calculado para 2 pares:', totalPriceText);
       }
 
       // Actualizar el elemento #preciototal con el texto correspondiente
       if (totalPriceText) {
         $("#preciototal").html(totalPriceText);
-        console.log('✅ [DEBUG] #preciototal actualizado con:', totalPriceText);
       }
     } else {
       // Si no hay productos, mostrar mensaje predeterminado
-      console.log('⚠️ [DEBUG] No hay productos, mostrando mensaje predeterminado');
       $("#preciototal").html("Elige modelos y talles para ver el total");
-      console.log('✅ [DEBUG] Mensaje predeterminado establecido en #preciototal');
     }
-    
-    console.log('🎯 [DEBUG] 🎯 INICIALIZACIÓN COMPLETADA - Estado final del carrito:', window.cartItems);
-    console.log('📊 [DEBUG] Estado final de elementos UI:');
-    console.log('  - Cart count:', $('.cart-count').text());
-    console.log('  - Button count:', $('.cart-button-count').text());
-    console.log('  - Mini cart items:', $('.cart-items').children().length);
   })();
 
   $("#todoslosmodelos select.talle").change(function(){
@@ -919,7 +846,6 @@ $(document).ready(function(){
   // Continue to checkout button click handlers - para el botón flotante
   $("#floating-continue-to-checkout, #fixed-checkout-button").on('click', function(e) {
     e.preventDefault();
-    // console.log('Botón de continuar al envío clickeado');
 
     // Check if there are items in the cart
     if (cartItems.length > 0) {

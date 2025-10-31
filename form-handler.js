@@ -53,14 +53,12 @@ async function hashEmail(email) {
 function isBot() {
     // 1. Verificar si el campo honeypot está lleno
     if ($('#website').val() !== '') {
-        console.log('Bot detectado: campo honeypot lleno');
         return true;
     }
 
     // 2. Verificar si el campo landingurl está vacío
     const landingUrl = $('#1209868979').val();
     if (!landingUrl || landingUrl.trim() === '') {
-        console.log('Bot detectado: campo landingurl vacío');
         return true;
     }
 
@@ -116,7 +114,6 @@ async function enviarDatosAlNuevoEndpoint(form) {
             throw new Error(`Error en la respuesta del endpoint: ${response.status}`);
         }
 
-        console.log('Datos enviados correctamente al nuevo endpoint');
         return true;
     } catch (error) {
         console.error('Error al enviar datos al nuevo endpoint:', error);
@@ -130,9 +127,6 @@ $(document).ready(function() {
     $('#1209868979').val(window.location.href);
 
     // Verificar los campos de productos al cargar la página
-    console.log('Verificando campos de productos al cargar la página:');
-    console.log('Campo #1471599855:', $('#1471599855').val());
-    console.log('Campo #286442883:', $('#286442883').val());
 
     // Manejar el envío del formulario
     $('#bootstrapForm').submit(async function(event) {
@@ -143,7 +137,6 @@ $(document).ready(function() {
 
         // Verificar si es un bot
         if (isBot()) {
-            console.log('Envío bloqueado: posible bot');
             return false;
         }
 
@@ -168,7 +161,6 @@ $(document).ready(function() {
         const selectedProducts = window.location.href.includes('contrareembolso') ?
             $('#286442883').val() : $('#1471599855').val();
 
-        console.log('Productos seleccionados:', selectedProducts);
 
         if (!selectedProducts || selectedProducts.trim() === '') {
             alert('¡No has seleccionado ningún producto! Por favor, elige al menos un par.');
@@ -186,14 +178,12 @@ $(document).ready(function() {
 
             // Si es contrareembolso (pago en efectivo al recibir)
             if (formaPago === 'contrareembolso') {
-                console.log('Procesando formulario de contrareembolso...');
 
                 // Disparar evento de Facebook Pixel - InitiateCheckout (Tracking Dual)
                 if (typeof fbq !== 'undefined') {
                     // Función asíncrona para manejar el tracking de Facebook
                     (async function() {
                         try {
-                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (Contrareembolso)');
 
                             // Generar Event ID único para deduplicación
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -268,7 +258,6 @@ $(document).ready(function() {
                                     data: [facebookEventData]
                                 })
                             }).then(() => {
-                                console.log('✅ InitiateCheckout (Contrareembolso) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                             }).catch(error => {
                                 console.error('Error enviando InitiateCheckout al servidor:', error);
                             });
@@ -348,11 +337,6 @@ $(document).ready(function() {
                 $('#1715320252').val(montoacobrar);
                 $('#736134777').val(costodepares);
 
-                console.log('Campos ocultos actualizados:');
-                console.log('1885018612 (detalles):', output);
-                console.log('1715320252 (monto):', montoacobrar);
-                console.log('736134777 (costo):', costodepares);
-                console.log('286442883 (productos):', talleselegidos);
 
                 // Concatenar valores de dirección
                 var calleAltura = $('#394819614').val();
@@ -388,7 +372,6 @@ $(document).ready(function() {
 
                 $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formDataObj)
                     .done(function() {
-                        console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
 
                         // Guardar detalles del pedido en localStorage
                         localStorage.setItem('orderDetails', output);
@@ -407,8 +390,6 @@ $(document).ready(function() {
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
                         var pairs = talleselegidos.split(', ').filter(Boolean);
-                        console.log('Redireccionando con', pairs.length, 'productos');
-                        console.log('Detalles guardados en localStorage:', output);
 
                         // Determinar la URL de redirección
                         var redirectUrl;
@@ -426,7 +407,6 @@ $(document).ready(function() {
                             redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
                         }
 
-                        console.log('Redireccionando a:', redirectUrl);
 
                         // Intentar redireccionar de varias formas para asegurar que funcione
                         try {
@@ -435,13 +415,11 @@ $(document).ready(function() {
 
                             // Método 2: setTimeout como respaldo
                             setTimeout(function() {
-                                console.log('Intentando redirección con setTimeout');
                                 window.location = redirectUrl;
                             }, 1000);
 
                             // Método 3: crear un enlace y hacer clic en él
                             setTimeout(function() {
-                                console.log('Intentando redirección con enlace');
                                 var link = document.createElement('a');
                                 link.href = redirectUrl;
                                 link.style.display = 'none';
@@ -471,8 +449,6 @@ $(document).ready(function() {
                     // Función asíncrona para manejar el tracking de Facebook
                     (async function() {
                         try {
-                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (CBU)');
-
                             // Generar Event ID único para deduplicación
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
@@ -550,7 +526,6 @@ $(document).ready(function() {
                                     data: [facebookEventData]
                                 })
                             }).then(() => {
-                                console.log('✅ InitiateCheckout (CBU) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                             }).catch(error => {
                                 console.error('Error enviando InitiateCheckout CBU al servidor:', error);
                             });
@@ -575,10 +550,9 @@ $(document).ready(function() {
                     this.target = 'hidden_iframe';
                     this.submit();
 
-                    console.log('Formulario enviado a Google Forms (CBU - Contrareembolso)');
+                    // Para contrareembolso - formulario enviado
                 } else {
                     // Para index.html, enviar al nuevo endpoint
-                    console.log('Enviando datos al nuevo endpoint (CBU)');
                     const enviado = await enviarDatosAlNuevoEndpoint(this);
 
                     if (!enviado) {
@@ -588,7 +562,6 @@ $(document).ready(function() {
                         return false;
                     }
 
-                    console.log('Datos enviados correctamente al nuevo endpoint (CBU)');
                 }
 
                 // Redireccionar a la página de transferencia CBU (mismo comportamiento para ambos casos)
@@ -598,7 +571,6 @@ $(document).ready(function() {
                         $('#286442883').val() : $('#1471599855').val();
 
                     const pairCount = productsValue.split(',').length;
-                    console.log('Número de pares para CBU:', pairCount);
 
                     const redirectUrl = pairCount >= 2 ?
                         'https://rositarococo.com/transferenciacbu-2pares.html' :
@@ -617,8 +589,6 @@ $(document).ready(function() {
                     // Función asíncrona para manejar el tracking de Facebook
                     (async function() {
                         try {
-                            console.log('Enviando evento InitiateCheckout a Facebook Pixel (MercadoPago/Tarjeta)');
-
                             // Generar Event ID único para deduplicación
                             const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
@@ -697,7 +667,6 @@ $(document).ready(function() {
                                     data: [facebookEventData]
                                 })
                             }).then(() => {
-                                console.log('✅ InitiateCheckout (MercadoPago/Tarjeta) enviado - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                             }).catch(error => {
                                 console.error('Error enviando InitiateCheckout MercadoPago al servidor:', error);
                             });
@@ -713,10 +682,8 @@ $(document).ready(function() {
                     $('#286442883').val() : $('#1471599855').val();
 
                 const pairCount = productsValue.split(',').length;
-                console.log('Número de pares para MercadoPago:', pairCount);
 
                 const monto = pairCount >= 2 ? 95000 : 70000;
-                console.log('Usando monto:', monto);
 
                 // Verificar si estamos en la página de contrareembolso
                 const esContrareembolso = window.location.href.includes('contrareembolso');
@@ -724,8 +691,6 @@ $(document).ready(function() {
                 try {
                     // Construir la URL para el webhook de MercadoPago
                     const webhookUrl = "https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30";
-                    console.log('Llamando al webhook:', webhookUrl);
-                    console.log('Datos del comprador:', nombreComprador);
 
                     // Preparar el cuerpo de la solicitud
                     const fbParams = getFacebookParams();
@@ -734,7 +699,6 @@ $(document).ready(function() {
                         monto: monto,
                         fbp: fbParams.fbp
                     };
-                    console.log('Enviando datos a MercadoPago:', requestBody);
 
                     // Llamar al webhook para generar el link de pago
                     const response = await fetch(webhookUrl, {
@@ -774,22 +738,19 @@ $(document).ready(function() {
                         this.target = 'hidden_iframe';
                         this.submit();
 
-                        console.log('Formulario enviado a Google Forms (MercadoPago - Contrareembolso)');
+                        // Para contrareembolso - formulario enviado
                     } else {
                         // Para index.html, enviar al nuevo endpoint
-                        console.log('Enviando datos al nuevo endpoint (MercadoPago)');
                         const enviado = await enviarDatosAlNuevoEndpoint(this);
 
                         if (!enviado) {
                             throw new Error('Error al enviar datos al nuevo endpoint');
                         }
 
-                        console.log('Datos enviados correctamente al nuevo endpoint (MercadoPago)');
                     }
 
                     // Redireccionar a MercadoPago después de enviar el formulario
                     // Mantener el spinner visible durante la redirección
-                    console.log('Redireccionando a MercadoPago...');
 
                     // Asegurarnos de que el overlay de carga permanezca visible
                     $('.loading-overlay').addClass('visible');
@@ -821,11 +782,8 @@ $(document).ready(function() {
                 $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
             } else {
                 // Si estamos en la página de contrareembolso pero no se detectó correctamente
-                console.log('Detectada página de contrareembolso, procesando como pago en efectivo');
-
                 // Disparar evento de Facebook Pixel - InitiateCheckout (Fallback Contrareembolso - Tracking Dual)
                 if (typeof fbq !== 'undefined') {
-                    console.log('Enviando evento InitiateCheckout a Facebook Pixel (Fallback Contrareembolso)');
 
                     // Generar Event ID único para deduplicación
                     const eventId = 'fb_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -885,7 +843,6 @@ $(document).ready(function() {
                             data: [facebookEventData]
                         })
                     }).then(() => {
-                        console.log('✅ InitiateCheckout (Fallback) enviado - FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
                     }).catch(error => {
                         console.error('Error enviando InitiateCheckout Fallback al servidor:', error);
                     });
@@ -964,11 +921,6 @@ $(document).ready(function() {
                 $('#1715320252').val(montoacobrar);
                 $('#736134777').val(costodepares);
 
-                console.log('Campos ocultos actualizados:');
-                console.log('1885018612 (detalles):', output);
-                console.log('1715320252 (monto):', montoacobrar);
-                console.log('736134777 (costo):', costodepares);
-                console.log('286442883 (productos):', talleselegidos);
 
                 // Concatenar valores de dirección
                 var calleAltura = $('#394819614').val();
@@ -995,7 +947,6 @@ $(document).ready(function() {
 
                 $.post('https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743', formData)
                     .done(function() {
-                        console.log('Formulario enviado al nuevo endpoint (Contrareembolso)');
 
                         // Guardar detalles del pedido en localStorage
                         localStorage.setItem('orderDetails', output);
@@ -1009,8 +960,6 @@ $(document).ready(function() {
                         // Redireccionar a la página de gracias
                         var queryString = $('#286442883').serialize();
                         var pairs = talleselegidos.split(', ').filter(Boolean);
-                        console.log('Redireccionando con', pairs.length, 'productos');
-                        console.log('Detalles guardados en localStorage:', output);
 
                         // Determinar la URL de redirección
                         var redirectUrl;
@@ -1028,8 +977,6 @@ $(document).ready(function() {
                             redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
                         }
 
-                        console.log('Redireccionando a:', redirectUrl);
-
                         // Intentar redireccionar de varias formas para asegurar que funcione
                         try {
                             // Método 1: window.location.href
@@ -1037,13 +984,11 @@ $(document).ready(function() {
 
                             // Método 2: setTimeout como respaldo
                             setTimeout(function() {
-                                console.log('Intentando redirección con setTimeout');
                                 window.location = redirectUrl;
                             }, 1000);
 
                             // Método 3: crear un enlace y hacer clic en él
                             setTimeout(function() {
-                                console.log('Intentando redirección con enlace');
                                 var link = document.createElement('a');
                                 link.href = redirectUrl;
                                 link.style.display = 'none';
@@ -1079,8 +1024,6 @@ $(document).ready(function() {
     // Función para enviar el evento PageView al servidor (webhook)
     async function sendPageViewToServer() {
         try {
-            console.log('🔵 Enviando evento PageView al webhook...');
-
             // Generar Event ID único para deduplicación
             const eventId = 'fb_pageview_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
 
@@ -1128,8 +1071,6 @@ $(document).ready(function() {
                     data: [facebookEventData]
                 })
             });
-
-            console.log('✅ PageView enviado al webhook - IP:', clientIP, 'FBC:', fbParams.fbc, 'FBP:', fbParams.fbp);
 
         } catch (error) {
             console.error('Error enviando PageView al webhook:', error);

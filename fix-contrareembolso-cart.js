@@ -46,12 +46,10 @@
       // Si hay un valor en 286442883 pero no en 1471599855, sincronizar
       if (value286442883 && !value1471599855) {
         $('#1471599855').val(value286442883);
-        console.log('Campo #1471599855 sincronizado con #286442883:', value286442883);
       }
       // Si hay un valor en 1471599855 pero no en 286442883, sincronizar
       else if (value1471599855 && !value286442883) {
         $('#286442883').val(value1471599855);
-        console.log('Campo #286442883 sincronizado con #1471599855:', value1471599855);
       }
     }
 
@@ -67,7 +65,6 @@
       window.addToCartFromButton = function(button) {
         var $button = $(button);
         var modelId = $button.data('model');
-        console.log('Agregando al carrito desde botón con data-model:', modelId);
 
         // Obtener el selector correcto basado en el ID del modelo
         var $select;
@@ -130,7 +127,6 @@
 
         // Agregar el nuevo valor al array
         summaryArray.push(currentVal);
-        console.log('Array de productos después de agregar:', summaryArray);
 
         // Mostrar notificación de éxito
         $select.closest('.form-group').find('.avisoagregado').remove();
@@ -138,20 +134,16 @@
 
         // Actualizar el campo de productos
         var finalSummaryText = summaryArray.join(', ');
-        console.log('🔧 [FIX-CART] Texto final calculado:', finalSummaryText);
 
         // CORRECCIÓN CRÍTICA: Sincronización bidireccional completa
         // 1. Actualizar el campo principal del casillero (el que ve el usuario)
         $("#286442883").val(finalSummaryText);
-        console.log('🔧 [FIX-CART] Campo #286442883 actualizado:', finalSummaryText || '[VACÍO]');
         
         // 2. Actualizar el campo oculto de sincronización
         $("#1471599855").val(finalSummaryText);
-        console.log('🔧 [FIX-CART] Campo #1471599855 actualizado:', finalSummaryText || '[VACÍO]');
         
         // 3. Actualizar summaryInput también
         summaryInput.val(finalSummaryText);
-        console.log('🔧 [FIX-CART] summaryInput actualizado:', finalSummaryText || '[VACÍO]');
 
         // Actualizar el resumen del pedido
         $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
