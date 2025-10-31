@@ -159,7 +159,6 @@ $(document).ready(function() {
 
         // Verificar que haya productos en el carrito
         // Usar el ID correcto según la página
-        const isContrareembolso = window.location.href.includes('contrareembolso');
         const selectedProducts = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
         if (!selectedProducts || selectedProducts.trim() === '') {
             alert('¡No has seleccionado ningún producto! Por favor, elige al menos un par.');
