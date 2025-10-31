@@ -773,6 +773,9 @@ $(document).ready(function(){
     summaryInput.val(finalSummaryText);
 
     $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
+    
+    // CORRECCIÓN CRÍTICA: Asegurar sincronización del campo oculto visible
+    $("#1471599855").val(finalSummaryText);
 
     summaryInput.trigger('change');
     $('#286442883').trigger('change');

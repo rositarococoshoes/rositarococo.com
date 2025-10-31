@@ -1070,4 +1070,77 @@ $(document).ready(function() {
 
     // Enviar PageView al cargar la página
     sendPageViewToServer();
+
+    // --- FUNCIÓN updateOrderSummary() para index.html ---
+    // Actualiza todos los campos del resumen "Revisar Pedido y Datos"
+    function updateOrderSummary() {
+        // Solo ejecutar en páginas que NO sean de contrareembolso
+        const isContrareembolso = window.location.href.includes('contrareembolso');
+        if (isContrareembolso) {
+            return; // Salir si es página de contrareembolso
+        }
+
+        // Mapeo de campos de entrada a campos de resumen
+        const fieldMappings = {
+            // help-modelostallesseleccionados ya funciona desde otono-elegante2.js
+            'help-nombre': '1460904554',           // Nombre y Apellido
+            'help-wapp': '53830725',               // WhatsApp
+            'help-email': '1465946249',            // Email
+            'help-calleyaltura': '951592426',      // Calle y Altura
+            'help-localidad': '1743418466',        // Localidad
+            'help-cp': '1005165410',               // Código Postal
+            'help-provincia': '59648134',          // Provincia
+            'help-dni': '541001873'                // DNI
+        };
+
+        // Actualizar cada campo del resumen
+        Object.keys(fieldMappings).forEach(function(summaryFieldId) {
+            const inputId = fieldMappings[summaryFieldId];
+            const inputElement = document.getElementById(inputId);
+            const summaryElement = document.getElementById(summaryFieldId);
+
+            if (inputElement && summaryElement) {
+                let value = inputElement.value || '';
+                
+                // Formatear valores específicos
+                if (summaryFieldId === 'help-provincia' && inputElement.tagName === 'SELECT') {
+                    value = inputElement.options[inputElement.selectedIndex]?.text || '';
+                }
+                
+                // Actualizar el campo de resumen
+                summaryElement.textContent = value || '-';
+            }
+        });
+    }
+
+    // Event listeners para actualizar el resumen cuando cambian los campos
+    // Solo para páginas que NO sean de contrareembolso
+    const isContrareembolso = window.location.href.includes('contrareembolso');
+    if (!isContrareembolso) {
+        // Campos que deben actualizar el resumen en tiempo real
+        const fieldsToWatch = [
+            '1460904554', // nombre
+            '53830725',   // wapp
+            '1465946249', // email
+            '951592426',  // calleyaltura
+            '1743418466', // localidad
+            '1005165410', // cp
+            '59648134',   // provincia
+            '541001873'   // dni
+        ];
+
+        fieldsToWatch.forEach(function(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                // Actualizar en input y change para mayor compatibilidad
+                field.addEventListener('input', updateOrderSummary);
+                field.addEventListener('change', updateOrderSummary);
+            }
+        });
+
+        // Actualizar resumen al cargar la página
+        $(document).ready(function() {
+            setTimeout(updateOrderSummary, 500); // Dar tiempo para que se carguen los valores
+        });
+    }
 });
