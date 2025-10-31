@@ -1444,10 +1444,10 @@
                         <input class="form-control" id="1211347450" name="entry.1211347450" placeholder="Quien recibe el pedido" required type="text" />
                     </div>
                     <div class="form-group">
-                        <label for="53830725">WhatsApp <span style="color:red">*</span></label>
-                        <input class="form-control" id="53830725" name="entry.53830725" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" onblur="validateWhatsAppInline()" />
+                        <label for="501094818">WhatsApp <span style="color:red">*</span></label>
+                        <input class="form-control" id="501094818" name="entry.501094818" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" onblur="validateWhatsAppInline()" />
                         <!-- Error message element -->
-                        <div class="error-message" data-target="53830725"></div>
+                        <div class="error-message" data-target="501094818"></div>
                         <p class="help-block">Fundamental para coordinar el envío si es necesario.</p>
                     </div>
                 </fieldset>
@@ -1914,7 +1914,7 @@
       function updateAllHelpFields() {
         $("#help-modelostallesseleccionados").html($("#286442883").val());
         $("#help-nombre").html($("#1211347450").val());
-        $("#help-wapp").html($("#53830725").val());
+        $("#help-wapp").html($("#501094818").val());
         $("#help-calleyaltura").html($("#394819614").val());
         $("#help-localidad").html($("#2081271241").val());
         $("#help-provincia").html($("#1440375758").val());
@@ -1923,7 +1923,7 @@
       }
 
       // Actualizar los campos de ayuda cuando cambian los valores de los campos
-      $("#286442883, #1211347450, #53830725, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
+      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
         updateAllHelpFields();
       });
 
@@ -2213,7 +2213,7 @@
         const whatsappModalInput = document.getElementById('whatsapp-modal-input');
         const whatsappModalSubmit = document.getElementById('whatsapp-modal-submit');
         const whatsappErrorMessage = document.querySelector('.whatsapp-error-message');
-        const mainWhatsappInput = document.getElementById('53830725'); // ID específico para contrareembolso
+        const mainWhatsappInput = document.getElementById('501094818'); // ID específico para contrareembolso
 
         // Endpoints
         const validateWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
@@ -2414,7 +2414,7 @@
         window.validateWhatsAppInline = async function() {
             console.log('🔍 [WhatsApp onBlur] Función validateWhatsAppInline ejecutada');
             
-            const whatsappInput = document.getElementById('53830725');
+            const whatsappInput = document.getElementById('501094818');
             if (!whatsappInput) {
                 console.error('❌ [WhatsApp onBlur] Campo WhatsApp no encontrado');
                 return;
@@ -2425,13 +2425,13 @@
 
             if (!inputValue) {
                 console.log('⚠️ [WhatsApp onBlur] Campo vacío, limpiando estado');
-                showWhatsAppError('53830725', '');
+                showWhatsAppError('501094818', '');
                 return;
             }
 
             if (!validateInputFormat(inputValue)) {
                 console.log('❌ [WhatsApp onBlur] Formato inválido');
-                showWhatsAppError('53830725', 'Formato de WhatsApp inválido. Ej: 1156457057');
+                showWhatsAppError('501094818', 'Formato de WhatsApp inválido. Ej: 1156457057');
                 return;
             }
 
@@ -2442,7 +2442,7 @@
 
             console.log('🔄 [WhatsApp onBlur] Iniciando validación con webhook...');
             isValidating = true;
-            showWhatsAppError('53830725', 'Verificando WhatsApp...', true);
+            showWhatsAppError('501094818', 'Verificando WhatsApp...', true);
 
             const whatsappNumber = formatWhatsappNumber(inputValue);
             console.log('🔍 [WhatsApp onBlur] Número formateado:', whatsappNumber);
@@ -2467,15 +2467,15 @@
 
                 if (data.exists === true) {
                     console.log('✅ [WhatsApp onBlur] WhatsApp válido');
-                    showWhatsAppError('53830725', '¡WhatsApp válido!', true);
+                    showWhatsAppError('501094818', '¡WhatsApp válido!', true);
                 } else {
                     console.log('❌ [WhatsApp onBlur] WhatsApp inválido según webhook');
-                    showWhatsAppError('53830725', 'WhatsApp inválido, por favor corríjalo.');
+                    showWhatsAppError('501094818', 'WhatsApp inválido, por favor corríjalo.');
                 }
 
             } catch (error) {
                 console.error('❌ [WhatsApp onBlur] Error en la validación:', error);
-                showWhatsAppError('53830725', 'Error de red. Intenta de nuevo.');
+                showWhatsAppError('501094818', 'Error de red. Intenta de nuevo.');
             } finally {
                 isValidating = false;
                 console.log('🏁 [WhatsApp onBlur] Validación finalizada');
