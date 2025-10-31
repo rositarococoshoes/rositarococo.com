@@ -1444,10 +1444,10 @@
                         <input class="form-control" id="1211347450" name="entry.1211347450" placeholder="Quien recibe el pedido" required type="text" />
                     </div>
                     <div class="form-group">
-                        <label for="501094818">WhatsApp <span style="color:red">*</span></label>
-                        <input class="form-control" id="501094818" name="entry.501094818" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" />
+                        <label for="53830725">WhatsApp <span style="color:red">*</span></label>
+                        <input class="form-control" id="53830725" name="entry.53830725" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" />
                         <!-- Error message element -->
-                        <div class="error-message" data-target="501094818"></div>
+                        <div class="error-message" data-target="53830725"></div>
                         <p class="help-block">Fundamental para coordinar el envío si es necesario.</p>
                     </div>
                 </fieldset>
@@ -1914,7 +1914,7 @@
       function updateAllHelpFields() {
         $("#help-modelostallesseleccionados").html($("#286442883").val());
         $("#help-nombre").html($("#1211347450").val());
-        $("#help-wapp").html($("#501094818").val());
+        $("#help-wapp").html($("#53830725").val());
         $("#help-calleyaltura").html($("#394819614").val());
         $("#help-localidad").html($("#2081271241").val());
         $("#help-provincia").html($("#1440375758").val());
@@ -1923,7 +1923,7 @@
       }
 
       // Actualizar los campos de ayuda cuando cambian los valores de los campos
-      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
+      $("#286442883, #1211347450, #53830725, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
         updateAllHelpFields();
       });
 
@@ -2213,7 +2213,7 @@
         const whatsappModalInput = document.getElementById('whatsapp-modal-input');
         const whatsappModalSubmit = document.getElementById('whatsapp-modal-submit');
         const whatsappErrorMessage = document.querySelector('.whatsapp-error-message');
-        const mainWhatsappInput = document.getElementById('501094818'); // ID específico para contrareembolso
+        const mainWhatsappInput = document.getElementById('53830725'); // ID específico para contrareembolso
 
         // Endpoints
         const validateWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
@@ -2235,10 +2235,19 @@
             return '549' + formatted;
         }
 
-        function showMessage(message, isError = true) {
+        function showMessage(message, type = 'error') {
             if (!whatsappErrorMessage) return;
             whatsappErrorMessage.textContent = message;
-            whatsappErrorMessage.className = 'whatsapp-error-message' + (!isError ? ' valid' : '');
+            whatsappErrorMessage.className = 'whatsapp-error-message'; // Reset classes
+            
+            // Handle different message types
+            if (type === 'valid') {
+                whatsappErrorMessage.classList.add('valid');
+            } else if (type === 'verifying') {
+                whatsappErrorMessage.classList.add('verifying');
+            } else if (type === 'error' || isError === true) {
+                // Error is default, no additional class needed
+            }
         }
 
         function validateInput(inputValue) {
