@@ -244,15 +244,15 @@ $(document).ready(function() {
                         console.log('🎯 [Form Handler] Redirigiendo a página de gracias...');
                         if(pairs.length === 1){
                             console.log('→ [Form Handler] Redirigiendo a: gracias-1par-c.html');
-                            window.location = 'http://www.rositarococo.com/gracias-1par-c.html?' + queryString;
+                            window.location = 'gracias-1par-c.html?' + queryString;
                         }
                         else if(pairs.length === 2){
                             console.log('→ [Form Handler] Redirigiendo a: gracias-2pares-c.html');
-                            window.location = 'http://www.rositarococo.com/gracias-2pares-c.html?' + queryString;
+                            window.location = 'gracias-2pares-c.html?' + queryString;
                         }
                         else if(pairs.length >= 3){
                             console.log('→ [Form Handler] Redirigiendo a: gracias-3pares.html');
-                            window.location = 'http://www.rositarococo.com/gracias-3pares.html?' + queryString;
+                            window.location = 'gracias-3pares.html?' + queryString;
                         }
                     }, 100);
                 })

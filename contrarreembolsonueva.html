@@ -1559,7 +1559,7 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay">
         <div class="loading-spinner"></div>
-        <p class="loading-message">Estamos preparando tu pago seguro...<br>Por favor espera, te estamos redirigiendo a MercadoPago.<br><strong>No cierres ni actualices esta página.</strong></p>
+        <p class="loading-message">Procesando tu pedido de contrarreembolso...<br>Te redirigiremos a la confirmación en unos segundos.<br><strong>No cierres ni actualices esta página.</strong></p>
     </div>
 
     <!-- Scripts cargados al final del documento para asegurar que jQuery esté disponible -->
@@ -1877,11 +1877,11 @@
               // Construir la URL de redirección
               var redirectUrl;
               if (pairs.length === 1) {
-                redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?286442883=' + encodeURIComponent(selectedProducts);
+                redirectUrl = 'gracias-1par-c.html?286442883=' + encodeURIComponent(selectedProducts);
               } else if (pairs.length === 2) {
-                redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?286442883=' + encodeURIComponent(selectedProducts);
+                redirectUrl = 'gracias-2pares-c.html?286442883=' + encodeURIComponent(selectedProducts);
               } else {
-                redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?286442883=' + encodeURIComponent(selectedProducts);
+                redirectUrl = 'gracias-3pares.html?286442883=' + encodeURIComponent(selectedProducts);
               }
 
               // Mostrar un mensaje al usuario
@@ -2022,11 +2022,11 @@
             // Construir la URL de redirección
             var redirectUrl;
             if (pairs.length === 1) {
-              redirectUrl = 'http://www.rositarococo.com/gracias-1par-c.html?286442883=' + encodeURIComponent(savedProducts);
+              redirectUrl = 'gracias-1par-c.html?286442883=' + encodeURIComponent(savedProducts);
             } else if (pairs.length === 2) {
-              redirectUrl = 'http://www.rositarococo.com/gracias-2pares-c.html?286442883=' + encodeURIComponent(savedProducts);
+              redirectUrl = 'gracias-2pares-c.html?286442883=' + encodeURIComponent(savedProducts);
             } else {
-              redirectUrl = 'http://www.rositarococo.com/gracias-3pares.html?286442883=' + encodeURIComponent(savedProducts);
+              redirectUrl = 'gracias-3pares.html?286442883=' + encodeURIComponent(savedProducts);
             }
 
             // Mostrar un mensaje al usuario
