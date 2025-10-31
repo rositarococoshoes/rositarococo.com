@@ -148,8 +148,9 @@ $(document).ready(function() {
         }
 
         // Verificar WhatsApp
-        const whatsappInput = document.getElementById('501094818');
-        const errorElement = document.querySelector('.error-message[data-target="501094818"]');
+        const isContrareembolso = window.location.href.includes('contrareembolso');
+        const whatsappInput = document.getElementById(isContrareembolso ? '501094818' : '53830725');
+        const errorElement = document.querySelector('.error-message[data-target="' + (isContrareembolso ? '501094818' : '53830725') + '"]');
         if (errorElement && !errorElement.classList.contains('valid')) {
             alert('Por favor, verifica tu número de WhatsApp antes de continuar.');
             if (whatsappInput) whatsappInput.focus();
@@ -158,10 +159,8 @@ $(document).ready(function() {
 
         // Verificar que haya productos en el carrito
         // Usar el ID correcto según la página
-        const selectedProducts = window.location.href.includes('contrareembolso') ?
-            $('#286442883').val() : $('#1471599855').val();
-
-
+        const isContrareembolso = window.location.href.includes('contrareembolso');
+        const selectedProducts = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
         if (!selectedProducts || selectedProducts.trim() === '') {
             alert('¡No has seleccionado ningún producto! Por favor, elige al menos un par.');
             return false;
@@ -173,7 +172,7 @@ $(document).ready(function() {
 
         try {
             // Para la página de contrareembolso, asumimos que el método de pago es contrareembolso
-            const formaPago = window.location.href.includes('contrareembolso') ? 'contrareembolso' : $('#comoabona').val();
+            const formaPago = isContrareembolso ? 'contrareembolso' : $('#comoabona').val();
             const nombreComprador = $('#1460904554').val(); // Corregido: Usar el ID correcto del campo de nombre y apellido
 
             // Si es contrareembolso (pago en efectivo al recibir)
@@ -190,8 +189,7 @@ $(document).ready(function() {
 
 
                             // Calcular datos del carrito para contrareembolso
-                            const talleselegidos = window.location.href.includes('contrareembolso') ?
-                                $('#286442883').val() : $('#1471599855').val();
+                            const talleselegidos = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
                             const pairs = talleselegidos.split(', ').filter(Boolean);
                             const totalItems = pairs.length;
                             const unitPrice = totalItems === 1 ? 55000 : 42500;
@@ -268,8 +266,7 @@ $(document).ready(function() {
                 }
 
                 // Procesar los productos seleccionados
-                var talleselegidos = window.location.href.includes('contrareembolso') ?
-                    $('#286442883').val() : $('#1471599855').val();
+                var talleselegidos = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
                 var pairs = talleselegidos.split(', '); // split the input by ", " (comma and space)
 
                 // remove empty elements from the array
@@ -459,8 +456,7 @@ $(document).ready(function() {
                             }
 
                             // Calcular datos del carrito para CBU
-                            const productsValue = window.location.href.includes('contrareembolso') ?
-                                $('#286442883').val() : $('#1471599855').val();
+                            const productsValue = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
                             const pairs = productsValue.split(', ').filter(Boolean);
                             const totalItems = pairs.length;
                             const totalValue = totalItems === 1 ? 63000 : 99000; // Precios CBU correctos
@@ -567,8 +563,7 @@ $(document).ready(function() {
                 // Redireccionar a la página de transferencia CBU (mismo comportamiento para ambos casos)
                 setTimeout(function() {
                     // Asegurarse de usar el valor correcto para contar los pares
-                    const productsValue = window.location.href.includes('contrareembolso') ?
-                        $('#286442883').val() : $('#1471599855').val();
+                    const productsValue = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
 
                     const pairCount = productsValue.split(',').length;
 
@@ -599,8 +594,7 @@ $(document).ready(function() {
                             }
 
                             // Calcular datos del carrito para MercadoPago/Tarjeta
-                            const productsValue = window.location.href.includes('contrareembolso') ?
-                                $('#286442883').val() : $('#1471599855').val();
+                            const productsValue = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
                             const pairs = productsValue.split(', ').filter(Boolean);
                             const totalItems = pairs.length;
                             const unitPrice = totalItems === 1 ? 70000 : 47500; // Precios previo pago
@@ -678,8 +672,7 @@ $(document).ready(function() {
 
                 // Obtener el precio basado en la cantidad de productos
                 // Asegurarse de usar el valor correcto para contar los pares
-                const productsValue = window.location.href.includes('contrareembolso') ?
-                    $('#286442883').val() : $('#1471599855').val();
+                const productsValue = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
 
                 const pairCount = productsValue.split(',').length;
 
@@ -776,7 +769,7 @@ $(document).ready(function() {
             }
 
             // Si llegamos aquí, es porque no se seleccionó un método de pago válido
-            if (!window.location.href.includes('contrareembolso')) {
+            if (!isContrareembolso) {
                 alert('Por favor, selecciona un método de pago válido.');
                 $('.loading-overlay').removeClass('visible');
                 $('#botoncomprar').val('Confirmar y Pagar 🛒').prop('disabled', false);
@@ -852,8 +845,7 @@ $(document).ready(function() {
                 // No es necesario actualizar campos ocultos para compatibilidad
 
                 // Procesar los productos seleccionados
-                var talleselegidos = window.location.href.includes('contrareembolso') ?
-                    $('#286442883').val() : $('#1471599855').val();
+                var talleselegidos = isContrareembolso ? $('#286442883').val() : $('#1471599855').val();
                 var pairs = talleselegidos.split(', '); // split the input by ", " (comma and space)
 
                 // remove empty elements from the array
