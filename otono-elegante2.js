@@ -772,8 +772,15 @@ $(document).ready(function(){
 
     // CORRECCIÓN: Actualizar campos sin redeclarar variables
     summaryInput.val(finalSummaryText);
+    $("#286442883").val(finalSummaryText);
 
-    // CORRECCIÓN CRÍTICA: Usar cartItems como fuente de verdad única para el elemento visual
+    // Disparar el evento change para que otros scripts reaccionen si es necesario
+    summaryInput.trigger('change');
+    $("#286442883").trigger('change');
+
+    updateCart(summaryArray);
+
+    // CORRECCIÓN CRÍTICA: Actualizar visual AFTER cartItems has been updated
     var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
     $("#help-modelostallesseleccionados").text(cartItemsText);
     
@@ -786,11 +793,6 @@ $(document).ready(function(){
     console.log('🛒 [DEBUG] Array final:', summaryArray);
     console.log('🛒 [DEBUG] Texto final:', finalSummaryText);
     console.log('🛒 [DEBUG] Campo actualizado:', summaryInput.val());
-
-    // Disparar el evento change para que otros scripts reaccionen si es necesario
-    summaryInput.trigger('change');
-
-    updateCart(summaryArray);
 
     var isContrareembolso = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE);
     if (summaryArray.length === 1) {
