@@ -773,6 +773,7 @@ $(document).ready(function(){
     summaryInput.val(finalSummaryText);
 
     $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
+    $("#1471599855").val(finalSummaryText); // Corrección para asegurar que el campo visible se actualice
     
     // CORRECCIÓN CRÍTICA: Asegurar sincronización del campo oculto visible
     $("#1471599855").val(finalSummaryText);
