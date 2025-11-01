@@ -773,8 +773,14 @@ $(document).ready(function(){
     // CORRECCIÓN: Actualizar campos sin redeclarar variables
     summaryInput.val(finalSummaryText);
 
-    // Actualizar también el campo de solo lectura en el resumen del pedido
-    $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
+    // CORRECCIÓN CRÍTICA: Usar cartItems como fuente de verdad única para el elemento visual
+    var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
+    $("#help-modelostallesseleccionados").text(cartItemsText);
+    
+    // DEBUG: Validar sincronización completa
+    console.log('🛒 [SÍNCRO] cartItems array:', cartItems);
+    console.log('🛒 [SÍNCRO] Elemento visual actualizado:', cartItemsText);
+    console.log('🛒 [SÍNCRO] #help-modelostallesseleccionados actual:', $("#help-modelostallesseleccionados").text());
 
     // DEBUG: Logging para validar el estado del carrito
     console.log('🛒 [DEBUG] Array final:', summaryArray);
@@ -845,6 +851,139 @@ $(document).ready(function(){
 
     return true;
 }
+
+    // CORRECCIÓN CRÍTICA: Usar cartItems como fuente de verdad única para el elemento visual
+    var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
+    $("#help-modelostallesseleccionados").text(cartItemsText);
+    
+    // DEBUG: Validar sincronización completa
+    console.log('🛒 [SÍNCRO] cartItems array:', cartItems);
+    console.log('🛒 [SÍNCRO] Elemento visual actualizado:', cartItemsText);
+    console.log('🛒 [SÍNCRO] #help-modelostallesseleccionados actual:', $("#help-modelostallesseleccionados").text());
+
+  // --- SISTEMA ANTI-CONFLICTO PARA #help-modelostallesseleccionados ---
+  
+  // Función para sincronizar el elemento visual con cartItems
+  function syncVisualElementWithCart() {
+    var currentText = $("#help-modelostallesseleccionados").text();
+    var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
+    
+    // Solo actualizar si hay diferencia (evitar bucles infinitos)
+    if (currentText !== cartItemsText) {
+      $("#help-modelostallesseleccionados").text(cartItemsText);
+      console.log('🛒 [ANTI-CONFLICTO] Elemento visual sincronizado:', cartItemsText);
+    }
+  }
+  
+  // Sistema de protección contra eventos legacy conflictivos
+  function protectVisualElement() {
+    // Interceptar intentos de sobrescritura del elemento visual
+    var originalText = $.fn.text;
+    var originalHTML = $.fn.html;
+    
+    // Proteger el elemento específico
+    $("#help-modelostallesseleccionados").on('DOMNodeInserted DOMNodeRemoved', function(e) {
+      // Forzar sincronización después de cualquier manipulación del DOM
+      setTimeout(syncVisualElementWithCart, 10);
+    });
+    
+    // Añadir un observer para cambios en el elemento específico
+    if (window.MutationObserver) {
+      var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'childList' || mutation.type === 'characterData') {
+            // Verificar si el cambio involucra nuestro elemento
+            if (mutation.target.id === 'help-modelostallesseleccionados' ||
+                $(mutation.target).find('#help-modelostallesseleccionados').length > 0) {
+              syncVisualElementWithCart();
+            }
+          }
+        });
+      });
+      
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
+    }
+  }
+  
+  // Sincronización automática cada 500ms para garantizar sincronía
+  setInterval(syncVisualElementWithCart, 500);
+  
+  // Inicializar protección
+  protectVisualElement();
+  
+  // --- BLOQUEADOR DE EVENTOS LEGACY CONFLICTIVOS ---
+  
+  // Interceptar y corregir eventos legacy que actualizan #help-modelostallesseleccionados
+  function interceptLegacyEvents() {
+    // Interceptar keyup events en campos de formularios que puedan sobrescribir el elemento
+    var legacySelectors = [
+      '#1460904554,#1465946249,#53830725,#951592426,#1743418466,#59648134,#1005165410,#541001873',
+      '#1211347450,#501094818,#1214200077,#394819614,#2081271241,#1440375758,#183290493,#423544000,#1756027935'
+    ];
+    
+    legacySelectors.forEach(function(selector) {
+      $(selector).off('keyup').on('keyup.cartSync', function() {
+        // En lugar de actualizar directamente, sincronizar con el carrito
+        setTimeout(syncVisualElementWithCart, 100);
+        console.log('🛒 [LEGACY-INTERCEPTED] Evento keyup bloqueado y sincronizado');
+      });
+    });
+    
+    // Interceptar cualquier intento de actualizar directamente el elemento
+    var originalHtml = $.fn.html;
+    $.fn.html = function() {
+      var result = originalHtml.apply(this, arguments);
+      
+      // Verificar si se está intentando actualizar nuestro elemento protegido
+      if (this.selector === '#help-modelostallesseleccionados' || this.attr('id') === 'help-modelostallesseleccionados') {
+        // Verificar el contenido del carrito y corregir si es necesario
+        var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
+        var currentText = this.text();
+        
+        if (currentText !== cartItemsText) {
+          console.log('🛒 [HTML-INTERCEPTED] Corrección aplicada al elemento protegido');
+          this.text(cartItemsText);
+        }
+      }
+      
+      return result;
+    };
+    
+    // Similar para .text() para mayor robustez
+    var originalText = $.fn.text;
+    $.fn.text = function() {
+      var result = originalText.apply(this, arguments);
+      
+      if (this.selector === '#help-modelostallesseleccionados' || this.attr('id') === 'help-modelostallesseleccionados') {
+        var cartItemsText = cartItems && cartItems.length > 0 ? cartItems.join(', ') : '-';
+        var currentText = this.text();
+        
+        if (currentText !== cartItemsText) {
+          console.log('🛒 [TEXT-INTERCEPTED] Corrección aplicada al elemento protegido');
+          this.text(cartItemsText);
+        }
+      }
+      
+      return result;
+    };
+  }
+  
+  // Inicializar interceptación de eventos legacy
+  interceptLegacyEvents();
+  
+  // Sincronización automática inicial
+  syncVisualElementWithCart();
+  
+  // Exponer función para uso manual si es necesario
+  window.syncCartVisualElement = syncVisualElementWithCart;
+  window.forceCartSync = function() {
+    syncVisualElementWithCart();
+    console.log('🛒 [MANUAL-SYNC] Sincronización manual ejecutada');
+  };
 
   // Initialize select elements with empty previous value
   $("#todoslosmodelos select.talle").data('pre', '');
