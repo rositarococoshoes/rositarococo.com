@@ -277,7 +277,7 @@ $(document).ready(function(){
   // Función para actualizar el carrito
   function updateCart(itemsArray) {
     // Actualizar el array global de items del carrito
-    cartItems = itemsArray || [];
+    window.cartItems = cartItems = itemsArray || [];
     
     // Limpiar contenedor de items del carrito
     var cartItemsContainer = $(".cart-items");
