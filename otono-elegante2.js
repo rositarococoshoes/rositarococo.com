@@ -655,7 +655,7 @@ $(document).ready(function(){
   });
 
   // --- Update Order Summary ---
-  var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855"); // ID dinámico según la página
+  var summaryInput = $("#286442883"); // ID dinámico según la página
   var summaryDisplay = $("#display-selected-items"); // Updated ID for display
   var casilleroElement = $("#help-modelostallesseleccionados"); // ELEMENTO CRÍTICO: Casillero visible
   var miniCart = $("#mini-cart");
@@ -768,19 +768,17 @@ $(document).ready(function(){
 
     var finalSummaryText = summaryArray.join(', ');
 
-    $("#286442883").val(finalSummaryText);
-    $("#1471599855").val(finalSummaryText);
+    var finalSummaryText = summaryArray.join(', ');
+
+    // Determinar el input correcto y actualizarlo
+    var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
     summaryInput.val(finalSummaryText);
 
+    // Actualizar también el campo de solo lectura en el resumen del pedido
     $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
-    $("#1471599855").val(finalSummaryText); // Corrección para asegurar que el campo visible se actualice
-    
-    // CORRECCIÓN CRÍTICA: Asegurar sincronización del campo oculto visible
-    $("#1471599855").val(finalSummaryText);
 
+    // Disparar el evento change para que otros scripts reaccionen si es necesario
     summaryInput.trigger('change');
-    $('#286442883').trigger('change');
-    $('#1471599855').trigger('change');
 
     updateCart(summaryArray);
 
