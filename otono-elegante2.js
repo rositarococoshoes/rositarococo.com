@@ -314,10 +314,14 @@ $(document).ready(function(){
         var currentItems = cartItems.slice();
         currentItems.splice(itemId - 1, 1);
         
-        // Actualizar el campo de resumen
+        // Actualizar el campo de resumen y todos los elementos visuales
         if (summaryInput.length) {
-          summaryInput.val(currentItems.join(', '));
-          summaryInput.trigger('change');
+          var newSummaryText = currentItems.join(', ');
+          // Actualizar ambos campos de input para consistencia en ambas páginas
+          $("#1471599855").val(newSummaryText);
+          $("#286442883").val(newSummaryText);
+          // También el elemento visual que no es un input
+          $("#help-modelostallesseleccionados").text(newSummaryText);
         }
         
         // Actualizar carrito
@@ -746,10 +750,7 @@ $(document).ready(function(){
         return false;
     }
 
-    // CORRECCIÓN: Usar variable existente, pero determinar el ID correcto
-    summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
-    var summaryContent = summaryInput.val() || "";
-    var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
+    var summaryArray = window.cartItems.slice();
 
     if (summaryArray.includes(currentVal)) {
         alert("Ya has seleccionado este producto. Puedes seleccionar otro par o modificar tu pedido.");
