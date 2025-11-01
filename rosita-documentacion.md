@@ -1478,45 +1478,38 @@ const productValidator = {
 
 **PROBLEMA:** Existían inconsistencias en el manejo del estado del carrito entre `index.html` y `contrarreembolsonueva.html`, causando dos errores principales:
 1.  Al eliminar un producto del carrito, los campos de resumen no se actualizaban correctamente en `index.html`.
-2.  La validación para limitar el carrito a un máximo de 2 pares de zapatos no era robusta y podía fallar.
+2.  La validación para limitar el carrito a un máximo de 2 pares de zapatos no era robusta y podía fallar, resultando en que el segundo par reemplazaba al primero.
 
-**SOLUCIÓN:** Se implementaron dos cambios clave en `otono-elegante2.js` para unificar y robustecer la lógica del carrito:
+**SOLUCIÓN:** Se implementaron cambios clave en `otono-elegante2.js` para unificar y robustecer la lógica del carrito:
 
-1.  **Fuente de Verdad Única:** La función `addToCartFromButton` fue refactorizada para usar el array global `window.cartItems` como la única fuente de verdad para el estado del carrito. Esto elimina la dependencia de leer valores de campos de formulario que variaban entre páginas.
+1.  **Sincronización de Campos de Resumen:** Se modificó la función `addToCartFromButton` para asegurar que ambos campos de resumen (`#1471599855` y `#286442883`) se actualicen de forma consistente con el contenido del carrito. Esto resuelve el problema de que el segundo par reemplazara al primero en `index.html`, ya que ahora el estado del carrito se lee y escribe de manera uniforme.
 
     ```javascript
-    // Lógica anterior (dependiente de inputs)
-    // summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
-    // var summaryContent = summaryInput.val() || "";
-    // var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
+    // Lógica modificada en addToCartFromButton
+    $("#1471599855").val(finalSummaryText);
+    $("#286442883").val(finalSummaryText);
+    $("#1471599855").trigger('change');
+    $("#286442883").trigger('change');
+    ```
 
-    // Nueva lógica (robusta y centralizada)
-    var summaryArray = window.cartItems.slice(); 
+2.  **Actualización Consistente al Eliminar:** La lógica para eliminar productos del carrito (`$('.remove-item').on('click', ...`) fue mejorada para garantizar que todos los campos de texto y elementos visuales relevantes se actualicen de forma síncrona en ambas páginas.
 
-    if (summaryArray.length >= 2) {
-        alert("Puedes seleccionar un máximo de 2 pares...");
-        return false;
+    ```javascript
+    // Lógica modificada en el manejador de eliminación
+    if (summaryInput.length) {
+      var newSummaryText = currentItems.join(', ');
+      $("#1471599855").val(newSummaryText);
+      $("#286442883").val(newSummaryText);
+      $("#1471599855").trigger('change');
+      $("#286442883").trigger('change');
     }
     ```
 
-2.  **Sincronización en Eliminación:** La lógica para eliminar productos del carrito (`$('.remove-item').on('click', ...`) fue mejorada para garantizar que todos los campos de texto y elementos visuales relevantes se actualicen de forma síncrona en ambas páginas.
+3.  **Actualización del Array Global del Carrito:** Se corrigió la función `updateCart` para que el array global `window.cartItems` se actualice correctamente. Anteriormente, solo se actualizaba una referencia local, lo que causaba inconsistencias en el estado del carrito.
 
     ```javascript
-    // Lógica anterior (actualización parcial)
-    // if (summaryInput.length) {
-    //   summaryInput.val(currentItems.join(', '));
-    //   summaryInput.trigger('change');
-    // }
-
-    // Nueva lógica (sincronización completa)
-    if (summaryInput.length) {
-      var newSummaryText = currentItems.join(', ');
-      // Actualizar ambos campos de input para consistencia
-      $("#1471599855").val(newSummaryText);
-      $("#286442883").val(newSummaryText);
-      // Actualizar el display visual
-      $("#help-modelostallesseleccionados").text(newSummaryText);
-    }
+    // Lógica modificada en updateCart
+    window.cartItems = cartItems = itemsArray || [];
     ```
 
 **IMPACTO:** Estos cambios aseguran que el estado del carrito sea consistente y fiable en todo el sitio, que el límite de 2 pares se aplique correctamente y que la interfaz de usuario refleje con precisión las acciones del usuario (agregar o eliminar productos).

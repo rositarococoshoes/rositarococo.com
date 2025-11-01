@@ -772,11 +772,11 @@ $(document).ready(function(){
     var finalSummaryText = summaryArray.join(', ');
 
     // CORRECCIÓN: Actualizar campos sin redeclarar variables
-    summaryInput.val(finalSummaryText);
+    $("#1471599855").val(finalSummaryText);
     $("#286442883").val(finalSummaryText);
 
     // Disparar el evento change para que otros scripts reaccionen si es necesario
-    summaryInput.trigger('change');
+    $("#1471599855").trigger('change');
     $("#286442883").trigger('change');
 
     updateCart(summaryArray);
