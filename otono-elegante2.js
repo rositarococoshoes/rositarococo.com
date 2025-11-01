@@ -746,7 +746,8 @@ $(document).ready(function(){
         return false;
     }
 
-    var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
+    // CORRECCIÓN: Usar variable existente, pero determinar el ID correcto
+    summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
     var summaryContent = summaryInput.val() || "";
     var summaryArray = summaryContent.split(', ').filter(item => item && item.trim() !== '');
 
@@ -766,16 +767,19 @@ $(document).ready(function(){
     $select.closest('.form-group').find('.avisoagregado').remove();
     $select.closest('.form-group').prepend('<p class="avisoagregado">¡Agregado a tu pedido!</p>');
 
+    // CORRECCIÓN: Declaración única de finalSummaryText
     var finalSummaryText = summaryArray.join(', ');
 
-    var finalSummaryText = summaryArray.join(', ');
-
-    // Determinar el input correcto y actualizarlo
-    var summaryInput = (typeof IS_CONTRAREEMBOLSO_PAGE !== 'undefined' && IS_CONTRAREEMBOLSO_PAGE) ? $("#286442883") : $("#1471599855");
+    // CORRECCIÓN: Actualizar campos sin redeclarar variables
     summaryInput.val(finalSummaryText);
 
     // Actualizar también el campo de solo lectura en el resumen del pedido
     $("#help-modelostallesseleccionados").text(finalSummaryText || '-');
+
+    // DEBUG: Logging para validar el estado del carrito
+    console.log('🛒 [DEBUG] Array final:', summaryArray);
+    console.log('🛒 [DEBUG] Texto final:', finalSummaryText);
+    console.log('🛒 [DEBUG] Campo actualizado:', summaryInput.val());
 
     // Disparar el evento change para que otros scripts reaccionen si es necesario
     summaryInput.trigger('change');
