@@ -674,7 +674,7 @@ $(document).ready(function() {
 
                 const pairCount = productsValue.split(',').length;
 
-                const monto = pairCount >= 2 ? 95000 : 70000;
+                const monto = pairCount >= 2 ? 95000 : 60000;
 
                 // Verificar si estamos en la página de contrareembolso
                 const esContrareembolso = window.location.href.includes('contrareembolso');
