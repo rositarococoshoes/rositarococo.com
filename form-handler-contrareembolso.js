@@ -171,15 +171,15 @@ $(document).ready(function() {
 
             console.log('📍 [Form Handler] Procesando dirección...');
             // Concatenar valores de dirección
-            var calleAltura = $('#951592426').val();
+            var calleAltura = $('#394819614').val();
             var entreCalles = $('#entre-calles').val();
             console.log('📍 [Form Handler] Calle:', calleAltura);
             console.log('📍 [Form Handler] Entre calles:', entreCalles);
             
             if (entreCalles && entreCalles.trim() !== '') {
-                var direccionCompleta = calleAltura + " entre calles " + entreCalles;
+                var direccionCompleta = calleAltura + " - " + entreCalles;
                 // Actualiza el valor del campo "Calle y Altura" con la dirección completa
-                $('#951592426').val(direccionCompleta);
+                $('#394819614').val(direccionCompleta);
                 console.log('📍 [Form Handler] Dirección completa guardada:', direccionCompleta);
             }
 
