@@ -1461,7 +1461,8 @@
                     </div>
                     <div class="form-group">
                         <label for="entre-calles">Entre Calles (obligatorio)</label>
-                        <input class="form-control" id="entre-calles" name="entry.1234567890" placeholder="Ej: Entre Av. Corrientes y Lavalle" type="text" required/>
+                        <input class="form-control" id="entre-calles" name="temp_entre_calles" placeholder="Ej: Entre Av. Corrientes y Lavalle" required type="text"/>
+                        <small class="form-text text-muted">Se agregará automáticamente al campo anterior</small>
                     </div>
                     <div class="form-group">
                         <label for="183290493">Código Postal</label>
@@ -1911,6 +1912,42 @@ availableDates.sort(function(a, b) {
       // Actualizar los campos de ayuda cuando cambian los valores de los campos
       $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
         updateAllHelpFields();
+      });
+
+      // Concatenar automáticamente "Entre Calles" al campo "Calle y Número" antes del envío
+      $('#entre-calles').on('input keyup', function() {
+        var calleAltura = $('#394819614').val() || '';
+        var entreCalles = $(this).val() || '';
+        
+        // Si el campo de entre calles tiene contenido
+        if (entreCalles.trim()) {
+          // Si el campo de calle ya tiene contenido, agregar " - Entre..."
+          if (calleAltura.trim()) {
+            var nuevoValor = calleAltura + ' - ' + entreCalles;
+            $('#394819614').val(nuevoValor);
+          } else {
+            // Si no tiene contenido, agregar solo el texto
+            $('#394819614').val(entreCalles);
+          }
+        } else if (!entreCalles.trim() && calleAltura.includes(' - ')) {
+          // Si se borra el campo entre calles, restaurar solo la parte de calle
+          var partes = calleAltura.split(' - ');
+          if (partes.length > 1) {
+            $('#394819614').val(partes[0]);
+          }
+        }
+        
+        // Actualizar campos de ayuda después del cambio
+        updateAllHelpFields();
+      });
+
+      // Verificar que el campo de dirección incluya entre calles
+      $('#394819614').on('blur', function() {
+        var valor = $(this).val().toLowerCase();
+        if (valor && !valor.includes('entre')) {
+          // Agregar recordatorio si no se mencionan entre calles
+          console.log('Recomendación: Incluir información de entre calles en la dirección');
+        }
       });
 
       // También actualizar cuando cambia el selector de fecha
