@@ -1475,30 +1475,11 @@
                         <label for="1440375758">Provincia</label>
                         <select class="form-control" id="1440375758" name="entry.1440375758" required title="Provincia">
                             <option value="">-- Selecciona tu Provincia --</option>
-                            <option value="Buenos Aires">Buenos Aires</option>
                             <option value="Capital Federal">CABA</option>
-                            <option value="Buenos Aires">Gran Buenos Aires</option>
-                            <option value="Córdoba">Córdoba</option>
-                            <option value="Santa Fé">Santa Fé</option>
-                            <option value="Mendoza">Mendoza</option>
-                            <option value="Neuquén">Neuquén</option>
-                            <option value="Entre Ríos">Entre Ríos</option>
-                            <option value="Catamarca">Catamarca</option>
-                            <option value="Chubut">Chubut</option>
-                            <option value="Salta">Salta</option>
-                            <option value="Santa Cruz">Santa Cruz</option>
-                            <option value="Chaco">Chaco</option>
-                            <option value="Corrientes">Corrientes</option>
-                            <option value="Formosa">Formosa</option>
-                            <option value="La Pampa">La Pampa</option>
-                            <option value="La Rioja">La Rioja</option>
-                            <option value="Río Negro">Río Negro</option>
-                            <option value="San Juan">San Juan</option>
-                            <option value="San Luis">San Luis</option>
-                            <option value="Santiago del Estero">Santiago del Estero</option>
-                            <option value="Tucumán">Tucumán</option>
+                            <option value="Gran Buenos Aires">Gran Buenos Aires</option>
+                            <option value="Buenos Aires">Buenos Aires</option>
                         </select>
-                        <p class="help-block">Envío disponible a todo el país.</p>
+                        <p class="help-block"><strong>Solo enviamos a Ciudad de Buenos Aires y Gran Buenos Aires.</strong></p>
                     </div>
 
                     <!-- Hidden field for shipping method -->
@@ -1646,19 +1627,19 @@
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
         } else if (todayNum == 3) { // Miércoles
           // Martes de la próxima semana y Jueves de la próxima semana (mínimo 24hs)
+          availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente (primero porque es más cercana)
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
-          availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente
         } else if (todayNum == 4) { // Jueves
           // Martes de la próxima semana y Jueves de la próxima semana
-          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
+          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente (más cercano)
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente
         } else if (todayNum == 5) { // Viernes
           // Martes de la próxima semana y Jueves de la próxima semana
-          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
+          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente (más cercano)
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente
         } else if (todayNum == 6) { // Sábado
           // Martes de la próxima semana y Jueves de la próxima semana
-          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
+          availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente (más cercano)
           availableDates.push(today.clone().add(1, "weeks").isoWeekday(4)); // Jueves siguiente
        } else { // Domingo (todayNum == 7)
   const currentHour = today.hour();
@@ -1667,15 +1648,20 @@
   const isBefore12_01 = currentHour < 12 || (currentHour === 12 && currentMinute === 0);
 
   if (isBefore12_01) {
-    // Antes de las 12:01 → Martes y Jueves de esta semana
-    availableDates.push(today.clone().add(2, "days")); // Martes
+    // Antes de las 12:01 → Martes y Jueves de esta semana (Jueves es más cercano)
+    availableDates.push(today.clone().add(2, "days")); // Martes (más cercano)
     availableDates.push(today.clone().add(4, "days")); // Jueves
   } else {
     // Desde las 12:01 → Jueves de esta semana y Martes de la próxima
-    availableDates.push(today.clone().add(4, "days")); // Jueves
+    availableDates.push(today.clone().add(4, "days")); // Jueves (más cercano)
     availableDates.push(today.clone().add(1, "weeks").isoWeekday(2)); // Martes siguiente
   }
 }
+
+// ORDENAR FECHAS DE MÁS RECIENTE A MÁS ANTIGUA
+availableDates.sort(function(a, b) {
+    return a.diff(b);
+});
 
 
         // Agregar las opciones al selector de fechas
