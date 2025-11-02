@@ -1910,43 +1910,35 @@ availableDates.sort(function(a, b) {
       }
 
       // Actualizar los campos de ayuda cuando cambian los valores de los campos
-      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493").on('keyup change', function() {
+      $("#286442883, #1211347450, #501094818, #394819614, #2081271241, #1440375758, #183290493, #entre-calles").on('keyup change', function() {
         updateAllHelpFields();
       });
 
-      // Concatenar automáticamente "Entre Calles" al campo "Calle y Número" antes del envío
-      $('#entre-calles').on('input keyup', function() {
+      // Función para concatenar campos antes del envío del formulario
+      function concatenarCamposDireccion() {
         var calleAltura = $('#394819614').val() || '';
-        var entreCalles = $(this).val() || '';
+        var entreCalles = $('#entre-calles').val() || '';
         
-        // Si el campo de entre calles tiene contenido
         if (entreCalles.trim()) {
-          // Si el campo de calle ya tiene contenido, agregar " - Entre..."
           if (calleAltura.trim()) {
-            var nuevoValor = calleAltura + ' - ' + entreCalles;
-            $('#394819614').val(nuevoValor);
+            var valorConcatenado = calleAltura + ' - ' + entreCalles;
+            $('#394819614').val(valorConcatenado);
           } else {
-            // Si no tiene contenido, agregar solo el texto
             $('#394819614').val(entreCalles);
           }
-        } else if (!entreCalles.trim() && calleAltura.includes(' - ')) {
-          // Si se borra el campo entre calles, restaurar solo la parte de calle
-          var partes = calleAltura.split(' - ');
-          if (partes.length > 1) {
-            $('#394819614').val(partes[0]);
-          }
         }
-        
-        // Actualizar campos de ayuda después del cambio
-        updateAllHelpFields();
+      }
+
+      // Ejecutar concatenación justo antes del envío del formulario
+      $('#bootstrapForm').on('submit', function() {
+        concatenarCamposDireccion();
       });
 
       // Verificar que el campo de dirección incluya entre calles
-      $('#394819614').on('blur', function() {
-        var valor = $(this).val().toLowerCase();
-        if (valor && !valor.includes('entre')) {
-          // Agregar recordatorio si no se mencionan entre calles
-          console.log('Recomendación: Incluir información de entre calles en la dirección');
+      $('#entre-calles').on('blur', function() {
+        var entreCalles = $(this).val();
+        if (!entreCalles.trim()) {
+          console.log('Campo Entre Calles obligatorio');
         }
       });
 
