@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Show welcome message after a short delay
         setTimeout(() => {
-            addBotMessage("¡Hola! 👋 ¿Dudas sobre nuestros modelos o la promo 2x$85.000? Estoy para ayudarte.");
+            addBotMessage("¡Hola! 👋 Soy tu asesora para la promo de 2 pares por $85.000 (pagas al recibir). ¿Tenés dudas sobre los modelos o el proceso de contrarreembolso? ¡Estoy para ayudarte!");
         }, 1000);
     }
 
