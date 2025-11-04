@@ -81,8 +81,8 @@ $(document).ready(function() {
 
         // Verificar WhatsApp
         console.log('📱 [Form Handler] Verificando WhatsApp...');
-        const whatsappInput = document.getElementById('53830725');
-        const errorElement = document.querySelector('.error-message[data-target="53830725"]');
+        const whatsappInput = document.getElementById('501094818');
+        const errorElement = document.querySelector('.error-message[data-target="501094818"]');
         console.log('📱 [Form Handler] Campo WhatsApp encontrado:', !!whatsappInput);
         console.log('📱 [Form Handler] Elemento de error encontrado:', !!errorElement);
         if (errorElement) {
