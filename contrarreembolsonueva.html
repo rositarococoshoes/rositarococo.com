@@ -2239,33 +2239,60 @@ availableDates.sort(function(a, b) {
 
         function formatWhatsappNumber(number) {
             console.log('🔍 [WhatsApp Modal] formatWhatsappNumber llamado con:', number);
+            console.log('🔍 [WhatsApp Modal] =============================================');
+            
             if (!number) {
                 console.log('❌ [WhatsApp Modal] Número vacío, retornando string vacío');
                 return '';
             }
+            
             let formatted = number.replace(/[\s\-()]/g, '');
             console.log('🔧 [WhatsApp Modal] Después de limpiar caracteres especiales:', formatted);
             
-            // ¡CORRECCIÓN CRÍTICA! Verificar 549 ANTES que 54 para evitar el problema del doble "9"
+            // ✅ CORRECCIÓN DEFINITIVA: Verificar 549 PRIMERO para evitar el "9" extra
+            console.log('🔍 [WhatsApp Modal] PASO 1: Verificando si empieza con "549"...');
             if (formatted.startsWith('549')) {
-                console.log('✅ [WhatsApp Modal] Número ya empieza con 549, retornando intacto:', formatted);
+                console.log('✅ [WhatsApp Modal] ✅ CORRECTO: Ya empieza con 549, retornando intacto:', formatted);
                 return formatted;
             }
+            console.log('❌ [WhatsApp Modal] ❌ NO empieza con 549');
             
-            if (formatted.startsWith('+54')) formatted = formatted.substring(3);
-            if (formatted.startsWith('54')) formatted = formatted.substring(2);
-            if (formatted.startsWith('0')) formatted = formatted.substring(1);
+            // ✅ CORRECCIÓN: Ahora verificar si empieza con "54" y removerlo
+            console.log('🔍 [WhatsApp Modal] PASO 2: Verificando si empieza con "54" o "+54"...');
+            if (formatted.startsWith('+54')) {
+                console.log('🔧 [WhatsApp Modal] Quitando "+54"');
+                formatted = formatted.substring(3);
+            } else if (formatted.startsWith('54')) {
+                console.log('🔧 [WhatsApp Modal] Quitando "54"');
+                formatted = formatted.substring(2);
+            } else {
+                console.log('❌ [WhatsApp Modal] NO empieza con 54');
+            }
+            
+            // ✅ Continuar con otros procesamientos
+            console.log('🔧 [WhatsApp Modal] PASO 3: Removiendo "0" inicial si existe...');
+            if (formatted.startsWith('0')) {
+                console.log('🔧 [WhatsApp Modal] Quitando "0" inicial');
+                formatted = formatted.substring(1);
+            }
+            
+            console.log('🔧 [WhatsApp Modal] PASO 4: Procesando código de área 15...');
             if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
+                console.log('🔧 [WhatsApp Modal] Quitando código "15" de la posición 2');
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
-            console.log('🔧 [WhatsApp Modal] Después de procesar prefijos:', formatted);
+            
+            console.log('🔧 [WhatsApp Modal] Después de procesar todos los prefijos:', formatted);
+            
             if (!/^\d+$/.test(formatted)) {
                 console.log('❌ [WhatsApp Modal] Formato inválido después de regex, retornando string vacío');
                 return '';
             }
             
-            console.log('⚠️ [WhatsApp Modal] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
-            return '549' + formatted;
+            const finalResult = '549' + formatted;
+            console.log('⚠️ [WhatsApp Modal] PASO FINAL: Agregando prefijo 549. Resultado final:', finalResult);
+            console.log('🔍 [WhatsApp Modal] =============================================');
+            return finalResult;
         }
 
         function showMessage(message, type = 'error') {
@@ -2403,33 +2430,60 @@ availableDates.sort(function(a, b) {
 
         function formatWhatsappNumber(number) {
             console.log('🔍 [WhatsApp onBlur] formatWhatsappNumber llamado con:', number);
+            console.log('🔍 [WhatsApp onBlur] =============================================');
+            
             if (!number) {
                 console.log('❌ [WhatsApp onBlur] Número vacío, retornando string vacío');
                 return '';
             }
+            
             let formatted = number.replace(/[\s\-()]/g, '');
             console.log('🔧 [WhatsApp onBlur] Después de limpiar caracteres especiales:', formatted);
             
-            // ¡CORRECCIÓN CRÍTICA! Verificar 549 ANTES que 54 para evitar el problema del doble "9"
+            // ✅ CORRECCIÓN DEFINITIVA: Verificar 549 PRIMERO para evitar el "9" extra
+            console.log('🔍 [WhatsApp onBlur] PASO 1: Verificando si empieza con "549"...');
             if (formatted.startsWith('549')) {
-                console.log('✅ [WhatsApp onBlur] Número ya empieza con 549, retornando intacto:', formatted);
+                console.log('✅ [WhatsApp onBlur] ✅ CORRECTO: Ya empieza con 549, retornando intacto:', formatted);
                 return formatted;
             }
+            console.log('❌ [WhatsApp onBlur] ❌ NO empieza con 549');
             
-            if (formatted.startsWith('+54')) formatted = formatted.substring(3);
-            if (formatted.startsWith('54')) formatted = formatted.substring(2);
-            if (formatted.startsWith('0')) formatted = formatted.substring(1);
+            // ✅ CORRECCIÓN: Ahora verificar si empieza con "54" y removerlo
+            console.log('🔍 [WhatsApp onBlur] PASO 2: Verificando si empieza con "54" o "+54"...');
+            if (formatted.startsWith('+54')) {
+                console.log('🔧 [WhatsApp onBlur] Quitando "+54"');
+                formatted = formatted.substring(3);
+            } else if (formatted.startsWith('54')) {
+                console.log('🔧 [WhatsApp onBlur] Quitando "54"');
+                formatted = formatted.substring(2);
+            } else {
+                console.log('❌ [WhatsApp onBlur] NO empieza con 54');
+            }
+            
+            // ✅ Continuar con otros procesamientos
+            console.log('🔧 [WhatsApp onBlur] PASO 3: Removiendo "0" inicial si existe...');
+            if (formatted.startsWith('0')) {
+                console.log('🔧 [WhatsApp onBlur] Quitando "0" inicial');
+                formatted = formatted.substring(1);
+            }
+            
+            console.log('🔧 [WhatsApp onBlur] PASO 4: Procesando código de área 15...');
             if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
+                console.log('🔧 [WhatsApp onBlur] Quitando código "15" de la posición 2');
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
-            console.log('🔧 [WhatsApp onBlur] Después de procesar prefijos:', formatted);
+            
+            console.log('🔧 [WhatsApp onBlur] Después de procesar todos los prefijos:', formatted);
+            
             if (!/^\d+$/.test(formatted)) {
                 console.log('❌ [WhatsApp onBlur] Formato inválido después de regex, retornando string vacío');
                 return '';
             }
             
-            console.log('⚠️ [WhatsApp onBlur] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
-            return '549' + formatted;
+            const finalResult = '549' + formatted;
+            console.log('⚠️ [WhatsApp onBlur] PASO FINAL: Agregando prefijo 549. Resultado final:', finalResult);
+            console.log('🔍 [WhatsApp onBlur] =============================================');
+            return finalResult;
         }
 
         function showWhatsAppError(fieldId, message, isValid = false) {

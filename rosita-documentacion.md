@@ -41,16 +41,30 @@ Rosita Rococó es un ecommerce especializado en la venta de zapatos deportivos/u
 ├── index.html                          # Sistema de pago previo
 ├── contrareembolsonueva.html            # Sistema de contrareembolso
 ├── otono-elegante2.css                  # Estilos principales
-├── otono-elegante2.js                   # Lógica principal
-├── carrusel-nuevos.js                   # Configuración de carruseles
-├── form-handler-contrareembolso.js     # Manejo de formularios CR
-├── chat-widget.js                      # Widget de chat estándar
-├── chat-widget-contrareembolso.js      # Widget de chat CR
+├── otono-elegante2.js                   # Lógica principal (UNIFICADA)
 ├── carousel-fix.js                     # Correcciones de carruseles
+├── form-handler-contrareembolso.js     # Manejo de formularios CR
+├── floating-button.css                 # Estilos botón flotante
+├── header-improvements.css             # Mejoras de header
+├── fix-rendered-spacing.css            # Espaciado corregido
+├── fix-rendered-spacing.js             # Funcionalidad espaciado
+├── fix-precios-contrareembolso.js      # Corrección precios CR
+├── form-handler.js                     # Handler general formularios
+├── fix-contrareembolso-cart.js         # Corrección carrito CR
+├── guillerminas-swiper.js              # Configuración carrusel Guillerminas
 ├── price-quantity.css                  # Estilos de precios
 ├── badges.css                          # Estilos de badges
+├── comentariosc1.jpg                   # Imágenes testimonios (sistema dinámico)
+├── comentariosig.jpg                   # Imágenes testimonios
+├── comentariosig2.jpg                  # Imágenes testimonios
 └── [múltiples imágenes de productos]
 ```
+
+**ESTADO**: ❌ **ARCHIVOS NO ENCONTRADOS** - Los siguientes archivos mencionados en documentación NO EXISTEN:
+- `carrusel-nuevos.js` - Los carruseles están en `otono-elegante2.js`
+- `chat-widget.js` - Chat embebido inline en HTML
+- `chat-widget-contrareembolso.js` - Chat embebido inline en HTML
+**FUNCIONALIDAD**: Los carruseles están implementados directamente en el HTML con Swiper.js configurado inline
 
 ---
 
@@ -164,6 +178,8 @@ var cartState = {
 #### 3.1.2 Formulario Principal
 **Endpoint**: Google Apps Script
 **URL**: `https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec`
+**ESTADO**: ❌ **ERROR CRÍTICO DETECTADO** - URL real contiene `"` al final: `...Sjz6MSQ/exec"`
+**ACCIÓN REQUERIDA**: Corregir en código de producción - remove `"` al final del endpoint
 
 **Campos Específicos**:
 ```javascript
@@ -404,6 +420,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 ```
 
+**ESTADO**: ❌ **CHAT WIDGET NO IMPLEMENTADO** - Los archivos `chat-widget.js` y `chat-widget-contrareembolso.js` NO EXISTEN
+**REALIDAD**: El chat widget está embebido inline en cada HTML como código JavaScript en línea
+**ENDPOINTS CORREGIDOS**:
+- **Estándar**: `https://sswebhookss.odontolab.co/webhook/0bf290e4-f5d5-4a22-94f5-a88cbbf9b347/chat`
+- **CR**: `https://sswebhookss.odontolab.co/webhook/8b70ed56-6ce4-4308-8d5b-0c21f9f7d751/chat`
+
 #### 5.1.4 Carruseles (`carrusel-nuevos.js`)
 
 ```javascript
@@ -431,6 +453,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Repetir para Trento y Parma
 });
 ```
+
+**ESTADO**: ❌ **ARCHIVO NO ENCONTRADO** - `carrusel-nuevos.js` no existe en el workspace actual
+**SISTEMA ACTUAL**: Los carruseles están implementados directamente en `otono-elegante2.js`
+**ACCIÓN**: Documentación debe reflejar la implementación real actual
+
+#### 5.1.5 🚨 FUNCIONES NO IMPLEMENTADAS DETECTADAS
+
+**Funciones Documentadas que NO existen en código actual:**
+
+1. **`validateContrareembolsoProducts()`** (línea 177)
+   - ❌ **NO ENCONTRADA** en `contrarreembolsonueva.html`
+   - ❌ **NO ENCONTRADA** en `otono-elegante2.js`
+
+2. **`calculateContrareembolsoPrice()`** (implícita en documentación)
+   - ❌ **NO ENCONTRADA** - precios se calculan inline en validación
+
+**Estado Real**: La validación se hace directamente en event handlers sin funciones separadas
 
 #### 5.1.5 Corrección de Carruseles (`carousel-fix.js`)
 
@@ -1669,9 +1708,14 @@ Esta documentación técnica proporciona una visión completa del ecommerce Rosi
 
 ### 13.1 Resumen de Cambios Críticos
 
-Este análisis exhaustivo de los archivos `index.html` y `contrarreembolsonueva.html` ha revelado **cambios significativos** que **NO están documentados** en la versión anterior de esta documentación. Los cambios detectados representan **actualizaciones masivas** en funcionalidades, integraciones y arquitectura.
+**⚠️ CORRECCIONES CRÍTICAS APLICADAS:**
 
-### 13.2 🆕 NUEVO SISTEMA DE TESTIMONIOS
+1. **❌ ERROR CORREGIDO**: Endpoint Google Apps Script contenía `"` al final - **CORREGIDO** en documentación
+2. **❌ FUNCIONES NO EXISTENTES**: `validateContrareembolsoProducts()` y `calculateContrareembolsoPrice()` NO existen - **MARCA** agregado
+3. **❌ ARCHIVOS NO ENCONTRADOS**: `carrusel-nuevos.js`, `chat-widget.js`, `chat-widget-contrareembolso.js` - **ACTUALIZADO**
+4. **✅ CHAT WIDGET**: Endpoints corregidos y estructura actualizada
+
+### 13.2 🆕 NUEVO SISTEMA DE TESTIMONIOS **NO DOCUMENTADO PREVIAMENTE**
 
 #### 13.2.1 Cambios Estructurales Detectados
 
