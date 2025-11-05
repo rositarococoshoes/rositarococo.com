@@ -2245,6 +2245,13 @@ availableDates.sort(function(a, b) {
             }
             let formatted = number.replace(/[\s\-()]/g, '');
             console.log('🔧 [WhatsApp Modal] Después de limpiar caracteres especiales:', formatted);
+            
+            // ¡CORRECCIÓN CRÍTICA! Verificar 549 ANTES que 54 para evitar el problema del doble "9"
+            if (formatted.startsWith('549')) {
+                console.log('✅ [WhatsApp Modal] Número ya empieza con 549, retornando intacto:', formatted);
+                return formatted;
+            }
+            
             if (formatted.startsWith('+54')) formatted = formatted.substring(3);
             if (formatted.startsWith('54')) formatted = formatted.substring(2);
             if (formatted.startsWith('0')) formatted = formatted.substring(1);
@@ -2256,11 +2263,7 @@ availableDates.sort(function(a, b) {
                 console.log('❌ [WhatsApp Modal] Formato inválido después de regex, retornando string vacío');
                 return '';
             }
-            // Si el número ya empieza con 549, devolverlo tal como está
-            if (formatted.startsWith('549')) {
-                console.log('✅ [WhatsApp Modal] Número ya empieza con 549, retornando:', formatted);
-                return formatted;
-            }
+            
             console.log('⚠️ [WhatsApp Modal] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
             return '549' + formatted;
         }
@@ -2406,6 +2409,13 @@ availableDates.sort(function(a, b) {
             }
             let formatted = number.replace(/[\s\-()]/g, '');
             console.log('🔧 [WhatsApp onBlur] Después de limpiar caracteres especiales:', formatted);
+            
+            // ¡CORRECCIÓN CRÍTICA! Verificar 549 ANTES que 54 para evitar el problema del doble "9"
+            if (formatted.startsWith('549')) {
+                console.log('✅ [WhatsApp onBlur] Número ya empieza con 549, retornando intacto:', formatted);
+                return formatted;
+            }
+            
             if (formatted.startsWith('+54')) formatted = formatted.substring(3);
             if (formatted.startsWith('54')) formatted = formatted.substring(2);
             if (formatted.startsWith('0')) formatted = formatted.substring(1);
@@ -2417,11 +2427,7 @@ availableDates.sort(function(a, b) {
                 console.log('❌ [WhatsApp onBlur] Formato inválido después de regex, retornando string vacío');
                 return '';
             }
-            // Si el número ya empieza con 549, devolverlo tal como está
-            if (formatted.startsWith('549')) {
-                console.log('✅ [WhatsApp onBlur] Número ya empieza con 549, retornando:', formatted);
-                return formatted;
-            }
+            
             console.log('⚠️ [WhatsApp onBlur] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
             return '549' + formatted;
         }
