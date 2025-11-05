@@ -2238,19 +2238,30 @@ availableDates.sort(function(a, b) {
         let isValid = false;
 
         function formatWhatsappNumber(number) {
-            if (!number) return '';
+            console.log('🔍 [WhatsApp Modal] formatWhatsappNumber llamado con:', number);
+            if (!number) {
+                console.log('❌ [WhatsApp Modal] Número vacío, retornando string vacío');
+                return '';
+            }
             let formatted = number.replace(/[\s\-()]/g, '');
+            console.log('🔧 [WhatsApp Modal] Después de limpiar caracteres especiales:', formatted);
             if (formatted.startsWith('+54')) formatted = formatted.substring(3);
             if (formatted.startsWith('54')) formatted = formatted.substring(2);
             if (formatted.startsWith('0')) formatted = formatted.substring(1);
             if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
-            if (!/^\d+$/.test(formatted)) return '';
+            console.log('🔧 [WhatsApp Modal] Después de procesar prefijos:', formatted);
+            if (!/^\d+$/.test(formatted)) {
+                console.log('❌ [WhatsApp Modal] Formato inválido después de regex, retornando string vacío');
+                return '';
+            }
             // Si el número ya empieza con 549, devolverlo tal como está
             if (formatted.startsWith('549')) {
+                console.log('✅ [WhatsApp Modal] Número ya empieza con 549, retornando:', formatted);
                 return formatted;
             }
+            console.log('⚠️ [WhatsApp Modal] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
             return '549' + formatted;
         }
 
@@ -2388,19 +2399,30 @@ availableDates.sort(function(a, b) {
         let isValidating = false;
 
         function formatWhatsappNumber(number) {
-            if (!number) return '';
+            console.log('🔍 [WhatsApp onBlur] formatWhatsappNumber llamado con:', number);
+            if (!number) {
+                console.log('❌ [WhatsApp onBlur] Número vacío, retornando string vacío');
+                return '';
+            }
             let formatted = number.replace(/[\s\-()]/g, '');
+            console.log('🔧 [WhatsApp onBlur] Después de limpiar caracteres especiales:', formatted);
             if (formatted.startsWith('+54')) formatted = formatted.substring(3);
             if (formatted.startsWith('54')) formatted = formatted.substring(2);
             if (formatted.startsWith('0')) formatted = formatted.substring(1);
             if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
-            if (!/^\d+$/.test(formatted)) return '';
+            console.log('🔧 [WhatsApp onBlur] Después de procesar prefijos:', formatted);
+            if (!/^\d+$/.test(formatted)) {
+                console.log('❌ [WhatsApp onBlur] Formato inválido después de regex, retornando string vacío');
+                return '';
+            }
             // Si el número ya empieza con 549, devolverlo tal como está
             if (formatted.startsWith('549')) {
+                console.log('✅ [WhatsApp onBlur] Número ya empieza con 549, retornando:', formatted);
                 return formatted;
             }
+            console.log('⚠️ [WhatsApp onBlur] Número NO empieza con 549, agregando prefijo. Resultado final:', '549' + formatted);
             return '549' + formatted;
         }
 
