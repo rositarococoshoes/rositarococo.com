@@ -2247,6 +2247,10 @@ availableDates.sort(function(a, b) {
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
             if (!/^\d+$/.test(formatted)) return '';
+            // Si el número ya empieza con 549, devolverlo tal como está
+            if (formatted.startsWith('549')) {
+                return formatted;
+            }
             return '549' + formatted;
         }
 
@@ -2393,6 +2397,10 @@ availableDates.sort(function(a, b) {
                 formatted = formatted.substring(0, 2) + formatted.substring(4);
             }
             if (!/^\d+$/.test(formatted)) return '';
+            // Si el número ya empieza con 549, devolverlo tal como está
+            if (formatted.startsWith('549')) {
+                return formatted;
+            }
             return '549' + formatted;
         }
 
