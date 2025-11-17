@@ -1,0 +1,78 @@
+---
+import { cn } from '../../lib/utils';
+
+interface Props {
+  id?: string;
+  name?: string;
+  value?: string;
+  placeholder?: string;
+  required?: boolean;
+  disabled?: boolean;
+  class?: string;
+  options: Array<{
+    value: string;
+    label: string;
+    title?: string;
+  }>;
+}
+
+const {
+  id,
+  name,
+  value = "",
+  placeholder = "-- Selecciona una opción --",
+  required = false,
+  disabled = false,
+  class: className = "",
+  options
+} = Astro.props;
+
+const selectId = id || name;
+---
+
+<div class="select-wrapper">
+    <select
+      id={selectId}
+      name={name}
+      class={cn(
+        "flex h-auto min-h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      )}
+      required={required}
+      disabled={disabled}
+      value=""
+    >
+    <option value="" selected disabled>{placeholder}</option>
+    {options.map(option => (
+      <option value={option.value} title={option.title || option.label}>
+        {option.label}
+      </option>
+    ))}
+  </select>
+</div>
+
+<style>
+  .select-wrapper {
+    position: relative;
+  }
+  
+  .select-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid currentColor;
+    pointer-events: none;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  select {
+    appearance: none;
+    padding-right: 32px;
+  }
+</style>

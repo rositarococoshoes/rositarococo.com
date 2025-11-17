@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const paymentId = searchParams.get('payment_id') || 'N/A';
+const status = searchParams.get('status') || 'approved';
+const merchantOrderId = searchParams.get('merchant_order_id') || 'N/A';
+
+---
+
+<Layout title='¡Pago Exitoso! - Rosita Rococo'>
+	<!-- Header con logo -->
+	<header class="main-header bg-white shadow-sm">
+		<div class="max-w-7xl mx-auto px-4">
+		<div class="text-center py-4">
+			<img src="/rosita-form.webp" alt="Rosita Rococó Logo" class="mx-auto h-16" />
+		</div>
+	</header>
+
+	<main class="success-container max-w-4xl mx-auto px-4 py-8">
+		<!-- Icono de éxito -->
+		<div class="success-icon">
+			<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<circle cx="40" cy="40" r="40" fill="#10b981"/>
+				<path d="M25 40L35 50L55 30" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</div>
+
+		<!-- Mensaje principal -->
+		<h1 class="success-title">¡Pago Exitoso!</h1>
+		<p class="success-subtitle">Tu pedido ha sido procesado correctamente</p>
+
+		<!-- Contacto -->
+		<div class="contact-section">
+			<h2>¿Necesitas ayuda?</h2>
+			<p>Estamos para asistirte en cualquier consulta sobre tu pedido.</p>
+			<a href="http://bit.ly/wspb-rosita" target="_blank" class="whatsapp-button">
+				📱 Contactar por WhatsApp
+			</a>
+		</div>
+
+		<!-- Botón para volver -->
+		<div class="actions">
+			<a href="/" class="back-button">Volver a la tienda</a>
+		</div>
+	</main>
+</Layout>
+
+<style>
+.success-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 40px 20px;
+	text-align: center;
+	background: white;
+	border-radius: 16px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	margin-bottom: 40px;
+}
+
+.success-icon {
+	margin-bottom: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: scaleIn 0.5s ease-out;
+}
+
+.success-title {
+	color: #1f2937;
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+	animation: fadeInUp 0.6s ease-out;
+}
+
+.success-subtitle {
+	color: #6b7280;
+	font-size: 1.2rem;
+	margin-bottom: 40px;
+	animation: fadeInUp 0.7s ease-out;
+}
+
+.contact-section {
+	background: #fef3c7;
+	border: 2px solid #fde68a;
+	border-radius: 12px;
+	padding: 30px;
+	margin-bottom: 40px;
+	animation: fadeInUp 1s ease-out;
+}
+
+.contact-section h2 {
+	color: #92400e;
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.contact-section p {
+	color: #78350f;
+	margin-bottom: 20px;
+}
+
+.whatsapp-button {
+	display: inline-block;
+	background: #25d366;
+	color: white;
+	text-decoration: none;
+	padding: 12px 30px;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+	background: #128c7e;
+	transform: translateY(-2px);
+}
+
+.actions {
+	text-align: center;
+}
+
+.back-button {
+	display: inline-block;
+	background: #6b7280;
+	color: white;
+	text-decoration: none;
+	padding: 12px 30px;
+	border-radius: 8px;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.back-button:hover {
+	background: #4b5563;
+	transform: translateY(-2px);
+}
+
+@keyframes scaleIn {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+@media (max-width: 640px) {
+	.success-container {
+		margin: 20px;
+		padding: 30px 15px;
+	}
+	
+	.success-title {
+		font-size: 2rem;
+	}
+	
+	.success-subtitle {
+		font-size: 1.1rem;
+	}
+	
+	.contact-section {
+		padding: 20px;
+	}
+}
+</style>

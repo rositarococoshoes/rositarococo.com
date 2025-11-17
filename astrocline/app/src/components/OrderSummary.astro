@@ -1,0 +1,83 @@
+---
+// OrderSummary.astro - Componente para mostrar resumen del pedido
+export interface Props {
+	tallesElegidos: string;
+	precio: string;
+	parTitle?: string;
+}
+
+const { tallesElegidos, precio, parTitle = "Resumen de tu pedido" } = Astro.props;
+---
+
+<section class="mb-6">
+	<!-- Logo/Header -->
+	<div class="text-center mb-6">
+		<img 
+			src="/rosita-form.png" 
+			alt="Rosita Rococo" 
+			class="mx-auto max-w-full h-auto"
+			onerror="this.src='/images/logo-fallback.png'"
+		/>
+	</div>
+
+	<!-- Título principal -->
+	<div class="text-center mb-4">
+		<h4 class="text-xl md:text-2xl font-bold">
+			<span class="bg-yellow-300 px-2 py-1">
+				PAGÁ TU PEDIDO AHORA
+			</span>
+		</h4>
+	</div>
+
+	<!-- Resumen del pedido -->
+	<div class="bg-yellow-50 border border-gray-300 rounded-lg p-4 mb-4">
+		<h3 class="font-semibold text-lg mb-2">{parTitle}</h3>
+		<div id="talles-elegidos" class="text-gray-700">
+			{tallesElegidos}
+		</div>
+	</div>
+
+	<!-- Beneficios -->
+	<div class="text-center mb-4">
+		<p class="text-green-600 font-bold text-lg">
+			ENVÍO GRATIS y AHORA 3 y 6 Cuotas SIN INTERÉS
+		</p>
+		<p class="text-sm text-gray-600">
+			3 y 6 cuotas sin interés sólo con <u>tarjetas bancarias</u>.
+		</p>
+	</div>
+
+	<!-- Precio -->
+	<div class="text-center mb-6">
+		<p class="text-xl font-bold">
+			Pagá <span class="text-2xl">{precio}</span> por los pares seleccionados. 
+			El envío es GRATIS en todos los casos.
+		</p>
+	</div>
+</section>
+
+<script>
+	// Script para mostrar los talles desde los parámetros URL
+	function getUrlParameter(sParam) {
+		const sPageURL = window.location.search.substring(1);
+		const sURLVariables = sPageURL.split('&');
+		let sParameterName, i;
+
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+			}
+		}
+	}
+
+	// Mostrar talles elegidos cuando se carga la página
+	document.addEventListener('DOMContentLoaded', function() {
+		const tallesElegidos = getUrlParameter('entry.1471599855');
+		const tallesElement = document.getElementById('talles-elegidos');
+		if (tallesElement && tallesElegidos) {
+			tallesElement.textContent = tallesElegidos;
+		}
+	});
+</script>

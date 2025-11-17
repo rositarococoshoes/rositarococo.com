@@ -1,0 +1,27 @@
+---
+import ThankYouLayout from '../layouts/ThankYouLayout.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+import PaymentForm from '../components/PaymentForm.astro';
+import BankTransferInfo from '../components/BankTransferInfo.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const tallesElegidos = searchParams.get('entry.1471599855') || 'Talles no especificados';
+---
+
+<ThankYouLayout title='Paga tu pedido - 3+ pares'>
+	<OrderSummary 
+		tallesElegidos={tallesElegidos}
+		precio='$27.850'
+		parTitle='3+ pares seleccionados'
+	/>
+	
+	<PaymentForm amount='27850' description='Compra Rosita Rococo - 3+ pares'/>
+	
+	<BankTransferInfo />
+	
+	<WhatsAppContact />
+</ThankYouLayout>

@@ -1,0 +1,99 @@
+---
+// ThankYouLayout.astro - Layout base para páginas de gracias
+export interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Paga tu pedido ahora" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-W2CVWDJ');</script>
+	<!-- End Google Tag Manager -->
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{title}</title>
+	
+	<!-- Favicon y meta tags -->
+	<link rel="icon" type="image/svg+xml" href="/astrocline/favicon.svg" />
+	<link rel="icon" type="image/png" href="/astrocline/favicon.png" />
+	
+	<!-- Tailwind CSS -->
+	<link rel="stylesheet" href="/astrocline/src/styles/global.css" />
+	
+	<!-- jQuery para compatibilidad con scripts existentes -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" 
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" 
+			crossorigin="anonymous">
+	</script>
+</head>
+<body class="bg-white cursor-auto">
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2CVWDJ"
+				height="0" width="0" style="display:none;visibility:hidden">
+		</iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	
+	<!-- Barra superior de beneficios -->
+	<div class="top-benefits-bar bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 text-center">
+		<div class="max-w-7xl mx-auto flex items-center justify-center space-x-4 text-sm font-medium">
+			<span class="flex items-center">
+				<span class="text-lg mr-2">💳</span>
+				3 CUOTAS SIN INTERÉS
+			</span>
+			<span class="hidden sm:inline">|</span>
+			<span class="flex items-center">
+				<span class="text-lg mr-2">🚚</span>
+				ENVÍO GRATIS A TODO EL PAÍS
+			</span>
+		</div>
+	</div>
+
+	<!-- Header con logo -->
+	<header class="main-header bg-white shadow-sm">
+		<div class="max-w-7xl mx-auto px-4">
+		<div class="text-center py-4">
+			<img src="/astrocline/rosita-form.webp" alt="Rosita Rococó Logo" class="mx-auto h-16" />
+		</div>
+	</header>
+	
+	<!-- Contenido principal -->
+	<main class="min-h-screen flex items-center justify-center p-4">
+		<div class="w-full max-w-md mx-auto">
+			<slot />
+		</div>
+	</main>
+
+	<!-- Facebook Pixel -->
+	<script>
+		!function(f,b,e,v,n,t,s)
+		{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+			n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+			if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+			n.queue=[];t=b.createElement(e);t.async=!0;
+			t.src=v;s=b.getElementsByTagName(e)[0];
+			s.parentNode.insertBefore(t,s)}(window, document,'script',
+			'https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '353067716389634');
+		fbq('track', 'PageView');
+		fbq('track', 'InitiateCheckout');
+	</script>
+	<noscript>
+		<img height="1" width="1" style="display:none"
+			 src="https://www.facebook.com/tr?id=353067716389634&ev=PageView&noscript=1" />
+		<img height="1" width="1" style="display:none"
+			 src="https://www.facebook.com/tr?id=353067716389634&ev=InitiateCheckout&noscript=1" />
+	</noscript>
+</body>
+</html>

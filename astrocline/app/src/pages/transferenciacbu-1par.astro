@@ -1,0 +1,497 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BankTransferInfo from '../components/BankTransferInfo.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL del formulario
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+
+// Intentar obtener de múltiples fuentes
+let tallesElegidos = searchParams.get('entry.1471599855') || 
+                      searchParams.get('talles') || 
+                      searchParams.get('productos') || 
+                      'Talles no especificados';
+const nombre = searchParams.get('entry.1460904554') || searchParams.get('nombre') || '';
+const whatsapp = searchParams.get('entry.53830725') || searchParams.get('whatsapp') || '';
+const email = searchParams.get('entry.1465946249') || searchParams.get('email') || '';
+
+---
+
+<Layout title='Transferencia Bancaria - 1 Par - Rosita Rococo'>
+	<!-- Header con logo -->
+	<header class="main-header bg-white shadow-sm">
+		<div class="max-w-7xl mx-auto px-4">
+		<div class="text-center py-4">
+			<img src="/rosita-form.webp" alt="Rosita Rococó Logo" class="mx-auto h-16" />
+		</div>
+	</header>
+
+	<main class="transfer-container max-w-4xl mx-auto px-4 py-8">
+		<!-- Header -->
+		<div class="transfer-header">
+			<h1>📋 Transferencia Bancaria - 1 Par</h1>
+			<p>Realiza la transferencia por <strong>$54.000</strong> y envíanos el comprobante</p>
+			<div class="savings-badge">
+				💰 ¡Ahorras $6.000 con 10% OFF adicional!
+			</div>
+		</div>
+
+		<!-- Resumen del pedido -->
+		<div class="order-summary">
+			<h2>📦 Tu Pedido</h2>
+			<div class="summary-content">
+				<div class="summary-item">
+					<span class="label">Productos seleccionados:</span>
+					<span class="value" id="productos-seleccionados">{tallesElegidos}</span>
+				</div>
+				<div class="summary-item">
+					<span class="label">Cantidad:</span>
+					<span class="value">1 par</span>
+				</div>
+				<div class="summary-item total">
+					<span class="label">Total a transferir:</span>
+					<span class="value">$54.000</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Información bancaria -->
+		<BankTransferInfo />
+
+		<!-- Instrucciones específicas -->
+		<div class="instructions">
+			<h2>📋 Pasos a seguir</h2>
+			<ol class="steps">
+				<li>
+					<strong>Realiza la transferencia</strong> por <strong>$54.000</strong> a los datos bancarios
+				</li>
+				<li>
+					<strong>Guarda el comprobante</strong> (captura de pantalla o foto del movimiento)
+				</li>
+				<li>
+					<strong>Envíanos el comprobante</strong> por WhatsApp con tus datos
+				</li>
+				<li>
+					<strong>Espera la confirmación</strong> y el seguimiento de tu envío
+				</li>
+			</ol>
+		</div>
+
+		<!-- Botón de WhatsApp con mensaje pre-completado -->
+		<div class="whatsapp-section">
+			<h2>📱 Enviar Comprobante</h2>
+			<p>Haz clic para abrir WhatsApp con tu información pre-cargada:</p>
+			<a 
+				id="whatsapp-link"
+				href={`https://wa.me/5491138165213?text=${encodeURIComponent(`¡Hola! Realicé una transferencia por 1 par.\n\n📋 Datos del pedido:\n• Productos: ${tallesElegidos}\n• Total: $54.000\n• Nombre: ${nombre}\n• WhatsApp: ${whatsapp}\n• Email: ${email}\n\nAdjunto el comprobante de la transferencia. ¡Gracias!`)}`}
+				target="_blank" 
+				class="whatsapp-button-large"
+			>
+				📱 Enviar Comprobante por WhatsApp
+			</a>
+			<p class="whatsapp-note">
+				Se abrirá WhatsApp con tu información pre-cargada para que solo agregues la foto del comprobante
+			</p>
+		</div>
+
+		<!-- Importante -->
+		<div class="important-notice">
+			<h2>⚠️ Recordatorio Importante</h2>
+			<ul class="notice-list">
+				<li>✅ El envío es GRATIS a todo el país</li>
+				<li>⏰ Una vez confirmado el pago, despachamos dentro de 24/48 hs</li>
+				<li>📸 Sin la foto del comprobante tu pedido NO se procesa</li>
+				<li>📱 Te contactaremos por WhatsApp con el seguimiento</li>
+				<li>💰 Ahorrás $6.000 con 10% OFF adicional</li>
+			</ul>
+		</div>
+
+		<!-- Soporte -->
+		<div class="support">
+			<h2>🤝 ¿Necesitas Ayuda?</h2>
+			<p>Si tienes dudas sobre la transferencia o tu pedido, estamos para ayudarte.</p>
+			<div class="support-buttons">
+				<a href="http://bit.ly/wspb-rosita" target="_blank" class="support-button primary">
+					📱 WhatsApp
+				</a>
+				<a href="/" class="support-button secondary">
+					🏠 Volver a la Tienda
+				</a>
+			</div>
+		</div>
+	</main>
+
+	<!-- Script para webhooks y tracking -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Intentar obtener datos del carrito si no hay datos del formulario
+			let productosTexto = '{tallesElegidos}';
+			let nombre = '{nombre}';
+			let whatsapp = '{whatsapp}';
+			let email = '{email}';
+			
+			if (!productosTexto || productosTexto === 'Talles no especificados' || productosTexto === '') {
+				// Intentar obtener del localStorage
+				const carritoGuardado = localStorage.getItem('cart');
+				if (carritoGuardado) {
+					try {
+						const carrito = JSON.parse(carritoGuardado);
+						if (carrito && carrito.length > 0) {
+							productosTexto = carrito.map(item => `${item.name} - Talle ${item.size}`).join(', ');
+							
+							// Actualizar el DOM con los datos del carrito
+							const productosElement = document.getElementById('productos-seleccionados');
+							if (productosElement) {
+								productosElement.textContent = productosTexto;
+							}
+							
+							// Actualizar enlace de WhatsApp
+							const whatsappLink = document.getElementById('whatsapp-link');
+							if (whatsappLink) {
+								const mensaje = `¡Hola! Realicé una transferencia por 1 par.\n\n📋 Datos del pedido:\n• Productos: ${productosTexto}\n• Total: $54.000\n• Nombre: ${nombre || 'Tu nombre'}\n• WhatsApp: ${whatsapp || 'Tu WhatsApp'}\n• Email: ${email || 'Tu email'}\n\nAdjunto el comprobante de la transferencia. ¡Gracias!`;
+								whatsappLink.setAttribute('href', `https://wa.me/5491138165213?text=${encodeURIComponent(mensaje)}`);
+							}
+						}
+					} catch (e) {
+						console.error('Error al leer carrito:', e);
+					}
+				}
+			}
+
+			// Simular tracking de Facebook para transferencia bancaria
+			if (typeof fbq !== 'undefined') {
+				fbq('track', 'InitiateCheckout', {
+					content_type: 'product',
+					content_ids: ['cbu-1par'],
+					value: 54000,
+					currency: 'ARS',
+					num_items: 1
+				});
+			}
+
+			// Enviar datos al webhook del original
+			fetch('https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					method: 'cbu',
+					products: productosTexto,
+					quantity: 1,
+					amount: 54000,
+					customer_name: nombre,
+					whatsapp: whatsapp,
+					email: email,
+					page: 'transferenciacbu-1par'
+				})
+			}).catch(error => {
+				console.error('Error en webhook:', error);
+			});
+
+			// Tracking de conversión
+			if (typeof gtag !== 'undefined') {
+				gtag('event', 'conversion', {
+					'send_to': 'AW-CONVERSION_ID',
+					'value': 54000,
+					'currency': 'ARS',
+					'transaction_id': 'cbu_1par_' + Date.now()
+				});
+			}
+		});
+	</script>
+</Layout>
+
+<style>
+.transfer-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.transfer-header {
+	text-align: center;
+	margin-bottom: 40px;
+	padding: 30px;
+	background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+	border-radius: 16px;
+}
+
+.transfer-header h1 {
+	color: #0369a1;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.transfer-header p {
+	color: #0c4a6e;
+	font-size: 1.2rem;
+	margin-bottom: 15px;
+}
+
+.savings-badge {
+	background: #dcfce7;
+	border: 2px solid #bbf7d0;
+	border-radius: 12px;
+	padding: 15px 20px;
+	display: inline-block;
+	color: #166534;
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
+.order-summary {
+	background: white;
+	border: 2px solid #e5e7eb;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 30px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.order-summary h2 {
+	color: #1f2937;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.summary-content {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.summary-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	background: #f9fafb;
+	border-radius: 8px;
+}
+
+.summary-item.total {
+	background: #dcfce7;
+	border: 2px solid #bbf7d0;
+}
+
+.label {
+	color: #6b7280;
+	font-weight: 600;
+}
+
+.value {
+	color: #1f2937;
+	font-weight: 700;
+}
+
+.summary-item.total .value {
+	color: #166534;
+	font-size: 1.3rem;
+}
+
+.instructions {
+	background: #eff6ff;
+	border: 2px solid #dbeafe;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.instructions h2 {
+	color: #1e40af;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.steps {
+	list-style: none;
+	padding: 0;
+	counter-reset: step-counter;
+}
+
+.steps li {
+	counter-increment: step-counter;
+	position: relative;
+	padding-left: 50px;
+	margin-bottom: 15px;
+	color: #374151;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.steps li::before {
+	content: counter(step-counter);
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #3b82f6;
+	color: white;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+}
+
+.whatsapp-section {
+	text-align: center;
+	margin-bottom: 30px;
+	padding: 30px;
+	background: #f0fdf4;
+	border: 2px solid #bbf7d0;
+	border-radius: 16px;
+}
+
+.whatsapp-section h2 {
+	color: #166534;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.whatsapp-button-large {
+	display: inline-block;
+	background: #25d366;
+	color: white;
+	text-decoration: none;
+	padding: 20px 40px;
+	border-radius: 12px;
+	font-size: 1.3rem;
+	font-weight: 700;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-button-large:hover {
+	background: #128c7e;
+	transform: translateY(-3px);
+	box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-note {
+	color: #6b7280;
+	margin-top: 15px;
+	font-size: 0.95rem;
+}
+
+.important-notice {
+	background: #fef2f2;
+	border: 2px solid #fecaca;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.important-notice h2 {
+	color: #dc2626;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.notice-list {
+	list-style: none;
+	padding: 0;
+}
+
+.notice-list li {
+	color: #991b1b;
+	margin-bottom: 10px;
+	padding-left: 25px;
+	position: relative;
+}
+
+.notice-list li::before {
+	content: "✅";
+	position: absolute;
+	left: 0;
+	color: #16a34a;
+}
+
+.support {
+	background: #f3f4f6;
+	border-radius: 16px;
+	padding: 30px;
+	text-align: center;
+}
+
+.support h2 {
+	color: #1f2937;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.support p {
+	color: #6b7280;
+	margin-bottom: 25px;
+	font-size: 1.05rem;
+}
+
+.support-buttons {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.support-button {
+	display: inline-block;
+	padding: 15px 30px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.support-button.primary {
+	background: #3b82f6;
+	color: white;
+}
+
+.support-button.primary:hover {
+	background: #2563eb;
+	transform: translateY(-2px);
+}
+
+.support-button.secondary {
+	background: #6b7280;
+	color: white;
+}
+
+.support-button.secondary:hover {
+	background: #4b5563;
+	transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+	.transfer-container {
+		padding: 15px;
+	}
+	
+	.transfer-header {
+		padding: 20px;
+	}
+	
+	.transfer-header h1 {
+		font-size: 1.5rem;
+	}
+	
+	.support-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.support-button {
+		width: 100%;
+		max-width: 300px;
+	}
+}
+</style>

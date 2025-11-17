@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Carrusel Embla</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module">
+        import emblaCarousel from 'https://unpkg.com/embla-carousel@8.3.0/esm/embla-carousel.esm.js';
+        import Autoplay from 'https://unpkg.com/embla-carousel-autoplay@8.3.0/esm/embla-carousel-autoplay.esm.js';
+
+        // Test data
+        const images = [
+            { src: '/guillerminafotos/1.webp', alt: 'Test 1' },
+            { src: '/guillerminafotos/2.webp', alt: 'Test 2' },
+            { src: '/guillerminafotos/3.webp', alt: 'Test 3' }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewport = document.querySelector('.embla__viewport');
+            const container = document.querySelector('.embla__container');
+            
+            if (!viewport || !container) return;
+
+            // Generate slides
+            images.forEach((image, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'embla__slide';
+                slide.innerHTML = `
+                    <div class="embla__slide__number">${index + 1}</div>
+                    <img class="embla__slide__img" src="${image.src}" alt="${image.alt}" />
+                `;
+                container.appendChild(slide);
+            });
+
+            // Initialize carousel
+            const emblaApi = emblaCarousel(viewport, {
+                align: 'start',
+                loop: true,
+                skipSnaps: false,
+                containScroll: 'keepSnaps',
+                dragFree: false,
+            }, [
+                Autoplay({ delay: 3000, stopOnInteraction: true, playOnInit: true })
+            ]);
+
+            // Setup navigation
+            const prevBtn = document.querySelector('.embla__button--prev');
+            const nextBtn = document.querySelector('.embla__button--next');
+
+            if (prevBtn) prevBtn.addEventListener('click', emblaApi.scrollPrev, false);
+            if (nextBtn) nextBtn.addEventListener('click', emblaApi.scrollNext, false);
+
+            console.log('Embla carousel initialized:', emblaApi);
+        });
+    </script>
+    <style>
+        .embla {
+            position: relative;
+            padding: 1.5rem;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+        
+        .embla__viewport {
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .embla__container {
+            display: flex;
+            will-change: transform;
+        }
+        
+        .embla__slide {
+            flex: 0 0 100%;
+            min-width: 0;
+            position: relative;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        
+        .embla__slide__img {
+            display: block;
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        
+        .embla__slide__number {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+        
+        .embla__button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1;
+            transition: all 0.2s;
+        }
+        
+        .embla__button:hover {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .embla__button--prev {
+            left: 1rem;
+        }
+        
+        .embla__button--next {
+            right: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Test de Carrusel Embla</h1>
+        
+        <div class="embla">
+            <div class="embla__viewport">
+                <div class="embla__container">
+                    <!-- Slides se generarán dinámicamente -->
+                </div>
+            </div>
+            <button class="embla__button embla__button--prev" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button class="embla__button embla__button--next" type="button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+        
+        <div class="text-center mt-8">
+            <p class="text-lg">Si puedes ver las imágenes rotando automáticamente, el carrusel funciona correctamente.</p>
+            <p class="text-sm text-gray-600 mt-2">Abre la consola del navegador para ver mensajes de depuración.</p>
+        </div>
+    </div>
+</body>
+</html>

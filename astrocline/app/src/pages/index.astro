@@ -1,0 +1,488 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+
+// Preparar datos de productos
+const talleOptions = [
+  { value: "35", label: "35", cm: "23 cm de largo de plantilla" },
+  { value: "36", label: "36", cm: "23,5 cm de largo de plantilla" },
+  { value: "37", label: "37", cm: "24 cm de largo de plantilla" },
+  { value: "38", label: "38", cm: "24,7 cm de largo de plantilla" },
+  { value: "39", label: "39", cm: "25,3 cm de largo de plantilla" },
+  { value: "40", label: "40", cm: "26 cm de largo de plantilla" }
+];
+
+// Preparar datos de imágenes para los carruseles
+const imagesNegras = Array.from({ length: 43 }, (_, i) => ({
+  src: `/guillerminafotos/${i + 1}.webp`,
+  alt: `Guillerminas Negras - Vista ${i + 1}`
+}));
+
+const imagesCamel = Array.from({ length: 18 }, (_, i) => ({
+  src: `/guillerminafotos/guillerminascamel/${i + 1}.webp`,
+  alt: `Guillerminas Camel - Vista ${i + 1}`
+}));
+
+const imagesBlancas = Array.from({ length: 16 }, (_, i) => ({
+  src: `/guillerminafotos/guillerminasblancas/${i + 1}.webp`,
+  alt: `Guillerminas Blancas - Vista ${i + 1}`
+}));
+---
+
+<Layout title="Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025">
+	<!-- Barra superior de beneficios -->
+	<div class="top-benefits-bar bg-gradient-to-r from-purple-600 to-pink-600 text-white py-2 px-4 text-center">
+		<div class="max-w-7xl mx-auto flex items-center justify-center space-x-4 text-sm font-medium">
+			<span class="flex items-center">
+				<span class="text-lg mr-2">🔥</span>
+				Aprovechá hoy 2 pares por $95.000
+			</span>
+		</div>
+	</div>
+
+	<!-- Header con logo -->
+	<header class="main-header bg-white shadow-sm">
+		<div class="max-w-7xl mx-auto px-4">
+		<div class="text-center py-4">
+			<img src="/rosita-form.webp" alt="Rosita Rococó Logo" class="mx-auto h-16" />
+		</div>
+	</header>
+
+	<!-- Mini Cart Mejorado -->
+	<div id="mini-cart" class="fixed right-4 top-20 bg-white rounded-lg shadow-2xl p-4 w-96 z-50 transform transition-all duration-300 max-h-[80vh] overflow-y-auto" style="transform: translateX(100%); opacity: 0; pointer-events: none;">
+		<!-- Cart Messages Area -->
+		<div id="cart-messages" class="cart-messages-area mb-4">
+			<!-- Messages will be dynamically inserted here -->
+		</div>
+		<div class="mini-cart-header flex items-center justify-between mb-4">
+			<span class="cart-icon text-2xl mr-2">🛒</span>
+			<span class="cart-title text-lg font-semibold">Tu Carrito</span>
+			<span class="cart-count bg-pink-600 text-white px-2 py-1 rounded-full text-sm">0</span>
+			<button class="cart-close text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+		</div>
+		<div class="mini-cart-body">
+			<p class="empty-cart-message text-gray-500 text-center py-4">Tu carrito está vacío</p>
+			<div class="cart-items space-y-3"></div>
+			<div class="cart-instructions space-y-3 mt-4 p-4 bg-gray-50 rounded">
+				<p class="instruction-step flex items-center">
+					<span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">1</span>
+					Selecciona tus productos favoritos
+				</p>
+				<p class="instruction-step flex items-center">
+					<span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">2</span>
+					Revisa tu carrito
+				</p>
+				<p class="instruction-step flex items-center">
+					<span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">3</span>
+					Haz clic en "Finalizar Compra"
+				</p>
+			</div>
+		</div>
+		<div class="mini-cart-footer flex justify-between items-center pt-4 border-t">
+			<div class="cart-total text-lg font-semibold">Total: <span>$0</span></div>
+			<button id="checkout-btn" class="bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed" onclick="goToCheckoutForm()">Continuar al Envío → </button>
+		</div>
+	</div>
+
+	<!-- Botón de carrito independiente -->
+	<div id="cart-button" class="fixed bottom-4 right-4 bg-pink-600 text-white p-3 rounded-full shadow-lg z-40 flex items-center cursor-pointer transition-all duration-300 hover:bg-pink-700">
+		<span class="cart-button-icon text-xl mr-2">🛒</span>
+		<span class="cart-button-count bg-white text-pink-600 px-2 py-1 rounded-full text-sm font-bold">0</span>
+	</div>
+
+	<!-- Checkout Progress Bar -->
+	<div id="checkout-progress" class="sticky top-0 bg-white shadow-sm z-40 px-4 py-3">
+		<div class="max-w-7xl mx-auto flex items-center justify-center">
+			<div class="flex items-center space-x-8">
+				<div class="progress-step active flex flex-col items-center" data-step="1">
+					<span class="step-number bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">1</span>
+					<span class="step-name text-sm font-medium text-center">Productos</span>
+				</div>
+				<div class="progress-connector w-16 h-1 bg-gray-300"></div>
+				<div class="progress-step flex flex-col items-center" data-step="2">
+					<span class="step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">2</span>
+					<span class="step-name text-sm font-medium text-gray-600 text-center">Envío</span>
+				</div>
+				<div class="progress-connector w-16 h-1 bg-gray-300"></div>
+				<div class="progress-step flex flex-col items-center" data-step="3">
+					<span class="step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">3</span>
+					<span class="step-name text-sm font-medium text-gray-600 text-center">Pago</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container max-w-7xl mx-auto px-4 py-8">
+		<!-- Barra Promocional debajo de pestañas -->
+		<div class="bg-gradient-to-r from-rose-400 to-pink-500 text-white py-3 px-4 rounded-lg text-center shadow-lg mb-6">
+			<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 text-sm font-semibold">
+				<span class="flex items-center gap-2">
+					<span class="text-2xl">✨</span>
+					<span class="text-white">2 pares por $95.000</span>
+				</span>
+				<span class="hidden sm:inline">|</span>
+				<span class="flex items-center gap-1">
+					<span class="text-white">Podés combinar modelos</span>
+				</span>
+			</div>
+		</div>
+
+		<!-- Product Grid using new ProductCard components -->
+		<div class="product-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+			<!-- PRODUCTO: Guillerminas Negras -->
+			<ProductCard
+				title="Guillerminas Negras"
+				images={imagesNegras}
+				productId="guillermina-negras"
+				description="¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+				material="Tela reforzada super flexible"
+				suela="Expanso"
+				price={60000}
+				promoPrice={95000}
+				talleOptions={talleOptions}
+				model="negras"
+			/>
+
+			<!-- PRODUCTO: Guillerminas Camel -->
+			<ProductCard
+				title="Guillerminas Camel"
+				images={imagesCamel}
+				productId="guillermina-camel"
+				description="¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+				material="Tela reforzada super flexible"
+				suela="Expanso"
+				price={60000}
+				promoPrice={95000}
+				talleOptions={talleOptions}
+				model="camel"
+			/>
+
+			<!-- PRODUCTO: Guillerminas Blancas -->
+			<ProductCard
+				title="Guillerminas Blancas"
+				images={imagesBlancas}
+				productId="guillermina-blancas"
+				description="¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+				material="Tela reforzada super flexible"
+				suela="Expanso"
+				price={60000}
+				promoPrice={95000}
+				talleOptions={talleOptions}
+				model="blancas"
+			/>
+		</div>
+
+		<!-- Navigation -->
+		<div class="checkout-navigation product-nav-bottom mt-8">
+			<div class="shopping-instructions text-center">
+				<p><span class="instruction-icon text-xl mr-2">👍</span> ¡Selecciona tus productos favoritos y agrégalos al carrito!</p>
+			</div>
+		</div>
+
+		<!-- Testimonials Section -->
+		<section class="testimonials-section py-16 px-4">
+			<div class="max-w-7xl mx-auto">
+				<h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Lo que dicen nuestras clientas</h2>
+				<p class="testimonials-subtitle text-center mb-8 text-gray-600">Miles de clientas felices comparten su experiencia</p>
+
+				<!-- Testimonials Grid -->
+				<div class="testimonials-grid" id="testimonials-grid">
+					<!-- Los comentarios se cargarán dinámicamente aquí -->
+				</div>
+
+				<!-- "Ver más" Link -->
+				<div class="testimonials-more text-center mt-8">
+					<button id="load-more-testimonials" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">Ver más comentarios...</button>
+				</div>
+
+				<!-- Loading indicator -->
+				<div class="testimonials-loading text-center py-8" id="testimonials-loading" style="display: none;">
+					<div class="loading-spinner mx-auto mb-4"></div>
+					<p class="text-gray-600 italic">Cargando más comentarios...</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Shipping and Payment Form Section -->
+		<div id="restodelform" class="checkout-section hidden">
+			<h2 id="datos-envio" class="text-3xl font-bold text-center mb-8 text-gray-900">¡Casi listo! Completa tus datos</h2>
+			<div class="checkout-steps mb-8">
+				<div class="checkout-step active flex items-center justify-center mb-4" id="shipping-step">
+					<span class="step-number bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg mr-3">1</span>
+					<span class="step-name text-lg font-medium">Información de Envío</span>
+				</div>
+				<div class="checkout-step flex items-center justify-center mb-4" id="payment-step">
+					<span class="step-number bg-gray-300 text-gray-600 w-10 h-10 rounded-full flex items-center justify-center text-lg mr-3">2</span>
+					<span class="step-name text-lg font-medium text-gray-600">Método de Pago</span>
+				</div>
+				<div class="checkout-step flex items-center justify-center mb-4" id="review-step">
+					<span class="step-number bg-gray-300 text-gray-600 w-10 h-10 rounded-full flex items-center justify-center text-lg mr-3">3</span>
+					<span class="step-name text-lg font-medium text-gray-600">Revisar y Confirmar</span>
+				</div>
+			</div>
+
+			<form action="https://docs.google.com/forms/d/e/1FAIpQLSd_KUORaRPQHoCM6B0GGp_fqI5eiAH0KM2Iwj1mXTgGEjawnQ/formResponse" method="POST" target="_self" novalidate>
+				<!-- Hidden Fields for Google Forms -->
+				<textarea id="1209868979" name="entry.1209868979" class="hidden"></textarea>
+				<input name="fvv" type="hidden" value="1" />
+				<input name="fbzx" type="hidden" value="5661184097173102736" />
+				<input type="hidden" name="entry.978809450" id="link-mercadopago">
+				<input name="pageHistory" type="hidden" value="0" />
+
+				<!-- Anti-bot Honeypot Field -->
+				<input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off">
+
+				<fieldset>
+					<legend class="text-lg font-semibold mb-4 text-gray-900">Resumen de tu Pedido</legend>
+					<div class="form-group mb-4">
+						<label for="286442883" class="block text-sm font-medium text-gray-700 mb-2">Modelos y Talles Seleccionados:</label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="286442883" name="entry.286442883" readonly="readonly" type="text" placeholder="Aquí verás tu selección..." />
+						<p class="text-sm text-gray-600 mt-2">Confirma que sean los correctos antes de seguir.</p>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend class="text-lg font-semibold mb-4 text-gray-900">Información de Contacto</legend>
+					<div class="form-group mb-4">
+						<label for="1465946249" class="block text-sm font-medium text-gray-700 mb-2">Email <span class="text-red-600">*</span></label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="1465946249" name="entry.1465946249" placeholder="tuemail@ejemplo.com" required type="email" />
+						<p class="text-sm text-gray-600 mt-2">Para enviarte la confirmación y el seguimiento de tu pedido.</p>
+					</div>
+					<div class="form-group mb-4">
+						<label for="1460904554" class="block text-sm font-medium text-gray-700 mb-2">Nombre y Apellido <span class="text-red-600">*</span></label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="1460904554" name="entry.1460904554" placeholder="Quien recibe el pedido" required type="text" />
+					</div>
+					<div class="form-group mb-4">
+						<label for="53830725" class="block text-sm font-medium text-gray-700 mb-2">WhatsApp <span class="text-red-600">*</span></label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="53830725" name="entry.53830725" placeholder="Ej: 1156457057 (sin 0 ni 15)" required type="tel" />
+						<p class="text-sm text-gray-600 mt-2">El formato de WhatsApp debe ser sin 0 ni 15.</p>
+						<p class="text-sm text-gray-600 mt-2">Fundamental para coordinar el envío si es necesario.</p>
+					</div>
+				</fieldset>
+
+				<fieldset>
+					<legend class="text-lg font-semibold mb-4 text-gray-900">Dirección de Envío <span class="text-red-600">*</span></legend>
+					<p class="text-sm text-gray-600 mb-6">¡Asegúrate que sea correcta para recibir tu paquete sin problemas!</p>
+					<div class="form-group mb-4">
+						<label for="951592426" class="block text-sm font-medium text-gray-700 mb-2">Calle y Número (Piso/Dpto)</label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="951592426" name="entry.951592426" placeholder="Ej: Av. Siempreviva 742, 3B" required type="text"/>
+					</div>
+					<div class="form-group mb-4">
+						<label for="1005165410" class="block text-sm font-medium text-gray-700 mb-2">Código Postal</label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="1005165410" name="entry.1005165410" placeholder="Ej: 1425" required type="text" />
+					</div>
+					<div class="form-group mb-4">
+						<label for="1743418466" class="block text-sm font-medium text-gray-700 mb-2">Localidad</label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="1743418466" name="entry.1743418466" placeholder="Ej: Palermo" required type="text" />
+					</div>
+					<div class="form-group mb-4">
+						<label for="59648134" class="block text-sm font-medium text-gray-700 mb-2">Provincia</label>
+						<select class="w-full p-3 border border-gray-300 rounded-lg" id="59648134" name="entry.59648134" required>
+							<option value="">-- Selecciona tu Provincia --</option>
+							<option value="Buenos Aires">Buenos Aires</option>
+							<option value="Capital Federal">CABA</option>
+							<option value="Buenos Aires">Gran Buenos Aires</option>
+							<option value="Córdoba">Córdoba</option>
+							<option value="Santa Fé">Santa Fé</option>
+							<option value="Mendoza">Mendoza</option>
+							<option value="Neuquén">Neuquén</option>
+							<option value="Entre Ríos">Entre Ríos</option>
+							<option value="Catamarca">Catamarca</option>
+							<option value="Chubut">Chubut</option>
+							<option value="Salta">Salta</option>
+							<option value="Santa Cruz">Santa Cruz</option>
+							<option value="Chaco">Chaco</option>
+							<option value="Corrientes">Corrientes</option>
+							<option value="Formosa">Formosa</option>
+							<option value="La Pampa">La Pampa</option>
+							<option value="La Rioja">La Rioja</option>
+							<option value="Río Negro">Río Negro</option>
+							<option value="San Juan">San Juan</option>
+							<option value="San Luis">San Luis</option>
+							<option value="Santiago del Estero">Santiago del Estero</option>
+							<option value="Tucumán">Tucumán</option>
+						</select>
+					</div>
+					<div class="form-group mb-4">
+						<label for="541001873" class="block text-sm font-medium text-gray-700 mb-2">DNI</label>
+						<input class="w-full p-3 border border-gray-300 rounded-lg" id="541001873" name="entry.541001873" placeholder="Del titular de la tarjeta o quien recibe" required type="text" />
+						<p class="text-sm text-gray-600 mt-2">Necesario para el envío y/o verificación de pago.</p>
+					</div>
+					<!-- Hidden field for shipping method -->
+					<div class="form-group hidden">
+						<select class="w-full p-3 border border-gray-300 rounded-lg" id="2315500325" name="entry.17650825"><option selected value="A DOMICILIO">A DOMICILIO</option></select>
+					</div>
+				</fieldset>
+
+				<fieldset id="payment-section">
+					<legend class="text-lg font-semibold mb-4 text-gray-900">Forma de Pago</legend>
+					<div class="form-group mb-4">
+						<label for="comoabona" class="block text-sm font-medium text-gray-700 mb-2">¿Cómo prefieres abonar? <span class="text-red-600">*</span></label>
+						<select class="w-full p-3 border border-gray-300 rounded-lg" id="comoabona" name="comoabona" required>
+							<option value="">-- Selecciona una opción --</option>
+							<option value="tarjeta">💳 Tarjeta de Crédito/Débito (¡3 Cuotas sin interés!)</option>
+							<option value="mercadopago">💲 Saldo en cuenta MercadoPago</option>
+							<option value="cbu">🏦 Transferencia Bancaria (¡Con 10% OFF adicional!)</option>
+						</select>
+						<p class="text-sm text-gray-600 mt-2">Te redirigiremos a la plataforma de pago segura.</p>
+					</div>
+				</fieldset>
+
+				<div id="confirma-pedido" class="review-section bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-8 shadow-lg border border-pink-100">
+					<div class="review-header mb-8">
+						<h3 class="text-3xl font-bold text-center mb-2 text-gray-900 flex items-center justify-center">
+							<span class="text-4xl mr-3">📋</span>
+							Revisa tu Pedido y Datos
+						</h3>
+						<p class="text-center text-gray-600 text-sm">Por favor, verifica que toda la información sea correcta antes de confirmar</p>
+					</div>
+
+					<div class="review-content max-w-2xl mx-auto space-y-6">
+						<!-- Resumen del Pedido -->
+						<div class="review-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+							<h4 class="text-lg font-semibold mb-4 text-pink-600 flex items-center">
+								<span class="text-2xl mr-2">🛍️</span>
+								Tu Pedido
+							</h4>
+							<div class="space-y-3">
+								<div class="flex items-start">
+									<span class="font-medium text-gray-700 w-24">Selección:</span>
+									<span id="review-modelostallesseleccionados" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+								<div class="flex items-center">
+									<span class="font-medium text-gray-700 w-24">Total:</span>
+									<span id="preciototal" class="text-2xl font-bold text-green-600">Elige modelos y talles para ver el total</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Datos de Contacto -->
+						<div class="review-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+							<h4 class="text-lg font-semibold mb-4 text-pink-600 flex items-center">
+								<span class="text-2xl mr-2">👤</span>
+								Datos de Contacto
+							</h4>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<div class="flex items-start">
+									<span class="font-medium text-gray-700 w-24">Nombre:</span>
+									<span id="help-nombre" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+								<div class="flex items-start">
+									<span class="font-medium text-gray-700 w-24">WhatsApp:</span>
+									<span id="help-wapp" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+								<div class="flex items-start md:col-span-2">
+									<span class="font-medium text-gray-700 w-24">Email:</span>
+									<span id="help-email" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Dirección de Envío -->
+						<div class="review-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+							<h4 class="text-lg font-semibold mb-4 text-pink-600 flex items-center">
+								<span class="text-2xl mr-2">📍</span>
+								Dirección de Envío
+							</h4>
+							<div class="space-y-3">
+								<div class="flex items-start">
+									<span class="font-medium text-gray-700 w-24">Dirección:</span>
+									<span id="help-calleyaltura" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+								<div class="flex items-start">
+									<span class="font-medium text-gray-700 w-24">Localidad:</span>
+									<span id="help-localidad" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+								</div>
+								<div class="grid grid-cols-2 gap-4">
+									<div class="flex items-start">
+										<span class="font-medium text-gray-700 w-24">C.P.:</span>
+										<span id="help-cp" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+									</div>
+									<div class="flex items-start">
+										<span class="font-medium text-gray-700 w-24">Provincia:</span>
+										<span id="help-provincia" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Información Adicional -->
+						<div class="review-card bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+							<h4 class="text-lg font-semibold mb-4 text-pink-600 flex items-center">
+								<span class="text-2xl mr-2">🆔</span>
+								Información Adicional
+							</h4>
+							<div class="flex items-start">
+								<span class="font-medium text-gray-700 w-24">DNI:</span>
+								<span id="help-dni" class="text-gray-900 flex-1 bg-gray-50 px-3 py-2 rounded-lg">-</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Información Importante -->
+					<div class="important-notice mt-8 p-6 bg-yellow-50 border-2 border-yellow-200 rounded-xl">
+						<div class="flex items-start">
+							<span class="text-3xl mr-3">⚠️</span>
+							<div class="flex-1">
+								<h5 class="font-bold text-yellow-800 mb-2 text-lg">Información Importante</h5>
+								<ul class="text-sm text-yellow-700 space-y-2">
+									<li class="flex items-start">
+										<span class="mr-2">•</span>
+										<span><strong>Tu pedido es un compromiso de pago.</strong> Verifica que toda la información sea correcta antes de confirmar.</span>
+									</li>
+									<li class="flex items-start">
+										<span class="mr-2">•</span>
+										<span><strong>Tiempo de entrega:</strong> A partir de los 7 días hábiles (producimos a pedido).</span>
+									</li>
+									<li class="flex items-start">
+										<span class="mr-2">•</span>
+										<span><strong>Seguimiento:</strong> Te enviaremos el código de seguimiento por email.</span>
+									</li>
+									<li class="flex items-start">
+										<span class="mr-2">•</span>
+										<span><strong>Envío gratis</strong> a todo el país.</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Checkboxes de Confirmación -->
+					<div class="confirmation-checklists mt-6 space-y-3">
+						<label class="flex items-start cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors">
+							<input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600 border-gray-300 rounded focus:ring-pink-500" required>
+							<span class="text-sm text-gray-700">Confirmo que mi pedido y datos personales son correctos</span>
+						</label>
+						<label class="flex items-start cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors">
+							<input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600 border-gray-300 rounded focus:ring-pink-500" required>
+							<span class="text-sm text-gray-700">Entiendo que este es un compromiso de compra</span>
+						</label>
+						<label class="flex items-start cursor-pointer hover:bg-gray-50 p-3 rounded-lg transition-colors">
+							<input type="checkbox" class="mt-1 mr-3 w-5 h-5 text-pink-600 border-gray-300 rounded focus:ring-pink-500" required>
+							<span class="text-sm text-gray-700">Acepto los términos y condiciones de compra</span>
+						</label>
+					</div>
+				</div>
+
+				<div class="checkout-navigation flex justify-between items-center mt-8">
+					<button type="button" class="text-pink-600 hover:text-pink-700 px-4 py-2 rounded-lg font-medium mr-4" id="back-to-products">← Volver a productos</button>
+					<button type="submit" class="bg-pink-600 hover:bg-pink-700 text-white px-8 py-3 rounded-lg font-semibold" id="botoncomprar">Confirmar y Pagar 🛒</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Notification Area -->
+	<div id="notification-container"></div>
+
+	<!-- Loading Overlay -->
+	<div class="loading-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" style="display: none;">
+		<div class="text-center text-white">
+			<div class="loading-spinner mx-auto mb-4"></div>
+			<p class="text-lg">Estamos preparando tu pago seguro...<br>Por favor espera, te estamos redirigiendo a MercadoPago.<br><strong>No cierres ni actualices esta página.</strong></p>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+	<!-- Note: carousel.js is loaded in Layout.astro to avoid duplicates -->
+</Layout>

@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+---
+
+<Layout title='Datos Bancarios - Rosita Rococo'>
+	<main class="bank-container">
+		<!-- Header -->
+		<div class="bank-header">
+			<h1>📊 Datos Bancarios para Transferencia</h1>
+			<p>Realiza tu transferencia y envíanos el comprobante</p>
+		</div>
+
+		<!-- Información bancaria -->
+		<div class="bank-info">
+			<h2>🏦 Banco Santander</h2>
+			<div class="bank-details">
+				<div class="detail-row">
+					<span class="label">Tipo y número de cuenta:</span>
+					<span class="value">Cuentas en Pesos 570-353877/1</span>
+				</div>
+				<div class="detail-row">
+					<span class="label">Número de CBU:</span>
+					<span class="value">0720570588000035387718</span>
+				</div>
+				<div class="detail-row">
+					<span class="label">Alias de CBU:</span>
+					<span class="value">ESCUDO.HIJA.PESCA</span>
+				</div>
+				<div class="detail-row">
+					<span class="label">Titular de la cuenta:</span>
+					<span class="value">Baustian Roxana Ines</span>
+				</div>
+				<div class="detail-row">
+					<span class="label">Tipo y número de documento:</span>
+					<span class="value">DNI - 29410535</span>
+				</div>
+			</div>
+		</div>
+
+		<!-- Instrucciones -->
+		<div class="instructions">
+			<h2>📋 Pasos para completar tu compra</h2>
+			<ol class="steps">
+				<li>
+					<strong>Realiza la transferencia</strong> por el monto total de tu compra
+				</li>
+				<li>
+					<strong>Guarda el comprobante de pago</strong> (captura de pantalla o foto)
+				</li>
+				<li>
+					<strong>Envíanos el comprobante por WhatsApp</strong> tocando el botón abajo
+				</li>
+				<li>
+					<strong>Espera nuestra confirmación</strong> y el seguimiento de tu envío
+				</li>
+			</ol>
+		</div>
+
+		<!-- Importante -->
+		<div class="important-notice">
+			<h2>⚠️ Importante</h2>
+			<ul class="notice-list">
+				<li>Sin la foto del ticket de pago tu pedido NO se procesa</li>
+				<li>El envío es GRATIS en todos los casos</li>
+				<li>Una vez confirmado el pago, despachamos dentro de las 24/48 hs</li>
+				<li>Te contactaremos por WhatsApp con el número de seguimiento</li>
+			</ul>
+		</div>
+
+		<!-- Botón de WhatsApp -->
+		<div class="whatsapp-section">
+			<a href="http://bit.ly/wspb-rosita" target="_blank" class="whatsapp-button-large">
+				📱 Enviar Comprobante por WhatsApp
+			</a>
+			<p class="whatsapp-note">
+				Haz clic en el botón para abrir WhatsApp y enviar tu comprobante
+			</p>
+		</div>
+
+		<!-- Precios de referencia -->
+		<div class="price-reference">
+			<h2>💰 Precios de Referencia</h2>
+			<div class="price-grid">
+				<div class="price-card">
+					<h3>1 Par</h3>
+					<p class="price">$9.950</p>
+				</div>
+				<div class="price-card">
+					<h3>2 Pares</h3>
+					<p class="price">$19.900</p>
+				</div>
+				<div class="price-card">
+					<h3>3 Pares</h3>
+					<p class="price">$29.850</p>
+				</div>
+				<div class="price-card special">
+					<h3>Ofertas Especiales</h3>
+					<p class="price">$99.500</p>
+					<p class="special-note">N pares de 1 par</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Soporte -->
+		<div class="support">
+			<h2>🤝 ¿Necesitas Ayuda?</h2>
+			<p>Si tienes dudas sobre el pago o tu pedido, estamos para ayudarte.</p>
+			<div class="support-buttons">
+				<a href="http://bit.ly/wspb-rosita" target="_blank" class="support-button primary">
+					📱 WhatsApp
+				</a>
+				<a href="/" class="support-button secondary">
+					🏠 Volver a la Tienda
+				</a>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<style>
+.bank-container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.bank-header {
+	text-align: center;
+	margin-bottom: 40px;
+	padding: 30px;
+	background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+	border-radius: 16px;
+}
+
+.bank-header h1 {
+	color: #1f2937;
+	font-size: 2rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.bank-header p {
+	color: #6b7280;
+	font-size: 1.1rem;
+}
+
+.bank-info {
+	background: white;
+	border: 2px solid #e5e7eb;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 40px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.bank-info h2 {
+	color: #1f2937;
+	font-size: 1.5rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.bank-details {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.detail-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	background: #f9fafb;
+	border-radius: 8px;
+	border-left: 4px solid #dc2626;
+}
+
+.label {
+	color: #6b7280;
+	font-weight: 600;
+	flex: 1;
+}
+
+.value {
+	color: #1f2937;
+	font-weight: 700;
+	text-align: right;
+	flex: 2;
+	word-break: break-all;
+}
+
+.instructions {
+	background: #eff6ff;
+	border: 2px solid #dbeafe;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 40px;
+}
+
+.instructions h2 {
+	color: #1e40af;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.steps {
+	list-style: none;
+	padding: 0;
+	counter-reset: step-counter;
+}
+
+.steps li {
+	counter-increment: step-counter;
+	position: relative;
+	padding-left: 50px;
+	margin-bottom: 15px;
+	color: #374151;
+	font-size: 1.05rem;
+	line-height: 1.6;
+}
+
+.steps li::before {
+	content: counter(step-counter);
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: #3b82f6;
+	color: white;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+}
+
+.important-notice {
+	background: #fef2f2;
+	border: 2px solid #fecaca;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 40px;
+}
+
+.important-notice h2 {
+	color: #dc2626;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.notice-list {
+	list-style: none;
+	padding: 0;
+}
+
+.notice-list li {
+	color: #991b1b;
+	margin-bottom: 10px;
+	padding-left: 25px;
+	position: relative;
+}
+
+.notice-list li::before {
+	content: "⚠️";
+	position: absolute;
+	left: 0;
+}
+
+.whatsapp-section {
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.whatsapp-button-large {
+	display: inline-block;
+	background: #25d366;
+	color: white;
+	text-decoration: none;
+	padding: 20px 40px;
+	border-radius: 12px;
+	font-size: 1.3rem;
+	font-weight: 700;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.whatsapp-button-large:hover {
+	background: #128c7e;
+	transform: translateY(-3px);
+	box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-note {
+	color: #6b7280;
+	margin-top: 15px;
+	font-size: 0.95rem;
+}
+
+.price-reference {
+	background: white;
+	border: 2px solid #e5e7eb;
+	border-radius: 16px;
+	padding: 30px;
+	margin-bottom: 40px;
+}
+
+.price-reference h2 {
+	color: #1f2937;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.price-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+}
+
+.price-card {
+	background: #f9fafb;
+	border: 2px solid #e5e7eb;
+	border-radius: 12px;
+	padding: 25px;
+	text-align: center;
+	transition: all 0.3s ease;
+}
+
+.price-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.price-card.special {
+	background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+	border-color: #f59e0b;
+}
+
+.price-card h3 {
+	color: #1f2937;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.price {
+	color: #dc2626;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.special-note {
+	color: #92400e;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.support {
+	background: #f3f4f6;
+	border-radius: 16px;
+	padding: 30px;
+	text-align: center;
+}
+
+.support h2 {
+	color: #1f2937;
+	font-size: 1.4rem;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+
+.support p {
+	color: #6b7280;
+	margin-bottom: 25px;
+	font-size: 1.05rem;
+}
+
+.support-buttons {
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.support-button {
+	display: inline-block;
+	padding: 15px 30px;
+	border-radius: 8px;
+	text-decoration: none;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.support-button.primary {
+	background: #3b82f6;
+	color: white;
+}
+
+.support-button.primary:hover {
+	background: #2563eb;
+	transform: translateY(-2px);
+}
+
+.support-button.secondary {
+	background: #6b7280;
+	color: white;
+}
+
+.support-button.secondary:hover {
+	background: #4b5563;
+	transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+	.bank-container {
+		padding: 15px;
+	}
+	
+	.bank-header {
+		padding: 20px;
+	}
+	
+	.bank-header h1 {
+		font-size: 1.5rem;
+	}
+	
+	.detail-row {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+	
+	.value {
+		text-align: left;
+	}
+	
+	.price-grid {
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	}
+	
+	.support-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.support-button {
+		width: 100%;
+		max-width: 300px;
+	}
+}
+</style>

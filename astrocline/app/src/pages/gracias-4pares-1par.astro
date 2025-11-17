@@ -1,0 +1,161 @@
+---
+import ThankYouLayout from '../layouts/ThankYouLayout.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+import BankTransferInfo from '../components/BankTransferInfo.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const tallesElegidos = searchParams.get('entry.1471599855') || 'Talles no especificados';
+
+---
+
+<ThankYouLayout title='Paga tu pedido - 4 pares de 1 par (Oferta Especial)'>
+	<OrderSummary 
+		tallesElegidos={tallesElegidos}
+		precio='$99.500'
+		parTitle='4 pares de 1 par seleccionados - Oferta Especial'
+	/>
+	
+	<!-- Instrucciones de pago con tarjeta -->
+	<div class="payment-instructions">
+		<h3 class="payment-title">💳 Tarjeta de crédito/débito</h3>
+		<p class="payment-description">
+			<span class="text-green-600 font-bold">ENVÍO GRATIS</span> y 
+			<span class="text-green-600 font-bold">AHORA 3 y 6</span> Cuotas SIN INTERÉS.
+		</p>
+		<p class="payment-note">
+			<em>3 y 6 cuotas sin interés sólo con tarjetas bancarias.</em>
+		</p>
+		
+		<p class="payment-steps">
+			Toca el botón azul abajo para ir a pagar con cualquier tarjeta de crédito o débito 
+			en la plataforma segura de MercadoPago. Podrás elegir 1 pago o en cuotas sin interés. 
+			Luego de pagar recibirás un email desde MercadoPago confirmando tu pago.
+		</p>
+	</div>
+	
+	<BankTransferInfo />
+	
+	<WhatsAppContact 
+		customMessage='¡Consulta por promociones especiales:'
+	/>
+	
+	<!-- Botón de pago al final como en el original -->
+	<div class="payment-button-container">
+		<button id="pay-button" class="payment-button-final">
+			Pagar con MercadoPago
+		</button>
+	</div>
+	
+	<!-- Script de MercadoPago -->
+	<script define:vars={{ tallesElegidos }}>
+		document.addEventListener('DOMContentLoaded', function() {
+			const payButton = document.getElementById('pay-button');
+			
+			// Configurar MercadoPago cuando se haga clic
+			payButton?.addEventListener('click', function() {
+				// Aquí iría la integración con MercadoPago
+				// Por ahora redirigimos a una URL de ejemplo
+				const mercadopagoUrl = `https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=TEST_PREF_ID&external_reference=${encodeURIComponent(tallesElegidos)}`;
+				window.open(mercadopagoUrl, '_blank');
+			});
+		});
+	</script>
+</ThankYouLayout>
+
+<style>
+.payment-instructions {
+	margin: 20px 0;
+	padding: 20px;
+	border: 2px solid #e5e7eb;
+	border-radius: 12px;
+	background: #f9fafb;
+}
+
+.payment-title {
+	color: #1f2937;
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.payment-description {
+	color: #374151;
+	font-size: 1rem;
+	margin-bottom: 8px;
+}
+
+.payment-note {
+	color: #6b7280;
+	font-size: 0.9rem;
+	margin-bottom: 15px;
+	font-style: italic;
+}
+
+.payment-steps {
+	color: #4b5563;
+	font-size: 0.95rem;
+	line-height: 1.6;
+}
+
+.payment-button-container {
+	text-align: center;
+	margin: 30px 0;
+}
+
+.payment-button-final {
+	background: linear-gradient(135deg, #007dc1 0%, #0061a7 100%);
+	color: white;
+	border: none;
+	padding: 15px 40px;
+	font-size: 1.2rem;
+	font-weight: 600;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(0, 125, 193, 0.3);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.payment-button-final:hover {
+	background: linear-gradient(135deg, #0061a7 0%, #007dc1 100%);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(0, 125, 193, 0.4);
+}
+
+.payment-button-final:active {
+	transform: translateY(0);
+}
+
+.text-green-600 {
+	color: #059669;
+}
+
+@media (max-width: 640px) {
+	.payment-instructions {
+		padding: 15px;
+		margin: 15px 0;
+	}
+	
+	.payment-title {
+		font-size: 1.1rem;
+	}
+	
+	.payment-description {
+		font-size: 0.95rem;
+	}
+	
+	.payment-steps {
+		font-size: 0.9rem;
+	}
+	
+	.payment-button-final {
+		padding: 12px 30px;
+		font-size: 1.1rem;
+	}
+}
+</style>

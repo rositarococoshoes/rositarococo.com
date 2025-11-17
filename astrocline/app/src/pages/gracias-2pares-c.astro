@@ -1,0 +1,29 @@
+---
+import ThankYouLayout from '../layouts/ThankYouLayout.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+import CounterPaymentForm from '../components/CounterPaymentForm.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const tallesElegidos = searchParams.get('entry.1471599855') || 'Talles no especificados';
+---
+
+<ThankYouLayout title="Paga tu pedido - 2 pares (Contraentrega)">
+	<OrderSummary 
+		tallesElegidos={tallesElegidos}
+		precio="$18.950"
+		parTitle="2 pares seleccionados - Pago contraentrega"
+	/>
+	
+	<CounterPaymentForm 
+		amount="18950" 
+		description="Compra Rosita Rococo - 2 pares contraentrega"
+	/>
+	
+	<WhatsAppContact 
+		customMessage="Coordina tu envío por WhatsApp:"
+	/>
+</ThankYouLayout>

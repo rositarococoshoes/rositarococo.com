@@ -1,0 +1,113 @@
+---
+// SimplePaymentButton.astro - Botón simple de pago estilo original
+export interface Props {
+	showInstructions?: boolean;
+}
+
+const { showInstructions = true } = Astro.props;
+---
+
+<section class="mb-6">
+	<!-- Botón de pago principal -->
+	<div class="text-center mb-4">
+		<button 
+			id="payButton"
+			class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-lg w-full max-w-sm"
+			style="background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+			box-shadow: inset 0px 1px 0px 0px #54a3f7;"
+		>
+			Pagar
+		</button>
+	</div>
+
+	{showInstructions && (
+		<!-- Instrucciones de pago -->
+		<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+			<p class="text-blue-800 text-sm">
+				<strong>Importante:</strong> Toca el botón azul arriba para ir a pagar con cualquier tarjeta de crédito o débito en la plataforma segura de Mercadopago. Podrás elegir 1 pago o en cuotas sin interés. Luego de pagar recibirás un email desde Mercadopago confirmando tu pago.
+			</p>
+		</div>
+	)}
+</section>
+
+<!-- MercadoPago SDK -->
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const payButton = document.getElementById('payButton');
+		
+		// Inicializar MercadoPago
+		const mp = new MercadoPago('APP_USR-3dec33cf-193c-4dcc-a85c-d850bf083a09');
+
+		payButton.addEventListener('click', async function() {
+			try {
+				// Crear preferencia de pago
+				const response = await fetch('/create-preference', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({
+						amount: '9950', // Valor por defecto para 1 par
+						description: 'Compra Rosita Rococo - 1 par'
+					})
+				});
+
+				if (!response.ok) {
+					throw new Error('Error creating preference');
+				}
+
+				const preference = await response.json();
+				
+				// Abrir checkout de MercadoPago
+				mp.checkout({
+					preferenceId: preference.id,
+					// Opciones adicionales si son necesarias
+					autoOpen: true,
+					theme: {
+						elementsColor: '#007dc1',
+						headerColor: '#007dc1'
+					}
+				});
+
+				// Tracking Facebook Pixel para iniciar checkout
+				if (typeof fbq !== 'undefined') {
+					fbq('track', 'InitiateCheckout', {
+						value: '9950',
+						currency: 'ARS'
+					});
+				}
+
+				// Tracking Google Analytics si está disponible
+				if (typeof gtag !== 'undefined') {
+					gtag('event', 'begin_checkout', {
+						'value': '9950',
+						'currency': 'ARS'
+					});
+				}
+
+			} catch (error) {
+				console.error('Error al procesar el pago:', error);
+				alert('Error al iniciar el proceso de pago. Por favor, intenta nuevamente o contacta a soporte.');
+			}
+		});
+
+		// Efecto hover para el botón
+		payButton.addEventListener('mouseenter', function() {
+			this.style.background = 'linear-gradient(to bottom, #0061a7 5%, #007dc1 100%)';
+		});
+
+		payButton.addEventListener('mouseleave', function() {
+			this.style.background = 'linear-gradient(to bottom, #007dc1 5%, #0061a7 100%)';
+		});
+
+		payButton.addEventListener('mousedown', function() {
+			this.style.transform = 'scale(0.98)';
+		});
+
+		payButton.addEventListener('mouseup', function() {
+			this.style.transform = 'scale(1.05)';
+		});
+	});
+</script>

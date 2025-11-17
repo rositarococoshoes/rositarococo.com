@@ -1,0 +1,200 @@
+---
+// CounterPaymentForm.astro - Formulario para contrareembolso
+export interface Props {
+	amount: string;
+	description?: string;
+	showInstructions?: boolean;
+}
+
+const { amount, description = "Compra Rosita Rococo", showInstructions = true } = Astro.props;
+---
+
+<section class="mb-6">
+	<!-- Título del método de pago -->
+	<div class="mb-4">
+		<h5 class="font-bold text-gray-800 text-lg">
+			<u>Pago contraentrega:</u>
+		</h5>
+	</div>
+
+	{showInstructions && (
+		<!-- Instrucciones de contrareembolso -->
+		<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+			<h6 class="font-semibold text-yellow-800 mb-2">
+				📦 ¿Cómo funciona el pago contraentrega?
+			</h6>
+			<ol class="list-decimal list-inside text-sm text-gray-700 space-y-2">
+				<li>Confirmá tu pedido y tus datos de envío</li>
+				<li>Recibí tus zapatillas en la puerta de tu casa</li>
+				<li>Pagá en efectivo cuando las recibas</li>
+				<li>¡Listo! Disfrutá tus Rositas</li>
+			</ol>
+			
+			<div class="mt-3 p-3 bg-yellow-100 rounded border border-yellow-300">
+				<p class="text-sm font-medium text-yellow-800">
+					<strong>Costo de envío:</strong> Gratuito para pedidos de 1 y 2 pares.<br>
+					<strong>Costo de envío:</strong> $1.500 para pedidos de 3+ pares.
+				</p>
+			</div>
+		</div>
+	)}
+
+	<!-- Formulario de confirmación -->
+	<form 
+		action="/confirm-counter-order" 
+		method="post" 
+		id="counterPaymentForm"
+		class="space-y-4 bg-gray-50 p-4 rounded-lg"
+	>
+		<h6 class="font-semibold text-gray-800 mb-3">Confirmá tus datos</h6>
+		
+		<!-- Datos personales -->
+		<div class="space-y-3">
+			<div>
+				<label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">
+					Nombre completo
+				</label>
+				<input 
+					id="fullName" 
+					name="fullName" 
+					type="text" 
+					required
+					class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					placeholder="Ej: María González"
+				/>
+			</div>
+
+			<div>
+				<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">
+					Teléfono (con código de área)
+				</label>
+				<input 
+					id="phone" 
+					name="phone" 
+					type="tel" 
+					required
+					class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					placeholder="Ej: 11 1234-5678"
+				/>
+			</div>
+
+			<div>
+				<label for="email" class="block text-sm font-medium text-gray-700 mb-1">
+					Email
+				</label>
+				<input 
+					id="email" 
+					name="email" 
+					type="email" 
+					required
+					class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					placeholder="Ej: maria@email.com"
+				/>
+			</div>
+		</div>
+
+		<!-- Dirección de envío -->
+		<div class="space-y-3 border-t pt-4">
+			<h6 class="font-semibold text-gray-800 mb-2">Dirección de envío</h6>
+			
+			<div>
+				<label for="address" class="block text-sm font-medium text-gray-700 mb-1">
+					Calle y número
+				</label>
+				<input 
+					id="address" 
+					name="address" 
+					type="text" 
+					required
+					class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+					placeholder="Ej: Av. Corrientes 1234"
+				/>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+				<div>
+					<label for="floor" class="block text-sm font-medium text-gray-700 mb-1">
+						Piso/Depto
+					</label>
+					<input 
+						id="floor" 
+						name="floor" 
+						type="text" 
+						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+						placeholder="Piso"
+					/>
+				</div>
+
+				<div>
+					<label for="city" class="block text-sm font-medium text-gray-700 mb-1">
+						Ciudad
+					</label>
+					<input 
+						id="city" 
+						name="city" 
+						type="text" 
+						required
+						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+						placeholder="Ej: Buenos Aires"
+					/>
+				</div>
+
+				<div>
+					<label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">
+						Código Postal
+					</label>
+					<input 
+						id="postalCode" 
+						name="postalCode" 
+						type="text" 
+						required
+						class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+						placeholder="Ej: 1000"
+					/>
+				</div>
+			</div>
+		</div>
+
+		<!-- Campos ocultos -->
+		<input type="hidden" name="amount" value={amount} />
+		<input type="hidden" name="description" value={description} />
+		<input type="hidden" name="orderType" value="counter_payment" />
+
+		<!-- Botón de confirmación -->
+		<button 
+			type="submit"
+			class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+		>
+			Confirmar pedido para pago contraentrega
+		</button>
+	</form>
+
+	<!-- Información de contacto -->
+	<div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mt-4">
+		<p class="text-blue-800 text-sm">
+			<strong>Próximos pasos:</strong> Una vez que confirmes tu pedido, nos comunicaremos contigo para coordinar el envío. Te enviaremos un número de seguimiento para que puedas trackear tu paquete.
+		</p>
+	</div>
+</section>
+
+<script>
+	document.getElementById('counterPaymentForm')?.addEventListener('submit', function(e) {
+		// Tracking Facebook Pixel para contraentrega
+		if (typeof fbq !== 'undefined') {
+			fbq('track', 'Purchase', {
+				value: '{amount}',
+				currency: 'ARS',
+				payment_method: 'Counter Payment'
+			});
+		}
+
+		// Google Analytics event
+		if (typeof gtag !== 'undefined') {
+			gtag('event', 'purchase', {
+				'value': '{amount}',
+				'currency': 'ARS',
+				'payment_method': 'Counter Payment'
+			});
+		}
+	});
+</script>

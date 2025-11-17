@@ -1,0 +1,60 @@
+---
+// BankTransferInfo.astro - Componente para mostrar información de transferencia bancaria
+---
+
+<section class="mb-6">
+	<!-- Título de método de pago -->
+	<div class="mb-4">
+		<h5 class="font-bold text-gray-800 text-lg">
+			<u>Transferencia Bancaria:</u>
+		</h5>
+	</div>
+
+	<!-- Datos bancarios -->
+	<div class="bg-gray-50 border border-gray-300 rounded-lg p-4 mb-4 space-y-2">
+		<div class="flex justify-between">
+			<span class="font-semibold">Banco:</span>
+			<span>Banco Santander</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="font-semibold">Tipo y número de cuenta:</span>
+			<span>Cuentas en Pesos 570-353877/1</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="font-semibold">Número de CBU:</span>
+			<span class="font-mono text-sm">0720570588000035387718</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="font-semibold">Alias de CBU:</span>
+			<span class="font-mono">ESCUDO.HIJA.PESCA</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="font-semibold">Titular de la cuenta:</span>
+			<span>Baustian Roxana Ines</span>
+		</div>
+		<div class="flex justify-between">
+			<span class="font-semibold">Tipo y número de documento:</span>
+			<span>DNI - 29410535</span>
+		</div>
+	</div>
+
+	<!-- Instrucciones -->
+	<div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+		<p class="text-blue-800 font-semibold mb-2">
+			📋 Pasos para pagar por transferencia:
+		</p>
+		<ol class="list-decimal list-inside text-sm text-gray-700 space-y-1">
+			<li>Realiza la transferencia bancaria a los datos proporcionados</li>
+			<li>Toma una foto clara del comprobante de pago</li>
+			<li>Envíanos la foto del ticket por WhatsApp</li>
+			<li>Esperá la confirmación y el envío de tu pedido</li>
+		</ol>
+	</div>
+
+	<!-- Alerta importante -->
+	<div class="bg-red-50 border border-red-200 rounded-lg p-3 mt-4">
+		<p class="text-red-700 text-sm font-semibold">
+			⚠️ Importante: Sin la foto del ticket de pago tu pedido NO se procesa.
+		</p>
+	</div>
+</section>

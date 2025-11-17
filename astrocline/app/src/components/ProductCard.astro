@@ -1,0 +1,141 @@
+---
+import Card from './ui/Card.astro';
+import Badge from './ui/Badge.astro';
+import Button from './ui/Button.astro';
+import Carousel from './Carousel.astro';
+import Select from './ui/Select.astro';
+import { cn } from '../lib/utils';
+
+export interface Props {
+  title: string;
+  images: Array<{ src: string; alt: string }>;
+  productId: string;
+  description: string;
+  material: string;
+  suela: string;
+  price: number;
+  promoPrice: number;
+  talleOptions: Array<{ value: string; label: string; cm: string }>;
+  model: string;
+}
+
+const { 
+  title, 
+  images, 
+  productId, 
+  description, 
+  material, 
+  suela, 
+  price, 
+  promoPrice,
+  talleOptions,
+  model
+} = Astro.props;
+---
+
+<Card class="product-card hover:shadow-lg transition-all duration-300">
+  <div class="product-content">
+    <!-- Product Title -->
+    <h2 class="text-base md:text-lg font-bold text-gray-900 mb-2 text-center">{title}</h2>
+    
+    <!-- Carousel -->
+    <Carousel images={images} productId={productId} autoplay={true} showThumbnails={true} />
+    
+      <!-- Product Details -->
+      <div class="product-details mt-2 space-y-3 p-3">
+        <!-- Product Badges -->
+        <div class="flex flex-wrap gap-2 justify-center">
+          <Badge variant="default" class="bg-purple-100 text-purple-800 border-purple-200 text-xs">NUEVA TEMPORADA</Badge>
+          <Badge variant="destructive" class="bg-red-100 text-red-800 border-red-200 text-xs">STOCK LIMITADO</Badge>
+        </div>
+        
+        <!-- Product Description -->
+        <p class="text-gray-700 text-sm leading-relaxed text-center">{description}</p>
+        
+        <!-- Product Specifications -->
+        <div class="grid grid-cols-3 gap-2 text-xs text-center">
+          <div class="bg-gray-50 p-2 rounded border border-gray-200">
+            <p class="font-medium text-gray-600">Material</p>
+            <p class="text-gray-800">{material}</p>
+          </div>
+          <div class="bg-gray-50 p-2 rounded border border-gray-200">
+            <p class="font-medium text-gray-600">Suela</p>
+            <p class="text-gray-800">{suela}</p>
+          </div>
+          <div class="bg-green-50 p-2 rounded border border-green-200">
+            <p class="font-medium text-green-700">Envío</p>
+            <p class="text-green-800 font-bold">GRATIS 🚚</p>
+          </div>
+        </div>
+        
+        <!-- Pricing Section -->
+        <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-3 rounded-lg border border-pink-200 shadow-md">
+          <div class="text-center space-y-2">
+            <!-- OFERTA PRINCIPAL DESTACADA -->
+            <div class="bg-pink-600 text-white p-2 rounded-md shadow-sm transform hover:scale-105 transition-transform">
+              <p class="text-xs font-bold mb-1">🎉 PROMO ESPECIAL</p>
+              <p class="text-sm font-bold">2 PARES POR</p>
+              <p class="text-lg font-extrabold">${promoPrice.toLocaleString("es-AR")}</p>
+              <p class="text-xs mt-1 bg-white text-pink-600 inline-block px-2 py-1 rounded-full">
+                AHORRÁS ${(price * 2 - promoPrice).toLocaleString("es-AR")}
+              </p>
+            </div>
+            
+            <!-- Precio individual secundario -->
+            <div class="text-center">
+              <p class="text-xs text-gray-500">Precio individual</p>
+              <p class="text-sm font-medium text-gray-700">${price.toLocaleString("es-AR")}</p>
+            </div>
+            
+            <p class="text-xs text-gray-600 italic">* Podés combinar cualquier modelo y color</p>
+          </div>
+        </div>
+      
+      <!-- Size Selector -->
+      <div class="flex gap-3 mt-4">
+        <div class="flex-1">
+          <Select 
+            id={`talle-${model}`}
+            name={`talle-${model}`}
+            placeholder="-- Selecciona Talle --"
+            required={true}
+            options={talleOptions.map(option => {
+              return {
+                value: option.value,
+                label: `${option.label} (${option.cm})`,
+                title: `${option.label} - ${option.cm}`
+              };
+            })}
+            class="focus:ring-pink-500 text-sm"
+          />
+        </div>
+      </div>
+      
+      <!-- Add to Cart Button -->
+      <div class="mt-4">
+        <button 
+          class="add-to-cart-btn w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-semibold transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none"
+          type="button"
+          data-model={model}
+          onclick="handleAddToCart(this)"
+        >
+          <svg class="w-5 h-5 mr-2 inline" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"/>
+          </svg>
+          Agregar al Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</Card>
+
+<style>
+  .product-card {
+    transition: all 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import ThankYouLayout from '../layouts/ThankYouLayout.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+import PaymentForm from '../components/PaymentForm.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const tallesElegidos = searchParams.get('entry.1471599855') || 'Talles no especificados';
+
+---
+
+<ThankYouLayout title='Paga tu pedido - 2 pares de 1 par (Oferta Especial)'>
+	<OrderSummary 
+		tallesElegidos={tallesElegidos}
+		precio='$99.500'
+		parTitle='2 pares de 1 par seleccionados - Oferta Especial'
+	/>
+	
+	<PaymentForm 
+		amount='99500' 
+		description='Compra Rosita Rococo - 2 pares de 1 par (Oferta Especial)'
+	/>
+	
+	<WhatsAppContact 
+		customMessage='¡Consulta por promociones especiales:'
+	/>
+</ThankYouLayout>

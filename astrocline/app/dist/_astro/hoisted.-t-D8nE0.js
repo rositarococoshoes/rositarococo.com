@@ -1,0 +1,1 @@
+import"./hoisted.B2uaoqCp.js";document.getElementById("counterPaymentForm")?.addEventListener("submit",function(e){typeof fbq<"u"&&fbq("track","Purchase",{value:"{amount}",currency:"ARS",payment_method:"Counter Payment"}),typeof gtag<"u"&&gtag("event","purchase",{value:"{amount}",currency:"ARS",payment_method:"Counter Payment"})});

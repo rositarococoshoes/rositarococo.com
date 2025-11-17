@@ -1,0 +1,370 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+// Facebook Pixel Script
+const FB_PIXEL_SCRIPT = `
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1052677351596434');
+fbq('track', 'PageView');
+`;
+
+const METADATA = {
+	title: title,
+	description: "Descubre las nuevas Guillerminas para la temporada Primavera-Verano 2025. Comodidad y estilo con envío gratis a todo el país.",
+	keywords: "guillerminas, calzado, moda primavera verano 2025, rosita rococo, envío gratis, 3 cuotas sin interés",
+	ogTitle: title,
+	ogDescription: "Descubre las nuevas Guillerminas para la temporada Primavera-Verano 2025. Comodidad y estilo con envío gratis.",
+	ogImage: "/astrocline/rosita-form.webp",
+	ogUrl: "https://rositarococo.com",
+	ogType: "website",
+	twitterCard: "summary_large_image",
+	twitterTitle: title,
+	twitterDescription: "Descubre las nuevas Guillerminas para la temporada Primavera-Verano 2025.",
+	twitterImage: "/astrocline/rosita-form.webp",
+};
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="icon" type="image/svg+xml" href="/astrocline/favicon.svg" />
+	
+	<!-- Primary Meta Tags -->
+	<title>{METADATA.title}</title>
+	<meta name="description" content={METADATA.description} />
+	<meta name="keywords" content={METADATA.keywords} />
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content={METADATA.ogType} />
+	<meta property="og:url" content={METADATA.ogUrl} />
+	<meta property="og:title" content={METADATA.ogTitle} />
+	<meta property="og:description" content={METADATA.ogDescription} />
+	<meta property="og:image" content={METADATA.ogImage} />
+	
+	<!-- Twitter -->
+	<meta property="twitter:card" content={METADATA.twitterCard} />
+	<meta property="twitter:url" content={METADATA.ogUrl} />
+	<meta property="twitter:title" content={METADATA.twitterTitle} />
+	<meta property="twitter:description" content={METADATA.twitterDescription} />
+	<meta property="twitter:image" content={METADATA.twitterImage} />
+	
+	<!-- Preconnect for performance -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+	
+	<!-- Swiper CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+	
+	<!-- Custom Styles -->
+	<link rel="stylesheet" href="/astrocline/css/carousel.css" />
+</head>
+<body>
+	<script id="fb-pixel" dangerouslySetInnerHTML={{ __html: FB_PIXEL_SCRIPT }}></script>
+	<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1" /></noscript>
+	
+	<main>
+		<slot />
+	</main>
+	
+	<!-- Scripts -->
+	<!-- Using Embla Carousel instead of Swiper - carousel.js handles initialization -->
+	<script src="/astrocline/js/carousel.js" is:inline></script>
+</body>
+</html>
+
+<style is:global>
+	/* Custom animations and styles */
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(30px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	
+	@keyframes pulse {
+		0%, 100% { opacity: 1; }
+		50% { opacity: 0.7; }
+	}
+	
+	@keyframes slideInUp {
+		from { opacity: 0; transform: translateY(20px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+	
+	.animate-fade-in {
+		animation: fadeIn 0.6s ease-out forwards;
+	}
+	
+	.animate-pulse {
+		animation: pulse 2s infinite;
+	}
+	
+	/* Cart messages styles */
+	.cart-message {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		border-radius: 0.5rem;
+		padding: 0.75rem 1rem;
+		margin-bottom: 0.5rem;
+		position: relative;
+		border: 1px solid;
+		transition: all 0.3s ease;
+		animation: slideInUp 0.4s ease-out;
+	}
+	
+	.cart-message-success {
+		background: rgba(212, 237, 218, 0.95);
+		border-color: rgba(34, 197, 94, 0.5);
+		color: #155724;
+	}
+	
+	.cart-message-error {
+		background: rgba(248, 215, 218, 0.95);
+		border-color: rgba(220, 53, 69, 0.5);
+		color: #721c24;
+	}
+	
+	.cart-message-warning {
+		background: rgba(255, 243, 205, 0.95);
+		border-color: rgba(255, 193, 7, 0.5);
+		color: #856404;
+	}
+	
+	.cart-message-info {
+		background: rgba(209, 236, 241, 0.95);
+		border-color: rgba(23, 162, 184, 0.5);
+		color: #0c5460;
+	}
+	
+	.testimonial-item {
+		opacity: 0;
+		transform: translateY(30px);
+		animation: fadeIn 0.6s ease forwards;
+		break-inside: avoid;
+		margin-bottom: 1.25rem;
+		display: inline-block;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		border-radius: 0.75rem;
+		box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+		transition: all 0.3s ease;
+	}
+	
+	.testimonial-item:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+	}
+	
+	.testimonial-item img {
+		width: 100%;
+		height: auto;
+		display: block;
+		transition: transform 0.3s ease;
+		border-radius: 0.75rem;
+	}
+	
+	.testimonial-item:hover img {
+		transform: scale(1.02);
+	}
+	
+	.testimonials-grid {
+		columns: 3;
+		column-gap: 1.25rem;
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 1.25rem;
+	}
+	
+	@media (max-width: 768px) {
+		.testimonials-grid {
+			columns: 2;
+			column-gap: 0.9375rem;
+			padding: 0 0.625rem;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.testimonials-grid {
+			columns: 1;
+			column-gap: 0;
+			padding: 0 0.3125rem;
+		}
+	}
+	
+	/* Loading spinner */
+	.loading-spinner {
+		width: 40px;
+		height: 40px;
+		border: 3px solid #f3f3f3;
+		border-top: 3px solid #8b6f47;
+		border-radius: 50%;
+		animation: spin 1s linear infinite;
+		margin: 0 auto 0.9375rem;
+	}
+	
+	@keyframes spin {
+		0% { transform: rotate(0deg); }
+		100% { transform: rotate(360deg); }
+	}
+	
+	/* Cart messages area */
+	.cart-messages-area {
+		background: rgba(248, 249, 250, 0.95);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid rgba(222, 226, 230, 0.8);
+		padding: 1rem 1.25rem;
+		min-height: 1.5rem;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		color: #495057;
+		position: relative;
+		border-radius: 0 0 0.75rem 0.75rem;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	
+	.cart-messages-area:empty {
+		display: none;
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	
+	.cart-messages-area:not(:empty) {
+		display: block;
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+	/* Message close button */
+	.message-close {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.75rem;
+		background: transparent;
+		border: none;
+		font-size: 1.125rem;
+		color: rgba(0, 0, 0, 0.4);
+		cursor: pointer;
+		padding: 0.25rem;
+		border-radius: 50%;
+		transition: all 0.2s ease;
+		width: 1.5rem;
+		height: 1.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.message-close:hover {
+		background: rgba(0, 0, 0, 0.1);
+		color: rgba(0, 0, 0, 0.7);
+		transform: scale(1.1);
+	}
+	
+	/* Size guide styles */
+	.size-guide-container {
+		margin: 1.25rem 0;
+		border: 1px solid #e5e7eb;
+		border-radius: 0.5rem;
+		background-color: #f9fafb;
+		overflow: hidden;
+	}
+	
+	.size-guide-toggle {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0.9375rem;
+		cursor: pointer;
+		user-select: none;
+	}
+	
+	.size-guide-container.open .size-guide-content {
+		display: block;
+	}
+	
+	.size-guide-container.open .toggle-icon {
+		transform: rotate(45deg);
+	}
+	
+	.size-guide-content {
+		display: none;
+		padding: 0 0.9375rem 0.9375rem;
+		border-top: 1px solid #e5e7eb;
+	}
+	
+	.toggle-icon {
+		font-size: 1.5rem;
+		font-weight: bold;
+		transition: transform 0.3s ease;
+	}
+	
+	/* Hidden class */
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+	
+	/* Button disabled state */
+	.btn-disabled {
+		background-color: #9ca3af;
+		color: #6b7280;
+		cursor: not-allowed;
+	}
+	
+	.btn-disabled:hover {
+		background-color: #9ca3af;
+	}
+	
+	/* Loading overlay */
+	.loading-overlay {
+		position: fixed;
+		inset: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(3px);
+		z-index: 9999;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.loading-overlay .text-center {
+		text-align: center;
+		color: white;
+	}
+	
+	.loading-overlay .text-lg {
+		font-size: 1.125rem;
+		line-height: 1.75rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.loading-overlay .loading-spinner {
+		border-color: #ffffff;
+		border-top-color: #ef4444;
+	}
+</style>

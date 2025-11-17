@@ -1,0 +1,27 @@
+---
+import ThankYouLayout from '../layouts/ThankYouLayout.astro';
+import OrderSummary from '../components/OrderSummary.astro';
+import SimplePaymentButton from '../components/SimplePaymentButton.astro';
+import BankTransferInfo from '../components/BankTransferInfo.astro';
+import WhatsAppContact from '../components/WhatsAppContact.astro';
+import { Astro } from 'astro';
+
+// Obtener parámetros URL
+const { url } = Astro.request;
+const searchParams = new URL(url).searchParams;
+const tallesElegidos = searchParams.get('entry.1471599855') || 'Talles no especificados';
+---
+
+<ThankYouLayout title="Paga tu pedido - 1 par">
+	<OrderSummary 
+		tallesElegidos={tallesElegidos}
+		precio="$9.950"
+		parTitle="1 par seleccionado"
+	/>
+	
+	<SimplePaymentButton />
+	
+	<BankTransferInfo />
+	
+	<WhatsAppContact />
+</ThankYouLayout>
