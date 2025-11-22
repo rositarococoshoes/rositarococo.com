@@ -26,8 +26,6 @@ const products = {
         name: 'Guillerminas Blancas',
         price: 60000,
         image: '/guillerminafotos/guillerminasblancas/1.webp'
-<<<<<<< Updated upstream
-=======
     },
     'birk-negras': {
         name: 'Birk Negras',
@@ -48,7 +46,6 @@ const products = {
         name: 'Argos',
         price: 60000,
         image: '/astrocline/argos/1.webp'
->>>>>>> Stashed changes
     }
 };
 
