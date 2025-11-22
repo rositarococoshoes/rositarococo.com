@@ -26,6 +26,29 @@ const products = {
         name: 'Guillerminas Blancas',
         price: 60000,
         image: '/guillerminafotos/guillerminasblancas/1.webp'
+<<<<<<< Updated upstream
+=======
+    },
+    'birk-negras': {
+        name: 'Birk Negras',
+        price: 60000,
+        image: '/astrocline/birknegras/1.webp'
+    },
+    'birk-camel': {
+        name: 'Birk Camel',
+        price: 60000,
+        image: '/astrocline/birkcamel/1.webp'
+    },
+    'birk-blancas': {
+        name: 'Birk Blancas',
+        price: 60000,
+        image: '/astrocline/birkblancas/1.webp'
+    },
+    'argos': {
+        name: 'Argos',
+        price: 60000,
+        image: '/astrocline/argos/1.webp'
+>>>>>>> Stashed changes
     }
 };
 
