@@ -1,0 +1,227 @@
+uid=2_0 RootWebArea "Transferencia Bancaria - 1 Par - Rosita Rococo" url="https://rositarococo.com/astrocline/transferenciacbu-1par/"
+  uid=2_1 ignored
+    uid=2_2 ignored
+      uid=2_3 main
+        uid=2_4 sectionheader
+          uid=2_5 ignored
+            uid=2_6 generic
+              uid=2_7 image "Rosita Rococó Logo" url="https://rositarococo.com/rosita-form.webp"
+        uid=2_8 main
+          uid=2_9 ignored
+            uid=2_10 heading "📋 Transferencia Bancaria - 1 Par" level="1"
+              uid=2_11 StaticText "📋 Transferencia Bancaria - 1 Par"
+                uid=2_12 InlineTextBox "📋 Transferencia Bancaria - 1 Par"
+            uid=2_13 paragraph
+              uid=2_14 StaticText "Realiza la transferencia por "
+                uid=2_15 InlineTextBox "Realiza la transferencia por "
+              uid=2_16 strong
+                uid=2_17 StaticText "$54.000"
+                  uid=2_18 InlineTextBox "$54.000"
+              uid=2_19 StaticText " y envíanos el comprobante"
+                uid=2_20 InlineTextBox " y envíanos el comprobante"
+            uid=2_21 generic
+              uid=2_22 StaticText "💰 ¡Ahorras $6.000 con 10% OFF adicional!"
+                uid=2_23 InlineTextBox "💰 ¡Ahorras $6.000 con 10% OFF adicional!"
+          uid=2_24 ignored
+            uid=2_25 heading "📦 Tu Pedido" level="2"
+              uid=2_26 StaticText "📦 Tu Pedido"
+                uid=2_27 InlineTextBox "📦 Tu Pedido"
+            uid=2_28 ignored
+              uid=2_29 generic
+                uid=2_30 StaticText "Productos seleccionados:"
+                  uid=2_31 InlineTextBox "Productos seleccionados:"
+                uid=2_32 StaticText " "
+                  uid=2_33 InlineTextBox " "
+                uid=2_34 generic
+                  uid=2_35 StaticText "Talles no especificados"
+                    uid=2_36 InlineTextBox "Talles no especificados"
+              uid=2_37 generic
+                uid=2_38 StaticText "Cantidad:"
+                  uid=2_39 InlineTextBox "Cantidad:"
+                uid=2_40 StaticText " "
+                  uid=2_41 InlineTextBox " "
+                uid=2_42 StaticText "1 par"
+                  uid=2_43 InlineTextBox "1 par"
+              uid=2_44 generic
+                uid=2_45 StaticText "Total a transferir:"
+                  uid=2_46 InlineTextBox "Total a transferir:"
+                uid=2_47 StaticText " "
+                  uid=2_48 InlineTextBox " "
+                uid=2_49 StaticText "$54.000"
+                  uid=2_50 InlineTextBox "$54.000"
+          uid=2_51 generic
+            uid=2_52 ignored
+              uid=2_53 heading "Transferencia Bancaria:" level="5"
+                uid=2_54 StaticText "Transferencia Bancaria:"
+                  uid=2_55 InlineTextBox "Transferencia Bancaria:"
+            uid=2_56 ignored
+              uid=2_57 generic
+                uid=2_58 StaticText "Banco:"
+                  uid=2_59 InlineTextBox "Banco:"
+                uid=2_60 StaticText " "
+                  uid=2_61 InlineTextBox " "
+                uid=2_62 StaticText "Banco Santander"
+                  uid=2_63 InlineTextBox "Banco Santander"
+              uid=2_64 generic
+                uid=2_65 StaticText "Tipo y número de cuenta:"
+                  uid=2_66 InlineTextBox "Tipo y número de cuenta:"
+                uid=2_67 StaticText " "
+                  uid=2_68 InlineTextBox " "
+                uid=2_69 StaticText "Cuentas en Pesos 570-353877/1"
+                  uid=2_70 InlineTextBox "Cuentas en Pesos 570-353877/1"
+              uid=2_71 generic
+                uid=2_72 StaticText "Número de CBU:"
+                  uid=2_73 InlineTextBox "Número de CBU:"
+                uid=2_74 StaticText " "
+                  uid=2_75 InlineTextBox " "
+                uid=2_76 StaticText "0720570588000035387718"
+                  uid=2_77 InlineTextBox "0720570588000035387718"
+              uid=2_78 generic
+                uid=2_79 StaticText "Alias de CBU:"
+                  uid=2_80 InlineTextBox "Alias de CBU:"
+                uid=2_81 StaticText " "
+                  uid=2_82 InlineTextBox " "
+                uid=2_83 StaticText "ESCUDO.HIJA.PESCA"
+                  uid=2_84 InlineTextBox "ESCUDO.HIJA.PESCA"
+              uid=2_85 generic
+                uid=2_86 StaticText "Titular de la cuenta:"
+                  uid=2_87 InlineTextBox "Titular de la cuenta:"
+                uid=2_88 StaticText " "
+                  uid=2_89 InlineTextBox " "
+                uid=2_90 StaticText "Baustian Roxana Ines"
+                  uid=2_91 InlineTextBox "Baustian Roxana Ines"
+              uid=2_92 generic
+                uid=2_93 StaticText "Tipo y número de documento:"
+                  uid=2_94 InlineTextBox "Tipo y número de documento:"
+                uid=2_95 StaticText " "
+                  uid=2_96 InlineTextBox " "
+                uid=2_97 StaticText "DNI - 29410535"
+                  uid=2_98 InlineTextBox "DNI - 29410535"
+            uid=2_99 ignored
+              uid=2_100 paragraph
+                uid=2_101 StaticText "📋 Pasos para pagar por transferencia:"
+                  uid=2_102 InlineTextBox "📋 Pasos para pagar por transferencia:"
+              uid=2_103 list
+                uid=2_104 listitem level="1"
+                  uid=2_105 ListMarker "1. "
+                    uid=2_106 ignored
+                  uid=2_107 StaticText "Realiza la transferencia bancaria a los datos proporcionados"
+                    uid=2_108 InlineTextBox "Realiza la transferencia bancaria a los datos proporcionados"
+                uid=2_109 listitem level="1"
+                  uid=2_110 ListMarker "2. "
+                    uid=2_111 ignored
+                  uid=2_112 StaticText "Toma una foto clara del comprobante de pago"
+                    uid=2_113 InlineTextBox "Toma una foto clara del comprobante de pago"
+                uid=2_114 listitem level="1"
+                  uid=2_115 ListMarker "3. "
+                    uid=2_116 ignored
+                  uid=2_117 StaticText "Envíanos la foto del ticket por WhatsApp"
+                    uid=2_118 InlineTextBox "Envíanos la foto del ticket por WhatsApp"
+                uid=2_119 listitem level="1"
+                  uid=2_120 ListMarker "4. "
+                    uid=2_121 ignored
+                  uid=2_122 StaticText "Esperá la confirmación y el envío de tu pedido"
+                    uid=2_123 InlineTextBox "Esperá la confirmación y el envío de tu pedido"
+            uid=2_124 ignored
+              uid=2_125 paragraph
+                uid=2_126 StaticText "⚠️ Importante: Sin la foto del ticket de pago tu pedido NO se procesa."
+                  uid=2_127 InlineTextBox "⚠️ Importante: Sin la foto del ticket de pago tu pedido NO se procesa."
+          uid=2_128 ignored
+            uid=2_129 heading "📋 Pasos a seguir" level="2"
+              uid=2_130 StaticText "📋 Pasos a seguir"
+                uid=2_131 InlineTextBox "📋 Pasos a seguir"
+            uid=2_132 list
+              uid=2_133 listitem level="1"
+                uid=2_134 ListMarker "1. "
+                  uid=2_135 ignored
+                uid=2_136 strong
+                  uid=2_137 StaticText "Realiza la transferencia"
+                    uid=2_138 InlineTextBox "Realiza la transferencia"
+                uid=2_139 StaticText " por "
+                  uid=2_140 InlineTextBox " por "
+                uid=2_141 strong
+                  uid=2_142 StaticText "$54.000"
+                    uid=2_143 InlineTextBox "$54.000"
+                uid=2_144 StaticText " a los datos bancarios"
+                  uid=2_145 InlineTextBox " a los datos bancarios"
+              uid=2_146 listitem level="1"
+                uid=2_147 ListMarker "2. "
+                  uid=2_148 ignored
+                uid=2_149 strong
+                  uid=2_150 StaticText "Guarda el comprobante"
+                    uid=2_151 InlineTextBox "Guarda el comprobante"
+                uid=2_152 StaticText " (captura de pantalla o foto del movimiento)"
+                  uid=2_153 InlineTextBox " (captura de pantalla o foto del movimiento)"
+              uid=2_154 listitem level="1"
+                uid=2_155 ListMarker "3. "
+                  uid=2_156 ignored
+                uid=2_157 strong
+                  uid=2_158 StaticText "Envíanos el comprobante"
+                    uid=2_159 InlineTextBox "Envíanos el comprobante"
+                uid=2_160 StaticText " por WhatsApp con tus datos"
+                  uid=2_161 InlineTextBox " por WhatsApp con tus datos"
+              uid=2_162 listitem level="1"
+                uid=2_163 ListMarker "4. "
+                  uid=2_164 ignored
+                uid=2_165 strong
+                  uid=2_166 StaticText "Espera la confirmación"
+                    uid=2_167 InlineTextBox "Espera la confirmación"
+                uid=2_168 StaticText " y el seguimiento de tu envío"
+                  uid=2_169 InlineTextBox " y el seguimiento de tu envío"
+          uid=2_170 ignored
+            uid=2_171 heading "📱 Enviar Comprobante" level="2"
+              uid=2_172 StaticText "📱 Enviar Comprobante"
+                uid=2_173 InlineTextBox "📱 Enviar Comprobante"
+            uid=2_174 paragraph
+              uid=2_175 StaticText "Haz clic para abrir WhatsApp con tu información pre-cargada:"
+                uid=2_176 InlineTextBox "Haz clic para abrir WhatsApp con tu información pre-cargada:"
+            uid=2_177 link "📱 Enviar Comprobante por WhatsApp" url="https://wa.me/5491138165213?text=%C2%A1Hola!%20Realic%C3%A9%20una%20transferencia%20por%201%20par.%0A%0A%F0%9F%93%8B%20Datos%20del%20pedido%3A%0A%E2%80%A2%20Productos%3A%20Talles%20no%20especificados%0A%E2%80%A2%20Total%3A%20%2454.000%0A%E2%80%A2%20Nombre%3A%20%0A%E2%80%A2%20WhatsApp%3A%20%0A%E2%80%A2%20Email%3A%20%0A%0AAdjunto%20el%20comprobante%20de%20la%20transferencia.%20%C2%A1Gracias!"
+              uid=2_178 StaticText "📱 Enviar Comprobante por WhatsApp"
+                uid=2_179 InlineTextBox "📱 Enviar Comprobante por WhatsApp"
+            uid=2_180 paragraph
+              uid=2_181 StaticText "Se abrirá WhatsApp con tu información pre-cargada para que solo agregues la foto del comprobante"
+                uid=2_182 InlineTextBox "Se abrirá WhatsApp con tu información pre-cargada para que solo agregues la foto del comprobante"
+          uid=2_183 ignored
+            uid=2_184 heading "⚠️ Recordatorio Importante" level="2"
+              uid=2_185 StaticText "⚠️ Recordatorio Importante"
+                uid=2_186 InlineTextBox "⚠️ Recordatorio Importante"
+            uid=2_187 list
+              uid=2_188 listitem level="1"
+                uid=2_189 ListMarker "• "
+                  uid=2_190 ignored
+                uid=2_191 StaticText "✅ El envío es GRATIS a todo el país"
+                  uid=2_192 InlineTextBox "✅ El envío es GRATIS a todo el país"
+              uid=2_193 listitem level="1"
+                uid=2_194 ListMarker "• "
+                  uid=2_195 ignored
+                uid=2_196 StaticText "⏰ Una vez confirmado el pago, despachamos dentro de 24/48 hs"
+                  uid=2_197 InlineTextBox "⏰ Una vez confirmado el pago, despachamos dentro de 24/48 hs"
+              uid=2_198 listitem level="1"
+                uid=2_199 ListMarker "• "
+                  uid=2_200 ignored
+                uid=2_201 StaticText "📸 Sin la foto del comprobante tu pedido NO se procesa"
+                  uid=2_202 InlineTextBox "📸 Sin la foto del comprobante tu pedido NO se procesa"
+              uid=2_203 listitem level="1"
+                uid=2_204 ListMarker "• "
+                  uid=2_205 ignored
+                uid=2_206 StaticText "📱 Te contactaremos por WhatsApp con el seguimiento"
+                  uid=2_207 InlineTextBox "📱 Te contactaremos por WhatsApp con el seguimiento"
+              uid=2_208 listitem level="1"
+                uid=2_209 ListMarker "• "
+                  uid=2_210 ignored
+                uid=2_211 StaticText "💰 Ahorrás $6.000 con 10% OFF adicional"
+                  uid=2_212 InlineTextBox "💰 Ahorrás $6.000 con 10% OFF adicional"
+          uid=2_213 ignored
+            uid=2_214 heading "🤝 ¿Necesitas Ayuda?" level="2"
+              uid=2_215 StaticText "🤝 ¿Necesitas Ayuda?"
+                uid=2_216 InlineTextBox "🤝 ¿Necesitas Ayuda?"
+            uid=2_217 paragraph
+              uid=2_218 StaticText "Si tienes dudas sobre la transferencia o tu pedido, estamos para ayudarte."
+                uid=2_219 InlineTextBox "Si tienes dudas sobre la transferencia o tu pedido, estamos para ayudarte."
+            uid=2_220 generic
+              uid=2_221 link "📱 WhatsApp " url="http://bit.ly/wspb-rosita"
+                uid=2_222 StaticText "📱 WhatsApp "
+                  uid=2_223 InlineTextBox "📱 WhatsApp "
+              uid=2_224 link "🏠 Volver a la Tienda" url="https://rositarococo.com/"
+                uid=2_225 StaticText "🏠 Volver a la Tienda"
+                  uid=2_226 InlineTextBox "🏠 Volver a la Tienda"
