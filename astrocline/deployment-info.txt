@@ -1,0 +1,8 @@
+Latest deployment timestamp: 2025-11-22 19:25:00 -0300
+Commit: 842fbd7 - Fix merge conflict markers in carousel.js
+Previous commits:
+- 7247dad - Trigger GitHub Pages rebuild - checkout form margin fix deployment
+- e9d32a6 - Update astrocline with latest fixes and checkout form margin improvements
+- 9c01b5a - Fix checkout form margins to match site layout
+
+This file can be used to verify that the latest deployment includes all fixes.
