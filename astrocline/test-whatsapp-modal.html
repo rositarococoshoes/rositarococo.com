@@ -59,8 +59,7 @@ localStorage.removeItem('whatsappModalShown')</pre>
             const timestamp = new Date().toLocaleTimeString();
             const color = type === 'error' ? 'text-red-600' : type === 'success' ? 'text-green-600' : 'text-blue-600';
             resultsContent.innerHTML += `<div class="${color}">[${timestamp}] ${message}</div>`;
-            console.log(`[TEST] ${message}`);
-        }
+          }
 
         function testWhatsAppModal() {
             log('Testing WhatsApp modal...');
