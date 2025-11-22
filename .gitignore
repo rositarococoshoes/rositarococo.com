@@ -148,3 +148,6 @@ build/
 
 # Node modules
 node_modules/
+claude-code/
+rositaastro/
+rositaastro2/
