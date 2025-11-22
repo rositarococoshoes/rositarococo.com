@@ -251,85 +251,52 @@
     transform: scale(1.1);
 }
 
-/* Responsive Design - Mobile First */
-@media (max-width: 1024px) {
-    .main-carousel {
-        height: 350px;
-    }
-
-    .product-main-image-container {
-        height: 350px;
-    }
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
     .main-carousel {
         height: 300px;
     }
-
+  
     .carousel-content {
         padding: 2rem 1.5rem 1.5rem;
     }
-
+  
     .carousel-content h2 {
         font-size: 1.8rem;
     }
-
+  
     .carousel-content p {
         font-size: 1rem;
     }
-
+  
     .carousel-prev,
     .carousel-next {
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
         font-size: 1.2rem;
-        min-width: 44px;
-        min-height: 44px;
     }
-
+  
     .carousel-prev {
         left: 10px;
     }
-
+  
     .carousel-next {
         right: 10px;
     }
-
+  
     .product-main-image-container {
         height: 300px;
     }
-
+  
     .product-thumbnail {
         flex: 0 0 60px;
         width: 60px;
         height: 60px;
-        min-width: 60px;
-        min-height: 60px;
     }
-
+  
     .product-thumbnails {
         gap: 6px;
         padding: 8px;
-    }
-
-    /* Swiper mobile fixes */
-    .swiper {
-        height: 300px !important;
-    }
-
-    .swiper-button-prev,
-    .swiper-button-next {
-        width: 44px !important;
-        height: 44px !important;
-        min-width: 44px !important;
-        min-height: 44px !important;
-    }
-
-    .swiper-thumbnails-guillermina-negras,
-    .swiper-thumbnails-guillermina-camel,
-    .swiper-thumbnails-guillermina-blancas {
-        height: 50px !important;
     }
 }
 

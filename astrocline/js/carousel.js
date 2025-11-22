@@ -7,37 +7,8 @@ if (typeof window.cart === 'undefined') {
 
 // Usar referencias a las variables globales en lugar de redeclarar
 // const cart = window.cart;  // REMOVED - This causes redeclaration
-// const cartCount = window.cartCount;  // REMOVED - This causes redeclaration
+// const cartCount = window.cartCount;  // REMOVED - This causes redeclaration  
 // const isCartOpen = window.isCartOpen;  // REMOVED - This causes redeclaration
-
-// --- Smooth Scroll Functions ---
-function smoothScrollToPosition(targetPosition, duration = 1000) {
-    const startPosition = window.pageYOffset;
-    const distance = targetPosition - startPosition;
-    let startTime = null;
-
-    function animation(currentTime) {
-        if (startTime === null) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
-    }
-
-    function ease(t, b, c, d) {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-    }
-
-    requestAnimationFrame(animation);
-}
-
-function smoothScrollToElement(element, duration = 1000) {
-    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 20;
-    smoothScrollToPosition(targetPosition, duration);
-}
 
 // Productos disponibles
 const products = {
@@ -47,7 +18,7 @@ const products = {
         image: '/guillerminafotos/1.webp'
     },
     'camel': {
-        name: 'Guillerminas Camel',
+        name: 'Guillerminas Camel', 
         price: 60000,
         image: '/guillerminafotos/guillerminascamel/1.webp'
     },
@@ -55,26 +26,6 @@ const products = {
         name: 'Guillerminas Blancas',
         price: 60000,
         image: '/guillerminafotos/guillerminasblancas/1.webp'
-    },
-    'birk-negras': {
-        name: 'Birk Negras',
-        price: 60000,
-        image: '/astrocline/birknegras/1.webp'
-    },
-    'birk-camel': {
-        name: 'Birk Camel',
-        price: 60000,
-        image: '/astrocline/birkcamel/1.webp'
-    },
-    'birk-blancas': {
-        name: 'Birk Blancas',
-        price: 60000,
-        image: '/astrocline/birkblancas/1.webp'
-    },
-    'argos': {
-        name: 'Argos',
-        price: 60000,
-        image: '/astrocline/argos/1.webp'
     }
 };
 
@@ -116,16 +67,7 @@ function addToCart(model, size) {
     
     // Mostrar mensaje contextual según cantidad
     if (window.cartCount === 1) {
-        showCartMessage('¡Producto agregado! Agregá un segundo par y ahorrá $25.000', 'success');
-
-        // Mostrar modal de WhatsApp después de agregar el primer par
-        // Verificar si el modal ya fue mostrado en esta sesión
-        const whatsappModalShown = localStorage.getItem('whatsappModalShown');
-        if (!whatsappModalShown) {
-            setTimeout(() => {
-                showWhatsAppModal();
-            }, 2000); // Mostrar después de 2 segundos
-        }
+        showCartMessage('✅ ¡Producto agregado! Agregá un segundo par y ahorrá $25.000', 'success');
     } else if (window.cartCount === 2) {
         showCartMessage('🎉 ¡Promoción activada! 2 pares por $95.000 (ahorraste $25.000)', 'success');
     }
@@ -158,8 +100,7 @@ function removeFromCart(itemId) {
 function calculateCartTotal() {
     if (window.cartCount === 0) return 0;
     if (window.cartCount === 1) return 60000;
-    if (window.cartCount === 2) return 95000; // Promoción 2x $95.000
-    return window.cartCount * 47500; // Para más de 2 pares, mantener precio por par
+    return window.cartCount * 47500; // Promoción 2x $95.000
 }
 
 // Función para calcular el total con descuento de transferencia
@@ -183,15 +124,6 @@ function updateCartUI() {
     cartCountElements.forEach(element => {
         element.textContent = window.cartCount;
     });
-
-    // Actualizar visibilidad de los botones de checkout
-    updateButtonVisibility();
-
-    // Forzar actualización explícita de botones con un pequeño delay
-    setTimeout(() => {
-        updateButtonVisibility();
-        console.log('🔄 Button visibility forced update - Cart count:', window.cartCount);
-    }, 100);
 
     // Actualizar items del carrito
     const cartItemsContainer = document.querySelector('.cart-items');
@@ -233,47 +165,12 @@ function updateCartUI() {
     // Actualizar estado del botón de checkout
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
-        if (window.cartCount === 0) {
-            // Sin productos: deshabilitado con texto "Continuar"
+        if (window.cartCount > 0) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
+        } else {
             checkoutBtn.disabled = true;
             checkoutBtn.className = 'bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed';
-            checkoutBtn.textContent = 'Continuar';
-        } else if (window.cartCount === 1) {
-            // 1 par: habilitado con texto "Continuar"
-            checkoutBtn.disabled = false;
-            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
-            checkoutBtn.textContent = 'Continuar';
-        } else {
-            // 2+ pares: habilitado con texto "Continuar al Envío →"
-            checkoutBtn.disabled = false;
-            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
-            checkoutBtn.textContent = 'Continuar al Envío →';
-        }
-    }
-
-    // Actualizar mensaje contextual de oferta
-    const offerMessage = document.getElementById('cart-offer-message');
-    const offerText = document.getElementById('offer-text');
-
-    if (offerMessage && offerText) {
-        if (window.cartCount === 0) {
-            offerMessage.classList.add('hidden');
-        } else if (window.cartCount === 1) {
-            offerMessage.classList.remove('hidden');
-            offerText.textContent = '¡Agrega un segundo par y ahorra $25.000!';
-            // Actualizar estilo para mensaje de oferta
-            offerMessage.className = offerMessage.className.replace(/bg-green-\d+|border-green-\d+/g, 'bg-pink-50 border-pink-200');
-            offerMessage.querySelector('p').className = 'text-sm text-pink-800 font-medium';
-            offerMessage.querySelector('p:last-child').className = 'text-xs text-pink-700 mt-1';
-        } else if (window.cartCount === 2) {
-            offerMessage.classList.remove('hidden');
-            offerText.textContent = '¡Promoción activada! Ahorraste $25.000';
-            // Cambiar a estilo de éxito
-            offerMessage.className = offerMessage.className.replace(/bg-pink-\d+|border-pink-\d+/g, 'bg-green-50 border-green-200');
-            offerMessage.querySelector('p').className = 'text-sm text-green-800 font-medium';
-            offerMessage.querySelector('p:last-child').className = 'text-xs text-green-700 mt-1';
-        } else {
-            offerMessage.classList.add('hidden');
         }
     }
 
@@ -282,142 +179,37 @@ function updateCartUI() {
     if (checkoutSection) {
         if (window.cartCount > 0) {
             checkoutSection.classList.remove('hidden');
-            checkoutSection.classList.add('has-items');
-
-            // Explicitly ensure buttons are visible with !important
-            const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
-            if (checkoutNav) {
-                checkoutNav.style.setProperty('display', 'flex', 'important');
-                checkoutNav.style.setProperty('visibility', 'visible', 'important');
-                checkoutNav.style.setProperty('opacity', '1', 'important');
-                checkoutNav.style.setProperty('height', 'auto', 'important');
-                checkoutNav.style.setProperty('overflow', 'visible', 'important');
-
-                // Also ensure individual buttons are visible with !important
-                const botonComprar = checkoutNav.querySelector('#botoncomprar');
-                const backToProducts = checkoutNav.querySelector('#back-to-products');
-
-                if (botonComprar) {
-                    botonComprar.style.setProperty('display', 'block', 'important');
-                    botonComprar.style.setProperty('visibility', 'visible', 'important');
-                    botonComprar.style.setProperty('opacity', '1', 'important');
-                }
-
-                if (backToProducts) {
-                    backToProducts.style.setProperty('display', 'block', 'important');
-                    backToProducts.style.setProperty('visibility', 'visible', 'important');
-                    backToProducts.style.setProperty('opacity', '1', 'important');
-                }
-            }
-
             // Actualizar progreso del checkout
             updateCheckoutProgress(2);
+            
+            // Mostrar notificación suave
+            showCartMessage('🛒 ¡Carrito listo! Puedes continuar con tu compra.', 'info', 3000);
         } else {
             checkoutSection.classList.add('hidden');
-            checkoutSection.classList.remove('has-items');
-
-            // Explicitly ensure buttons are hidden when cart is empty
-            const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
-            if (checkoutNav) {
-                checkoutNav.style.display = 'none';
-                checkoutNav.style.visibility = 'hidden';
-                checkoutNav.style.opacity = '0';
-                checkoutNav.style.height = '0';
-                checkoutNav.style.overflow = 'hidden';
-            }
         }
     }
 
     // Actualizar formulario de pedido
     updateOrderSummary();
-
-    // Debug: Log current state for troubleshooting
-    console.log('🔍 updateCartUI debug:', {
-        cartCount: window.cartCount,
-        checkoutSection: !!document.getElementById('restodelform'),
-        hasHiddenClass: document.getElementById('restodelform')?.classList.contains('hidden'),
-        hasItemsClass: document.getElementById('restodelform')?.classList.contains('has-items'),
-        buttonsVisible: document.querySelector('.checkout-navigation')?.style.display !== 'none'
-    });
-
-    // Force button visibility update for reliability
-    updateButtonVisibility();
-}
-
-// Helper function to explicitly manage button visibility - Simplified logic
-function updateButtonVisibility() {
-    const checkoutSection = document.getElementById('restodelform');
-    if (!checkoutSection) return;
-
-    // Única fuente de verdad: ¿Hay items en el carrito?
-    // Eliminamos la dependencia de si el formulario está hidden o no
-    const hasItems = window.cartCount > 0;
-
-    if (hasItems) {
-        // 1. Asegurar que el formulario sea visible
-        checkoutSection.classList.remove('hidden');
-
-        // 2. Activar la clase que muestra los botones (según el CSS nuevo)
-        checkoutSection.classList.add('has-items');
-
-        console.log('✅ Checkout activado: Clase has-items añadida');
-    } else {
-        // Carrito vacío
-        checkoutSection.classList.remove('has-items');
-        // Opcional: Ocultar todo el formulario si lo deseas
-        // checkoutSection.classList.add('hidden');
-
-        console.log('⛔ Checkout desactivado: Carrito vacío');
-    }
-
-    // Limpiamos estilos inline basura que puedan haber quedado de versiones anteriores
-    const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
-    if(checkoutNav) checkoutNav.removeAttribute('style');
-}
-
-// Función para formatear datos del carrito para el funnel
-function formatCartDataForFunnel() {
-    if (window.cartCount === 0) return '';
-    const formattedItems = window.cart.map(item => {
-        const modelMap = {
-            'negras': 'guillermina-negras',
-            'camel': 'guillermina-camel',
-            'blancas': 'guillermina-blancas'
-        };
-        const modelKey = modelMap[item.model] || item.model;
-        return `${item.size}-${modelKey}`;
-    });
-    return formattedItems.join(', ');
 }
 
 // Función para actualizar el resumen del pedido
 function updateOrderSummary() {
     const summaryElement = document.getElementById('286442883');
     const reviewElement = document.getElementById('review-modelostallesseleccionados');
-
+    
     if (window.cartCount > 0 && summaryElement) {
-        // Usar el formato del funnel para el campo principal también
-        const funnelData = formatCartDataForFunnel();
-        summaryElement.value = funnelData;
-
+        const summaryText = window.cart.map(item => `${item.name} - Talle ${item.size}`).join(', ');
+        summaryElement.value = summaryText;
+        
         if (reviewElement) {
-            // Mostrar formato legible para el usuario pero con datos del funnel
-            const readableText = window.cart.map(item => `${item.name} - Talle ${item.size}`).join(', ');
-            reviewElement.textContent = readableText;
+            reviewElement.textContent = summaryText;
         }
-
-        // Actualizar campos ocultos con formato para funnel
-        const hiddenFields = document.querySelectorAll('input[type="hidden"][name*="entry."]');
-        hiddenFields.forEach(field => {
-            if (field.value && field.id !== 'link-mercadopago' && field.id !== 'link-transferencia') {
-                field.value = funnelData;
-            }
-        });
     } else {
         if (summaryElement) summaryElement.value = '';
         if (reviewElement) reviewElement.textContent = '-';
     }
-
+    
     // Actualizar precio total en el resumen con descuento si corresponde
     const totalElement = document.getElementById('preciototal');
     if (totalElement) {
@@ -425,7 +217,7 @@ function updateOrderSummary() {
         if (window.cartCount > 0) {
             const paymentMethod = document.getElementById('comoabona');
             const isTransfer = paymentMethod && paymentMethod.value === 'cbu';
-
+            
             if (isTransfer) {
                 totalElement.innerHTML = `<strong>Total: $${total.toLocaleString('es-AR')} <span class="text-green-600 text-sm">(10% OFF por transferencia)</span></strong>`;
             } else {
@@ -552,46 +344,23 @@ function goToCheckoutForm() {
         showCartMessage('Debes agregar productos antes de continuar', 'warning');
         return;
     }
-
-    // Cerrar carrito siempre
+    
+    // Cerrar carrito
     closeCart();
-
-    // Lógica diferenciada según cantidad de productos
-    if (window.cartCount < 2) {
-        // 0 o 1 par: Solo cerrar el carrito, no mostrar formulario
-        return;
-    }
-
-    // 2+ pares: Mostrar formulario y hacer scroll
+    
+    // Mostrar formulario de checkout
     const checkoutSection = document.getElementById('restodelform');
-
-    if (checkoutSection) {
+    const productsSection = document.getElementById('todoslosmodelos');
+    
+    if (checkoutSection && productsSection) {
         checkoutSection.classList.remove('hidden');
-        checkoutSection.classList.add('has-items');
-
-        // Hacer scroll suave hacia el inicio del formulario de envío
-        // Usamos el título del formulario como referencia para un scroll más preciso
-        const formTitle = document.getElementById('datos-envio');
-        if (formTitle) {
-            // Scroll hacia el título del formulario con scroll personalizado
-            setTimeout(() => {
-                smoothScrollToElement(formTitle, 1000); // 1000ms = 1 segundo
-            }, 200);
-        } else {
-            // Fallback al método anterior si no encuentra el título
-            setTimeout(() => {
-                const targetPosition = checkoutSection.getBoundingClientRect().top + window.pageYOffset - 20;
-                smoothScrollToPosition(targetPosition, 1000);
-            }, 200);
-        }
-
-        // Actualizar barra de progreso
+        checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Actualizar进度栏
         updateCheckoutProgress(2);
-
-        console.log('✅ Navegando al formulario de checkout con scroll suave');
-    } else {
-        console.error('❌ No se encontró la sección del formulario de checkout');
     }
+    
+    console.log('Navegando al formulario de checkout');
 }
 
 // Función para actualizar el progreso del checkout
@@ -624,47 +393,14 @@ function updateCheckoutProgress(step) {
 // Función para volver a productos
 function backToProducts() {
     const checkoutSection = document.getElementById('restodelform');
-
-    if (checkoutSection) {
+    const productsSection = document.getElementById('todoslosmodelos');
+    
+    if (checkoutSection && productsSection) {
         checkoutSection.classList.add('hidden');
-        checkoutSection.classList.remove('has-items');
-
-        // Explicitly hide buttons when returning to products
-        const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
-        if (checkoutNav) {
-            checkoutNav.style.display = 'none';
-            checkoutNav.style.visibility = 'hidden';
-            checkoutNav.style.opacity = '0';
-            checkoutNav.style.height = '0';
-            checkoutNav.style.overflow = 'hidden';
-
-            // Also hide individual buttons
-            const botonComprar = checkoutNav.querySelector('#botoncomprar');
-            const backToProductsBtn = checkoutNav.querySelector('#back-to-products');
-
-            if (botonComprar) {
-                botonComprar.style.display = 'none';
-                botonComprar.style.visibility = 'hidden';
-                botonComprar.style.opacity = '0';
-            }
-
-            if (backToProductsBtn) {
-                backToProductsBtn.style.display = 'none';
-                backToProductsBtn.style.visibility = 'hidden';
-                backToProductsBtn.style.opacity = '0';
-            }
-        }
-
-        // Hacer scroll hacia arriba de la página para volver a los productos
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-
-        // Actualizar barra de progreso
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Actualizar进度栏
         updateCheckoutProgress(1);
-
-        console.log('✅ Volviendo a la sección de productos');
     }
 }
 
@@ -724,11 +460,7 @@ function updateReviewFields() {
     
     if (provinciaField && provinciaReview) {
         const selectedOption = provinciaField.options[provinciaField.selectedIndex];
-        if (selectedOption && selectedOption.value && selectedOption.value !== '') {
-            provinciaReview.textContent = selectedOption.text;
-        } else {
-            provinciaReview.textContent = '-';
-        }
+        provinciaReview.textContent = selectedOption ? selectedOption.text : '-';
     }
 }
 
@@ -754,8 +486,8 @@ function handleAddToCart(button) {
         const selectId = `talle-${model}`;
         console.log('🔍 Looking for select ID:', selectId);
         
-        // Buscar el select dentro del mismo producto
-        const productCard = button.closest('.product-content');
+        // Buscar el select dentro del mismo product-card
+        const productCard = button.closest('.product-card');
         let selectElement = null;
         
         if (productCard) {
@@ -868,479 +600,13 @@ function initializeCart() {
     updateReviewFields();
 }
 
-// Función para inicializar los carruseles Embla con funcionalidad completa
+// Función para inicializar los carruseles Embla
 function initializeSwipers() {
     console.log('🎠 Inicializando carruseles Embla...');
-
-    // Esperar a que la librería Embla esté disponible
-    if (typeof EmblaCarousel === 'undefined') {
-        console.log('⏳ Esperando a que Embla Carousel se cargue...');
-        setTimeout(initializeSwipers, 100);
-        return;
-    }
-
-    try {
-        // Inicializar cada carrusel de producto
-        document.querySelectorAll('.embla').forEach(function(container) {
-            const productId = container.dataset.productId;
-            const viewport = container.querySelector('.embla__viewport');
-            const thumbsViewport = container.querySelector('.embla-thumbs__viewport');
-
-            if (!viewport) {
-                console.warn(`⚠️ No se encontró viewport para el carrusel: ${productId}`);
-                return;
-            }
-
-            console.log(`🔧 Inicializando carrusel para: ${productId}`);
-
-            // Configuración principal del carrusel
-            const options = {
-                align: 'start',
-                loop: true,
-                skipSnaps: false,
-                containScroll: 'keepSnaps',
-                dragFree: false,
-                speed: 10,
-                startIndex: 0
-            };
-
-            // Plugins adicionales
-            const plugins = [];
-
-            // Autoplay si está habilitado
-            if (container.dataset.autoplay === 'true' && typeof EmblaCarouselAutoplay !== 'undefined') {
-                plugins.push(EmblaCarouselAutoplay({
-                    delay: 4000,
-                    stopOnInteraction: true,
-                    playOnInit: true
-                }));
-                console.log(`▶️ Autoplay habilitado para: ${productId}`);
-            }
-
-            // Inicializar carrusel principal
-            const embla = EmblaCarousel(viewport, options, plugins);
-
-            console.log(`✅ Carrusel principal creado para: ${productId}`);
-
-            // Configurar botones de navegación
-            const prevBtn = container.querySelector('.embla__button--prev');
-            const nextBtn = container.querySelector('.embla__button--next');
-
-            if (prevBtn) {
-                prevBtn.addEventListener('click', embla.scrollPrev, false);
-                prevBtn.setAttribute('aria-label', 'Anterior');
-            }
-            if (nextBtn) {
-                nextBtn.addEventListener('click', embla.scrollNext, false);
-                nextBtn.setAttribute('aria-label', 'Siguiente');
-            }
-
-            // Configurar miniaturas si existen
-            let thumbsEmbla = null;
-            if (thumbsViewport) {
-                console.log(`🖼️ Configurando miniaturas optimizadas para: ${productId}`);
-
-                thumbsEmbla = EmblaCarousel(thumbsViewport, {
-                    containScroll: 'keepSnaps',
-                    dragFree: true,
-                    dragThreshold: 10, // Lower threshold for smoother scrolling
-                    axis: 'x',
-                    align: 'start',
-                    skipSnaps: false,
-                    inViewThreshold: 0.7,
-                    watchDrag: true,
-                    watchResize: true,
-                    watchSlides: true
-                });
-
-                const syncScrollSnap = () => {
-                    const selected = embla.selectedScrollSnap();
-
-                    // Smooth scroll to selected thumbnail with better centering
-                    thumbsEmbla.scrollTo(selected, true);
-
-                    // Actualizar clases de selección en miniaturas con mejor feedback visual
-                    container.querySelectorAll('.embla-thumbs__slide').forEach(function(slide, index) {
-                        if (index === selected) {
-                            slide.classList.add('embla-thumbs__slide--selected');
-                            slide.setAttribute('aria-current', 'true');
-
-                            // Añadir scroll suave para centrar la miniatura seleccionada
-                            const thumbRect = slide.getBoundingClientRect();
-                            const containerRect = thumbsViewport.getBoundingClientRect();
-                            const thumbCenter = thumbRect.left + thumbRect.width / 2;
-                            const containerCenter = containerRect.left + containerRect.width / 2;
-
-                            if (Math.abs(thumbCenter - containerCenter) > thumbRect.width) {
-                                thumbsEmbla.scrollTo(selected, true);
-                            }
-                        } else {
-                            slide.classList.remove('embla-thumbs__slide--selected');
-                            slide.removeAttribute('aria-current');
-                        }
-                    });
-                };
-
-                // Enhanced click handlers para miniaturas con mejor feedback
-                container.querySelectorAll('.embla-thumbs__slide').forEach(function(thumb, index) {
-                    // Click handler con animación mejorada
-                    thumb.addEventListener('click', function(e) {
-                        console.log(`🖱️ Miniatura clickeada: ${productId}, índice: ${index}`);
-
-                        // Añadir feedback visual inmediato
-                        thumb.style.transform = 'scale(0.95)';
-
-                        // Navegar al slide con animación suave
-                        embla.scrollTo(index, true);
-
-                        // Restaurar escala después de un breve momento
-                        setTimeout(() => {
-                            thumb.style.transform = '';
-                        }, 150);
-
-                        // Prevenir comportamientos no deseados
-                        e.preventDefault();
-                    }, false);
-
-                    // Enhanced keyboard support
-                    thumb.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            embla.scrollTo(index, true);
-                        } else if (e.key === 'ArrowLeft') {
-                            e.preventDefault();
-                            embla.scrollPrev();
-                        } else if (e.key === 'ArrowRight') {
-                            e.preventDefault();
-                            embla.scrollNext();
-                        }
-                    });
-
-                    // Touch feedback para dispositivos móviles
-                    thumb.addEventListener('touchstart', function(e) {
-                        thumb.style.transform = 'scale(0.95)';
-                    }, { passive: true });
-
-                    thumb.addEventListener('touchend', function(e) {
-                        setTimeout(() => {
-                            thumb.style.transform = '';
-                        }, 100);
-                    }, { passive: true });
-
-                    // Hover mejorado para desktop
-                    thumb.addEventListener('mouseenter', function() {
-                        if (window.innerWidth > 768) {
-                            this.style.zIndex = '10';
-                        }
-                    });
-
-                    thumb.addEventListener('mouseleave', function() {
-                        this.style.zIndex = '';
-                    });
-                });
-
-                // Sincronización bidireccional mejorada
-                embla.on('select', syncScrollSnap);
-                embla.on('init', syncScrollSnap);
-
-                // Sincronización cuando el usuario navega en las miniaturas
-                thumbsEmbla.on('select', () => {
-                    const selectedThumbIndex = thumbsEmbla.selectedScrollSnap();
-                    if (selectedThumbIndex !== embla.selectedScrollSnap()) {
-                        embla.scrollTo(selectedThumbIndex, true);
-                    }
-                });
-
-                // Precargar imágenes de miniaturas cercanas para mejor rendimiento
-                const preloadThumbnails = () => {
-                    const currentIndex = embla.selectedScrollSnap();
-                    const thumbNodes = container.querySelectorAll('.embla-thumbs__slide img');
-
-                    // Precargar miniaturas anteriores y siguientes
-                    for (let i = Math.max(0, currentIndex - 2); i <= Math.min(thumbNodes.length - 1, currentIndex + 2); i++) {
-                        const img = thumbNodes[i];
-                        if (img && !img.complete) {
-                            img.loading = 'eager';
-                        }
-                    }
-                };
-
-                embla.on('select', preloadThumbnails);
-                embla.on('init', preloadThumbnails);
-
-                // Inicialización
-                syncScrollSnap();
-                console.log(`✅ Miniaturas optimizadas configuradas para: ${productId}`);
-            }
-
-            // Configurar estados de los botones
-            const setupButtonStates = () => {
-                const prevDisabled = !embla.canScrollPrev();
-                const nextDisabled = !embla.canScrollNext();
-                if (prevBtn) prevBtn.disabled = prevDisabled;
-                if (nextBtn) nextBtn.disabled = nextDisabled;
-            };
-
-            embla.on('select', setupButtonStates);
-            embla.on('init', setupButtonStates);
-
-            // Soporte de teclado para el carrusel principal
-            const handleKeyDown = (e) => {
-                switch(e.key) {
-                    case 'ArrowLeft':
-                        e.preventDefault();
-                        embla.scrollPrev();
-                        break;
-                    case 'ArrowRight':
-                        e.preventDefault();
-                        embla.scrollNext();
-                        break;
-                    case 'Home':
-                        e.preventDefault();
-                        embla.scrollTo(0);
-                        break;
-                    case 'End':
-                        e.preventDefault();
-                        embla.scrollTo(embla.scrollSnapList().length - 1);
-                        break;
-                }
-            };
-
-            container.addEventListener('keydown', handleKeyDown);
-            container.setAttribute('tabindex', '0');
-
-            // Pausar autoplay en hover (si está habilitado)
-            if (container.dataset.autoplay === 'true') {
-                container.addEventListener('mouseenter', () => {
-                    if (embla.plugins().autoplay) {
-                        embla.plugins().autoplay.stop();
-                    }
-                });
-
-                container.addEventListener('mouseleave', () => {
-                    if (embla.plugins().autoplay) {
-                        embla.plugins().autoplay.play();
-                    }
-                });
-            }
-
-            // Enhanced image preloading for 14-18 images scenario
-            const preloadNearbyImages = () => {
-                const currentIndex = embla.selectedScrollSnap();
-                const totalSlides = embla.scrollSnapList().length;
-                const slides = embla.slideNodes();
-
-                // Precargar imágenes estratégicamente para carruseles con muchas imágenes
-                const preloadRange = totalSlides > 12 ? 3 : 2; // Más rango para carruseles grandes
-
-                // Precargar imágenes alrededor de la actual
-                for (let i = Math.max(0, currentIndex - preloadRange); i <= Math.min(totalSlides - 1, currentIndex + preloadRange); i++) {
-                    const slide = slides[i];
-                    if (slide) {
-                        const img = slide.querySelector('img');
-                        if (img && !img.complete) {
-                            img.loading = 'eager';
-
-                            // Agregar lazy loading a imágenes lejanas
-                            if (Math.abs(i - currentIndex) > preloadRange) {
-                                img.loading = 'lazy';
-                            }
-                        }
-                    }
-                }
-
-                // Optimizar miniaturas cargadas
-                const thumbImages = container.querySelectorAll('.embla-thumbs__slide img');
-                thumbImages.forEach((img, index) => {
-                    const distanceFromCurrent = Math.abs(index - currentIndex);
-
-                    if (distanceFromCurrent <= 2) {
-                        // Miniaturas cercanas: alta prioridad
-                        img.loading = 'eager';
-                        img.fetchPriority = 'high';
-                    } else if (distanceFromCurrent <= 5) {
-                        // Miniaturas medias: prioridad normal
-                        img.loading = 'lazy';
-                        img.fetchPriority = 'auto';
-                    } else {
-                        // Miniaturas lejanas: baja prioridad
-                        img.loading = 'lazy';
-                        img.fetchPriority = 'low';
-                    }
-                });
-            };
-
-            embla.on('select', preloadNearbyImages);
-            embla.on('init', preloadNearbyImages);
-
-            // Optimización para carruseles con muchas imágenes (14-18)
-            const optimizeForManyImages = () => {
-                const totalSlides = embla.scrollSnapList().length;
-
-                if (totalSlides > 12) {
-                    console.log(`🔧 Optimizando carrusel con ${totalSlides} imágenes para: ${productId}`);
-
-                    // Ajustar velocidad de autoplay si hay muchas imágenes
-                    if (container.dataset.autoplay === 'true' && embla.plugins().autoplay) {
-                        embla.plugins().autoplay.stop();
-                        embla.plugins().autoplay.play({
-                            delay: Math.min(3000, 4000 - (totalSlides * 100)), // Más rápido con más imágenes
-                            stopOnInteraction: true,
-                            playOnInit: true
-                        });
-                    }
-
-                    // Scroll indicators disabled - not needed
-                }
-            };
-
-            // Scroll indicators removed - not needed
-
-            optimizeForManyImages();
-
-            // Manejo de errores en imágenes
-            const handleImageErrors = () => {
-                container.querySelectorAll('.embla__slide__img').forEach(function(img) {
-                    if (!img.complete || img.naturalHeight === 0) {
-                        img.addEventListener('error', function() {
-                            console.warn(`⚠️ Error cargando imagen: ${img.src}`);
-                            img.style.display = 'none';
-
-                            // Mostrar placeholder
-                            const placeholder = document.createElement('div');
-                            placeholder.className = 'embla__slide__placeholder';
-                            placeholder.innerHTML = `
-                                <div style="
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    height: 100%;
-                                    background: #f0f0f0;
-                                    color: #666;
-                                    font-size: 14px;
-                                    text-align: center;
-                                    padding: 20px;
-                                ">
-                                    Imagen no disponible
-                                </div>
-                            `;
-                            img.parentNode.appendChild(placeholder);
-                        });
-                    }
-                });
-            };
-
-            handleImageErrors();
-
-            // Detección de gestos táctiles avanzados
-            let touchStartX = 0;
-            let touchStartY = 0;
-            let touchEndX = 0;
-            let touchEndY = 0;
-            let isDragging = false;
-
-            const handleTouchStart = (e) => {
-                touchStartX = e.touches[0].clientX;
-                touchStartY = e.touches[0].clientY;
-                isDragging = false;
-                container.classList.add('dragging');
-            };
-
-            const handleTouchMove = (e) => {
-                if (!isDragging) {
-                    const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
-                    const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
-
-                    // Considerar como arrastre si el movimiento horizontal es mayor que el vertical
-                    if (deltaX > deltaY && deltaX > 10) {
-                        isDragging = true;
-                    }
-                }
-            };
-
-            const handleTouchEnd = (e) => {
-                container.classList.remove('dragging');
-
-                if (!isDragging) return;
-
-                touchEndX = e.changedTouches[0].clientX;
-                touchEndY = e.changedTouches[0].clientY;
-
-                const deltaX = touchEndX - touchStartX;
-                const deltaY = touchEndY - touchStartY;
-
-                // Umbral mínimo para swipe horizontal
-                const minSwipeDistance = 50;
-
-                if (Math.abs(deltaX) > minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) {
-                    if (deltaX > 0) {
-                        // Swipe derecha - anterior
-                        embla.scrollPrev();
-                        console.log(`👆 Swipe derecho en ${productId}`);
-                    } else {
-                        // Swipe izquierda - siguiente
-                        embla.scrollNext();
-                        console.log(`👈 Swipe izquierdo en ${productId}`);
-                    }
-                }
-            };
-
-            // Agregar event listeners táctiles
-            viewport.addEventListener('touchstart', handleTouchStart, { passive: true });
-            viewport.addEventListener('touchmove', handleTouchMove, { passive: true });
-            viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-            // Mostrar hint de swipe para usuarios nuevos (solo en móviles)
-            if (window.innerWidth <= 768 && !localStorage.getItem('carouselSwipeHintShown')) {
-                setTimeout(() => {
-                    const hint = document.createElement('div');
-                    hint.className = 'swipe-hint';
-                    hint.textContent = 'Desliza para ver más imágenes';
-                    container.appendChild(hint);
-
-                    setTimeout(() => {
-                        hint.remove();
-                        localStorage.setItem('carouselSwipeHintShown', 'true');
-                    }, 3000);
-                }, 2000);
-            }
-
-            // Manejo de resize
-            const handleResize = () => {
-                if (embla) {
-                    embla.reInit();
-                }
-            };
-
-            let resizeTimeout;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimeout);
-                resizeTimeout = setTimeout(handleResize, 250);
-            });
-
-            // Manejo de visibilidad de página
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    // Pausar autoplay si la página no está visible
-                    if (embla.plugins().autoplay) {
-                        embla.plugins().autoplay.stop();
-                    }
-                } else if (container.dataset.autoplay === 'true') {
-                    // Reanudar autoplay si la página se hace visible
-                    if (embla.plugins().autoplay) {
-                        embla.plugins().autoplay.play();
-                    }
-                }
-            });
-
-            console.log(`🎉 Carrusel completamente configurado para: ${productId}`);
-        });
-
-        console.log('✅ Todos los carruseles inicializados correctamente');
-
-    } catch (error) {
-        console.error('❌ Error al inicializar carruseles:', error);
-    }
+    
+    // Los carruseles ahora se inicializan automáticamente con Embla Carousel
+    // Esta función queda para compatibilidad pero los carruseles ya funcionan por sí solos
+    console.log('✅ Carruseles Embla ya inicializados automáticamente');
 }
 
 // Función global para inicialización (llamada desde Layout.astro)
@@ -1410,10 +676,10 @@ function initializeTestimonials() {
         for (let i = currentIndex; i < endIndex; i++) {
             const testimonial = allTestimonials[i];
             const testimonialElement = document.createElement('div');
-            testimonialElement.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300';
+            testimonialElement.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 mb-4';
             testimonialElement.innerHTML = `
-                <img src="${testimonial.src}" alt="${testimonial.alt}"
-                     class="w-full h-auto object-contain"
+                <img src="${testimonial.src}" alt="${testimonial.alt}" 
+                     class="w-full h-auto object-cover" 
                      loading="lazy">
             `;
             testimonialsGrid.appendChild(testimonialElement);
@@ -1497,221 +763,6 @@ window.debugSwipers = function() {
     // Intentar inicializar
     initializeSwipers();
 };
-
-// WhatsApp Modal Functions
-function showWhatsAppModal() {
-    const modal = document.getElementById('whatsapp-modal');
-    if (!modal) {
-        console.error('WhatsApp modal not found');
-        return;
-    }
-
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-
-    // Focus on input
-    setTimeout(() => {
-        const input = document.getElementById('whatsapp-number');
-        if (input) {
-            input.focus();
-        }
-    }, 300);
-
-    // Prevent body scroll
-    document.body.style.overflow = 'hidden';
-
-    // Close modal on escape key
-    const handleEscape = (e) => {
-        if (e.key === 'Escape') {
-            closeWhatsAppModal();
-            document.removeEventListener('keydown', handleEscape);
-        }
-    };
-    document.addEventListener('keydown', handleEscape);
-
-    // Store handler reference for cleanup
-    modal._escapeHandler = handleEscape;
-}
-
-function closeWhatsAppModal() {
-    const modal = document.getElementById('whatsapp-modal');
-    if (!modal) return;
-
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-
-    // Restore body scroll
-    document.body.style.overflow = '';
-
-    // Remove escape handler if exists
-    if (modal._escapeHandler) {
-        document.removeEventListener('keydown', modal._escapeHandler);
-        modal._escapeHandler = null;
-    }
-
-    // Clear form
-    const form = document.getElementById('whatsapp-form');
-    if (form) {
-        form.reset();
-    }
-}
-
-// WhatsApp endpoints (originales del embudo)
-const validateWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
-const saveWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7";
-
-function formatWhatsappNumber(number) {
-    if (!number) return '';
-
-    let formatted = number.replace(/[\s\-()]/g, '');
-
-    if (formatted.startsWith('54') && formatted.length === 12) {
-        formatted = '+' + formatted;
-    } else if (formatted.length === 10) {
-        formatted = '+549' + formatted;
-    } else if (formatted.length === 11 && formatted.startsWith('9')) {
-        formatted = '+54' + formatted;
-    } else if (formatted.length === 12 && !formatted.startsWith('+')) {
-        formatted = '+' + formatted;
-    }
-
-    return formatted;
-}
-
-function validateInputFormat(inputValue) {
-    if (!inputValue) return false;
-    const formattedNumber = formatWhatsappNumber(inputValue);
-    return formattedNumber && formattedNumber.length >= 12;
-}
-
-async function validateWhatsappNumber(whatsappNumber) {
-    try {
-        const response = await fetch(validateWhatsappEndpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: whatsappNumber })
-        });
-
-        const result = await response.json();
-        return { valid: response.ok, result };
-    } catch (error) {
-        console.error('Error validating WhatsApp:', error);
-        return { valid: false, error };
-    }
-}
-
-function saveWhatsappToEndpoint(whatsappNumber) {
-    const data = {
-        whatsapp: whatsappNumber,
-        timestamp: new Date().toISOString(),
-        source: 'modal_whatsapp_carrito',
-        url: window.location.href,
-        cart: window.cart,
-        cartCount: window.cartCount
-    };
-
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', saveWhatsappEndpoint, true);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(data));
-}
-
-async function handleWhatsAppSubmit(event) {
-    event.preventDefault();
-
-    const phoneNumber = document.getElementById('whatsapp-number').value.trim();
-
-    if (!phoneNumber) {
-        if (typeof showInlineAlert === 'function') {
-            showInlineAlert('Por favor ingresa tu número de WhatsApp', 'error');
-            document.getElementById('whatsapp-number')?.focus();
-        } else {
-            alert('Por favor ingresa tu número de WhatsApp');
-        }
-        return;
-    }
-
-    if (!validateInputFormat(phoneNumber)) {
-        if (typeof showInlineAlert === 'function') {
-            showInlineAlert('Formato de WhatsApp inválido. Ej: 1156457057', 'error');
-            document.getElementById('whatsapp-number')?.focus();
-        } else {
-            alert('Formato de WhatsApp inválido. Ej: 1156457057');
-        }
-        return;
-    }
-
-    const whatsappNumber = formatWhatsappNumber(phoneNumber);
-
-    // Validar número con webhook
-    const validation = await validateWhatsappNumber(whatsappNumber);
-    if (!validation.valid) {
-        if (typeof showInlineAlert === 'function') {
-            showInlineAlert('Número de WhatsApp inválido. Por favor verifícalo e intenta nuevamente.', 'error');
-            document.getElementById('whatsapp-number')?.focus();
-        } else {
-            alert('Número de WhatsApp inválido. Por favor verifícalo e intenta nuevamente.');
-        }
-        return;
-    }
-
-    // Guardar en localStorage
-    const whatsappData = {
-        phone: whatsappNumber,
-        cart: window.cart,
-        cartCount: window.cartCount,
-        timestamp: new Date().toISOString()
-    };
-
-    localStorage.setItem('whatsappCartSave', JSON.stringify(whatsappData));
-
-    // Guardar silenciosamente en el webhook del embudo original
-    saveWhatsappToEndpoint(whatsappNumber);
-
-    // Mostrar mensaje de éxito (sin redirección a WhatsApp)
-    showInlineMessage('✅ ¡Número guardado! Podrás recuperar tu carrito cuando quieras.', 'success', 5000);
-
-    // Cerrar modal
-    closeWhatsAppModal();
-
-    // Marcar modal como mostrado para esta sesión
-    localStorage.setItem('whatsappModalShown', 'true');
-}
-
-// Initialize WhatsApp form when DOM is ready
-document.addEventListener('DOMContentLoaded', function() {
-    const whatsappForm = document.getElementById('whatsapp-form');
-    if (whatsappForm) {
-        whatsappForm.addEventListener('submit', handleWhatsAppSubmit);
-    }
-
-    // Check if cart can be recovered from WhatsApp
-    const urlParams = new URLSearchParams(window.location.search);
-    const whatsappParam = urlParams.get('whatsapp');
-
-    if (whatsappParam) {
-        try {
-            const savedCartData = localStorage.getItem('whatsappCartSave');
-            if (savedCartData) {
-                const savedData = JSON.parse(savedCartData);
-                if (savedData.phone === whatsappParam && savedData.cart.length > 0) {
-                    // Restore cart
-                    window.cart = savedData.cart;
-                    window.cartCount = savedData.cartCount;
-                    updateCartUI();
-
-                    showInlineMessage('✅ ¡Carrito recuperado exitosamente!', 'success', 5000);
-
-                    // Remove WhatsApp parameter from URL
-                    const newUrl = window.location.pathname;
-                    window.history.replaceState({}, '', newUrl);
-                }
-            }
-        } catch (error) {
-            console.error('Error recovering cart from WhatsApp:', error);
-        }
-    }
-});
 
 // Estilos CSS para mensajes del carrito (se agregan dinámicamente)
 const cartStyles = `
@@ -1805,46 +856,12 @@ const cartStyles = `
         }
     }
     
-    /* Testimonials Grid Styles - Natural Content */
-    .testimonials-grid {
-        display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 2rem;
-        width: 100%;
-    }
-
-    @media (min-width: 768px) {
-        .testimonials-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
-    }
-
-    @media (min-width: 1024px) {
-        .testimonials-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 2rem;
-        }
-    }
-
     .testimonial-item {
         opacity: 0;
         transform: translateY(30px);
         animation: fadeInUp 0.6s ease forwards;
-        width: 100%;
-        height: auto;
-        /* No forzar aspect-ratio, dejar contenido natural */
     }
-
-    /* Importante: No forzar tamaños en las imágenes */
-    .testimonial-item img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        max-width: 100%;
-    }
-
+    
     .testimonial-item:nth-child(n) {
         animation-delay: calc(n * 0.1s);
     }
