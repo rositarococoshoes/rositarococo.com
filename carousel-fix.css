@@ -1,0 +1,179 @@
+/* Estilos para el carrusel arreglado */
+
+.simple-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    background-color: transparent;
+    height: 500px; /* Altura fija para el carrusel */
+    border: none;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 400%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    height: 100%;
+    transition: transform 0.5s ease;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.carousel-slide {
+    flex: 0 0 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    width: 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    height: 100%;
+    display: flex !important; /* Forzar display flex */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    float: left; /* Asegurar que los slides se muestren en línea */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.carousel-slide img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+}
+
+/* Botones de navegación */
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(160, 89, 65, 0.8);
+    border: 2px solid white;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    text-decoration: none;
+}
+
+.carousel-button:hover {
+    background-color: rgba(160, 89, 65, 1);
+}
+
+.carousel-button.prev {
+    left: 5px;
+}
+
+.carousel-button.next {
+    right: 5px;
+}
+
+/* Indicadores de posición */
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    z-index: 5;
+}
+
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-indicators li.active {
+    background-color: #a05941;
+    transform: scale(1.2);
+    border-color: white;
+}
+
+/* Estilos específicos para el carrusel de testimonios */
+.testimonials-carousel .carousel-slide {
+    display: flex !important; /* Forzar display flex */
+    align-items: center;
+    justify-content: center;
+    width: 25%; /* Ancho inicial para 4 slides (se ajustará con JS) */
+    text-align: center;
+}
+
+.testimonials-carousel .carousel-slide img {
+    max-height: 400px;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .carousel-button {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .carousel-indicators {
+        bottom: 10px;
+    }
+
+    .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+    }
+
+    .testimonials-carousel .carousel-slide img {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-button {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .carousel-indicators {
+        bottom: 5px;
+        gap: 8px;
+    }
+
+    .carousel-indicators li {
+        width: 8px;
+        height: 8px;
+    }
+
+    .testimonials-carousel .carousel-slide img {
+        max-height: 350px;
+    }
+}

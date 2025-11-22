@@ -1,0 +1,179 @@
+=== NETWORK ACTIVITY ANALYSIS: CONTRARREEMBOLSO FUNNEL ===
+
+Primary Domain: http://localhost:8000/contrarreembolsonueva.html
+
+EXTERNAL DEPENDENCIES:
+
+1. FACEBOOK SERVICES:
+- https://connect.facebook.net/en_US/fbevents.js (Facebook Pixel)
+- https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1 (Pixel tracking)
+- Preconnect: https://connect.facebook.net
+- Preconnect: https://www.facebook.com
+
+2. CDN RESOURCES:
+- https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js
+- https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+- https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js
+
+3. GOOGLE SERVICES:
+- https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap
+- https://fonts.gstatic.com (font loading)
+
+4. LOCAL RESOURCES:
+CSS FILES:
+- otono-elegante2.css
+- swiper-custom.css
+- badges.css
+- price-quantity.css
+- floating-button.css
+- chat-widget.css
+- header-improvements.css
+
+JAVASCRIPT FILES:
+- carrusel-nuevos.js
+- otono-elegante2.js?v=1.1
+- form-handler-contrareembolso.js
+- fix-precios-contrareembolso.js
+- chat-widget-contrareembolso.js
+
+IMAGES:
+- rosita-form.webp (logo)
+- nuevosmodeloscontra/1.webp through 31.webp (product images)
+- apple-touch-icon.png, favicon-32x32.png, favicon-16x16.png
+- comentarios/*.webp (testimonial images)
+
+DYNAMIC API ENDPOINTS:
+
+1. WHATSAPP VALIDATION:
+- Method: POST
+- Content-Type: application/json
+- Payload: { whatsapp_check: "+549[formatted_number]" }
+- Expected Response: { valid: true/false }
+- Trigger: onBlur event on WhatsApp field
+
+2. WHATSAPP SAVE ENDPOINT:
+- Method: POST
+- Content-Type: application/json
+- Payload: { whatsapp: "+549[formatted_number]", source: 'modal_whatsapp_contrareembolso', timestamp: [timestamp] }
+- Trigger: WhatsApp modal submission
+
+3. GOOGLE FORMS SUBMISSION:
+- Method: POST
+- Form ID: Embedded in bootstrapForm action
+- Fields: All form data submitted via jQuery Form plugin
+- Redirect: Success/thank you page after submission
+
+4. FACEBOOK PIXEL EVENTS:
+- PageView: Automatic on page load
+- Potential custom events: AddToCart, InitiateCheckout, Purchase
+
+LOADING STRATEGY:
+
+PRECONNECT:
+- connect.facebook.net
+- www.facebook.com
+- cdnjs.cloudflare.com
+- cdn.jsdelivr.net
+- fonts.googleapis.com
+- fonts.gstatic.com
+
+PRELOAD RESOURCES:
+- Critical CSS files
+- JavaScript bundles
+- Logo image (rosita-form.webp)
+- Font stylesheets
+
+LAZY LOADING:
+- Product images after the first in each carousel
+- Testimonial images
+- Non-critical JavaScript
+
+PERFORMANCE CONSIDERATIONS:
+
+1. RESOURCE HIERARCHY:
+- High Priority: Logo, first product images, critical CSS
+- Medium Priority: Form JavaScript, validation scripts
+- Low Priority: Carousel thumbnails, testimonial images
+
+2. BUNDLE SIZES:
+- jQuery: ~85KB minified + gzipped
+- Swiper: ~45KB minified + gzipped
+- Custom JS: Estimated 30-50KB total
+- Custom CSS: Estimated 40-60KB total
+
+3. IMAGE OPTIMIZATION:
+- WebP format for modern browsers
+- Lazy loading for non-critical images
+- Strategic fetchpriority attributes
+- Responsive image sizing
+
+NETWORK ERRORS TO MONITOR:
+
+1. CDN FAILURES:
+- jQuery, Swiper, or other CDN resources unavailable
+- Fallback strategies: Local copies or alternative CDNs
+
+2. FONT LOADING:
+- Google Fonts API unavailable
+- Fallback: System fonts or local font copies
+
+3. API ENDPOINTS:
+- WhatsApp validation webhook offline
+- Google Forms submission failure
+- Facebook Pixel blocked
+
+4. IMAGE FAILURES:
+- Product images missing (nuevosmodeloscontra/*.webp)
+- Fallback: Placeholder images or error handling
+
+SECURITY CONSIDERATIONS:
+
+1. HTTPS REQUIREMENTS:
+- Mixed content warnings avoided
+- All external resources use HTTPS
+
+2. SUBDOMAIN INTEGRITY:
+- All resources loaded from expected domains
+- CSP headers if implemented
+
+3. API SECURITY:
+- WhatsApp validation endpoint authentication
+- Form submission CSRF protection
+- Rate limiting on validation endpoints
+
+CACHE STRATEGY:
+
+1. STATIC ASSETS:
+- Long-term caching for images and CSS
+- Version-busting for JavaScript updates
+
+2. DYNAMIC CONTENT:
+- No caching for form submissions
+- Limited caching for API responses
+
+3. BROWSER CACHING:
+- Appropriate cache headers for different resource types
+- Service worker potential for offline functionality
+
+MONITORING POINTS:
+
+1. PERFORMANCE METRICS:
+- Page load time
+- Time to interactive
+- Largest contentful paint
+- First input delay
+
+2. ERROR TRACKING:
+- JavaScript errors
+- Network request failures
+- Form submission failures
+
+3. USER BEHAVIOR:
+- Carousel interaction rates
+- Form abandonment points
+- WhatsApp validation success rates
+- Conversion funnel completion rates

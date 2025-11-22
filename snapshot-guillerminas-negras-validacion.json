@@ -1,0 +1,342 @@
+uid=3_0 RootWebArea "Test - Carrusel Guillerminas Negras | Rosita Rococó" url="http://localhost:4335/test-carrusel"
+  uid=3_1 ignored
+    uid=3_2 ignored
+      uid=3_3 ignored
+        uid=3_4 heading "🧪 TEST: Componente Carrusel Guillerminas Negras" level="1"
+          uid=3_5 StaticText "🧪 TEST: Componente Carrusel Guillerminas Negras"
+            uid=3_6 InlineTextBox "🧪 TEST: Componente Carrusel Guillerminas Negras"
+        uid=3_7 generic
+          uid=3_8 heading "Guillerminas Negras" level="2"
+            uid=3_9 StaticText "Guillerminas Negras"
+              uid=3_10 InlineTextBox "Guillerminas Negras"
+          uid=3_11 generic
+            uid=3_12 generic
+              uid=3_13 group "5 / 5"
+                uid=3_14 image "Guillerminas Negras - Vista 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=3_15 group "1 / 5"
+                uid=3_16 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=3_17 group "2 / 5"
+                uid=3_18 image "Guillerminas Negras - Vista 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=3_19 group "3 / 5"
+                uid=3_20 image "Guillerminas Negras - Vista 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=3_21 group "4 / 5"
+                uid=3_22 image "Guillerminas Negras - Vista 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=3_23 group "5 / 5"
+                uid=3_24 image "Guillerminas Negras - Vista 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=3_25 group "1 / 5"
+                uid=3_26 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+            uid=3_27 button "Previous slide"
+              uid=3_28 generic
+                uid=3_29 StaticText "prev"
+                  uid=3_30 InlineTextBox "prev"
+            uid=3_31 button "Next slide"
+              uid=3_32 generic
+                uid=3_33 StaticText "next"
+                  uid=3_34 InlineTextBox "next"
+            uid=3_35 generic
+          uid=3_36 generic
+            uid=3_37 generic
+              uid=3_38 group "1 / 5"
+                uid=3_39 image "Guillerminas Negras - Thumbnail 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=3_40 group "2 / 5"
+                uid=3_41 image "Guillerminas Negras - Thumbnail 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=3_42 group "3 / 5"
+                uid=3_43 image "Guillerminas Negras - Thumbnail 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=3_44 group "4 / 5"
+                uid=3_45 image "Guillerminas Negras - Thumbnail 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=3_46 group "5 / 5"
+                uid=3_47 image "Guillerminas Negras - Thumbnail 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+            uid=3_48 generic
+          uid=3_49 generic
+            uid=3_50 ignored
+              uid=3_51 ignored
+                uid=3_52 ignored
+                  uid=3_53 strong
+                    uid=3_54 StaticText "Material:"
+                      uid=3_55 InlineTextBox "Material:"
+                  uid=3_56 StaticText " Tela reforzada super flexible"
+                    uid=3_57 InlineTextBox " Tela reforzada super flexible"
+                uid=3_58 ignored
+                  uid=3_59 strong
+                    uid=3_60 StaticText "Suela:"
+                      uid=3_61 InlineTextBox "Suela:"
+                  uid=3_62 StaticText " Expanso"
+                    uid=3_63 InlineTextBox " Expanso"
+                uid=3_64 ignored
+                  uid=3_65 strong
+                    uid=3_66 StaticText "Envío:"
+                      uid=3_67 InlineTextBox "Envío:"
+                  uid=3_68 StaticText " GRATIS 🚚"
+                    uid=3_69 InlineTextBox " GRATIS 🚚"
+              uid=3_70 ignored
+                uid=3_71 ignored
+                  uid=3_72 StaticText "NUEVA TEMPORADA"
+                    uid=3_73 InlineTextBox "NUEVA TEMPORADA"
+                uid=3_74 ignored
+                  uid=3_75 StaticText "STOCK LIMITADO"
+                    uid=3_76 InlineTextBox "STOCK LIMITADO"
+              uid=3_77 paragraph
+                uid=3_78 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                  uid=3_79 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal "
+                  uid=3_80 InlineTextBox "para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+            uid=3_81 ignored
+              uid=3_82 generic
+                uid=3_83 heading "GUÍA DE TALLES" level="3"
+                  uid=3_84 StaticText "GUÍA DE TALLES"
+                    uid=3_85 InlineTextBox "GUÍA DE TALLES"
+                uid=3_86 generic
+                  uid=3_87 StaticText "+"
+                    uid=3_88 InlineTextBox "+"
+              uid=3_89 ignored
+                uid=3_90 ignored
+                  uid=3_91 ignored
+                  uid=3_92 ignored
+                uid=3_93 ignored
+                  uid=3_94 ignored
+                    uid=3_95 ignored
+                    uid=3_96 ignored
+                  uid=3_97 ignored
+                    uid=3_98 ignored
+                    uid=3_99 ignored
+                  uid=3_100 ignored
+                    uid=3_101 ignored
+                    uid=3_102 ignored
+                  uid=3_103 ignored
+                    uid=3_104 ignored
+                    uid=3_105 ignored
+                  uid=3_106 ignored
+                    uid=3_107 ignored
+                    uid=3_108 ignored
+                  uid=3_109 ignored
+                    uid=3_110 ignored
+                    uid=3_111 ignored
+            uid=3_112 ignored
+              uid=3_113 ignored
+                uid=3_114 paragraph
+                  uid=3_115 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                    uid=3_116 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+              uid=3_117 ignored
+                uid=3_118 LabelText
+                  uid=3_119 radio "1 par $60.000" checked
+                  uid=3_120 ignored
+                    uid=3_121 generic
+                      uid=3_122 StaticText "1 par"
+                        uid=3_123 InlineTextBox "1 par"
+                    uid=3_124 generic
+                      uid=3_125 StaticText "$60.000"
+                        uid=3_126 InlineTextBox "$60.000"
+                uid=3_127 LabelText
+                  uid=3_128 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                  uid=3_129 ignored
+                    uid=3_130 generic
+                      uid=3_131 StaticText "2 pares "
+                        uid=3_132 InlineTextBox "2 pares "
+                      uid=3_133 StaticText "OFERTA"
+                        uid=3_134 InlineTextBox "OFERTA"
+                    uid=3_135 generic
+                      uid=3_136 StaticText "$95.000"
+                        uid=3_137 InlineTextBox "$95.000"
+                    uid=3_138 generic
+                      uid=3_139 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                        uid=3_140 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+            uid=3_141 ignored
+              uid=3_142 group
+                uid=3_143 generic
+                  uid=3_144 LabelText
+                    uid=3_145 StaticText "Talle Par 1"
+                      uid=3_146 InlineTextBox "Talle Par 1"
+                  uid=3_147 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                    uid=3_148 MenuListPopup
+                      uid=3_149 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                      uid=3_150 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                      uid=3_151 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                      uid=3_152 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                      uid=3_153 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                      uid=3_154 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                      uid=3_155 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                uid=3_156 button "🛒 Agregar al carrito"
+                  uid=3_157 StaticText "🛒 Agregar al carrito"
+                    uid=3_158 InlineTextBox "🛒 Agregar al carrito"
+              uid=3_159 ignored
+                uid=3_160 ignored
+              uid=3_161 ignored
+                uid=3_162 ignored
+                uid=3_163 ignored
+                uid=3_164 ignored
+                uid=3_165 ignored
+                uid=3_166 ignored
+                uid=3_167 ignored
+                uid=3_168 ignored
+        uid=3_169 ignored
+          uid=3_170 heading "Panel de Testing" level="2"
+            uid=3_171 StaticText "Panel de Testing"
+              uid=3_172 InlineTextBox "Panel de Testing"
+          uid=3_173 ignored
+            uid=3_174 ignored
+              uid=3_175 strong
+                uid=3_176 StaticText "✅ Funcionalidades a validar:"
+                  uid=3_177 InlineTextBox "✅ Funcionalidades a validar:"
+              uid=3_178 list
+                uid=3_179 listitem level="1"
+                  uid=3_180 ListMarker "• "
+                    uid=3_181 ignored
+                  uid=3_182 StaticText "Carrusel principal con navegación (flechas)"
+                    uid=3_183 InlineTextBox "Carrusel principal con navegación (flechas)"
+                uid=3_184 listitem level="1"
+                  uid=3_185 ListMarker "• "
+                    uid=3_186 ignored
+                  uid=3_187 StaticText "Thumbnails sincronizados"
+                    uid=3_188 InlineTextBox "Thumbnails sincronizados"
+                uid=3_189 listitem level="1"
+                  uid=3_190 ListMarker "• "
+                    uid=3_191 ignored
+                  uid=3_192 StaticText "Selector 1 par / 2 pares"
+                    uid=3_193 InlineTextBox "Selector 1 par / 2 pares"
+                uid=3_194 listitem level="1"
+                  uid=3_195 ListMarker "• "
+                    uid=3_196 ignored
+                  uid=3_197 StaticText "Selección de talle para cada par"
+                    uid=3_198 InlineTextBox "Selección de talle para cada par"
+                uid=3_199 listitem level="1"
+                  uid=3_200 ListMarker "• "
+                    uid=3_201 ignored
+                  uid=3_202 StaticText "Botón "Agregar al carrito""
+                    uid=3_203 InlineTextBox "Botón "Agregar al carrito""
+                uid=3_204 listitem level="1"
+                  uid=3_205 ListMarker "• "
+                    uid=3_206 ignored
+                  uid=3_207 StaticText "Carrito flotante con contador"
+                    uid=3_208 InlineTextBox "Carrito flotante con contador"
+                uid=3_209 listitem level="1"
+                  uid=3_210 ListMarker "• "
+                    uid=3_211 ignored
+                  uid=3_212 StaticText "Guía de talles (toggle)"
+                    uid=3_213 InlineTextBox "Guía de talles (toggle)"
+                uid=3_214 listitem level="1"
+                  uid=3_215 ListMarker "• "
+                    uid=3_216 ignored
+                  uid=3_217 StaticText "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+                    uid=3_218 InlineTextBox "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+            uid=3_219 ignored
+              uid=3_220 strong
+                uid=3_221 StaticText "🎯 Estado Actual:"
+                  uid=3_222 InlineTextBox "🎯 Estado Actual:"
+              uid=3_223 paragraph
+                uid=3_224 StaticText "Componente individual funcional MVP"
+                  uid=3_225 InlineTextBox "Componente individual funcional MVP"
+      uid=3_226 generic
+        uid=3_227 ignored
+        uid=3_228 ignored
+          uid=3_229 ignored
+            uid=3_230 button "Menu"
+              uid=3_231 generic
+              uid=3_232 ignored
+                uid=3_233 StaticText "Menu"
+                  uid=3_234 InlineTextBox "Menu"
+            uid=3_235 button "Inspect"
+              uid=3_236 generic
+              uid=3_237 ignored
+                uid=3_238 StaticText "Inspect"
+                  uid=3_239 InlineTextBox "Inspect"
+            uid=3_240 button "Audit"
+              uid=3_241 generic
+                uid=3_242 generic
+                  uid=3_243 image
+              uid=3_244 ignored
+                uid=3_245 StaticText "Audit"
+                  uid=3_246 InlineTextBox "Audit"
+            uid=3_247 ignored
+            uid=3_248 button "Settings"
+              uid=3_249 generic
+              uid=3_250 ignored
+                uid=3_251 StaticText "Settings"
+                  uid=3_252 InlineTextBox "Settings"
+        uid=3_253 ignored
+      uid=3_254 ignored
+        uid=3_255 ignored
+          uid=3_256 ignored
+            uid=3_257 ignored
+              uid=3_258 ignored
+                uid=3_259 ignored
+              uid=3_260 ignored
+                uid=3_261 ignored
+                uid=3_262 ignored
+                  uid=3_263 ignored
+            uid=3_264 ignored
+            uid=3_265 ignored
+              uid=3_266 ignored
+              uid=3_267 ignored
+              uid=3_268 ignored
+              uid=3_269 ignored
+                uid=3_270 ignored
+      uid=3_271 ignored
+        uid=3_272 ignored
+          uid=3_273 ignored
+            uid=3_274 ignored
+              uid=3_275 ignored
+            uid=3_276 ignored
+      uid=3_277 ignored
+        uid=3_278 ignored
+          uid=3_279 ignored
+          uid=3_280 ignored
+            uid=3_281 ignored
+              uid=3_282 ignored
+                uid=3_283 ignored
+              uid=3_284 ignored
+            uid=3_285 ignored
+              uid=3_286 ignored
+                uid=3_287 ignored
+              uid=3_288 ignored
+          uid=3_289 ignored
+          uid=3_290 ignored
+            uid=3_291 ignored
+          uid=3_292 ignored
+            uid=3_293 ignored
+      uid=3_294 ignored
+        uid=3_295 ignored
+          uid=3_296 ignored
+            uid=3_297 ignored
+              uid=3_298 ignored
+            uid=3_299 ignored
+            uid=3_300 ignored
+              uid=3_301 ignored
+                uid=3_302 ignored
+                  uid=3_303 ignored
+                uid=3_304 ignored
+              uid=3_305 ignored
+                uid=3_306 ignored
+                  uid=3_307 ignored
+                    uid=3_308 ignored
+                      uid=3_309 ignored
+                      uid=3_310 ignored
+                      uid=3_311 ignored
+            uid=3_312 ignored
+            uid=3_313 ignored
+              uid=3_314 ignored
+                uid=3_315 ignored
+                  uid=3_316 ignored
+                uid=3_317 ignored
+              uid=3_318 ignored
+                uid=3_319 ignored
+            uid=3_320 ignored
+            uid=3_321 ignored
+              uid=3_322 ignored
+                uid=3_323 ignored
+                  uid=3_324 ignored
+                uid=3_325 ignored
+              uid=3_326 ignored
+                uid=3_327 ignored
+            uid=3_328 ignored
+            uid=3_329 ignored
+              uid=3_330 ignored
+                uid=3_331 ignored
+                  uid=3_332 ignored
+                uid=3_333 ignored
+                uid=3_334 ignored
+                  uid=3_335 ignored
+                uid=3_336 ignored
+                uid=3_337 ignored
+                  uid=3_338 ignored
+                uid=3_339 ignored
+      uid=3_340 ignored
+        uid=3_341 ignored

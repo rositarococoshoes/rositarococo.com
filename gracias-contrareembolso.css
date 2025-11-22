@@ -1,0 +1,172 @@
+/* Estilos para las páginas de agradecimiento de contrareembolso */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.main-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.main-header img {
+    max-width: 180px;
+    height: auto;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 20px;
+    color: #333;
+    margin: 0 0 5px;
+    text-align: center;
+}
+
+h4 {
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.highlight {
+    background-color: #ffff00;
+    padding: 2px 5px;
+}
+
+.order-details {
+    padding: 10px;
+    background-color: lightyellow;
+    margin: 15px auto;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    font-size: 14px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.whatsapp-button {
+    text-align: center;
+    margin: 20px 0;
+    /* Añadir un poco de animación para llamar la atención */
+    animation: pulse 2s infinite;
+}
+
+.whatsapp-button img {
+    max-width: 240px;
+    transition: transform 0.2s;
+    /* Añadir sombra para destacar el botón */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.whatsapp-button img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación de pulso para llamar la atención */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.payment-info {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 20px 0;
+    border-left: 4px solid #3483fa;
+}
+
+.payment-info strong {
+    color: #e63946;
+}
+
+.thank-you {
+    text-align: center;
+    font-size: 18px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.customer-greeting {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 18px;
+    color: #3483fa;
+}
+
+/* Top benefits bar */
+.top-benefits-bar {
+    background-color: #f8f8f8;
+    padding: 10px 0;
+    text-align: center;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 20px;
+}
+
+.benefit-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    margin: 0 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.benefit-divider {
+    color: #ddd;
+    margin: 0 5px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+        margin: 0 10px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    .benefit-container {
+        flex-direction: column;
+    }
+
+    .benefit-item {
+        margin: 5px 0;
+    }
+
+    .benefit-divider {
+        display: none;
+    }
+}

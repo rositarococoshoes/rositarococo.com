@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Facebook Pixel Code -->
+    <script>
+    console.log('🔵 Iniciando carga de Facebook Pixel...');
+
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    console.log('🔵 Facebook Pixel script insertado');
+
+    // Verificar que fbq esté disponible
+    if (typeof fbq !== 'undefined') {
+        console.log('✅ fbq está disponible');
+        fbq('init', '1052677351596434');
+        console.log('✅ Facebook Pixel inicializado con ID: 1052677351596434');
+        if (typeof sendDualEvent === 'function') {
+            sendDualEvent('PageView', {});
+            console.log('✅ PageView event enviado via sendDualEvent');
+        } else {
+            fbq('track', 'PageView');
+            console.log('✅ PageView event enviado via fbq');
+        }
+    } else {
+        console.error('❌ fbq no está disponible');
+    }
+
+    // Verificar cuando el script se carga
+    window.addEventListener('load', function() {
+        console.log('🔵 Página cargada completamente');
+        if (typeof fbq !== 'undefined') {
+            console.log('✅ Facebook Pixel confirmado después de load');
+        } else {
+            console.error('❌ Facebook Pixel NO disponible después de load');
+        }
+    });
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1052677351596434&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Rosita Rococó - Guillerminas - Colección Premium 2025</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Descubre las exclusivas Guillerminas Negras - Diseño premium con la máxima calidad y estilo. Envío gratis a todo el país.">
+
+    <!-- Preconexiones para mejorar velocidad -->
+    <link rel="preconnect" href="https://connect.facebook.net">
+    <link rel="preconnect" href="https://www.facebook.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Premium Fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;600;700&family=Inter:wght@400;500;600;700&display=swap">
+    </noscript>
+
+    <!-- Premium Frontend Design CSS -->
+    <link rel="preload" href="premium-style.css" as="style">
+    <link rel="stylesheet" href="premium-style.css">
+
+    <!-- Carousel CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <style>
+        /* Premium Animaciones Adicionales */
+        @keyframes premiumFadeIn {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .premium-animate {
+            animation: premiumFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        .premium-shimmer {
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(255,255,255,0.3) 50%,
+                transparent 100%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* Premium Hero Section */
+        .hero-section {
+            background: var(--gradient-hero);
+            padding: var(--spacing-xxl) var(--spacing-lg);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            font-weight: 400;
+            margin-bottom: var(--spacing-xl);
+            font-family: var(--font-body);
+        }
+
+        /* Premium Features */
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-xl) 0;
+            padding: 0 var(--spacing-lg);
+        }
+
+        .premium-feature {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: var(--transition-smooth);
+        }
+
+        .premium-feature:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .premium-feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+        }
+
+        .premium-feature-title {
+            color: white;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .premium-feature-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Premium Testimonios */
+        .premium-testimonials {
+            background: var(--gradient-card);
+            padding: var(--spacing-xxl) var(--spacing-lg);
+            margin: var(--spacing-xxl) 0;
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .premium-testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .testimonial-quote {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-secondary);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--color-primary);
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            opacity: 0.2;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-rating {
+            color: var(--color-gold);
+            margin-top: var(--spacing-xs);
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Campo oculto para spam -->
+    <input type="text" name="website" id="website" class="sr-only" tabindex="-1" autocomplete="off">
+
+    <!-- Premium Top Benefits Bar -->
+    <div class="top-benefits-bar">
+        <div class="benefit-container">
+            <div class="benefit-item">
+                <span class="benefit-icon">💳</span>
+                <span>3 CUOTAS SIN INTERÉS</span>
+            </div>
+            <div class="benefit-divider">|</div>
+            <div class="benefit-item">
+                <span class="benefit-icon">🚚</span>
+                <span>ENVÍO GRATIS A TODO EL PAÍS</span>
+            </div>
+            <div class="benefit-divider">|</div>
+            <div class="benefit-item">
+                <span class="benefit-icon">✨</span>
+                <span>CALIDAD PREMIUM</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensajes del carrito -->
+    <div id="cart-messages" class="cart-messages-area"></div>
+
+    <!-- Premium Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content premium-animate">
+            <h1 class="hero-title">Rosita Rococó Premium</h1>
+            <p class="hero-subtitle">La exclusiva colección de Guillerminas Negras que redefine la elegancia contemporánea</p>
+
+            <div class="premium-features">
+                <div class="premium-feature">
+                    <span class="premium-feature-icon">👠</span>
+                    <h3 class="premium-feature-title">Diseño Único</h3>
+                    <p class="premium-feature-desc">Estilo inconfundible con la máxima calidad</p>
+                </div>
+                <div class="premium-feature">
+                    <span class="premium-feature-icon">🎨</span>
+                    <h3 class="premium-feature-title">Color Exclusivo</h3>
+                    <p class="premium-feature-desc">Negro intenso con acabados premium</p>
+                </div>
+                <div class="premium-feature">
+                    <span class="premium-feature-icon">🏆</span>
+                    <h3 class="premium-feature-title">Calidad Superior</h3>
+                    <p class="premium-feature-desc">Materiales seleccionados de primera</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Header con Promoción -->
+    <header class="main-header">
+        <div class="promo-banner premium-shimmer">
+            Aprovechá HOY 2 pares por $95.000 • Podés combinar modelos • 3 cuotas sin interés • Envío gratis
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        <form id="_rosita-form" name="rosita-form" method="POST" action="https://docs.google.com/forms/d/e/1FAIpQLSdIW9p0i70bcWJ8q3E4Sq24P_tYvwYflJGW_tW0tzL3cNAg5g/formResponse">
+            <input type="hidden" name="entry.1209868979" id="1209868979" value="">
+
+            <fieldset>
+                <legend class="sr-only">Selección de Modelos</legend>
+
+                <!-- Premium Product Grid -->
+                <div class="product-grid">
+                    <!-- Guillerminas Negras -->
+                    <div class="product-item premium-animate" style="animation-delay: 0.1s;">
+                        <div class="swiper" id="swiper-guillermina-negras">
+                            <div class="swiper-wrapper" style="height: auto;">
+                                <div class="swiper-slide">
+                                    <img alt="Guillerminas Negras - Vista 1"
+                                         src="guillerminafotos/1.webp"
+                                         style="width: 100%; height: auto; object-fit: contain;"
+                                         fetchpriority="high"
+                                         decoding="async">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img alt="Guillerminas Negras - Vista 2"
+                                         src="guillerminafotos/2.webp"
+                                         style="width: 100%; height: auto; object-fit: contain;"
+                                         loading="lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img alt="Guillerminas Negras - Vista 3"
+                                         src="guillerminafotos/3.webp"
+                                         style="width: 100%; height: auto; object-fit: contain;"
+                                         loading="lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img alt="Guillerminas Negras - Vista 4"
+                                         src="guillerminafotos/4.webp"
+                                         style="width: 100%; height: auto; object-fit: contain;"
+                                         loading="lazy">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img alt="Guillerminas Negras - Vista 5"
+                                         src="guillerminafotos/5.webp"
+                                         style="width: 100%; height: auto; object-fit: contain;"
+                                         loading="lazy">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                        <div class="product-info">
+                            <h3 class="product-title">Guillerminas Negras Premium</h3>
+                            <p class="product-description">
+                                La elegancia atemporal encuentra el diseño contemporáneo en nuestras exclusivas Guillerminas Negras.
+                                Perfectas para cualquier ocasión, combinan confort y estilo con la máxima calidad.
+                            </p>
+
+                            <div class="product-price">
+                                $55.000
+                            </div>
+
+                            <div class="product-benefits">
+                                <div class="product-benefit">
+                                    <span class="product-benefit-icon">💳</span>
+                                    <span>3 cuotas sin interés</span>
+                                </div>
+                                <div class="product-benefit">
+                                    <span class="product-benefit-icon">🚚</span>
+                                    <span>Envío gratis</span>
+                                </div>
+                                <div class="product-benefit">
+                                    <span class="product-benefit-icon">⭐</span>
+                                    <span>Calidad premium</span>
+                                </div>
+                                <div class="product-benefit">
+                                    <span class="product-benefit-icon">🎁</span>
+                                    <span>Embalaje exclusivo</span>
+                                </div>
+                            </div>
+
+                            <!-- Size and Quantity Selection -->
+                            <div class="size-quantity-container">
+                                <div class="size-selection">
+                                    <label class="size-label">Selecciona tu talle:</label>
+                                    <div class="size-options">
+                                        <button type="button" class="size-btn" data-talle="35" data-product="guillermina-negras">35</button>
+                                        <button type="button" class="size-btn" data-talle="36" data-product="guillermina-negras">36</button>
+                                        <button type="button" class="size-btn" data-talle="37" data-product="guillermina-negras">37</button>
+                                        <button type="button" class="size-btn" data-talle="38" data-product="guillermina-negras">38</button>
+                                        <button type="button" class="size-btn" data-talle="39" data-product="guillermina-negras">39</button>
+                                        <button type="button" class="size-btn" data-talle="40" data-product="guillermina-negras">40</button>
+                                        <button type="button" class="size-btn" data-talle="41" data-product="guillermina-negras">41</button>
+                                        <button type="button" class="size-btn" data-talle="42" data-product="guillermina-negras">42</button>
+                                    </div>
+                                </div>
+
+                                <div class="quantity-selection">
+                                    <label class="quantity-label">Cantidad:</label>
+                                    <div class="quantity-controls">
+                                        <button type="button" class="quantity-btn minus" data-product="guillermina-negras">−</button>
+                                        <input type="number" class="quantity-input" value="0" min="0" max="10" readonly data-product="guillermina-negras">
+                                        <button type="button" class="quantity-btn plus" data-product="guillermina-negras">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- Premium Testimonials Section -->
+    <section class="premium-testimonials">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--color-dark); margin-bottom: var(--spacing-xl); font-size: clamp(2rem, 5vw, 2.5rem);">
+                Lo que dicen nuestras clientas
+            </h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        Las Guillerminas Negras son simplemente perfectas. La calidad es excepcional y el estilo es único. ¡Las amo!
+                    </div>
+                    <div class="testimonial-author">María G.</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        Increíble comodidad y elegancia. Las uso para todo y siempre recibo cumplidos. ¡Recomendado 100%!
+                    </div>
+                    <div class="testimonial-author">Ana P.</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">
+                        El mejor calzado que he comprado. La relación calidad-precio es inmejorable y el envío fue rapidísimo.
+                    </div>
+                    <div class="testimonial-author">Lucía R.</div>
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mini Carrito Premium -->
+    <div id="mini-cart" class="mini-cart">
+        <div class="mini-cart-header">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-title">Tu Carrito Premium</span>
+            <span class="cart-count">0</span>
+            <button class="cart-close">×</button>
+        </div>
+
+        <div class="mini-cart-body">
+            <p class="empty-cart-message">Tu carrito está vacío</p>
+            <div class="cart-items"></div>
+            <div class="cart-instructions">
+                <p class="instruction-step"><span class="step-number">1</span> Selecciona tus productos favoritos</p>
+                <p class="instruction-step"><span class="step-number">2</span> Revisa tu carrito</p>
+                <p class="instruction-step"><span class="step-number">3</span> Haz clic en "Finalizar Compra"</p>
+            </div>
+        </div>
+
+        <div class="mini-cart-footer">
+            <div class="cart-total">Total: <span>$0</span></div>
+            <button id="checkout-btn" class="btn-disabled" onclick="goToCheckoutForm()">
+                Continuar al Envío →
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating Cart Button -->
+    <div id="floating-cart-btn" class="glow-effect" data-tooltip="Ver tu carrito">
+        <span class="cart-button-icon">🛒</span>
+        <span class="cart-button-count">0</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="cart.js"></script>
+
+    <script>
+        // Premium Initialize Swiper
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('#swiper-guillermina-negras', {
+                loop: true,
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                effect: 'coverflow',
+                coverflowEffect: {
+                    rotate: 50,
+                    stretch: 0,
+                    depth: 100,
+                    modifier: 1,
+                    slideShadows: true,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 20,
+                    },
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 1,
+                        spaceBetween: 40,
+                    }
+                }
+            });
+
+            // Premium Animations on Scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe premium elements
+            document.querySelectorAll('.premium-animate').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                observer.observe(el);
+            });
+
+            console.log('✅ Premium Rosita Rococó initialized successfully');
+        });
+
+        // Enhanced Cart Bounce Animation
+        function animateCartBounce() {
+            const cartBtn = document.getElementById('floating-cart-btn');
+            cartBtn.classList.remove('bounce');
+            void cartBtn.offsetWidth; // Trigger reflow
+            cartBtn.classList.add('bounce');
+        }
+
+        // Premium Sound Effects (optional)
+        function playPremiumSound(type) {
+            // Placeholder for premium sound effects
+            console.log(`🔊 Playing ${type} sound`);
+        }
+
+        // Enhanced Visual Feedback
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.size-btn, .quantity-btn, .product-benefit')) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.background = 'rgba(160, 89, 65, 0.3)';
+                ripple.style.width = ripple.style.height = '40px';
+                ripple.style.top = (e.clientY - 20) + 'px';
+                ripple.style.left = (e.clientX - 20) + 'px';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                ripple.style.pointerEvents = 'none';
+
+                document.body.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+/* Estilos para el botón flotante de continuar al envío */
+#fixed-checkout-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 990; /* Alto pero no tanto como otros elementos críticos */
+    background-color: var(--color-accent, #5a8f3e); /* Color verde acento del sitio */
+    color: white;
+    border: none;
+    border-radius: 30px; /* Bordes muy redondeados para estilo moderno */
+    padding: 12px 20px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease, opacity 0.3s ease;
+    display: none; /* Inicialmente oculto, se mostrará con JavaScript */
+    opacity: 0; /* Inicialmente transparente */
+    align-items: center;
+    justify-content: center;
+    max-width: 200px; /* Limitar el ancho */
+    text-align: center;
+    pointer-events: none; /* Inicialmente no interactuable */
+}
+
+#fixed-checkout-button:hover {
+    background-color: #476f31; /* Versión más oscura del color acento */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+#fixed-checkout-button .button-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#fixed-checkout-button svg {
+    margin-left: 5px;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    #fixed-checkout-button {
+        bottom: 15px;
+        right: 15px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        max-width: 180px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    #fixed-checkout-button {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        max-width: 160px;
+    }
+}

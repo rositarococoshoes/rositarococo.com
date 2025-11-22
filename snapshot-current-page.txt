@@ -1,0 +1,13 @@
+uid=11_0 RootWebArea "404: Not Found" url="http://localhost:4321/"
+  uid=11_1 main
+    uid=11_2 heading "404: Not found" level="1"
+    uid=11_3 StaticText "In your "
+    uid=11_4 StaticText "site"
+    uid=11_5 StaticText " you have your base path set to "
+    uid=11_6 link "/astrocline" url="http://localhost:4321/astrocline"
+      uid=11_7 StaticText "/astrocline"
+    uid=11_8 StaticText ". Do you want to go there instead?"
+    uid=11_9 StaticText "Come to our "
+    uid=11_10 link "Discord" url="https://astro.build/chat"
+      uid=11_11 StaticText "Discord"
+    uid=11_12 StaticText " if you need help."

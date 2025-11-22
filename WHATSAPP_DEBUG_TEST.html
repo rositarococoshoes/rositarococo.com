@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Input Debug Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .logs {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+        .log-input { color: #0066cc; }
+        .log-validation { color: #009900; }
+        .log-error { color: #cc0000; }
+    </style>
+</head>
+<body>
+    <h2>Test WhatsApp Input Debug</h2>
+
+    <label for="test-input">WhatsApp Input:</label>
+    <input type="tel" id="test-input" placeholder="Ej: 1112345678" maxlength="10">
+
+    <div class="logs">
+        <h3>Console Logs:</h3>
+        <div id="log-container"></div>
+    </div>
+
+    <script>
+        // Test functions - copiadas del carousel.js actualizado
+        function formatWhatsappNumber(number) {
+            if (!number) return '';
+            let formatted = number.replace(/[\s\-()]/g, '');
+            if (formatted.startsWith('+54')) formatted = formatted.substring(3);
+            if (formatted.startsWith('54')) formatted = formatted.substring(2);
+            if (formatted.startsWith('0')) formatted = formatted.substring(1);
+            if (formatted.length > 2 && formatted.substring(2, 4) === '15') {
+                formatted = formatted.substring(0, 2) + formatted.substring(4);
+            }
+            if (!/^\d+$/.test(formatted)) return '';
+            return '549' + formatted;
+        }
+
+        function validateWhatsAppNumber(phone) {
+            const formattedNumber = formatWhatsappNumber(phone);
+            return {
+                isValid: formattedNumber && formattedNumber.length >= 12,
+                formattedNumber: formattedNumber,
+                message: formattedNumber && formattedNumber.length >= 12 ? 'Formato válido' : 'Formato de WhatsApp inválido. Ej: 1112345678'
+            };
+        }
+
+        function addLog(message, type = 'input') {
+            const logContainer = document.getElementById('log-container');
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logContainer.appendChild(logEntry);
+            logContainer.scrollTop = logContainer.scrollHeight;
+        }
+
+        // Simular el input listener del carousel.js
+        const testInput = document.getElementById('test-input');
+        let validationTimeout;
+
+        testInput.addEventListener('input', function(e) {
+            clearTimeout(validationTimeout);
+
+            // Solo dígitos, sin guiones ni formatos
+            let value = e.target.value.replace(/\D/g, '');
+
+            // Limitar longitud a 10 dígitos
+            if (value.length > 10) {
+                value = value.slice(0, 10);
+            }
+
+            // Actualizar valor sin formato
+            e.target.value = value;
+
+            addLog(`📱 WhatsApp input value: "${value}"`, 'input');
+
+            if (!value) {
+                return;
+            }
+
+            // Validar con debounce
+            validationTimeout = setTimeout(() => {
+                const validation = validateWhatsAppNumber(value);
+                addLog(`✅ WhatsApp validation result: ${JSON.stringify(validation)}`, 'validation');
+
+                if (!validation.isValid) {
+                    addLog(`❌ Validation failed: ${validation.message}`, 'error');
+                }
+            }, 500);
+        });
+
+        addLog('🚀 WhatsApp input test initialized', 'input');
+    </script>
+</body>
+</html>

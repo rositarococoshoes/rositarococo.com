@@ -1,0 +1,27 @@
+[
+  {
+    "type": "error",
+    "text": "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "location": {
+      "url": "http://localhost:4321/"
+    }
+  },
+  {
+    "type": "debug",
+    "text": "[vite] connecting...",
+    "location": {
+      "url": "http://localhost:4321/@vite/client",
+      "lineNumber": 1520,
+      "columnNumber": 8
+    }
+  },
+  {
+    "type": "debug",
+    "text": "[vite] connected.",
+    "location": {
+      "url": "http://localhost:4321/@vite/client",
+      "lineNumber": 1643,
+      "columnNumber": 14
+    }
+  }
+]

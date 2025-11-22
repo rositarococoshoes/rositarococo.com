@@ -1,0 +1,57 @@
+{
+  "title": "Colección Otoño-Invierno 2025 | Rosita Rococó",
+  "url": "http://localhost:4327/",
+  "productImages": [
+    {
+      "src": "http://localhost:4327/images/products/guillerminas/negra/1.webp",
+      "alt": "Guillerminas Negras",
+      "width": 224,
+      "height": 320,
+      "loaded": true
+    },
+    {
+      "src": "http://localhost:4327/images/products/guillerminas/camel/1.webp",
+      "alt": "Guillerminas Camel",
+      "width": 224,
+      "height": 320,
+      "loaded": true
+    },
+    {
+      "src": "http://localhost:4327/images/products/guillerminas/blanca/1.webp",
+      "alt": "Guillerminas Blancas",
+      "width": 224,
+      "height": 320,
+      "loaded": true
+    },
+    {
+      "src": "http://localhost:4327/images/products/birk/negra/1.webp",
+      "alt": "Birk Negras",
+      "width": 224,
+      "height": 320,
+      "loaded": false
+    },
+    {
+      "src": "http://localhost:4327/images/products/birk/camel/1.webp",
+      "alt": "Birk Camel",
+      "width": 224,
+      "height": 320,
+      "loaded": true
+    },
+    {
+      "src": "http://localhost:4327/images/products/birk/blanca/1.webp",
+      "alt": "Birk Blancas",
+      "width": 224,
+      "height": 320,
+      "loaded": true
+    },
+    {
+      "src": "http://localhost:4327/images/products/paris/negra/1.webp",
+      "alt": "Paris Negras",
+      "width": 448,
+      "height": 320,
+      "loaded": false
+    }
+  ],
+  "totalImages": 8,
+  "brokenImages": 2
+}

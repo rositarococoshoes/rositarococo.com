@@ -1,0 +1,670 @@
+uid=1_0 RootWebArea "Rosita Rococó - Colección Otoño-Invierno 2025" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/otono-elegante.html"
+  uid=1_1 ignored
+    uid=1_2 ignored
+      uid=1_3 textbox
+        uid=1_4 generic
+      uid=1_5 generic
+        uid=1_6 link "whatsapp" url="https://api.whatsapp.com/send?phone=5491127595502&text=Quiero%20consultar%20por%20el%20calzado"
+          uid=1_7 image "whatsapp" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/whatsapp.png"
+      uid=1_8 ignored
+        uid=1_9 banner
+          uid=1_10 image "Rosita Rococó Logo" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/rosita-form.webp"
+          uid=1_11 heading "🍂 Colección Otoño-Invierno 2025 🍂" level="1"
+            uid=1_12 StaticText "🍂 Colección Otoño-Invierno 2025 🍂"
+              uid=1_13 InlineTextBox "🍂 Colección Otoño-Invierno 2025 🍂"
+          uid=1_14 paragraph
+            uid=1_15 StaticText "Diseños exclusivos que abrazan tus pasos con estilo y confort"
+              uid=1_16 InlineTextBox "Diseños exclusivos que abrazan tus pasos con estilo y confort"
+          uid=1_17 generic
+            uid=1_18 StaticText "NUEVA TEMPORADA"
+              uid=1_19 InlineTextBox "NUEVA TEMPORADA"
+            uid=1_20 generic
+        uid=1_21 ignored
+          uid=1_22 ignored
+            uid=1_23 ignored
+              uid=1_24 StaticText "🚚"
+                uid=1_25 InlineTextBox "🚚"
+            uid=1_26 ignored
+              uid=1_27 strong
+                uid=1_28 StaticText "ENVÍO GRATIS"
+                  uid=1_29 InlineTextBox "ENVÍO GRATIS"
+              uid=1_30 LineBreak "
+"
+                uid=1_31 InlineTextBox "
+"
+              uid=1_32 StaticText "a todo el país"
+                uid=1_33 InlineTextBox "a todo el país"
+          uid=1_34 ignored
+            uid=1_35 ignored
+              uid=1_36 StaticText "💳"
+                uid=1_37 InlineTextBox "💳"
+            uid=1_38 ignored
+              uid=1_39 strong
+                uid=1_40 StaticText "3 CUOTAS SIN INTERÉS"
+                  uid=1_41 InlineTextBox "3 CUOTAS SIN INTERÉS"
+              uid=1_42 LineBreak "
+"
+                uid=1_43 InlineTextBox "
+"
+              uid=1_44 StaticText "con todas las tarjetas"
+                uid=1_45 InlineTextBox "con todas las tarjetas"
+        uid=1_46 generic
+          uid=1_47 generic
+            uid=1_48 StaticText "🍂"
+              uid=1_49 InlineTextBox "🍂"
+          uid=1_50 heading "Prepárate para la Temporada" level="2"
+            uid=1_51 StaticText "Prepárate para la Temporada"
+              uid=1_52 InlineTextBox "Prepárate para la Temporada"
+            uid=1_53 generic
+          uid=1_54 ignored
+            uid=1_55 ignored
+              uid=1_56 ignored
+                uid=1_57 StaticText "1 par:"
+                  uid=1_58 InlineTextBox "1 par:"
+              uid=1_59 ignored
+                uid=1_60 StaticText "🔥 $70.000"
+                  uid=1_61 InlineTextBox "🔥 $70.000"
+            uid=1_62 generic
+              uid=1_63 generic
+                uid=1_64 StaticText "¡Mejor opción!"
+                  uid=1_65 InlineTextBox "¡Mejor opción!"
+              uid=1_66 ignored
+                uid=1_67 StaticText "2 pares:"
+                  uid=1_68 InlineTextBox "2 pares:"
+              uid=1_69 ignored
+                uid=1_70 StaticText "🔥 $110.000"
+                  uid=1_71 InlineTextBox "🔥 $110.000"
+              uid=1_72 ignored
+                uid=1_73 StaticText "($55.000 c/u - ¡Tu mejor opción!)"
+                  uid=1_74 InlineTextBox "($55.000 c/u - ¡Tu mejor opción!)"
+          uid=1_75 paragraph
+            uid=1_76 emphasis
+              uid=1_77 StaticText "Combina modelos y talles como más te guste (máx. 2 pares)."
+                uid=1_78 InlineTextBox "Combina modelos y talles como más te guste (máx. 2 pares)."
+          uid=1_79 paragraph
+            uid=1_80 StaticText "💰 "
+              uid=1_81 InlineTextBox "💰 "
+            uid=1_82 StaticText "10% OFF EXTRA"
+              uid=1_83 InlineTextBox "10% OFF EXTRA"
+            uid=1_84 StaticText " PAGANDO POR TRANSFERENCIA! 💰"
+              uid=1_85 InlineTextBox " PAGANDO POR TRANSFERENCIA! 💰"
+          uid=1_86 list
+            uid=1_87 listitem level="1"
+              uid=1_88 ignored
+                uid=1_89 generic
+                  uid=1_90 StaticText "✓"
+                    uid=1_91 InlineTextBox "✓"
+              uid=1_92 strong
+                uid=1_93 StaticText "ENVÍO GRATIS"
+                  uid=1_94 InlineTextBox "ENVÍO GRATIS"
+              uid=1_95 StaticText " a todo el país. ¡Recíbelos en tu puerta!"
+                uid=1_96 InlineTextBox " a todo el país. ¡Recíbelos en tu puerta!"
+            uid=1_97 listitem level="1"
+              uid=1_98 ignored
+                uid=1_99 generic
+                  uid=1_100 StaticText "✓"
+                    uid=1_101 InlineTextBox "✓"
+              uid=1_102 strong
+                uid=1_103 StaticText "PAGO SEGURO:"
+                  uid=1_104 InlineTextBox "PAGO SEGURO:"
+              uid=1_105 StaticText " 3 Cuotas sin interés con Tarjeta, MercadoPago o Transferencia (con dto.)"
+                uid=1_106 InlineTextBox " 3 Cuotas sin interés con Tarjeta, MercadoPago o Transferencia "
+                uid=1_107 InlineTextBox "(con dto.)"
+            uid=1_108 listitem level="1"
+              uid=1_109 ignored
+                uid=1_110 generic
+                  uid=1_111 StaticText "✓"
+                    uid=1_112 InlineTextBox "✓"
+              uid=1_113 strong
+                uid=1_114 StaticText "PRODUCCIÓN A PEDIDO:"
+                  uid=1_115 InlineTextBox "PRODUCCIÓN A PEDIDO:"
+              uid=1_116 StaticText " Despachamos en 15 días aprox. ¡Hechos especialmente para ti!"
+                uid=1_117 InlineTextBox " Despachamos en 15 días aprox. ¡Hechos "
+                uid=1_118 InlineTextBox "especialmente para ti!"
+            uid=1_119 listitem level="1"
+              uid=1_120 ignored
+                uid=1_121 generic
+                  uid=1_122 StaticText "✓"
+                    uid=1_123 InlineTextBox "✓"
+              uid=1_124 strong
+                uid=1_125 StaticText "TALLES:"
+                  uid=1_126 InlineTextBox "TALLES:"
+              uid=1_127 StaticText " Del 35 al 40. Revisa los cm de plantilla en cada modelo"
+                uid=1_128 InlineTextBox " Del 35 al 40. Revisa los cm de plantilla en cada modelo"
+            uid=1_129 listitem level="1"
+              uid=1_130 ignored
+                uid=1_131 generic
+                  uid=1_132 StaticText "✓"
+                    uid=1_133 InlineTextBox "✓"
+              uid=1_134 strong
+                uid=1_135 StaticText "STOCK ASEGURADO:"
+                  uid=1_136 InlineTextBox "STOCK ASEGURADO:"
+              uid=1_137 StaticText " Todos los modelos publicados están disponibles"
+                uid=1_138 InlineTextBox " Todos los modelos publicados están disponibles"
+          uid=1_139 generic
+            uid=1_140 StaticText "🍂"
+              uid=1_141 InlineTextBox "🍂"
+        uid=1_142 generic
+          uid=1_143 ignored
+          uid=1_144 group "Selección de Modelos"
+            uid=1_145 Legend
+              uid=1_146 StaticText "Selección de Modelos"
+                uid=1_147 InlineTextBox "Selección de Modelos"
+            uid=1_148 heading "Elige tus Esenciales de Temporada" level="2"
+              uid=1_149 StaticText "Elige tus Esenciales de Temporada"
+                uid=1_150 InlineTextBox "Elige tus Esenciales de Temporada"
+            uid=1_151 ignored
+              uid=1_152 generic
+                uid=1_153 heading "Botineta Roma Negras" level="2"
+                  uid=1_154 StaticText "Botineta Roma Negras"
+                    uid=1_155 InlineTextBox "Botineta Roma Negras"
+                uid=1_156 generic
+                  uid=1_157 generic
+                    uid=1_158 ignored
+                      uid=1_159 image "Botineta Roma Negras - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-1.jpg"
+                    uid=1_160 ignored
+                      uid=1_161 image "Botineta Roma Negras - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-1a.jpg"
+                    uid=1_162 ignored
+                      uid=1_163 image "Botineta Roma Negras - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-5a.jpg"
+                    uid=1_164 ignored
+                      uid=1_165 image "Botineta Roma Negras - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-2a.jpg"
+                    uid=1_166 ignored
+                      uid=1_167 image "Botineta Roma Negras - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-3a.jpg"
+                    uid=1_168 ignored
+                      uid=1_169 image "Botineta Roma Negras - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-4a.jpg"
+                    uid=1_170 ignored
+                      uid=1_171 image "Botineta Roma Negras - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-negras-2.jpg"
+                  uid=1_172 button "Imagen anterior"
+                    uid=1_173 StaticText "<"
+                      uid=1_174 InlineTextBox "<"
+                  uid=1_175 button "Imagen siguiente"
+                    uid=1_176 StaticText ">"
+                      uid=1_177 InlineTextBox ">"
+                  uid=1_178 list
+                    uid=1_179 listitem level="1"
+                    uid=1_180 listitem level="1"
+                    uid=1_181 listitem level="1"
+                    uid=1_182 listitem level="1"
+                    uid=1_183 listitem level="1"
+                    uid=1_184 listitem level="1"
+                    uid=1_185 listitem level="1"
+                uid=1_186 generic
+                  uid=1_187 ignored
+                    uid=1_188 ignored
+                      uid=1_189 ignored
+                        uid=1_190 strong
+                          uid=1_191 StaticText "Material:"
+                            uid=1_192 InlineTextBox "Material:"
+                          uid=1_193 generic
+                            uid=1_194 StaticText ":"
+                              uid=1_195 InlineTextBox ":"
+                        uid=1_196 StaticText "Cuero"
+                          uid=1_197 InlineTextBox "Cuero"
+                      uid=1_198 ignored
+                        uid=1_199 strong
+                          uid=1_200 StaticText "Suela:"
+                            uid=1_201 InlineTextBox "Suela:"
+                          uid=1_202 generic
+                            uid=1_203 StaticText ":"
+                              uid=1_204 InlineTextBox ":"
+                        uid=1_205 StaticText "Expanso"
+                          uid=1_206 InlineTextBox "Expanso"
+                      uid=1_207 ignored
+                        uid=1_208 strong
+                          uid=1_209 StaticText "Altura:"
+                            uid=1_210 InlineTextBox "Altura:"
+                          uid=1_211 generic
+                            uid=1_212 StaticText ":"
+                              uid=1_213 InlineTextBox ":"
+                        uid=1_214 StaticText "Media"
+                          uid=1_215 InlineTextBox "Media"
+                    uid=1_216 paragraph
+                      uid=1_217 StaticText "Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo."
+                        uid=1_218 InlineTextBox "Un clásico atemporal y versátil, perfecto para "
+                        uid=1_219 InlineTextBox "elevar cualquier look diario con comodidad y "
+                        uid=1_220 InlineTextBox "estilo."
+                  uid=1_221 ignored
+                    uid=1_222 ignored
+                      uid=1_223 StaticText "Cantidad:"
+                        uid=1_224 InlineTextBox "Cantidad:"
+                    uid=1_225 LabelText
+                      uid=1_226 radio "1 par" checked
+                      uid=1_227 StaticText "1 par"
+                        uid=1_228 InlineTextBox "1 par"
+                    uid=1_229 LabelText
+                      uid=1_230 radio "2 pares"
+                      uid=1_231 StaticText "2 pares"
+                        uid=1_232 InlineTextBox "2 pares"
+                  uid=1_233 ignored
+                    uid=1_234 group
+                      uid=1_235 generic
+                        uid=1_236 LabelText
+                          uid=1_237 StaticText "Talle Par 1"
+                            uid=1_238 InlineTextBox "Talle Par 1"
+                        uid=1_239 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                          uid=1_240 MenuListPopup
+                            uid=1_241 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                            uid=1_242 option "35 (23 cm de plantilla)" value="35 (23 cm de plantilla)"
+                            uid=1_243 option "36 (23,5 cm de plantilla)" value="36 (23,5 cm de plantilla)"
+                            uid=1_244 option "37 (24 cm de plantilla)" value="37 (24 cm de plantilla)"
+                            uid=1_245 option "38 (25 cm de plantilla)" value="38 (25 cm de plantilla)"
+                            uid=1_246 option "39 (25,5 cm de plantilla)" value="39 (25,5 cm de plantilla)"
+                            uid=1_247 option "40 (26 cm de plantilla)" value="40 (26 cm de plantilla)"
+                    uid=1_248 ignored
+                      uid=1_249 ignored
+                    uid=1_250 ignored
+                      uid=1_251 ignored
+                      uid=1_252 ignored
+                      uid=1_253 ignored
+                      uid=1_254 ignored
+                      uid=1_255 ignored
+                      uid=1_256 ignored
+                      uid=1_257 ignored
+              uid=1_258 generic
+                uid=1_259 heading "Botineta Roma Suela" level="2"
+                  uid=1_260 StaticText "Botineta Roma Suela"
+                    uid=1_261 InlineTextBox "Botineta Roma Suela"
+                uid=1_262 generic
+                  uid=1_263 generic
+                    uid=1_264 ignored
+                      uid=1_265 image "Botineta Roma Suela - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-suela-1a.jpg"
+                    uid=1_266 ignored
+                      uid=1_267 image "Botineta Roma Suela - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-suela-2a.jpg"
+                    uid=1_268 ignored
+                      uid=1_269 image "Botineta Roma Suela - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-suela-1.jpg"
+                    uid=1_270 ignored
+                      uid=1_271 image "Botineta Roma Suela - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/roma-suela-2.jpg"
+                  uid=1_272 button "Imagen anterior"
+                    uid=1_273 StaticText "<"
+                      uid=1_274 InlineTextBox "<"
+                  uid=1_275 button "Imagen siguiente"
+                    uid=1_276 StaticText ">"
+                      uid=1_277 InlineTextBox ">"
+                  uid=1_278 list
+                    uid=1_279 listitem level="1"
+                    uid=1_280 listitem level="1"
+                    uid=1_281 listitem level="1"
+                    uid=1_282 listitem level="1"
+                uid=1_283 generic
+                  uid=1_284 ignored
+                    uid=1_285 ignored
+                      uid=1_286 ignored
+                        uid=1_287 strong
+                          uid=1_288 StaticText "Material:"
+                            uid=1_289 InlineTextBox "Material:"
+                          uid=1_290 generic
+                            uid=1_291 StaticText ":"
+                              uid=1_292 InlineTextBox ":"
+                        uid=1_293 StaticText "Cuero"
+                          uid=1_294 InlineTextBox "Cuero"
+                      uid=1_295 ignored
+                        uid=1_296 strong
+                          uid=1_297 StaticText "Suela:"
+                            uid=1_298 InlineTextBox "Suela:"
+                          uid=1_299 generic
+                            uid=1_300 StaticText ":"
+                              uid=1_301 InlineTextBox ":"
+                        uid=1_302 StaticText "Expanso"
+                          uid=1_303 InlineTextBox "Expanso"
+                      uid=1_304 ignored
+                        uid=1_305 strong
+                          uid=1_306 StaticText "Altura:"
+                            uid=1_307 InlineTextBox "Altura:"
+                          uid=1_308 generic
+                            uid=1_309 StaticText ":"
+                              uid=1_310 InlineTextBox ":"
+                        uid=1_311 StaticText "Media"
+                          uid=1_312 InlineTextBox "Media"
+                    uid=1_313 paragraph
+                      uid=1_314 StaticText "El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado."
+                        uid=1_315 InlineTextBox "El tono cálido ideal para complementar tus "
+                        uid=1_316 InlineTextBox "outfits de otoño, aportando un toque natural y "
+                        uid=1_317 InlineTextBox "sofisticado."
+                  uid=1_318 ignored
+                    uid=1_319 ignored
+                      uid=1_320 StaticText "Cantidad:"
+                        uid=1_321 InlineTextBox "Cantidad:"
+                    uid=1_322 LabelText
+                      uid=1_323 radio "1 par" checked
+                      uid=1_324 StaticText "1 par"
+                        uid=1_325 InlineTextBox "1 par"
+                    uid=1_326 LabelText
+                      uid=1_327 radio "2 pares"
+                      uid=1_328 StaticText "2 pares"
+                        uid=1_329 InlineTextBox "2 pares"
+                  uid=1_330 ignored
+                    uid=1_331 group
+                      uid=1_332 generic
+                        uid=1_333 LabelText
+                          uid=1_334 StaticText "Talle Par 1"
+                            uid=1_335 InlineTextBox "Talle Par 1"
+                        uid=1_336 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                          uid=1_337 MenuListPopup
+                            uid=1_338 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                            uid=1_339 option "35 (23 cm de plantilla)" value="35 (23 cm de plantilla)"
+                            uid=1_340 option "36 (23,5 cm de plantilla)" value="36 (23,5 cm de plantilla)"
+                            uid=1_341 option "37 (24 cm de plantilla)" value="37 (24 cm de plantilla)"
+                            uid=1_342 option "38 (25 cm de plantilla)" value="38 (25 cm de plantilla)"
+                            uid=1_343 option "39 (25,5 cm de plantilla)" value="39 (25,5 cm de plantilla)"
+                            uid=1_344 option "40 (26 cm de plantilla)" value="40 (26 cm de plantilla)"
+                    uid=1_345 ignored
+                      uid=1_346 ignored
+                    uid=1_347 ignored
+                      uid=1_348 ignored
+                      uid=1_349 ignored
+                      uid=1_350 ignored
+                      uid=1_351 ignored
+                      uid=1_352 ignored
+                      uid=1_353 ignored
+                      uid=1_354 ignored
+              uid=1_355 generic
+                uid=1_356 heading "Borcego Siena 2025" level="2"
+                  uid=1_357 StaticText "Borcego Siena 2025"
+                    uid=1_358 InlineTextBox "Borcego Siena 2025"
+                uid=1_359 generic
+                  uid=1_360 generic
+                    uid=1_361 ignored
+                      uid=1_362 image "Borcego Siena 2025 - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/siena2025-1.webp"
+                    uid=1_363 ignored
+                      uid=1_364 image "Borcego Siena 2025 - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/siena2025-2.webp"
+                  uid=1_365 button "Imagen anterior"
+                    uid=1_366 StaticText "<"
+                      uid=1_367 InlineTextBox "<"
+                  uid=1_368 button "Imagen siguiente"
+                    uid=1_369 StaticText ">"
+                      uid=1_370 InlineTextBox ">"
+                  uid=1_371 list
+                    uid=1_372 listitem level="1"
+                    uid=1_373 listitem level="1"
+                uid=1_374 generic
+                  uid=1_375 ignored
+                    uid=1_376 ignored
+                      uid=1_377 ignored
+                        uid=1_378 strong
+                          uid=1_379 StaticText "Material:"
+                            uid=1_380 InlineTextBox "Material:"
+                          uid=1_381 generic
+                            uid=1_382 StaticText ":"
+                              uid=1_383 InlineTextBox ":"
+                        uid=1_384 StaticText "Cuero"
+                          uid=1_385 InlineTextBox "Cuero"
+                      uid=1_386 ignored
+                        uid=1_387 strong
+                          uid=1_388 StaticText "Suela:"
+                            uid=1_389 InlineTextBox "Suela:"
+                          uid=1_390 generic
+                            uid=1_391 StaticText ":"
+                              uid=1_392 InlineTextBox ":"
+                        uid=1_393 StaticText "Expanso"
+                          uid=1_394 InlineTextBox "Expanso"
+                      uid=1_395 ignored
+                        uid=1_396 strong
+                          uid=1_397 StaticText "Altura:"
+                            uid=1_398 InlineTextBox "Altura:"
+                          uid=1_399 generic
+                            uid=1_400 StaticText ":"
+                              uid=1_401 InlineTextBox ":"
+                        uid=1_402 StaticText "Alta"
+                          uid=1_403 InlineTextBox "Alta"
+                    uid=1_404 paragraph
+                      uid=1_405 StaticText "Robusto, chic y con carácter. El borcego Siena está listo para acompañarte en cualquier aventura urbana con actitud."
+                        uid=1_406 InlineTextBox "Robusto, chic y con carácter. El borcego Siena "
+                        uid=1_407 InlineTextBox "está listo para acompañarte en cualquier "
+                        uid=1_408 InlineTextBox "aventura urbana con actitud."
+                  uid=1_409 ignored
+                    uid=1_410 ignored
+                      uid=1_411 StaticText "Cantidad:"
+                        uid=1_412 InlineTextBox "Cantidad:"
+                    uid=1_413 LabelText
+                      uid=1_414 radio "1 par" checked
+                      uid=1_415 StaticText "1 par"
+                        uid=1_416 InlineTextBox "1 par"
+                    uid=1_417 LabelText
+                      uid=1_418 radio "2 pares"
+                      uid=1_419 StaticText "2 pares"
+                        uid=1_420 InlineTextBox "2 pares"
+                  uid=1_421 ignored
+                    uid=1_422 group
+                      uid=1_423 generic
+                        uid=1_424 LabelText
+                          uid=1_425 StaticText "Talle Par 1"
+                            uid=1_426 InlineTextBox "Talle Par 1"
+                        uid=1_427 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                          uid=1_428 MenuListPopup
+                            uid=1_429 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                            uid=1_430 option "35 (23 cm de plantilla)" value="35 (23 cm de plantilla)"
+                            uid=1_431 option "36 (23,5 cm de plantilla)" value="36 (23,5 cm de plantilla)"
+                            uid=1_432 option "37 (24 cm de plantilla)" value="37 (24 cm de plantilla)"
+                            uid=1_433 option "38 (25 cm de plantilla)" value="38 (25 cm de plantilla)"
+                            uid=1_434 option "39 (25,5 cm de plantilla)" value="39 (25,5 cm de plantilla)"
+                            uid=1_435 option "40 (26 cm de plantilla)" value="40 (26 cm de plantilla)"
+                    uid=1_436 ignored
+                      uid=1_437 ignored
+                    uid=1_438 ignored
+                      uid=1_439 ignored
+                      uid=1_440 ignored
+                      uid=1_441 ignored
+                      uid=1_442 ignored
+                      uid=1_443 ignored
+                      uid=1_444 ignored
+                      uid=1_445 ignored
+              uid=1_446 generic
+                uid=1_447 heading "Venecia Negras" level="2"
+                  uid=1_448 StaticText "Venecia Negras"
+                    uid=1_449 InlineTextBox "Venecia Negras"
+                uid=1_450 generic
+                  uid=1_451 generic
+                    uid=1_452 ignored
+                      uid=1_453 image "Venecia Negras - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/venecia-negras-1a.jpg"
+                    uid=1_454 ignored
+                      uid=1_455 image "Venecia Negras - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/venecia-negras-2a.jpg"
+                    uid=1_456 ignored
+                      uid=1_457 image "Venecia Negras - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/venecia-negras-3a.jpg"
+                    uid=1_458 ignored
+                      uid=1_459 image "Venecia Negras - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/venecia-negras-4a.jpg"
+                  uid=1_460 button "Imagen anterior"
+                    uid=1_461 StaticText "<"
+                      uid=1_462 InlineTextBox "<"
+                  uid=1_463 button "Imagen siguiente"
+                    uid=1_464 StaticText ">"
+                      uid=1_465 InlineTextBox ">"
+                  uid=1_466 list
+                    uid=1_467 listitem level="1"
+                    uid=1_468 listitem level="1"
+                    uid=1_469 listitem level="1"
+                    uid=1_470 listitem level="1"
+                uid=1_471 generic
+                  uid=1_472 ignored
+                    uid=1_473 ignored
+                      uid=1_474 ignored
+                        uid=1_475 strong
+                          uid=1_476 StaticText "Material:"
+                            uid=1_477 InlineTextBox "Material:"
+                          uid=1_478 generic
+                            uid=1_479 StaticText ":"
+                              uid=1_480 InlineTextBox ":"
+                        uid=1_481 StaticText "Cuero"
+                          uid=1_482 InlineTextBox "Cuero"
+                      uid=1_483 ignored
+                        uid=1_484 strong
+                          uid=1_485 StaticText "Suela:"
+                            uid=1_486 InlineTextBox "Suela:"
+                          uid=1_487 generic
+                            uid=1_488 StaticText ":"
+                              uid=1_489 InlineTextBox ":"
+                        uid=1_490 StaticText "Expanso"
+                          uid=1_491 InlineTextBox "Expanso"
+                      uid=1_492 ignored
+                        uid=1_493 strong
+                          uid=1_494 StaticText "Altura:"
+                            uid=1_495 InlineTextBox "Altura:"
+                          uid=1_496 generic
+                            uid=1_497 StaticText ":"
+                              uid=1_498 InlineTextBox ":"
+                        uid=1_499 StaticText "Media"
+                          uid=1_500 InlineTextBox "Media"
+                    uid=1_501 paragraph
+                      uid=1_502 StaticText "Elegancia y comodidad en un diseño moderno. El modelo Venecia es perfecto para complementar tus looks más sofisticados."
+                        uid=1_503 InlineTextBox "Elegancia y comodidad en un diseño moderno. El "
+                        uid=1_504 InlineTextBox "modelo Venecia es perfecto para complementar "
+                        uid=1_505 InlineTextBox "tus looks más sofisticados."
+                  uid=1_506 ignored
+                    uid=1_507 ignored
+                      uid=1_508 StaticText "Cantidad:"
+                        uid=1_509 InlineTextBox "Cantidad:"
+                    uid=1_510 LabelText
+                      uid=1_511 radio "1 par" checked
+                      uid=1_512 StaticText "1 par"
+                        uid=1_513 InlineTextBox "1 par"
+                    uid=1_514 LabelText
+                      uid=1_515 radio "2 pares"
+                      uid=1_516 StaticText "2 pares"
+                        uid=1_517 InlineTextBox "2 pares"
+                  uid=1_518 ignored
+                    uid=1_519 group
+                      uid=1_520 generic
+                        uid=1_521 LabelText
+                          uid=1_522 StaticText "Talle Par 1"
+                            uid=1_523 InlineTextBox "Talle Par 1"
+                        uid=1_524 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                          uid=1_525 MenuListPopup
+                            uid=1_526 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                            uid=1_527 option "35 (23 cm de plantilla)" value="35 (23 cm de plantilla)"
+                            uid=1_528 option "36 (23,5 cm de plantilla)" value="36 (23,5 cm de plantilla)"
+                            uid=1_529 option "37 (24 cm de plantilla)" value="37 (24 cm de plantilla)"
+                            uid=1_530 option "38 (25 cm de plantilla)" value="38 (25 cm de plantilla)"
+                            uid=1_531 option "39 (25,5 cm de plantilla)" value="39 (25,5 cm de plantilla)"
+                            uid=1_532 option "40 (26 cm de plantilla)" value="40 (26 cm de plantilla)"
+                    uid=1_533 ignored
+                      uid=1_534 ignored
+                    uid=1_535 ignored
+                      uid=1_536 ignored
+                      uid=1_537 ignored
+                      uid=1_538 ignored
+                      uid=1_539 ignored
+                      uid=1_540 ignored
+                      uid=1_541 ignored
+                      uid=1_542 ignored
+          uid=1_543 generic
+            uid=1_544 heading "Lo que dicen nuestras clientas" level="2"
+              uid=1_545 StaticText "Lo que dicen nuestras clientas"
+                uid=1_546 InlineTextBox "Lo que dicen nuestras clientas"
+              uid=1_547 generic
+            uid=1_548 generic
+              uid=1_549 generic
+                uid=1_550 ignored
+                  uid=1_551 image "Captura de comentario positivo de clienta 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi1.webp"
+                uid=1_552 ignored
+                  uid=1_553 image "Captura de comentario positivo de clienta 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi2.webp"
+                uid=1_554 ignored
+                  uid=1_555 image "Captura de comentario positivo de clienta 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi4.webp"
+                uid=1_556 ignored
+                  uid=1_557 image "Captura de comentario positivo de clienta 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi5.webp"
+                uid=1_558 ignored
+                  uid=1_559 image "Captura de comentario positivo de clienta 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi6.webp"
+                uid=1_560 ignored
+                  uid=1_561 image "Captura de comentario positivo de clienta 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi7.webp"
+                uid=1_562 ignored
+                  uid=1_563 image "Captura de comentario positivo de clienta 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariorecibi8.webp"
+                uid=1_564 ignored
+                  uid=1_565 image "Captura de comentarios de Instagram" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentariosig.webp"
+                uid=1_566 ignored
+                  uid=1_567 image "Referencia de clienta satisfecha 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentario3-min.webp"
+                uid=1_568 ignored
+                  uid=1_569 image "Referencia de clienta satisfecha 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentario4-min.webp"
+                uid=1_570 ignored
+                  uid=1_571 image "Referencia de clienta satisfecha 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentario5-min.webp"
+              uid=1_572 button "Testimonio anterior"
+                uid=1_573 StaticText "<"
+                  uid=1_574 InlineTextBox "<"
+              uid=1_575 button "Testimonio siguiente"
+                uid=1_576 StaticText ">"
+                  uid=1_577 InlineTextBox ">"
+              uid=1_578 list
+                uid=1_579 listitem level="1"
+                uid=1_580 listitem level="1"
+                uid=1_581 listitem level="1"
+                uid=1_582 listitem level="1"
+                uid=1_583 listitem level="1"
+                uid=1_584 listitem level="1"
+                uid=1_585 listitem level="1"
+                uid=1_586 listitem level="1"
+                uid=1_587 listitem level="1"
+                uid=1_588 listitem level="1"
+                uid=1_589 listitem level="1"
+          uid=1_590 ignored
+            uid=1_591 ignored
+          uid=1_592 ignored
+          uid=1_593 ignored
+          uid=1_594 ignored
+            uid=1_595 ignored
+            uid=1_596 ignored
+              uid=1_597 ignored
+          uid=1_598 ignored
+          uid=1_599 ignored
+          uid=1_600 ignored
+            uid=1_601 ignored
+            uid=1_602 ignored
+              uid=1_603 ignored
+          uid=1_604 ignored
+          uid=1_605 ignored
+          uid=1_606 ignored
+            uid=1_607 ignored
+            uid=1_608 ignored
+              uid=1_609 ignored
+          uid=1_610 ignored
+          uid=1_611 ignored
+          uid=1_612 ignored
+            uid=1_613 ignored
+          uid=1_614 ignored
+          uid=1_615 ignored
+          uid=1_616 ignored
+            uid=1_617 ignored
+          uid=1_618 ignored
+          uid=1_619 ignored
+          uid=1_620 ignored
+            uid=1_621 ignored
+          uid=1_622 ignored
+          uid=1_623 ignored
+          uid=1_624 ignored
+            uid=1_625 ignored
+          uid=1_626 ignored
+            uid=1_627 ignored
+            uid=1_628 ignored
+            uid=1_629 ignored
+            uid=1_630 ignored
+            uid=1_631 ignored
+            uid=1_632 ignored
+            uid=1_633 ignored
+            uid=1_634 ignored
+            uid=1_635 ignored
+            uid=1_636 ignored
+            uid=1_637 ignored
+            uid=1_638 ignored
+            uid=1_639 ignored
+            uid=1_640 ignored
+            uid=1_641 ignored
+            uid=1_642 ignored
+            uid=1_643 ignored
+            uid=1_644 ignored
+            uid=1_645 ignored
+            uid=1_646 ignored
+            uid=1_647 ignored
+            uid=1_648 ignored
+            uid=1_649 ignored
+          uid=1_650 ignored
+            uid=1_651 ignored
+          uid=1_652 ignored
+          uid=1_653 ignored
+          uid=1_654 ignored
+            uid=1_655 ignored
+          uid=1_656 ignored
+            uid=1_657 ignored
+            uid=1_658 ignored
+              uid=1_659 ignored
+          uid=1_660 ignored
+            uid=1_661 ignored
+            uid=1_662 ignored
+            uid=1_663 ignored
+            uid=1_664 ignored
+      uid=1_665 generic

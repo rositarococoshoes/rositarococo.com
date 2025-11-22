@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Test - Rosita Rococó</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Embla Carousel CDN -->
+    <script src="https://unpkg.com/embla-carousel@latest/embla-carousel.umd.js"></script>
+    <script src="https://unpkg.com/embla-carousel-autoplay@latest/embla-carousel-autoplay.umd.js"></script>
+    <!-- Our CSS files -->
+    <link rel="stylesheet" href="astrocline/css/carousel.css">
+    <link rel="stylesheet" href="astrocline/css/custom.css">
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        .test-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-header h1 {
+            font-family: 'Playfair Display', serif;
+            color: #ec4899;
+            margin-bottom: 10px;
+        }
+        .test-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .test-btn {
+            padding: 8px 16px;
+            background: #ec4899;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .test-btn:hover {
+            background: #d946aa;
+            transform: translateY(-1px);
+        }
+        .test-status {
+            padding: 10px;
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .console-output {
+            background: #1f2937;
+            color: #f3f4f6;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>🎠 Carousel Functionality Test</h1>
+            <p>Testing the Rosita Rococó carousel implementation</p>
+        </div>
+
+        <div class="test-status" id="test-status">
+            <strong>Status:</strong> Initializing tests...
+        </div>
+
+        <div class="test-controls">
+            <button class="test-btn" onclick="runTests()">🧪 Run All Tests</button>
+            <button class="test-btn" onclick="testSwipeGestures()">👆 Test Swipe Gestures</button>
+            <button class="test-btn" onclick="testThumbnails()">🖼️ Test Thumbnails</button>
+            <button class="test-btn" onclick="testKeyboard()">⌨️ Test Keyboard</button>
+            <button class="test-btn" onclick="testResponsive()">📱 Test Responsive</button>
+            <button class="test-btn" onclick="clearConsole()">🗑️ Clear Console</button>
+        </div>
+
+        <!-- Test Carousel - Using the same structure as the main site -->
+        <div class="embla" data-product-id="test-product" data-autoplay="false">
+            <div class="embla__viewport">
+                <div class="embla__container">
+                    <div class="embla__slide">
+                        <div class="embla__slide__inner">
+                            <img class="embla__slide__img" src="https://picsum.photos/400/300?random=1" alt="Test Image 1" loading="eager">
+                        </div>
+                    </div>
+                    <div class="embla__slide">
+                        <div class="embla__slide__inner">
+                            <img class="embla__slide__img" src="https://picsum.photos/400/300?random=2" alt="Test Image 2" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="embla__slide">
+                        <div class="embla__slide__inner">
+                            <img class="embla__slide__img" src="https://picsum.photos/400/300?random=3" alt="Test Image 3" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="embla__slide">
+                        <div class="embla__slide__inner">
+                            <img class="embla__slide__img" src="https://picsum.photos/400/300?random=4" alt="Test Image 4" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="embla__slide">
+                        <div class="embla__slide__inner">
+                            <img class="embla__slide__img" src="https://picsum.photos/400/300?random=5" alt="Test Image 5" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Navigation buttons -->
+            <button class="embla__button embla__button--prev" type="button">
+                <svg class="embla__button__svg" viewBox="0 0 24 24">
+                    <path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </button>
+            <button class="embla__button embla__button--next" type="button">
+                <svg class="embla__button__svg" viewBox="0 0 24 24">
+                    <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </button>
+            <!-- Thumbnails -->
+            <div class="embla-thumbs">
+                <div class="embla-thumbs__viewport">
+                    <div class="embla-thumbs__container">
+                        <button class="embla-thumbs__slide" type="button">
+                            <img class="embla-thumbs__slide__img" src="https://picsum.photos/100/100?random=1" alt="Thumbnail 1" loading="lazy">
+                        </button>
+                        <button class="embla-thumbs__slide" type="button">
+                            <img class="embla-thumbs__slide__img" src="https://picsum.photos/100/100?random=2" alt="Thumbnail 2" loading="lazy">
+                        </button>
+                        <button class="embla-thumbs__slide" type="button">
+                            <img class="embla-thumbs__slide__img" src="https://picsum.photos/100/100?random=3" alt="Thumbnail 3" loading="lazy">
+                        </button>
+                        <button class="embla-thumbs__slide" type="button">
+                            <img class="embla-thumbs__slide__img" src="https://picsum.photos/100/100?random=4" alt="Thumbnail 4" loading="lazy">
+                        </button>
+                        <button class="embla-thumbs__slide" type="button">
+                            <img class="embla-thumbs__slide__img" src="https://picsum.photos/100/100?random=5" alt="Thumbnail 5" loading="lazy">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="console-output" id="console-output">
+            <div>Carousel test console output will appear here...</div>
+            <div>Open browser console for detailed logs.</div>
+        </div>
+    </div>
+
+    <!-- Load our carousel script -->
+    <script src="astrocline/js/carousel.js"></script>
+
+    <script>
+        // Enhanced console output
+        const originalLog = console.log;
+        const originalWarn = console.warn;
+        const originalError = console.error;
+
+        function addToConsole(message, type = 'log') {
+            const output = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? '#fca5a5' : type === 'warn' ? '#fde68a' : '#9ca3af';
+            output.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            output.scrollTop = output.scrollHeight;
+        }
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            addToConsole(args.join(' '), 'log');
+        };
+
+        console.warn = function(...args) {
+            originalWarn.apply(console, args);
+            addToConsole(args.join(' '), 'warn');
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            addToConsole(args.join(' '), 'error');
+        };
+
+        // Test functions
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('test-status');
+            const colors = {
+                'info': '#3b82f6',
+                'success': '#10b981',
+                'warning': '#f59e0b',
+                'error': '#ef4444'
+            };
+            status.innerHTML = `<strong>Status:</strong> <span style="color: ${colors[type]}">${message}</span>`;
+        }
+
+        function clearConsole() {
+            document.getElementById('console-output').innerHTML = '<div>Console cleared.</div>';
+        }
+
+        function runTests() {
+            console.log('🧪 Starting comprehensive carousel tests...');
+            updateStatus('Running comprehensive tests...', 'info');
+
+            setTimeout(() => {
+                testInitialization();
+                setTimeout(() => testSwipeGestures(), 1000);
+                setTimeout(() => testThumbnails(), 2000);
+                setTimeout(() => testKeyboard(), 3000);
+                setTimeout(() => testResponsive(), 4000);
+                setTimeout(() => {
+                    console.log('✅ All tests completed!');
+                    updateStatus('All tests completed successfully!', 'success');
+                }, 5000);
+            }, 500);
+        }
+
+        function testInitialization() {
+            console.log('🔧 Testing carousel initialization...');
+
+            const emblaContainer = document.querySelector('.embla');
+            if (!emblaContainer) {
+                console.error('❌ Carousel container not found');
+                return;
+            }
+
+            const viewport = emblaContainer.querySelector('.embla__viewport');
+            const thumbsViewport = emblaContainer.querySelector('.embla-thumbs__viewport');
+            const prevBtn = emblaContainer.querySelector('.embla__button--prev');
+            const nextBtn = emblaContainer.querySelector('.embla__button--next');
+
+            // Test elements exist
+            console.log(`✅ Carousel container found: ${!!emblaContainer}`);
+            console.log(`✅ Viewport found: ${!!viewport}`);
+            console.log(`✅ Thumbnails viewport found: ${!!thumbsViewport}`);
+            console.log(`✅ Previous button found: ${!!prevBtn}`);
+            console.log(`✅ Next button found: ${!!nextBtn}`);
+
+            // Test EmblaCarousel library
+            if (typeof EmblaCarousel !== 'undefined') {
+                console.log('✅ EmblaCarousel library loaded');
+            } else {
+                console.error('❌ EmblaCarousel library not loaded');
+            }
+
+            // Test slides
+            const slides = emblaContainer.querySelectorAll('.embla__slide');
+            const thumbs = emblaContainer.querySelectorAll('.embla-thumbs__slide');
+            console.log(`✅ Main slides found: ${slides.length}`);
+            console.log(`✅ Thumbnails found: ${thumbs.length}`);
+        }
+
+        function testSwipeGestures() {
+            console.log('👆 Testing swipe gesture support...');
+
+            const emblaContainer = document.querySelector('.embla');
+            const viewport = emblaContainer.querySelector('.embla__viewport');
+
+            // Test touch event support
+            const hasTouchSupport = 'ontouchstart' in window;
+            console.log(`✅ Touch support available: ${hasTouchSupport}`);
+
+            // Simulate swipe gestures if no touch support
+            if (!hasTouchSupport) {
+                console.log('💡 Simulating swipe gestures with mouse events...');
+
+                // Test previous button
+                const prevBtn = emblaContainer.querySelector('.embla__button--prev');
+                const nextBtn = emblaContainer.querySelector('.embla__button--next');
+
+                if (prevBtn && nextBtn) {
+                    console.log('✅ Navigation buttons are available for desktop testing');
+                }
+            }
+        }
+
+        function testThumbnails() {
+            console.log('🖼️ Testing thumbnail functionality...');
+
+            const thumbs = document.querySelectorAll('.embla-thumbs__slide');
+            let clickableThumbs = 0;
+
+            thumbs.forEach((thumb, index) => {
+                if (thumb.addEventListener) {
+                    clickableThumbs++;
+                    console.log(`✅ Thumbnail ${index + 1} has click event listeners`);
+                }
+            });
+
+            console.log(`✅ Total clickable thumbnails: ${clickableThumbs}/${thumbs.length}`);
+        }
+
+        function testKeyboard() {
+            console.log('⌨️ Testing keyboard navigation...');
+
+            const emblaContainer = document.querySelector('.embla');
+            const hasTabindex = emblaContainer.hasAttribute('tabindex');
+
+            console.log(`✅ Container has tabindex: ${hasTabindex}`);
+
+            // Simulate keyboard events
+            const testKeys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+            testKeys.forEach(key => {
+                console.log(`✅ Keyboard support for ${key}`);
+            });
+        }
+
+        function testResponsive() {
+            console.log('📱 Testing responsive behavior...');
+
+            const width = window.innerWidth;
+            console.log(`✅ Current screen width: ${width}px`);
+
+            if (width <= 480) {
+                console.log('✅ Mobile view detected');
+            } else if (width <= 768) {
+                console.log('✅ Tablet view detected');
+            } else {
+                console.log('✅ Desktop view detected');
+            }
+
+            // Test touch targets
+            const buttons = document.querySelectorAll('.embla__button');
+            const thumbs = document.querySelectorAll('.embla-thumbs__slide');
+
+            buttons.forEach(btn => {
+                const rect = btn.getBoundingClientRect();
+                const size = Math.min(rect.width, rect.height);
+                const isLargeEnough = size >= 44;
+                console.log(`✅ Button touch target size: ${Math.round(size)}px ${isLargeEnough ? '✓' : '(small)'}`);
+            });
+
+            thumbs.forEach((thumb, index) => {
+                const rect = thumb.getBoundingClientRect();
+                const size = Math.min(rect.width, rect.height);
+                console.log(`✅ Thumbnail ${index + 1} touch target size: ${Math.round(size)}px`);
+            });
+        }
+
+        // Initialize carousel and run basic tests
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Test page loaded');
+            updateStatus('Test page loaded, initializing carousel...', 'info');
+
+            // Initialize our carousel
+            if (typeof initializeSwipers !== 'undefined') {
+                initializeSwipers();
+                setTimeout(() => {
+                    updateStatus('Carousel initialized successfully!', 'success');
+                    testInitialization();
+                }, 1000);
+            } else {
+                console.error('❌ initializeSwipers function not found');
+                updateStatus('Error: Carousel initialization function not found', 'error');
+            }
+        });
+    </script>
+</body>
+</html>

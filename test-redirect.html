@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Redirección y Precios</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+        .hidden {
+            display: none;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .price-table th, .price-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .price-table th {
+            background-color: #f2f2f2;
+        }
+        .price-match {
+            color: green;
+            font-weight: bold;
+        }
+        .price-mismatch {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prueba de Redirección Sin Parámetros URL y Verificación de Precios</h1>
+
+    <form id="testForm">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" value="Usuario de Prueba">
+        </div>
+
+        <div class="form-group">
+            <label for="cantidadProductos">Cantidad de productos:</label>
+            <select id="cantidadProductos" name="cantidadProductos">
+                <option value="1">1 par</option>
+                <option value="2" selected>2 pares</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="metodoPago">Método de pago:</label>
+            <select id="metodoPago" name="metodoPago">
+                <option value="cbu">Transferencia Bancaria (CBU)</option>
+                <option value="tarjeta">Tarjeta de Crédito/Débito</option>
+            </select>
+        </div>
+
+        <button type="button" id="simularBtn">Simular Redirección y Verificar Precios</button>
+    </form>
+
+    <div class="result hidden" id="resultadoTest">
+        <h2>Resultado de la prueba</h2>
+        <div id="resultContent"></div>
+
+        <h3>Verificación de Precios</h3>
+        <table class="price-table">
+            <thead>
+                <tr>
+                    <th>Escenario</th>
+                    <th>Precio en index.html</th>
+                    <th>Precio con descuento (CBU)</th>
+                    <th>Precio en página de destino</th>
+                    <th>Precio enviado a MercadoPago</th>
+                    <th>¿Consistente?</th>
+                </tr>
+            </thead>
+            <tbody id="priceTableBody">
+                <!-- Se llenará dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Precios base definidos en index.html
+            const preciosBase = {
+                "1par": 70000,
+                "2pares": 110000
+            };
+
+            // Precios con descuento CBU (10% off)
+            const preciosCBU = {
+                "1par": 63000,
+                "2pares": 99000
+            };
+
+            // Precios en páginas de destino
+            const preciosPaginasDestino = {
+                "transferenciacbu-1par.html": 63000,
+                "transferenciacbu-2pares.html": 99000,
+                "gracias.html-1par": 70000,
+                "gracias.html-2pares": 110000
+            };
+
+            // Botón para simular la redirección
+            $("#simularBtn").click(function() {
+                // Obtener los datos del formulario
+                const nombre = $("#nombre").val();
+                const cantidadProductos = parseInt($("#cantidadProductos").val());
+                const metodoPago = $("#metodoPago").val();
+
+                // Generar productos de ejemplo
+                let productos = [];
+                if (cantidadProductos === 1) {
+                    productos.push("37-roma-negras");
+                } else {
+                    productos.push("37-roma-negras");
+                    productos.push("38-siena2025");
+                }
+
+                const productosStr = productos.join(", ");
+
+                // Guardar en sessionStorage (como lo haría el código real)
+                sessionStorage.setItem('orderDetails', productosStr);
+                sessionStorage.setItem('customerName', nombre);
+
+                // Determinar URL de redirección basada en método de pago y cantidad
+                let redirectUrl;
+                if (metodoPago === "cbu") {
+                    redirectUrl = cantidadProductos > 1 ?
+                        'transferenciacbu-2pares.html' :
+                        'transferenciacbu-1par.html';
+                } else {
+                    redirectUrl = "gracias.html";
+                }
+
+                // Determinar precios según escenario
+                const precioBase = cantidadProductos === 1 ? preciosBase["1par"] : preciosBase["2pares"];
+                const precioCBU = cantidadProductos === 1 ? preciosCBU["1par"] : preciosCBU["2pares"];
+
+                // Precio que se mostraría en la página de destino
+                let precioPaginaDestino;
+                if (metodoPago === "cbu") {
+                    precioPaginaDestino = cantidadProductos === 1 ?
+                        preciosPaginasDestino["transferenciacbu-1par.html"] :
+                        preciosPaginasDestino["transferenciacbu-2pares.html"];
+                } else {
+                    precioPaginaDestino = cantidadProductos === 1 ?
+                        preciosPaginasDestino["gracias.html-1par"] :
+                        preciosPaginasDestino["gracias.html-2pares"];
+                }
+
+                // Precio que se enviaría a MercadoPago (siempre el precio base sin descuento)
+                const precioMercadoPago = precioBase;
+
+                // Verificar consistencia
+                let esConsistente = true;
+
+                // Para CBU, verificar que el precio en la página de destino coincide con el precio con descuento
+                if (metodoPago === "cbu") {
+                    esConsistente = precioPaginaDestino === precioCBU;
+                }
+
+                // Para tarjeta/MercadoPago, verificar que el precio en la página de destino y el enviado a MercadoPago coinciden con el precio base
+                if (metodoPago === "tarjeta") {
+                    esConsistente = precioPaginaDestino === precioBase && precioMercadoPago === precioBase;
+                }
+
+                // Mostrar resultado en lugar de redirigir
+                $("#resultContent").html(`
+                    <p><strong>Datos guardados en sessionStorage:</strong></p>
+                    <ul>
+                        <li>Nombre: ${nombre}</li>
+                        <li>Productos: ${productosStr}</li>
+                        <li>Cantidad: ${cantidadProductos} par(es)</li>
+                        <li>Método de pago: ${metodoPago === "cbu" ? "Transferencia Bancaria" : "Tarjeta/MercadoPago"}</li>
+                    </ul>
+                    <p><strong>URL de redirección:</strong> ${redirectUrl}</p>
+                    <p><strong>¿Contiene la URL parámetros personales?</strong> No</p>
+                    <p>Para verificar completamente, puedes hacer clic en el siguiente enlace para ir a la página de destino y comprobar que los datos se muestran correctamente sin estar en la URL:</p>
+                    <p><a href="${redirectUrl}" target="_blank">Ir a ${redirectUrl}</a></p>
+                `);
+
+                // Llenar tabla de precios
+                $("#priceTableBody").html(`
+                    <tr>
+                        <td>${cantidadProductos} par(es) con ${metodoPago === "cbu" ? "CBU" : "Tarjeta"}</td>
+                        <td>$${precioBase.toLocaleString('es-AR')}</td>
+                        <td>${metodoPago === "cbu" ? "$" + precioCBU.toLocaleString('es-AR') : "N/A"}</td>
+                        <td>$${precioPaginaDestino.toLocaleString('es-AR')}</td>
+                        <td>${metodoPago === "tarjeta" ? "$" + precioMercadoPago.toLocaleString('es-AR') : "N/A"}</td>
+                        <td class="${esConsistente ? 'price-match' : 'price-mismatch'}">
+                            ${esConsistente ? "✓ Consistente" : "✗ Inconsistente"}
+                        </td>
+                    </tr>
+                `);
+
+                // Mostrar el resultado
+                $("#resultadoTest").removeClass("hidden");
+            });
+        });
+    </script>
+</body>
+</html>

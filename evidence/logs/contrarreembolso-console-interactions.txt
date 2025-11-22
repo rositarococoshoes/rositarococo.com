@@ -1,0 +1,88 @@
+=== CONSOLE LOG ANALYSIS: CONTRARREEMBOLSO FUNNEL ===
+
+Expected Console Logs from contrarreembolsonueva.html:
+
+1. FACEBOOK PIXEL INITIALIZATION:
+🔵 Iniciando carga de Facebook Pixel (Contrareembolso)...
+🔵 Facebook Pixel script insertado
+✅ fbq está disponible
+✅ Facebook Pixel inicializado con ID: 1052677351596434
+✅ PageView event enviado
+🔵 Página cargada completamente
+✅ Facebook Pixel confirmado después de load
+
+2. FORM HANDLER INITIALIZATION:
+🚀 [Form Handler] INICIANDO form-handler-contrareembolso.js
+📋 [Form Handler] Document ready, inicializando...
+📝 [Form Handler] URL actual guardada en campo oculto: http://localhost:8000/contrarreembolsonueva.html
+
+3. PRODUCT SELECTION LOGS:
+Valor inicial del campo de productos: [empty/null]
+Selector de talle encontrado: [select-ids]
+Botón de agregar al carrito: [model-ids]
+Campo de productos actualizado: [formatted-product-data]
+
+4. WHATSAPP VALIDATION LOGS:
+🔍 [WhatsApp Modal] Inicializando...
+🔍 [WhatsApp onBlur] Inicializando validación inline...
+🔍 [WhatsApp onBlur] Función validateWhatsAppInline ejecutada
+🔍 [WhatsApp Modal] formatWhatsappNumber llamado con: [input-number]
+🔍 [WhatsApp Modal] =============================================
+🔧 [WhatsApp Modal] Después de limpiar caracteres especiales: [cleaned-number]
+🔍 [WhatsApp Modal] PASO 1: Verificando si empieza con "549"...
+✅ [WhatsApp Modal] ✅ CORRECTO: Ya empieza con 549, retornando intacto: [formatted-number]
+⚠️ [WhatsApp Modal] PASO FINAL: Agregando prefijo 549. Resultado final: [final-number]
+
+5. FORM SUBMISSION LOGS:
+🔄 [Form Handler] ¡FORMULARIO ENVIADO! Iniciando proceso de envío...
+⏰ [Form Handler] Timestamp del envío: [timestamp]
+🔒 [Form Handler] Botón deshabilitado y texto cambiado a "Procesando..."
+🤖 [Form Handler] Verificando si es bot...
+✅ [Form Handler] No es bot, continuando...
+📋 [Form Handler] Verificando validación del formulario...
+✅ [Form Handler] Formulario válido
+📱 [Form Handler] Verificando WhatsApp...
+✅ [Form Handler] WhatsApp válido
+
+6. CART INTERACTIONS:
+🔍 [WhatsApp Modal] Botón de agregar al carrito clickeado
+🔍 [WhatsApp Modal] Cart count: [cart-count]
+Campo de productos actualizado manualmente: [new-product-string]
+
+7. ERROR CONDITIONS:
+❌ [Form Handler] Envío bloqueado: posible bot
+❌ [Form Handler] Formulario inválido, mostrando alerta...
+❌ [Form Handler] WhatsApp no válido, mostrando alerta...
+🌐 [WhatsApp onBlur] Enviando solicitud al webhook: [webhook-url]
+❌ [WhatsApp onBlur] Error en la validación: [error-message]
+
+Network Requests Expected:
+1. Facebook Pixel: https://connect.facebook.net/en_US/fbevents.js
+2. Fonts: https://fonts.googleapis.com/css2?family=...
+3. Swiper CSS: https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css
+4. Swiper JS: https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js
+5. jQuery: https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js
+6. WhatsApp Validation: POST to webhook endpoint
+7. Google Forms: POST to forms endpoint
+
+External Resource Dependencies:
+- Facebook Pixel ID: 1052677351596434
+- WhatsApp Validation Webhook: [external endpoint]
+- Google Forms ID: [embedded in form action]
+- Image assets: nuevosmodeloscontra/1.webp through 31.webp
+- Local CSS: otono-elegante2.css, swiper-custom.css, badges.css, price-quantity.css
+- Local JS: otono-elegante2.js, form-handler-contrareembolso.js, etc.
+
+Key Performance Metrics:
+- Page Load Time: Expected to be optimized with preload directives
+- Image Loading: Lazy loading for non-critical images
+- JavaScript Bundle: Multiple script files loaded in sequence
+- CSS Bundle: Multiple stylesheets with preload optimization
+
+Error Scenarios Captured:
+1. Invalid WhatsApp numbers
+2. Missing size selection
+3. Form validation failures
+4. Network request failures
+5. Bot detection triggers
+6. JavaScript errors in various components

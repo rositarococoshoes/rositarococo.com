@@ -1,0 +1,172 @@
+/* Badges y elementos de urgencia - Mejorados para visibilidad */
+.product-badges {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20; /* Aumentado para asegurar que esté por encima de otros elementos */
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Aumentado el espacio entre badges */
+}
+
+.badge {
+    padding: 6px 12px; /* Padding aumentado */
+    border-radius: 4px;
+    font-size: 0.75rem; /* Tamaño de fuente ligeramente aumentado */
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra añadida para mejor contraste */
+    letter-spacing: 0.5px; /* Mejor espaciado entre letras */
+    white-space: nowrap; /* Evitar que el texto se rompa */
+}
+
+.badge-bestseller {
+    background-color: #2e7d32; /* Verde más oscuro para mejor contraste */
+}
+
+.badge-limited {
+    background-color: #c62828; /* Rojo más oscuro para mejor contraste */
+}
+
+/* Ajustes para etiquetas de producto en móviles - Configuración específica */
+@media (max-width: 480px) {
+    .product-badges {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .badge {
+        padding: 4px 8px; /* Padding aumentado */
+        font-size: 0.65rem; /* Tamaño de fuente aumentado */
+        line-height: 1.2; /* Altura de línea aumentada */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada en móviles */
+    }
+}
+
+/* Ajustes adicionales para pantallas muy pequeñas - Mejorados para visibilidad */
+@media (max-width: 360px) {
+    .badge {
+        padding: 3px 6px; /* Padding aumentado */
+        font-size: 0.6rem; /* Tamaño de fuente aumentado */
+        margin-bottom: 3px; /* Espacio adicional entre badges */
+        display: block; /* Asegurar que se muestre como bloque */
+        width: auto; /* Ancho automático */
+        text-align: center; /* Texto centrado */
+    }
+}
+
+/* Estilos para los precios */
+.price-single, .price-double {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin: 5px 0;
+    padding: 6px 10px;
+    background-color: #f9f5f2;
+    border-radius: 6px;
+    border: 1px solid rgba(160, 89, 65, 0.15);
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.price-amount {
+    color: #4a2516; /* Color más oscuro para mejor contraste */
+    font-weight: 700;
+}
+
+.price-highlight {
+    color: #4a2516; /* Color más oscuro para mejor contraste */
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.price-save {
+    color: #4a2516; /* Mismo color que los precios para coherencia */
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* Estilos para la promoción integrada */
+.product-promo {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: rgba(160, 89, 65, 0.08); /* Color más acorde con la marca */
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #4a2516; /* Mismo color que los precios para coherencia */
+}
+
+.product-promo .countdown {
+    font-weight: bold;
+    font-family: monospace;
+}
+
+@media (max-width: 480px) {
+    .price-single, .price-double {
+        font-size: 1rem;
+        padding: 5px 8px;
+    }
+
+    .price-highlight {
+        font-size: 1.1rem;
+    }
+
+    .price-save {
+        font-size: 0.8rem;
+        padding: 1px 3px;
+    }
+
+    .product-promo {
+        font-size: 0.7rem;
+        padding: 3px;
+    }
+}
+
+/* Ajustes para maximizar el ancho en móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 5px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .swiper {
+        width: 100%;
+        margin: 0;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+}
+
+/* Estilos para los títulos de productos */
+.product-item h2 {
+    text-align: center;
+    margin: 5px 0;
+    padding: 8px 0;
+    color: #4a2516;
+    font-weight: bold;
+}
+
+/* Estilos para el contenedor principal */
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.product-badges-new {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}

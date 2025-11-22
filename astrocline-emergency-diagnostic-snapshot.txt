@@ -1,0 +1,1031 @@
+uid=18_0 RootWebArea "Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025" url="http://localhost:3000/astrocline/"
+  uid=18_1 ignored
+    uid=18_2 ignored
+      uid=18_3 main
+        uid=18_4 sectionheader
+          uid=18_5 ignored
+            uid=18_6 generic
+              uid=18_7 image "Rosita Rococó Logo" url="http://localhost:3000/rosita-form.webp"
+        uid=18_8 generic
+          uid=18_9 generic
+          uid=18_10 generic
+            uid=18_11 StaticText "🛒"
+              uid=18_12 InlineTextBox "🛒"
+            uid=18_13 StaticText " "
+              uid=18_14 InlineTextBox " "
+            uid=18_15 StaticText "Tu Carrito"
+              uid=18_16 InlineTextBox "Tu Carrito"
+            uid=18_17 StaticText " "
+              uid=18_18 InlineTextBox " "
+            uid=18_19 StaticText "0"
+              uid=18_20 InlineTextBox "0"
+            uid=18_21 button "×"
+              uid=18_22 StaticText "×"
+                uid=18_23 InlineTextBox "×"
+          uid=18_24 ignored
+            uid=18_25 paragraph
+              uid=18_26 StaticText "Tu carrito está vacío"
+                uid=18_27 InlineTextBox "Tu carrito está vacío"
+            uid=18_28 ignored
+            uid=18_29 ignored
+              uid=18_30 paragraph
+                uid=18_31 StaticText "1"
+                  uid=18_32 InlineTextBox "1"
+                uid=18_33 StaticText " Selecciona tus productos favoritos"
+                  uid=18_34 InlineTextBox " Selecciona tus productos favoritos"
+              uid=18_35 paragraph
+                uid=18_36 StaticText "2"
+                  uid=18_37 InlineTextBox "2"
+                uid=18_38 StaticText " Revisa tu carrito"
+                  uid=18_39 InlineTextBox " Revisa tu carrito"
+              uid=18_40 paragraph
+                uid=18_41 StaticText "3"
+                  uid=18_42 InlineTextBox "3"
+                uid=18_43 StaticText " Haz clic en "Finalizar Compra""
+                  uid=18_44 InlineTextBox " Haz clic en "Finalizar Compra""
+          uid=18_45 ignored
+            uid=18_46 generic
+              uid=18_47 StaticText "Total: "
+                uid=18_48 InlineTextBox "Total: "
+              uid=18_49 StaticText "$0"
+                uid=18_50 InlineTextBox "$0"
+            uid=18_51 button "Continuar al Envío →" disableable disabled
+              uid=18_52 StaticText "Continuar al Envío →"
+                uid=18_53 InlineTextBox "Continuar al Envío →"
+        uid=18_54 generic
+          uid=18_55 StaticText "🛒"
+            uid=18_56 InlineTextBox "🛒"
+          uid=18_57 StaticText " "
+            uid=18_58 InlineTextBox " "
+          uid=18_59 StaticText "0"
+            uid=18_60 InlineTextBox "0"
+        uid=18_61 generic
+          uid=18_62 ignored
+            uid=18_63 ignored
+              uid=18_64 generic
+                uid=18_65 StaticText "1"
+                  uid=18_66 InlineTextBox "1"
+                uid=18_67 StaticText " "
+                  uid=18_68 InlineTextBox " "
+                uid=18_69 StaticText "Productos"
+                  uid=18_70 InlineTextBox "Productos"
+              uid=18_71 ignored
+              uid=18_72 generic
+                uid=18_73 StaticText "2"
+                  uid=18_74 InlineTextBox "2"
+                uid=18_75 StaticText " "
+                  uid=18_76 InlineTextBox " "
+                uid=18_77 StaticText "Envío"
+                  uid=18_78 InlineTextBox "Envío"
+              uid=18_79 ignored
+              uid=18_80 generic
+                uid=18_81 StaticText "3"
+                  uid=18_82 InlineTextBox "3"
+                uid=18_83 StaticText " "
+                  uid=18_84 InlineTextBox " "
+                uid=18_85 StaticText "Pago"
+                  uid=18_86 InlineTextBox "Pago"
+        uid=18_87 ignored
+          uid=18_88 ignored
+            uid=18_89 ignored
+              uid=18_90 ignored
+                uid=18_91 heading "Guillerminas Negras" level="2"
+                  uid=18_92 StaticText "Guillerminas Negras"
+                    uid=18_93 InlineTextBox "Guillerminas Negras"
+                uid=18_94 generic
+                  uid=18_95 generic
+                    uid=18_96 ignored
+                      uid=18_97 ignored
+                        uid=18_98 generic
+                          uid=18_99 image "Guillerminas Negras - Vista principal" url="http://localhost:3000/guillerminafotos/1.webp"
+                      uid=18_100 ignored
+                        uid=18_101 generic
+                          uid=18_102 image "Guillerminas Negras - Vista lateral" url="http://localhost:3000/guillerminafotos/3.webp"
+                      uid=18_103 ignored
+                        uid=18_104 generic
+                          uid=18_105 image "Guillerminas Negras - Vista superior" url="http://localhost:3000/guillerminafotos/5.webp"
+                      uid=18_106 ignored
+                        uid=18_107 generic
+                          uid=18_108 image "Guillerminas Negras - Detalle calzado" url="http://localhost:3000/guillerminafotos/7.webp"
+                      uid=18_109 ignored
+                        uid=18_110 generic
+                          uid=18_111 image "Guillerminas Negras - Vista frontal completa" url="http://localhost:3000/guillerminafotos/9.webp"
+                      uid=18_112 ignored
+                        uid=18_113 generic
+                          uid=18_114 image "Guillerminas Negras - Vista diagonal" url="http://localhost:3000/guillerminafotos/12.webp"
+                      uid=18_115 ignored
+                        uid=18_116 generic
+                          uid=18_117 image "Guillerminas Negras - Vista de perfil" url="http://localhost:3000/guillerminafotos/15.webp"
+                      uid=18_118 ignored
+                        uid=18_119 generic
+                          uid=18_120 image "Guillerminas Negras - Detalle suela" url="http://localhost:3000/guillerminafotos/18.webp"
+                      uid=18_121 ignored
+                        uid=18_122 generic
+                          uid=18_123 image "Guillerminas Negras - Vista desde atrás" url="http://localhost:3000/guillerminafotos/21.webp"
+                      uid=18_124 ignored
+                        uid=18_125 generic
+                          uid=18_126 image "Guillerminas Negras - Detalle material" url="http://localhost:3000/guillerminafotos/24.webp"
+                      uid=18_127 ignored
+                        uid=18_128 generic
+                          uid=18_129 image "Guillerminas Negras - Vista ambiente" url="http://localhost:3000/guillerminafotos/27.webp"
+                      uid=18_130 ignored
+                        uid=18_131 generic
+                          uid=18_132 image "Guillerminas Negras - Combinación estilizada" url="http://localhost:3000/guillerminafotos/30.webp"
+                      uid=18_133 ignored
+                        uid=18_134 generic
+                          uid=18_135 image "Guillerminas Negras - Detalle costura" url="http://localhost:3000/guillerminafotos/33.webp"
+                      uid=18_136 ignored
+                        uid=18_137 generic
+                          uid=18_138 image "Guillerminas Negras - Vista cerrada" url="http://localhost:3000/guillerminafotos/36.webp"
+                  uid=18_139 button "Anterior"
+                    uid=18_140 image
+                  uid=18_141 button "Siguiente"
+                    uid=18_142 image
+                  uid=18_143 generic
+                    uid=18_144 generic
+                      uid=18_145 ignored
+                        uid=18_146 button "Guillerminas Negras - Vista principal"
+                          uid=18_147 image "Guillerminas Negras - Vista principal" url="http://localhost:3000/guillerminafotos/1.webp"
+                        uid=18_148 button "Guillerminas Negras - Vista lateral"
+                          uid=18_149 image "Guillerminas Negras - Vista lateral" url="http://localhost:3000/guillerminafotos/3.webp"
+                        uid=18_150 button "Guillerminas Negras - Vista superior"
+                          uid=18_151 image "Guillerminas Negras - Vista superior" url="http://localhost:3000/guillerminafotos/5.webp"
+                        uid=18_152 button "Guillerminas Negras - Detalle calzado"
+                          uid=18_153 image "Guillerminas Negras - Detalle calzado" url="http://localhost:3000/guillerminafotos/7.webp"
+                        uid=18_154 button "Guillerminas Negras - Vista frontal completa"
+                          uid=18_155 image "Guillerminas Negras - Vista frontal completa" url="http://localhost:3000/guillerminafotos/9.webp"
+                        uid=18_156 button "Guillerminas Negras - Vista diagonal"
+                          uid=18_157 image "Guillerminas Negras - Vista diagonal" url="http://localhost:3000/guillerminafotos/12.webp"
+                        uid=18_158 button "Guillerminas Negras - Vista de perfil"
+                          uid=18_159 image "Guillerminas Negras - Vista de perfil" url="http://localhost:3000/guillerminafotos/15.webp"
+                        uid=18_160 button "Guillerminas Negras - Detalle suela"
+                          uid=18_161 image "Guillerminas Negras - Detalle suela" url="http://localhost:3000/guillerminafotos/18.webp"
+                        uid=18_162 button "Guillerminas Negras - Vista desde atrás"
+                          uid=18_163 image "Guillerminas Negras - Vista desde atrás" url="http://localhost:3000/guillerminafotos/21.webp"
+                        uid=18_164 button "Guillerminas Negras - Detalle material"
+                          uid=18_165 image "Guillerminas Negras - Detalle material" url="http://localhost:3000/guillerminafotos/24.webp"
+                        uid=18_166 button "Guillerminas Negras - Vista ambiente"
+                          uid=18_167 image "Guillerminas Negras - Vista ambiente" url="http://localhost:3000/guillerminafotos/27.webp"
+                        uid=18_168 button "Guillerminas Negras - Combinación estilizada"
+                          uid=18_169 image "Guillerminas Negras - Combinación estilizada" url="http://localhost:3000/guillerminafotos/30.webp"
+                        uid=18_170 button "Guillerminas Negras - Detalle costura"
+                          uid=18_171 image "Guillerminas Negras - Detalle costura" url="http://localhost:3000/guillerminafotos/33.webp"
+                        uid=18_172 button "Guillerminas Negras - Vista cerrada"
+                          uid=18_173 image "Guillerminas Negras - Vista cerrada" url="http://localhost:3000/guillerminafotos/36.webp"
+                uid=18_174 ignored
+                  uid=18_175 ignored
+                    uid=18_176 generic
+                      uid=18_177 StaticText "NUEVA TEMPORADA"
+                        uid=18_178 InlineTextBox "NUEVA TEMPORADA"
+                    uid=18_179 generic
+                      uid=18_180 StaticText "STOCK LIMITADO"
+                        uid=18_181 InlineTextBox "STOCK LIMITADO"
+                  uid=18_182 paragraph
+                    uid=18_183 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=18_184 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y "
+                      uid=18_185 InlineTextBox "ultra cómodo te va a encantar."
+                  uid=18_186 ignored
+                    uid=18_187 ignored
+                      uid=18_188 paragraph
+                        uid=18_189 StaticText "Material"
+                          uid=18_190 InlineTextBox "Material"
+                      uid=18_191 paragraph
+                        uid=18_192 StaticText "Tela reforzada super flexible"
+                          uid=18_193 InlineTextBox "Tela reforzada super flexible"
+                    uid=18_194 ignored
+                      uid=18_195 paragraph
+                        uid=18_196 StaticText "Suela"
+                          uid=18_197 InlineTextBox "Suela"
+                      uid=18_198 paragraph
+                        uid=18_199 StaticText "Expanso"
+                          uid=18_200 InlineTextBox "Expanso"
+                    uid=18_201 ignored
+                      uid=18_202 paragraph
+                        uid=18_203 StaticText "Envío"
+                          uid=18_204 InlineTextBox "Envío"
+                      uid=18_205 paragraph
+                        uid=18_206 StaticText "GRATIS 🚚"
+                          uid=18_207 InlineTextBox "GRATIS 🚚"
+                  uid=18_208 ignored
+                    uid=18_209 ignored
+                      uid=18_210 ignored
+                        uid=18_211 paragraph
+                          uid=18_212 StaticText "🎉 PROMO ESPECIAL"
+                            uid=18_213 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=18_214 paragraph
+                          uid=18_215 StaticText "2 PARES POR"
+                            uid=18_216 InlineTextBox "2 PARES POR"
+                        uid=18_217 paragraph
+                          uid=18_218 StaticText "$95.000"
+                            uid=18_219 InlineTextBox "$95.000"
+                        uid=18_220 paragraph
+                          uid=18_221 StaticText "AHORRÁS $25.000"
+                            uid=18_222 InlineTextBox "AHORRÁS $25.000"
+                      uid=18_223 ignored
+                        uid=18_224 paragraph
+                          uid=18_225 StaticText "Precio individual"
+                            uid=18_226 InlineTextBox "Precio individual"
+                        uid=18_227 paragraph
+                          uid=18_228 StaticText "$60.000"
+                            uid=18_229 InlineTextBox "$60.000"
+                      uid=18_230 paragraph
+                        uid=18_231 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=18_232 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=18_233 ignored
+                    uid=18_234 ignored
+                      uid=18_235 generic
+                        uid=18_236 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=18_237 MenuListPopup
+                            uid=18_238 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=18_239 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=18_240 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=18_241 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=18_242 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=18_243 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=18_244 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=18_245 generic
+                    uid=18_246 button " Agregar al Carrito"
+                      uid=18_247 image
+                      uid=18_248 StaticText " Agregar al Carrito"
+                        uid=18_249 InlineTextBox "Agregar al Carrito"
+            uid=18_250 ignored
+              uid=18_251 ignored
+                uid=18_252 heading "Guillerminas Camel" level="2"
+                  uid=18_253 StaticText "Guillerminas Camel"
+                    uid=18_254 InlineTextBox "Guillerminas Camel"
+                uid=18_255 generic
+                  uid=18_256 generic
+                    uid=18_257 ignored
+                      uid=18_258 ignored
+                        uid=18_259 generic
+                          uid=18_260 image "Guillerminas Camel - Vista 1" url="http://localhost:3000/guillerminafotos/guillerminascamel/1.webp"
+                      uid=18_261 ignored
+                        uid=18_262 generic
+                          uid=18_263 image "Guillerminas Camel - Vista 2" url="http://localhost:3000/guillerminafotos/guillerminascamel/2.webp"
+                      uid=18_264 ignored
+                        uid=18_265 generic
+                          uid=18_266 image "Guillerminas Camel - Vista 3" url="http://localhost:3000/guillerminafotos/guillerminascamel/3.webp"
+                      uid=18_267 ignored
+                        uid=18_268 generic
+                          uid=18_269 image "Guillerminas Camel - Vista 4" url="http://localhost:3000/guillerminafotos/guillerminascamel/4.webp"
+                      uid=18_270 ignored
+                        uid=18_271 generic
+                          uid=18_272 image "Guillerminas Camel - Vista 5" url="http://localhost:3000/guillerminafotos/guillerminascamel/5.webp"
+                      uid=18_273 ignored
+                        uid=18_274 generic
+                          uid=18_275 image "Guillerminas Camel - Vista 6" url="http://localhost:3000/guillerminafotos/guillerminascamel/6.webp"
+                      uid=18_276 ignored
+                        uid=18_277 generic
+                          uid=18_278 image "Guillerminas Camel - Vista 7" url="http://localhost:3000/guillerminafotos/guillerminascamel/7.webp"
+                      uid=18_279 ignored
+                        uid=18_280 generic
+                          uid=18_281 image "Guillerminas Camel - Vista 8" url="http://localhost:3000/guillerminafotos/guillerminascamel/8.webp"
+                      uid=18_282 ignored
+                        uid=18_283 generic
+                          uid=18_284 image "Guillerminas Camel - Vista 9" url="http://localhost:3000/guillerminafotos/guillerminascamel/9.webp"
+                      uid=18_285 ignored
+                        uid=18_286 generic
+                          uid=18_287 image "Guillerminas Camel - Vista 10" url="http://localhost:3000/guillerminafotos/guillerminascamel/10.webp"
+                      uid=18_288 ignored
+                        uid=18_289 generic
+                          uid=18_290 image "Guillerminas Camel - Vista 11" url="http://localhost:3000/guillerminafotos/guillerminascamel/11.webp"
+                      uid=18_291 ignored
+                        uid=18_292 generic
+                          uid=18_293 image "Guillerminas Camel - Vista 12" url="http://localhost:3000/guillerminafotos/guillerminascamel/12.webp"
+                      uid=18_294 ignored
+                        uid=18_295 generic
+                          uid=18_296 image "Guillerminas Camel - Vista 13" url="http://localhost:3000/guillerminafotos/guillerminascamel/13.webp"
+                      uid=18_297 ignored
+                        uid=18_298 generic
+                          uid=18_299 image "Guillerminas Camel - Vista 14" url="http://localhost:3000/guillerminafotos/guillerminascamel/14.webp"
+                      uid=18_300 ignored
+                        uid=18_301 generic
+                          uid=18_302 image "Guillerminas Camel - Vista 15" url="http://localhost:3000/guillerminafotos/guillerminascamel/15.webp"
+                      uid=18_303 ignored
+                        uid=18_304 generic
+                          uid=18_305 image "Guillerminas Camel - Vista 16" url="http://localhost:3000/guillerminafotos/guillerminascamel/16.webp"
+                      uid=18_306 ignored
+                        uid=18_307 generic
+                          uid=18_308 image "Guillerminas Camel - Vista 17" url="http://localhost:3000/guillerminafotos/guillerminascamel/17.webp"
+                      uid=18_309 ignored
+                        uid=18_310 generic
+                          uid=18_311 image "Guillerminas Camel - Vista 18" url="http://localhost:3000/guillerminafotos/guillerminascamel/18.webp"
+                  uid=18_312 button "Anterior"
+                    uid=18_313 image
+                  uid=18_314 button "Siguiente"
+                    uid=18_315 image
+                  uid=18_316 generic
+                    uid=18_317 generic
+                      uid=18_318 ignored
+                        uid=18_319 button "Guillerminas Camel - Vista 1"
+                          uid=18_320 image "Guillerminas Camel - Vista 1" url="http://localhost:3000/guillerminafotos/guillerminascamel/1.webp"
+                        uid=18_321 button "Guillerminas Camel - Vista 2"
+                          uid=18_322 image "Guillerminas Camel - Vista 2" url="http://localhost:3000/guillerminafotos/guillerminascamel/2.webp"
+                        uid=18_323 button "Guillerminas Camel - Vista 3"
+                          uid=18_324 image "Guillerminas Camel - Vista 3" url="http://localhost:3000/guillerminafotos/guillerminascamel/3.webp"
+                        uid=18_325 button "Guillerminas Camel - Vista 4"
+                          uid=18_326 image "Guillerminas Camel - Vista 4" url="http://localhost:3000/guillerminafotos/guillerminascamel/4.webp"
+                        uid=18_327 button "Guillerminas Camel - Vista 5"
+                          uid=18_328 image "Guillerminas Camel - Vista 5" url="http://localhost:3000/guillerminafotos/guillerminascamel/5.webp"
+                        uid=18_329 button "Guillerminas Camel - Vista 6"
+                          uid=18_330 image "Guillerminas Camel - Vista 6" url="http://localhost:3000/guillerminafotos/guillerminascamel/6.webp"
+                        uid=18_331 button "Guillerminas Camel - Vista 7"
+                          uid=18_332 image "Guillerminas Camel - Vista 7" url="http://localhost:3000/guillerminafotos/guillerminascamel/7.webp"
+                        uid=18_333 button "Guillerminas Camel - Vista 8"
+                          uid=18_334 image "Guillerminas Camel - Vista 8" url="http://localhost:3000/guillerminafotos/guillerminascamel/8.webp"
+                        uid=18_335 button "Guillerminas Camel - Vista 9"
+                          uid=18_336 image "Guillerminas Camel - Vista 9" url="http://localhost:3000/guillerminafotos/guillerminascamel/9.webp"
+                        uid=18_337 button "Guillerminas Camel - Vista 10"
+                          uid=18_338 image "Guillerminas Camel - Vista 10" url="http://localhost:3000/guillerminafotos/guillerminascamel/10.webp"
+                        uid=18_339 button "Guillerminas Camel - Vista 11"
+                          uid=18_340 image "Guillerminas Camel - Vista 11" url="http://localhost:3000/guillerminafotos/guillerminascamel/11.webp"
+                        uid=18_341 button "Guillerminas Camel - Vista 12"
+                          uid=18_342 image "Guillerminas Camel - Vista 12" url="http://localhost:3000/guillerminafotos/guillerminascamel/12.webp"
+                        uid=18_343 button "Guillerminas Camel - Vista 13"
+                          uid=18_344 image "Guillerminas Camel - Vista 13" url="http://localhost:3000/guillerminafotos/guillerminascamel/13.webp"
+                        uid=18_345 button "Guillerminas Camel - Vista 14"
+                          uid=18_346 image "Guillerminas Camel - Vista 14" url="http://localhost:3000/guillerminafotos/guillerminascamel/14.webp"
+                        uid=18_347 button "Guillerminas Camel - Vista 15"
+                          uid=18_348 image "Guillerminas Camel - Vista 15" url="http://localhost:3000/guillerminafotos/guillerminascamel/15.webp"
+                        uid=18_349 button "Guillerminas Camel - Vista 16"
+                          uid=18_350 image "Guillerminas Camel - Vista 16" url="http://localhost:3000/guillerminafotos/guillerminascamel/16.webp"
+                        uid=18_351 button "Guillerminas Camel - Vista 17"
+                          uid=18_352 image "Guillerminas Camel - Vista 17" url="http://localhost:3000/guillerminafotos/guillerminascamel/17.webp"
+                        uid=18_353 button "Guillerminas Camel - Vista 18"
+                          uid=18_354 image "Guillerminas Camel - Vista 18" url="http://localhost:3000/guillerminafotos/guillerminascamel/18.webp"
+                      uid=18_355 generic
+                        uid=18_356 StaticText "0%"
+                          uid=18_357 InlineTextBox "0%"
+                uid=18_358 ignored
+                  uid=18_359 ignored
+                    uid=18_360 generic
+                      uid=18_361 StaticText "NUEVA TEMPORADA"
+                        uid=18_362 InlineTextBox "NUEVA TEMPORADA"
+                    uid=18_363 generic
+                      uid=18_364 StaticText "STOCK LIMITADO"
+                        uid=18_365 InlineTextBox "STOCK LIMITADO"
+                  uid=18_366 paragraph
+                    uid=18_367 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=18_368 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                  uid=18_369 ignored
+                    uid=18_370 ignored
+                      uid=18_371 paragraph
+                        uid=18_372 StaticText "Material"
+                          uid=18_373 InlineTextBox "Material"
+                      uid=18_374 paragraph
+                        uid=18_375 StaticText "Tela reforzada super flexible"
+                          uid=18_376 InlineTextBox "Tela reforzada super flexible"
+                    uid=18_377 ignored
+                      uid=18_378 paragraph
+                        uid=18_379 StaticText "Suela"
+                          uid=18_380 InlineTextBox "Suela"
+                      uid=18_381 paragraph
+                        uid=18_382 StaticText "Expanso"
+                          uid=18_383 InlineTextBox "Expanso"
+                    uid=18_384 ignored
+                      uid=18_385 paragraph
+                        uid=18_386 StaticText "Envío"
+                          uid=18_387 InlineTextBox "Envío"
+                      uid=18_388 paragraph
+                        uid=18_389 StaticText "GRATIS 🚚"
+                          uid=18_390 InlineTextBox "GRATIS 🚚"
+                  uid=18_391 ignored
+                    uid=18_392 ignored
+                      uid=18_393 ignored
+                        uid=18_394 paragraph
+                          uid=18_395 StaticText "🎉 PROMO ESPECIAL"
+                            uid=18_396 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=18_397 paragraph
+                          uid=18_398 StaticText "2 PARES POR"
+                            uid=18_399 InlineTextBox "2 PARES POR"
+                        uid=18_400 paragraph
+                          uid=18_401 StaticText "$95.000"
+                            uid=18_402 InlineTextBox "$95.000"
+                        uid=18_403 paragraph
+                          uid=18_404 StaticText "AHORRÁS $25.000"
+                            uid=18_405 InlineTextBox "AHORRÁS $25.000"
+                      uid=18_406 ignored
+                        uid=18_407 paragraph
+                          uid=18_408 StaticText "Precio individual"
+                            uid=18_409 InlineTextBox "Precio individual"
+                        uid=18_410 paragraph
+                          uid=18_411 StaticText "$60.000"
+                            uid=18_412 InlineTextBox "$60.000"
+                      uid=18_413 paragraph
+                        uid=18_414 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=18_415 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=18_416 ignored
+                    uid=18_417 ignored
+                      uid=18_418 generic
+                        uid=18_419 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=18_420 MenuListPopup
+                            uid=18_421 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=18_422 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=18_423 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=18_424 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=18_425 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=18_426 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=18_427 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=18_428 generic
+                    uid=18_429 button " Agregar al Carrito"
+                      uid=18_430 image
+                      uid=18_431 StaticText " Agregar al Carrito"
+                        uid=18_432 InlineTextBox "Agregar al Carrito"
+            uid=18_433 ignored
+              uid=18_434 ignored
+                uid=18_435 heading "Guillerminas Blancas" level="2"
+                  uid=18_436 StaticText "Guillerminas Blancas"
+                    uid=18_437 InlineTextBox "Guillerminas Blancas"
+                uid=18_438 generic
+                  uid=18_439 generic
+                    uid=18_440 ignored
+                      uid=18_441 ignored
+                        uid=18_442 generic
+                          uid=18_443 image "Guillerminas Blancas - Vista 1" url="http://localhost:3000/guillerminafotos/guillerminasblancas/1.webp"
+                      uid=18_444 ignored
+                        uid=18_445 generic
+                          uid=18_446 image "Guillerminas Blancas - Vista 2" url="http://localhost:3000/guillerminafotos/guillerminasblancas/2.webp"
+                      uid=18_447 ignored
+                        uid=18_448 generic
+                          uid=18_449 image "Guillerminas Blancas - Vista 3" url="http://localhost:3000/guillerminafotos/guillerminasblancas/3.webp"
+                      uid=18_450 ignored
+                        uid=18_451 generic
+                          uid=18_452 image "Guillerminas Blancas - Vista 4" url="http://localhost:3000/guillerminafotos/guillerminasblancas/4.webp"
+                      uid=18_453 ignored
+                        uid=18_454 generic
+                          uid=18_455 image "Guillerminas Blancas - Vista 5" url="http://localhost:3000/guillerminafotos/guillerminasblancas/5.webp"
+                      uid=18_456 ignored
+                        uid=18_457 generic
+                          uid=18_458 image "Guillerminas Blancas - Vista 6" url="http://localhost:3000/guillerminafotos/guillerminasblancas/6.webp"
+                      uid=18_459 ignored
+                        uid=18_460 generic
+                          uid=18_461 image "Guillerminas Blancas - Vista 7" url="http://localhost:3000/guillerminafotos/guillerminasblancas/7.webp"
+                      uid=18_462 ignored
+                        uid=18_463 generic
+                          uid=18_464 image "Guillerminas Blancas - Vista 8" url="http://localhost:3000/guillerminafotos/guillerminasblancas/8.webp"
+                      uid=18_465 ignored
+                        uid=18_466 generic
+                          uid=18_467 image "Guillerminas Blancas - Vista 9" url="http://localhost:3000/guillerminafotos/guillerminasblancas/9.webp"
+                      uid=18_468 ignored
+                        uid=18_469 generic
+                          uid=18_470 image "Guillerminas Blancas - Vista 10" url="http://localhost:3000/guillerminafotos/guillerminasblancas/10.webp"
+                      uid=18_471 ignored
+                        uid=18_472 generic
+                          uid=18_473 image "Guillerminas Blancas - Vista 11" url="http://localhost:3000/guillerminafotos/guillerminasblancas/11.webp"
+                      uid=18_474 ignored
+                        uid=18_475 generic
+                          uid=18_476 image "Guillerminas Blancas - Vista 12" url="http://localhost:3000/guillerminafotos/guillerminasblancas/12.webp"
+                      uid=18_477 ignored
+                        uid=18_478 generic
+                          uid=18_479 image "Guillerminas Blancas - Vista 13" url="http://localhost:3000/guillerminafotos/guillerminasblancas/13.webp"
+                      uid=18_480 ignored
+                        uid=18_481 generic
+                          uid=18_482 image "Guillerminas Blancas - Vista 14" url="http://localhost:3000/guillerminafotos/guillerminasblancas/14.webp"
+                      uid=18_483 ignored
+                        uid=18_484 generic
+                          uid=18_485 image "Guillerminas Blancas - Vista 15" url="http://localhost:3000/guillerminafotos/guillerminasblancas/15.webp"
+                      uid=18_486 ignored
+                        uid=18_487 generic
+                          uid=18_488 image "Guillerminas Blancas - Vista 16" url="http://localhost:3000/guillerminafotos/guillerminasblancas/16.webp"
+                  uid=18_489 button "Anterior"
+                    uid=18_490 image
+                  uid=18_491 button "Siguiente"
+                    uid=18_492 image
+                  uid=18_493 generic
+                    uid=18_494 generic
+                      uid=18_495 ignored
+                        uid=18_496 button "Guillerminas Blancas - Vista 1"
+                          uid=18_497 image "Guillerminas Blancas - Vista 1" url="http://localhost:3000/guillerminafotos/guillerminasblancas/1.webp"
+                        uid=18_498 button "Guillerminas Blancas - Vista 2"
+                          uid=18_499 image "Guillerminas Blancas - Vista 2" url="http://localhost:3000/guillerminafotos/guillerminasblancas/2.webp"
+                        uid=18_500 button "Guillerminas Blancas - Vista 3"
+                          uid=18_501 image "Guillerminas Blancas - Vista 3" url="http://localhost:3000/guillerminafotos/guillerminasblancas/3.webp"
+                        uid=18_502 button "Guillerminas Blancas - Vista 4"
+                          uid=18_503 image "Guillerminas Blancas - Vista 4" url="http://localhost:3000/guillerminafotos/guillerminasblancas/4.webp"
+                        uid=18_504 button "Guillerminas Blancas - Vista 5"
+                          uid=18_505 image "Guillerminas Blancas - Vista 5" url="http://localhost:3000/guillerminafotos/guillerminasblancas/5.webp"
+                        uid=18_506 button "Guillerminas Blancas - Vista 6"
+                          uid=18_507 image "Guillerminas Blancas - Vista 6" url="http://localhost:3000/guillerminafotos/guillerminasblancas/6.webp"
+                        uid=18_508 button "Guillerminas Blancas - Vista 7"
+                          uid=18_509 image "Guillerminas Blancas - Vista 7" url="http://localhost:3000/guillerminafotos/guillerminasblancas/7.webp"
+                        uid=18_510 button "Guillerminas Blancas - Vista 8"
+                          uid=18_511 image "Guillerminas Blancas - Vista 8" url="http://localhost:3000/guillerminafotos/guillerminasblancas/8.webp"
+                        uid=18_512 button "Guillerminas Blancas - Vista 9"
+                          uid=18_513 image "Guillerminas Blancas - Vista 9" url="http://localhost:3000/guillerminafotos/guillerminasblancas/9.webp"
+                        uid=18_514 button "Guillerminas Blancas - Vista 10"
+                          uid=18_515 image "Guillerminas Blancas - Vista 10" url="http://localhost:3000/guillerminafotos/guillerminasblancas/10.webp"
+                        uid=18_516 button "Guillerminas Blancas - Vista 11"
+                          uid=18_517 image "Guillerminas Blancas - Vista 11" url="http://localhost:3000/guillerminafotos/guillerminasblancas/11.webp"
+                        uid=18_518 button "Guillerminas Blancas - Vista 12"
+                          uid=18_519 image "Guillerminas Blancas - Vista 12" url="http://localhost:3000/guillerminafotos/guillerminasblancas/12.webp"
+                        uid=18_520 button "Guillerminas Blancas - Vista 13"
+                          uid=18_521 image "Guillerminas Blancas - Vista 13" url="http://localhost:3000/guillerminafotos/guillerminasblancas/13.webp"
+                        uid=18_522 button "Guillerminas Blancas - Vista 14"
+                          uid=18_523 image "Guillerminas Blancas - Vista 14" url="http://localhost:3000/guillerminafotos/guillerminasblancas/14.webp"
+                        uid=18_524 button "Guillerminas Blancas - Vista 15"
+                          uid=18_525 image "Guillerminas Blancas - Vista 15" url="http://localhost:3000/guillerminafotos/guillerminasblancas/15.webp"
+                        uid=18_526 button "Guillerminas Blancas - Vista 16"
+                          uid=18_527 image "Guillerminas Blancas - Vista 16" url="http://localhost:3000/guillerminafotos/guillerminasblancas/16.webp"
+                      uid=18_528 generic
+                        uid=18_529 StaticText "0%"
+                          uid=18_530 InlineTextBox "0%"
+                uid=18_531 ignored
+                  uid=18_532 ignored
+                    uid=18_533 generic
+                      uid=18_534 StaticText "NUEVA TEMPORADA"
+                        uid=18_535 InlineTextBox "NUEVA TEMPORADA"
+                    uid=18_536 generic
+                      uid=18_537 StaticText "STOCK LIMITADO"
+                        uid=18_538 InlineTextBox "STOCK LIMITADO"
+                  uid=18_539 paragraph
+                    uid=18_540 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=18_541 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va "
+                      uid=18_542 InlineTextBox "a encantar."
+                  uid=18_543 ignored
+                    uid=18_544 ignored
+                      uid=18_545 paragraph
+                        uid=18_546 StaticText "Material"
+                          uid=18_547 InlineTextBox "Material"
+                      uid=18_548 paragraph
+                        uid=18_549 StaticText "Tela reforzada super flexible"
+                          uid=18_550 InlineTextBox "Tela reforzada super flexible"
+                    uid=18_551 ignored
+                      uid=18_552 paragraph
+                        uid=18_553 StaticText "Suela"
+                          uid=18_554 InlineTextBox "Suela"
+                      uid=18_555 paragraph
+                        uid=18_556 StaticText "Expanso"
+                          uid=18_557 InlineTextBox "Expanso"
+                    uid=18_558 ignored
+                      uid=18_559 paragraph
+                        uid=18_560 StaticText "Envío"
+                          uid=18_561 InlineTextBox "Envío"
+                      uid=18_562 paragraph
+                        uid=18_563 StaticText "GRATIS 🚚"
+                          uid=18_564 InlineTextBox "GRATIS 🚚"
+                  uid=18_565 ignored
+                    uid=18_566 ignored
+                      uid=18_567 ignored
+                        uid=18_568 paragraph
+                          uid=18_569 StaticText "🎉 PROMO ESPECIAL"
+                            uid=18_570 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=18_571 paragraph
+                          uid=18_572 StaticText "2 PARES POR"
+                            uid=18_573 InlineTextBox "2 PARES POR"
+                        uid=18_574 paragraph
+                          uid=18_575 StaticText "$95.000"
+                            uid=18_576 InlineTextBox "$95.000"
+                        uid=18_577 paragraph
+                          uid=18_578 StaticText "AHORRÁS $25.000"
+                            uid=18_579 InlineTextBox "AHORRÁS $25.000"
+                      uid=18_580 ignored
+                        uid=18_581 paragraph
+                          uid=18_582 StaticText "Precio individual"
+                            uid=18_583 InlineTextBox "Precio individual"
+                        uid=18_584 paragraph
+                          uid=18_585 StaticText "$60.000"
+                            uid=18_586 InlineTextBox "$60.000"
+                      uid=18_587 paragraph
+                        uid=18_588 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=18_589 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=18_590 ignored
+                    uid=18_591 ignored
+                      uid=18_592 generic
+                        uid=18_593 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=18_594 MenuListPopup
+                            uid=18_595 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=18_596 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=18_597 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=18_598 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=18_599 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=18_600 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=18_601 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=18_602 generic
+                    uid=18_603 button " Agregar al Carrito"
+                      uid=18_604 image
+                      uid=18_605 StaticText " Agregar al Carrito"
+                        uid=18_606 InlineTextBox "Agregar al Carrito"
+          uid=18_607 ignored
+            uid=18_608 ignored
+              uid=18_609 paragraph
+                uid=18_610 StaticText "👍"
+                  uid=18_611 InlineTextBox "👍"
+                uid=18_612 StaticText " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+                  uid=18_613 InlineTextBox " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+          uid=18_614 generic
+            uid=18_615 ignored
+              uid=18_616 heading "Lo que dicen nuestras clientas" level="2"
+                uid=18_617 StaticText "Lo que dicen nuestras clientas"
+                  uid=18_618 InlineTextBox "Lo que dicen nuestras clientas"
+              uid=18_619 paragraph
+                uid=18_620 StaticText "Miles de clientas felices comparten su experiencia"
+                  uid=18_621 InlineTextBox "Miles de clientas felices comparten su experiencia"
+              uid=18_622 generic
+                uid=18_623 ignored
+                  uid=18_624 image "Captura de comentario positivo de clienta 1" url="http://localhost:3000/astrocline/comentarios/comentariorecibi1.webp"
+                uid=18_625 ignored
+                  uid=18_626 image "Captura de comentario positivo de clienta 2" url="http://localhost:3000/astrocline/comentarios/comentariorecibi2.webp"
+                uid=18_627 ignored
+                  uid=18_628 image "Captura de comentario positivo de clienta 3" url="http://localhost:3000/astrocline/comentarios/comentariorecibi4.webp"
+                uid=18_629 ignored
+                  uid=18_630 image "Captura de comentario positivo de clienta 4" url="http://localhost:3000/astrocline/comentarios/comentariorecibi5.webp"
+                uid=18_631 ignored
+                  uid=18_632 image "Captura de comentario positivo de clienta 5" url="http://localhost:3000/astrocline/comentarios/comentariorecibi6.webp"
+                uid=18_633 ignored
+                  uid=18_634 image "Captura de comentario positivo de clienta 6" url="http://localhost:3000/astrocline/comentarios/comentariorecibi7.webp"
+              uid=18_635 generic
+                uid=18_636 button "Ver más comentarios..."
+                  uid=18_637 StaticText "Ver más comentarios..."
+                    uid=18_638 InlineTextBox "Ver más comentarios..."
+          uid=18_639 generic
+            uid=18_640 heading "¡Casi listo! Completa tus datos" level="2"
+              uid=18_641 StaticText "¡Casi listo! Completa tus datos"
+                uid=18_642 InlineTextBox "¡Casi listo! Completa tus datos"
+            uid=18_643 ignored
+              uid=18_644 generic
+                uid=18_645 StaticText "1"
+                  uid=18_646 InlineTextBox "1"
+                uid=18_647 StaticText " "
+                  uid=18_648 InlineTextBox " "
+                uid=18_649 StaticText "Información de Envío"
+                  uid=18_650 InlineTextBox "Información de Envío"
+              uid=18_651 generic
+                uid=18_652 StaticText "2"
+                  uid=18_653 InlineTextBox "2"
+                uid=18_654 StaticText " "
+                  uid=18_655 InlineTextBox " "
+                uid=18_656 StaticText "Método de Pago"
+                  uid=18_657 InlineTextBox "Método de Pago"
+              uid=18_658 generic
+                uid=18_659 StaticText "3"
+                  uid=18_660 InlineTextBox "3"
+                uid=18_661 StaticText " "
+                  uid=18_662 InlineTextBox " "
+                uid=18_663 StaticText "Revisar y Confirmar"
+                  uid=18_664 InlineTextBox "Revisar y Confirmar"
+            uid=18_665 generic
+              uid=18_666 textbox multiline
+                uid=18_667 generic
+              uid=18_668 textbox
+                uid=18_669 generic
+              uid=18_670 group "Resumen de tu Pedido"
+                uid=18_671 Legend
+                  uid=18_672 StaticText "Resumen de tu Pedido"
+                    uid=18_673 InlineTextBox "Resumen de tu Pedido"
+                uid=18_674 ignored
+                  uid=18_675 LabelText
+                    uid=18_676 StaticText "Modelos y Talles Seleccionados:"
+                      uid=18_677 InlineTextBox "Modelos y Talles Seleccionados:"
+                  uid=18_678 textbox "Modelos y Talles Seleccionados:" readonly
+                    uid=18_679 ignored
+                    uid=18_680 generic
+                  uid=18_681 paragraph
+                    uid=18_682 StaticText "Confirma que sean los correctos antes de seguir."
+                      uid=18_683 InlineTextBox "Confirma que sean los correctos antes de seguir."
+              uid=18_684 group "Información de Contacto"
+                uid=18_685 Legend
+                  uid=18_686 StaticText "Información de Contacto"
+                    uid=18_687 InlineTextBox "Información de Contacto"
+                uid=18_688 ignored
+                  uid=18_689 LabelText
+                    uid=18_690 StaticText "Email "
+                      uid=18_691 InlineTextBox "Email "
+                    uid=18_692 StaticText "*"
+                      uid=18_693 InlineTextBox "*"
+                  uid=18_694 textbox "Email *" required
+                    uid=18_695 ignored
+                    uid=18_696 generic
+                  uid=18_697 paragraph
+                    uid=18_698 StaticText "Para enviarte la confirmación y el seguimiento de tu pedido."
+                      uid=18_699 InlineTextBox "Para enviarte la confirmación y el seguimiento de tu pedido."
+                uid=18_700 generic
+                  uid=18_701 LabelText
+                    uid=18_702 StaticText "Nombre y Apellido "
+                      uid=18_703 InlineTextBox "Nombre y Apellido "
+                    uid=18_704 StaticText "*"
+                      uid=18_705 InlineTextBox "*"
+                  uid=18_706 textbox "Nombre y Apellido *" required
+                    uid=18_707 ignored
+                    uid=18_708 generic
+                uid=18_709 ignored
+                  uid=18_710 LabelText
+                    uid=18_711 StaticText "WhatsApp "
+                      uid=18_712 InlineTextBox "WhatsApp "
+                    uid=18_713 StaticText "*"
+                      uid=18_714 InlineTextBox "*"
+                  uid=18_715 textbox "WhatsApp *" required
+                    uid=18_716 ignored
+                    uid=18_717 generic
+                  uid=18_718 paragraph
+                    uid=18_719 StaticText "El formato de WhatsApp debe ser sin 0 ni 15."
+                      uid=18_720 InlineTextBox "El formato de WhatsApp debe ser sin 0 ni 15."
+                  uid=18_721 paragraph
+                    uid=18_722 StaticText "Fundamental para coordinar el envío si es necesario."
+                      uid=18_723 InlineTextBox "Fundamental para coordinar el envío si es necesario."
+              uid=18_724 group "Dirección de Envío *"
+                uid=18_725 Legend
+                  uid=18_726 StaticText "Dirección de Envío "
+                    uid=18_727 InlineTextBox "Dirección de Envío "
+                  uid=18_728 StaticText "*"
+                    uid=18_729 InlineTextBox "*"
+                uid=18_730 paragraph
+                  uid=18_731 StaticText "¡Asegúrate que sea correcta para recibir tu paquete sin problemas!"
+                    uid=18_732 InlineTextBox "¡Asegúrate que sea correcta para recibir tu paquete sin problemas!"
+                uid=18_733 generic
+                  uid=18_734 LabelText
+                    uid=18_735 StaticText "Calle y Número (Piso/Dpto)"
+                      uid=18_736 InlineTextBox "Calle y Número (Piso/Dpto)"
+                  uid=18_737 textbox "Calle y Número (Piso/Dpto)" required
+                    uid=18_738 ignored
+                    uid=18_739 generic
+                uid=18_740 generic
+                  uid=18_741 LabelText
+                    uid=18_742 StaticText "Código Postal"
+                      uid=18_743 InlineTextBox "Código Postal"
+                  uid=18_744 textbox "Código Postal" required
+                    uid=18_745 ignored
+                    uid=18_746 generic
+                uid=18_747 generic
+                  uid=18_748 LabelText
+                    uid=18_749 StaticText "Localidad"
+                      uid=18_750 InlineTextBox "Localidad"
+                  uid=18_751 textbox "Localidad" required
+                    uid=18_752 ignored
+                    uid=18_753 generic
+                uid=18_754 generic
+                  uid=18_755 LabelText
+                    uid=18_756 StaticText "Provincia"
+                      uid=18_757 InlineTextBox "Provincia"
+                  uid=18_758 combobox "Provincia" haspopup="menu" invalid="true" value="-- Selecciona tu Provincia --"
+                    uid=18_759 MenuListPopup
+                      uid=18_760 option "-- Selecciona tu Provincia --" selectable selected value="-- Selecciona tu Provincia --"
+                      uid=18_761 option "Buenos Aires" value="Buenos Aires"
+                      uid=18_762 option "CABA" value="CABA"
+                      uid=18_763 option "Gran Buenos Aires" value="Gran Buenos Aires"
+                      uid=18_764 option "Córdoba" value="Córdoba"
+                      uid=18_765 option "Santa Fé" value="Santa Fé"
+                      uid=18_766 option "Mendoza" value="Mendoza"
+                      uid=18_767 option "Neuquén" value="Neuquén"
+                      uid=18_768 option "Entre Ríos" value="Entre Ríos"
+                      uid=18_769 option "Catamarca" value="Catamarca"
+                      uid=18_770 option "Chubut" value="Chubut"
+                      uid=18_771 option "Salta" value="Salta"
+                      uid=18_772 option "Santa Cruz" value="Santa Cruz"
+                      uid=18_773 option "Chaco" value="Chaco"
+                      uid=18_774 option "Corrientes" value="Corrientes"
+                      uid=18_775 option "Formosa" value="Formosa"
+                      uid=18_776 option "La Pampa" value="La Pampa"
+                      uid=18_777 option "La Rioja" value="La Rioja"
+                      uid=18_778 option "Río Negro" value="Río Negro"
+                      uid=18_779 option "San Juan" value="San Juan"
+                      uid=18_780 option "San Luis" value="San Luis"
+                      uid=18_781 option "Santiago del Estero" value="Santiago del Estero"
+                      uid=18_782 option "Tucumán" value="Tucumán"
+                uid=18_783 ignored
+                  uid=18_784 LabelText
+                    uid=18_785 StaticText "DNI"
+                      uid=18_786 InlineTextBox "DNI"
+                  uid=18_787 textbox "DNI" required
+                    uid=18_788 ignored
+                    uid=18_789 generic
+                  uid=18_790 paragraph
+                    uid=18_791 StaticText "Necesario para el envío y/o verificación de pago."
+                      uid=18_792 InlineTextBox "Necesario para el envío y/o verificación de pago."
+                uid=18_793 generic
+                  uid=18_794 combobox haspopup="menu" value="A DOMICILIO"
+                    uid=18_795 MenuListPopup
+                      uid=18_796 option "A DOMICILIO" selectable selected value="A DOMICILIO"
+              uid=18_797 group "Forma de Pago"
+                uid=18_798 Legend
+                  uid=18_799 StaticText "Forma de Pago"
+                    uid=18_800 InlineTextBox "Forma de Pago"
+                uid=18_801 ignored
+                  uid=18_802 LabelText
+                    uid=18_803 StaticText "¿Cómo prefieres abonar? "
+                      uid=18_804 InlineTextBox "¿Cómo prefieres abonar? "
+                    uid=18_805 StaticText "*"
+                      uid=18_806 InlineTextBox "*"
+                  uid=18_807 combobox "¿Cómo prefieres abonar? *" haspopup="menu" invalid="true" value="-- Selecciona una opción --"
+                    uid=18_808 MenuListPopup
+                      uid=18_809 option "-- Selecciona una opción --" selectable selected value="-- Selecciona una opción --"
+                      uid=18_810 option "💳 Tarjeta de Crédito/Débito ()" value="💳 Tarjeta de Crédito/Débito ()"
+                      uid=18_811 option "💲 Saldo en cuenta MercadoPago" value="💲 Saldo en cuenta MercadoPago"
+                      uid=18_812 option "🏦 Transferencia Bancaria (¡Con 10% OFF adicional!)" value="🏦 Transferencia Bancaria (¡Con 10% OFF adicional!)"
+                  uid=18_813 paragraph
+                    uid=18_814 StaticText "Te redirigiremos a la plataforma de pago segura."
+                      uid=18_815 InlineTextBox "Te redirigiremos a la plataforma de pago segura."
+              uid=18_816 generic
+                uid=18_817 ignored
+                  uid=18_818 heading "📋 Revisa tu Pedido y Datos" level="3"
+                    uid=18_819 StaticText "📋"
+                      uid=18_820 InlineTextBox "📋"
+                    uid=18_821 StaticText " Revisa tu Pedido y Datos"
+                      uid=18_822 InlineTextBox " Revisa tu Pedido y Datos"
+                  uid=18_823 paragraph
+                    uid=18_824 StaticText "Por favor, verifica que toda la información sea correcta antes de confirmar"
+                      uid=18_825 InlineTextBox "Por favor, verifica que toda la información sea correcta antes de confirmar"
+                uid=18_826 ignored
+                  uid=18_827 ignored
+                    uid=18_828 heading "🛍️ Tu Pedido" level="4"
+                      uid=18_829 StaticText "🛍️"
+                        uid=18_830 InlineTextBox "🛍️"
+                      uid=18_831 StaticText " Tu Pedido"
+                        uid=18_832 InlineTextBox " Tu Pedido"
+                    uid=18_833 ignored
+                      uid=18_834 generic
+                        uid=18_835 StaticText "Selección:"
+                          uid=18_836 InlineTextBox "Selección:"
+                        uid=18_837 StaticText " "
+                          uid=18_838 InlineTextBox " "
+                        uid=18_839 generic
+                          uid=18_840 StaticText "-"
+                            uid=18_841 InlineTextBox "-"
+                      uid=18_842 generic
+                        uid=18_843 StaticText "Total:"
+                          uid=18_844 InlineTextBox "Total:"
+                        uid=18_845 StaticText " "
+                          uid=18_846 InlineTextBox " "
+                        uid=18_847 generic
+                          uid=18_848 StaticText "Elige modelos y talles para ver el total"
+                            uid=18_849 InlineTextBox "Elige modelos y talles para ver el total"
+                  uid=18_850 ignored
+                    uid=18_851 heading "👤 Datos de Contacto" level="4"
+                      uid=18_852 StaticText "👤"
+                        uid=18_853 InlineTextBox "👤"
+                      uid=18_854 StaticText " Datos de Contacto"
+                        uid=18_855 InlineTextBox " Datos de Contacto"
+                    uid=18_856 ignored
+                      uid=18_857 generic
+                        uid=18_858 StaticText "Nombre:"
+                          uid=18_859 InlineTextBox "Nombre:"
+                        uid=18_860 StaticText " "
+                          uid=18_861 InlineTextBox " "
+                        uid=18_862 generic
+                          uid=18_863 StaticText "-"
+                            uid=18_864 InlineTextBox "-"
+                      uid=18_865 generic
+                        uid=18_866 StaticText "WhatsApp:"
+                          uid=18_867 InlineTextBox "WhatsApp:"
+                        uid=18_868 StaticText " "
+                          uid=18_869 InlineTextBox " "
+                        uid=18_870 generic
+                          uid=18_871 StaticText "-"
+                            uid=18_872 InlineTextBox "-"
+                      uid=18_873 generic
+                        uid=18_874 StaticText "Email:"
+                          uid=18_875 InlineTextBox "Email:"
+                        uid=18_876 StaticText " "
+                          uid=18_877 InlineTextBox " "
+                        uid=18_878 generic
+                          uid=18_879 StaticText "-"
+                            uid=18_880 InlineTextBox "-"
+                  uid=18_881 ignored
+                    uid=18_882 heading "📍 Dirección de Envío" level="4"
+                      uid=18_883 StaticText "📍"
+                        uid=18_884 InlineTextBox "📍"
+                      uid=18_885 StaticText " Dirección de Envío"
+                        uid=18_886 InlineTextBox " Dirección de Envío"
+                    uid=18_887 ignored
+                      uid=18_888 generic
+                        uid=18_889 StaticText "Dirección:"
+                          uid=18_890 InlineTextBox "Dirección:"
+                        uid=18_891 StaticText " "
+                          uid=18_892 InlineTextBox " "
+                        uid=18_893 generic
+                          uid=18_894 StaticText "-"
+                            uid=18_895 InlineTextBox "-"
+                      uid=18_896 generic
+                        uid=18_897 StaticText "Localidad:"
+                          uid=18_898 InlineTextBox "Localidad:"
+                        uid=18_899 StaticText " "
+                          uid=18_900 InlineTextBox " "
+                        uid=18_901 generic
+                          uid=18_902 StaticText "-"
+                            uid=18_903 InlineTextBox "-"
+                      uid=18_904 ignored
+                        uid=18_905 generic
+                          uid=18_906 StaticText "C.P.:"
+                            uid=18_907 InlineTextBox "C.P.:"
+                          uid=18_908 StaticText " "
+                            uid=18_909 InlineTextBox " "
+                          uid=18_910 generic
+                            uid=18_911 StaticText "-"
+                              uid=18_912 InlineTextBox "-"
+                        uid=18_913 generic
+                          uid=18_914 StaticText "Provincia:"
+                            uid=18_915 InlineTextBox "Provincia:"
+                          uid=18_916 StaticText " "
+                            uid=18_917 InlineTextBox " "
+                          uid=18_918 generic
+                            uid=18_919 StaticText "-- Selecciona tu Provincia --"
+                              uid=18_920 InlineTextBox "-- Selecciona tu Provincia --"
+                  uid=18_921 ignored
+                    uid=18_922 heading "🆔 Información Adicional" level="4"
+                      uid=18_923 StaticText "🆔"
+                        uid=18_924 InlineTextBox "🆔"
+                      uid=18_925 StaticText " Información Adicional"
+                        uid=18_926 InlineTextBox " Información Adicional"
+                    uid=18_927 generic
+                      uid=18_928 StaticText "DNI:"
+                        uid=18_929 InlineTextBox "DNI:"
+                      uid=18_930 StaticText " "
+                        uid=18_931 InlineTextBox " "
+                      uid=18_932 generic
+                        uid=18_933 StaticText "-"
+                          uid=18_934 InlineTextBox "-"
+                uid=18_935 ignored
+                  uid=18_936 ignored
+                    uid=18_937 StaticText "⚠️"
+                      uid=18_938 InlineTextBox "⚠️"
+                    uid=18_939 ignored
+                      uid=18_940 heading "Información Importante" level="5"
+                        uid=18_941 StaticText "Información Importante"
+                          uid=18_942 InlineTextBox "Información Importante"
+                      uid=18_943 list
+                        uid=18_944 listitem level="1"
+                          uid=18_945 ListMarker "• "
+                            uid=18_946 ignored
+                          uid=18_947 StaticText "•"
+                            uid=18_948 InlineTextBox "•"
+                          uid=18_949 StaticText " "
+                            uid=18_950 InlineTextBox " "
+                          uid=18_951 strong
+                            uid=18_952 StaticText "Tu pedido es un compromiso de pago."
+                              uid=18_953 InlineTextBox "Tu pedido es un compromiso de pago."
+                          uid=18_954 StaticText " Verifica que toda la información sea correcta antes de confirmar."
+                            uid=18_955 InlineTextBox " Verifica que toda la información sea correcta antes de confirmar."
+                        uid=18_956 listitem level="1"
+                          uid=18_957 ListMarker "• "
+                            uid=18_958 ignored
+                          uid=18_959 StaticText "•"
+                            uid=18_960 InlineTextBox "•"
+                          uid=18_961 StaticText " "
+                            uid=18_962 InlineTextBox " "
+                          uid=18_963 strong
+                            uid=18_964 StaticText "Tiempo de entrega:"
+                              uid=18_965 InlineTextBox "Tiempo de entrega:"
+                          uid=18_966 StaticText " A partir de los 7 días hábiles (producimos a pedido)."
+                            uid=18_967 InlineTextBox " A partir de los 7 días hábiles (producimos a pedido)."
+                        uid=18_968 listitem level="1"
+                          uid=18_969 ListMarker "• "
+                            uid=18_970 ignored
+                          uid=18_971 StaticText "•"
+                            uid=18_972 InlineTextBox "•"
+                          uid=18_973 StaticText " "
+                            uid=18_974 InlineTextBox " "
+                          uid=18_975 strong
+                            uid=18_976 StaticText "Seguimiento:"
+                              uid=18_977 InlineTextBox "Seguimiento:"
+                          uid=18_978 StaticText " Te enviaremos el código de seguimiento por email."
+                            uid=18_979 InlineTextBox " Te enviaremos el código de seguimiento por email."
+                        uid=18_980 listitem level="1"
+                          uid=18_981 ListMarker "• "
+                            uid=18_982 ignored
+                          uid=18_983 StaticText "•"
+                            uid=18_984 InlineTextBox "•"
+                          uid=18_985 StaticText " "
+                            uid=18_986 InlineTextBox " "
+                          uid=18_987 strong
+                            uid=18_988 StaticText "Envío gratis"
+                              uid=18_989 InlineTextBox "Envío gratis"
+                          uid=18_990 StaticText " a todo el país."
+                            uid=18_991 InlineTextBox " a todo el país."
+              uid=18_992 generic
+                uid=18_993 button "← Volver a productos"
+                  uid=18_994 StaticText "← Volver a productos"
+                    uid=18_995 InlineTextBox "← Volver a productos"
+                uid=18_996 button "Confirmar y Pagar 🛒"
+                  uid=18_997 StaticText "Confirmar y Pagar 🛒"
+                    uid=18_998 InlineTextBox "Confirmar y Pagar 🛒"
+        uid=18_999 generic
+      uid=18_1000 generic
+        uid=18_1001 ignored
+          uid=18_1002 ignored
+            uid=18_1003 ignored
+              uid=18_1004 generic
+                uid=18_1005 image
+            uid=18_1006 heading "¡Guarda tu carrito!" level="3"
+              uid=18_1007 StaticText "¡Guarda tu carrito!"
+                uid=18_1008 InlineTextBox "¡Guarda tu carrito!"
+            uid=18_1009 paragraph
+              uid=18_1010 StaticText "Deja tu WhatsApp y te enviaremos un enlace para recuperar tu carrito cuando quieras"
+                uid=18_1011 InlineTextBox "Deja tu WhatsApp y te enviaremos un enlace para recuperar tu carrito cuando quieras"
+            uid=18_1012 generic
+              uid=18_1013 ignored
+                uid=18_1014 textbox "Ej: 11 1234-5678" required
+                  uid=18_1015 ignored
+                  uid=18_1016 generic
+                uid=18_1017 paragraph
+                  uid=18_1018 StaticText "Solo número de teléfono, sin +54"
+                    uid=18_1019 InlineTextBox "Solo número de teléfono, sin +54"
+              uid=18_1020 ignored
+                uid=18_1021 button "Guardar mi carrito"
+                  uid=18_1022 StaticText "Guardar mi carrito"
+                    uid=18_1023 InlineTextBox "Guardar mi carrito"
+                uid=18_1024 generic
+                  uid=18_1025 button "Omitir por ahora"
+                    uid=18_1026 StaticText "Omitir por ahora"
+                      uid=18_1027 InlineTextBox "Omitir por ahora"
+            uid=18_1028 paragraph
+              uid=18_1029 StaticText "Tus datos están seguros con nosotros. No compartiremos tu información."
+                uid=18_1030 InlineTextBox "Tus datos están seguros con nosotros. No compartiremos tu información."

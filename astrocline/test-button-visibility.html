@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Button Visibility</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; }
+        .test-button { margin: 5px; padding: 10px; cursor: pointer; }
+        .status { margin: 10px 0; padding: 10px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <h1>Test - Checkout Button Visibility</h1>
+
+    <div class="test-section">
+        <h2>Estado Actual del Carrito</h2>
+        <div id="cart-status" class="status info">Carrito: 0 productos</div>
+        <div id="form-status" class="status info">Formulario: oculto</div>
+        <div id="button-status" class="status info">Botones: ocultos</div>
+    </div>
+
+    <div class="test-section">
+        <h2>Acciones de Prueba</h2>
+        <button class="test-button" onclick="testAddProduct()">Agregar Producto</button>
+        <button class="test-button" onclick="testRemoveProduct()">Quitar Producto</button>
+        <button class="test-button" onclick="testClearCart()">Vaciar Carrito</button>
+        <button class="test-button" onclick="testShowForm()">Mostrar Formulario</button>
+        <button class="test-button" onclick="testHideForm()">Ocultar Formulario</button>
+        <button class="test-button" onclick="checkCurrentState()">Verificar Estado</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Botones de Checkout (simulados)</h2>
+        <div id="restodelform" class="hidden">
+            <div class="checkout-navigation">
+                <button id="botoncomprar">Confirmar y Pagar 🛒</button>
+                <button id="back-to-products">← Volver a productos</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Log de Eventos</h2>
+        <div id="event-log"></div>
+    </div>
+
+    <style>
+        /* Include the same visibility rules from the main site */
+        .checkout-navigation {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+            margin: 20px 0;
+        }
+
+        .checkout-navigation #botoncomprar,
+        .checkout-navigation #back-to-products {
+            display: none !important;
+            visibility: hidden !important;
+            margin: 5px;
+            padding: 10px 20px;
+        }
+
+        #restodelform:not(.hidden) .checkout-navigation {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            height: 0 !important;
+            overflow: hidden !important;
+        }
+
+        #restodelform:not(.hidden).has-items .checkout-navigation {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: auto !important;
+            overflow: visible !important;
+        }
+
+        #restodelform:not(.hidden).has-items .checkout-navigation #botoncomprar,
+        #restodelform:not(.hidden).has-items .checkout-navigation #back-to-products {
+            display: inline-block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        #botoncomprar { background-color: #ec4899; color: white; border: none; border-radius: 8px; }
+        #back-to-products { background-color: #6b7280; color: white; border: none; border-radius: 8px; }
+
+        .hidden { display: none; }
+    </style>
+
+    <script>
+        // Simulate cart functionality
+        window.cart = [];
+        window.cartCount = 0;
+
+        function log(message) {
+            const logDiv = document.getElementById('event-log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function updateStatus() {
+            const checkoutSection = document.getElementById('restodelform');
+            const buttonsNav = document.querySelector('.checkout-navigation');
+
+            document.getElementById('cart-status').textContent = `Carrito: ${window.cartCount} productos`;
+            document.getElementById('form-status').textContent = `Formulario: ${checkoutSection.classList.contains('hidden') ? 'oculto' : 'visible'}`;
+
+            const buttonStyles = window.getComputedStyle(buttonsNav);
+            const isVisible = buttonStyles.display !== 'none' && buttonStyles.visibility !== 'hidden';
+            document.getElementById('button-status').textContent = `Botones: ${isVisible ? 'visibles' : 'ocultos'}`;
+        }
+
+        function testAddProduct() {
+            if (window.cartCount < 2) {
+                window.cart.push({ id: Date.now(), name: 'Test Product' });
+                window.cartCount++;
+
+                const checkoutSection = document.getElementById('restodelform');
+                checkoutSection.classList.remove('hidden');
+                checkoutSection.classList.add('has-items');
+
+                log(`✅ Producto agregado. Carrito: ${window.cartCount} productos`);
+                updateStatus();
+            } else {
+                log(`⚠️ Límite alcanzado. Carrito: ${window.cartCount} productos`);
+            }
+        }
+
+        function testRemoveProduct() {
+            if (window.cartCount > 0) {
+                window.cart.pop();
+                window.cartCount--;
+
+                const checkoutSection = document.getElementById('restodelform');
+                if (window.cartCount === 0) {
+                    checkoutSection.classList.add('hidden');
+                    checkoutSection.classList.remove('has-items');
+                }
+
+                log(`🗑️ Producto eliminado. Carrito: ${window.cartCount} productos`);
+                updateStatus();
+            } else {
+                log(`❌ No hay productos para eliminar`);
+            }
+        }
+
+        function testClearCart() {
+            window.cart = [];
+            window.cartCount = 0;
+
+            const checkoutSection = document.getElementById('restodelform');
+            checkoutSection.classList.add('hidden');
+            checkoutSection.classList.remove('has-items');
+
+            log(`🧹 Carrito vaciado`);
+            updateStatus();
+        }
+
+        function testShowForm() {
+            const checkoutSection = document.getElementById('restodelform');
+            checkoutSection.classList.remove('hidden');
+
+            if (window.cartCount > 0) {
+                checkoutSection.classList.add('has-items');
+            }
+
+            log(`👁️ Formulario mostrado`);
+            updateStatus();
+        }
+
+        function testHideForm() {
+            const checkoutSection = document.getElementById('restodelform');
+            checkoutSection.classList.add('hidden');
+            checkoutSection.classList.remove('has-items');
+
+            log(`🙈 Formulario oculto`);
+            updateStatus();
+        }
+
+        function checkCurrentState() {
+            const checkoutSection = document.getElementById('restodelform');
+            const buttonsNav = document.querySelector('.checkout-navigation');
+
+            log(`🔍 Estado actual:`);
+            log(`   - Carrito: ${window.cartCount} productos`);
+            log(`   - Formulario clases: ${checkoutSection.className}`);
+            log(`   - Formulario oculto: ${checkoutSection.classList.contains('hidden')}`);
+            log(`   - Formulario tiene items: ${checkoutSection.classList.contains('has-items')}`);
+
+            const buttonStyles = window.getComputedStyle(buttonsNav);
+            log(`   - Botones display: ${buttonStyles.display}`);
+            log(`   - Botones visibility: ${buttonStyles.visibility}`);
+            log(`   - Botones opacity: ${buttonStyles.opacity}`);
+
+            updateStatus();
+        }
+
+        // Initial state
+        log('🚀 Página de prueba cargada');
+        updateStatus();
+    </script>
+</body>
+</html>

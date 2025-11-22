@@ -1,0 +1,549 @@
+uid=25_0 RootWebArea "Test - Carrusel Guillerminas Negras | Rosita Rococó" url="http://localhost:4335/test-carrusel"
+  uid=25_1 ignored
+    uid=25_2 ignored
+      uid=25_3 ignored
+        uid=25_4 heading "🧪 TEST: Componente Carrusel Guillerminas Negras" level="1"
+          uid=25_5 StaticText "🧪 TEST: Componente Carrusel Guillerminas Negras"
+            uid=25_6 InlineTextBox "🧪 TEST: Componente Carrusel Guillerminas Negras"
+        uid=25_7 generic
+          uid=25_8 heading "Guillerminas Negras" level="2"
+            uid=25_9 StaticText "Guillerminas Negras"
+              uid=25_10 InlineTextBox "Guillerminas Negras"
+          uid=25_11 generic
+            uid=25_12 generic
+              uid=25_13 group "42 / 42"
+                uid=25_14 image "Guillerminas Negras - Vista 43" url="http://localhost:4335/images/productos/guillerminas/negras/43.webp"
+              uid=25_15 group "1 / 42"
+                uid=25_16 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=25_17 group "2 / 42"
+                uid=25_18 image "Guillerminas Negras - Vista 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=25_19 group "3 / 42"
+                uid=25_20 image "Guillerminas Negras - Vista 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=25_21 group "4 / 42"
+                uid=25_22 image "Guillerminas Negras - Vista 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=25_23 group "5 / 42"
+                uid=25_24 image "Guillerminas Negras - Vista 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=25_25 group "6 / 42"
+                uid=25_26 image "Guillerminas Negras - Vista 6" url="http://localhost:4335/images/productos/guillerminas/negras/6.webp"
+              uid=25_27 group "7 / 42"
+                uid=25_28 image "Guillerminas Negras - Vista 7" url="http://localhost:4335/images/productos/guillerminas/negras/7.webp"
+              uid=25_29 group "8 / 42"
+                uid=25_30 image "Guillerminas Negras - Vista 8" url="http://localhost:4335/images/productos/guillerminas/negras/8.webp"
+              uid=25_31 group "9 / 42"
+                uid=25_32 image "Guillerminas Negras - Vista 9" url="http://localhost:4335/images/productos/guillerminas/negras/9.webp"
+              uid=25_33 group "10 / 42"
+                uid=25_34 image "Guillerminas Negras - Vista 10" url="http://localhost:4335/images/productos/guillerminas/negras/10.webp"
+              uid=25_35 group "11 / 42"
+                uid=25_36 image "Guillerminas Negras - Vista 11" url="http://localhost:4335/images/productos/guillerminas/negras/11.webp"
+              uid=25_37 group "12 / 42"
+                uid=25_38 image "Guillerminas Negras - Vista 12" url="http://localhost:4335/images/productos/guillerminas/negras/12.webp"
+              uid=25_39 group "13 / 42"
+                uid=25_40 image "Guillerminas Negras - Vista 13" url="http://localhost:4335/images/productos/guillerminas/negras/13.webp"
+              uid=25_41 group "14 / 42"
+                uid=25_42 image "Guillerminas Negras - Vista 14" url="http://localhost:4335/images/productos/guillerminas/negras/14.webp"
+              uid=25_43 group "15 / 42"
+                uid=25_44 image "Guillerminas Negras - Vista 15" url="http://localhost:4335/images/productos/guillerminas/negras/15.webp"
+              uid=25_45 group "16 / 42"
+                uid=25_46 image "Guillerminas Negras - Vista 16" url="http://localhost:4335/images/productos/guillerminas/negras/16.webp"
+              uid=25_47 group "17 / 42"
+                uid=25_48 image "Guillerminas Negras - Vista 17" url="http://localhost:4335/images/productos/guillerminas/negras/17.webp"
+              uid=25_49 group "18 / 42"
+                uid=25_50 image "Guillerminas Negras - Vista 18" url="http://localhost:4335/images/productos/guillerminas/negras/18.webp"
+              uid=25_51 group "19 / 42"
+                uid=25_52 image "Guillerminas Negras - Vista 19" url="http://localhost:4335/images/productos/guillerminas/negras/19.webp"
+              uid=25_53 group "20 / 42"
+                uid=25_54 image "Guillerminas Negras - Vista 20" url="http://localhost:4335/images/productos/guillerminas/negras/20.webp"
+              uid=25_55 group "21 / 42"
+                uid=25_56 image "Guillerminas Negras - Vista 21" url="http://localhost:4335/images/productos/guillerminas/negras/21.webp"
+              uid=25_57 group "22 / 42"
+                uid=25_58 image "Guillerminas Negras - Vista 22" url="http://localhost:4335/images/productos/guillerminas/negras/22.webp"
+              uid=25_59 group "23 / 42"
+                uid=25_60 image "Guillerminas Negras - Vista 23" url="http://localhost:4335/images/productos/guillerminas/negras/23.webp"
+              uid=25_61 group "24 / 42"
+                uid=25_62 image "Guillerminas Negras - Vista 24" url="http://localhost:4335/images/productos/guillerminas/negras/24.webp"
+              uid=25_63 group "25 / 42"
+                uid=25_64 image "Guillerminas Negras - Vista 25" url="http://localhost:4335/images/productos/guillerminas/negras/25.webp"
+              uid=25_65 group "26 / 42"
+                uid=25_66 image "Guillerminas Negras - Vista 26" url="http://localhost:4335/images/productos/guillerminas/negras/26.webp"
+              uid=25_67 group "27 / 42"
+                uid=25_68 image "Guillerminas Negras - Vista 27" url="http://localhost:4335/images/productos/guillerminas/negras/27.webp"
+              uid=25_69 group "28 / 42"
+                uid=25_70 image "Guillerminas Negras - Vista 28" url="http://localhost:4335/images/productos/guillerminas/negras/28.webp"
+              uid=25_71 group "29 / 42"
+                uid=25_72 image "Guillerminas Negras - Vista 29" url="http://localhost:4335/images/productos/guillerminas/negras/29.webp"
+              uid=25_73 group "30 / 42"
+                uid=25_74 image "Guillerminas Negras - Vista 30" url="http://localhost:4335/images/productos/guillerminas/negras/30.webp"
+              uid=25_75 group "31 / 42"
+                uid=25_76 image "Guillerminas Negras - Vista 31" url="http://localhost:4335/images/productos/guillerminas/negras/31.webp"
+              uid=25_77 group "32 / 42"
+                uid=25_78 image "Guillerminas Negras - Vista 32" url="http://localhost:4335/images/productos/guillerminas/negras/32.webp"
+              uid=25_79 group "33 / 42"
+                uid=25_80 image "Guillerminas Negras - Vista 33" url="http://localhost:4335/images/productos/guillerminas/negras/33.webp"
+              uid=25_81 group "34 / 42"
+                uid=25_82 image "Guillerminas Negras - Vista 34" url="http://localhost:4335/images/productos/guillerminas/negras/34.webp"
+              uid=25_83 group "35 / 42"
+                uid=25_84 image "Guillerminas Negras - Vista 35" url="http://localhost:4335/images/productos/guillerminas/negras/35.webp"
+              uid=25_85 group "36 / 42"
+                uid=25_86 image "Guillerminas Negras - Vista 36" url="http://localhost:4335/images/productos/guillerminas/negras/36.webp"
+              uid=25_87 group "37 / 42"
+                uid=25_88 image "Guillerminas Negras - Vista 37" url="http://localhost:4335/images/productos/guillerminas/negras/37.webp"
+              uid=25_89 group "38 / 42"
+                uid=25_90 image "Guillerminas Negras - Vista 38" url="http://localhost:4335/images/productos/guillerminas/negras/38.webp"
+              uid=25_91 group "39 / 42"
+                uid=25_92 image "Guillerminas Negras - Vista 40" url="http://localhost:4335/images/productos/guillerminas/negras/40.webp"
+              uid=25_93 group "40 / 42"
+                uid=25_94 image "Guillerminas Negras - Vista 41" url="http://localhost:4335/images/productos/guillerminas/negras/41.webp"
+              uid=25_95 group "41 / 42"
+                uid=25_96 image "Guillerminas Negras - Vista 42" url="http://localhost:4335/images/productos/guillerminas/negras/42.webp"
+              uid=25_97 group "42 / 42"
+                uid=25_98 image "Guillerminas Negras - Vista 43" url="http://localhost:4335/images/productos/guillerminas/negras/43.webp"
+              uid=25_99 group "1 / 42"
+                uid=25_100 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+            uid=25_101 button "Previous slide"
+              uid=25_102 generic
+                uid=25_103 StaticText "prev"
+                  uid=25_104 InlineTextBox "prev"
+            uid=25_105 button "Next slide"
+              uid=25_106 generic
+                uid=25_107 StaticText "next"
+                  uid=25_108 InlineTextBox "next"
+            uid=25_109 generic
+          uid=25_110 generic
+            uid=25_111 generic
+              uid=25_112 group "1 / 42"
+                uid=25_113 image "Guillerminas Negras - Thumbnail 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=25_114 group "2 / 42"
+                uid=25_115 image "Guillerminas Negras - Thumbnail 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=25_116 group "3 / 42"
+                uid=25_117 image "Guillerminas Negras - Thumbnail 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=25_118 group "4 / 42"
+                uid=25_119 image "Guillerminas Negras - Thumbnail 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=25_120 group "5 / 42"
+                uid=25_121 image "Guillerminas Negras - Thumbnail 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=25_122 group "6 / 42"
+                uid=25_123 image "Guillerminas Negras - Thumbnail 6" url="http://localhost:4335/images/productos/guillerminas/negras/6.webp"
+              uid=25_124 group "7 / 42"
+                uid=25_125 image "Guillerminas Negras - Thumbnail 7" url="http://localhost:4335/images/productos/guillerminas/negras/7.webp"
+              uid=25_126 group "8 / 42"
+                uid=25_127 image "Guillerminas Negras - Thumbnail 8" url="http://localhost:4335/images/productos/guillerminas/negras/8.webp"
+              uid=25_128 group "9 / 42"
+                uid=25_129 image "Guillerminas Negras - Thumbnail 9" url="http://localhost:4335/images/productos/guillerminas/negras/9.webp"
+              uid=25_130 group "10 / 42"
+                uid=25_131 image "Guillerminas Negras - Thumbnail 10" url="http://localhost:4335/images/productos/guillerminas/negras/10.webp"
+              uid=25_132 group "11 / 42"
+                uid=25_133 image "Guillerminas Negras - Thumbnail 11" url="http://localhost:4335/images/productos/guillerminas/negras/11.webp"
+              uid=25_134 group "12 / 42"
+                uid=25_135 image "Guillerminas Negras - Thumbnail 12" url="http://localhost:4335/images/productos/guillerminas/negras/12.webp"
+              uid=25_136 group "13 / 42"
+                uid=25_137 image "Guillerminas Negras - Thumbnail 13" url="http://localhost:4335/images/productos/guillerminas/negras/13.webp"
+              uid=25_138 group "14 / 42"
+                uid=25_139 image "Guillerminas Negras - Thumbnail 14" url="http://localhost:4335/images/productos/guillerminas/negras/14.webp"
+              uid=25_140 group "15 / 42"
+                uid=25_141 image "Guillerminas Negras - Thumbnail 15" url="http://localhost:4335/images/productos/guillerminas/negras/15.webp"
+              uid=25_142 group "16 / 42"
+                uid=25_143 image "Guillerminas Negras - Thumbnail 16" url="http://localhost:4335/images/productos/guillerminas/negras/16.webp"
+              uid=25_144 group "17 / 42"
+                uid=25_145 image "Guillerminas Negras - Thumbnail 17" url="http://localhost:4335/images/productos/guillerminas/negras/17.webp"
+              uid=25_146 group "18 / 42"
+                uid=25_147 image "Guillerminas Negras - Thumbnail 18" url="http://localhost:4335/images/productos/guillerminas/negras/18.webp"
+              uid=25_148 group "19 / 42"
+                uid=25_149 image "Guillerminas Negras - Thumbnail 19" url="http://localhost:4335/images/productos/guillerminas/negras/19.webp"
+              uid=25_150 group "20 / 42"
+                uid=25_151 image "Guillerminas Negras - Thumbnail 20" url="http://localhost:4335/images/productos/guillerminas/negras/20.webp"
+              uid=25_152 group "21 / 42"
+                uid=25_153 image "Guillerminas Negras - Thumbnail 21" url="http://localhost:4335/images/productos/guillerminas/negras/21.webp"
+              uid=25_154 group "22 / 42"
+                uid=25_155 image "Guillerminas Negras - Thumbnail 22" url="http://localhost:4335/images/productos/guillerminas/negras/22.webp"
+              uid=25_156 group "23 / 42"
+                uid=25_157 image "Guillerminas Negras - Thumbnail 23" url="http://localhost:4335/images/productos/guillerminas/negras/23.webp"
+              uid=25_158 group "24 / 42"
+                uid=25_159 image "Guillerminas Negras - Thumbnail 24" url="http://localhost:4335/images/productos/guillerminas/negras/24.webp"
+              uid=25_160 group "25 / 42"
+                uid=25_161 image "Guillerminas Negras - Thumbnail 25" url="http://localhost:4335/images/productos/guillerminas/negras/25.webp"
+              uid=25_162 group "26 / 42"
+                uid=25_163 image "Guillerminas Negras - Thumbnail 26" url="http://localhost:4335/images/productos/guillerminas/negras/26.webp"
+              uid=25_164 group "27 / 42"
+                uid=25_165 image "Guillerminas Negras - Thumbnail 27" url="http://localhost:4335/images/productos/guillerminas/negras/27.webp"
+              uid=25_166 group "28 / 42"
+                uid=25_167 image "Guillerminas Negras - Thumbnail 28" url="http://localhost:4335/images/productos/guillerminas/negras/28.webp"
+              uid=25_168 group "29 / 42"
+                uid=25_169 image "Guillerminas Negras - Thumbnail 29" url="http://localhost:4335/images/productos/guillerminas/negras/29.webp"
+              uid=25_170 group "30 / 42"
+                uid=25_171 image "Guillerminas Negras - Thumbnail 30" url="http://localhost:4335/images/productos/guillerminas/negras/30.webp"
+              uid=25_172 group "31 / 42"
+                uid=25_173 image "Guillerminas Negras - Thumbnail 31" url="http://localhost:4335/images/productos/guillerminas/negras/31.webp"
+              uid=25_174 group "32 / 42"
+                uid=25_175 image "Guillerminas Negras - Thumbnail 32" url="http://localhost:4335/images/productos/guillerminas/negras/32.webp"
+              uid=25_176 group "33 / 42"
+                uid=25_177 image "Guillerminas Negras - Thumbnail 33" url="http://localhost:4335/images/productos/guillerminas/negras/33.webp"
+              uid=25_178 group "34 / 42"
+                uid=25_179 image "Guillerminas Negras - Thumbnail 34" url="http://localhost:4335/images/productos/guillerminas/negras/34.webp"
+              uid=25_180 group "35 / 42"
+                uid=25_181 image "Guillerminas Negras - Thumbnail 35" url="http://localhost:4335/images/productos/guillerminas/negras/35.webp"
+              uid=25_182 group "36 / 42"
+                uid=25_183 image "Guillerminas Negras - Thumbnail 36" url="http://localhost:4335/images/productos/guillerminas/negras/36.webp"
+              uid=25_184 group "37 / 42"
+                uid=25_185 image "Guillerminas Negras - Thumbnail 37" url="http://localhost:4335/images/productos/guillerminas/negras/37.webp"
+              uid=25_186 group "38 / 42"
+                uid=25_187 image "Guillerminas Negras - Thumbnail 38" url="http://localhost:4335/images/productos/guillerminas/negras/38.webp"
+              uid=25_188 group "39 / 42"
+                uid=25_189 image "Guillerminas Negras - Thumbnail 40" url="http://localhost:4335/images/productos/guillerminas/negras/40.webp"
+              uid=25_190 group "40 / 42"
+                uid=25_191 image "Guillerminas Negras - Thumbnail 41" url="http://localhost:4335/images/productos/guillerminas/negras/41.webp"
+              uid=25_192 group "41 / 42"
+                uid=25_193 image "Guillerminas Negras - Thumbnail 42" url="http://localhost:4335/images/productos/guillerminas/negras/42.webp"
+              uid=25_194 group "42 / 42"
+                uid=25_195 image "Guillerminas Negras - Thumbnail 43" url="http://localhost:4335/images/productos/guillerminas/negras/43.webp"
+            uid=25_196 generic
+          uid=25_197 generic
+            uid=25_198 ignored
+              uid=25_199 ignored
+                uid=25_200 ignored
+                  uid=25_201 strong
+                    uid=25_202 StaticText "Material:"
+                      uid=25_203 InlineTextBox "Material:"
+                  uid=25_204 StaticText " Tela reforzada super flexible"
+                    uid=25_205 InlineTextBox " Tela reforzada super flexible"
+                uid=25_206 ignored
+                  uid=25_207 strong
+                    uid=25_208 StaticText "Suela:"
+                      uid=25_209 InlineTextBox "Suela:"
+                  uid=25_210 StaticText " Expanso"
+                    uid=25_211 InlineTextBox " Expanso"
+                uid=25_212 ignored
+                  uid=25_213 strong
+                    uid=25_214 StaticText "Envío:"
+                      uid=25_215 InlineTextBox "Envío:"
+                  uid=25_216 StaticText " GRATIS 🚚"
+                    uid=25_217 InlineTextBox " GRATIS 🚚"
+              uid=25_218 ignored
+                uid=25_219 ignored
+                  uid=25_220 StaticText "NUEVA TEMPORADA"
+                    uid=25_221 InlineTextBox "NUEVA TEMPORADA"
+                uid=25_222 ignored
+                  uid=25_223 StaticText "STOCK LIMITADO"
+                    uid=25_224 InlineTextBox "STOCK LIMITADO"
+              uid=25_225 paragraph
+                uid=25_226 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                  uid=25_227 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal "
+                  uid=25_228 InlineTextBox "para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+            uid=25_229 ignored
+              uid=25_230 generic
+                uid=25_231 heading "GUÍA DE TALLES" level="3"
+                  uid=25_232 StaticText "GUÍA DE TALLES"
+                    uid=25_233 InlineTextBox "GUÍA DE TALLES"
+                uid=25_234 generic
+                  uid=25_235 StaticText "+"
+                    uid=25_236 InlineTextBox "+"
+              uid=25_237 ignored
+                uid=25_238 ignored
+                  uid=25_239 ignored
+                  uid=25_240 ignored
+                uid=25_241 ignored
+                  uid=25_242 ignored
+                    uid=25_243 ignored
+                    uid=25_244 ignored
+                  uid=25_245 ignored
+                    uid=25_246 ignored
+                    uid=25_247 ignored
+                  uid=25_248 ignored
+                    uid=25_249 ignored
+                    uid=25_250 ignored
+                  uid=25_251 ignored
+                    uid=25_252 ignored
+                    uid=25_253 ignored
+                  uid=25_254 ignored
+                    uid=25_255 ignored
+                    uid=25_256 ignored
+                  uid=25_257 ignored
+                    uid=25_258 ignored
+                    uid=25_259 ignored
+            uid=25_260 ignored
+              uid=25_261 ignored
+                uid=25_262 ignored
+                  uid=25_263 StaticText "OFERTA LIMITADA"
+                    uid=25_264 InlineTextBox "OFERTA LIMITADA"
+              uid=25_265 ignored
+                uid=25_266 ignored
+                  uid=25_267 ignored
+                    uid=25_268 StaticText "1 PAR"
+                      uid=25_269 InlineTextBox "1 PAR"
+                  uid=25_270 ignored
+                    uid=25_271 StaticText "$60.000"
+                      uid=25_272 InlineTextBox "$60.000"
+                uid=25_273 generic
+                  uid=25_274 StaticText "—"
+                    uid=25_275 InlineTextBox "—"
+                uid=25_276 generic
+                  uid=25_277 ignored
+                    uid=25_278 StaticText "2 PARES"
+                      uid=25_279 InlineTextBox "2 PARES"
+                  uid=25_280 ignored
+                    uid=25_281 StaticText "$95.000"
+                      uid=25_282 InlineTextBox "$95.000"
+                  uid=25_283 ignored
+                    uid=25_284 StaticText "Ahorra $25.000"
+                      uid=25_285 InlineTextBox "Ahorra $25.000"
+            uid=25_286 ignored
+              uid=25_287 group
+                uid=25_288 generic
+                  uid=25_289 LabelText
+                    uid=25_290 StaticText "Selecciona tu talle"
+                      uid=25_291 InlineTextBox "Selecciona tu talle"
+                  uid=25_292 combobox "Selecciona tu talle" haspopup="menu" value="-- Selecciona tu talle --"
+                    uid=25_293 MenuListPopup
+                      uid=25_294 option "-- Selecciona tu talle --" selectable selected value="-- Selecciona tu talle --"
+                      uid=25_295 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                      uid=25_296 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                      uid=25_297 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                      uid=25_298 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                      uid=25_299 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                      uid=25_300 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                uid=25_301 button "🛒 Agregar al carrito"
+                  uid=25_302 StaticText "🛒 Agregar al carrito"
+                    uid=25_303 InlineTextBox "🛒 Agregar al carrito"
+              uid=25_304 generic
+                uid=25_305 ignored
+                  uid=25_306 ignored
+                    uid=25_307 StaticText "🎯"
+                      uid=25_308 InlineTextBox "🎯"
+                  uid=25_309 ignored
+                    uid=25_310 strong
+                      uid=25_311 StaticText "¡Excelente elección!"
+                        uid=25_312 InlineTextBox "¡Excelente elección!"
+                    uid=25_313 paragraph
+                      uid=25_314 StaticText "Agrega un segundo par y aprovecha la oferta especial:"
+                        uid=25_315 InlineTextBox "Agrega un segundo par y aprovecha la oferta especial:"
+                      uid=25_316 LineBreak "
+"
+                        uid=25_317 InlineTextBox "
+"
+                      uid=25_318 strong
+                        uid=25_319 StaticText "2 pares por $95.000"
+                          uid=25_320 InlineTextBox "2 pares por $95.000"
+                      uid=25_321 StaticText " (ahorrás $25.000)"
+                        uid=25_322 InlineTextBox " (ahorrás $25.000)"
+        uid=25_323 generic
+          uid=25_324 ignored
+            uid=25_325 heading "Tu Carrito" level="4"
+              uid=25_326 StaticText "Tu Carrito"
+                uid=25_327 InlineTextBox "Tu Carrito"
+            uid=25_328 button "×"
+              uid=25_329 StaticText "×"
+                uid=25_330 InlineTextBox "×"
+          uid=25_331 ignored
+            uid=25_332 generic
+              uid=25_333 ignored
+                uid=25_334 generic
+                  uid=25_335 image "Guillerminas Negras - Talle 36" url="http://localhost:4335/images/productos/guillerminas/negras/36.webp"
+                uid=25_336 ignored
+                  uid=25_337 generic
+                    uid=25_338 StaticText "Guillerminas Negras"
+                      uid=25_339 InlineTextBox "Guillerminas Negras"
+                  uid=25_340 generic
+                    uid=25_341 StaticText "Talle: 36"
+                      uid=25_342 InlineTextBox "Talle: 36"
+                    uid=25_343 StaticText " "
+                      uid=25_344 InlineTextBox " "
+                    uid=25_345 StaticText "Par 1"
+                      uid=25_346 InlineTextBox "Par 1"
+                  uid=25_347 generic
+                    uid=25_348 StaticText "$60.000"
+                      uid=25_349 InlineTextBox "$60.000"
+                uid=25_350 generic
+                  uid=25_351 button "✕" description="Eliminar este par"
+                    uid=25_352 StaticText "✕"
+                      uid=25_353 InlineTextBox "✕"
+            uid=25_354 generic
+              uid=25_355 strong
+                uid=25_356 StaticText "Total: $"
+                  uid=25_357 InlineTextBox "Total: $"
+                uid=25_358 generic
+                  uid=25_359 StaticText "60.000"
+                    uid=25_360 InlineTextBox "60.000"
+            uid=25_361 ignored
+              uid=25_362 button "🛒 Finalizar Compra"
+                uid=25_363 StaticText "🛒 Finalizar Compra"
+                  uid=25_364 InlineTextBox "🛒 Finalizar Compra"
+              uid=25_365 button "🗑️ Vaciar Carrito"
+                uid=25_366 StaticText "🗑️ Vaciar Carrito"
+                  uid=25_367 InlineTextBox "🗑️ Vaciar Carrito"
+        uid=25_368 button "🛒 1"
+          uid=25_369 StaticText "🛒"
+            uid=25_370 InlineTextBox "🛒"
+          uid=25_371 generic
+            uid=25_372 StaticText "1"
+              uid=25_373 InlineTextBox "1"
+        uid=25_374 ignored
+          uid=25_375 heading "Panel de Testing" level="2"
+            uid=25_376 StaticText "Panel de Testing"
+              uid=25_377 InlineTextBox "Panel de Testing"
+          uid=25_378 ignored
+            uid=25_379 ignored
+              uid=25_380 strong
+                uid=25_381 StaticText "✅ Funcionalidades a validar:"
+                  uid=25_382 InlineTextBox "✅ Funcionalidades a validar:"
+              uid=25_383 list
+                uid=25_384 listitem level="1"
+                  uid=25_385 ListMarker "• "
+                    uid=25_386 ignored
+                  uid=25_387 StaticText "Carrusel principal con navegación (flechas)"
+                    uid=25_388 InlineTextBox "Carrusel principal con navegación (flechas)"
+                uid=25_389 listitem level="1"
+                  uid=25_390 ListMarker "• "
+                    uid=25_391 ignored
+                  uid=25_392 StaticText "Thumbnails sincronizados"
+                    uid=25_393 InlineTextBox "Thumbnails sincronizados"
+                uid=25_394 listitem level="1"
+                  uid=25_395 ListMarker "• "
+                    uid=25_396 ignored
+                  uid=25_397 StaticText "Selector 1 par / 2 pares"
+                    uid=25_398 InlineTextBox "Selector 1 par / 2 pares"
+                uid=25_399 listitem level="1"
+                  uid=25_400 ListMarker "• "
+                    uid=25_401 ignored
+                  uid=25_402 StaticText "Selección de talle para cada par"
+                    uid=25_403 InlineTextBox "Selección de talle para cada par"
+                uid=25_404 listitem level="1"
+                  uid=25_405 ListMarker "• "
+                    uid=25_406 ignored
+                  uid=25_407 StaticText "Botón "Agregar al carrito""
+                    uid=25_408 InlineTextBox "Botón "Agregar al carrito""
+                uid=25_409 listitem level="1"
+                  uid=25_410 ListMarker "• "
+                    uid=25_411 ignored
+                  uid=25_412 StaticText "Carrito flotante con contador"
+                    uid=25_413 InlineTextBox "Carrito flotante con contador"
+                uid=25_414 listitem level="1"
+                  uid=25_415 ListMarker "• "
+                    uid=25_416 ignored
+                  uid=25_417 StaticText "Guía de talles (toggle)"
+                    uid=25_418 InlineTextBox "Guía de talles (toggle)"
+                uid=25_419 listitem level="1"
+                  uid=25_420 ListMarker "• "
+                    uid=25_421 ignored
+                  uid=25_422 StaticText "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+                    uid=25_423 InlineTextBox "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+            uid=25_424 ignored
+              uid=25_425 strong
+                uid=25_426 StaticText "🎯 Estado Actual:"
+                  uid=25_427 InlineTextBox "🎯 Estado Actual:"
+              uid=25_428 paragraph
+                uid=25_429 StaticText "Componente individual funcional MVP"
+                  uid=25_430 InlineTextBox "Componente individual funcional MVP"
+      uid=25_431 generic
+        uid=25_432 ignored
+        uid=25_433 ignored
+          uid=25_434 ignored
+            uid=25_435 button "Menu"
+              uid=25_436 generic
+              uid=25_437 ignored
+                uid=25_438 StaticText "Menu"
+                  uid=25_439 InlineTextBox "Menu"
+            uid=25_440 button "Inspect"
+              uid=25_441 generic
+              uid=25_442 ignored
+                uid=25_443 StaticText "Inspect"
+                  uid=25_444 InlineTextBox "Inspect"
+            uid=25_445 button "Audit"
+              uid=25_446 generic
+                uid=25_447 generic
+                  uid=25_448 image
+              uid=25_449 ignored
+                uid=25_450 StaticText "Audit"
+                  uid=25_451 InlineTextBox "Audit"
+            uid=25_452 ignored
+            uid=25_453 button "Settings"
+              uid=25_454 generic
+              uid=25_455 ignored
+                uid=25_456 StaticText "Settings"
+                  uid=25_457 InlineTextBox "Settings"
+        uid=25_458 ignored
+      uid=25_459 ignored
+        uid=25_460 ignored
+          uid=25_461 ignored
+            uid=25_462 ignored
+              uid=25_463 ignored
+                uid=25_464 ignored
+              uid=25_465 ignored
+                uid=25_466 ignored
+                uid=25_467 ignored
+                  uid=25_468 ignored
+            uid=25_469 ignored
+            uid=25_470 ignored
+              uid=25_471 ignored
+              uid=25_472 ignored
+              uid=25_473 ignored
+              uid=25_474 ignored
+                uid=25_475 ignored
+      uid=25_476 ignored
+        uid=25_477 ignored
+          uid=25_478 ignored
+            uid=25_479 ignored
+              uid=25_480 ignored
+            uid=25_481 ignored
+      uid=25_482 ignored
+        uid=25_483 ignored
+          uid=25_484 ignored
+          uid=25_485 ignored
+            uid=25_486 ignored
+              uid=25_487 ignored
+                uid=25_488 ignored
+              uid=25_489 ignored
+            uid=25_490 ignored
+              uid=25_491 ignored
+                uid=25_492 ignored
+              uid=25_493 ignored
+          uid=25_494 ignored
+          uid=25_495 ignored
+            uid=25_496 ignored
+          uid=25_497 ignored
+            uid=25_498 ignored
+      uid=25_499 ignored
+        uid=25_500 ignored
+          uid=25_501 ignored
+            uid=25_502 ignored
+              uid=25_503 ignored
+            uid=25_504 ignored
+            uid=25_505 ignored
+              uid=25_506 ignored
+                uid=25_507 ignored
+                  uid=25_508 ignored
+                uid=25_509 ignored
+              uid=25_510 ignored
+                uid=25_511 ignored
+                  uid=25_512 ignored
+                    uid=25_513 ignored
+                      uid=25_514 ignored
+                      uid=25_515 ignored
+                      uid=25_516 ignored
+            uid=25_517 ignored
+            uid=25_518 ignored
+              uid=25_519 ignored
+                uid=25_520 ignored
+                  uid=25_521 ignored
+                uid=25_522 ignored
+              uid=25_523 ignored
+                uid=25_524 ignored
+            uid=25_525 ignored
+            uid=25_526 ignored
+              uid=25_527 ignored
+                uid=25_528 ignored
+                  uid=25_529 ignored
+                uid=25_530 ignored
+              uid=25_531 ignored
+                uid=25_532 ignored
+            uid=25_533 ignored
+            uid=25_534 ignored
+              uid=25_535 ignored
+                uid=25_536 ignored
+                  uid=25_537 ignored
+                uid=25_538 ignored
+                uid=25_539 ignored
+                  uid=25_540 ignored
+                uid=25_541 ignored
+                uid=25_542 ignored
+                  uid=25_543 ignored
+                uid=25_544 ignored
+      uid=25_545 ignored
+        uid=25_546 ignored

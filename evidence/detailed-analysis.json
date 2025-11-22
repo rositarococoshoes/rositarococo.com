@@ -1,0 +1,163 @@
+{
+  "timestamp": "2025-11-11T16:42:00.707Z",
+  "imageAnalysis": {
+    "total": 8,
+    "loaded": 6,
+    "broken": 2,
+    "missing": 0,
+    "details": [
+      {
+        "index": 0,
+        "src": "http://localhost:4327/images/ui/rosita-form.webp",
+        "alt": "Rosita Rococó",
+        "loaded": true,
+        "naturalWidth": 456,
+        "naturalHeight": 60,
+        "displayWidth": 298,
+        "displayHeight": 48
+      },
+      {
+        "index": 1,
+        "src": "http://localhost:4327/images/products/guillerminas/negra/1.webp",
+        "alt": "Guillerminas Negras",
+        "loaded": true,
+        "naturalWidth": 400,
+        "naturalHeight": 356,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 2,
+        "src": "http://localhost:4327/images/products/guillerminas/camel/1.webp",
+        "alt": "Guillerminas Camel",
+        "loaded": true,
+        "naturalWidth": 1080,
+        "naturalHeight": 1350,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 3,
+        "src": "http://localhost:4327/images/products/guillerminas/blanca/1.webp",
+        "alt": "Guillerminas Blancas",
+        "loaded": true,
+        "naturalWidth": 1080,
+        "naturalHeight": 1350,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 4,
+        "src": "http://localhost:4327/images/products/birk/negra/1.webp",
+        "alt": "Birk Negras",
+        "loaded": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 5,
+        "src": "http://localhost:4327/images/products/birk/camel/1.webp",
+        "alt": "Birk Camel",
+        "loaded": true,
+        "naturalWidth": 1080,
+        "naturalHeight": 1350,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 6,
+        "src": "http://localhost:4327/images/products/birk/blanca/1.webp",
+        "alt": "Birk Blancas",
+        "loaded": true,
+        "naturalWidth": 1080,
+        "naturalHeight": 1350,
+        "displayWidth": 224,
+        "displayHeight": 320
+      },
+      {
+        "index": 7,
+        "src": "http://localhost:4327/images/products/paris/negra/1.webp",
+        "alt": "Paris Negras",
+        "loaded": false,
+        "naturalWidth": 0,
+        "naturalHeight": 0,
+        "displayWidth": 448,
+        "displayHeight": 320
+      }
+    ]
+  },
+  "networkLogs": [
+    {
+      "url": "data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "http://localhost:4327/images/ui/rosita-form.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/guillerminas/negra/1.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/guillerminas/camel/1.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/guillerminas/blanca/1.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/birk/camel/1.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/birk/negra/1.webp",
+      "status": 404,
+      "ok": false
+    },
+    {
+      "url": "http://localhost:4327/images/products/birk/blanca/1.webp",
+      "status": 304,
+      "ok": false
+    },
+    {
+      "url": "https://www.facebook.com/tr/?id=1052677351596434&ev=PageView&dl=http%3A%2F%2Flocalhost%3A4327%2F&rl=&if=false&ts=1762879316838&sw=800&sh=600&v=2.9.241&r=stable&ec=0&o=4254&fbp=fb.0.1762879309897.163577605585050958&cs_est=true&ler=empty&bfs[b]=1&pmd[title]=Colecci%C3%B3n%20Oto%C3%B1o-Invierno%202025%20%7C%20Rosita%20Rococ%C3%B3&pmd[description]=Descubre%20nuestra%20nueva%20colecci%C3%B3n%20de%20guillerminas%2C%20birk%20y%20paris.%20Calzado%20femenino%20elegante%20y%20c%C3%B3modo%20con%20env%C3%ADos%20a%20todo%20el%20pa%C3%ADs.&pmd[keywords]=guillerminas%2C%20calzado%20femenino%2C%20zapatos%2C%20moda%2C%20elegance%2C%20rosita%20rococ%C3%B3&plt=195.89999999850988&it=1762879316796&coo=false&cdl=&expv2[0]=pl0&expv2[1]=el2&expv2[2]=bc1&rqm=GET",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "url": "https://www.facebook.com/privacy_sandbox/pixel/register/trigger/?id=1052677351596434&ev=PageView&dl=http%3A%2F%2Flocalhost%3A4327%2F&rl=&if=false&ts=1762879316838&sw=800&sh=600&v=2.9.241&r=stable&ec=0&o=4254&fbp=fb.0.1762879309897.163577605585050958&cs_est=true&ler=empty&bfs[b]=1&pmd[title]=Colecci%C3%B3n%20Oto%C3%B1o-Invierno%202025%20%7C%20Rosita%20Rococ%C3%B3&pmd[description]=Descubre%20nuestra%20nueva%20colecci%C3%B3n%20de%20guillerminas%2C%20birk%20y%20paris.%20Calzado%20femenino%20elegante%20y%20c%C3%B3modo%20con%20env%C3%ADos%20a%20todo%20el%20pa%C3%ADs.&pmd[keywords]=guillerminas%2C%20calzado%20femenino%2C%20zapatos%2C%20moda%2C%20elegance%2C%20rosita%20rococ%C3%B3&plt=195.89999999850988&it=1762879316796&coo=false&cdl=&expv2[0]=pl0&expv2[1]=el2&expv2[2]=bc1&rqm=FGET",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "layoutAnalysis": {
+    "problematicElements": [
+      {
+        "type": "broken_image",
+        "element": "<img src=\"/images/products/birk/negra/1.webp\" alt=\"Birk Negras\" class=\"w-full h-80 object-cover\" loading=\"lazy\">",
+        "src": "http://localhost:4327/images/products/birk/negra/1.webp",
+        "alt": "Birk Negras",
+        "index": 4
+      },
+      {
+        "type": "broken_image",
+        "element": "<img src=\"/images/products/paris/negra/1.webp\" alt=\"Paris Negras\" class=\"w-full h-80 object-cover\" loading=\"lazy\">",
+        "src": "http://localhost:4327/images/products/paris/negra/1.webp",
+        "alt": "Paris Negras",
+        "index": 7
+      }
+    ],
+    "totalImgElements": 8,
+    "brokenImgCount": 2
+  }
+}

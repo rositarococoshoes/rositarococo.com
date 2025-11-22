@@ -1,0 +1,24 @@
+{
+  "timestamp": "2025-11-11T14:52:09.450Z",
+  "metrics": {
+    "Timestamp": 7699.728582,
+    "Documents": 2,
+    "Frames": 1,
+    "JSEventListeners": 13,
+    "Nodes": 11814,
+    "LayoutCount": 18,
+    "RecalcStyleCount": 22,
+    "LayoutDuration": 0.249457,
+    "RecalcStyleDuration": 0.108551,
+    "ScriptDuration": 0.015213,
+    "TaskDuration": 0.661472,
+    "JSHeapUsedSize": 2456660,
+    "JSHeapTotalSize": 3514368
+  },
+  "timing": {
+    "domContentLoaded": 0.10000000055879354,
+    "loadComplete": 0,
+    "firstPaint": 676,
+    "firstContentfulPaint": 676
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de dirección con autocompletar</title>
+</head>
+<body>
+  <!-- Formulario con elemento para ingresar la dirección del usuario -->
+  <form>
+    <label for="direccion">Dirección:</label>
+    <input type="text" id="direccion" name="direccion">
+  </form>
+
+  <!-- Incluir la API de Google Maps -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCm-Jlwbq3M3fREnXWEAxSuZwvvbpeigKE&libraries=places"></script>
+
+  <script>
+    // Crear un nuevo objeto de autocompletar para el campo de dirección
+    var direccionAutocompletar = new google.maps.places.Autocomplete(
+      document.getElementById('direccion')
+    );
+  </script>
+</body>
+</html>

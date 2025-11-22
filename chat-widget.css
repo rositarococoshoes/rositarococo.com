@@ -1,0 +1,292 @@
+/* Chat Widget Styles */
+:root {
+    --chat-primary: #a05941;
+    --chat-secondary: #f8f3ef;
+    --chat-accent: #d4a68b;
+    --chat-text: #333333;
+    --chat-light-text: #777777;
+    --chat-shadow: rgba(0, 0, 0, 0.1);
+    --chat-border-radius: 16px;
+    --chat-transition: all 0.3s ease;
+}
+
+#chat-widget-container {
+    position: fixed;
+    bottom: 90px; /* Posicionado arriba del botón de carrito */
+    right: 20px; /* Volvemos a colocarlo a la derecha pero más arriba */
+    z-index: 9999;
+    font-family: 'Lato', sans-serif;
+    transition: var(--chat-transition);
+}
+
+/* Chat Button */
+#chat-widget-button {
+    width: 50px; /* Reducido ligeramente */
+    height: 50px; /* Reducido ligeramente */
+    border-radius: 50%;
+    background-color: var(--chat-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--chat-shadow);
+    transition: var(--chat-transition);
+    position: absolute;
+    bottom: 0;
+    right: 0; /* Volvemos a right */
+}
+
+#chat-widget-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px var(--chat-shadow);
+}
+
+#chat-widget-button svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+/* Chat Window */
+#chat-widget-window {
+    display: none;
+    width: 320px;
+    height: 400px;
+    background-color: white;
+    border-radius: var(--chat-border-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 24px var(--chat-shadow);
+    flex-direction: column;
+    transition: var(--chat-transition);
+    position: absolute;
+    bottom: 60px;
+    right: 0; /* Volvemos a right */
+}
+
+#chat-widget-window.open {
+    display: flex;
+}
+
+/* Chat Header */
+#chat-widget-header {
+    background-color: var(--chat-primary);
+    color: white;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#chat-widget-title {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+#chat-widget-title img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+#chat-widget-close {
+    cursor: pointer;
+    font-size: 20px;
+    transition: var(--chat-transition);
+}
+
+#chat-widget-close:hover {
+    transform: scale(1.1);
+}
+
+/* Chat Messages */
+#chat-widget-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--chat-secondary);
+}
+
+.chat-message {
+    max-width: 80%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+    background-color: white;
+    color: var(--chat-text);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 5px var(--chat-shadow);
+}
+
+.chat-message.user {
+    align-self: flex-end;
+    background-color: var(--chat-primary);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    background-color: white;
+    padding: 8px 14px;
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px var(--chat-shadow);
+}
+
+.typing-indicator span {
+    height: 8px;
+    width: 8px;
+    background-color: var(--chat-light-text);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 1px;
+    opacity: 0.4;
+}
+
+.typing-indicator span:nth-child(1) {
+    animation: pulse 1s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation: pulse 1s infinite 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation: pulse 1s infinite 0.4s;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+/* Chat Input */
+#chat-widget-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: white;
+}
+
+#chat-widget-input {
+    flex: 1;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: var(--chat-secondary);
+    font-size: 14px;
+    outline: none;
+    transition: var(--chat-transition);
+}
+
+#chat-widget-input:focus {
+    box-shadow: 0 0 0 2px var(--chat-accent);
+}
+
+#chat-widget-send {
+    background-color: var(--chat-primary);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    margin-left: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--chat-transition);
+}
+
+#chat-widget-send:hover {
+    background-color: var(--chat-accent);
+}
+
+#chat-widget-send svg {
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    #chat-widget-window {
+        width: calc(100vw - 40px);
+        height: 50vh; /* Reducido para que no ocupe tanto espacio */
+        bottom: 60px;
+    }
+
+    /* Ajustes para evitar que el botón quede muy abajo en móviles */
+    #chat-widget-container {
+        bottom: 90px; /* Subimos el widget para que no interfiera con elementos del footer */
+    }
+
+    /* Hacemos el botón más pequeño en móviles */
+    #chat-widget-button {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Animación para llamar la atención */
+@keyframes pulse-chat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Aplicamos la animación al botón del chat */
+#chat-widget-button {
+    animation: pulse-chat 2s infinite;
+}
+
+#chat-widget-button:hover {
+    animation: none; /* Detenemos la animación al hacer hover */
+}
+
+/* Añadimos un pequeño texto sobre el botón para incentivar su uso */
+#chat-widget-button::after {
+    content: "¿Dudas?";
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--chat-primary);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+#chat-widget-button:hover::after {
+    opacity: 0;
+}

@@ -1,0 +1,95 @@
+/* Estilos para los carruseles CSS personalizados */
+
+.css-carousel {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 0;
+    background-color: #f9f6f2;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+}
+
+.css-carousel .scroll-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.css-carousel .scroll-item {
+    width: 100%;
+    display: none;
+    text-align: center;
+}
+
+.css-carousel .scroll-item:first-child {
+    display: block;
+}
+
+.css-carousel .scroll-item img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.css-carousel .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #a05941;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.css-carousel .carousel-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #7a3f2b;
+}
+
+.css-carousel .prev-btn {
+    left: 10px;
+}
+
+.css-carousel .next-btn {
+    right: 10px;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .css-carousel .carousel-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .css-carousel .carousel-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .css-carousel .carousel-btn {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+    }
+}

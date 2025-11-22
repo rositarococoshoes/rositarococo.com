@@ -1,0 +1,127 @@
+/* Solución específica para el HTML renderizado */
+
+/* Ajustes para los títulos de productos */
+.product-item h2 {
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    font-size: 1.6em !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* Ajustes para los carruseles inicializados */
+.product-item .slick-initialized {
+    margin-top: -5px !important;
+    padding-top: 0 !important;
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+/* Ajustes para los botones de navegación */
+.slick-prev, 
+.slick-next {
+    z-index: 20 !important;
+}
+
+/* Ajustes para los slides activos */
+.slick-slide.slick-current.slick-active {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes para las imágenes dentro de los slides */
+.slick-slide img {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: block !important;
+}
+
+/* Ajustes para el track */
+.slick-track {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes para la lista */
+.slick-list {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes para los puntos de navegación */
+.slick-dots {
+    margin: 0 !important;
+    padding: 0 !important;
+    bottom: 0 !important;
+}
+
+/* Ajustes para los contenedores de producto */
+.product-item {
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Ajustes específicos para los elementos con estilo inline */
+[style*="position: relative"] {
+    top: 0 !important;
+}
+
+/* Ajustes específicos para los elementos con z-index */
+[style*="z-index"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes específicos para los elementos con opacidad */
+[style*="opacity"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes específicos para los elementos con left */
+[style*="left"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes específicos para los elementos con top */
+[style*="top"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .product-item h2 {
+        font-size: 1.4em !important;
+    }
+    
+    .product-item .slick-initialized {
+        margin-top: -5px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-item h2 {
+        font-size: 1.3em !important;
+    }
+    
+    .product-item .slick-initialized {
+        margin-top: -5px !important;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .product-item h2 {
+        font-size: 1.2em !important;
+    }
+    
+    .product-item .slick-initialized {
+        margin-top: -5px !important;
+    }
+}

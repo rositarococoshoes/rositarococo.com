@@ -1,0 +1,161 @@
+/* Estilos para el nuevo selector de cantidad y precio combinado */
+.product-price-quantity {
+    margin: 5px 0;
+    padding: 8px;
+    background-color: #f9f5f2;
+    border-radius: 8px;
+}
+
+/* Estilos para la explicación de la promoción */
+.promo-explanation {
+    margin: 5px 0;
+    padding: 3px;
+    background-color: rgba(240, 240, 240, 0.3);
+    border-radius: 5px;
+}
+
+.promo-explanation p {
+    margin: 5px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+}
+
+.promo-note {
+    font-size: 0.85rem;
+    color: #b71c1c;
+    font-style: italic;
+}
+
+.quantity-selector-label {
+    font-weight: 700;
+    color: #3a3a3a;
+    margin: 10px 0 5px;
+    font-size: 0.95em;
+    text-align: left;
+}
+
+.quantity-price-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.quantity-price-option {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quantity-price-option:hover {
+    border-color: #a05941;
+}
+
+.quantity-price-option input[type="radio"] {
+    margin-right: 10px;
+}
+
+.quantity-price-option input[type="radio"]:checked + .option-content {
+    font-weight: bold;
+}
+
+.quantity-price-option:has(input[type="radio"]:checked) {
+    border-color: #a05941;
+    background-color: rgba(160, 89, 65, 0.05);
+}
+
+.option-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.option-quantity {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    position: relative;
+    margin-right: 5px;
+}
+
+.option-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.option-save {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #b71c1c;
+    width: 100%;
+    margin-top: 2px;
+}
+
+/* Asegurar que la etiqueta OFERTA solo aparezca en el radio button de 2 pares */
+.promo-tag {
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: middle;
+    background-color: #b71c1c;
+    color: white;
+    font-size: 0.8rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+/* Estilos para la promoción integrada */
+.product-promo {
+    margin: 5px 0;
+    padding: 5px;
+    background-color: rgba(160, 89, 65, 0.08);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #4a2516;
+}
+
+.product-promo .countdown {
+    font-weight: bold;
+    font-family: monospace;
+}
+
+/* Ajustes para maximizar el ancho en móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 5px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .swiper {
+        width: 100%;
+        margin: 0;
+    }
+
+    .swiper-slide img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+}
+
+/* Ajustes para imágenes en desktop */
+@media (min-width: 769px) {
+    .swiper-slide img {
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        max-height: 600px;
+        max-width: 100%;
+    }
+}

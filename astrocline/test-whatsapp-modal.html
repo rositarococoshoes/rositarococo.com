@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Modal Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">WhatsApp Modal Test</h1>
+
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-xl font-semibold mb-4">Test Cart Modal Functionality</h2>
+
+            <div id="test-results" class="mb-4 p-4 bg-gray-50 rounded-lg">
+                <h3 class="font-semibold mb-2">Test Results:</h3>
+                <div id="results-content">Click the buttons below to test...</div>
+            </div>
+
+            <div class="space-y-4">
+                <button onclick="testWhatsAppModal()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
+                    Test WhatsApp Modal
+                </button>
+
+                <button onclick="simulateFirstAddToCart()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg">
+                    Simulate First Add to Cart
+                </button>
+
+                <button onclick="clearLocalStorage()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
+                    Clear LocalStorage (Reset Test)
+                </button>
+
+                <button onclick="checkModalExists()" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg">
+                    Check if Modal Exists
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4">Manual Test</h2>
+            <p class="text-gray-600">Open the console and test manually:</p>
+            <div class="bg-gray-800 text-gray-100 p-4 rounded-lg mt-2 font-mono text-sm">
+                <pre>// Test functions available:
+showWhatsAppModal()
+closeWhatsAppModal()
+localStorage.getItem('whatsappModalShown')
+localStorage.removeItem('whatsappModalShown')</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the carousel.js file -->
+    <script src="js/carousel.js"></script>
+
+    <script>
+        function log(message, type = 'info') {
+            const resultsContent = document.getElementById('results-content');
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'error' ? 'text-red-600' : type === 'success' ? 'text-green-600' : 'text-blue-600';
+            resultsContent.innerHTML += `<div class="${color}">[${timestamp}] ${message}</div>`;
+            console.log(`[TEST] ${message}`);
+        }
+
+        function testWhatsAppModal() {
+            log('Testing WhatsApp modal...');
+
+            try {
+                // Check if modal exists
+                const modal = document.getElementById('whatsapp-modal');
+                if (!modal) {
+                    log('❌ WhatsApp modal not found in DOM', 'error');
+                    return;
+                }
+                log('✅ WhatsApp modal found in DOM');
+
+                // Check if showWhatsAppModal function exists
+                if (typeof showWhatsAppModal === 'function') {
+                    log('✅ showWhatsAppModal function exists');
+
+                    // Try to show the modal
+                    showWhatsAppModal();
+                    log('✅ showWhatsAppModal() called successfully', 'success');
+
+                    // Check if modal is visible
+                    setTimeout(() => {
+                        if (modal.classList.contains('hidden')) {
+                            log('❌ Modal is still hidden after calling showWhatsAppModal()', 'error');
+                        } else {
+                            log('✅ Modal is now visible', 'success');
+                        }
+                    }, 100);
+
+                } else {
+                    log('❌ showWhatsAppModal function not found', 'error');
+                }
+
+            } catch (error) {
+                log(`❌ Error testing WhatsApp modal: ${error.message}`, 'error');
+            }
+        }
+
+        function simulateFirstAddToCart() {
+            log('Simulating first add to cart...');
+
+            // Reset cart state
+            window.cart = [];
+            window.cartCount = 0;
+
+            // Clear localStorage
+            localStorage.removeItem('whatsappModalShown');
+
+            log('Cart reset to 0 items, localStorage cleared');
+
+            // Simulate the cart addition logic
+            const previousCartCount = 0;
+
+            // Simulate addToCart being called
+            window.cart.push({
+                id: Date.now(),
+                model: 'negras',
+                name: 'Guillerminas Negras',
+                size: '37',
+                price: 60000,
+                image: '/guillerminafotos/1.webp'
+            });
+            window.cartCount = 1;
+
+            log('Cart updated to 1 item');
+
+            // Check if this was the first item added and show WhatsApp modal
+            if (previousCartCount === 0 && window.cartCount === 1) {
+                // Verificar si el modal ya fue mostrado en esta sesión
+                const whatsappModalShown = localStorage.getItem('whatsappModalShown');
+                if (!whatsappModalShown) {
+                    log('First item detected, showing WhatsApp modal in 1 second...');
+                    setTimeout(() => {
+                        showWhatsAppModal();
+                        log('WhatsApp modal should now be visible', 'success');
+                    }, 1000);
+                } else {
+                    log('WhatsApp modal was already shown in this session');
+                }
+            } else {
+                log('❌ Condition failed: previousCartCount=' + previousCartCount + ', cartCount=' + window.cartCount, 'error');
+            }
+        }
+
+        function clearLocalStorage() {
+            localStorage.removeItem('whatsappModalShown');
+            log('localStorage cleared - WhatsApp modal can be shown again');
+        }
+
+        function checkModalExists() {
+            const modal = document.getElementById('whatsapp-modal');
+            if (modal) {
+                log('✅ Modal element exists in DOM');
+                log('Modal classes: ' + modal.className);
+                log('Modal display: ' + window.getComputedStyle(modal).display);
+            } else {
+                log('❌ Modal element not found in DOM', 'error');
+            }
+        }
+
+        // Wait for DOM to load before running tests
+        document.addEventListener('DOMContentLoaded', function() {
+            log('DOM loaded, ready for testing');
+            log('Initial localStorage whatsappModalShown: ' + localStorage.getItem('whatsappModalShown'));
+        });
+    </script>
+</body>
+</html>

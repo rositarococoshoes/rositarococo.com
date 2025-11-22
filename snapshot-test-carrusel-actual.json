@@ -1,0 +1,328 @@
+uid=11_0 RootWebArea "Test - Carrusel Guillerminas Negras | Rosita Rococó" url="http://localhost:4335/test-carrusel"
+  uid=11_1 ignored
+    uid=11_2 ignored
+      uid=11_3 ignored
+        uid=11_4 heading "🧪 TEST: Componente Carrusel Guillerminas Negras" level="1"
+          uid=11_5 StaticText "🧪 TEST: Componente Carrusel Guillerminas Negras"
+            uid=11_6 InlineTextBox "🧪 TEST: Componente Carrusel Guillerminas Negras"
+        uid=11_7 generic
+          uid=11_8 heading "Guillerminas Negras" level="2"
+            uid=11_9 StaticText "Guillerminas Negras"
+              uid=11_10 InlineTextBox "Guillerminas Negras"
+          uid=11_11 generic
+            uid=11_12 generic
+              uid=11_13 group "5 / 5"
+                uid=11_14 image "Guillerminas Negras - Vista 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=11_15 group "1 / 5"
+                uid=11_16 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=11_17 group "2 / 5"
+                uid=11_18 image "Guillerminas Negras - Vista 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=11_19 group "3 / 5"
+                uid=11_20 image "Guillerminas Negras - Vista 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=11_21 group "4 / 5"
+                uid=11_22 image "Guillerminas Negras - Vista 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=11_23 group "5 / 5"
+                uid=11_24 image "Guillerminas Negras - Vista 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+              uid=11_25 group "1 / 5"
+                uid=11_26 image "Guillerminas Negras - Vista 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+            uid=11_27 button "Previous slide"
+              uid=11_28 generic
+                uid=11_29 StaticText "prev"
+                  uid=11_30 InlineTextBox "prev"
+            uid=11_31 button "Next slide"
+              uid=11_32 generic
+                uid=11_33 StaticText "next"
+                  uid=11_34 InlineTextBox "next"
+            uid=11_35 generic
+          uid=11_36 generic
+            uid=11_37 generic
+              uid=11_38 group "1 / 5"
+                uid=11_39 image "Guillerminas Negras - Thumbnail 1" url="http://localhost:4335/images/productos/guillerminas/negras/1.webp"
+              uid=11_40 group "2 / 5"
+                uid=11_41 image "Guillerminas Negras - Thumbnail 2" url="http://localhost:4335/images/productos/guillerminas/negras/2.webp"
+              uid=11_42 group "3 / 5"
+                uid=11_43 image "Guillerminas Negras - Thumbnail 3" url="http://localhost:4335/images/productos/guillerminas/negras/3.webp"
+              uid=11_44 group "4 / 5"
+                uid=11_45 image "Guillerminas Negras - Thumbnail 4" url="http://localhost:4335/images/productos/guillerminas/negras/4.webp"
+              uid=11_46 group "5 / 5"
+                uid=11_47 image "Guillerminas Negras - Thumbnail 5" url="http://localhost:4335/images/productos/guillerminas/negras/5.webp"
+            uid=11_48 generic
+          uid=11_49 generic
+            uid=11_50 ignored
+              uid=11_51 ignored
+                uid=11_52 ignored
+                  uid=11_53 strong
+                    uid=11_54 StaticText "Material:"
+                      uid=11_55 InlineTextBox "Material:"
+                  uid=11_56 StaticText " Tela reforzada super flexible"
+                    uid=11_57 InlineTextBox " Tela reforzada super flexible"
+                uid=11_58 ignored
+                  uid=11_59 strong
+                    uid=11_60 StaticText "Suela:"
+                      uid=11_61 InlineTextBox "Suela:"
+                  uid=11_62 StaticText " Expanso"
+                    uid=11_63 InlineTextBox " Expanso"
+                uid=11_64 ignored
+                  uid=11_65 strong
+                    uid=11_66 StaticText "Envío:"
+                      uid=11_67 InlineTextBox "Envío:"
+                  uid=11_68 StaticText " GRATIS 🚚"
+                    uid=11_69 InlineTextBox " GRATIS 🚚"
+              uid=11_70 ignored
+                uid=11_71 ignored
+                  uid=11_72 StaticText "NUEVA TEMPORADA"
+                    uid=11_73 InlineTextBox "NUEVA TEMPORADA"
+                uid=11_74 ignored
+                  uid=11_75 StaticText "STOCK LIMITADO"
+                    uid=11_76 InlineTextBox "STOCK LIMITADO"
+              uid=11_77 paragraph
+                uid=11_78 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                  uid=11_79 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal "
+                  uid=11_80 InlineTextBox "para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+            uid=11_81 ignored
+              uid=11_82 generic
+                uid=11_83 heading "GUÍA DE TALLES" level="3"
+                  uid=11_84 StaticText "GUÍA DE TALLES"
+                    uid=11_85 InlineTextBox "GUÍA DE TALLES"
+                uid=11_86 generic
+                  uid=11_87 StaticText "+"
+                    uid=11_88 InlineTextBox "+"
+              uid=11_89 ignored
+                uid=11_90 ignored
+                  uid=11_91 ignored
+                  uid=11_92 ignored
+                uid=11_93 ignored
+                  uid=11_94 ignored
+                    uid=11_95 ignored
+                    uid=11_96 ignored
+                  uid=11_97 ignored
+                    uid=11_98 ignored
+                    uid=11_99 ignored
+                  uid=11_100 ignored
+                    uid=11_101 ignored
+                    uid=11_102 ignored
+                  uid=11_103 ignored
+                    uid=11_104 ignored
+                    uid=11_105 ignored
+                  uid=11_106 ignored
+                    uid=11_107 ignored
+                    uid=11_108 ignored
+                  uid=11_109 ignored
+                    uid=11_110 ignored
+                    uid=11_111 ignored
+            uid=11_112 ignored
+              uid=11_113 ignored
+                uid=11_114 paragraph
+                  uid=11_115 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                    uid=11_116 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+              uid=11_117 ignored
+                uid=11_118 LabelText
+                  uid=11_119 radio "1 par $60.000" checked
+                  uid=11_120 ignored
+                    uid=11_121 generic
+                      uid=11_122 StaticText "1 par"
+                        uid=11_123 InlineTextBox "1 par"
+                    uid=11_124 generic
+                      uid=11_125 StaticText "$60.000"
+                        uid=11_126 InlineTextBox "$60.000"
+                uid=11_127 LabelText
+                  uid=11_128 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                  uid=11_129 ignored
+                    uid=11_130 generic
+                      uid=11_131 StaticText "2 pares "
+                        uid=11_132 InlineTextBox "2 pares "
+                      uid=11_133 StaticText "OFERTA"
+                        uid=11_134 InlineTextBox "OFERTA"
+                    uid=11_135 generic
+                      uid=11_136 StaticText "$95.000"
+                        uid=11_137 InlineTextBox "$95.000"
+                    uid=11_138 generic
+                      uid=11_139 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                        uid=11_140 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+            uid=11_141 ignored
+              uid=11_142 group
+                uid=11_143 generic
+                  uid=11_144 LabelText
+                    uid=11_145 StaticText "Talle Par 1"
+                      uid=11_146 InlineTextBox "Talle Par 1"
+                  uid=11_147 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                    uid=11_148 MenuListPopup
+                      uid=11_149 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                      uid=11_150 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                      uid=11_151 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                      uid=11_152 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                      uid=11_153 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                      uid=11_154 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                      uid=11_155 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                uid=11_156 button "🛒 Agregar al carrito"
+                  uid=11_157 StaticText "🛒 Agregar al carrito"
+                    uid=11_158 InlineTextBox "🛒 Agregar al carrito"
+              uid=11_159 ignored
+                uid=11_160 ignored
+              uid=11_161 ignored
+                uid=11_162 ignored
+                uid=11_163 ignored
+                uid=11_164 ignored
+                uid=11_165 ignored
+                uid=11_166 ignored
+                uid=11_167 ignored
+                uid=11_168 ignored
+        uid=11_169 button "🛒 1"
+          uid=11_170 StaticText "🛒"
+            uid=11_171 InlineTextBox "🛒"
+          uid=11_172 generic
+            uid=11_173 StaticText "1"
+              uid=11_174 InlineTextBox "1"
+        uid=11_175 ignored
+          uid=11_176 heading "Panel de Testing" level="2"
+            uid=11_177 StaticText "Panel de Testing"
+              uid=11_178 InlineTextBox "Panel de Testing"
+          uid=11_179 ignored
+            uid=11_180 ignored
+              uid=11_181 strong
+                uid=11_182 StaticText "✅ Funcionalidades a validar:"
+                  uid=11_183 InlineTextBox "✅ Funcionalidades a validar:"
+              uid=11_184 list
+                uid=11_185 listitem level="1"
+                  uid=11_186 ListMarker "• "
+                    uid=11_187 ignored
+                  uid=11_188 StaticText "Carrusel principal con navegación (flechas)"
+                    uid=11_189 InlineTextBox "Carrusel principal con navegación (flechas)"
+                uid=11_190 listitem level="1"
+                  uid=11_191 ListMarker "• "
+                    uid=11_192 ignored
+                  uid=11_193 StaticText "Thumbnails sincronizados"
+                    uid=11_194 InlineTextBox "Thumbnails sincronizados"
+                uid=11_195 listitem level="1"
+                  uid=11_196 ListMarker "• "
+                    uid=11_197 ignored
+                  uid=11_198 StaticText "Selector 1 par / 2 pares"
+                    uid=11_199 InlineTextBox "Selector 1 par / 2 pares"
+                uid=11_200 listitem level="1"
+                  uid=11_201 ListMarker "• "
+                    uid=11_202 ignored
+                  uid=11_203 StaticText "Selección de talle para cada par"
+                    uid=11_204 InlineTextBox "Selección de talle para cada par"
+                uid=11_205 listitem level="1"
+                  uid=11_206 ListMarker "• "
+                    uid=11_207 ignored
+                  uid=11_208 StaticText "Botón "Agregar al carrito""
+                    uid=11_209 InlineTextBox "Botón "Agregar al carrito""
+                uid=11_210 listitem level="1"
+                  uid=11_211 ListMarker "• "
+                    uid=11_212 ignored
+                  uid=11_213 StaticText "Carrito flotante con contador"
+                    uid=11_214 InlineTextBox "Carrito flotante con contador"
+                uid=11_215 listitem level="1"
+                  uid=11_216 ListMarker "• "
+                    uid=11_217 ignored
+                  uid=11_218 StaticText "Guía de talles (toggle)"
+                    uid=11_219 InlineTextBox "Guía de talles (toggle)"
+                uid=11_220 listitem level="1"
+                  uid=11_221 ListMarker "• "
+                    uid=11_222 ignored
+                  uid=11_223 StaticText "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+                    uid=11_224 InlineTextBox "Badges "NUEVA TEMPORADA" y "STOCK LIMITADO""
+            uid=11_225 ignored
+              uid=11_226 strong
+                uid=11_227 StaticText "🎯 Estado Actual:"
+                  uid=11_228 InlineTextBox "🎯 Estado Actual:"
+              uid=11_229 paragraph
+                uid=11_230 StaticText "Componente individual funcional MVP"
+                  uid=11_231 InlineTextBox "Componente individual funcional MVP"
+      uid=11_232 generic
+        uid=11_233 ignored
+        uid=11_234 generic
+          uid=11_235 ignored
+          uid=11_236 ignored
+          uid=11_237 ignored
+          uid=11_238 ignored
+        uid=11_239 ignored
+      uid=11_240 ignored
+        uid=11_241 ignored
+          uid=11_242 ignored
+            uid=11_243 ignored
+              uid=11_244 ignored
+                uid=11_245 ignored
+              uid=11_246 ignored
+                uid=11_247 ignored
+                uid=11_248 ignored
+                  uid=11_249 ignored
+            uid=11_250 ignored
+            uid=11_251 ignored
+              uid=11_252 ignored
+              uid=11_253 ignored
+              uid=11_254 ignored
+              uid=11_255 ignored
+                uid=11_256 ignored
+      uid=11_257 ignored
+        uid=11_258 ignored
+          uid=11_259 ignored
+            uid=11_260 ignored
+              uid=11_261 ignored
+            uid=11_262 ignored
+      uid=11_263 ignored
+        uid=11_264 ignored
+          uid=11_265 ignored
+          uid=11_266 ignored
+            uid=11_267 ignored
+              uid=11_268 ignored
+                uid=11_269 ignored
+              uid=11_270 ignored
+            uid=11_271 ignored
+              uid=11_272 ignored
+                uid=11_273 ignored
+              uid=11_274 ignored
+          uid=11_275 ignored
+          uid=11_276 ignored
+            uid=11_277 ignored
+          uid=11_278 ignored
+            uid=11_279 ignored
+      uid=11_280 ignored
+        uid=11_281 ignored
+          uid=11_282 ignored
+            uid=11_283 ignored
+              uid=11_284 ignored
+            uid=11_285 ignored
+            uid=11_286 ignored
+              uid=11_287 ignored
+                uid=11_288 ignored
+                  uid=11_289 ignored
+                uid=11_290 ignored
+              uid=11_291 ignored
+                uid=11_292 ignored
+                  uid=11_293 ignored
+                    uid=11_294 ignored
+                      uid=11_295 ignored
+                      uid=11_296 ignored
+                      uid=11_297 ignored
+            uid=11_298 ignored
+            uid=11_299 ignored
+              uid=11_300 ignored
+                uid=11_301 ignored
+                  uid=11_302 ignored
+                uid=11_303 ignored
+              uid=11_304 ignored
+                uid=11_305 ignored
+            uid=11_306 ignored
+            uid=11_307 ignored
+              uid=11_308 ignored
+                uid=11_309 ignored
+                  uid=11_310 ignored
+                uid=11_311 ignored
+              uid=11_312 ignored
+                uid=11_313 ignored
+            uid=11_314 ignored
+            uid=11_315 ignored
+              uid=11_316 ignored
+                uid=11_317 ignored
+                  uid=11_318 ignored
+                uid=11_319 ignored
+                uid=11_320 ignored
+                  uid=11_321 ignored
+                uid=11_322 ignored
+                uid=11_323 ignored
+                  uid=11_324 ignored
+                uid=11_325 ignored
+      uid=11_326 ignored
+        uid=11_327 ignored

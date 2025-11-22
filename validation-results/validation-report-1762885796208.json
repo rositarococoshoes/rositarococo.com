@@ -1,0 +1,125 @@
+{
+  "timestamp": "2025-11-11T18:29:56.206Z",
+  "url": "http://localhost:4336/",
+  "screenshots": {
+    "desktop": "./validation-results/desktop-1762885794374.png",
+    "mobile": "./validation-results/mobile-1762885795985.png"
+  },
+  "visualAnalysis": {
+    "hasHeader": true,
+    "hasProductCards": true,
+    "hasForm": true,
+    "hasButtons": true,
+    "hasCarousel": false,
+    "hasStylesheets": true,
+    "hasScripts": true,
+    "bodyStyles": {
+      "backgroundColor": "rgb(250, 247, 242)",
+      "fontFamily": "\"Open Sans\", sans-serif"
+    },
+    "headerStyles": {
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "hasBackground": false
+    },
+    "productCardStyles": {
+      "hasBorder": true,
+      "hasShadow": false,
+      "hasPadding": false
+    }
+  },
+  "carouselAnalysis": {
+    "found": false,
+    "count": 0,
+    "hasNavigation": false,
+    "initialized": false
+  },
+  "formAnalysis": {
+    "found": true,
+    "visible": true,
+    "inputCount": 6,
+    "hasSubmit": true,
+    "action": "https://formspree.io/f/your-form-id",
+    "method": "post"
+  },
+  "resourceAnalysis": {
+    "stylesheets": [
+      {
+        "href": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap",
+        "loaded": true
+      }
+    ],
+    "scripts": [
+      {
+        "src": "http://localhost:4336/@vite/client",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/@fs/C:/Users/sflic/Documents/GitHub/rositarococo.com/rositaastro/node_modules/astro/dist/runtime/client/dev-toolbar/entrypoint.js?v=c116c1ff",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/src/layouts/MainLayout.astro?astro&type=style&index=0&lang.css",
+        "loaded": true
+      },
+      {
+        "src": "https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/src/pages/index.astro?astro&type=script&index=0&lang.ts",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/src/components/ProductCard.astro?astro&type=script&index=0&lang.ts",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/src/components/ContactForm.astro?astro&type=script&index=0&lang.ts",
+        "loaded": true
+      },
+      {
+        "src": "http://localhost:4336/src/pages/index.astro?astro&type=script&index=1&lang.ts",
+        "loaded": true
+      }
+    ],
+    "images": [
+      {
+        "src": "https://via.placeholder.com/400x500/a05941/ffffff?text=Botineta+Roma+Negras+1",
+        "loaded": false
+      },
+      {
+        "src": "https://via.placeholder.com/400x500/d68c45/ffffff?text=Botineta+Roma+Negras+2",
+        "loaded": false
+      },
+      {
+        "src": "https://via.placeholder.com/400x500/5a8f3e/ffffff?text=Botineta+Roma+Suela+1",
+        "loaded": false
+      },
+      {
+        "src": "https://via.placeholder.com/400x500/a05941/ffffff?text=Borcego+Siena+2025+1",
+        "loaded": false
+      },
+      {
+        "src": "https://via.placeholder.com/400x500/d68c45/ffffff?text=Venecia+Negras+1",
+        "loaded": false
+      },
+      {
+        "src": "https://via.placeholder.com/400x500/5a8f3e/ffffff?text=Venecia+Negras+2",
+        "loaded": false
+      }
+    ]
+  },
+  "errors": {
+    "javascript": [],
+    "consoleErrors": []
+  },
+  "validation": {
+    "siteLoaded": true,
+    "stylesApplied": false,
+    "carouselWorking": false,
+    "formFunctional": true,
+    "noJSErrors": true,
+    "resourcesLoaded": true
+  },
+  "score": 67
+}

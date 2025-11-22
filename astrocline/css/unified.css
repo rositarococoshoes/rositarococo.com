@@ -1,0 +1,1026 @@
+/* Global Box Sizing - Updated 2025-11-17 */
+* {
+  box-sizing: border-box;
+}
+
+/* Animation delays for spinner */
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+/* Header Fix */
+header.main-header {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Embla Carousel Base Styles */
+.embla {
+  position: relative;
+  --slide-spacing: 0.25rem; /* Reduced spacing for better space utilization */
+  --slide-size: 100%;
+  --slide-height: 450px; /* Increased height for larger main images */
+  margin-bottom: 1rem; /* Reduced margin for better cohesion */
+  border-radius: 1rem; /* Rounded corners for the entire carousel */
+  overflow: visible; /* Allow thumbnails to be visible */
+}
+
+.embla__viewport {
+  overflow: hidden;
+  width: 100%;
+  border-radius: 1rem; /* Match carousel radius */
+  margin: 0;
+  background: linear-gradient(135deg, #fdf2f8 0%, #faf5ff 100%); /* Subtle pink-purple gradient */
+}
+
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  will-change: transform;
+}
+
+.embla__slide {
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  padding-right: var(--slide-spacing);
+}
+
+.embla__slide__inner {
+  position: relative;
+  border-radius: 0.75rem; /* More rounded corners */
+  border: 1px solid #f3f4f6; /* Subtle border */
+  background: #fff;
+  min-height: 400px; /* Increased height for larger images */
+  height: var(--slide-height); /* Use CSS variable for consistency */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Enhanced shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.embla__slide__inner:hover {
+  transform: translateY(-2px); /* Subtle lift on hover */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Enhanced shadow on hover */
+}
+
+.embla__slide__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  transition: transform 0.5s ease; /* Smooth image transitions */
+}
+
+/* Embla Carousel Controls */
+.embla__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10; /* Higher z-index for better visibility */
+  width: 3rem; /* Larger buttons */
+  height: 3rem;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 168, 212, 0.9) 100%); /* Pink gradient */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadows */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother cubic-bezier transition */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Subtle border */
+}
+
+.embla__button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(236, 72, 153, 0.95) 100%); /* Stronger pink gradient */
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2), 0 6px 12px rgba(236, 72, 153, 0.3); /* Pink shadow on hover */
+}
+
+.embla__button:active {
+  transform: translateY(-50%) scale(0.95); /* Scale down on click */
+}
+
+.embla__button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, rgba(229, 231, 235, 0.9) 0%, rgba(209, 213, 219, 0.9) 100%); /* Gray gradient for disabled */
+}
+
+.embla__button:disabled:hover {
+  transform: translateY(-50%) scale(1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1); /* Restore original shadow */
+}
+
+.embla__button--prev {
+  left: 1rem; /* More spacing from edges */
+}
+
+.embla__button--next {
+  right: 1rem; /* More spacing from edges */
+}
+
+.embla__button__svg {
+  width: 1.5rem; /* Larger icons */
+  height: 1.5rem;
+  stroke: #ec4899; /* Pink color for icons */
+  stroke-width: 2.5; /* Thicker strokes */
+  transition: stroke 0.3s ease;
+}
+
+.embla__button:hover .embla__button__svg {
+  stroke: #be185d; /* Darker pink on hover */
+}
+
+/* Embla Carousel Thumbnails - Enhanced Minimalistic Design */
+.embla-thumbs {
+  margin-top: 0.75rem; /* Reduced spacing for better cohesion */
+  padding: 0.75rem 0.5rem 0.5rem 0.5rem; /* Tighter padding */
+  position: relative; /* For scroll indicators and controls */
+  z-index: 10; /* Ensure thumbnails are above product details */
+  background: linear-gradient(to bottom, rgba(249, 250, 251, 0.98), rgba(255, 255, 255, 1)); /* Clean background */
+  border-radius: 0.5rem; /* Rounded bottom corners */
+  border: 1px solid #f3f4f6; /* Subtle border for better definition */
+}
+
+.embla-thumbs__viewport {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  overflow-y: visible; /* Allow outline to show vertically */
+  padding: 20px 1rem 8px 1rem !important; /* Increased top padding for pseudo-element border - more space */
+  min-height: 92px !important; /* Increased height to accommodate border + shadow */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  scrollbar-width: thin; /* Thin scrollbar for Firefox */
+  scrollbar-color: #f3f4f6 transparent; /* Custom scrollbar colors */
+  position: relative; /* For scroll indicators */
+}
+
+/* Enhanced custom scrollbar for Webkit browsers */
+.embla-thumbs__viewport::-webkit-scrollbar {
+  height: 6px; /* Slightly thicker for better visibility */
+}
+
+.embla-thumbs__viewport::-webkit-scrollbar-track {
+  background: #f9fafb;
+  border-radius: 3px;
+  margin: 0 1rem; /* Track padding */
+}
+
+.embla-thumbs__viewport::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #e5e7eb 0%, #d1d5db 100%); /* Gradient thumb */
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.embla-thumbs__viewport::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #d1d5db 0%, #9ca3af 100%);
+}
+
+.embla-thumbs__container {
+  display: flex;
+  flex-direction: row;
+  margin: 0 -0.25rem; /* Reduced negative margin for tighter spacing */
+  gap: 0.1875rem; /* Even smaller gap between thumbnails */
+  padding: 0 0.1875rem; /* Reduced container padding */
+}
+
+.embla-thumbs__slide {
+  flex: 0 0 4rem; /* Increased thumbnail size */
+  width: 4rem;
+  height: 4rem;
+  padding: 0.1875rem; /* Reduced padding for tighter fit */
+  margin: 0; /* Remove individual margins - gap handled by container */
+  border-radius: 0.5rem; /* Modern border radius */
+  cursor: pointer;
+  border: 2px solid #e5e7eb; /* Light border */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth transitions */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+  overflow: visible; /* Changed from hidden to visible to allow outline to show */
+  background: #fff;
+  position: relative;
+  transform-origin: center;
+  z-index: 15; /* Ensure individual thumbnails are above content */
+}
+
+.embla-thumbs__slide:hover {
+  border-color: #ec4899; /* Pink border on hover */
+  transform: scale(1.05); /* Subtle scale on hover */
+  box-shadow: 0 6px 16px rgba(236, 72, 153, 0.2); /* Enhanced pink shadow on hover */
+}
+
+.embla-thumbs__slide.embla-thumbs__slide--selected {
+  border-color: transparent !important; /* Hide default border */
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4) !important;
+  background: rgba(236, 72, 153, 0.05) !important;
+  z-index: 20 !important;
+  position: relative !important;
+}
+
+/* Pseudo-element border that goes outside the overflow */
+.embla-thumbs__slide.embla-thumbs__slide--selected::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -4px !important;
+  left: -4px !important;
+  right: -4px !important;
+  bottom: -4px !important;
+  border: 3px solid #ec4899 !important;
+  border-radius: 0.75rem !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.3) !important;
+}
+
+/* Fix logo distortion */
+.main-header img {
+  object-fit: scale-down !important;
+  object-position: center !important;
+  max-height: 64px !important;
+  height: auto !important;
+}
+
+
+.embla-thumbs__slide__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0.375rem; /* Inner border radius */
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.embla-thumbs__slide:hover .embla-thumbs__slide__img {
+  transform: scale(1.1); /* Slight zoom on hover */
+  filter: brightness(1.05); /* Brighten on hover */
+}
+
+/* Ensure selected thumbnails have prominent styling */
+.embla-thumbs__slide.embla-thumbs__slide--selected .embla-thumbs__slide__img {
+  transform: scale(1.05);
+  filter: brightness(1.1) contrast(1.05);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Enhanced Responsive Design for Thumbnails */
+
+/* Desktop view (1024px and up) - Optimize for 14-18 thumbnails */
+@media (min-width: 1024px) {
+  .embla {
+    --slide-height: 500px; /* Even larger main images on desktop */
+  }
+
+  .embla-thumbs {
+    margin-top: 0.75rem;
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  .embla-thumbs__viewport {
+    padding: 0 1rem;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 4rem; /* Optimized thumbnails on desktop */
+    width: 4rem;
+    height: 4rem;
+    border-radius: 0.5rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.375rem; /* Tighter gap on desktop */
+  }
+
+  .embla-thumbs__slide__img {
+    border-radius: 0.375rem;
+  }
+}
+
+/* Large desktop view (1440px and up) - Best experience for many thumbnails */
+@media (min-width: 1440px) {
+  .embla {
+    --slide-height: 550px; /* Largest main images on big screens */
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 4.5rem; /* Optimized thumbnails for large screens */
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.5rem; /* Maintained tight gap */
+  }
+
+  .embla-thumbs__viewport {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Tablet view (769px to 1023px) */
+@media (max-width: 1023px) and (min-width: 769px) {
+  .embla {
+    --slide-height: 400px; /* Optimized height for tablets */
+  }
+
+  .embla-thumbs {
+    margin-top: 0.625rem;
+    padding: 0.375rem 0 0.25rem 0;
+  }
+
+  .embla-thumbs__viewport {
+    padding: 0 0.75rem;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 3.75rem; /* Larger thumbnails on tablets */
+    width: 3.75rem;
+    height: 3.75rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.25rem; /* Tighter gap for tablets */
+  }
+}
+
+/* Mobile view (480px to 768px) */
+@media (max-width: 768px) {
+  .embla {
+    --slide-height: 450px; /* Increased height for better mobile experience */
+  }
+
+  .embla__slide__inner {
+    min-height: 430px; /* Increased to match slide-height */
+    max-height: none; /* Remove max-height constraint */
+    height: var(--slide-height);
+  }
+  .embla__slide__img {
+    max-height: none; /* Remove height constraint */
+    width: 100%;
+    height: 100%;
+  }
+  .embla__button {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .embla-thumbs {
+    margin-top: 0.5rem;
+    padding: 0.25rem 0 0.125rem 0;
+  }
+
+  .embla-thumbs__viewport {
+    padding: 0 0.5rem;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 3.5rem; /* Larger thumbnails for mobile */
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.375rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.25rem; /* Very tight gap for mobile */
+  }
+
+  /* Extra optimization for tall mobile screens */
+  @media (max-width: 768px) and (min-height: 800px) {
+    .embla {
+      --slide-height: 500px !important; /* Even taller for tall mobile screens */
+    }
+
+    .embla__slide__inner {
+      min-height: 480px !important;
+    }
+  }
+}
+
+/* Small mobile view (320px to 480px) */
+@media (max-width: 480px) {
+  .embla {
+    --slide-height: 400px; /* Increased height for better small mobile experience */
+  }
+
+  .embla__slide__inner {
+    min-height: 380px; /* Increased to match slide-height */
+    max-height: none; /* Remove max-height constraint */
+    height: var(--slide-height);
+  }
+  .embla__slide__img {
+    max-height: none; /* Remove height constraint */
+    width: 100%;
+    height: 100%;
+  }
+
+  .embla-thumbs__viewport {
+    padding: 0 0.375rem;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 3.25rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.3125rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.1875rem; /* Very tight gap for small mobile */
+  }
+
+  /* Enhanced scrollbar for touch devices */
+  .embla-thumbs__viewport::-webkit-scrollbar {
+    height: 8px;
+  }
+}
+
+/* Ultra small mobile (up to 320px) */
+@media (max-width: 320px) {
+  .embla {
+    --slide-height: 300px; /* Increased height for better ultra small mobile experience */
+  }
+
+  .embla__slide__inner {
+    min-height: 280px;
+    max-height: none; /* Remove max-height constraint */
+    height: var(--slide-height);
+  }
+  .embla__slide__img {
+    max-height: none; /* Remove height constraint */
+    width: 100%;
+    height: 100%;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .embla-thumbs__container {
+    gap: 0.125rem; /* Extremely tight gap for ultra small mobile */
+  }
+}
+
+/* Desktop Layout */
+@media (min-width: 769px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .embla {
+    height: auto; /* Let CSS variables control height */
+  }
+
+  .embla__slide__inner {
+    height: var(--slide-height); /* Use CSS variable */
+  }
+
+  .embla__slide__img {
+    max-height: none; /* Remove constraints for better display */
+  }
+
+  .embla__button {
+    width: 48px;
+    height: 48px;
+  }
+
+  .embla-thumbs {
+    height: auto; /* Auto-adjust height */
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 4rem; /* Consistent with responsive design */
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+/* Estilos para alinear números del checkout verticalmente */
+#checkout-progress .flex.items-center.justify-center {
+  align-items: center !important;
+}
+
+#checkout-progress .flex.items-center.justify-around {
+  align-items: center !important;
+  justify-content: space-around !important;
+  width: 100% !important;
+}
+
+#checkout-progress .progress-step {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+  min-width: 80px !important;
+  position: relative !important;
+}
+
+#checkout-progress .step-number {
+  margin-bottom: 6px !important;
+  margin-right: 0 !important; /* Remover mr-2 permanentemente */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+#checkout-progress .step-name {
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  max-width: 80px !important;
+  word-wrap: break-word !important;
+  hyphens: auto !important;
+}
+
+/* Fix checkout form margins to match page container */
+.checkout-section {
+  max-width: 1280px !important; /* 7xl = 80rem = 1280px */
+  margin: 0 auto !important;
+  padding: 2rem 1rem !important; /* py-8 px-4 equivalent */
+}
+
+/* Form section checkout steps alignment - Fix for "¡Casi listo! Completa tus datos" section */
+.checkout-steps .checkout-step {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  text-align: left !important;
+  margin-bottom: 1.5rem !important;
+  position: relative !important;
+}
+
+.checkout-steps .checkout-step .step-number {
+  margin-right: 0.75rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  flex-shrink: 0 !important; /* Evitar que el número se encoja */
+}
+
+.checkout-steps .checkout-step .step-name {
+  font-size: 1rem !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  font-weight: 500 !important;
+  flex-grow: 1 !important;
+}
+
+/* Ensure proper vertical alignment for all form checkout numbers */
+.checkout-steps {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  padding-left: 0 !important;
+}
+
+/* Crear una línea de alineación para los números */
+.checkout-steps .checkout-step .step-number {
+  margin-left: 0 !important;
+  position: relative !important;
+}
+
+/* Asegurar que todos los números comiencen en la misma posición horizontal */
+.checkout-steps .checkout-step {
+  padding-left: 0 !important;
+}
+
+/* Estilos para validaciones inline */
+.form-validation-error {
+  color: #dc2626 !important;
+  font-size: 0.875rem !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+  font-weight: 500 !important;
+}
+
+.input-error {
+  border-color: #dc2626 !important;
+  border-width: 2px !important;
+  box-shadow: 0 0 0 1px #dc2626 !important;
+  outline: none !important;
+}
+
+.input-error:focus {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1) !important;
+  outline: none !important;
+}
+
+.input-success {
+  border-color: #10b981 !important;
+  border-width: 2px !important;
+  box-shadow: 0 0 0 1px #10b981 !important;
+  outline: none !important;
+}
+
+.input-success:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1) !important;
+  outline: none !important;
+}
+
+/* No aplicar estilos de error por defecto - solo cuando se agregue la clase */
+#restodelform input:not(.input-error):not(.input-success),
+#restodelform select:not(.input-error):not(.input-success),
+#restodelform textarea:not(.input-error):not(.input-success) {
+  border-color: inherit !important;
+  box-shadow: inherit !important;
+}
+
+#restodelform .validation-message {
+  color: #dc2626 !important;
+  font-size: 0.875rem !important;
+  margin-top: 0.25rem !important;
+  display: block !important;
+}
+
+/* Prevenir alertas JavaScript */
+#restodelform .alert-popup {
+  display: none !important;
+}
+
+/* === MINIMALIST ORDER REVIEW SECTION === */
+
+#confirma-pedido.review-section {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    margin: 2rem 0 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.review-header {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.review-header h3 {
+    font-size: 1.5rem !important;
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.review-header p {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+    margin-bottom: 0 !important;
+}
+
+.review-card {
+    background: #ffffff !important;
+    border: 1px solid #f3f4f6 !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin-bottom: 1rem !important;
+    box-shadow: none !important;
+}
+
+.review-card h4 {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    margin-bottom: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.review-card h4 span:first-child {
+    font-size: 1.25rem !important;
+    margin-right: 0.5rem !important;
+}
+
+/* Minimal form field styling in review */
+.review-card .font-medium {
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    color: #6b7280 !important;
+    min-width: 80px !important;
+}
+
+.review-card .text-gray-900 {
+    font-size: 0.875rem !important;
+    color: #1f2937 !important;
+    background: #f9fafb !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #e5e7eb !important;
+}
+
+.review-card .text-green-600 {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    color: #059669 !important;
+}
+
+/* Grid improvements for mobile */
+.review-card .grid {
+    gap: 0.75rem !important;
+}
+
+.review-card .flex {
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+    #confirma-pedido.review-section {
+        margin: 1rem 0 !important;
+        padding: 1rem !important;
+        border-radius: 8px !important;
+    }
+
+    .review-header h3 {
+        font-size: 1.25rem !important;
+    }
+
+    .review-card {
+        padding: 0.75rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    .review-card h4 {
+        font-size: 0.875rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .review-card .font-medium {
+        font-size: 0.8rem !important;
+        min-width: 70px !important;
+    }
+
+    .review-card .text-gray-900 {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+
+    .review-card .text-green-600 {
+        font-size: 1rem !important;
+    }
+
+    /* Stack grid columns on mobile */
+    .review-card .grid-cols-1 {
+        grid-template-columns: 1fr !important;
+        gap: 0.5rem !important;
+    }
+
+    .review-card .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Improve flex layout on mobile */
+    .review-card .flex {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 0.25rem !important;
+    }
+
+    .review-card .flex .font-medium {
+        min-width: auto !important;
+        margin-bottom: 0.25rem !important;
+    }
+}
+
+/* Ultra mobile optimization */
+@media (max-width: 480px) {
+    #confirma-pedido.review-section {
+        padding: 0.75rem !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .review-header {
+        margin-bottom: 1rem !important;
+    }
+
+    .review-header h3 {
+        font-size: 1.125rem !important;
+    }
+
+    .review-card {
+        padding: 0.5rem !important;
+        border-radius: 6px !important;
+    }
+
+    .review-card h4 {
+        font-size: 0.8rem !important;
+    }
+
+    .review-card .font-medium {
+        font-size: 0.75rem !important;
+    }
+
+    .review-card .text-gray-900 {
+        font-size: 0.75rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+
+    .review-card .text-green-600 {
+        font-size: 0.875rem !important;
+    }
+}
+
+/* === IMPORTANT INFORMATION SECTION SPACING FIX === */
+
+.important-notice {
+    background: #fef3c7 !important;
+    border: 2px solid #fbbf24 !important;
+    border-radius: 12px !important;
+}
+
+.important-notice h5 {
+    color: #92400e !important;
+}
+
+.important-notice .text-yellow-700 {
+    color: #92400e !important;
+}
+
+.important-notice strong {
+    color: #78350f !important;
+}
+
+/* Simple alignment for bullet points */
+.important-notice .flex items-start span:first-child {
+    line-height: 1.4 !important;
+    margin-top: 0 !important;
+}
+
+/* === CHECKOUT NAVIGATION BUTTONS MOBILE OPTIMIZATION === */
+
+.checkout-navigation {
+    space-y: 1rem !important;
+}
+
+/* Desktop - keep buttons stacked vertically */
+@media (min-width: 769px) {
+    .checkout-navigation {
+        max-width: 600px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    #botoncomprar {
+        font-size: 1.125rem !important;
+        padding: 1rem 2rem !important;
+    }
+
+    #back-to-products {
+        max-width: 200px !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* Mobile improvements */
+@media (max-width: 768px) {
+    .important-notice {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+
+    .checkout-navigation {
+        padding: 0 1rem !important;
+    }
+
+    #botoncomprar {
+        font-size: 1rem !important;
+        padding: 1rem !important;
+        min-height: 56px !important;
+    }
+
+    #back-to-products {
+        font-size: 0.875rem !important;
+        padding: 0.75rem 1rem !important;
+        min-height: 44px !important;
+    }
+}
+
+/* Ultra mobile */
+@media (max-width: 480px) {
+    .checkout-navigation {
+        padding: 0 0.75rem !important;
+    }
+
+    #botoncomprar {
+        font-size: 1rem !important;
+        padding: 0.875rem 1rem !important;
+        min-height: 52px !important;
+    }
+
+    #back-to-products {
+        font-size: 0.8rem !important;
+        padding: 0.625rem 1rem !important;
+        min-height: 40px !important;
+    }
+}
+
+/* === PRODUCT SPACING FIX FOR ASTROCLINE === */
+
+/* Fix spacing inconsistency between product groups */
+.product-grid {
+    /* Reset default gap to have better control */
+    gap: 1.5rem !important;
+}
+
+/* Desktop spacing */
+@media (min-width: 768px) {
+    .product-grid {
+        gap: 2rem !important;
+    }
+}
+
+/* Specific spacing for Argos (last product) to match spacing between other products */
+.product-grid > div:nth-child(7) {
+    /* Argos is the 7th product in the grid */
+    margin-top: 0 !important; /* Remove the mt-6 class effect */
+}
+
+/* Additional override for Tailwind's mt-6 class on Argos product */
+.product-grid .mt-6 {
+    margin-top: 0 !important; /* Override Tailwind's mt-6 (1.5rem = 24px) */
+}
+
+/* Ensure Argos follows the same grid spacing as other products */
+.product-grid > div[data-astro-cid-tjdfhdqb].mt-6 {
+    margin-top: 0 !important;
+}
+
+/* Alternative approach: Add negative margin to compensate for extra spacing */
+.product-grid > div:nth-child(n+4):nth-child(-n+6) {
+    /* Birk products (4th, 5th, 6th) - reduce top margin */
+    margin-top: -0.5rem;
+}
+
+/* Ensure consistent spacing across all products */
+.product-grid > div:nth-child(3),
+.product-grid > div:nth-child(6) {
+    /* After Guillerminas (3rd) and after Birk (6th) - maintain consistent spacing */
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+    .product-grid > div:nth-child(3),
+    .product-grid > div:nth-child(6) {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* === HIDE CHECKOUT BUTTONS UNTIL FORM IS VISIBLE AND CART HAS ITEMS === */
+
+/* Hide buttons by default - Removed conflicting !important rules */
+
+/* Individual button hiding removed - now controlled by parent classes */
+
+/* Show buttons only when form is visible AND there are items in cart */
+/* Removed conflicting rule - now controlled by .has-items class */
+
+/* ✅ NUEVA LÓGICA SIMPLIFICADA - Reemplaza todas las reglas anteriores */
+
+/* 1. Estado base: Oculto */
+.checkout-navigation {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* 2. Estado activo: Visible (controlado por clase en el padre) */
+#restodelform.has-items .checkout-navigation {
+    display: flex !important; /* Flex para mantener el layout de los botones */
+    flex-direction: column;
+    opacity: 1;
+    height: auto;
+    visibility: visible;
+}
+
+/* Asegurar que los botones internos se vean */
+#restodelform.has-items .checkout-navigation #botoncomprar,
+#restodelform.has-items .checkout-navigation #back-to-products {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+

@@ -1,0 +1,521 @@
+/* ===== DESKTOP LAYOUT STYLES FOR ROSITA ROCOCÓ ===== */
+/* This file ensures proper 3-column layout on desktop screens */
+
+/* ===== DESKTOP STYLES (min-width: 769px) ===== */
+@media (min-width: 769px) {
+  /* Product Grid - 3 Column Layout for Desktop */
+  .product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure cards don't break the layout */
+  .product-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 600px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .product-card:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  /* Product content container */
+  .product-content {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+  }
+
+  /* Desktop carousel sizing */
+  .embla {
+    width: 100% !important;
+    height: 400px !important;
+    margin: 0 !important;
+    border-radius: 0.75rem !important;
+    overflow: hidden !important;
+  }
+
+  .embla__viewport {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .embla__container {
+    height: 100% !important;
+  }
+
+  .embla__slide {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 !important;
+  }
+
+  .embla__slide__inner {
+    width: 100% !important;
+    height: 400px !important;
+    border-radius: 0.75rem !important;
+    overflow: hidden !important;
+    background: #f9fafb !important;
+  }
+
+  .embla__slide__img {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 400px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  /* Desktop navigation buttons */
+  .embla__button {
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    min-height: 48px !important;
+    max-width: 48px !important;
+    max-height: 48px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.2s ease !important;
+    z-index: 10 !important;
+  }
+
+  .embla__button:hover {
+    background: rgba(255, 255, 255, 1) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+    transform: scale(1.05) !important;
+  }
+
+  .embla__button--prev {
+    left: 1rem !important;
+  }
+
+  .embla__button--next {
+    right: 1rem !important;
+  }
+
+  .embla__button__svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    color: #374151 !important;
+  }
+
+  /* Desktop thumbnails */
+  .embla-thumbs {
+    width: 100% !important;
+    height: 60px !important;
+    margin-top: 1rem !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #e5e7eb transparent !important;
+  }
+
+  .embla-thumbs::-webkit-scrollbar {
+    height: 6px !important;
+  }
+
+  .embla-thumbs::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .embla-thumbs::-webkit-scrollbar-thumb {
+    background: #e5e7eb !important;
+    border-radius: 3px !important;
+  }
+
+  .embla-thumbs::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db !important;
+  }
+
+  .embla-thumbs__viewport {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .embla-thumbs__container {
+    display: flex !important;
+    flex-direction: row !important;
+    height: 100% !important;
+    gap: 0.5rem !important;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 60px !important;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;
+    padding: 0.25rem !important;
+    cursor: pointer !important;
+    border-radius: 0.5rem !important;
+    border: 2px solid transparent !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .embla-thumbs__slide:hover {
+    border-color: #f3f4f6 !important;
+    transform: scale(1.05) !important;
+  }
+
+  .embla-thumbs__slide.embla-thumbs__slide--selected {
+    border-color: #ec4899 !important;
+    box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.2) !important;
+  }
+
+  .embla-thumbs__slide__img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 0.375rem !important;
+  }
+
+  /* Product details desktop styling */
+  .product-details {
+    padding: 1.5rem !important;
+    margin-top: 1rem !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Product badges desktop */
+  .flex.flex-wrap.gap-2 {
+    gap: 0.5rem !important;
+    justify-content: center !important;
+    margin-bottom: 1rem !important;
+    flex-wrap: wrap !important;
+  }
+
+  .inline-flex.items-center {
+    font-size: 0.75rem !important;
+    padding: 0.375rem 0.75rem !important;
+    white-space: nowrap !important;
+    font-weight: 500 !important;
+  }
+
+  /* Product description */
+  .product-details p {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+  }
+
+  /* Product specifications grid desktop */
+  .grid.grid-cols-3 {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .grid.grid-cols-3 > div {
+    background: #f9fafb !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.75rem !important;
+    padding: 1rem !important;
+    text-align: center !important;
+    width: 100% !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .grid.grid-cols-3 > div:hover {
+    background: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+  }
+
+  .grid.grid-cols-3 > div p:first-child {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    color: #6b7280 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .grid.grid-cols-3 > div p:last-child {
+    font-size: 0.875rem !important;
+    color: #111827 !important;
+    font-weight: 500 !important;
+  }
+
+  /* Pricing section desktop */
+  .bg-gradient-to-r {
+    width: 100% !important;
+    padding: 1.5rem !important;
+    border-radius: 1rem !important;
+    margin: 0 0 1.5rem 0 !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Size selector desktop */
+  .select-wrapper {
+    width: 100% !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+  }
+
+  select.w-full {
+    width: 100% !important;
+    min-height: 52px !important;
+    padding: 1rem 3rem 1rem 1rem !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    border-radius: 0.75rem !important;
+    background: white !important;
+    border: 2px solid #e5e7eb !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+  }
+
+  select.w-full:hover {
+    border-color: #d1d5db !important;
+  }
+
+  select.w-full:focus {
+    outline: 2px solid #ec4899 !important;
+    outline-offset: 2px !important;
+    border-color: #ec4899 !important;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.1) !important;
+  }
+
+  /* Add to cart buttons desktop */
+  .add-to-cart-btn, button[type="submit"], .bg-pink-600 {
+    width: 100% !important;
+    min-height: 52px !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    border-radius: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    margin-top: auto !important;
+  }
+
+  .add-to-cart-btn:hover, button[type="submit"]:hover, .bg-pink-600:hover {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.3) !important;
+  }
+
+  .add-to-cart-btn:active, button[type="submit"]:active, .bg-pink-600:active {
+    transform: translateY(0) !important;
+  }
+
+  .add-to-cart-btn svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Container fixes for desktop */
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Testimonials grid desktop */
+  .testimonials-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    padding: 2rem 0 !important;
+  }
+
+  .testimonial-item {
+    width: 100% !important;
+    border-radius: 1rem !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .testimonial-item:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .testimonial-item img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  #load-more-testimonials {
+    width: auto !important;
+    max-width: 300px !important;
+    min-height: 52px !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    margin: 3rem auto 0 !important;
+    border-radius: 0.75rem !important;
+    display: block !important;
+  }
+
+  /* Mini cart desktop positioning */
+  #mini-cart {
+    position: fixed !important;
+    right: 2rem !important;
+    top: 6rem !important;
+    background: white !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    padding: 1.5rem !important;
+    width: 28rem !important;
+    max-width: 90vw !important;
+    z-index: 50 !important;
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: all 0.3s ease !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+  }
+
+  #cart-button {
+    bottom: 2rem !important;
+    right: 2rem !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+    width: 64px !important;
+    height: 64px !important;
+    border-radius: 50% !important;
+    z-index: 40 !important;
+    box-shadow: 0 10px 15px -3px rgba(236, 72, 153, 0.3) !important;
+  }
+
+  /* Progress indicators desktop */
+  #checkout-progress {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    white-space: normal !important;
+  }
+
+  #checkout-progress .max-w-7xl {
+    min-width: auto !important;
+    padding: 1rem 2rem !important;
+  }
+
+  /* Promotional bars desktop */
+  .top-benefits-bar, .bg-gradient-to-r {
+    overflow-x: visible !important;
+    width: 100% !important;
+    word-wrap: normal !important;
+    hyphens: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .top-benefits-bar .flex {
+    flex-direction: row !important;
+    gap: 2rem !important;
+    text-align: center !important;
+    padding: 1rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .top-benefits-bar span {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    font-weight: 500 !important;
+  }
+}
+
+/* ===== LARGE DESKTOP SCREENS (min-width: 1024px) ===== */
+@media (min-width: 1024px) {
+  .product-grid {
+    gap: 2.5rem !important;
+  }
+
+  .embla {
+    height: 450px !important;
+  }
+
+  .embla__slide__inner {
+    height: 450px !important;
+  }
+
+  .embla__slide__img {
+    max-height: 450px !important;
+  }
+
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+
+  #mini-cart {
+    width: 32rem !important;
+    padding: 2rem !important;
+  }
+
+  #cart-button {
+    right: 3rem !important;
+    bottom: 3rem !important;
+  }
+}
+
+/* ===== EXTRA LARGE DESKTOP SCREENS (min-width: 1280px) ===== */
+@media (min-width: 1280px) {
+  .container, .max-w-7xl, .max-w-6xl, .max-w-5xl, .max-w-4xl {
+    max-width: 1200px !important;
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+
+  #cart-button {
+    right: 4rem !important;
+    bottom: 4rem !important;
+  }
+}
+
+/* ===== FOCUS VISIBLE FOR BETTER ACCESSIBILITY - DESKTOP ===== */
+@media (min-width: 769px) {
+  :focus-visible {
+    outline: 2px solid #ec4899 !important;
+    outline-offset: 3px !important;
+  }
+
+  .embla__button:focus-visible {
+    outline: 2px solid #ec4899 !important;
+    outline-offset: 2px !important;
+  }
+
+  .add-to-cart-btn:focus-visible,
+  button[type="submit"]:focus-visible,
+  .bg-pink-600:focus-visible {
+    outline: 2px solid #ec4899 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.2) !important;
+  }
+}

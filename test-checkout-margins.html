@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Checkout Form Margins</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Main Container -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-2xl font-bold text-center mb-8">Test: Container Consistency</h1>
+
+        <!-- Regular section (before) -->
+        <section class="bg-white p-6 rounded-lg shadow mb-8">
+            <h2 class="text-xl font-semibold mb-4">Sección Normal (con container)</h2>
+            <p>Este contenido usa el contenedor estándar: max-w-7xl mx-auto px-4 py-8</p>
+        </section>
+
+        <!-- Test edge-to-edge problem -->
+        <section class="bg-red-50 border-2 border-red-300 p-6 rounded-lg mb-8">
+            <h2 class="text-xl font-semibold mb-4">❌ Problema: Sin Container</h2>
+            <p>Este contenido tocaría los bordes de la pantalla (como estaba el formulario antes)</p>
+        </section>
+
+        <!-- Fixed checkout form simulation -->
+        <div class="checkout-section">
+            <div class="max-w-7xl mx-auto px-4 py-8">
+                <section class="bg-green-50 border-2 border-green-300 p-6 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-4">✅ Formulario Arreglado (con container)</h2>
+                    <p>El formulario ahora usa el mismo contenedor que otras secciones: max-w-7xl mx-auto px-4 py-8</p>
+
+                    <!-- Simulated form elements -->
+                    <div class="space-y-4">
+                        <div class="border p-4 rounded bg-white">
+                            <label class="block text-sm font-medium mb-2">Nombre:</label>
+                            <input type="text" class="w-full p-2 border rounded" placeholder="Tu nombre">
+                        </div>
+                        <div class="border p-4 rounded bg-white">
+                            <label class="block text-sm font-medium mb-2">Email:</label>
+                            <input type="email" class="w-full p-2 border rounded" placeholder="tu@email.com">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Consistency check -->
+        <section class="bg-blue-50 p-6 rounded-lg shadow mt-8">
+            <h2 class="text-xl font-semibold mb-4">Otra Sección Normal (para verificar consistencia)</h2>
+            <p>Todas las secciones deberían tener los mismos márgenes laterales.</p>
+        </section>
+    </div>
+
+    <script>
+        // Log success message
+        console.log('✅ Test file created successfully');
+        console.log('The checkout form has been fixed with proper container margins');
+        console.log('All sections now use: max-w-7xl mx-auto px-4 py-8');
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulario de dirección con autocompletar</title>
+</head>
+<body>
+  <!-- Formulario con elementos para mostrar la localidad y la provincia seleccionadas -->
+  <form>
+    <div id="localidad-provincia"></div>
+    <input id="localidad" name="localidad">
+    <input id="provincia" name="provincia">
+  </form> 
+
+  <script>
+    // Verificar si el navegador soporta la API de geolocalización de HTML5
+    if (!navigator.geolocation) {
+      alert('Tu navegador no soporta la geolocalización');
+    } else {
+      // Asignar un controlador de evento 'success' al servicio de geolocalización
+      navigator.geolocation.getCurrentPosition(function(position) {
+        // Obtener la latitud y la longitud de la ubicación actual
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
+
+        // Crear una petición HTTP para obtener la información de geolocalización de la ubicación actual
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=' + lat + '&lon=' + lng, true);
+        request.onload = function() {
+          // Verificar si la petición se completó correctamente
+          if (request.status >= 200 && request.status < 400) {
+            // Parsear la respuesta de la petición como un objeto JSON
+            var data = JSON.parse(request.responseText);
+
+            // Mostrar la localidad y la provincia seleccionadas por el usuario
+            document.getElementById('localidad-provincia').innerHTML = data.address.city + ', ' + data.address.state;
+
+            // Asignar los valores de localidad y provincia a los campos ocultos del formulario
+            document.getElementById('localidad').value = data.address.city;
+            document.getElementById('provincia').value = data.address.state;
+          }
+        };
+        request.send();
+      });
+    }
+  </script>
+</body>
+</html>

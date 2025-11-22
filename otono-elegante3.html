@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rosita Rococó - Colección Otoño 2025</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="otono-elegante3.css" />
+
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Script -->
+<script src="otono-elegante3.js" defer></script>
+</head>
+<body>
+
+<!-- Floating Cart Button -->
+<button id="cart-toggle" aria-label="Ver carrito" class="floating-cart-btn">🛒<span id="cart-count">0</span></button>
+
+<!-- Floating Checkout Button (hidden initially) -->
+<button id="floating-checkout-btn" aria-label="Continuar al envío" class="floating-checkout-btn hidden">Continuar al envío</button>
+
+<!-- Slide-in Cart Drawer -->
+<aside id="cart-drawer" aria-label="Carrito" class="cart-drawer">
+  <h2>Tu Carrito</h2>
+  <ul class="cart-items"></ul>
+  <div class="cart-total">Total: $<span id="cart-total">0</span></div>
+  <button id="checkout-btn" class="btn primary">Iniciar Compra</button>
+</aside>
+
+<div class="main-content">
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Descubrí la Nueva Colección Otoño</h1>
+    <p>Elegancia, comodidad y diseño para esta temporada.</p>
+    <button class="btn highlight" id="see-products-btn">Ver Diseños</button>
+  </div>
+</section>
+
+<main>
+
+  <!-- Products Carousel Section -->
+  <section id="products" class="products-section">
+    <h2>Elegí tu próximo par</h2>
+    <div class="carousel-container">
+      <!-- Product cards will be injected here by JS -->
+    </div>
+  </section>
+
+  <!-- Checkout Section (hidden initially) -->
+  <section id="checkout-section" class="checkout hidden">
+    <h2>Finalizar Compra</h2>
+    <form id="checkout-form">
+      <label>Nombre
+        <input type="text" name="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>WhatsApp
+        <input type="tel" name="whatsapp" required>
+      </label>
+      <label>Dirección
+        <input type="text" name="address" required>
+      </label>
+      <div class="payment-methods">
+        <p>Método de Pago:</p>
+        <button type="button" class="payment-option" data-method="tarjeta">Tarjeta</button>
+        <button type="button" class="payment-option" data-method="transferencia">Transferencia</button>
+        <button type="button" class="payment-option" data-method="mercadopago">MercadoPago</button>
+        <input type="hidden" name="payment" required>
+        <div class="payment-error hidden">Selecciona un método de pago</div>
+      </div>
+      <button type="submit" id="submit-order" class="btn primary" disabled>Confirmar Pedido</button>
+      <div id="form-message" class="form-message"></div>
+    </form>
+  </section>
+
+</main>
+
+</div><!-- Fin main-content -->
+
+</body>
+</html>

@@ -1,0 +1,1881 @@
+// Variables globales para el carrito - Protección contra cargas múltiples
+if (typeof window.cart === 'undefined') {
+    window.cart = [];
+    window.cartCount = 0;
+    window.isCartOpen = false;
+}
+
+// Usar referencias a las variables globales en lugar de redeclarar
+// const cart = window.cart;  // REMOVED - This causes redeclaration
+// const cartCount = window.cartCount;  // REMOVED - This causes redeclaration
+// const isCartOpen = window.isCartOpen;  // REMOVED - This causes redeclaration
+
+// --- Smooth Scroll Functions ---
+function smoothScrollToPosition(targetPosition, duration = 1000) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    }
+
+    requestAnimationFrame(animation);
+}
+
+function smoothScrollToElement(element, duration = 1000) {
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 20;
+    smoothScrollToPosition(targetPosition, duration);
+}
+
+// Productos disponibles
+const products = {
+    'negras': {
+        name: 'Guillerminas Negras',
+        price: 60000,
+        image: '/guillerminafotos/1.webp'
+    },
+    'camel': {
+        name: 'Guillerminas Camel',
+        price: 60000,
+        image: '/guillerminafotos/guillerminascamel/1.webp'
+    },
+    'blancas': {
+        name: 'Guillerminas Blancas',
+        price: 60000,
+        image: '/guillerminafotos/guillerminasblancas/1.webp'
+    },
+    'birk-negras': {
+        name: 'Birk Negras',
+        price: 60000,
+        image: '/astrocline/birknegras/1.webp'
+    },
+    'birk-camel': {
+        name: 'Birk Camel',
+        price: 60000,
+        image: '/astrocline/birkcamel/1.webp'
+    },
+    'birk-blancas': {
+        name: 'Birk Blancas',
+        price: 60000,
+        image: '/astrocline/birkblancas/1.webp'
+    },
+    'argos': {
+        name: 'Argos',
+        price: 60000,
+        image: '/astrocline/argos/1.webp'
+    }
+};
+
+// Función para agregar productos al carrito
+function addToCart(model, size) {
+    // Validar que se haya seleccionado un talle
+    if (!size) {
+        showCartMessage('Por favor selecciona un talle', 'warning');
+        return;
+    }
+
+    const product = products[model];
+    if (!product) {
+        showCartMessage('Producto no encontrado', 'error');
+        return;
+    }
+
+    // Validar límite de 2 pares por pedido
+    if (window.cartCount >= 2) {
+        showCartMessage('⚠️ Límite alcanzado: Solo puedes agregar máximo 2 pares por pedido', 'warning', 4000);
+        return;
+    }
+
+    // Agregar producto al carrito
+    const cartItem = {
+        id: Date.now(),
+        model: model,
+        name: product.name,
+        size: size,
+        price: product.price,
+        image: product.image
+    };
+
+    window.cart.push(cartItem);
+    window.cartCount++;
+    
+    // Actualizar interfaz
+    updateCartUI();
+    
+    // Mostrar mensaje contextual según cantidad
+    if (window.cartCount === 1) {
+        showCartMessage('¡Producto agregado! Agregá un segundo par y ahorrá $25.000', 'success');
+
+        // Mostrar modal de WhatsApp después de agregar el primer par
+        // Verificar si el modal ya fue mostrado en esta sesión
+        const whatsappModalShown = localStorage.getItem('whatsappModalShown');
+        if (!whatsappModalShown) {
+            setTimeout(() => {
+                showWhatsAppModal();
+            }, 2000); // Mostrar después de 2 segundos
+        }
+    } else if (window.cartCount === 2) {
+        showCartMessage('🎉 ¡Promoción activada! 2 pares por $95.000 (ahorraste $25.000)', 'success');
+    }
+    
+    // Abrir carrito automáticamente
+    openCart();
+    
+    console.log('Producto agregado al carrito:', cartItem);
+}
+
+// Función para eliminar un producto del carrito
+function removeFromCart(itemId) {
+    window.cart = window.cart.filter(item => item.id !== itemId);
+    window.cartCount = window.cart.length;
+    updateCartUI();
+    
+    // Mostrar mensaje si el carrito queda vacío
+    if (window.cartCount === 0) {
+        showCartMessage('Carrito vacío', 'info');
+    } else if (window.cartCount === 1) {
+        showCartMessage('Promoción desactivada. Agregá otro par para activar el descuento.', 'warning');
+    } else {
+        showCartMessage('Promoción activada. 2 pares por $95.000', 'success');
+    }
+    
+    console.log('Producto eliminado del carrito. Items restantes:', window.cartCount);
+}
+
+// Función para calcular el total del carrito
+function calculateCartTotal() {
+    if (window.cartCount === 0) return 0;
+    if (window.cartCount === 1) return 60000;
+    if (window.cartCount === 2) return 95000; // Promoción 2x $95.000
+    return window.cartCount * 47500; // Para más de 2 pares, mantener precio por par
+}
+
+// Función para calcular el total con descuento de transferencia
+function calculateCartTotalWithDiscount() {
+    let baseTotal = calculateCartTotal();
+    
+    // Obtener método de pago seleccionado
+    const paymentMethod = document.getElementById('comoabona');
+    if (paymentMethod && paymentMethod.value === 'cbu') {
+        // Aplicar 10% de descuento adicional para transferencia
+        baseTotal = Math.round(baseTotal * 0.9);
+    }
+    
+    return baseTotal;
+}
+
+// Función para actualizar la interfaz del carrito
+function updateCartUI() {
+    // Actualizar contador
+    const cartCountElements = document.querySelectorAll('.cart-count, .cart-button-count');
+    cartCountElements.forEach(element => {
+        element.textContent = window.cartCount;
+    });
+
+    // Actualizar visibilidad de los botones de checkout
+    updateButtonVisibility();
+
+    // Forzar actualización explícita de botones con un pequeño delay
+    setTimeout(() => {
+        updateButtonVisibility();
+        console.log('🔄 Button visibility forced update - Cart count:', window.cartCount);
+    }, 100);
+
+    // Actualizar items del carrito
+    const cartItemsContainer = document.querySelector('.cart-items');
+    const emptyMessage = document.querySelector('.empty-cart-message');
+    
+    if (window.cartCount === 0) {
+        cartItemsContainer.innerHTML = '';
+        if (emptyMessage) emptyMessage.style.display = 'block';
+    } else {
+        if (emptyMessage) emptyMessage.style.display = 'none';
+        
+        // Generar HTML de los items - BOTÓN ELIMINAR A LA DERECHA DEL NOMBRE
+        cartItemsContainer.innerHTML = window.cart.map(item => `
+            <div class="cart-item bg-gray-50 p-3 rounded-lg relative" data-item-id="${item.id}">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-3 flex-1">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-cover rounded">
+                        <div>
+                            <h4 class="font-semibold text-sm">${item.name}</h4>
+                            <p class="text-xs text-gray-600">Talle: ${item.size}</p>
+                        </div>
+                    </div>
+                    <button class="remove-item text-red-500 hover:text-red-700 text-xl font-bold w-6 h-6 rounded-full bg-white shadow-md z-10 flex-shrink-0" 
+                            onclick="removeFromCart(${item.id})" title="Eliminar producto">
+                        ×
+                    </button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    // Actualizar total con descuento si corresponde
+    const total = calculateCartTotalWithDiscount();
+    const totalElements = document.querySelectorAll('.cart-total span');
+    totalElements.forEach(element => {
+        element.textContent = `$${total.toLocaleString('es-AR')}`;
+    });
+
+    // Actualizar estado del botón de checkout
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        if (window.cartCount === 0) {
+            // Sin productos: deshabilitado con texto "Continuar"
+            checkoutBtn.disabled = true;
+            checkoutBtn.className = 'bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed';
+            checkoutBtn.textContent = 'Continuar';
+        } else if (window.cartCount === 1) {
+            // 1 par: habilitado con texto "Continuar"
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Continuar';
+        } else {
+            // 2+ pares: habilitado con texto "Continuar al Envío →"
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Continuar al Envío →';
+        }
+    }
+
+    // Actualizar mensaje contextual de oferta
+    const offerMessage = document.getElementById('cart-offer-message');
+    const offerText = document.getElementById('offer-text');
+
+    if (offerMessage && offerText) {
+        if (window.cartCount === 0) {
+            offerMessage.classList.add('hidden');
+        } else if (window.cartCount === 1) {
+            offerMessage.classList.remove('hidden');
+            offerText.textContent = '¡Agrega un segundo par y ahorra $25.000!';
+            // Actualizar estilo para mensaje de oferta
+            offerMessage.className = offerMessage.className.replace(/bg-green-\d+|border-green-\d+/g, 'bg-pink-50 border-pink-200');
+            offerMessage.querySelector('p').className = 'text-sm text-pink-800 font-medium';
+            offerMessage.querySelector('p:last-child').className = 'text-xs text-pink-700 mt-1';
+        } else if (window.cartCount === 2) {
+            offerMessage.classList.remove('hidden');
+            offerText.textContent = '¡Promoción activada! Ahorraste $25.000';
+            // Cambiar a estilo de éxito
+            offerMessage.className = offerMessage.className.replace(/bg-pink-\d+|border-pink-\d+/g, 'bg-green-50 border-green-200');
+            offerMessage.querySelector('p').className = 'text-sm text-green-800 font-medium';
+            offerMessage.querySelector('p:last-child').className = 'text-xs text-green-700 mt-1';
+        } else {
+            offerMessage.classList.add('hidden');
+        }
+    }
+
+    // Mostrar automáticamente el formulario de checkout si hay items
+    const checkoutSection = document.getElementById('restodelform');
+    if (checkoutSection) {
+        if (window.cartCount > 0) {
+            checkoutSection.classList.remove('hidden');
+            checkoutSection.classList.add('has-items');
+
+            // Explicitly ensure buttons are visible with !important
+            const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
+            if (checkoutNav) {
+                checkoutNav.style.setProperty('display', 'flex', 'important');
+                checkoutNav.style.setProperty('visibility', 'visible', 'important');
+                checkoutNav.style.setProperty('opacity', '1', 'important');
+                checkoutNav.style.setProperty('height', 'auto', 'important');
+                checkoutNav.style.setProperty('overflow', 'visible', 'important');
+
+                // Also ensure individual buttons are visible with !important
+                const botonComprar = checkoutNav.querySelector('#botoncomprar');
+                const backToProducts = checkoutNav.querySelector('#back-to-products');
+
+                if (botonComprar) {
+                    botonComprar.style.setProperty('display', 'block', 'important');
+                    botonComprar.style.setProperty('visibility', 'visible', 'important');
+                    botonComprar.style.setProperty('opacity', '1', 'important');
+                }
+
+                if (backToProducts) {
+                    backToProducts.style.setProperty('display', 'block', 'important');
+                    backToProducts.style.setProperty('visibility', 'visible', 'important');
+                    backToProducts.style.setProperty('opacity', '1', 'important');
+                }
+            }
+
+            // Actualizar progreso del checkout
+            updateCheckoutProgress(2);
+        } else {
+            checkoutSection.classList.add('hidden');
+            checkoutSection.classList.remove('has-items');
+
+            // Explicitly ensure buttons are hidden when cart is empty
+            const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
+            if (checkoutNav) {
+                checkoutNav.style.display = 'none';
+                checkoutNav.style.visibility = 'hidden';
+                checkoutNav.style.opacity = '0';
+                checkoutNav.style.height = '0';
+                checkoutNav.style.overflow = 'hidden';
+            }
+        }
+    }
+
+    // Actualizar formulario de pedido
+    updateOrderSummary();
+
+    // Debug: Log current state for troubleshooting
+    console.log('🔍 updateCartUI debug:', {
+        cartCount: window.cartCount,
+        checkoutSection: !!document.getElementById('restodelform'),
+        hasHiddenClass: document.getElementById('restodelform')?.classList.contains('hidden'),
+        hasItemsClass: document.getElementById('restodelform')?.classList.contains('has-items'),
+        buttonsVisible: document.querySelector('.checkout-navigation')?.style.display !== 'none'
+    });
+
+    // Force button visibility update for reliability
+    updateButtonVisibility();
+}
+
+// Helper function to explicitly manage button visibility - Simplified logic
+function updateButtonVisibility() {
+    const checkoutSection = document.getElementById('restodelform');
+    if (!checkoutSection) return;
+
+    // Única fuente de verdad: ¿Hay items en el carrito?
+    // Eliminamos la dependencia de si el formulario está hidden o no
+    const hasItems = window.cartCount > 0;
+
+    if (hasItems) {
+        // 1. Asegurar que el formulario sea visible
+        checkoutSection.classList.remove('hidden');
+
+        // 2. Activar la clase que muestra los botones (según el CSS nuevo)
+        checkoutSection.classList.add('has-items');
+
+        console.log('✅ Checkout activado: Clase has-items añadida');
+    } else {
+        // Carrito vacío
+        checkoutSection.classList.remove('has-items');
+        // Opcional: Ocultar todo el formulario si lo deseas
+        // checkoutSection.classList.add('hidden');
+
+        console.log('⛔ Checkout desactivado: Carrito vacío');
+    }
+
+    // Limpiamos estilos inline basura que puedan haber quedado de versiones anteriores
+    const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
+    if(checkoutNav) checkoutNav.removeAttribute('style');
+}
+
+// Función para formatear datos del carrito para el funnel
+function formatCartDataForFunnel() {
+    if (window.cartCount === 0) return '';
+    const formattedItems = window.cart.map(item => {
+        const modelMap = {
+            'negras': 'guillermina-negras',
+            'camel': 'guillermina-camel',
+            'blancas': 'guillermina-blancas'
+        };
+        const modelKey = modelMap[item.model] || item.model;
+        return `${item.size}-${modelKey}`;
+    });
+    return formattedItems.join(', ');
+}
+
+// Función para actualizar el resumen del pedido
+function updateOrderSummary() {
+    const summaryElement = document.getElementById('286442883');
+    const reviewElement = document.getElementById('review-modelostallesseleccionados');
+
+    if (window.cartCount > 0 && summaryElement) {
+        // Usar el formato del funnel para el campo principal también
+        const funnelData = formatCartDataForFunnel();
+        summaryElement.value = funnelData;
+
+        if (reviewElement) {
+            // Mostrar formato legible para el usuario pero con datos del funnel
+            const readableText = window.cart.map(item => `${item.name} - Talle ${item.size}`).join(', ');
+            reviewElement.textContent = readableText;
+        }
+
+        // Actualizar campos ocultos con formato para funnel
+        const hiddenFields = document.querySelectorAll('input[type="hidden"][name*="entry."]');
+        hiddenFields.forEach(field => {
+            if (field.value && field.id !== 'link-mercadopago' && field.id !== 'link-transferencia') {
+                field.value = funnelData;
+            }
+        });
+    } else {
+        if (summaryElement) summaryElement.value = '';
+        if (reviewElement) reviewElement.textContent = '-';
+    }
+
+    // Actualizar precio total en el resumen con descuento si corresponde
+    const totalElement = document.getElementById('preciototal');
+    if (totalElement) {
+        const total = calculateCartTotalWithDiscount();
+        if (window.cartCount > 0) {
+            const paymentMethod = document.getElementById('comoabona');
+            const isTransfer = paymentMethod && paymentMethod.value === 'cbu';
+
+            if (isTransfer) {
+                totalElement.innerHTML = `<strong>Total: $${total.toLocaleString('es-AR')} <span class="text-green-600 text-sm">(10% OFF por transferencia)</span></strong>`;
+            } else {
+                totalElement.innerHTML = `<strong>Total: $${total.toLocaleString('es-AR')}</strong>`;
+            }
+        } else {
+            totalElement.textContent = 'Elige modelos y talles para ver el total';
+        }
+    }
+}
+
+// Función para mostrar mensajes inline (modal dentro del contenido)
+function showInlineMessage(message, type = 'info', duration = 5000) {
+    // Crear modal overlay
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+    modalOverlay.style.position = 'fixed';
+    modalOverlay.style.top = '0';
+    modalOverlay.style.left = '0';
+    modalOverlay.style.right = '0';
+    modalOverlay.style.bottom = '0';
+    modalOverlay.style.zIndex = '9999';
+    
+    // Crear modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'bg-white rounded-lg p-6 max-w-sm w-full shadow-2xl transform transition-all';
+    
+    let bgColor = 'bg-blue-100 border-blue-400 text-blue-800';
+    let icon = 'ℹ️';
+    
+    switch(type) {
+        case 'success':
+            bgColor = 'bg-green-100 border-green-400 text-green-800';
+            icon = '✅';
+            break;
+        case 'warning':
+            bgColor = 'bg-yellow-100 border-yellow-400 text-yellow-800';
+            icon = '⚠️';
+            break;
+        case 'error':
+            bgColor = 'bg-red-100 border-red-400 text-red-800';
+            icon = '❌';
+            break;
+    }
+    
+    modalContent.innerHTML = `
+        <div class="${bgColor} border-l-4 p-4 rounded-lg">
+            <div class="flex items-center">
+                <span class="text-2xl mr-3">${icon}</span>
+                <p class="flex-1 font-medium">${message}</p>
+                <button onclick="this.closest('.fixed').remove()" 
+                        class="ml-3 text-gray-500 hover:text-gray-700 text-xl font-bold">×
+                </button>
+            </div>
+        </div>
+    `;
+    
+    modalOverlay.appendChild(modalContent);
+    document.body.appendChild(modalOverlay);
+    
+    // Auto cerrar después del tiempo especificado
+    if (duration > 0) {
+        setTimeout(() => {
+            if (modalOverlay.parentNode) {
+                modalOverlay.remove();
+            }
+        }, duration);
+    }
+    
+    // Cerrar al hacer clic fuera
+    modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+            modalOverlay.remove();
+        }
+    });
+}
+
+// Función para mostrar mensajes en el carrito (mantenida para compatibilidad)
+function showCartMessage(message, type = 'info', duration = 5000) {
+    showInlineMessage(message, type, duration);
+}
+
+// Función para abrir/cerrar el carrito
+function toggleCart() {
+    const miniCart = document.getElementById('mini-cart');
+    if (!miniCart) return;
+    
+    window.isCartOpen = !window.isCartOpen;
+    
+    if (window.isCartOpen) {
+        miniCart.style.transform = 'translateX(0)';
+        miniCart.style.opacity = '1';
+        miniCart.style.pointerEvents = 'auto';
+    } else {
+        miniCart.style.transform = 'translateX(100%)';
+        miniCart.style.opacity = '0';
+        miniCart.style.pointerEvents = 'none';
+    }
+}
+
+function openCart() {
+    const miniCart = document.getElementById('mini-cart');
+    if (miniCart && !window.isCartOpen) {
+        window.isCartOpen = true;
+        miniCart.style.transform = 'translateX(0)';
+        miniCart.style.opacity = '1';
+        miniCart.style.pointerEvents = 'auto';
+    }
+}
+
+function closeCart() {
+    const miniCart = document.getElementById('mini-cart');
+    if (miniCart && window.isCartOpen) {
+        window.isCartOpen = false;
+        miniCart.style.transform = 'translateX(100%)';
+        miniCart.style.opacity = '0';
+        miniCart.style.pointerEvents = 'none';
+    }
+}
+
+// Función para ir al formulario de checkout
+function goToCheckoutForm() {
+    if (window.cartCount === 0) {
+        showCartMessage('Debes agregar productos antes de continuar', 'warning');
+        return;
+    }
+
+    // Cerrar carrito siempre
+    closeCart();
+
+    // Lógica diferenciada según cantidad de productos
+    if (window.cartCount < 2) {
+        // 0 o 1 par: Solo cerrar el carrito, no mostrar formulario
+        return;
+    }
+
+    // 2+ pares: Mostrar formulario y hacer scroll
+    const checkoutSection = document.getElementById('restodelform');
+
+    if (checkoutSection) {
+        checkoutSection.classList.remove('hidden');
+        checkoutSection.classList.add('has-items');
+
+        // Hacer scroll suave hacia el inicio del formulario de envío
+        // Usamos el título del formulario como referencia para un scroll más preciso
+        const formTitle = document.getElementById('datos-envio');
+        if (formTitle) {
+            // Scroll hacia el título del formulario con scroll personalizado
+            setTimeout(() => {
+                smoothScrollToElement(formTitle, 1000); // 1000ms = 1 segundo
+            }, 200);
+        } else {
+            // Fallback al método anterior si no encuentra el título
+            setTimeout(() => {
+                const targetPosition = checkoutSection.getBoundingClientRect().top + window.pageYOffset - 20;
+                smoothScrollToPosition(targetPosition, 1000);
+            }, 200);
+        }
+
+        // Actualizar barra de progreso
+        updateCheckoutProgress(2);
+
+        console.log('✅ Navegando al formulario de checkout con scroll suave');
+    } else {
+        console.error('❌ No se encontró la sección del formulario de checkout');
+    }
+}
+
+// Función para actualizar el progreso del checkout
+function updateCheckoutProgress(step) {
+    const progressSteps = document.querySelectorAll('.progress-step');
+    progressSteps.forEach((stepElement, index) => {
+        const stepNumber = index + 1;
+        const stepNumberEl = stepElement.querySelector('.step-number');
+        const stepNameEl = stepElement.querySelector('.step-name');
+        
+        if (stepNumber < step) {
+            // Pasos completados
+            stepElement.classList.add('completed');
+            stepNumberEl.className = 'step-number bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mr-2';
+            stepNameEl.className = 'step-name text-sm font-medium text-green-600';
+        } else if (stepNumber === step) {
+            // Paso actual
+            stepElement.classList.add('active');
+            stepNumberEl.className = 'step-number bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mr-2';
+            stepNameEl.className = 'step-name text-sm font-medium';
+        } else {
+            // Pasos futuros
+            stepElement.classList.remove('active', 'completed');
+            stepNumberEl.className = 'step-number bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center text-sm mr-2';
+            stepNameEl.className = 'step-name text-sm font-medium text-gray-600';
+        }
+    });
+}
+
+// Función para volver a productos
+function backToProducts() {
+    const checkoutSection = document.getElementById('restodelform');
+
+    if (checkoutSection) {
+        checkoutSection.classList.add('hidden');
+        checkoutSection.classList.remove('has-items');
+
+        // Explicitly hide buttons when returning to products
+        const checkoutNav = checkoutSection.querySelector('.checkout-navigation');
+        if (checkoutNav) {
+            checkoutNav.style.display = 'none';
+            checkoutNav.style.visibility = 'hidden';
+            checkoutNav.style.opacity = '0';
+            checkoutNav.style.height = '0';
+            checkoutNav.style.overflow = 'hidden';
+
+            // Also hide individual buttons
+            const botonComprar = checkoutNav.querySelector('#botoncomprar');
+            const backToProductsBtn = checkoutNav.querySelector('#back-to-products');
+
+            if (botonComprar) {
+                botonComprar.style.display = 'none';
+                botonComprar.style.visibility = 'hidden';
+                botonComprar.style.opacity = '0';
+            }
+
+            if (backToProductsBtn) {
+                backToProductsBtn.style.display = 'none';
+                backToProductsBtn.style.visibility = 'hidden';
+                backToProductsBtn.style.opacity = '0';
+            }
+        }
+
+        // Hacer scroll hacia arriba de la página para volver a los productos
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // Actualizar barra de progreso
+        updateCheckoutProgress(1);
+
+        console.log('✅ Volviendo a la sección de productos');
+    }
+}
+
+// Función para actualizar dinámicamente los campos de revisión
+function updateReviewFields() {
+    // Actualizar campos de contacto
+    const nombreField = document.getElementById('1460904554');
+    const whatsappField = document.getElementById('53830725');
+    const emailField = document.getElementById('1465946249');
+    const dniField = document.getElementById('541001873');
+    
+    // Actualizar campos de dirección
+    const calleField = document.getElementById('951592426');
+    const localidadField = document.getElementById('1743418466');
+    const cpField = document.getElementById('1005165410');
+    const provinciaField = document.getElementById('59648134');
+    
+    // Actualizar elementos de revisión
+    const nombreReview = document.getElementById('help-nombre');
+    const whatsappReview = document.getElementById('help-wapp');
+    const emailReview = document.getElementById('help-email');
+    const dniReview = document.getElementById('help-dni');
+    const calleReview = document.getElementById('help-calleyaltura');
+    const localidadReview = document.getElementById('help-localidad');
+    const cpReview = document.getElementById('help-cp');
+    const provinciaReview = document.getElementById('help-provincia');
+    
+    // Actualizar campos de contacto en tiempo real
+    if (nombreField && nombreReview) {
+        nombreReview.textContent = nombreField.value || '-';
+    }
+    
+    if (whatsappField && whatsappReview) {
+        whatsappReview.textContent = whatsappField.value || '-';
+    }
+    
+    if (emailField && emailReview) {
+        emailReview.textContent = emailField.value || '-';
+    }
+    
+    if (dniField && dniReview) {
+        dniReview.textContent = dniField.value || '-';
+    }
+    
+    // Actualizar campos de dirección en tiempo real
+    if (calleField && calleReview) {
+        calleReview.textContent = calleField.value || '-';
+    }
+    
+    if (localidadField && localidadReview) {
+        localidadReview.textContent = localidadField.value || '-';
+    }
+    
+    if (cpField && cpReview) {
+        cpReview.textContent = cpField.value || '-';
+    }
+    
+    if (provinciaField && provinciaReview) {
+        const selectedOption = provinciaField.options[provinciaField.selectedIndex];
+        if (selectedOption && selectedOption.value && selectedOption.value !== '') {
+            provinciaReview.textContent = selectedOption.text;
+        } else {
+            provinciaReview.textContent = '-';
+        }
+    }
+}
+
+// Variable global para prevenir duplicados
+let isProcessingAddToCart = false;
+
+// Función global para manejar clics en botones de agregar al carrito
+function handleAddToCart(button) {
+    console.log('🛒 handleAddToCart called', button);
+    
+    // Prevenir múltiples clics simultáneos
+    if (isProcessingAddToCart) {
+        console.log('⚠️ Ya se está procesando un agregado al carrito');
+        return;
+    }
+    
+    isProcessingAddToCart = true;
+    
+    try {
+        const model = button.getAttribute('data-model');
+        console.log('📦 Model:', model);
+        
+        const selectId = `talle-${model}`;
+        console.log('🔍 Looking for select ID:', selectId);
+        
+        // Buscar el select dentro del mismo producto
+        const productCard = button.closest('.product-content');
+        let selectElement = null;
+        
+        if (productCard) {
+            selectElement = productCard.querySelector(`#${selectId}`);
+            console.log('📋 Select found in product card:', !!selectElement);
+        } else {
+            // Fallback: búsqueda global por ID
+            selectElement = document.getElementById(selectId);
+            console.log('📋 Select found globally:', !!selectElement);
+        }
+        
+        if (selectElement) {
+            console.log('📊 Select value:', selectElement.value);
+            console.log('📊 Select selectedIndex:', selectElement.selectedIndex);
+            
+            // Resetear todos los otros selects para evitar confusiones
+            const allSelects = document.querySelectorAll('select[id^="talle-"]');
+            allSelects.forEach(select => {
+                if (select.id !== selectId) {
+                    console.log('🔄 Resetting other select:', select.id);
+                    select.selectedIndex = 0;
+                }
+            });
+            
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            console.log('📝 Selected option:', selectedOption);
+            
+            const sizeText = selectedOption ? selectedOption.textContent.split(' (')[0] : '';
+            console.log('👟 Size extracted:', sizeText);
+            
+            if (sizeText && sizeText !== '-- Selecciona Talle --') {
+                addToCart(model, sizeText);
+            } else {
+                showCartMessage('Por favor selecciona un talle', 'warning');
+                console.log('⚠️ Size validation failed');
+            }
+        } else {
+            showCartMessage('Error: No se encontró el selector de talle', 'error');
+            console.log('❌ Select element not found');
+        }
+    } finally {
+        // Restablecer el flag después de un breve período
+        setTimeout(() => {
+            isProcessingAddToCart = false;
+        }, 500);
+    }
+}
+
+// Función para inicializar los eventos del carrito
+function initializeCart() {
+    // Event listeners para los botones de agregar al carrito
+    const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            handleAddToCart(this);
+        });
+    });
+
+    // Event listener para el botón del carrito
+    const cartButton = document.getElementById('cart-button');
+    if (cartButton) {
+        cartButton.addEventListener('click', toggleCart);
+    }
+
+    // Event listener para cerrar el carrito
+    const cartClose = document.querySelector('.cart-close');
+    if (cartClose) {
+        cartClose.addEventListener('click', closeCart);
+    }
+
+    // Event listener para volver a productos
+    const backToProductsBtn = document.getElementById('back-to-products');
+    if (backToProductsBtn) {
+        backToProductsBtn.addEventListener('click', backToProducts);
+    }
+
+    // Event listener para el botón de checkout en el carrito
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', goToCheckoutForm);
+    }
+
+    // Event listeners para actualización en tiempo real de campos de revisión
+    const formFields = [
+        '1460904554', '53830725', '1465946249', '541001873', // Contacto
+        '951592426', '1743418466', '1005165410', '59648134' // Dirección
+    ];
+    
+    formFields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field) {
+            field.addEventListener('input', updateReviewFields);
+            field.addEventListener('change', updateReviewFields);
+        }
+    });
+
+    // Event listener para cambios en método de pago
+    const paymentMethodSelect = document.getElementById('comoabona');
+    if (paymentMethodSelect) {
+        paymentMethodSelect.addEventListener('change', function() {
+            updateOrderSummary(); // Actualizar precio cuando cambia el método de pago
+        });
+    }
+
+    // Inicializar UI del carrito
+    updateCartUI();
+    
+    // Inicializar campos de revisión
+    updateReviewFields();
+}
+
+// Función para inicializar los carruseles Embla con funcionalidad completa
+function initializeSwipers() {
+    console.log('🎠 Inicializando carruseles Embla...');
+
+    // Esperar a que la librería Embla esté disponible
+    if (typeof EmblaCarousel === 'undefined') {
+        console.log('⏳ Esperando a que Embla Carousel se cargue...');
+        setTimeout(initializeSwipers, 100);
+        return;
+    }
+
+    try {
+        // Inicializar cada carrusel de producto
+        document.querySelectorAll('.embla').forEach(function(container) {
+            const productId = container.dataset.productId;
+            const viewport = container.querySelector('.embla__viewport');
+            const thumbsViewport = container.querySelector('.embla-thumbs__viewport');
+
+            if (!viewport) {
+                console.warn(`⚠️ No se encontró viewport para el carrusel: ${productId}`);
+                return;
+            }
+
+            console.log(`🔧 Inicializando carrusel para: ${productId}`);
+
+            // Configuración principal del carrusel
+            const options = {
+                align: 'start',
+                loop: true,
+                skipSnaps: false,
+                containScroll: 'keepSnaps',
+                dragFree: false,
+                speed: 10,
+                startIndex: 0
+            };
+
+            // Plugins adicionales
+            const plugins = [];
+
+            // Autoplay si está habilitado
+            if (container.dataset.autoplay === 'true' && typeof EmblaCarouselAutoplay !== 'undefined') {
+                plugins.push(EmblaCarouselAutoplay({
+                    delay: 4000,
+                    stopOnInteraction: true,
+                    playOnInit: true
+                }));
+                console.log(`▶️ Autoplay habilitado para: ${productId}`);
+            }
+
+            // Inicializar carrusel principal
+            const embla = EmblaCarousel(viewport, options, plugins);
+
+            console.log(`✅ Carrusel principal creado para: ${productId}`);
+
+            // Configurar botones de navegación
+            const prevBtn = container.querySelector('.embla__button--prev');
+            const nextBtn = container.querySelector('.embla__button--next');
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', embla.scrollPrev, false);
+                prevBtn.setAttribute('aria-label', 'Anterior');
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', embla.scrollNext, false);
+                nextBtn.setAttribute('aria-label', 'Siguiente');
+            }
+
+            // Configurar miniaturas si existen
+            let thumbsEmbla = null;
+            if (thumbsViewport) {
+                console.log(`🖼️ Configurando miniaturas optimizadas para: ${productId}`);
+
+                thumbsEmbla = EmblaCarousel(thumbsViewport, {
+                    containScroll: 'keepSnaps',
+                    dragFree: true,
+                    dragThreshold: 10, // Lower threshold for smoother scrolling
+                    axis: 'x',
+                    align: 'start',
+                    skipSnaps: false,
+                    inViewThreshold: 0.7,
+                    watchDrag: true,
+                    watchResize: true,
+                    watchSlides: true
+                });
+
+                const syncScrollSnap = () => {
+                    const selected = embla.selectedScrollSnap();
+
+                    // Smooth scroll to selected thumbnail with better centering
+                    thumbsEmbla.scrollTo(selected, true);
+
+                    // Actualizar clases de selección en miniaturas con mejor feedback visual
+                    container.querySelectorAll('.embla-thumbs__slide').forEach(function(slide, index) {
+                        if (index === selected) {
+                            slide.classList.add('embla-thumbs__slide--selected');
+                            slide.setAttribute('aria-current', 'true');
+
+                            // Añadir scroll suave para centrar la miniatura seleccionada
+                            const thumbRect = slide.getBoundingClientRect();
+                            const containerRect = thumbsViewport.getBoundingClientRect();
+                            const thumbCenter = thumbRect.left + thumbRect.width / 2;
+                            const containerCenter = containerRect.left + containerRect.width / 2;
+
+                            if (Math.abs(thumbCenter - containerCenter) > thumbRect.width) {
+                                thumbsEmbla.scrollTo(selected, true);
+                            }
+                        } else {
+                            slide.classList.remove('embla-thumbs__slide--selected');
+                            slide.removeAttribute('aria-current');
+                        }
+                    });
+                };
+
+                // Enhanced click handlers para miniaturas con mejor feedback
+                container.querySelectorAll('.embla-thumbs__slide').forEach(function(thumb, index) {
+                    // Click handler con animación mejorada
+                    thumb.addEventListener('click', function(e) {
+                        console.log(`🖱️ Miniatura clickeada: ${productId}, índice: ${index}`);
+
+                        // Añadir feedback visual inmediato
+                        thumb.style.transform = 'scale(0.95)';
+
+                        // Navegar al slide con animación suave
+                        embla.scrollTo(index, true);
+
+                        // Restaurar escala después de un breve momento
+                        setTimeout(() => {
+                            thumb.style.transform = '';
+                        }, 150);
+
+                        // Prevenir comportamientos no deseados
+                        e.preventDefault();
+                    }, false);
+
+                    // Enhanced keyboard support
+                    thumb.addEventListener('keydown', function(e) {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            embla.scrollTo(index, true);
+                        } else if (e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            embla.scrollPrev();
+                        } else if (e.key === 'ArrowRight') {
+                            e.preventDefault();
+                            embla.scrollNext();
+                        }
+                    });
+
+                    // Touch feedback para dispositivos móviles
+                    thumb.addEventListener('touchstart', function(e) {
+                        thumb.style.transform = 'scale(0.95)';
+                    }, { passive: true });
+
+                    thumb.addEventListener('touchend', function(e) {
+                        setTimeout(() => {
+                            thumb.style.transform = '';
+                        }, 100);
+                    }, { passive: true });
+
+                    // Hover mejorado para desktop
+                    thumb.addEventListener('mouseenter', function() {
+                        if (window.innerWidth > 768) {
+                            this.style.zIndex = '10';
+                        }
+                    });
+
+                    thumb.addEventListener('mouseleave', function() {
+                        this.style.zIndex = '';
+                    });
+                });
+
+                // Sincronización bidireccional mejorada
+                embla.on('select', syncScrollSnap);
+                embla.on('init', syncScrollSnap);
+
+                // Sincronización cuando el usuario navega en las miniaturas
+                thumbsEmbla.on('select', () => {
+                    const selectedThumbIndex = thumbsEmbla.selectedScrollSnap();
+                    if (selectedThumbIndex !== embla.selectedScrollSnap()) {
+                        embla.scrollTo(selectedThumbIndex, true);
+                    }
+                });
+
+                // Precargar imágenes de miniaturas cercanas para mejor rendimiento
+                const preloadThumbnails = () => {
+                    const currentIndex = embla.selectedScrollSnap();
+                    const thumbNodes = container.querySelectorAll('.embla-thumbs__slide img');
+
+                    // Precargar miniaturas anteriores y siguientes
+                    for (let i = Math.max(0, currentIndex - 2); i <= Math.min(thumbNodes.length - 1, currentIndex + 2); i++) {
+                        const img = thumbNodes[i];
+                        if (img && !img.complete) {
+                            img.loading = 'eager';
+                        }
+                    }
+                };
+
+                embla.on('select', preloadThumbnails);
+                embla.on('init', preloadThumbnails);
+
+                // Inicialización
+                syncScrollSnap();
+                console.log(`✅ Miniaturas optimizadas configuradas para: ${productId}`);
+            }
+
+            // Configurar estados de los botones
+            const setupButtonStates = () => {
+                const prevDisabled = !embla.canScrollPrev();
+                const nextDisabled = !embla.canScrollNext();
+                if (prevBtn) prevBtn.disabled = prevDisabled;
+                if (nextBtn) nextBtn.disabled = nextDisabled;
+            };
+
+            embla.on('select', setupButtonStates);
+            embla.on('init', setupButtonStates);
+
+            // Soporte de teclado para el carrusel principal
+            const handleKeyDown = (e) => {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        embla.scrollPrev();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        embla.scrollNext();
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        embla.scrollTo(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        embla.scrollTo(embla.scrollSnapList().length - 1);
+                        break;
+                }
+            };
+
+            container.addEventListener('keydown', handleKeyDown);
+            container.setAttribute('tabindex', '0');
+
+            // Pausar autoplay en hover (si está habilitado)
+            if (container.dataset.autoplay === 'true') {
+                container.addEventListener('mouseenter', () => {
+                    if (embla.plugins().autoplay) {
+                        embla.plugins().autoplay.stop();
+                    }
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    if (embla.plugins().autoplay) {
+                        embla.plugins().autoplay.play();
+                    }
+                });
+            }
+
+            // Enhanced image preloading for 14-18 images scenario
+            const preloadNearbyImages = () => {
+                const currentIndex = embla.selectedScrollSnap();
+                const totalSlides = embla.scrollSnapList().length;
+                const slides = embla.slideNodes();
+
+                // Precargar imágenes estratégicamente para carruseles con muchas imágenes
+                const preloadRange = totalSlides > 12 ? 3 : 2; // Más rango para carruseles grandes
+
+                // Precargar imágenes alrededor de la actual
+                for (let i = Math.max(0, currentIndex - preloadRange); i <= Math.min(totalSlides - 1, currentIndex + preloadRange); i++) {
+                    const slide = slides[i];
+                    if (slide) {
+                        const img = slide.querySelector('img');
+                        if (img && !img.complete) {
+                            img.loading = 'eager';
+
+                            // Agregar lazy loading a imágenes lejanas
+                            if (Math.abs(i - currentIndex) > preloadRange) {
+                                img.loading = 'lazy';
+                            }
+                        }
+                    }
+                }
+
+                // Optimizar miniaturas cargadas
+                const thumbImages = container.querySelectorAll('.embla-thumbs__slide img');
+                thumbImages.forEach((img, index) => {
+                    const distanceFromCurrent = Math.abs(index - currentIndex);
+
+                    if (distanceFromCurrent <= 2) {
+                        // Miniaturas cercanas: alta prioridad
+                        img.loading = 'eager';
+                        img.fetchPriority = 'high';
+                    } else if (distanceFromCurrent <= 5) {
+                        // Miniaturas medias: prioridad normal
+                        img.loading = 'lazy';
+                        img.fetchPriority = 'auto';
+                    } else {
+                        // Miniaturas lejanas: baja prioridad
+                        img.loading = 'lazy';
+                        img.fetchPriority = 'low';
+                    }
+                });
+            };
+
+            embla.on('select', preloadNearbyImages);
+            embla.on('init', preloadNearbyImages);
+
+            // Optimización para carruseles con muchas imágenes (14-18)
+            const optimizeForManyImages = () => {
+                const totalSlides = embla.scrollSnapList().length;
+
+                if (totalSlides > 12) {
+                    console.log(`🔧 Optimizando carrusel con ${totalSlides} imágenes para: ${productId}`);
+
+                    // Ajustar velocidad de autoplay si hay muchas imágenes
+                    if (container.dataset.autoplay === 'true' && embla.plugins().autoplay) {
+                        embla.plugins().autoplay.stop();
+                        embla.plugins().autoplay.play({
+                            delay: Math.min(3000, 4000 - (totalSlides * 100)), // Más rápido con más imágenes
+                            stopOnInteraction: true,
+                            playOnInit: true
+                        });
+                    }
+
+                    // Scroll indicators disabled - not needed
+                }
+            };
+
+            // Scroll indicators removed - not needed
+
+            optimizeForManyImages();
+
+            // Manejo de errores en imágenes
+            const handleImageErrors = () => {
+                container.querySelectorAll('.embla__slide__img').forEach(function(img) {
+                    if (!img.complete || img.naturalHeight === 0) {
+                        img.addEventListener('error', function() {
+                            console.warn(`⚠️ Error cargando imagen: ${img.src}`);
+                            img.style.display = 'none';
+
+                            // Mostrar placeholder
+                            const placeholder = document.createElement('div');
+                            placeholder.className = 'embla__slide__placeholder';
+                            placeholder.innerHTML = `
+                                <div style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    height: 100%;
+                                    background: #f0f0f0;
+                                    color: #666;
+                                    font-size: 14px;
+                                    text-align: center;
+                                    padding: 20px;
+                                ">
+                                    Imagen no disponible
+                                </div>
+                            `;
+                            img.parentNode.appendChild(placeholder);
+                        });
+                    }
+                });
+            };
+
+            handleImageErrors();
+
+            // Detección de gestos táctiles avanzados
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+            let isDragging = false;
+
+            const handleTouchStart = (e) => {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+                isDragging = false;
+                container.classList.add('dragging');
+            };
+
+            const handleTouchMove = (e) => {
+                if (!isDragging) {
+                    const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+                    const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+
+                    // Considerar como arrastre si el movimiento horizontal es mayor que el vertical
+                    if (deltaX > deltaY && deltaX > 10) {
+                        isDragging = true;
+                    }
+                }
+            };
+
+            const handleTouchEnd = (e) => {
+                container.classList.remove('dragging');
+
+                if (!isDragging) return;
+
+                touchEndX = e.changedTouches[0].clientX;
+                touchEndY = e.changedTouches[0].clientY;
+
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+
+                // Umbral mínimo para swipe horizontal
+                const minSwipeDistance = 50;
+
+                if (Math.abs(deltaX) > minSwipeDistance && Math.abs(deltaY) < minSwipeDistance) {
+                    if (deltaX > 0) {
+                        // Swipe derecha - anterior
+                        embla.scrollPrev();
+                        console.log(`👆 Swipe derecho en ${productId}`);
+                    } else {
+                        // Swipe izquierda - siguiente
+                        embla.scrollNext();
+                        console.log(`👈 Swipe izquierdo en ${productId}`);
+                    }
+                }
+            };
+
+            // Agregar event listeners táctiles
+            viewport.addEventListener('touchstart', handleTouchStart, { passive: true });
+            viewport.addEventListener('touchmove', handleTouchMove, { passive: true });
+            viewport.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+            // Mostrar hint de swipe para usuarios nuevos (solo en móviles)
+            if (window.innerWidth <= 768 && !localStorage.getItem('carouselSwipeHintShown')) {
+                setTimeout(() => {
+                    const hint = document.createElement('div');
+                    hint.className = 'swipe-hint';
+                    hint.textContent = 'Desliza para ver más imágenes';
+                    container.appendChild(hint);
+
+                    setTimeout(() => {
+                        hint.remove();
+                        localStorage.setItem('carouselSwipeHintShown', 'true');
+                    }, 3000);
+                }, 2000);
+            }
+
+            // Manejo de resize
+            const handleResize = () => {
+                if (embla) {
+                    embla.reInit();
+                }
+            };
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(handleResize, 250);
+            });
+
+            // Manejo de visibilidad de página
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    // Pausar autoplay si la página no está visible
+                    if (embla.plugins().autoplay) {
+                        embla.plugins().autoplay.stop();
+                    }
+                } else if (container.dataset.autoplay === 'true') {
+                    // Reanudar autoplay si la página se hace visible
+                    if (embla.plugins().autoplay) {
+                        embla.plugins().autoplay.play();
+                    }
+                }
+            });
+
+            console.log(`🎉 Carrusel completamente configurado para: ${productId}`);
+        });
+
+        console.log('✅ Todos los carruseles inicializados correctamente');
+
+    } catch (error) {
+        console.error('❌ Error al inicializar carruseles:', error);
+    }
+}
+
+// Función global para inicialización (llamada desde Layout.astro)
+window.initCarousels = initializeSwipers;
+window.initializeSwipers = initializeSwipers;
+
+// Función para inicializar guías de talles
+function initializeSizeGuides() {
+    const sizeGuideContainers = document.querySelectorAll('.size-guide-container');
+    
+    sizeGuideContainers.forEach(container => {
+        const toggle = container.querySelector('.size-guide-toggle');
+        const content = container.querySelector('.size-guide-content');
+        const icon = container.querySelector('.toggle-icon');
+        
+        if (toggle && content && icon) {
+            toggle.addEventListener('click', function() {
+                const isOpen = container.classList.contains('open');
+                
+                if (isOpen) {
+                    container.classList.remove('open');
+                    content.classList.add('hidden');
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    container.classList.add('open');
+                    content.classList.remove('hidden');
+                    icon.textContent = '-';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        }
+    });
+}
+
+// Función para inicializar testimonios
+function initializeTestimonials() {
+    const testimonialsGrid = document.getElementById('testimonials-grid');
+    const loadMoreBtn = document.getElementById('load-more-testimonials');
+    const loadingIndicator = document.getElementById('testimonials-loading');
+    
+    if (!testimonialsGrid) return;
+
+    // Lista de testimonios disponibles
+    const allTestimonials = [
+        { src: 'comentarios/comentariorecibi1.webp', alt: 'Captura de comentario positivo de clienta 1' },
+        { src: 'comentarios/comentariorecibi2.webp', alt: 'Captura de comentario positivo de clienta 2' },
+        { src: 'comentarios/comentariorecibi4.webp', alt: 'Captura de comentario positivo de clienta 3' },
+        { src: 'comentarios/comentariorecibi5.webp', alt: 'Captura de comentario positivo de clienta 4' },
+        { src: 'comentarios/comentariorecibi6.webp', alt: 'Captura de comentario positivo de clienta 5' },
+        { src: 'comentarios/comentariorecibi7.webp', alt: 'Captura de comentario positivo de clienta 6' },
+        { src: 'comentarios/comentariorecibi8.webp', alt: 'Captura de comentario positivo de clienta 7' },
+        { src: 'comentarios/comentariosig.webp', alt: 'Comentarios de Instagram' },
+        { src: 'comentarios/comentario1-min.webp', alt: 'Testimonio destacado 1' },
+        { src: 'comentarios/comentario2-min.webp', alt: 'Testimonio destacado 2' },
+        { src: 'comentarios/comentario3-min.webp', alt: 'Referencia de clienta satisfecha 1' },
+        { src: 'comentarios/comentario4-min.webp', alt: 'Referencia de clienta satisfecha 2' },
+        { src: 'comentarios/comentario5-min.webp', alt: 'Referencia de clienta satisfecha 3' }
+    ];
+
+    let currentIndex = 0;
+    const itemsPerLoad = 6;
+
+    function loadTestimonials() {
+        const endIndex = Math.min(currentIndex + itemsPerLoad, allTestimonials.length);
+        
+        for (let i = currentIndex; i < endIndex; i++) {
+            const testimonial = allTestimonials[i];
+            const testimonialElement = document.createElement('div');
+            testimonialElement.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300';
+            testimonialElement.innerHTML = `
+                <img src="${testimonial.src}" alt="${testimonial.alt}"
+                     class="w-full h-auto object-contain"
+                     loading="lazy">
+            `;
+            testimonialsGrid.appendChild(testimonialElement);
+        }
+        
+        currentIndex = endIndex;
+        
+        // Ocultar botón de cargar más si no hay más testimonios
+        if (currentIndex >= allTestimonials.length && loadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    // Cargar testimonios iniciales
+    loadTestimonials();
+
+    // Event listener para cargar más testimonios
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'block';
+                loadMoreBtn.style.display = 'none';
+            }
+            
+            // Simular carga y mostrar más después de un momento
+            setTimeout(() => {
+                loadTestimonials();
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                if (currentIndex < allTestimonials.length) {
+                    loadMoreBtn.style.display = 'inline-block';
+                }
+            }, 800);
+        });
+    }
+}
+
+// Inicialización cuando el DOM está listo
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Inicializando aplicación...');
+    
+    // Inicializar carrito
+    initializeCart();
+    
+    // Inicializar guías de talles
+    initializeSizeGuides();
+    
+    // Inicializar testimonios
+    initializeTestimonials();
+    
+    // Inicializar Swiper con un pequeño delay para asegurar que todo esté cargado
+    setTimeout(initializeSwipers, 200);
+    
+    console.log('✅ Aplicación inicializada correctamente');
+});
+
+// También inicializar cuando la ventana esté completamente cargada
+window.addEventListener('load', function() {
+    console.log('🔄 Re-inicializando Swiper después de load...');
+    setTimeout(initializeSwipers, 100);
+});
+
+// Función global para inicialización manual (para debugging)
+window.debugSwipers = function() {
+    console.log('🐛 Debug Swipers');
+    console.log('Swiper disponible:', typeof Swiper !== 'undefined');
+    
+    // Verificar si los elementos existen
+    ['guillermina-negras', 'guillermina-camel', 'guillermina-blancas'].forEach(product => {
+        const mainElement = document.getElementById(`swiper-${product}`);
+        const thumbElement = document.getElementById(`swiper-thumbnails-${product}`);
+        console.log(`Producto ${product}:`, {
+            main: !!mainElement,
+            thumb: !!thumbElement,
+            mainId: `swiper-${product}`,
+            thumbId: `swiper-thumbnails-${product}`
+        });
+    });
+    
+    // Intentar inicializar
+    initializeSwipers();
+};
+
+// WhatsApp Modal Functions
+function showWhatsAppModal() {
+    const modal = document.getElementById('whatsapp-modal');
+    if (!modal) {
+        console.error('WhatsApp modal not found');
+        return;
+    }
+
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Focus on input
+    setTimeout(() => {
+        const input = document.getElementById('whatsapp-number');
+        if (input) {
+            input.focus();
+        }
+    }, 300);
+
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+
+    // Close modal on escape key
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            closeWhatsAppModal();
+            document.removeEventListener('keydown', handleEscape);
+        }
+    };
+    document.addEventListener('keydown', handleEscape);
+
+    // Store handler reference for cleanup
+    modal._escapeHandler = handleEscape;
+}
+
+function closeWhatsAppModal() {
+    const modal = document.getElementById('whatsapp-modal');
+    if (!modal) return;
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+
+    // Restore body scroll
+    document.body.style.overflow = '';
+
+    // Remove escape handler if exists
+    if (modal._escapeHandler) {
+        document.removeEventListener('keydown', modal._escapeHandler);
+        modal._escapeHandler = null;
+    }
+
+    // Clear form
+    const form = document.getElementById('whatsapp-form');
+    if (form) {
+        form.reset();
+    }
+}
+
+// WhatsApp endpoints (originales del embudo)
+const validateWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+const saveWhatsappEndpoint = "https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7";
+
+function formatWhatsappNumber(number) {
+    if (!number) return '';
+
+    let formatted = number.replace(/[\s\-()]/g, '');
+
+    if (formatted.startsWith('54') && formatted.length === 12) {
+        formatted = '+' + formatted;
+    } else if (formatted.length === 10) {
+        formatted = '+549' + formatted;
+    } else if (formatted.length === 11 && formatted.startsWith('9')) {
+        formatted = '+54' + formatted;
+    } else if (formatted.length === 12 && !formatted.startsWith('+')) {
+        formatted = '+' + formatted;
+    }
+
+    return formatted;
+}
+
+function validateInputFormat(inputValue) {
+    if (!inputValue) return false;
+    const formattedNumber = formatWhatsappNumber(inputValue);
+    return formattedNumber && formattedNumber.length >= 12;
+}
+
+async function validateWhatsappNumber(whatsappNumber) {
+    try {
+        const response = await fetch(validateWhatsappEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: whatsappNumber })
+        });
+
+        const result = await response.json();
+        return { valid: response.ok, result };
+    } catch (error) {
+        console.error('Error validating WhatsApp:', error);
+        return { valid: false, error };
+    }
+}
+
+function saveWhatsappToEndpoint(whatsappNumber) {
+    const data = {
+        whatsapp: whatsappNumber,
+        timestamp: new Date().toISOString(),
+        source: 'modal_whatsapp_carrito',
+        url: window.location.href,
+        cart: window.cart,
+        cartCount: window.cartCount
+    };
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', saveWhatsappEndpoint, true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(data));
+}
+
+async function handleWhatsAppSubmit(event) {
+    event.preventDefault();
+
+    const phoneNumber = document.getElementById('whatsapp-number').value.trim();
+
+    if (!phoneNumber) {
+        if (typeof showInlineAlert === 'function') {
+            showInlineAlert('Por favor ingresa tu número de WhatsApp', 'error');
+            document.getElementById('whatsapp-number')?.focus();
+        } else {
+            alert('Por favor ingresa tu número de WhatsApp');
+        }
+        return;
+    }
+
+    if (!validateInputFormat(phoneNumber)) {
+        if (typeof showInlineAlert === 'function') {
+            showInlineAlert('Formato de WhatsApp inválido. Ej: 1156457057', 'error');
+            document.getElementById('whatsapp-number')?.focus();
+        } else {
+            alert('Formato de WhatsApp inválido. Ej: 1156457057');
+        }
+        return;
+    }
+
+    const whatsappNumber = formatWhatsappNumber(phoneNumber);
+
+    // Validar número con webhook
+    const validation = await validateWhatsappNumber(whatsappNumber);
+    if (!validation.valid) {
+        if (typeof showInlineAlert === 'function') {
+            showInlineAlert('Número de WhatsApp inválido. Por favor verifícalo e intenta nuevamente.', 'error');
+            document.getElementById('whatsapp-number')?.focus();
+        } else {
+            alert('Número de WhatsApp inválido. Por favor verifícalo e intenta nuevamente.');
+        }
+        return;
+    }
+
+    // Guardar en localStorage
+    const whatsappData = {
+        phone: whatsappNumber,
+        cart: window.cart,
+        cartCount: window.cartCount,
+        timestamp: new Date().toISOString()
+    };
+
+    localStorage.setItem('whatsappCartSave', JSON.stringify(whatsappData));
+
+    // Guardar silenciosamente en el webhook del embudo original
+    saveWhatsappToEndpoint(whatsappNumber);
+
+    // Mostrar mensaje de éxito (sin redirección a WhatsApp)
+    showInlineMessage('✅ ¡Número guardado! Podrás recuperar tu carrito cuando quieras.', 'success', 5000);
+
+    // Cerrar modal
+    closeWhatsAppModal();
+
+    // Marcar modal como mostrado para esta sesión
+    localStorage.setItem('whatsappModalShown', 'true');
+}
+
+// Initialize WhatsApp form when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const whatsappForm = document.getElementById('whatsapp-form');
+    if (whatsappForm) {
+        whatsappForm.addEventListener('submit', handleWhatsAppSubmit);
+    }
+
+    // Check if cart can be recovered from WhatsApp
+    const urlParams = new URLSearchParams(window.location.search);
+    const whatsappParam = urlParams.get('whatsapp');
+
+    if (whatsappParam) {
+        try {
+            const savedCartData = localStorage.getItem('whatsappCartSave');
+            if (savedCartData) {
+                const savedData = JSON.parse(savedCartData);
+                if (savedData.phone === whatsappParam && savedData.cart.length > 0) {
+                    // Restore cart
+                    window.cart = savedData.cart;
+                    window.cartCount = savedData.cartCount;
+                    updateCartUI();
+
+                    showInlineMessage('✅ ¡Carrito recuperado exitosamente!', 'success', 5000);
+
+                    // Remove WhatsApp parameter from URL
+                    const newUrl = window.location.pathname;
+                    window.history.replaceState({}, '', newUrl);
+                }
+            }
+        } catch (error) {
+            console.error('Error recovering cart from WhatsApp:', error);
+        }
+    }
+});
+
+// Estilos CSS para mensajes del carrito (se agregan dinámicamente)
+const cartStyles = `
+    /* Mini Cart Responsive */
+    #mini-cart {
+        position: fixed;
+        right: 1rem;
+        top: 5rem;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        padding: 1rem;
+        width: 24rem;
+        max-width: 90vw;
+        z-index: 50;
+        transform: translateX(100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+    
+    @media (max-width: 768px) {
+        #mini-cart {
+            position: fixed;
+            right: 0;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 100vw;
+            max-height: 100vh;
+            border-radius: 0;
+            transform: translateX(100%);
+        }
+    }
+    
+    .cart-message {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        animation: slideInMessage 0.4s ease-out;
+    }
+    
+    .cart-message:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .message-text {
+        flex-grow: 1;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+    
+    .message-close {
+        background: transparent;
+        border: none;
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .message-close:hover {
+        background: rgba(0, 0, 0, 0.1);
+        color: rgba(0, 0, 0, 0.7);
+        transform: scale(1.1);
+    }
+    
+    @keyframes slideInMessage {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    /* Testimonials Grid Styles - Natural Content */
+    .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 2rem;
+        width: 100%;
+    }
+
+    @media (min-width: 768px) {
+        .testimonials-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+    }
+
+    @media (min-width: 1024px) {
+        .testimonials-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 2rem;
+        }
+    }
+
+    .testimonial-item {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 0.6s ease forwards;
+        width: 100%;
+        height: auto;
+        /* No forzar aspect-ratio, dejar contenido natural */
+    }
+
+    /* Importante: No forzar tamaños en las imágenes */
+    .testimonial-item img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        max-width: 100%;
+    }
+
+    .testimonial-item:nth-child(n) {
+        animation-delay: calc(n * 0.1s);
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .cart-item {
+        transition: all 0.3s ease;
+    }
+    
+    .cart-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .remove-item {
+        transition: all 0.2s ease;
+    }
+    
+    .remove-item:hover {
+        background: rgba(239, 68, 68, 0.1);
+        transform: scale(1.1);
+    }
+`;
+
+// Agregar estilos al head
+const styleSheet = document.createElement('style');
+styleSheet.textContent = cartStyles;
+document.head.appendChild(styleSheet);

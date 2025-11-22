@@ -1,0 +1,32 @@
+{
+  "name": "rositarococo.com",
+  "version": "1.0.0",
+  "description": "This repository contains the redesigned Rosita Rococó website, focusing on a new \"Otoño-Elegante\" design for the women's fall footwear catalog. The redesign aims to create an aesthetic, responsive website while maintaining shopping cart functionality and ensuring carousel images display properly without cropping.",
+  "main": "carousel-fix.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rositarococoshoes/rositarococo.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rositarococoshoes/rositarococo.com/issues"
+  },
+  "homepage": "https://github.com/rositarococoshoes/rositarococo.com#readme",
+  "dependencies": {
+    "puppeteer": "^24.30.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {
+    "bmad-method": "^4.44.3",
+    "express": "^5.1.0",
+    "shadcn": "^3.5.0"
+  }
+}

@@ -1,0 +1,122 @@
+/* Estilos para el carrusel simple */
+.simple-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0.95;
+    transition: opacity 0.3s ease;
+}
+
+.simple-carousel.carousel-initialized {
+    opacity: 1;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.3s ease;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-slide img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+/* Estilos específicos para carruseles de productos */
+.product-item .simple-carousel {
+    min-height: 300px;
+    margin-bottom: 15px;
+}
+
+.product-item .carousel-slide img {
+    max-height: 350px;
+    width: auto;
+}
+
+/* Estilos para el carrusel de testimonios */
+.testimonials-carousel {
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+.testimonials-carousel .carousel-slide img {
+    max-height: 500px;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(160, 89, 65, 0.8);
+    border: 2px solid white;
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-button.prev {
+    left: 10px;
+}
+
+.carousel-button.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(160, 89, 65, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.carousel-indicators li.active {
+    background-color: rgba(160, 89, 65, 0.8);
+    border-color: white;
+}

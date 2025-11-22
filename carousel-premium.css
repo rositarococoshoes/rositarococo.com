@@ -1,0 +1,382 @@
+/* --- Premium Carousel Implementation for Rosita Rococó --- */
+/* Complete replacement for all carousel CSS files with superior aesthetics */
+
+:root {
+    --carousel-primary: #a05941;
+    --carousel-primary-dark: #7a3f2b;
+    --carousel-secondary: #d68c45;
+    --carousel-white: #ffffff;
+    --carousel-gray-light: #f8f6f3;
+    --carousel-gray-medium: #e8e2d8;
+    --carousel-shadow-soft: 0 4px 20px rgba(160, 89, 65, 0.08);
+    --carousel-shadow-medium: 0 8px 30px rgba(160, 89, 65, 0.12);
+    --carousel-shadow-strong: 0 12px 40px rgba(160, 89, 65, 0.15);
+    --carousel-border-radius: 12px;
+    --carousel-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base carousel container with enhanced aesthetics */
+.simple-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+    margin: 0 0 25px 0;
+    padding: 0;
+    background: var(--carousel-white);
+    border-radius: var(--carousel-border-radius);
+    overflow: hidden;
+    box-shadow: var(--carousel-shadow-soft);
+    border: 1px solid var(--carousel-gray-medium);
+    box-sizing: border-box;
+}
+
+/* Carousel container with smooth transitions */
+.simple-carousel .carousel-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+/* Individual slides with proper centering */
+.simple-carousel .carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: var(--carousel-white);
+}
+
+/* Premium image styling */
+.simple-carousel .carousel-slide img {
+    max-width: 100%;
+    max-height: 380px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--carousel-transition);
+    margin: 0;
+}
+
+/* Enhanced navigation buttons with premium styling */
+.simple-carousel .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--carousel-primary), var(--carousel-primary-dark));
+    border: 3px solid var(--carousel-white);
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--carousel-white);
+    cursor: pointer;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--carousel-shadow-medium);
+    transition: var(--carousel-transition);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    opacity: 0.9;
+}
+
+.simple-carousel .carousel-button:hover {
+    background: linear-gradient(135deg, var(--carousel-primary-dark), var(--carousel-primary));
+    transform: translateY(-50%) scale(1.1);
+    opacity: 1;
+    box-shadow: var(--carousel-shadow-strong);
+}
+
+.simple-carousel .carousel-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.simple-carousel .carousel-button.prev {
+    left: 15px;
+}
+
+.simple-carousel .carousel-button.next {
+    right: 15px;
+}
+
+/* Premium indicators with enhanced styling */
+.simple-carousel .carousel-indicators {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 0;
+    padding: 12px 20px;
+    list-style: none;
+    z-index: 10;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.simple-carousel .carousel-indicators li {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: var(--carousel-transition);
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.simple-carousel .carousel-indicators li:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+.simple-carousel .carousel-indicators li.active {
+    background: var(--carousel-primary);
+    border-color: var(--carousel-white);
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px rgba(160, 89, 65, 0.3);
+    width: 16px;
+    height: 16px;
+}
+
+/* Product item specific enhancements */
+.product-item .simple-carousel {
+    height: 400px;
+    margin: 0 0 20px 0;
+    border-radius: 0 0 var(--carousel-border-radius) var(--carousel-border-radius);
+    border-top: none;
+    box-shadow: var(--carousel-shadow-soft);
+}
+
+.product-item .carousel-slide {
+    padding: 15px;
+}
+
+.product-item .carousel-slide img {
+    max-height: 320px;
+    border-radius: 6px;
+}
+
+/* Testimonials carousel specific styling */
+.testimonials-carousel {
+    max-width: 700px;
+    margin: 30px auto;
+    height: 450px;
+    background: var(--carousel-white);
+    border-radius: var(--carousel-border-radius);
+    box-shadow: var(--carousel-shadow-medium);
+    border: 1px solid var(--carousel-gray-medium);
+}
+
+.testimonials-carousel .carousel-slide img {
+    max-height: 380px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 768px) {
+    .simple-carousel {
+        height: 350px;
+        margin: 0 0 20px 0;
+    }
+
+    .simple-carousel .carousel-slide {
+        padding: 15px;
+    }
+
+    .simple-carousel .carousel-slide img {
+        max-height: 280px;
+    }
+
+    .simple-carousel .carousel-button {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        border-width: 2px;
+    }
+
+    .simple-carousel .carousel-button.prev {
+        left: 10px;
+    }
+
+    .simple-carousel .carousel-button.next {
+        right: 10px;
+    }
+
+    .simple-carousel .carousel-indicators {
+        bottom: 15px;
+        padding: 10px 15px;
+        gap: 10px;
+    }
+
+    .simple-carousel .carousel-indicators li {
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+    }
+
+    .simple-carousel .carousel-indicators li.active {
+        width: 14px;
+        height: 14px;
+    }
+
+    .product-item .simple-carousel {
+        height: 320px;
+    }
+
+    .product-item .carousel-slide img {
+        max-height: 260px;
+    }
+
+    .testimonials-carousel {
+        height: 380px;
+        margin: 20px auto;
+    }
+
+    .testimonials-carousel .carousel-slide img {
+        max-height: 310px;
+    }
+}
+
+@media (max-width: 576px) {
+    .simple-carousel {
+        height: 300px;
+        margin: 0 0 15px 0;
+    }
+
+    .simple-carousel .carousel-slide {
+        padding: 10px;
+    }
+
+    .simple-carousel .carousel-slide img {
+        max-height: 240px;
+    }
+
+    .simple-carousel .carousel-button {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+        border-width: 2px;
+    }
+
+    .simple-carousel .carousel-button.prev {
+        left: 8px;
+    }
+
+    .simple-carousel .carousel-button.next {
+        right: 8px;
+    }
+
+    .simple-carousel .carousel-indicators {
+        bottom: 12px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    .simple-carousel .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-width: 1px;
+    }
+
+    .simple-carousel .carousel-indicators li.active {
+        width: 12px;
+        height: 12px;
+    }
+
+    .product-item .simple-carousel {
+        height: 280px;
+    }
+
+    .product-item .carousel-slide img {
+        max-height: 220px;
+    }
+
+    .testimonials-carousel {
+        height: 320px;
+        margin: 15px auto;
+    }
+
+    .testimonials-carousel .carousel-slide img {
+        max-height: 260px;
+    }
+}
+
+/* Loading state and animation enhancements */
+.simple-carousel.carousel-loading {
+    opacity: 0.7;
+}
+
+.simple-carousel.carousel-loading .carousel-slide img {
+    filter: blur(2px);
+}
+
+/* Smooth fade-in animation for initialized carousel */
+.simple-carousel.carousel-initialized {
+    animation: carouselFadeIn 0.6s ease-out;
+}
+
+@keyframes carouselFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect for images */
+.simple-carousel .carousel-slide:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus states for accessibility */
+.simple-carousel .carousel-button:focus {
+    outline: 3px solid var(--carousel-primary);
+    outline-offset: 2px;
+}
+
+.simple-carousel .carousel-indicators li:focus {
+    outline: 2px solid var(--carousel-primary);
+    outline-offset: 2px;
+}
+
+/* Touch-friendly interaction hints */
+@media (hover: none) {
+    .simple-carousel .carousel-button {
+        opacity: 1;
+    }
+}
+
+/* Print styles */
+@media print {
+    .simple-carousel .carousel-button,
+    .simple-carousel .carousel-indicators {
+        display: none;
+    }
+
+    .simple-carousel {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}

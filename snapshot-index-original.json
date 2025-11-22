@@ -1,0 +1,1726 @@
+uid=12_0 RootWebArea "Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/index.html"
+  uid=12_1 ignored
+    uid=12_2 ignored
+      uid=12_3 textbox
+        uid=12_4 generic
+      uid=12_5 generic
+        uid=12_6 ignored
+          uid=12_7 ignored
+            uid=12_8 ignored
+              uid=12_9 StaticText "💳"
+                uid=12_10 InlineTextBox "💳"
+            uid=12_11 StaticText "3 CUOTAS SIN INTERÉS"
+              uid=12_12 InlineTextBox "3 CUOTAS SIN INTERÉS"
+          uid=12_13 generic
+            uid=12_14 StaticText "|"
+              uid=12_15 InlineTextBox "|"
+          uid=12_16 ignored
+            uid=12_17 ignored
+              uid=12_18 StaticText "🚚"
+                uid=12_19 InlineTextBox "🚚"
+            uid=12_20 StaticText "ENVÍO GRATIS A TODO EL PAÍS"
+              uid=12_21 InlineTextBox "ENVÍO GRATIS A TODO EL PAÍS"
+      uid=12_22 generic
+        uid=12_23 generic
+        uid=12_24 ignored
+          uid=12_25 ignored
+            uid=12_26 StaticText "🛒"
+              uid=12_27 InlineTextBox "🛒"
+          uid=12_28 ignored
+            uid=12_29 StaticText "Tu Carrito"
+              uid=12_30 InlineTextBox "Tu Carrito"
+          uid=12_31 ignored
+            uid=12_32 StaticText "0"
+              uid=12_33 InlineTextBox "0"
+          uid=12_34 button "×"
+            uid=12_35 StaticText "×"
+              uid=12_36 InlineTextBox "×"
+        uid=12_37 ignored
+          uid=12_38 paragraph
+            uid=12_39 StaticText "Tu carrito está vacío"
+              uid=12_40 InlineTextBox "Tu carrito está vacío"
+          uid=12_41 ignored
+          uid=12_42 ignored
+            uid=12_43 ignored
+              uid=12_44 ignored
+                uid=12_45 StaticText "1"
+                  uid=12_46 InlineTextBox "1"
+              uid=12_47 StaticText "Selecciona tus productos favoritos"
+                uid=12_48 InlineTextBox "Selecciona tus productos "
+                uid=12_49 InlineTextBox "favoritos"
+            uid=12_50 ignored
+              uid=12_51 ignored
+                uid=12_52 StaticText "2"
+                  uid=12_53 InlineTextBox "2"
+              uid=12_54 StaticText "Revisa tu carrito"
+                uid=12_55 InlineTextBox "Revisa tu carrito"
+            uid=12_56 ignored
+              uid=12_57 ignored
+                uid=12_58 StaticText "3"
+                  uid=12_59 InlineTextBox "3"
+              uid=12_60 StaticText "Haz clic en "Finalizar Compra""
+                uid=12_61 InlineTextBox "Haz clic en "Finalizar Compra""
+        uid=12_62 ignored
+          uid=12_63 ignored
+            uid=12_64 StaticText "Total:"
+              uid=12_65 InlineTextBox "Total:"
+            uid=12_66 ignored
+              uid=12_67 StaticText "$0"
+                uid=12_68 InlineTextBox "$0"
+          uid=12_69 button "Continuar al Envío →"
+            uid=12_70 StaticText "Continuar al Envío →"
+              uid=12_71 InlineTextBox "Continuar al Envío →"
+      uid=12_72 generic
+        uid=12_73 generic
+          uid=12_74 StaticText "🛒"
+            uid=12_75 InlineTextBox "🛒"
+        uid=12_76 generic
+          uid=12_77 StaticText "0"
+            uid=12_78 InlineTextBox "0"
+      uid=12_79 generic
+        uid=12_80 generic
+          uid=12_81 ignored
+            uid=12_82 StaticText "1"
+              uid=12_83 InlineTextBox "1"
+          uid=12_84 ignored
+            uid=12_85 StaticText "Productos"
+              uid=12_86 InlineTextBox "Productos"
+        uid=12_87 ignored
+        uid=12_88 generic
+          uid=12_89 ignored
+            uid=12_90 StaticText "2"
+              uid=12_91 InlineTextBox "2"
+          uid=12_92 ignored
+            uid=12_93 StaticText "Envío"
+              uid=12_94 InlineTextBox "Envío"
+        uid=12_95 ignored
+        uid=12_96 generic
+          uid=12_97 ignored
+            uid=12_98 StaticText "3"
+              uid=12_99 InlineTextBox "3"
+          uid=12_100 ignored
+            uid=12_101 StaticText "Pago"
+              uid=12_102 InlineTextBox "Pago"
+      uid=12_103 ignored
+        uid=12_104 banner
+          uid=12_105 generic
+            uid=12_106 StaticText "Aprovechá HOY 2 pares por $95000 .Podés combinar modelos y además tenés 3 cuotas sin interés y envio gratis"
+              uid=12_107 InlineTextBox "Aprovechá HOY 2 pares por $95000 .Podés combinar modelos y además tenés 3 cuotas sin "
+              uid=12_108 InlineTextBox "interés y envio gratis"
+          uid=12_109 image "Rosita Rococó Logo" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/rosita-form.webp"
+        uid=12_110 generic
+          uid=12_111 ignored
+          uid=12_112 group "Selección de Modelos"
+            uid=12_113 Legend
+              uid=12_114 StaticText "Selección de Modelos"
+                uid=12_115 InlineTextBox "Selección de Modelos"
+            uid=12_116 ignored
+              uid=12_117 generic
+                uid=12_118 heading "GUILLERMINAS NEGRAS" level="2"
+                  uid=12_119 StaticText "GUILLERMINAS NEGRAS"
+                    uid=12_120 InlineTextBox "GUILLERMINAS NEGRAS"
+                uid=12_121 generic
+                  uid=12_122 generic
+                    uid=12_123 group "1 / 43"
+                      uid=12_124 image "Guillerminas Negras - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/1.webp"
+                    uid=12_125 group "2 / 43"
+                      uid=12_126 image "Guillerminas Negras - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/2.webp"
+                    uid=12_127 group "3 / 43"
+                      uid=12_128 image "Guillerminas Negras - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/3.webp"
+                    uid=12_129 group "4 / 43"
+                      uid=12_130 image "Guillerminas Negras - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/4.webp"
+                    uid=12_131 group "5 / 43"
+                      uid=12_132 image "Guillerminas Negras - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/5.webp"
+                    uid=12_133 group "6 / 43"
+                      uid=12_134 image "Guillerminas Negras - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/6.webp"
+                    uid=12_135 group "7 / 43"
+                      uid=12_136 image "Guillerminas Negras - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/7.webp"
+                    uid=12_137 group "8 / 43"
+                      uid=12_138 image "Guillerminas Negras - Vista 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/8.webp"
+                    uid=12_139 group "9 / 43"
+                      uid=12_140 image "Guillerminas Negras - Vista 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/9.webp"
+                    uid=12_141 group "10 / 43"
+                      uid=12_142 image "Guillerminas Negras - Vista 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/10.webp"
+                    uid=12_143 group "11 / 43"
+                      uid=12_144 image "Guillerminas Negras - Vista 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/11.webp"
+                    uid=12_145 group "12 / 43"
+                      uid=12_146 image "Guillerminas Negras - Vista 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/12.webp"
+                    uid=12_147 group "13 / 43"
+                      uid=12_148 image "Guillerminas Negras - Vista 13" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/13.webp"
+                    uid=12_149 group "14 / 43"
+                      uid=12_150 image "Guillerminas Negras - Vista 14" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/14.webp"
+                    uid=12_151 group "15 / 43"
+                      uid=12_152 image "Guillerminas Negras - Vista 15" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/15.webp"
+                    uid=12_153 group "16 / 43"
+                      uid=12_154 image "Guillerminas Negras - Vista 16" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/16.webp"
+                    uid=12_155 group "17 / 43"
+                      uid=12_156 image "Guillerminas Negras - Vista 17" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/17.webp"
+                    uid=12_157 group "18 / 43"
+                      uid=12_158 image "Guillerminas Negras - Vista 18" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/18.webp"
+                    uid=12_159 group "19 / 43"
+                      uid=12_160 image "Guillerminas Negras - Vista 19" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/19.webp"
+                    uid=12_161 group "20 / 43"
+                      uid=12_162 image "Guillerminas Negras - Vista 20" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/20.webp"
+                    uid=12_163 group "21 / 43"
+                      uid=12_164 image "Guillerminas Negras - Vista 21" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/21.webp"
+                    uid=12_165 group "22 / 43"
+                      uid=12_166 image "Guillerminas Negras - Vista 22" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/22.webp"
+                    uid=12_167 group "23 / 43"
+                      uid=12_168 image "Guillerminas Negras - Vista 23" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/23.webp"
+                    uid=12_169 group "24 / 43"
+                      uid=12_170 image "Guillerminas Negras - Vista 24" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/24.webp"
+                    uid=12_171 group "25 / 43"
+                      uid=12_172 image "Guillerminas Negras - Vista 25" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/25.webp"
+                    uid=12_173 group "26 / 43"
+                      uid=12_174 image "Guillerminas Negras - Vista 26" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/26.webp"
+                    uid=12_175 group "27 / 43"
+                      uid=12_176 image "Guillerminas Negras - Vista 27" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/27.webp"
+                    uid=12_177 group "28 / 43"
+                      uid=12_178 image "Guillerminas Negras - Vista 28" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/28.webp"
+                    uid=12_179 group "29 / 43"
+                      uid=12_180 image "Guillerminas Negras - Vista 29" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/29.webp"
+                    uid=12_181 group "30 / 43"
+                      uid=12_182 image "Guillerminas Negras - Vista 30" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/30.webp"
+                    uid=12_183 group "31 / 43"
+                      uid=12_184 image "Guillerminas Negras - Vista 31" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/31.webp"
+                    uid=12_185 group "32 / 43"
+                      uid=12_186 image "Guillerminas Negras - Vista 32" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/32.webp"
+                    uid=12_187 group "33 / 43"
+                      uid=12_188 image "Guillerminas Negras - Vista 33" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/33.webp"
+                    uid=12_189 group "34 / 43"
+                      uid=12_190 image "Guillerminas Negras - Vista 34" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/34.webp"
+                    uid=12_191 group "35 / 43"
+                      uid=12_192 image "Guillerminas Negras - Vista 35" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/35.webp"
+                    uid=12_193 group "36 / 43"
+                      uid=12_194 image "Guillerminas Negras - Vista 36" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/36.webp"
+                    uid=12_195 group "37 / 43"
+                      uid=12_196 image "Guillerminas Negras - Vista 37" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/37.webp"
+                    uid=12_197 group "38 / 43"
+                      uid=12_198 image "Guillerminas Negras - Vista 38" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/38.webp"
+                    uid=12_199 group "39 / 43"
+                      uid=12_200 image "Guillerminas Negras - Vista 39" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/39.webp"
+                    uid=12_201 group "40 / 43"
+                      uid=12_202 image "Guillerminas Negras - Vista 40" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/40.webp"
+                    uid=12_203 group "41 / 43"
+                      uid=12_204 image "Guillerminas Negras - Vista 41" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/41.webp"
+                    uid=12_205 group "42 / 43"
+                      uid=12_206 image "Guillerminas Negras - Vista 42" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/42.webp"
+                    uid=12_207 group "43 / 43"
+                      uid=12_208 image "Guillerminas Negras - Vista 43" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/43.webp"
+                  uid=12_209 button "Previous slide"
+                    uid=12_210 generic
+                      uid=12_211 StaticText "prev"
+                        uid=12_212 InlineTextBox "prev"
+                  uid=12_213 button "Next slide"
+                    uid=12_214 generic
+                      uid=12_215 StaticText "next"
+                        uid=12_216 InlineTextBox "next"
+                  uid=12_217 generic
+                uid=12_218 generic
+                  uid=12_219 generic
+                    uid=12_220 group "1 / 43"
+                      uid=12_221 image "Guillerminas Negras - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/1.webp"
+                    uid=12_222 group "2 / 43"
+                      uid=12_223 image "Guillerminas Negras - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/2.webp"
+                    uid=12_224 group "3 / 43"
+                      uid=12_225 image "Guillerminas Negras - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/3.webp"
+                    uid=12_226 group "4 / 43"
+                      uid=12_227 image "Guillerminas Negras - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/4.webp"
+                    uid=12_228 group "5 / 43"
+                      uid=12_229 image "Guillerminas Negras - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/5.webp"
+                    uid=12_230 group "6 / 43"
+                      uid=12_231 image "Guillerminas Negras - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/6.webp"
+                    uid=12_232 group "7 / 43"
+                      uid=12_233 image "Guillerminas Negras - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/7.webp"
+                    uid=12_234 group "8 / 43"
+                      uid=12_235 image "Guillerminas Negras - Thumbnail 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/8.webp"
+                    uid=12_236 group "9 / 43"
+                      uid=12_237 image "Guillerminas Negras - Thumbnail 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/9.webp"
+                    uid=12_238 group "10 / 43"
+                      uid=12_239 image "Guillerminas Negras - Thumbnail 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/10.webp"
+                    uid=12_240 group "11 / 43"
+                      uid=12_241 image "Guillerminas Negras - Thumbnail 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/11.webp"
+                    uid=12_242 group "12 / 43"
+                      uid=12_243 image "Guillerminas Negras - Thumbnail 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/12.webp"
+                    uid=12_244 group "13 / 43"
+                      uid=12_245 image "Guillerminas Negras - Thumbnail 13" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/13.webp"
+                    uid=12_246 group "14 / 43"
+                      uid=12_247 image "Guillerminas Negras - Thumbnail 14" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/14.webp"
+                    uid=12_248 group "15 / 43"
+                      uid=12_249 image "Guillerminas Negras - Thumbnail 15" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/15.webp"
+                    uid=12_250 group "16 / 43"
+                      uid=12_251 image "Guillerminas Negras - Thumbnail 16" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/16.webp"
+                    uid=12_252 group "17 / 43"
+                      uid=12_253 image "Guillerminas Negras - Thumbnail 17" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/17.webp"
+                    uid=12_254 group "18 / 43"
+                      uid=12_255 image "Guillerminas Negras - Thumbnail 18" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/18.webp"
+                    uid=12_256 group "19 / 43"
+                      uid=12_257 image "Guillerminas Negras - Thumbnail 19" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/19.webp"
+                    uid=12_258 group "20 / 43"
+                      uid=12_259 image "Guillerminas Negras - Thumbnail 20" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/20.webp"
+                    uid=12_260 group "21 / 43"
+                      uid=12_261 image "Guillerminas Negras - Thumbnail 21" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/21.webp"
+                    uid=12_262 group "22 / 43"
+                      uid=12_263 image "Guillerminas Negras - Thumbnail 22" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/22.webp"
+                    uid=12_264 group "23 / 43"
+                      uid=12_265 image "Guillerminas Negras - Thumbnail 23" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/23.webp"
+                    uid=12_266 group "24 / 43"
+                      uid=12_267 image "Guillerminas Negras - Thumbnail 24" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/24.webp"
+                    uid=12_268 group "25 / 43"
+                      uid=12_269 image "Guillerminas Negras - Thumbnail 25" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/25.webp"
+                    uid=12_270 group "26 / 43"
+                      uid=12_271 image "Guillerminas Negras - Thumbnail 26" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/26.webp"
+                    uid=12_272 group "27 / 43"
+                      uid=12_273 image "Guillerminas Negras - Thumbnail 27" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/27.webp"
+                    uid=12_274 group "28 / 43"
+                      uid=12_275 image "Guillerminas Negras - Thumbnail 28" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/28.webp"
+                    uid=12_276 group "29 / 43"
+                      uid=12_277 image "Guillerminas Negras - Thumbnail 29" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/29.webp"
+                    uid=12_278 group "30 / 43"
+                      uid=12_279 image "Guillerminas Negras - Thumbnail 30" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/30.webp"
+                    uid=12_280 group "31 / 43"
+                      uid=12_281 image "Guillerminas Negras - Thumbnail 31" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/31.webp"
+                    uid=12_282 group "32 / 43"
+                      uid=12_283 image "Guillerminas Negras - Thumbnail 32" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/32.webp"
+                    uid=12_284 group "33 / 43"
+                      uid=12_285 image "Guillerminas Negras - Thumbnail 33" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/33.webp"
+                    uid=12_286 group "34 / 43"
+                      uid=12_287 image "Guillerminas Negras - Thumbnail 34" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/34.webp"
+                    uid=12_288 group "35 / 43"
+                      uid=12_289 image "Guillerminas Negras - Thumbnail 35" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/35.webp"
+                    uid=12_290 group "36 / 43"
+                      uid=12_291 image "Guillerminas Negras - Thumbnail 36" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/36.webp"
+                    uid=12_292 group "37 / 43"
+                      uid=12_293 image "Guillerminas Negras - Thumbnail 37" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/37.webp"
+                    uid=12_294 group "38 / 43"
+                      uid=12_295 image "Guillerminas Negras - Thumbnail 38" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/38.webp"
+                    uid=12_296 group "39 / 43"
+                      uid=12_297 image "Guillerminas Negras - Thumbnail 39" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/39.webp"
+                    uid=12_298 group "40 / 43"
+                      uid=12_299 image "Guillerminas Negras - Thumbnail 40" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/40.webp"
+                    uid=12_300 group "41 / 43"
+                      uid=12_301 image "Guillerminas Negras - Thumbnail 41" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/41.webp"
+                    uid=12_302 group "42 / 43"
+                      uid=12_303 image "Guillerminas Negras - Thumbnail 42" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/42.webp"
+                    uid=12_304 group "43 / 43"
+                      uid=12_305 image "Guillerminas Negras - Thumbnail 43" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/43.webp"
+                  uid=12_306 generic
+                uid=12_307 generic
+                  uid=12_308 ignored
+                    uid=12_309 ignored
+                      uid=12_310 ignored
+                        uid=12_311 strong
+                          uid=12_312 StaticText "Material:"
+                            uid=12_313 InlineTextBox "Material:"
+                          uid=12_314 generic
+                            uid=12_315 StaticText ":"
+                              uid=12_316 InlineTextBox ":"
+                        uid=12_317 StaticText "Tela reforzada super flexible"
+                          uid=12_318 InlineTextBox "Tela reforzada super flexible"
+                      uid=12_319 ignored
+                        uid=12_320 strong
+                          uid=12_321 StaticText "Suela:"
+                            uid=12_322 InlineTextBox "Suela:"
+                          uid=12_323 generic
+                            uid=12_324 StaticText ":"
+                              uid=12_325 InlineTextBox ":"
+                        uid=12_326 StaticText "Expanso"
+                          uid=12_327 InlineTextBox "Expanso"
+                      uid=12_328 ignored
+                        uid=12_329 strong
+                          uid=12_330 StaticText "Envío:"
+                            uid=12_331 InlineTextBox "Envío:"
+                          uid=12_332 generic
+                            uid=12_333 StaticText ":"
+                              uid=12_334 InlineTextBox ":"
+                        uid=12_335 StaticText "GRATIS 🚚"
+                          uid=12_336 InlineTextBox "GRATIS 🚚"
+                    uid=12_337 ignored
+                      uid=12_338 ignored
+                        uid=12_339 StaticText "NUEVA TEMPORADA"
+                          uid=12_340 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_341 ignored
+                        uid=12_342 StaticText "STOCK LIMITADO"
+                          uid=12_343 InlineTextBox "STOCK LIMITADO"
+                    uid=12_344 paragraph
+                      uid=12_345 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                        uid=12_346 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento "
+                        uid=12_347 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                    uid=12_348 ignored
+                      uid=12_349 generic
+                        uid=12_350 heading "GUÍA DE TALLES" level="3"
+                          uid=12_351 StaticText "GUÍA DE TALLES"
+                            uid=12_352 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_353 ignored
+                          uid=12_354 StaticText "+"
+                            uid=12_355 InlineTextBox "+"
+                      uid=12_356 ignored
+                        uid=12_357 ignored
+                          uid=12_358 ignored
+                          uid=12_359 ignored
+                        uid=12_360 ignored
+                          uid=12_361 ignored
+                            uid=12_362 ignored
+                            uid=12_363 ignored
+                          uid=12_364 ignored
+                            uid=12_365 ignored
+                            uid=12_366 ignored
+                          uid=12_367 ignored
+                            uid=12_368 ignored
+                            uid=12_369 ignored
+                          uid=12_370 ignored
+                            uid=12_371 ignored
+                            uid=12_372 ignored
+                          uid=12_373 ignored
+                            uid=12_374 ignored
+                            uid=12_375 ignored
+                          uid=12_376 ignored
+                            uid=12_377 ignored
+                            uid=12_378 ignored
+                    uid=12_379 ignored
+                      uid=12_380 ignored
+                        uid=12_381 paragraph
+                          uid=12_382 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_383 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_384 ignored
+                        uid=12_385 LabelText
+                          uid=12_386 radio "1 par $60.000" checked
+                          uid=12_387 ignored
+                            uid=12_388 generic
+                              uid=12_389 StaticText "1 par"
+                                uid=12_390 InlineTextBox "1 par"
+                            uid=12_391 generic
+                              uid=12_392 StaticText "$60.000"
+                                uid=12_393 InlineTextBox "$60.000"
+                        uid=12_394 LabelText
+                          uid=12_395 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_396 ignored
+                            uid=12_397 generic
+                              uid=12_398 StaticText "2 pares"
+                                uid=12_399 InlineTextBox "2 pares"
+                              uid=12_400 ignored
+                                uid=12_401 StaticText "OFERTA"
+                                  uid=12_402 InlineTextBox "OFERTA"
+                            uid=12_403 generic
+                              uid=12_404 StaticText "$95.000"
+                                uid=12_405 InlineTextBox "$95.000"
+                            uid=12_406 generic
+                              uid=12_407 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_408 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_409 ignored
+                      uid=12_410 group
+                        uid=12_411 generic
+                          uid=12_412 LabelText
+                            uid=12_413 StaticText "Talle Par 1"
+                              uid=12_414 InlineTextBox "Talle Par 1"
+                          uid=12_415 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_416 MenuListPopup
+                              uid=12_417 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_418 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_419 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_420 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_421 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_422 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_423 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_424 button "🛒 Agregar al carrito"
+                          uid=12_425 StaticText "🛒 Agregar al carrito"
+                            uid=12_426 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_427 ignored
+                        uid=12_428 ignored
+                      uid=12_429 ignored
+                        uid=12_430 ignored
+                        uid=12_431 ignored
+                        uid=12_432 ignored
+                        uid=12_433 ignored
+                        uid=12_434 ignored
+                        uid=12_435 ignored
+                        uid=12_436 ignored
+              uid=12_437 generic
+                uid=12_438 heading "GUILLERMINAS CAMEL" level="2"
+                  uid=12_439 StaticText "GUILLERMINAS CAMEL"
+                    uid=12_440 InlineTextBox "GUILLERMINAS CAMEL"
+                uid=12_441 generic
+                  uid=12_442 generic
+                    uid=12_443 group "1 / 18"
+                      uid=12_444 image "Guillerminas Camel - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/1.webp"
+                    uid=12_445 group "2 / 18"
+                      uid=12_446 image "Guillerminas Camel - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/2.webp"
+                    uid=12_447 group "3 / 18"
+                      uid=12_448 image "Guillerminas Camel - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/3.webp"
+                    uid=12_449 group "4 / 18"
+                      uid=12_450 image "Guillerminas Camel - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/4.webp"
+                    uid=12_451 group "5 / 18"
+                      uid=12_452 image "Guillerminas Camel - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/5.webp"
+                    uid=12_453 group "6 / 18"
+                      uid=12_454 image "Guillerminas Camel - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/6.webp"
+                    uid=12_455 group "7 / 18"
+                      uid=12_456 image "Guillerminas Camel - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/7.webp"
+                    uid=12_457 group "8 / 18"
+                      uid=12_458 image "Guillerminas Camel - Vista 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/8.webp"
+                    uid=12_459 group "9 / 18"
+                      uid=12_460 image "Guillerminas Camel - Vista 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/9.webp"
+                    uid=12_461 group "10 / 18"
+                      uid=12_462 image "Guillerminas Camel - Vista 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/10.webp"
+                    uid=12_463 group "11 / 18"
+                      uid=12_464 image "Guillerminas Camel - Vista 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/11.webp"
+                    uid=12_465 group "12 / 18"
+                      uid=12_466 image "Guillerminas Camel - Vista 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/12.webp"
+                    uid=12_467 group "13 / 18"
+                      uid=12_468 image "Guillerminas Camel - Vista 13" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/13.webp"
+                    uid=12_469 group "14 / 18"
+                      uid=12_470 image "Guillerminas Camel - Vista 14" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/14.webp"
+                    uid=12_471 group "15 / 18"
+                      uid=12_472 image "Guillerminas Camel - Vista 15" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/15.webp"
+                    uid=12_473 group "16 / 18"
+                      uid=12_474 image "Guillerminas Camel - Vista 16" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/16.webp"
+                    uid=12_475 group "17 / 18"
+                      uid=12_476 image "Guillerminas Camel - Vista 17" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/17.webp"
+                    uid=12_477 group "18 / 18"
+                      uid=12_478 image "Guillerminas Camel - Vista 18" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/18.webp"
+                  uid=12_479 button "Previous slide"
+                    uid=12_480 generic
+                      uid=12_481 StaticText "prev"
+                        uid=12_482 InlineTextBox "prev"
+                  uid=12_483 button "Next slide"
+                    uid=12_484 generic
+                      uid=12_485 StaticText "next"
+                        uid=12_486 InlineTextBox "next"
+                  uid=12_487 generic
+                uid=12_488 generic
+                  uid=12_489 generic
+                    uid=12_490 group "1 / 12"
+                      uid=12_491 image "Guillerminas Camel - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/1.webp"
+                    uid=12_492 group "2 / 12"
+                      uid=12_493 image "Guillerminas Camel - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/2.webp"
+                    uid=12_494 group "3 / 12"
+                      uid=12_495 image "Guillerminas Camel - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/3.webp"
+                    uid=12_496 group "4 / 12"
+                      uid=12_497 image "Guillerminas Camel - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/4.webp"
+                    uid=12_498 group "5 / 12"
+                      uid=12_499 image "Guillerminas Camel - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/5.webp"
+                    uid=12_500 group "6 / 12"
+                      uid=12_501 image "Guillerminas Camel - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/6.webp"
+                    uid=12_502 group "7 / 12"
+                      uid=12_503 image "Guillerminas Camel - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminascamel/7.webp"
+                    uid=12_504 group "8 / 12"
+                      uid=12_505 image "Birk Camel - Thumbnail 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/8.webp"
+                    uid=12_506 group "9 / 12"
+                      uid=12_507 image "Birk Camel - Thumbnail 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/9.webp"
+                    uid=12_508 group "10 / 12"
+                      uid=12_509 image "Birk Camel - Thumbnail 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/10.webp"
+                    uid=12_510 group "11 / 12"
+                      uid=12_511 image "Birk Camel - Thumbnail 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/11.webp"
+                    uid=12_512 group "12 / 12"
+                      uid=12_513 image "Birk Camel - Thumbnail 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/12.webp"
+                  uid=12_514 generic
+                uid=12_515 generic
+                  uid=12_516 ignored
+                    uid=12_517 ignored
+                      uid=12_518 ignored
+                        uid=12_519 strong
+                          uid=12_520 StaticText "Material:"
+                            uid=12_521 InlineTextBox "Material:"
+                          uid=12_522 generic
+                            uid=12_523 StaticText ":"
+                              uid=12_524 InlineTextBox ":"
+                        uid=12_525 StaticText "Tela reforzada super flexible"
+                          uid=12_526 InlineTextBox "Tela reforzada super flexible"
+                      uid=12_527 ignored
+                        uid=12_528 strong
+                          uid=12_529 StaticText "Suela:"
+                            uid=12_530 InlineTextBox "Suela:"
+                          uid=12_531 generic
+                            uid=12_532 StaticText ":"
+                              uid=12_533 InlineTextBox ":"
+                        uid=12_534 StaticText "Expanso"
+                          uid=12_535 InlineTextBox "Expanso"
+                      uid=12_536 ignored
+                        uid=12_537 strong
+                          uid=12_538 StaticText "Envío:"
+                            uid=12_539 InlineTextBox "Envío:"
+                          uid=12_540 generic
+                            uid=12_541 StaticText ":"
+                              uid=12_542 InlineTextBox ":"
+                        uid=12_543 StaticText "GRATIS 🚚"
+                          uid=12_544 InlineTextBox "GRATIS 🚚"
+                    uid=12_545 ignored
+                      uid=12_546 ignored
+                        uid=12_547 StaticText "NUEVA TEMPORADA"
+                          uid=12_548 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_549 ignored
+                        uid=12_550 StaticText "STOCK LIMITADO"
+                          uid=12_551 InlineTextBox "STOCK LIMITADO"
+                    uid=12_552 paragraph
+                      uid=12_553 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                        uid=12_554 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento "
+                        uid=12_555 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                    uid=12_556 ignored
+                      uid=12_557 generic
+                        uid=12_558 heading "GUÍA DE TALLES" level="3"
+                          uid=12_559 StaticText "GUÍA DE TALLES"
+                            uid=12_560 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_561 ignored
+                          uid=12_562 StaticText "+"
+                            uid=12_563 InlineTextBox "+"
+                      uid=12_564 ignored
+                        uid=12_565 ignored
+                          uid=12_566 ignored
+                          uid=12_567 ignored
+                        uid=12_568 ignored
+                          uid=12_569 ignored
+                            uid=12_570 ignored
+                            uid=12_571 ignored
+                          uid=12_572 ignored
+                            uid=12_573 ignored
+                            uid=12_574 ignored
+                          uid=12_575 ignored
+                            uid=12_576 ignored
+                            uid=12_577 ignored
+                          uid=12_578 ignored
+                            uid=12_579 ignored
+                            uid=12_580 ignored
+                          uid=12_581 ignored
+                            uid=12_582 ignored
+                            uid=12_583 ignored
+                          uid=12_584 ignored
+                            uid=12_585 ignored
+                            uid=12_586 ignored
+                    uid=12_587 ignored
+                      uid=12_588 ignored
+                        uid=12_589 paragraph
+                          uid=12_590 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_591 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_592 ignored
+                        uid=12_593 LabelText
+                          uid=12_594 radio "1 par $60.000" checked
+                          uid=12_595 ignored
+                            uid=12_596 generic
+                              uid=12_597 StaticText "1 par"
+                                uid=12_598 InlineTextBox "1 par"
+                            uid=12_599 generic
+                              uid=12_600 StaticText "$60.000"
+                                uid=12_601 InlineTextBox "$60.000"
+                        uid=12_602 LabelText
+                          uid=12_603 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_604 ignored
+                            uid=12_605 generic
+                              uid=12_606 StaticText "2 pares"
+                                uid=12_607 InlineTextBox "2 pares"
+                              uid=12_608 ignored
+                                uid=12_609 StaticText "OFERTA"
+                                  uid=12_610 InlineTextBox "OFERTA"
+                            uid=12_611 generic
+                              uid=12_612 StaticText "$95.000"
+                                uid=12_613 InlineTextBox "$95.000"
+                            uid=12_614 generic
+                              uid=12_615 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_616 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_617 ignored
+                      uid=12_618 group
+                        uid=12_619 generic
+                          uid=12_620 LabelText
+                            uid=12_621 StaticText "Talle Par 1"
+                              uid=12_622 InlineTextBox "Talle Par 1"
+                          uid=12_623 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_624 MenuListPopup
+                              uid=12_625 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_626 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_627 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_628 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_629 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_630 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_631 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_632 button "🛒 Agregar al carrito"
+                          uid=12_633 StaticText "🛒 Agregar al carrito"
+                            uid=12_634 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_635 ignored
+                        uid=12_636 ignored
+                      uid=12_637 ignored
+                        uid=12_638 ignored
+                        uid=12_639 ignored
+                        uid=12_640 ignored
+                        uid=12_641 ignored
+                        uid=12_642 ignored
+                        uid=12_643 ignored
+                        uid=12_644 ignored
+              uid=12_645 generic
+                uid=12_646 heading "GUILLERMINAS BLANCAS" level="2"
+                  uid=12_647 StaticText "GUILLERMINAS BLANCAS"
+                    uid=12_648 InlineTextBox "GUILLERMINAS BLANCAS"
+                uid=12_649 generic
+                  uid=12_650 generic
+                    uid=12_651 group "1 / 16"
+                      uid=12_652 image "Guillerminas Blancas - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/1.webp"
+                    uid=12_653 group "2 / 16"
+                      uid=12_654 image "Guillerminas Blancas - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/2.webp"
+                    uid=12_655 group "3 / 16"
+                      uid=12_656 image "Guillerminas Blancas - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/3.webp"
+                    uid=12_657 group "4 / 16"
+                      uid=12_658 image "Guillerminas Blancas - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/4.webp"
+                    uid=12_659 group "5 / 16"
+                      uid=12_660 image "Guillerminas Blancas - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/5.webp"
+                    uid=12_661 group "6 / 16"
+                      uid=12_662 image "Guillerminas Blancas - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/6.webp"
+                    uid=12_663 group "7 / 16"
+                      uid=12_664 image "Guillerminas Blancas - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/7.webp"
+                    uid=12_665 group "8 / 16"
+                      uid=12_666 image "Guillerminas Blancas - Vista 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/8.webp"
+                    uid=12_667 group "9 / 16"
+                      uid=12_668 image "Guillerminas Blancas - Vista 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/9.webp"
+                    uid=12_669 group "10 / 16"
+                      uid=12_670 image "Guillerminas Blancas - Vista 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/10.webp"
+                    uid=12_671 group "11 / 16"
+                      uid=12_672 image "Guillerminas Blancas - Vista 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/11.webp"
+                    uid=12_673 group "12 / 16"
+                      uid=12_674 image "Guillerminas Blancas - Vista 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/12.webp"
+                    uid=12_675 group "13 / 16"
+                      uid=12_676 image "Guillerminas Blancas - Vista 13" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/13.webp"
+                    uid=12_677 group "14 / 16"
+                      uid=12_678 image "Guillerminas Blancas - Vista 14" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/14.webp"
+                    uid=12_679 group "15 / 16"
+                      uid=12_680 image "Guillerminas Blancas - Vista 15" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/15.webp"
+                    uid=12_681 group "16 / 16"
+                      uid=12_682 image "Guillerminas Blancas - Vista 16" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/16.webp"
+                  uid=12_683 button "Previous slide"
+                    uid=12_684 generic
+                      uid=12_685 StaticText "prev"
+                        uid=12_686 InlineTextBox "prev"
+                  uid=12_687 button "Next slide"
+                    uid=12_688 generic
+                      uid=12_689 StaticText "next"
+                        uid=12_690 InlineTextBox "next"
+                  uid=12_691 generic
+                uid=12_692 generic
+                  uid=12_693 generic
+                    uid=12_694 group "1 / 16"
+                      uid=12_695 image "Guillerminas Blancas - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/1.webp"
+                    uid=12_696 group "2 / 16"
+                      uid=12_697 image "Guillerminas Blancas - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/2.webp"
+                    uid=12_698 group "3 / 16"
+                      uid=12_699 image "Guillerminas Blancas - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/3.webp"
+                    uid=12_700 group "4 / 16"
+                      uid=12_701 image "Guillerminas Blancas - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/4.webp"
+                    uid=12_702 group "5 / 16"
+                      uid=12_703 image "Guillerminas Blancas - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/5.webp"
+                    uid=12_704 group "6 / 16"
+                      uid=12_705 image "Guillerminas Blancas - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/6.webp"
+                    uid=12_706 group "7 / 16"
+                      uid=12_707 image "Guillerminas Blancas - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/7.webp"
+                    uid=12_708 group "8 / 16"
+                      uid=12_709 image "Guillerminas Blancas - Thumbnail 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/8.webp"
+                    uid=12_710 group "9 / 16"
+                      uid=12_711 image "Guillerminas Blancas - Thumbnail 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/9.webp"
+                    uid=12_712 group "10 / 16"
+                      uid=12_713 image "Guillerminas Blancas - Thumbnail 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/10.webp"
+                    uid=12_714 group "11 / 16"
+                      uid=12_715 image "Guillerminas Blancas - Thumbnail 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/11.webp"
+                    uid=12_716 group "12 / 16"
+                      uid=12_717 image "Guillerminas Blancas - Thumbnail 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/12.webp"
+                    uid=12_718 group "13 / 16"
+                      uid=12_719 image "Guillerminas Blancas - Thumbnail 13" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/13.webp"
+                    uid=12_720 group "14 / 16"
+                      uid=12_721 image "Guillerminas Blancas - Thumbnail 14" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/14.webp"
+                    uid=12_722 group "15 / 16"
+                      uid=12_723 image "Guillerminas Blancas - Thumbnail 15" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/15.webp"
+                    uid=12_724 group "16 / 16"
+                      uid=12_725 image "GGuillerminas Blancas - Thumbnail 16" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/guillerminafotos/guillerminasblancas/16.webp"
+                  uid=12_726 generic
+                uid=12_727 generic
+                  uid=12_728 ignored
+                    uid=12_729 ignored
+                      uid=12_730 ignored
+                        uid=12_731 strong
+                          uid=12_732 StaticText "Material:"
+                            uid=12_733 InlineTextBox "Material:"
+                          uid=12_734 generic
+                            uid=12_735 StaticText ":"
+                              uid=12_736 InlineTextBox ":"
+                        uid=12_737 StaticText "Tela reforzada super flexible"
+                          uid=12_738 InlineTextBox "Tela reforzada super flexible"
+                      uid=12_739 ignored
+                        uid=12_740 strong
+                          uid=12_741 StaticText "Suela:"
+                            uid=12_742 InlineTextBox "Suela:"
+                          uid=12_743 generic
+                            uid=12_744 StaticText ":"
+                              uid=12_745 InlineTextBox ":"
+                        uid=12_746 StaticText "Expanso"
+                          uid=12_747 InlineTextBox "Expanso"
+                      uid=12_748 ignored
+                        uid=12_749 strong
+                          uid=12_750 StaticText "Envío:"
+                            uid=12_751 InlineTextBox "Envío:"
+                          uid=12_752 generic
+                            uid=12_753 StaticText ":"
+                              uid=12_754 InlineTextBox ":"
+                        uid=12_755 StaticText "GRATIS 🚚"
+                          uid=12_756 InlineTextBox "GRATIS 🚚"
+                    uid=12_757 ignored
+                      uid=12_758 ignored
+                        uid=12_759 StaticText "NUEVA TEMPORADA"
+                          uid=12_760 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_761 ignored
+                        uid=12_762 StaticText "STOCK LIMITADO"
+                          uid=12_763 InlineTextBox "STOCK LIMITADO"
+                    uid=12_764 paragraph
+                      uid=12_765 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                        uid=12_766 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento "
+                        uid=12_767 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                    uid=12_768 ignored
+                      uid=12_769 generic
+                        uid=12_770 heading "GUÍA DE TALLES" level="3"
+                          uid=12_771 StaticText "GUÍA DE TALLES"
+                            uid=12_772 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_773 ignored
+                          uid=12_774 StaticText "+"
+                            uid=12_775 InlineTextBox "+"
+                      uid=12_776 ignored
+                        uid=12_777 ignored
+                          uid=12_778 ignored
+                          uid=12_779 ignored
+                        uid=12_780 ignored
+                          uid=12_781 ignored
+                            uid=12_782 ignored
+                            uid=12_783 ignored
+                          uid=12_784 ignored
+                            uid=12_785 ignored
+                            uid=12_786 ignored
+                          uid=12_787 ignored
+                            uid=12_788 ignored
+                            uid=12_789 ignored
+                          uid=12_790 ignored
+                            uid=12_791 ignored
+                            uid=12_792 ignored
+                          uid=12_793 ignored
+                            uid=12_794 ignored
+                            uid=12_795 ignored
+                          uid=12_796 ignored
+                            uid=12_797 ignored
+                            uid=12_798 ignored
+                    uid=12_799 ignored
+                      uid=12_800 ignored
+                        uid=12_801 paragraph
+                          uid=12_802 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_803 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_804 ignored
+                        uid=12_805 LabelText
+                          uid=12_806 radio "1 par $60.000" checked
+                          uid=12_807 ignored
+                            uid=12_808 generic
+                              uid=12_809 StaticText "1 par"
+                                uid=12_810 InlineTextBox "1 par"
+                            uid=12_811 generic
+                              uid=12_812 StaticText "$60.000"
+                                uid=12_813 InlineTextBox "$60.000"
+                        uid=12_814 LabelText
+                          uid=12_815 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_816 ignored
+                            uid=12_817 generic
+                              uid=12_818 StaticText "2 pares"
+                                uid=12_819 InlineTextBox "2 pares"
+                              uid=12_820 ignored
+                                uid=12_821 StaticText "OFERTA"
+                                  uid=12_822 InlineTextBox "OFERTA"
+                            uid=12_823 generic
+                              uid=12_824 StaticText "$95.000"
+                                uid=12_825 InlineTextBox "$95.000"
+                            uid=12_826 generic
+                              uid=12_827 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_828 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_829 ignored
+                      uid=12_830 group
+                        uid=12_831 generic
+                          uid=12_832 LabelText
+                            uid=12_833 StaticText "Talle Par 1"
+                              uid=12_834 InlineTextBox "Talle Par 1"
+                          uid=12_835 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_836 MenuListPopup
+                              uid=12_837 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_838 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_839 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_840 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_841 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_842 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_843 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_844 button "🛒 Agregar al carrito"
+                          uid=12_845 StaticText "🛒 Agregar al carrito"
+                            uid=12_846 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_847 ignored
+                        uid=12_848 ignored
+                      uid=12_849 ignored
+                        uid=12_850 ignored
+                        uid=12_851 ignored
+                        uid=12_852 ignored
+                        uid=12_853 ignored
+                        uid=12_854 ignored
+                        uid=12_855 ignored
+                        uid=12_856 ignored
+              uid=12_857 generic
+                uid=12_858 heading "BIRK NEGRAS" level="2"
+                  uid=12_859 StaticText "BIRK NEGRAS"
+                    uid=12_860 InlineTextBox "BIRK NEGRAS"
+                uid=12_861 generic
+                  uid=12_862 generic
+                    uid=12_863 group "1 / 7"
+                      uid=12_864 image "Birk Negras - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/1.webp"
+                    uid=12_865 group "2 / 7"
+                      uid=12_866 image "Birk Negras - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/2.webp"
+                    uid=12_867 group "3 / 7"
+                      uid=12_868 image "Birk Negras - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/3.webp"
+                    uid=12_869 group "4 / 7"
+                      uid=12_870 image "Birk Negras - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/4.webp"
+                    uid=12_871 group "5 / 7"
+                      uid=12_872 image "Birk Negras - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/5.webp"
+                    uid=12_873 group "6 / 7"
+                      uid=12_874 image "Birk Negras - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/6.webp"
+                    uid=12_875 group "7 / 7"
+                      uid=12_876 image "Birk Negras - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/7.webp"
+                  uid=12_877 button "Previous slide"
+                    uid=12_878 generic
+                      uid=12_879 StaticText "prev"
+                        uid=12_880 InlineTextBox "prev"
+                  uid=12_881 button "Next slide"
+                    uid=12_882 generic
+                      uid=12_883 StaticText "next"
+                        uid=12_884 InlineTextBox "next"
+                  uid=12_885 generic
+                uid=12_886 generic
+                  uid=12_887 generic
+                    uid=12_888 group "1 / 7"
+                      uid=12_889 image "Birk Negras - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/1.webp"
+                    uid=12_890 group "2 / 7"
+                      uid=12_891 image "Birk Negras - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/2.webp"
+                    uid=12_892 group "3 / 7"
+                      uid=12_893 image "Birk Negras - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/3.webp"
+                    uid=12_894 group "4 / 7"
+                      uid=12_895 image "Birk Negras - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/4.webp"
+                    uid=12_896 group "5 / 7"
+                      uid=12_897 image "Birk Negras - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/5.webp"
+                    uid=12_898 group "6 / 7"
+                      uid=12_899 image "Birk Negras - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/6.webp"
+                    uid=12_900 group "7 / 7"
+                      uid=12_901 image "Birk Negras - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birknegras/7.webp"
+                  uid=12_902 generic
+                uid=12_903 generic
+                  uid=12_904 ignored
+                    uid=12_905 ignored
+                      uid=12_906 ignored
+                        uid=12_907 strong
+                          uid=12_908 StaticText "Material:"
+                            uid=12_909 InlineTextBox "Material:"
+                          uid=12_910 generic
+                            uid=12_911 StaticText ":"
+                              uid=12_912 InlineTextBox ":"
+                        uid=12_913 StaticText "Ecocuero"
+                          uid=12_914 InlineTextBox "Ecocuero"
+                      uid=12_915 ignored
+                        uid=12_916 strong
+                          uid=12_917 StaticText "Suela:"
+                            uid=12_918 InlineTextBox "Suela:"
+                          uid=12_919 generic
+                            uid=12_920 StaticText ":"
+                              uid=12_921 InlineTextBox ":"
+                        uid=12_922 StaticText "Antideslizante"
+                          uid=12_923 InlineTextBox "Antideslizante"
+                      uid=12_924 ignored
+                        uid=12_925 strong
+                          uid=12_926 StaticText "Envío:"
+                            uid=12_927 InlineTextBox "Envío:"
+                          uid=12_928 generic
+                            uid=12_929 StaticText ":"
+                              uid=12_930 InlineTextBox ":"
+                        uid=12_931 StaticText "GRATIS 🚚"
+                          uid=12_932 InlineTextBox "GRATIS 🚚"
+                    uid=12_933 ignored
+                      uid=12_934 ignored
+                        uid=12_935 StaticText "NUEVA TEMPORADA"
+                          uid=12_936 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_937 ignored
+                        uid=12_938 StaticText "STOCK LIMITADO"
+                          uid=12_939 InlineTextBox "STOCK LIMITADO"
+                    uid=12_940 paragraph
+                      uid=12_941 StaticText "Sandalias de ecocuero camel con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                        uid=12_942 InlineTextBox "Sandalias de ecocuero camel con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una "
+                        uid=12_943 InlineTextBox "suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace "
+                        uid=12_944 InlineTextBox "ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                    uid=12_945 ignored
+                      uid=12_946 generic
+                        uid=12_947 heading "GUÍA DE TALLES" level="3"
+                          uid=12_948 StaticText "GUÍA DE TALLES"
+                            uid=12_949 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_950 ignored
+                          uid=12_951 StaticText "+"
+                            uid=12_952 InlineTextBox "+"
+                      uid=12_953 ignored
+                        uid=12_954 ignored
+                          uid=12_955 ignored
+                          uid=12_956 ignored
+                        uid=12_957 ignored
+                          uid=12_958 ignored
+                            uid=12_959 ignored
+                            uid=12_960 ignored
+                          uid=12_961 ignored
+                            uid=12_962 ignored
+                            uid=12_963 ignored
+                          uid=12_964 ignored
+                            uid=12_965 ignored
+                            uid=12_966 ignored
+                          uid=12_967 ignored
+                            uid=12_968 ignored
+                            uid=12_969 ignored
+                          uid=12_970 ignored
+                            uid=12_971 ignored
+                            uid=12_972 ignored
+                          uid=12_973 ignored
+                            uid=12_974 ignored
+                            uid=12_975 ignored
+                    uid=12_976 ignored
+                      uid=12_977 ignored
+                        uid=12_978 paragraph
+                          uid=12_979 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_980 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_981 ignored
+                        uid=12_982 LabelText
+                          uid=12_983 radio "1 par $60.000" checked
+                          uid=12_984 ignored
+                            uid=12_985 generic
+                              uid=12_986 StaticText "1 par"
+                                uid=12_987 InlineTextBox "1 par"
+                            uid=12_988 generic
+                              uid=12_989 StaticText "$60.000"
+                                uid=12_990 InlineTextBox "$60.000"
+                        uid=12_991 LabelText
+                          uid=12_992 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_993 ignored
+                            uid=12_994 generic
+                              uid=12_995 StaticText "2 pares"
+                                uid=12_996 InlineTextBox "2 pares"
+                              uid=12_997 ignored
+                                uid=12_998 StaticText "OFERTA"
+                                  uid=12_999 InlineTextBox "OFERTA"
+                            uid=12_1000 generic
+                              uid=12_1001 StaticText "$95.000"
+                                uid=12_1002 InlineTextBox "$95.000"
+                            uid=12_1003 generic
+                              uid=12_1004 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_1005 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_1006 ignored
+                      uid=12_1007 group
+                        uid=12_1008 generic
+                          uid=12_1009 LabelText
+                            uid=12_1010 StaticText "Talle Par 1"
+                              uid=12_1011 InlineTextBox "Talle Par 1"
+                          uid=12_1012 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_1013 MenuListPopup
+                              uid=12_1014 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_1015 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_1016 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_1017 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_1018 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_1019 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_1020 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_1021 button "🛒 Agregar al carrito"
+                          uid=12_1022 StaticText "🛒 Agregar al carrito"
+                            uid=12_1023 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_1024 ignored
+                        uid=12_1025 ignored
+                      uid=12_1026 ignored
+                        uid=12_1027 ignored
+                        uid=12_1028 ignored
+                        uid=12_1029 ignored
+                        uid=12_1030 ignored
+                        uid=12_1031 ignored
+                        uid=12_1032 ignored
+                        uid=12_1033 ignored
+              uid=12_1034 generic
+                uid=12_1035 heading "BIRK CAMEL" level="2"
+                  uid=12_1036 StaticText "BIRK CAMEL"
+                    uid=12_1037 InlineTextBox "BIRK CAMEL"
+                uid=12_1038 generic
+                  uid=12_1039 generic
+                    uid=12_1040 group "1 / 12"
+                      uid=12_1041 image "Birk Camel - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/1.webp"
+                    uid=12_1042 group "2 / 12"
+                      uid=12_1043 image "Birk Camel - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/2.webp"
+                    uid=12_1044 group "3 / 12"
+                      uid=12_1045 image "Birk Camel - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/3.webp"
+                    uid=12_1046 group "4 / 12"
+                      uid=12_1047 image "Birk Camel - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/4.webp"
+                    uid=12_1048 group "5 / 12"
+                      uid=12_1049 image "Birk Camel - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/5.webp"
+                    uid=12_1050 group "6 / 12"
+                      uid=12_1051 image "Birk Camel - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/6.webp"
+                    uid=12_1052 group "7 / 12"
+                      uid=12_1053 image "Birk Camel - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/7.webp"
+                    uid=12_1054 group "8 / 12"
+                      uid=12_1055 image "Birk Camel - Vista 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/8.webp"
+                    uid=12_1056 group "9 / 12"
+                      uid=12_1057 image "Birk Camel - Vista 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/9.webp"
+                    uid=12_1058 group "10 / 12"
+                      uid=12_1059 image "Birk Camel - Vista 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/10.webp"
+                    uid=12_1060 group "11 / 12"
+                      uid=12_1061 image "Birk Camel - Vista 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/11.webp"
+                    uid=12_1062 group "12 / 12"
+                      uid=12_1063 image "Birk Camel - Vista 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/12.webp"
+                  uid=12_1064 button "Previous slide"
+                    uid=12_1065 generic
+                      uid=12_1066 StaticText "prev"
+                        uid=12_1067 InlineTextBox "prev"
+                  uid=12_1068 button "Next slide"
+                    uid=12_1069 generic
+                      uid=12_1070 StaticText "next"
+                        uid=12_1071 InlineTextBox "next"
+                  uid=12_1072 generic
+                uid=12_1073 generic
+                  uid=12_1074 generic
+                    uid=12_1075 group "1 / 12"
+                      uid=12_1076 image "Birk Camel - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/1.webp"
+                    uid=12_1077 group "2 / 12"
+                      uid=12_1078 image "Birk Camel - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/2.webp"
+                    uid=12_1079 group "3 / 12"
+                      uid=12_1080 image "Birk Camel - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/3.webp"
+                    uid=12_1081 group "4 / 12"
+                      uid=12_1082 image "Birk Camel - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/4.webp"
+                    uid=12_1083 group "5 / 12"
+                      uid=12_1084 image "Birk Camel - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/5.webp"
+                    uid=12_1085 group "6 / 12"
+                      uid=12_1086 image "Birk Camel - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/6.webp"
+                    uid=12_1087 group "7 / 12"
+                      uid=12_1088 image "Birk Camel - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/7.webp"
+                    uid=12_1089 group "8 / 12"
+                      uid=12_1090 image "Birk Camel - Thumbnail 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/8.webp"
+                    uid=12_1091 group "9 / 12"
+                      uid=12_1092 image "Birk Camel - Thumbnail 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/9.webp"
+                    uid=12_1093 group "10 / 12"
+                      uid=12_1094 image "Birk Camel - Thumbnail 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/10.webp"
+                    uid=12_1095 group "11 / 12"
+                      uid=12_1096 image "Birk Camel - Thumbnail 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/11.webp"
+                    uid=12_1097 group "12 / 12"
+                      uid=12_1098 image "Birk Camel - Thumbnail 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkcamel/12.webp"
+                  uid=12_1099 generic
+                uid=12_1100 generic
+                  uid=12_1101 ignored
+                    uid=12_1102 ignored
+                      uid=12_1103 ignored
+                        uid=12_1104 strong
+                          uid=12_1105 StaticText "Material:"
+                            uid=12_1106 InlineTextBox "Material:"
+                          uid=12_1107 generic
+                            uid=12_1108 StaticText ":"
+                              uid=12_1109 InlineTextBox ":"
+                        uid=12_1110 StaticText "Ecocuero"
+                          uid=12_1111 InlineTextBox "Ecocuero"
+                      uid=12_1112 ignored
+                        uid=12_1113 strong
+                          uid=12_1114 StaticText "Suela:"
+                            uid=12_1115 InlineTextBox "Suela:"
+                          uid=12_1116 generic
+                            uid=12_1117 StaticText ":"
+                              uid=12_1118 InlineTextBox ":"
+                        uid=12_1119 StaticText "Antideslizante"
+                          uid=12_1120 InlineTextBox "Antideslizante"
+                      uid=12_1121 ignored
+                        uid=12_1122 strong
+                          uid=12_1123 StaticText "Envío:"
+                            uid=12_1124 InlineTextBox "Envío:"
+                          uid=12_1125 generic
+                            uid=12_1126 StaticText ":"
+                              uid=12_1127 InlineTextBox ":"
+                        uid=12_1128 StaticText "GRATIS 🚚"
+                          uid=12_1129 InlineTextBox "GRATIS 🚚"
+                    uid=12_1130 ignored
+                      uid=12_1131 ignored
+                        uid=12_1132 StaticText "NUEVA TEMPORADA"
+                          uid=12_1133 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_1134 ignored
+                        uid=12_1135 StaticText "STOCK LIMITADO"
+                          uid=12_1136 InlineTextBox "STOCK LIMITADO"
+                    uid=12_1137 paragraph
+                      uid=12_1138 StaticText "Sandalias de ecocuero blanco con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                        uid=12_1139 InlineTextBox "Sandalias de ecocuero blanco con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una "
+                        uid=12_1140 InlineTextBox "suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace "
+                        uid=12_1141 InlineTextBox "ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                    uid=12_1142 ignored
+                      uid=12_1143 generic
+                        uid=12_1144 heading "GUÍA DE TALLES" level="3"
+                          uid=12_1145 StaticText "GUÍA DE TALLES"
+                            uid=12_1146 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_1147 ignored
+                          uid=12_1148 StaticText "+"
+                            uid=12_1149 InlineTextBox "+"
+                      uid=12_1150 ignored
+                        uid=12_1151 ignored
+                          uid=12_1152 ignored
+                          uid=12_1153 ignored
+                        uid=12_1154 ignored
+                          uid=12_1155 ignored
+                            uid=12_1156 ignored
+                            uid=12_1157 ignored
+                          uid=12_1158 ignored
+                            uid=12_1159 ignored
+                            uid=12_1160 ignored
+                          uid=12_1161 ignored
+                            uid=12_1162 ignored
+                            uid=12_1163 ignored
+                          uid=12_1164 ignored
+                            uid=12_1165 ignored
+                            uid=12_1166 ignored
+                          uid=12_1167 ignored
+                            uid=12_1168 ignored
+                            uid=12_1169 ignored
+                          uid=12_1170 ignored
+                            uid=12_1171 ignored
+                            uid=12_1172 ignored
+                    uid=12_1173 ignored
+                      uid=12_1174 ignored
+                        uid=12_1175 paragraph
+                          uid=12_1176 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_1177 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_1178 ignored
+                        uid=12_1179 LabelText
+                          uid=12_1180 radio "1 par $60.000" checked
+                          uid=12_1181 ignored
+                            uid=12_1182 generic
+                              uid=12_1183 StaticText "1 par"
+                                uid=12_1184 InlineTextBox "1 par"
+                            uid=12_1185 generic
+                              uid=12_1186 StaticText "$60.000"
+                                uid=12_1187 InlineTextBox "$60.000"
+                        uid=12_1188 LabelText
+                          uid=12_1189 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_1190 ignored
+                            uid=12_1191 generic
+                              uid=12_1192 StaticText "2 pares"
+                                uid=12_1193 InlineTextBox "2 pares"
+                              uid=12_1194 ignored
+                                uid=12_1195 StaticText "OFERTA"
+                                  uid=12_1196 InlineTextBox "OFERTA"
+                            uid=12_1197 generic
+                              uid=12_1198 StaticText "$95.000"
+                                uid=12_1199 InlineTextBox "$95.000"
+                            uid=12_1200 generic
+                              uid=12_1201 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_1202 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_1203 ignored
+                      uid=12_1204 group
+                        uid=12_1205 generic
+                          uid=12_1206 LabelText
+                            uid=12_1207 StaticText "Talle Par 1"
+                              uid=12_1208 InlineTextBox "Talle Par 1"
+                          uid=12_1209 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_1210 MenuListPopup
+                              uid=12_1211 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_1212 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_1213 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_1214 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_1215 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_1216 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_1217 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_1218 button "🛒 Agregar al carrito"
+                          uid=12_1219 StaticText "🛒 Agregar al carrito"
+                            uid=12_1220 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_1221 ignored
+                        uid=12_1222 ignored
+                      uid=12_1223 ignored
+                        uid=12_1224 ignored
+                        uid=12_1225 ignored
+                        uid=12_1226 ignored
+                        uid=12_1227 ignored
+                        uid=12_1228 ignored
+                        uid=12_1229 ignored
+                        uid=12_1230 ignored
+              uid=12_1231 generic
+                uid=12_1232 heading "BIRK BLANCAS" level="2"
+                  uid=12_1233 StaticText "BIRK BLANCAS"
+                    uid=12_1234 InlineTextBox "BIRK BLANCAS"
+                uid=12_1235 generic
+                  uid=12_1236 generic
+                    uid=12_1237 group "1 / 12"
+                      uid=12_1238 image "Birk Blancas - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/1.webp"
+                    uid=12_1239 group "2 / 12"
+                      uid=12_1240 image "Birk Blancas - Vista 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/2.webp"
+                    uid=12_1241 group "3 / 12"
+                      uid=12_1242 image "Birk Blancas - Vista 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/3.webp"
+                    uid=12_1243 group "4 / 12"
+                      uid=12_1244 image "Birk Blancas - Vista 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/4.webp"
+                    uid=12_1245 group "5 / 12"
+                      uid=12_1246 image "Birk Blancas - Vista 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/5.webp"
+                    uid=12_1247 group "6 / 12"
+                      uid=12_1248 image "Birk Blancas - Vista 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/6.webp"
+                    uid=12_1249 group "7 / 12"
+                      uid=12_1250 image "Birk Blancas - Vista 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/7.webp"
+                    uid=12_1251 group "8 / 12"
+                      uid=12_1252 image "Birk Blancas - Vista 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/8.webp"
+                    uid=12_1253 group "9 / 12"
+                      uid=12_1254 image "Birk Blancas - Vista 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/9.webp"
+                    uid=12_1255 group "10 / 12"
+                      uid=12_1256 image "Birk Blancas - Vista 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/10.webp"
+                    uid=12_1257 group "11 / 12"
+                      uid=12_1258 image "Birk Blancas - Vista 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/11.webp"
+                    uid=12_1259 group "12 / 12"
+                      uid=12_1260 image "Birk Blancas - Vista 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/12.webp"
+                  uid=12_1261 button "Previous slide"
+                    uid=12_1262 generic
+                      uid=12_1263 StaticText "prev"
+                        uid=12_1264 InlineTextBox "prev"
+                  uid=12_1265 button "Next slide"
+                    uid=12_1266 generic
+                      uid=12_1267 StaticText "next"
+                        uid=12_1268 InlineTextBox "next"
+                  uid=12_1269 generic
+                uid=12_1270 generic
+                  uid=12_1271 generic
+                    uid=12_1272 group "1 / 12"
+                      uid=12_1273 image "Birk Blancas - Thumbnail 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/1.webp"
+                    uid=12_1274 group "2 / 12"
+                      uid=12_1275 image "Birk Blancas - Thumbnail 2" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/2.webp"
+                    uid=12_1276 group "3 / 12"
+                      uid=12_1277 image "Birk Blancas - Thumbnail 3" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/3.webp"
+                    uid=12_1278 group "4 / 12"
+                      uid=12_1279 image "Birk Blancas - Thumbnail 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/4.webp"
+                    uid=12_1280 group "5 / 12"
+                      uid=12_1281 image "Birk Blancas - Thumbnail 5" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/5.webp"
+                    uid=12_1282 group "6 / 12"
+                      uid=12_1283 image "Birk Blancas - Thumbnail 6" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/6.webp"
+                    uid=12_1284 group "7 / 12"
+                      uid=12_1285 image "Birk Blancas - Thumbnail 7" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/7.webp"
+                    uid=12_1286 group "8 / 12"
+                      uid=12_1287 image "Birk Blancas - Thumbnail 8" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/8.webp"
+                    uid=12_1288 group "9 / 12"
+                      uid=12_1289 image "Birk Blancas - Thumbnail 9" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/9.webp"
+                    uid=12_1290 group "10 / 12"
+                      uid=12_1291 image "Birk Blancas - Thumbnail 10" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/10.webp"
+                    uid=12_1292 group "11 / 12"
+                      uid=12_1293 image "Birk Blancas - Thumbnail 11" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/11.webp"
+                    uid=12_1294 group "12 / 12"
+                      uid=12_1295 image "Birk Blancas - Thumbnail 12" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/birkblancas/12.webp"
+                  uid=12_1296 generic
+                uid=12_1297 generic
+                  uid=12_1298 ignored
+                    uid=12_1299 ignored
+                      uid=12_1300 ignored
+                        uid=12_1301 strong
+                          uid=12_1302 StaticText "Material:"
+                            uid=12_1303 InlineTextBox "Material:"
+                          uid=12_1304 generic
+                            uid=12_1305 StaticText ":"
+                              uid=12_1306 InlineTextBox ":"
+                        uid=12_1307 StaticText "Ecocuero"
+                          uid=12_1308 InlineTextBox "Ecocuero"
+                      uid=12_1309 ignored
+                        uid=12_1310 strong
+                          uid=12_1311 StaticText "Suela:"
+                            uid=12_1312 InlineTextBox "Suela:"
+                          uid=12_1313 generic
+                            uid=12_1314 StaticText ":"
+                              uid=12_1315 InlineTextBox ":"
+                        uid=12_1316 StaticText "Antideslizante"
+                          uid=12_1317 InlineTextBox "Antideslizante"
+                      uid=12_1318 ignored
+                        uid=12_1319 strong
+                          uid=12_1320 StaticText "Envío:"
+                            uid=12_1321 InlineTextBox "Envío:"
+                          uid=12_1322 generic
+                            uid=12_1323 StaticText ":"
+                              uid=12_1324 InlineTextBox ":"
+                        uid=12_1325 StaticText "GRATIS 🚚"
+                          uid=12_1326 InlineTextBox "GRATIS 🚚"
+                    uid=12_1327 ignored
+                      uid=12_1328 ignored
+                        uid=12_1329 StaticText "NUEVA TEMPORADA"
+                          uid=12_1330 InlineTextBox "NUEVA TEMPORADA"
+                      uid=12_1331 ignored
+                        uid=12_1332 StaticText "STOCK LIMITADO"
+                          uid=12_1333 InlineTextBox "STOCK LIMITADO"
+                    uid=12_1334 paragraph
+                      uid=12_1335 StaticText "Sandalias de ecocuero negro con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                        uid=12_1336 InlineTextBox "Sandalias de ecocuero negro con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una "
+                        uid=12_1337 InlineTextBox "suela antideslizante que brinda confort y estabilidad en cada paso. Su diseño moderno y minimalista las hace "
+                        uid=12_1338 InlineTextBox "ideales para usar tanto en casa como en la calle, combinando estilo, comodidad y durabilidad."
+                    uid=12_1339 ignored
+                      uid=12_1340 generic
+                        uid=12_1341 heading "GUÍA DE TALLES" level="3"
+                          uid=12_1342 StaticText "GUÍA DE TALLES"
+                            uid=12_1343 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_1344 ignored
+                          uid=12_1345 StaticText "+"
+                            uid=12_1346 InlineTextBox "+"
+                      uid=12_1347 ignored
+                        uid=12_1348 ignored
+                          uid=12_1349 ignored
+                          uid=12_1350 ignored
+                        uid=12_1351 ignored
+                          uid=12_1352 ignored
+                            uid=12_1353 ignored
+                            uid=12_1354 ignored
+                          uid=12_1355 ignored
+                            uid=12_1356 ignored
+                            uid=12_1357 ignored
+                          uid=12_1358 ignored
+                            uid=12_1359 ignored
+                            uid=12_1360 ignored
+                          uid=12_1361 ignored
+                            uid=12_1362 ignored
+                            uid=12_1363 ignored
+                          uid=12_1364 ignored
+                            uid=12_1365 ignored
+                            uid=12_1366 ignored
+                          uid=12_1367 ignored
+                            uid=12_1368 ignored
+                            uid=12_1369 ignored
+                    uid=12_1370 ignored
+                      uid=12_1371 ignored
+                        uid=12_1372 paragraph
+                          uid=12_1373 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_1374 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_1375 ignored
+                        uid=12_1376 LabelText
+                          uid=12_1377 radio "1 par $60.000" checked
+                          uid=12_1378 ignored
+                            uid=12_1379 generic
+                              uid=12_1380 StaticText "1 par"
+                                uid=12_1381 InlineTextBox "1 par"
+                            uid=12_1382 generic
+                              uid=12_1383 StaticText "$60.000"
+                                uid=12_1384 InlineTextBox "$60.000"
+                        uid=12_1385 LabelText
+                          uid=12_1386 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_1387 ignored
+                            uid=12_1388 generic
+                              uid=12_1389 StaticText "2 pares"
+                                uid=12_1390 InlineTextBox "2 pares"
+                              uid=12_1391 ignored
+                                uid=12_1392 StaticText "OFERTA"
+                                  uid=12_1393 InlineTextBox "OFERTA"
+                            uid=12_1394 generic
+                              uid=12_1395 StaticText "$95.000"
+                                uid=12_1396 InlineTextBox "$95.000"
+                            uid=12_1397 generic
+                              uid=12_1398 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_1399 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_1400 ignored
+                      uid=12_1401 group
+                        uid=12_1402 generic
+                          uid=12_1403 LabelText
+                            uid=12_1404 StaticText "Talle Par 1"
+                              uid=12_1405 InlineTextBox "Talle Par 1"
+                          uid=12_1406 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_1407 MenuListPopup
+                              uid=12_1408 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_1409 option "35 (23 cm de largo de plantilla)" value="35 (23 cm de largo de plantilla)"
+                              uid=12_1410 option "36 (23,5 cm de largo de plantilla)" value="36 (23,5 cm de largo de plantilla)"
+                              uid=12_1411 option "37 (24 cm de largo de plantilla)" value="37 (24 cm de largo de plantilla)"
+                              uid=12_1412 option "38 (24,7 cm de largo de plantilla)" value="38 (24,7 cm de largo de plantilla)"
+                              uid=12_1413 option "39 (25,3 cm de largo de plantilla)" value="39 (25,3 cm de largo de plantilla)"
+                              uid=12_1414 option "40 (26 cm de largo de plantilla)" value="40 (26 cm de largo de plantilla)"
+                        uid=12_1415 button "🛒 Agregar al carrito"
+                          uid=12_1416 StaticText "🛒 Agregar al carrito"
+                            uid=12_1417 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_1418 ignored
+                        uid=12_1419 ignored
+                      uid=12_1420 ignored
+                        uid=12_1421 ignored
+                        uid=12_1422 ignored
+                        uid=12_1423 ignored
+                        uid=12_1424 ignored
+                        uid=12_1425 ignored
+                        uid=12_1426 ignored
+                        uid=12_1427 ignored
+              uid=12_1428 generic
+                uid=12_1429 heading "PARIS NEGRAS" level="2"
+                  uid=12_1430 StaticText "PARIS NEGRAS"
+                    uid=12_1431 InlineTextBox "PARIS NEGRAS"
+                uid=12_1432 generic
+                  uid=12_1433 generic
+                    uid=12_1434 group "1 / 1"
+                      uid=12_1435 image "Paris Negras - Vista 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/paris2025-negras.webp"
+                  uid=12_1436 generic
+                uid=12_1437 generic
+                  uid=12_1438 ignored
+                    uid=12_1439 ignored
+                      uid=12_1440 ignored
+                        uid=12_1441 strong
+                          uid=12_1442 StaticText "Material:"
+                            uid=12_1443 InlineTextBox "Material:"
+                          uid=12_1444 generic
+                            uid=12_1445 StaticText ":"
+                              uid=12_1446 InlineTextBox ":"
+                        uid=12_1447 StaticText "Tela elastizada"
+                          uid=12_1448 InlineTextBox "Tela elastizada"
+                      uid=12_1449 ignored
+                        uid=12_1450 strong
+                          uid=12_1451 StaticText "Suela:"
+                            uid=12_1452 InlineTextBox "Suela:"
+                          uid=12_1453 generic
+                            uid=12_1454 StaticText ":"
+                              uid=12_1455 InlineTextBox ":"
+                        uid=12_1456 StaticText "Liviana"
+                          uid=12_1457 InlineTextBox "Liviana"
+                      uid=12_1458 ignored
+                        uid=12_1459 strong
+                          uid=12_1460 StaticText "Detalles:"
+                            uid=12_1461 InlineTextBox "Detalles:"
+                          uid=12_1462 generic
+                            uid=12_1463 StaticText ":"
+                              uid=12_1464 InlineTextBox ":"
+                        uid=12_1465 StaticText "Bicolor"
+                          uid=12_1466 InlineTextBox "Bicolor"
+                      uid=12_1467 ignored
+                        uid=12_1468 strong
+                          uid=12_1469 StaticText "Envío:"
+                            uid=12_1470 InlineTextBox "Envío:"
+                          uid=12_1471 generic
+                            uid=12_1472 StaticText ":"
+                              uid=12_1473 InlineTextBox ":"
+                        uid=12_1474 StaticText "GRATIS 🚚"
+                          uid=12_1475 InlineTextBox "GRATIS 🚚"
+                    uid=12_1476 ignored
+                      uid=12_1477 ignored
+                        uid=12_1478 StaticText "NUEVA TEMPORADA"
+                          uid=12_1479 InlineTextBox "NUEVA TEMPORADA"
+                    uid=12_1480 paragraph
+                      uid=12_1481 StaticText "¡Elegancia urbana para la nueva temporada Primavera-Verano 2025! Nuestras Paris negras combinan comodidad y estilo con su diseño bicolor único. Perfectas para looks diarios con un toque sofisticado."
+                        uid=12_1482 InlineTextBox "¡Elegancia urbana para la nueva temporada Primavera-Verano 2025! Nuestras Paris negras combinan comodidad y "
+                        uid=12_1483 InlineTextBox "estilo con su diseño bicolor único. Perfectas para looks diarios con un toque sofisticado."
+                    uid=12_1484 ignored
+                      uid=12_1485 generic
+                        uid=12_1486 heading "GUÍA DE TALLES" level="3"
+                          uid=12_1487 StaticText "GUÍA DE TALLES"
+                            uid=12_1488 InlineTextBox "GUÍA DE TALLES"
+                        uid=12_1489 ignored
+                          uid=12_1490 StaticText "+"
+                            uid=12_1491 InlineTextBox "+"
+                      uid=12_1492 ignored
+                        uid=12_1493 ignored
+                          uid=12_1494 ignored
+                          uid=12_1495 ignored
+                        uid=12_1496 ignored
+                          uid=12_1497 ignored
+                            uid=12_1498 ignored
+                            uid=12_1499 ignored
+                          uid=12_1500 ignored
+                            uid=12_1501 ignored
+                            uid=12_1502 ignored
+                          uid=12_1503 ignored
+                            uid=12_1504 ignored
+                            uid=12_1505 ignored
+                          uid=12_1506 ignored
+                            uid=12_1507 ignored
+                            uid=12_1508 ignored
+                          uid=12_1509 ignored
+                            uid=12_1510 ignored
+                            uid=12_1511 ignored
+                          uid=12_1512 ignored
+                            uid=12_1513 ignored
+                            uid=12_1514 ignored
+                          uid=12_1515 ignored
+                            uid=12_1516 ignored
+                            uid=12_1517 ignored
+                          uid=12_1518 ignored
+                            uid=12_1519 ignored
+                            uid=12_1520 ignored
+                          uid=12_1521 ignored
+                            uid=12_1522 ignored
+                            uid=12_1523 ignored
+                          uid=12_1524 ignored
+                            uid=12_1525 ignored
+                            uid=12_1526 ignored
+                    uid=12_1527 ignored
+                      uid=12_1528 ignored
+                        uid=12_1529 paragraph
+                          uid=12_1530 StaticText "* 2 pares por $95.000 (cualquier combinación)"
+                            uid=12_1531 InlineTextBox "* 2 pares por $95.000 (cualquier combinación)"
+                      uid=12_1532 ignored
+                        uid=12_1533 LabelText
+                          uid=12_1534 radio "1 par $60.000" checked
+                          uid=12_1535 ignored
+                            uid=12_1536 generic
+                              uid=12_1537 StaticText "1 par"
+                                uid=12_1538 InlineTextBox "1 par"
+                            uid=12_1539 generic
+                              uid=12_1540 StaticText "$60.000"
+                                uid=12_1541 InlineTextBox "$60.000"
+                        uid=12_1542 LabelText
+                          uid=12_1543 radio "2 pares OFERTA $95.000 ($47.500 c/par - ¡AHORRÁS $25.000!)"
+                          uid=12_1544 ignored
+                            uid=12_1545 generic
+                              uid=12_1546 StaticText "2 pares"
+                                uid=12_1547 InlineTextBox "2 pares"
+                              uid=12_1548 ignored
+                                uid=12_1549 StaticText "OFERTA"
+                                  uid=12_1550 InlineTextBox "OFERTA"
+                            uid=12_1551 generic
+                              uid=12_1552 StaticText "$95.000"
+                                uid=12_1553 InlineTextBox "$95.000"
+                            uid=12_1554 generic
+                              uid=12_1555 StaticText "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                                uid=12_1556 InlineTextBox "($47.500 c/par - ¡AHORRÁS $25.000!)"
+                    uid=12_1557 ignored
+                      uid=12_1558 group
+                        uid=12_1559 generic
+                          uid=12_1560 LabelText
+                            uid=12_1561 StaticText "Talle Par 1"
+                              uid=12_1562 InlineTextBox "Talle Par 1"
+                          uid=12_1563 combobox "Talle Par 1" haspopup="menu" value="-- Selecciona Talle Par 1 --"
+                            uid=12_1564 MenuListPopup
+                              uid=12_1565 option "-- Selecciona Talle Par 1 --" selectable selected value="-- Selecciona Talle Par 1 --"
+                              uid=12_1566 option "35 (22,8 cm de plantilla)" value="35 (22,8 cm de plantilla)"
+                              uid=12_1567 option "36 (23,4 cm de plantilla)" value="36 (23,4 cm de plantilla)"
+                              uid=12_1568 option "37 (24,3 cm de plantilla)" value="37 (24,3 cm de plantilla)"
+                              uid=12_1569 option "38 (24,7 cm de plantilla)" value="38 (24,7 cm de plantilla)"
+                              uid=12_1570 option "39 (25,2 cm de plantilla)" value="39 (25,2 cm de plantilla)"
+                              uid=12_1571 option "40 (26 cm de plantilla)" value="40 (26 cm de plantilla)"
+                              uid=12_1572 option "41 (27,5 cm de plantilla)" value="41 (27,5 cm de plantilla)"
+                              uid=12_1573 option "42 (28,4 cm de plantilla)" value="42 (28,4 cm de plantilla)"
+                              uid=12_1574 option "43 (29,2 cm de plantilla)" value="43 (29,2 cm de plantilla)"
+                              uid=12_1575 option "44 (29,8 cm de plantilla)" value="44 (29,8 cm de plantilla)"
+                        uid=12_1576 button "🛒 Agregar al carrito"
+                          uid=12_1577 StaticText "🛒 Agregar al carrito"
+                            uid=12_1578 InlineTextBox "🛒 Agregar al carrito"
+                      uid=12_1579 ignored
+                        uid=12_1580 ignored
+                      uid=12_1581 ignored
+                        uid=12_1582 ignored
+                        uid=12_1583 ignored
+                        uid=12_1584 ignored
+                        uid=12_1585 ignored
+                        uid=12_1586 ignored
+                        uid=12_1587 ignored
+                        uid=12_1588 ignored
+                        uid=12_1589 ignored
+                        uid=12_1590 ignored
+                        uid=12_1591 ignored
+                        uid=12_1592 ignored
+            uid=12_1593 ignored
+              uid=12_1594 ignored
+                uid=12_1595 paragraph
+                  uid=12_1596 StaticText "👍"
+                    uid=12_1597 InlineTextBox "👍"
+                  uid=12_1598 StaticText " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+                    uid=12_1599 InlineTextBox " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+          uid=12_1600 generic
+            uid=12_1601 heading "Lo que dicen nuestras clientas" level="2"
+              uid=12_1602 StaticText "Lo que dicen nuestras clientas"
+                uid=12_1603 InlineTextBox "Lo que dicen nuestras clientas"
+              uid=12_1604 generic
+            uid=12_1605 paragraph
+              uid=12_1606 StaticText "Miles de clientas felices comparten su experiencia"
+                uid=12_1607 InlineTextBox "Miles de clientas felices comparten su experiencia"
+            uid=12_1608 generic
+              uid=12_1609 generic
+                uid=12_1610 generic
+                uid=12_1611 image "Testimonio de clienta satisfecha" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/1000781400.webp"
+              uid=12_1612 generic
+                uid=12_1613 generic
+                uid=12_1614 image "Captura de comentario positivo de clienta 4" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/comentariorecibi5.webp"
+              uid=12_1615 generic
+                uid=12_1616 generic
+                uid=12_1617 image "Comentario de recomendación adicional" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/1000783785-b.webp"
+              uid=12_1618 generic
+                uid=12_1619 generic
+                uid=12_1620 image "Comentario de satisfacción" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/1000783154.webp"
+              uid=12_1621 generic
+                uid=12_1622 generic
+                uid=12_1623 image "Comentario de WhatsApp de clienta satisfecha" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/comentariowsp1.webp"
+              uid=12_1624 generic
+                uid=12_1625 generic
+                uid=12_1626 image "Captura de comentario positivo de clienta 1" url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/comentarios/comentariorecibi1.webp"
+            uid=12_1627 generic
+              uid=12_1628 link "Ver más comentarios..." url="file:///C:/Users/sflic/Documents/GitHub/rositarococo.com/index.html#"
+                uid=12_1629 StaticText "Ver más comentarios..."
+                  uid=12_1630 InlineTextBox "Ver más comentarios..."
+            uid=12_1631 generic
+              uid=12_1632 button "⬆️ Ver nuestros productos"
+                uid=12_1633 StaticText "⬆️ Ver nuestros productos"
+                  uid=12_1634 InlineTextBox "⬆️ Ver nuestros productos"
+              uid=12_1635 paragraph
+                uid=12_1636 StaticText "¿Te gustaron los comentarios? ¡Descubre nuestros modelos!"
+                  uid=12_1637 InlineTextBox "¿Te gustaron los comentarios? ¡Descubre nuestros modelos!"
+          uid=12_1638 ignored
+            uid=12_1639 ignored
+          uid=12_1640 ignored
+          uid=12_1641 ignored
+          uid=12_1642 ignored
+            uid=12_1643 ignored
+            uid=12_1644 ignored
+              uid=12_1645 ignored
+          uid=12_1646 ignored
+          uid=12_1647 ignored
+          uid=12_1648 ignored
+            uid=12_1649 ignored
+            uid=12_1650 ignored
+              uid=12_1651 ignored
+          uid=12_1652 ignored
+          uid=12_1653 ignored
+          uid=12_1654 ignored
+            uid=12_1655 ignored
+            uid=12_1656 ignored
+              uid=12_1657 ignored
+          uid=12_1658 ignored
+          uid=12_1659 ignored
+          uid=12_1660 ignored
+            uid=12_1661 ignored
+          uid=12_1662 ignored
+          uid=12_1663 ignored
+          uid=12_1664 ignored
+            uid=12_1665 ignored
+          uid=12_1666 ignored
+          uid=12_1667 ignored
+          uid=12_1668 ignored
+            uid=12_1669 ignored
+          uid=12_1670 ignored
+          uid=12_1671 ignored
+          uid=12_1672 ignored
+            uid=12_1673 ignored
+          uid=12_1674 ignored
+            uid=12_1675 ignored
+            uid=12_1676 ignored
+            uid=12_1677 ignored
+            uid=12_1678 ignored
+            uid=12_1679 ignored
+            uid=12_1680 ignored
+            uid=12_1681 ignored
+            uid=12_1682 ignored
+            uid=12_1683 ignored
+            uid=12_1684 ignored
+            uid=12_1685 ignored
+            uid=12_1686 ignored
+            uid=12_1687 ignored
+            uid=12_1688 ignored
+            uid=12_1689 ignored
+            uid=12_1690 ignored
+            uid=12_1691 ignored
+            uid=12_1692 ignored
+            uid=12_1693 ignored
+            uid=12_1694 ignored
+            uid=12_1695 ignored
+            uid=12_1696 ignored
+            uid=12_1697 ignored
+          uid=12_1698 ignored
+            uid=12_1699 ignored
+          uid=12_1700 ignored
+          uid=12_1701 ignored
+          uid=12_1702 ignored
+            uid=12_1703 ignored
+          uid=12_1704 ignored
+            uid=12_1705 ignored
+            uid=12_1706 ignored
+              uid=12_1707 ignored
+          uid=12_1708 ignored
+            uid=12_1709 ignored
+            uid=12_1710 ignored
+            uid=12_1711 ignored
+            uid=12_1712 ignored
+      uid=12_1713 generic
+      uid=12_1714 ignored
+      uid=12_1715 ignored
+      uid=12_1716 ignored
+      uid=12_1717 ignored
+      uid=12_1718 generic
+        uid=12_1719 generic
+          uid=12_1720 image
+          uid=12_1721 generic
+            uid=12_1722 StaticText "¿Dudas?"
+              uid=12_1723 InlineTextBox "¿Dudas?"
+        uid=12_1724 ignored
+        uid=12_1725 ignored

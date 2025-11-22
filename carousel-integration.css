@@ -1,0 +1,60 @@
+/* --- Carousel Integration Overrides --- */
+/* Ensures clean integration between premium carousel and existing styles */
+
+/* Remove conflicts from existing carousel styles */
+.simple-carousel .carousel-container {
+    flex-direction: row !important;
+    align-items: stretch !important;
+}
+
+.simple-carousel .carousel-slide {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Ensure proper spacing with product selection */
+.product-item .simple-carousel {
+    margin-bottom: 20px !important;
+}
+
+.product-selection {
+    clear: both;
+    margin-top: 0;
+}
+
+/* Fix any potential z-index conflicts */
+.carousel-button {
+    z-index: 20 !important;
+}
+
+.carousel-indicators {
+    z-index: 15 !important;
+}
+
+/* Ensure smooth transitions don't interfere with other animations */
+.simple-carousel.carousel-transitioning {
+    pointer-events: none;
+}
+
+/* Override any conflicting hover effects from parent classes */
+.product-item:hover .simple-carousel {
+    transform: none !important;
+    box-shadow: var(--carousel-shadow-soft) !important;
+}
+
+/* Responsive spacing fixes */
+@media (max-width: 768px) {
+    .product-item .simple-carousel {
+        margin-bottom: 15px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-item .simple-carousel {
+        margin-bottom: 12px !important;
+    }
+}

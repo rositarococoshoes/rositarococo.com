@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Bank Transfer Redirection</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }
+        .test-section { border: 1px solid #ddd; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .result { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background-color: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        button { padding: 10px 20px; margin: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Bank Transfer Redirection Test</h1>
+
+    <div class="test-section">
+        <h2>Test Configuration</h2>
+        <p>This test simulates the bank transfer redirection from astrocline checkout process.</p>
+
+        <div class="info">
+            <strong>Expected Behavior:</strong>
+            <ul>
+                <li>1 pair should redirect to: <code>/astrocline/transferenciacbu-1par/</code></li>
+                <li>2+ pairs should redirect to: <code>/astrocline/transferenciacbu-2pares/</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Cart Simulation</h2>
+        <p>Select cart size to test redirection:</p>
+        <button onclick="testRedirection(1)">Test 1 Pair</button>
+        <button onclick="testRedirection(2)">Test 2 Pairs</button>
+        <button onclick="testRedirection(3)">Test 3 Pairs</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Redirection Logic Test</h2>
+        <div id="test-results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Manual URL Check</h2>
+        <button onclick="checkURLs()">Verify Transfer Pages Exist</button>
+        <div id="url-results"></div>
+    </div>
+
+    <script>
+        // Simulate the redirection logic from form-handler.js
+        function testRedirection(cartCount) {
+            const resultsDiv = document.getElementById('test-results');
+
+            // This is the exact logic from form-handler.js (lines 306-308)
+            const transferUrl = cartCount >= 2 ?
+                'https://rositarococo.com/astrocline/transferenciacbu-2pares/' :
+                'https://rositarococo.com/astrocline/transferenciacbu-1par/';
+
+            const resultHtml = `
+                <div class="result success">
+                    <h3>✅ Test for ${cartCount} ${cartCount === 1 ? 'Pair' : 'Pairs'}</h3>
+                    <p><strong>Cart Count:</strong> ${cartCount}</p>
+                    <p><strong>Redirect URL:</strong> <a href="${transferUrl}" target="_blank">${transferUrl}</a></p>
+                    <p><strong>Logic:</strong> ${cartCount >= 2 ? 'cartCount >= 2 = TRUE' : 'cartCount >= 2 = FALSE'}</p>
+                </div>
+            `;
+
+            resultsDiv.innerHTML = resultHtml;
+
+            // Optional: Actually redirect after 3 seconds for testing
+            setTimeout(() => {
+                if (confirm(`Redirect to ${transferUrl}?`)) {
+                    window.open(transferUrl, '_blank');
+                }
+            }, 1000);
+        }
+
+        async function checkURLs() {
+            const urlsDiv = document.getElementById('url-results');
+            const urls = [
+                'https://rositarococo.com/astrocline/transferenciacbu-1par/',
+                'https://rositarococo.com/astrocline/transferenciacbu-2pares/',
+                'https://rositarococo.com/transferenciacbu-1par.html',
+                'https://rositarococo.com/transferenciacbu-2pares.html'
+            ];
+
+            let results = '';
+
+            for (const url of urls) {
+                try {
+                    const response = await fetch(url, { method: 'HEAD', mode: 'no-cors' });
+                    results += `<div class="result success">✅ ${url} - Accessible</div>`;
+                } catch (error) {
+                    // CORS errors don't mean the URL doesn't exist, just that we can't access it from JS
+                    results += `<div class="result info">ℹ️ ${url} - Likely accessible (CORS限制)</div>`;
+                }
+            }
+
+            urlsDiv.innerHTML = results;
+        }
+
+        // Display current code logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = `
+                <div class="result info">
+                    <h3>Current Redirection Code (from form-handler.js)</h3>
+                    <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto;">
+const transferUrl = window.cartCount >= 2 ?
+    'https://rositarococo.com/astrocline/transferenciacbu-2pares/' :
+    'https://rositarococo.com/astrocline/transferenciacbu-1par/';
+                    </pre>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

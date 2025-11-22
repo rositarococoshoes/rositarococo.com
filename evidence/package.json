@@ -1,0 +1,42 @@
+{
+  "name": "rosita-rococo-visual-analysis",
+  "version": "1.0.0",
+  "description": "Visual analysis tools and documentation for Rosita Rococó e-commerce funnel migration",
+  "main": "scripts/screenshot-capture.js",
+  "scripts": {
+    "capture": "node scripts/screenshot-capture.js",
+    "analyze": "node scripts/screenshot-capture.js && npm run report",
+    "report": "echo 'Analysis report generated in reports/screenshot-analysis.json'",
+    "setup": "mkdir -p screenshots/previo-pago/{mobile,tablet,desktop} screenshots/contrarreembolso/{mobile,tablet,desktop}",
+    "clean": "rm -rf screenshots/* reports/screenshot-analysis.json",
+    "help": "echo 'Available commands: capture, analyze, setup, clean, help'"
+  },
+  "keywords": [
+    "visual-analysis",
+    "screenshot",
+    "ecommerce",
+    "migration",
+    "tailwind",
+    "astro"
+  ],
+  "author": "Visual Analysis Team",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "axios": "^1.5.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rositarococo/visual-analysis"
+  },
+  "bugs": {
+    "url": "https://github.com/rositarococo/visual-analysis/issues"
+  },
+  "homepage": "https://github.com/rositarococo/visual-analysis#readme"
+}

@@ -1,0 +1,93 @@
+Quiero que revises completamente el módulo del carrusel de productos porque actualmente se ve mal: las miniaturas se muestran con bordes extraños, se superponen con el texto, están desalineadas y estéticamente el carrusel no cumple con el estándar visual del sitio.
+
+Antes de modificar o reparar el carrusel actual, seguí este proceso en este orden:
+
+1. Buscar en el MCP de shadcn un carrusel prearmado
+
+Usa el MCP shadcn para buscar si existe un componente de carrusel o slider que podamos reutilizar. Buscá variantes bajo estos nombres o similares:
+
+carousel
+
+slider
+
+image-carousel
+
+gallery
+
+product-carousel
+
+thumbnails-carousel
+
+Revisá todas las categorías relevantes (UI, components, marketing, ecommerce).
+
+El objetivo es identificar si ya existe un componente shadcn bien diseñado, elegante y estable que pueda reemplazar nuestra implementación actual con menos esfuerzo y mejor estética.
+
+2. Verificar compatibilidad con Astro
+
+Para cada componente encontrado:
+
+Identificá si existe versión Astro.
+
+Si solo existe en React, evaluá si puede portarse fácilmente a Astro con changes mínimos.
+
+Si no es portable, descartalo.
+
+Elegí únicamente un componente que sea implementable en Astro sin romper dependencias.
+
+3. Elegir solución y aplicar mejoras estéticas significativas
+
+En base a lo encontrado:
+
+Si existe un carrusel útil en shadcn:
+
+Reemplazá nuestra implementación actual por ese componente.
+
+Asegurate de que las miniaturas no se superpongan, tengan bordes limpios y que el diseño final sea visualmente moderno y consistente con el sitio.
+
+Garantizá un layout impecable en desktop, tablet y mobile.
+
+Ajustá solo detalles mínimos de estilo para integrarlo al diseño general.
+
+Si NO existe un componente adecuado en shadcn:
+
+Corregí el carrusel actual priorizando mejoras estéticas notables:
+
+Asegurar que las miniaturas tengan tamaño uniforme, sin bordes erráticos, sin recortes.
+
+Separar claramente las miniaturas del texto para evitar superposición.
+
+Revisar contenedores, z-index, overflow y spacing para lograr una presentación profesional.
+
+Ajustar margenes, paddings y proporciones para que el carrusel se vea moderno y limpio.
+
+El resultado visual debe ser muy superior al actual.
+
+4. Validar visualmente
+
+Después de aplicar la solución:
+
+Revisá el carrusel en desktop, tablet y mobile.
+
+Asegurate de que el diseño sea consistente, elegante y sin fallos visuales.
+
+Confirmá que no haya superposición, deformaciones, flickering, overflow extraño ni espacios mal asignados.
+
+5. Commit final
+
+Una vez que el carrusel esté funcionando correctamente y se vea estéticamente mucho mejor:
+
+Hacé commit de los archivos modificados.
+
+Usá un mensaje de commit claro indicando qué se mejoró en el carrusel.
+
+Dejá todo listo para ser probado con MCP Chrome DevTools.
+
+6. Entregable esperado
+
+Al finalizar, quiero que:
+
+Confirmes qué componente shadcn encontraste (si lo encontraste).
+
+Indiques si se usó ese componente o se mejoró el actual.
+
+Confirmes que el commit ya está hecho y listo para probar.

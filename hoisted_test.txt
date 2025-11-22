@@ -1,0 +1,55 @@
+uid=1_0 RootWebArea "Page not found · GitHub Pages" url="https://rositarococo.com/astrocline/_astro/hoisted.C9HRrHEo.js"
+  uid=1_1 ignored
+    uid=1_2 ignored
+      uid=1_3 ignored
+        uid=1_4 heading "404" level="1"
+          uid=1_5 StaticText "404"
+            uid=1_6 InlineTextBox "404"
+        uid=1_7 paragraph
+          uid=1_8 strong
+            uid=1_9 StaticText "File not found"
+              uid=1_10 InlineTextBox "File not found"
+        uid=1_11 paragraph
+          uid=1_12 StaticText "The site configured at this address does not contain the requested file."
+            uid=1_13 InlineTextBox "The site configured at this address does not contain the requested file."
+        uid=1_14 paragraph
+          uid=1_15 StaticText "If this is your site, make sure that the filename case matches the URL as well as any file permissions."
+            uid=1_16 InlineTextBox "If this is your site, make sure that the filename case matches the URL as well as any "
+            uid=1_17 InlineTextBox "file permissions."
+          uid=1_18 LineBreak "
+"
+            uid=1_19 InlineTextBox "
+"
+          uid=1_20 StaticText "For root URLs (like "
+            uid=1_21 InlineTextBox "For root URLs (like "
+          uid=1_22 code
+            uid=1_23 StaticText "http://example.com/"
+              uid=1_24 InlineTextBox "http://example.com/"
+          uid=1_25 StaticText ") you must provide an "
+            uid=1_26 InlineTextBox ") you must provide an "
+          uid=1_27 code
+            uid=1_28 StaticText "index.html"
+              uid=1_29 InlineTextBox "index.html"
+          uid=1_30 StaticText " file."
+            uid=1_31 InlineTextBox " file."
+        uid=1_32 paragraph
+          uid=1_33 link "Read the full documentation" url="https://help.github.com/pages/"
+            uid=1_34 StaticText "Read the full documentation"
+              uid=1_35 InlineTextBox "Read the full documentation"
+          uid=1_36 StaticText " for more information about using "
+            uid=1_37 InlineTextBox " for more information about using "
+          uid=1_38 strong
+            uid=1_39 StaticText "GitHub Pages"
+              uid=1_40 InlineTextBox "GitHub Pages"
+          uid=1_41 StaticText "."
+            uid=1_42 InlineTextBox "."
+        uid=1_43 generic
+          uid=1_44 link "GitHub Status" url="https://githubstatus.com/"
+            uid=1_45 StaticText "GitHub Status"
+              uid=1_46 InlineTextBox "GitHub Status"
+          uid=1_47 StaticText " — "
+            uid=1_48 InlineTextBox " — "
+          uid=1_49 link "@githubstatus" url="https://twitter.com/githubstatus"
+            uid=1_50 StaticText "@githubstatus"
+              uid=1_51 InlineTextBox "@githubstatus"
+        uid=1_52 link url="https://rositarococo.com/"

@@ -1,0 +1,200 @@
+PROMPT MEJORADO Y DETALLADO PARA DIAGNÓSTICO EXTERNO
+
+CONTEXTO COMPLETO DEL PROYECTO
+
+Rosita Rococó es un ecommerce argentino de calzado femenino, especializado en embudos de conversión para Meta Ads. El proyecto está migrando de HTML legacy a Astro JS en la carpeta /rositaastro/.
+
+Stack técnico:
+- Astro v5.15.4 con TypeScript
+- Swiper.js v11 para carousels de productos  
+- CSS modular + JavaScript vanilla
+- Target: GitHub Pages → https://rositarococo.com/rositaastro
+
+URLs de desarrollo:
+- Local: http://localhost:4321/rositaastro
+- Estado del servidor: ✅ Funcionando (confirmado en terminal)
+
+PROBLEMA CRÍTICO ACTUAL
+
+Síntoma específico:
+"En móviles, las imágenes de Swiper se expanden infinitamente hasta cubrir toda la pantalla con un pantallazo blanco"
+
+Características del bug:
+- ❌ Solo afecta móviles (funciona bien en desktop)
+- ❌ Ocurre al hacer scroll o interactuar
+- ❌ Expansión infinita sin límites
+- ❌ Pantallazo blanco - contenido no visible
+- ❌ Todos los 7 productos con Swiper afectados
+
+DIAGNÓSTICO APLICADO HASTA AHORA
+
+Estado de la consola (actual):
+[Rosita] Iniciando Swiper...
+[Rosita] Encontrados 7 productos
+[Rosita] ✓ Swiper inicializado: guillermina-negras
+[Rosita] ✓ Swiper inicializado: guillermina-camel
+[Rosita] ✓ Swiper inicializado: guillermina-blancas
+[Rosita] ✓ Swiper inicializado: birk-negras
+[Rosita] ✓ Swiper inicializado: birk-camel
+[Rosita] ✓ Swiper inicializado: birk-blancas
+[Rosita] ✓ Swiper inicializado: paris-negras
+[Rosita] ✓ Selector de pares inicializado: guillermina-negras
+[Rosita] ✓ Selector de pares inicializado: guillermina-camel
+[Rosita] ✓ Selector de pares inicializado: guillermina-blancas
+[Rosita] ✓ Selector de pares inicializado: birk-negras
+[Rosita] ✓ Selector de pares inicializado: birk-camel
+[Rosita] ✓ Selector de pares inicializado: birk-blancas
+[Rosita] ✓ Selector de pares inicializado: paris-negras
+
+Interpreta: Los Swiper se inicializan correctamente, sin errores de JavaScript, pero el problema visual persiste.
+
+FIXES APLICADOS (TODOS FALLIDOS)
+
+1. swiper-init.js - Solución "definitiva" implementada
+Archivo: rositaastro/public/js/swiper-init.js
+
+Cambios realizados:
+// Bandera global para prevenir múltiples inicializaciones
+if (window.__ROSITA_SWIPER_INITIALIZED) {
+  console.log('[Rosita] Swiper ya inicializado, skip');
+  return;
+}
+
+// Emergency CSS constraints con !important
+const emergencyStyle = document.createElement('style');
+emergencyStyle.textContent = `
+  .product-media,
+  .product-media *,
+  .swiper,
+  .swiper *,
+  .swiper-wrapper,
+  .swiper-slide {
+    max-height: 400px !important;
+    overflow: hidden !important;
+  }
+  .swiper-slide img {
+    max-height: 400px !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+  }
+`;
+
+// Swiper config sin observers
+const mainSwiper = new Swiper(mainEl, {
+  // Constraints estrictos
+  height: 400,
+  maxHeight: 400,
+  autoHeight: false,
+  // CRÍTICO: Deshabilitar observers
+  observer: false,
+  observeParents: false,
+  observeSlideChildren: false,
+  // Optimizaciones móviles
+  touchReleaseOnEdges: true,
+  touchEventsTarget: 'container',
+  simulateTouch: true,
+  shortSwipes: true,
+});
+
+¿Por qué falló? A pesar de tener constraints CSS, observers deshabilitados y banderas de inicialización, el problema persiste.
+
+2. ProductCard.astro - Script inline eliminado
+Archivo: rositaastro/src/components/ProductCard.astro
+
+Cambios realizados:
+- ✅ ELIMINADO: Script inline (líneas 605-753) que causaba triple inicialización
+- ✅ CSS mejorado: !important constraints en imágenes
+- ✅ Unificación: Lógica centralizada en swiper-init.js
+
+¿Por qué falló? La eliminación del script inline no resolvió el problema visual.
+
+3. CSS constraints múltiples
+Aplicados en ProductCard.astro:
+.product-image {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  max-height: 400px !important;
+  display: block !important;
+  object-fit: cover !important;
+  overflow: hidden !important;
+}
+
+¿Por qué falló? Los constraints CSS no previenen la expansión infinita.
+
+DIAGNÓSTICO DEL PROBLEMA REAL
+
+Hipótesis actuales:
+1. Swiper timing issues: Los slides se expanden ANTES de que los constraints se apliquen
+2. Mobile viewport problems: Viewport móvil no respeta max-height constraints
+3. Touch events conflict: Eventos touch y scroll causan re-cálculo de tamaños
+4. Image loading race: Imágenes 404 o lentas generan slides infinitos
+5. Responsive breakpoints: CSS no se aplica correctamente en móviles
+
+Posibles causas técnicas:
+- Swiper calcula alturas basado en imágenes no cargadas
+- Touch events en móviles causan re-render sin constraints
+- Mobile viewport ignora max-height constraints de CSS
+- Timeline de carga: Swiper init → CSS load → Image load
+- Event propagation en móviles
+
+ARCHIVOS DE REFERENCIA
+
+Estructura de archivos:
+rositaastro/
+├── public/js/swiper-init.js         ← Solución "definitiva" implementada
+├── src/components/ProductCard.astro ← Script inline eliminado
+├── src/data/productData.ts          ← Data de productos
+├── src/layouts/MainLayout.astro     ← Layout principal
+└── astro.config.mjs                 ← Base URL: '/rositaastro'
+
+Imágenes de productos:
+- guillerminafotos/ (38 imágenes + 4 más)
+- birknegras/ (7 imágenes)
+- birkcamel/ (12 imágenes)  
+- birkblancas/ (12 imágenes)
+- paris2025-negras.webp (1 imagen)
+
+PREGUNTA ESPECÍFICA
+
+¿Por qué, a pesar de tener un sistema de inicialización único, constraints CSS con !important, observers deshabilitados y Swiper configurado sin autoHeight, las imágenes aún se expanden infinitamente en móviles causando pantallazo blanco?
+
+Requerimientos de análisis:
+1. Timing analysis: ¿Por qué los constraints no se aplican antes de la expansión?
+2. Mobile viewport: ¿Por qué max-height no funciona en móviles?
+3. Swiper lifecycle: ¿Qué está pasando con los slides durante la inicialización?
+4. Alternative solutions: ¿Hay una aproximación completamente diferente?
+
+Testing de referencia:
+- URL: http://localhost:4321/rositaastro
+- Mobile viewport: 375x667, 360x640, 390x844
+- Sin errores JS: Consola limpia pero problema visual persiste
+- 7 productos: Todos afectados por el mismo problema
+
+DATOS ADICIONALES PARA ANÁLISIS
+
+Servidor de desarrollo:
+[astro] ready in 2389ms
+Local: http://localhost:4321/rositaastro
+Network: http://192.168.0.22:4321/rositaastro
+
+Logs del terminal:
+[Rosita] Iniciando Swiper...
+[Rosita] Encontrados 7 productos
+[Rosita] ✓ Swiper inicializado: guillermina-negras
+[Rosita] ✓ Swiper inicializado: guillermina-camel
+[Rosita] ✓ Swiper inicializado: guillermina-blancas
+[Rosita] ✓ Swiper inicializado: birk-negras
+[Rosita] ✓ Swiper inicializado: birk-camel
+[Rosita] ✓ Swiper inicializado: birk-blancas
+[Rosita] ✓ Swiper inicializado: paris-negras
+[Rosita] ✓ Selector de pares inicializado: guillermina-negras
+[Rosita] ✓ Selector de pares inicializado: guillermina-camel
+[Rosita] ✓ Selector de pares inicializado: guillermina-blancas
+[Rosita] ✓ Selector de pares inicializado: birk-negras
+[Rosita] ✓ Selector de pares inicializado: birk-camel
+[Rosita] ✓ Selector de pares inicializado: birk-blancas
+[Rosita] ✓ Selector de pares inicializado: paris-negras
+
+¿Cuál es la verdadera causa raíz de la expansión infinita en móviles y cómo resolverla definitivamente?

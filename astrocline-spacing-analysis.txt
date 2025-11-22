@@ -1,0 +1,1305 @@
+uid=7_0 RootWebArea "Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025" url="http://localhost:8000/astrocline/"
+  uid=7_1 ignored
+    uid=7_2 ignored
+      uid=7_3 main
+        uid=7_4 sectionheader
+          uid=7_5 ignored
+            uid=7_6 ignored
+              uid=7_7 image "Rosita Rococó Logo" url="http://localhost:8000/rosita-form.webp"
+        uid=7_8 generic
+          uid=7_9 generic
+          uid=7_10 ignored
+            uid=7_11 ignored
+              uid=7_12 StaticText "🛒"
+                uid=7_13 InlineTextBox "🛒"
+            uid=7_14 ignored
+              uid=7_15 StaticText "Tu Carrito"
+                uid=7_16 InlineTextBox "Tu Carrito"
+            uid=7_17 ignored
+              uid=7_18 StaticText "0"
+                uid=7_19 InlineTextBox "0"
+            uid=7_20 button "×"
+              uid=7_21 StaticText "×"
+                uid=7_22 InlineTextBox "×"
+          uid=7_23 ignored
+            uid=7_24 paragraph
+              uid=7_25 StaticText "Tu carrito está vacío"
+                uid=7_26 InlineTextBox "Tu carrito está vacío"
+            uid=7_27 ignored
+            uid=7_28 ignored
+              uid=7_29 ignored
+                uid=7_30 ignored
+                  uid=7_31 StaticText "1"
+                    uid=7_32 InlineTextBox "1"
+                uid=7_33 StaticText "Selecciona tus productos favoritos"
+                  uid=7_34 InlineTextBox "Selecciona tus productos favoritos"
+              uid=7_35 ignored
+                uid=7_36 ignored
+                  uid=7_37 StaticText "2"
+                    uid=7_38 InlineTextBox "2"
+                uid=7_39 StaticText "Revisa tu carrito"
+                  uid=7_40 InlineTextBox "Revisa tu carrito"
+              uid=7_41 ignored
+                uid=7_42 ignored
+                  uid=7_43 StaticText "3"
+                    uid=7_44 InlineTextBox "3"
+                uid=7_45 StaticText "Haz clic en "Finalizar Compra""
+                  uid=7_46 InlineTextBox "Haz clic en "Finalizar Compra""
+          uid=7_47 ignored
+            uid=7_48 generic
+              uid=7_49 StaticText "Total: "
+                uid=7_50 InlineTextBox "Total: "
+              uid=7_51 StaticText "$0"
+                uid=7_52 InlineTextBox "$0"
+            uid=7_53 button "Continuar" disableable disabled
+              uid=7_54 StaticText "Continuar"
+                uid=7_55 InlineTextBox "Continuar"
+        uid=7_56 generic
+          uid=7_57 ignored
+            uid=7_58 StaticText "🛒"
+              uid=7_59 InlineTextBox "🛒"
+          uid=7_60 ignored
+            uid=7_61 StaticText "0"
+              uid=7_62 InlineTextBox "0"
+        uid=7_63 generic
+          uid=7_64 ignored
+            uid=7_65 ignored
+              uid=7_66 generic
+                uid=7_67 ignored
+                  uid=7_68 StaticText "1"
+                    uid=7_69 InlineTextBox "1"
+                uid=7_70 ignored
+                  uid=7_71 StaticText "Productos"
+                    uid=7_72 InlineTextBox "Productos"
+              uid=7_73 ignored
+              uid=7_74 generic
+                uid=7_75 ignored
+                  uid=7_76 StaticText "2"
+                    uid=7_77 InlineTextBox "2"
+                uid=7_78 ignored
+                  uid=7_79 StaticText "Envío"
+                    uid=7_80 InlineTextBox "Envío"
+              uid=7_81 ignored
+              uid=7_82 generic
+                uid=7_83 ignored
+                  uid=7_84 StaticText "3"
+                    uid=7_85 InlineTextBox "3"
+                uid=7_86 ignored
+                  uid=7_87 StaticText "Pago"
+                    uid=7_88 InlineTextBox "Pago"
+        uid=7_89 ignored
+          uid=7_90 ignored
+            uid=7_91 ignored
+              uid=7_92 ignored
+                uid=7_93 heading "Guillerminas Negras" level="2"
+                  uid=7_94 StaticText "Guillerminas Negras"
+                    uid=7_95 InlineTextBox "Guillerminas Negras"
+                uid=7_96 generic
+                  uid=7_97 generic
+                    uid=7_98 ignored
+                      uid=7_99 ignored
+                        uid=7_100 generic
+                          uid=7_101 image "Guillerminas Negras - Vista principal" url="http://localhost:8000/guillerminafotos/1.webp"
+                      uid=7_102 ignored
+                        uid=7_103 generic
+                          uid=7_104 image "Guillerminas Negras - Vista lateral" url="http://localhost:8000/guillerminafotos/3.webp"
+                      uid=7_105 ignored
+                        uid=7_106 generic
+                          uid=7_107 image "Guillerminas Negras - Vista superior" url="http://localhost:8000/guillerminafotos/5.webp"
+                      uid=7_108 ignored
+                        uid=7_109 generic
+                          uid=7_110 image "Guillerminas Negras - Detalle calzado" url="http://localhost:8000/guillerminafotos/7.webp"
+                      uid=7_111 ignored
+                        uid=7_112 generic
+                          uid=7_113 image "Guillerminas Negras - Vista frontal completa" url="http://localhost:8000/guillerminafotos/9.webp"
+                      uid=7_114 ignored
+                        uid=7_115 generic
+                          uid=7_116 image "Guillerminas Negras - Vista diagonal" url="http://localhost:8000/guillerminafotos/12.webp"
+                      uid=7_117 ignored
+                        uid=7_118 generic
+                          uid=7_119 image "Guillerminas Negras - Vista de perfil" url="http://localhost:8000/guillerminafotos/15.webp"
+                      uid=7_120 ignored
+                        uid=7_121 generic
+                          uid=7_122 image "Guillerminas Negras - Detalle suela" url="http://localhost:8000/guillerminafotos/18.webp"
+                      uid=7_123 ignored
+                        uid=7_124 generic
+                          uid=7_125 image "Guillerminas Negras - Vista desde atrás" url="http://localhost:8000/guillerminafotos/21.webp"
+                      uid=7_126 ignored
+                        uid=7_127 generic
+                          uid=7_128 image "Guillerminas Negras - Detalle material" url="http://localhost:8000/guillerminafotos/24.webp"
+                      uid=7_129 ignored
+                        uid=7_130 generic
+                          uid=7_131 image "Guillerminas Negras - Vista ambiente" url="http://localhost:8000/guillerminafotos/27.webp"
+                      uid=7_132 ignored
+                        uid=7_133 generic
+                          uid=7_134 image "Guillerminas Negras - Combinación estilizada" url="http://localhost:8000/guillerminafotos/30.webp"
+                      uid=7_135 ignored
+                        uid=7_136 generic
+                          uid=7_137 image "Guillerminas Negras - Detalle costura" url="http://localhost:8000/guillerminafotos/33.webp"
+                      uid=7_138 ignored
+                        uid=7_139 generic
+                          uid=7_140 image "Guillerminas Negras - Vista cerrada" url="http://localhost:8000/guillerminafotos/36.webp"
+                  uid=7_141 button "Anterior"
+                    uid=7_142 image
+                  uid=7_143 button "Siguiente"
+                    uid=7_144 image
+                  uid=7_145 generic
+                    uid=7_146 generic
+                      uid=7_147 ignored
+                        uid=7_148 button "Guillerminas Negras - Vista principal"
+                          uid=7_149 image "Guillerminas Negras - Vista principal" url="http://localhost:8000/guillerminafotos/1.webp"
+                        uid=7_150 button "Guillerminas Negras - Vista lateral"
+                          uid=7_151 image "Guillerminas Negras - Vista lateral" url="http://localhost:8000/guillerminafotos/3.webp"
+                        uid=7_152 button "Guillerminas Negras - Vista superior"
+                          uid=7_153 image "Guillerminas Negras - Vista superior" url="http://localhost:8000/guillerminafotos/5.webp"
+                        uid=7_154 button "Guillerminas Negras - Detalle calzado"
+                          uid=7_155 image "Guillerminas Negras - Detalle calzado" url="http://localhost:8000/guillerminafotos/7.webp"
+                        uid=7_156 button "Guillerminas Negras - Vista frontal completa"
+                          uid=7_157 image "Guillerminas Negras - Vista frontal completa" url="http://localhost:8000/guillerminafotos/9.webp"
+                        uid=7_158 button "Guillerminas Negras - Vista diagonal"
+                          uid=7_159 image "Guillerminas Negras - Vista diagonal" url="http://localhost:8000/guillerminafotos/12.webp"
+                        uid=7_160 button "Guillerminas Negras - Vista de perfil"
+                          uid=7_161 image "Guillerminas Negras - Vista de perfil" url="http://localhost:8000/guillerminafotos/15.webp"
+                        uid=7_162 button "Guillerminas Negras - Detalle suela"
+                          uid=7_163 image "Guillerminas Negras - Detalle suela" url="http://localhost:8000/guillerminafotos/18.webp"
+                        uid=7_164 button "Guillerminas Negras - Vista desde atrás"
+                          uid=7_165 image "Guillerminas Negras - Vista desde atrás" url="http://localhost:8000/guillerminafotos/21.webp"
+                        uid=7_166 button "Guillerminas Negras - Detalle material"
+                          uid=7_167 image "Guillerminas Negras - Detalle material" url="http://localhost:8000/guillerminafotos/24.webp"
+                        uid=7_168 button "Guillerminas Negras - Vista ambiente"
+                          uid=7_169 image "Guillerminas Negras - Vista ambiente" url="http://localhost:8000/guillerminafotos/27.webp"
+                        uid=7_170 button "Guillerminas Negras - Combinación estilizada"
+                          uid=7_171 image "Guillerminas Negras - Combinación estilizada" url="http://localhost:8000/guillerminafotos/30.webp"
+                        uid=7_172 button "Guillerminas Negras - Detalle costura"
+                          uid=7_173 image "Guillerminas Negras - Detalle costura" url="http://localhost:8000/guillerminafotos/33.webp"
+                        uid=7_174 button "Guillerminas Negras - Vista cerrada"
+                          uid=7_175 image "Guillerminas Negras - Vista cerrada" url="http://localhost:8000/guillerminafotos/36.webp"
+                uid=7_176 ignored
+                  uid=7_177 ignored
+                    uid=7_178 ignored
+                      uid=7_179 StaticText "NUEVA TEMPORADA"
+                        uid=7_180 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_181 ignored
+                      uid=7_182 StaticText "STOCK LIMITADO"
+                        uid=7_183 InlineTextBox "STOCK LIMITADO"
+                  uid=7_184 paragraph
+                    uid=7_185 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=7_186 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano "
+                      uid=7_187 InlineTextBox "2025! Nuestras guillerminas negras son el complemento "
+                      uid=7_188 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo "
+                      uid=7_189 InlineTextBox "te va a encantar."
+                  uid=7_190 ignored
+                    uid=7_191 ignored
+                      uid=7_192 paragraph
+                        uid=7_193 StaticText "Material"
+                          uid=7_194 InlineTextBox "Material"
+                      uid=7_195 paragraph
+                        uid=7_196 StaticText "Tela reforzada super flexible"
+                          uid=7_197 InlineTextBox "Tela reforzada "
+                          uid=7_198 InlineTextBox "super flexible"
+                    uid=7_199 ignored
+                      uid=7_200 paragraph
+                        uid=7_201 StaticText "Suela"
+                          uid=7_202 InlineTextBox "Suela"
+                      uid=7_203 paragraph
+                        uid=7_204 StaticText "Expanso"
+                          uid=7_205 InlineTextBox "Expanso"
+                    uid=7_206 ignored
+                      uid=7_207 paragraph
+                        uid=7_208 StaticText "Envío"
+                          uid=7_209 InlineTextBox "Envío"
+                      uid=7_210 paragraph
+                        uid=7_211 StaticText "GRATIS 🚚"
+                          uid=7_212 InlineTextBox "GRATIS 🚚"
+                  uid=7_213 ignored
+                    uid=7_214 ignored
+                      uid=7_215 ignored
+                        uid=7_216 paragraph
+                          uid=7_217 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_218 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_219 paragraph
+                          uid=7_220 StaticText "2 PARES POR"
+                            uid=7_221 InlineTextBox "2 PARES POR"
+                        uid=7_222 paragraph
+                          uid=7_223 StaticText "$95.000"
+                            uid=7_224 InlineTextBox "$95.000"
+                        uid=7_225 paragraph
+                          uid=7_226 StaticText "AHORRÁS $25.000"
+                            uid=7_227 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_228 ignored
+                        uid=7_229 paragraph
+                          uid=7_230 StaticText "Precio individual"
+                            uid=7_231 InlineTextBox "Precio individual"
+                        uid=7_232 paragraph
+                          uid=7_233 StaticText "$60.000"
+                            uid=7_234 InlineTextBox "$60.000"
+                      uid=7_235 paragraph
+                        uid=7_236 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_237 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_238 ignored
+                    uid=7_239 ignored
+                      uid=7_240 ignored
+                        uid=7_241 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_242 MenuListPopup
+                            uid=7_243 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_244 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_245 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_246 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_247 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_248 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_249 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_250 generic
+                    uid=7_251 button " Agregar al Carrito"
+                      uid=7_252 image
+                      uid=7_253 StaticText " Agregar al Carrito"
+                        uid=7_254 InlineTextBox " Agregar al Carrito"
+            uid=7_255 ignored
+              uid=7_256 ignored
+                uid=7_257 heading "Guillerminas Camel" level="2"
+                  uid=7_258 StaticText "Guillerminas Camel"
+                    uid=7_259 InlineTextBox "Guillerminas Camel"
+                uid=7_260 generic
+                  uid=7_261 generic
+                    uid=7_262 ignored
+                      uid=7_263 ignored
+                        uid=7_264 generic
+                          uid=7_265 image "Guillerminas Camel - Vista 1" url="http://localhost:8000/guillerminafotos/guillerminascamel/1.webp"
+                      uid=7_266 ignored
+                        uid=7_267 generic
+                          uid=7_268 image "Guillerminas Camel - Vista 2" url="http://localhost:8000/guillerminafotos/guillerminascamel/2.webp"
+                      uid=7_269 ignored
+                        uid=7_270 generic
+                          uid=7_271 image "Guillerminas Camel - Vista 3" url="http://localhost:8000/guillerminafotos/guillerminascamel/3.webp"
+                      uid=7_272 ignored
+                        uid=7_273 generic
+                          uid=7_274 image "Guillerminas Camel - Vista 4" url="http://localhost:8000/guillerminafotos/guillerminascamel/4.webp"
+                      uid=7_275 ignored
+                        uid=7_276 generic
+                          uid=7_277 image "Guillerminas Camel - Vista 5" url="http://localhost:8000/guillerminafotos/guillerminascamel/5.webp"
+                      uid=7_278 ignored
+                        uid=7_279 generic
+                          uid=7_280 image "Guillerminas Camel - Vista 6" url="http://localhost:8000/guillerminafotos/guillerminascamel/6.webp"
+                      uid=7_281 ignored
+                        uid=7_282 generic
+                          uid=7_283 image "Guillerminas Camel - Vista 7" url="http://localhost:8000/guillerminafotos/guillerminascamel/7.webp"
+                      uid=7_284 ignored
+                        uid=7_285 generic
+                          uid=7_286 image "Guillerminas Camel - Vista 8" url="http://localhost:8000/guillerminafotos/guillerminascamel/8.webp"
+                      uid=7_287 ignored
+                        uid=7_288 generic
+                          uid=7_289 image "Guillerminas Camel - Vista 9" url="http://localhost:8000/guillerminafotos/guillerminascamel/9.webp"
+                      uid=7_290 ignored
+                        uid=7_291 generic
+                          uid=7_292 image "Guillerminas Camel - Vista 10" url="http://localhost:8000/guillerminafotos/guillerminascamel/10.webp"
+                      uid=7_293 ignored
+                        uid=7_294 generic
+                          uid=7_295 image "Guillerminas Camel - Vista 11" url="http://localhost:8000/guillerminafotos/guillerminascamel/11.webp"
+                      uid=7_296 ignored
+                        uid=7_297 generic
+                          uid=7_298 image "Guillerminas Camel - Vista 12" url="http://localhost:8000/guillerminafotos/guillerminascamel/12.webp"
+                      uid=7_299 ignored
+                        uid=7_300 generic
+                          uid=7_301 image "Guillerminas Camel - Vista 13" url="http://localhost:8000/guillerminafotos/guillerminascamel/13.webp"
+                      uid=7_302 ignored
+                        uid=7_303 generic
+                          uid=7_304 image "Guillerminas Camel - Vista 14" url="http://localhost:8000/guillerminafotos/guillerminascamel/14.webp"
+                      uid=7_305 ignored
+                        uid=7_306 generic
+                          uid=7_307 image "Guillerminas Camel - Vista 15" url="http://localhost:8000/guillerminafotos/guillerminascamel/15.webp"
+                      uid=7_308 ignored
+                        uid=7_309 generic
+                          uid=7_310 image "Guillerminas Camel - Vista 16" url="http://localhost:8000/guillerminafotos/guillerminascamel/16.webp"
+                      uid=7_311 ignored
+                        uid=7_312 generic
+                          uid=7_313 image "Guillerminas Camel - Vista 17" url="http://localhost:8000/guillerminafotos/guillerminascamel/17.webp"
+                      uid=7_314 ignored
+                        uid=7_315 generic
+                          uid=7_316 image "Guillerminas Camel - Vista 18" url="http://localhost:8000/guillerminafotos/guillerminascamel/18.webp"
+                  uid=7_317 button "Anterior"
+                    uid=7_318 image
+                  uid=7_319 button "Siguiente"
+                    uid=7_320 image
+                  uid=7_321 generic
+                    uid=7_322 generic
+                      uid=7_323 ignored
+                        uid=7_324 button "Guillerminas Camel - Vista 1"
+                          uid=7_325 image "Guillerminas Camel - Vista 1" url="http://localhost:8000/guillerminafotos/guillerminascamel/1.webp"
+                        uid=7_326 button "Guillerminas Camel - Vista 2"
+                          uid=7_327 image "Guillerminas Camel - Vista 2" url="http://localhost:8000/guillerminafotos/guillerminascamel/2.webp"
+                        uid=7_328 button "Guillerminas Camel - Vista 3"
+                          uid=7_329 image "Guillerminas Camel - Vista 3" url="http://localhost:8000/guillerminafotos/guillerminascamel/3.webp"
+                        uid=7_330 button "Guillerminas Camel - Vista 4"
+                          uid=7_331 image "Guillerminas Camel - Vista 4" url="http://localhost:8000/guillerminafotos/guillerminascamel/4.webp"
+                        uid=7_332 button "Guillerminas Camel - Vista 5"
+                          uid=7_333 image "Guillerminas Camel - Vista 5" url="http://localhost:8000/guillerminafotos/guillerminascamel/5.webp"
+                        uid=7_334 button "Guillerminas Camel - Vista 6"
+                          uid=7_335 image "Guillerminas Camel - Vista 6" url="http://localhost:8000/guillerminafotos/guillerminascamel/6.webp"
+                        uid=7_336 button "Guillerminas Camel - Vista 7"
+                          uid=7_337 image "Guillerminas Camel - Vista 7" url="http://localhost:8000/guillerminafotos/guillerminascamel/7.webp"
+                        uid=7_338 button "Guillerminas Camel - Vista 8"
+                          uid=7_339 image "Guillerminas Camel - Vista 8" url="http://localhost:8000/guillerminafotos/guillerminascamel/8.webp"
+                        uid=7_340 button "Guillerminas Camel - Vista 9"
+                          uid=7_341 image "Guillerminas Camel - Vista 9" url="http://localhost:8000/guillerminafotos/guillerminascamel/9.webp"
+                        uid=7_342 button "Guillerminas Camel - Vista 10"
+                          uid=7_343 image "Guillerminas Camel - Vista 10" url="http://localhost:8000/guillerminafotos/guillerminascamel/10.webp"
+                        uid=7_344 button "Guillerminas Camel - Vista 11"
+                          uid=7_345 image "Guillerminas Camel - Vista 11" url="http://localhost:8000/guillerminafotos/guillerminascamel/11.webp"
+                        uid=7_346 button "Guillerminas Camel - Vista 12"
+                          uid=7_347 image "Guillerminas Camel - Vista 12" url="http://localhost:8000/guillerminafotos/guillerminascamel/12.webp"
+                        uid=7_348 button "Guillerminas Camel - Vista 13"
+                          uid=7_349 image "Guillerminas Camel - Vista 13" url="http://localhost:8000/guillerminafotos/guillerminascamel/13.webp"
+                        uid=7_350 button "Guillerminas Camel - Vista 14"
+                          uid=7_351 image "Guillerminas Camel - Vista 14" url="http://localhost:8000/guillerminafotos/guillerminascamel/14.webp"
+                        uid=7_352 button "Guillerminas Camel - Vista 15"
+                          uid=7_353 image "Guillerminas Camel - Vista 15" url="http://localhost:8000/guillerminafotos/guillerminascamel/15.webp"
+                        uid=7_354 button "Guillerminas Camel - Vista 16"
+                          uid=7_355 image "Guillerminas Camel - Vista 16" url="http://localhost:8000/guillerminafotos/guillerminascamel/16.webp"
+                        uid=7_356 button "Guillerminas Camel - Vista 17"
+                          uid=7_357 image "Guillerminas Camel - Vista 17" url="http://localhost:8000/guillerminafotos/guillerminascamel/17.webp"
+                        uid=7_358 button "Guillerminas Camel - Vista 18"
+                          uid=7_359 image "Guillerminas Camel - Vista 18" url="http://localhost:8000/guillerminafotos/guillerminascamel/18.webp"
+                uid=7_360 ignored
+                  uid=7_361 ignored
+                    uid=7_362 ignored
+                      uid=7_363 StaticText "NUEVA TEMPORADA"
+                        uid=7_364 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_365 ignored
+                      uid=7_366 StaticText "STOCK LIMITADO"
+                        uid=7_367 InlineTextBox "STOCK LIMITADO"
+                  uid=7_368 paragraph
+                    uid=7_369 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=7_370 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano "
+                      uid=7_371 InlineTextBox "2025! Nuestras guillerminas camel son el complemento "
+                      uid=7_372 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo "
+                      uid=7_373 InlineTextBox "te va a encantar."
+                  uid=7_374 ignored
+                    uid=7_375 ignored
+                      uid=7_376 paragraph
+                        uid=7_377 StaticText "Material"
+                          uid=7_378 InlineTextBox "Material"
+                      uid=7_379 paragraph
+                        uid=7_380 StaticText "Tela reforzada super flexible"
+                          uid=7_381 InlineTextBox "Tela reforzada "
+                          uid=7_382 InlineTextBox "super flexible"
+                    uid=7_383 ignored
+                      uid=7_384 paragraph
+                        uid=7_385 StaticText "Suela"
+                          uid=7_386 InlineTextBox "Suela"
+                      uid=7_387 paragraph
+                        uid=7_388 StaticText "Expanso"
+                          uid=7_389 InlineTextBox "Expanso"
+                    uid=7_390 ignored
+                      uid=7_391 paragraph
+                        uid=7_392 StaticText "Envío"
+                          uid=7_393 InlineTextBox "Envío"
+                      uid=7_394 paragraph
+                        uid=7_395 StaticText "GRATIS 🚚"
+                          uid=7_396 InlineTextBox "GRATIS 🚚"
+                  uid=7_397 ignored
+                    uid=7_398 ignored
+                      uid=7_399 ignored
+                        uid=7_400 paragraph
+                          uid=7_401 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_402 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_403 paragraph
+                          uid=7_404 StaticText "2 PARES POR"
+                            uid=7_405 InlineTextBox "2 PARES POR"
+                        uid=7_406 paragraph
+                          uid=7_407 StaticText "$95.000"
+                            uid=7_408 InlineTextBox "$95.000"
+                        uid=7_409 paragraph
+                          uid=7_410 StaticText "AHORRÁS $25.000"
+                            uid=7_411 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_412 ignored
+                        uid=7_413 paragraph
+                          uid=7_414 StaticText "Precio individual"
+                            uid=7_415 InlineTextBox "Precio individual"
+                        uid=7_416 paragraph
+                          uid=7_417 StaticText "$60.000"
+                            uid=7_418 InlineTextBox "$60.000"
+                      uid=7_419 paragraph
+                        uid=7_420 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_421 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_422 ignored
+                    uid=7_423 ignored
+                      uid=7_424 ignored
+                        uid=7_425 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_426 MenuListPopup
+                            uid=7_427 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_428 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_429 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_430 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_431 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_432 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_433 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_434 generic
+                    uid=7_435 button " Agregar al Carrito"
+                      uid=7_436 image
+                      uid=7_437 StaticText " Agregar al Carrito"
+                        uid=7_438 InlineTextBox " Agregar al Carrito"
+            uid=7_439 ignored
+              uid=7_440 ignored
+                uid=7_441 heading "Guillerminas Blancas" level="2"
+                  uid=7_442 StaticText "Guillerminas Blancas"
+                    uid=7_443 InlineTextBox "Guillerminas Blancas"
+                uid=7_444 generic
+                  uid=7_445 generic
+                    uid=7_446 ignored
+                      uid=7_447 ignored
+                        uid=7_448 generic
+                          uid=7_449 image "Guillerminas Blancas - Vista 1" url="http://localhost:8000/guillerminafotos/guillerminasblancas/1.webp"
+                      uid=7_450 ignored
+                        uid=7_451 generic
+                          uid=7_452 image "Guillerminas Blancas - Vista 2" url="http://localhost:8000/guillerminafotos/guillerminasblancas/2.webp"
+                      uid=7_453 ignored
+                        uid=7_454 generic
+                          uid=7_455 image "Guillerminas Blancas - Vista 3" url="http://localhost:8000/guillerminafotos/guillerminasblancas/3.webp"
+                      uid=7_456 ignored
+                        uid=7_457 generic
+                          uid=7_458 image "Guillerminas Blancas - Vista 4" url="http://localhost:8000/guillerminafotos/guillerminasblancas/4.webp"
+                      uid=7_459 ignored
+                        uid=7_460 generic
+                          uid=7_461 image "Guillerminas Blancas - Vista 5" url="http://localhost:8000/guillerminafotos/guillerminasblancas/5.webp"
+                      uid=7_462 ignored
+                        uid=7_463 generic
+                          uid=7_464 image "Guillerminas Blancas - Vista 6" url="http://localhost:8000/guillerminafotos/guillerminasblancas/6.webp"
+                      uid=7_465 ignored
+                        uid=7_466 generic
+                          uid=7_467 image "Guillerminas Blancas - Vista 7" url="http://localhost:8000/guillerminafotos/guillerminasblancas/7.webp"
+                      uid=7_468 ignored
+                        uid=7_469 generic
+                          uid=7_470 image "Guillerminas Blancas - Vista 8" url="http://localhost:8000/guillerminafotos/guillerminasblancas/8.webp"
+                      uid=7_471 ignored
+                        uid=7_472 generic
+                          uid=7_473 image "Guillerminas Blancas - Vista 9" url="http://localhost:8000/guillerminafotos/guillerminasblancas/9.webp"
+                      uid=7_474 ignored
+                        uid=7_475 generic
+                          uid=7_476 image "Guillerminas Blancas - Vista 10" url="http://localhost:8000/guillerminafotos/guillerminasblancas/10.webp"
+                      uid=7_477 ignored
+                        uid=7_478 generic
+                          uid=7_479 image "Guillerminas Blancas - Vista 11" url="http://localhost:8000/guillerminafotos/guillerminasblancas/11.webp"
+                      uid=7_480 ignored
+                        uid=7_481 generic
+                          uid=7_482 image "Guillerminas Blancas - Vista 12" url="http://localhost:8000/guillerminafotos/guillerminasblancas/12.webp"
+                      uid=7_483 ignored
+                        uid=7_484 generic
+                          uid=7_485 image "Guillerminas Blancas - Vista 13" url="http://localhost:8000/guillerminafotos/guillerminasblancas/13.webp"
+                      uid=7_486 ignored
+                        uid=7_487 generic
+                          uid=7_488 image "Guillerminas Blancas - Vista 14" url="http://localhost:8000/guillerminafotos/guillerminasblancas/14.webp"
+                      uid=7_489 ignored
+                        uid=7_490 generic
+                          uid=7_491 image "Guillerminas Blancas - Vista 15" url="http://localhost:8000/guillerminafotos/guillerminasblancas/15.webp"
+                      uid=7_492 ignored
+                        uid=7_493 generic
+                          uid=7_494 image "Guillerminas Blancas - Vista 16" url="http://localhost:8000/guillerminafotos/guillerminasblancas/16.webp"
+                  uid=7_495 button "Anterior"
+                    uid=7_496 image
+                  uid=7_497 button "Siguiente"
+                    uid=7_498 image
+                  uid=7_499 generic
+                    uid=7_500 generic
+                      uid=7_501 ignored
+                        uid=7_502 button "Guillerminas Blancas - Vista 1"
+                          uid=7_503 image "Guillerminas Blancas - Vista 1" url="http://localhost:8000/guillerminafotos/guillerminasblancas/1.webp"
+                        uid=7_504 button "Guillerminas Blancas - Vista 2"
+                          uid=7_505 image "Guillerminas Blancas - Vista 2" url="http://localhost:8000/guillerminafotos/guillerminasblancas/2.webp"
+                        uid=7_506 button "Guillerminas Blancas - Vista 3"
+                          uid=7_507 image "Guillerminas Blancas - Vista 3" url="http://localhost:8000/guillerminafotos/guillerminasblancas/3.webp"
+                        uid=7_508 button "Guillerminas Blancas - Vista 4"
+                          uid=7_509 image "Guillerminas Blancas - Vista 4" url="http://localhost:8000/guillerminafotos/guillerminasblancas/4.webp"
+                        uid=7_510 button "Guillerminas Blancas - Vista 5"
+                          uid=7_511 image "Guillerminas Blancas - Vista 5" url="http://localhost:8000/guillerminafotos/guillerminasblancas/5.webp"
+                        uid=7_512 button "Guillerminas Blancas - Vista 6"
+                          uid=7_513 image "Guillerminas Blancas - Vista 6" url="http://localhost:8000/guillerminafotos/guillerminasblancas/6.webp"
+                        uid=7_514 button "Guillerminas Blancas - Vista 7"
+                          uid=7_515 image "Guillerminas Blancas - Vista 7" url="http://localhost:8000/guillerminafotos/guillerminasblancas/7.webp"
+                        uid=7_516 button "Guillerminas Blancas - Vista 8"
+                          uid=7_517 image "Guillerminas Blancas - Vista 8" url="http://localhost:8000/guillerminafotos/guillerminasblancas/8.webp"
+                        uid=7_518 button "Guillerminas Blancas - Vista 9"
+                          uid=7_519 image "Guillerminas Blancas - Vista 9" url="http://localhost:8000/guillerminafotos/guillerminasblancas/9.webp"
+                        uid=7_520 button "Guillerminas Blancas - Vista 10"
+                          uid=7_521 image "Guillerminas Blancas - Vista 10" url="http://localhost:8000/guillerminafotos/guillerminasblancas/10.webp"
+                        uid=7_522 button "Guillerminas Blancas - Vista 11"
+                          uid=7_523 image "Guillerminas Blancas - Vista 11" url="http://localhost:8000/guillerminafotos/guillerminasblancas/11.webp"
+                        uid=7_524 button "Guillerminas Blancas - Vista 12"
+                          uid=7_525 image "Guillerminas Blancas - Vista 12" url="http://localhost:8000/guillerminafotos/guillerminasblancas/12.webp"
+                        uid=7_526 button "Guillerminas Blancas - Vista 13"
+                          uid=7_527 image "Guillerminas Blancas - Vista 13" url="http://localhost:8000/guillerminafotos/guillerminasblancas/13.webp"
+                        uid=7_528 button "Guillerminas Blancas - Vista 14"
+                          uid=7_529 image "Guillerminas Blancas - Vista 14" url="http://localhost:8000/guillerminafotos/guillerminasblancas/14.webp"
+                        uid=7_530 button "Guillerminas Blancas - Vista 15"
+                          uid=7_531 image "Guillerminas Blancas - Vista 15" url="http://localhost:8000/guillerminafotos/guillerminasblancas/15.webp"
+                        uid=7_532 button "Guillerminas Blancas - Vista 16"
+                          uid=7_533 image "Guillerminas Blancas - Vista 16" url="http://localhost:8000/guillerminafotos/guillerminasblancas/16.webp"
+                uid=7_534 ignored
+                  uid=7_535 ignored
+                    uid=7_536 ignored
+                      uid=7_537 StaticText "NUEVA TEMPORADA"
+                        uid=7_538 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_539 ignored
+                      uid=7_540 StaticText "STOCK LIMITADO"
+                        uid=7_541 InlineTextBox "STOCK LIMITADO"
+                  uid=7_542 paragraph
+                    uid=7_543 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=7_544 InlineTextBox "¡Renovate para la nueva temporada Primavera-Verano "
+                      uid=7_545 InlineTextBox "2025! Nuestras guillerminas blancas son el complemento "
+                      uid=7_546 InlineTextBox "ideal para cualquier look. Su diseño versátil y ultra cómodo "
+                      uid=7_547 InlineTextBox "te va a encantar."
+                  uid=7_548 ignored
+                    uid=7_549 ignored
+                      uid=7_550 paragraph
+                        uid=7_551 StaticText "Material"
+                          uid=7_552 InlineTextBox "Material"
+                      uid=7_553 paragraph
+                        uid=7_554 StaticText "Tela reforzada super flexible"
+                          uid=7_555 InlineTextBox "Tela reforzada "
+                          uid=7_556 InlineTextBox "super flexible"
+                    uid=7_557 ignored
+                      uid=7_558 paragraph
+                        uid=7_559 StaticText "Suela"
+                          uid=7_560 InlineTextBox "Suela"
+                      uid=7_561 paragraph
+                        uid=7_562 StaticText "Expanso"
+                          uid=7_563 InlineTextBox "Expanso"
+                    uid=7_564 ignored
+                      uid=7_565 paragraph
+                        uid=7_566 StaticText "Envío"
+                          uid=7_567 InlineTextBox "Envío"
+                      uid=7_568 paragraph
+                        uid=7_569 StaticText "GRATIS 🚚"
+                          uid=7_570 InlineTextBox "GRATIS 🚚"
+                  uid=7_571 ignored
+                    uid=7_572 ignored
+                      uid=7_573 ignored
+                        uid=7_574 paragraph
+                          uid=7_575 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_576 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_577 paragraph
+                          uid=7_578 StaticText "2 PARES POR"
+                            uid=7_579 InlineTextBox "2 PARES POR"
+                        uid=7_580 paragraph
+                          uid=7_581 StaticText "$95.000"
+                            uid=7_582 InlineTextBox "$95.000"
+                        uid=7_583 paragraph
+                          uid=7_584 StaticText "AHORRÁS $25.000"
+                            uid=7_585 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_586 ignored
+                        uid=7_587 paragraph
+                          uid=7_588 StaticText "Precio individual"
+                            uid=7_589 InlineTextBox "Precio individual"
+                        uid=7_590 paragraph
+                          uid=7_591 StaticText "$60.000"
+                            uid=7_592 InlineTextBox "$60.000"
+                      uid=7_593 paragraph
+                        uid=7_594 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_595 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_596 ignored
+                    uid=7_597 ignored
+                      uid=7_598 ignored
+                        uid=7_599 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_600 MenuListPopup
+                            uid=7_601 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_602 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_603 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_604 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_605 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_606 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_607 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_608 generic
+                    uid=7_609 button " Agregar al Carrito"
+                      uid=7_610 image
+                      uid=7_611 StaticText " Agregar al Carrito"
+                        uid=7_612 InlineTextBox " Agregar al Carrito"
+            uid=7_613 ignored
+              uid=7_614 ignored
+                uid=7_615 heading "Birk Negras" level="2"
+                  uid=7_616 StaticText "Birk Negras"
+                    uid=7_617 InlineTextBox "Birk Negras"
+                uid=7_618 generic
+                  uid=7_619 generic
+                    uid=7_620 ignored
+                      uid=7_621 ignored
+                        uid=7_622 generic
+                          uid=7_623 image "Birk Negras - Vista 1" url="http://localhost:8000/astrocline/birknegras/1.webp"
+                      uid=7_624 ignored
+                        uid=7_625 generic
+                          uid=7_626 image "Birk Negras - Vista 2" url="http://localhost:8000/astrocline/birknegras/2.webp"
+                      uid=7_627 ignored
+                        uid=7_628 generic
+                          uid=7_629 image "Birk Negras - Vista 3" url="http://localhost:8000/astrocline/birknegras/3.webp"
+                      uid=7_630 ignored
+                        uid=7_631 generic
+                          uid=7_632 image "Birk Negras - Vista 4" url="http://localhost:8000/astrocline/birknegras/4.webp"
+                      uid=7_633 ignored
+                        uid=7_634 generic
+                          uid=7_635 image "Birk Negras - Vista 5" url="http://localhost:8000/astrocline/birknegras/5.webp"
+                      uid=7_636 ignored
+                        uid=7_637 generic
+                          uid=7_638 image "Birk Negras - Vista 6" url="http://localhost:8000/astrocline/birknegras/6.webp"
+                      uid=7_639 ignored
+                        uid=7_640 generic
+                          uid=7_641 image "Birk Negras - Vista 7" url="http://localhost:8000/astrocline/birknegras/7.webp"
+                  uid=7_642 button "Anterior"
+                    uid=7_643 image
+                  uid=7_644 button "Siguiente"
+                    uid=7_645 image
+                  uid=7_646 generic
+                    uid=7_647 generic
+                      uid=7_648 ignored
+                        uid=7_649 button "Birk Negras - Thumbnail 1"
+                          uid=7_650 image "Birk Negras - Thumbnail 1" url="http://localhost:8000/astrocline/birknegras/1.webp"
+                        uid=7_651 button "Birk Negras - Thumbnail 2"
+                          uid=7_652 image "Birk Negras - Thumbnail 2" url="http://localhost:8000/astrocline/birknegras/2.webp"
+                        uid=7_653 button "Birk Negras - Thumbnail 3"
+                          uid=7_654 image "Birk Negras - Thumbnail 3" url="http://localhost:8000/astrocline/birknegras/3.webp"
+                        uid=7_655 button "Birk Negras - Thumbnail 4"
+                          uid=7_656 image "Birk Negras - Thumbnail 4" url="http://localhost:8000/astrocline/birknegras/4.webp"
+                        uid=7_657 button "Birk Negras - Thumbnail 5"
+                          uid=7_658 image "Birk Negras - Thumbnail 5" url="http://localhost:8000/astrocline/birknegras/5.webp"
+                        uid=7_659 button "Birk Negras - Thumbnail 6"
+                          uid=7_660 image "Birk Negras - Thumbnail 6" url="http://localhost:8000/astrocline/birknegras/6.webp"
+                        uid=7_661 button "Birk Negras - Thumbnail 7"
+                          uid=7_662 image "Birk Negras - Thumbnail 7" url="http://localhost:8000/astrocline/birknegras/7.webp"
+                uid=7_663 ignored
+                  uid=7_664 ignored
+                    uid=7_665 ignored
+                      uid=7_666 StaticText "NUEVA TEMPORADA"
+                        uid=7_667 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_668 ignored
+                      uid=7_669 StaticText "STOCK LIMITADO"
+                        uid=7_670 InlineTextBox "STOCK LIMITADO"
+                  uid=7_671 paragraph
+                    uid=7_672 StaticText "Sandalias de ecocuero negro con doble hebilla ajustable, plantilla ergonómica y suela antideslizante. Modernas y minimalistas, cómodas y durables, ideales para usar tanto en casa como en la calle."
+                      uid=7_673 InlineTextBox "Sandalias de ecocuero negro con doble hebilla ajustable, "
+                      uid=7_674 InlineTextBox "plantilla ergonómica y suela antideslizante. Modernas y "
+                      uid=7_675 InlineTextBox "minimalistas, cómodas y durables, ideales para usar tanto "
+                      uid=7_676 InlineTextBox "en casa como en la calle."
+                  uid=7_677 ignored
+                    uid=7_678 ignored
+                      uid=7_679 paragraph
+                        uid=7_680 StaticText "Material"
+                          uid=7_681 InlineTextBox "Material"
+                      uid=7_682 paragraph
+                        uid=7_683 StaticText "Ecocuero"
+                          uid=7_684 InlineTextBox "Ecocuero"
+                    uid=7_685 ignored
+                      uid=7_686 paragraph
+                        uid=7_687 StaticText "Suela"
+                          uid=7_688 InlineTextBox "Suela"
+                      uid=7_689 paragraph
+                        uid=7_690 StaticText "Antideslizante"
+                          uid=7_691 InlineTextBox "Antideslizante"
+                    uid=7_692 ignored
+                      uid=7_693 paragraph
+                        uid=7_694 StaticText "Envío"
+                          uid=7_695 InlineTextBox "Envío"
+                      uid=7_696 paragraph
+                        uid=7_697 StaticText "GRATIS 🚚"
+                          uid=7_698 InlineTextBox "GRATIS 🚚"
+                  uid=7_699 ignored
+                    uid=7_700 ignored
+                      uid=7_701 ignored
+                        uid=7_702 paragraph
+                          uid=7_703 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_704 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_705 paragraph
+                          uid=7_706 StaticText "2 PARES POR"
+                            uid=7_707 InlineTextBox "2 PARES POR"
+                        uid=7_708 paragraph
+                          uid=7_709 StaticText "$95.000"
+                            uid=7_710 InlineTextBox "$95.000"
+                        uid=7_711 paragraph
+                          uid=7_712 StaticText "AHORRÁS $25.000"
+                            uid=7_713 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_714 ignored
+                        uid=7_715 paragraph
+                          uid=7_716 StaticText "Precio individual"
+                            uid=7_717 InlineTextBox "Precio individual"
+                        uid=7_718 paragraph
+                          uid=7_719 StaticText "$60.000"
+                            uid=7_720 InlineTextBox "$60.000"
+                      uid=7_721 paragraph
+                        uid=7_722 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_723 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_724 ignored
+                    uid=7_725 ignored
+                      uid=7_726 ignored
+                        uid=7_727 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_728 MenuListPopup
+                            uid=7_729 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_730 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_731 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_732 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_733 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_734 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_735 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_736 generic
+                    uid=7_737 button " Agregar al Carrito"
+                      uid=7_738 image
+                      uid=7_739 StaticText " Agregar al Carrito"
+                        uid=7_740 InlineTextBox " Agregar al Carrito"
+            uid=7_741 ignored
+              uid=7_742 ignored
+                uid=7_743 heading "Birk Camel" level="2"
+                  uid=7_744 StaticText "Birk Camel"
+                    uid=7_745 InlineTextBox "Birk Camel"
+                uid=7_746 generic
+                  uid=7_747 generic
+                    uid=7_748 ignored
+                      uid=7_749 ignored
+                        uid=7_750 generic
+                          uid=7_751 image "Birk Camel - Vista 1" url="http://localhost:8000/astrocline/birkcamel/1.webp"
+                      uid=7_752 ignored
+                        uid=7_753 generic
+                          uid=7_754 image "Birk Camel - Vista 2" url="http://localhost:8000/astrocline/birkcamel/2.webp"
+                      uid=7_755 ignored
+                        uid=7_756 generic
+                          uid=7_757 image "Birk Camel - Vista 3" url="http://localhost:8000/astrocline/birkcamel/3.webp"
+                      uid=7_758 ignored
+                        uid=7_759 generic
+                          uid=7_760 image "Birk Camel - Vista 4" url="http://localhost:8000/astrocline/birkcamel/4.webp"
+                      uid=7_761 ignored
+                        uid=7_762 generic
+                          uid=7_763 image "Birk Camel - Vista 5" url="http://localhost:8000/astrocline/birkcamel/5.webp"
+                      uid=7_764 ignored
+                        uid=7_765 generic
+                          uid=7_766 image "Birk Camel - Vista 6" url="http://localhost:8000/astrocline/birkcamel/6.webp"
+                      uid=7_767 ignored
+                        uid=7_768 generic
+                          uid=7_769 image "Birk Camel - Vista 7" url="http://localhost:8000/astrocline/birkcamel/7.webp"
+                      uid=7_770 ignored
+                        uid=7_771 generic
+                          uid=7_772 image "Birk Camel - Vista 8" url="http://localhost:8000/astrocline/birkcamel/8.webp"
+                      uid=7_773 ignored
+                        uid=7_774 generic
+                          uid=7_775 image "Birk Camel - Vista 9" url="http://localhost:8000/astrocline/birkcamel/9.webp"
+                      uid=7_776 ignored
+                        uid=7_777 generic
+                          uid=7_778 image "Birk Camel - Vista 10" url="http://localhost:8000/astrocline/birkcamel/10.webp"
+                      uid=7_779 ignored
+                        uid=7_780 generic
+                          uid=7_781 image "Birk Camel - Vista 11" url="http://localhost:8000/astrocline/birkcamel/11.webp"
+                      uid=7_782 ignored
+                        uid=7_783 generic
+                          uid=7_784 image "Birk Camel - Vista 12" url="http://localhost:8000/astrocline/birkcamel/12.webp"
+                  uid=7_785 button "Anterior"
+                    uid=7_786 image
+                  uid=7_787 button "Siguiente"
+                    uid=7_788 image
+                  uid=7_789 generic
+                    uid=7_790 generic
+                      uid=7_791 ignored
+                        uid=7_792 button "Birk Camel - Thumbnail 1"
+                          uid=7_793 image "Birk Camel - Thumbnail 1" url="http://localhost:8000/astrocline/birkcamel/1.webp"
+                        uid=7_794 button "Birk Camel - Thumbnail 2"
+                          uid=7_795 image "Birk Camel - Thumbnail 2" url="http://localhost:8000/astrocline/birkcamel/2.webp"
+                        uid=7_796 button "Birk Camel - Thumbnail 3"
+                          uid=7_797 image "Birk Camel - Thumbnail 3" url="http://localhost:8000/astrocline/birkcamel/3.webp"
+                        uid=7_798 button "Birk Camel - Thumbnail 4"
+                          uid=7_799 image "Birk Camel - Thumbnail 4" url="http://localhost:8000/astrocline/birkcamel/4.webp"
+                        uid=7_800 button "Birk Camel - Thumbnail 5"
+                          uid=7_801 image "Birk Camel - Thumbnail 5" url="http://localhost:8000/astrocline/birkcamel/5.webp"
+                        uid=7_802 button "Birk Camel - Thumbnail 6"
+                          uid=7_803 image "Birk Camel - Thumbnail 6" url="http://localhost:8000/astrocline/birkcamel/6.webp"
+                        uid=7_804 button "Birk Camel - Thumbnail 7"
+                          uid=7_805 image "Birk Camel - Thumbnail 7" url="http://localhost:8000/astrocline/birkcamel/7.webp"
+                        uid=7_806 button "Birk Camel - Thumbnail 8"
+                          uid=7_807 image "Birk Camel - Thumbnail 8" url="http://localhost:8000/astrocline/birkcamel/8.webp"
+                        uid=7_808 button "Birk Camel - Thumbnail 9"
+                          uid=7_809 image "Birk Camel - Thumbnail 9" url="http://localhost:8000/astrocline/birkcamel/9.webp"
+                        uid=7_810 button "Birk Camel - Thumbnail 10"
+                          uid=7_811 image "Birk Camel - Thumbnail 10" url="http://localhost:8000/astrocline/birkcamel/10.webp"
+                        uid=7_812 button "Birk Camel - Thumbnail 11"
+                          uid=7_813 image "Birk Camel - Thumbnail 11" url="http://localhost:8000/astrocline/birkcamel/11.webp"
+                        uid=7_814 button "Birk Camel - Thumbnail 12"
+                          uid=7_815 image "Birk Camel - Thumbnail 12" url="http://localhost:8000/astrocline/birkcamel/12.webp"
+                uid=7_816 ignored
+                  uid=7_817 ignored
+                    uid=7_818 ignored
+                      uid=7_819 StaticText "NUEVA TEMPORADA"
+                        uid=7_820 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_821 ignored
+                      uid=7_822 StaticText "STOCK LIMITADO"
+                        uid=7_823 InlineTextBox "STOCK LIMITADO"
+                  uid=7_824 paragraph
+                    uid=7_825 StaticText "Sandalias de ecocuero camel con doble hebilla ajustable, plantilla ergonómica y suela antideslizante. Modernas y minimalistas, cómodas y durables, ideales para usar tanto en casa como en la calle."
+                      uid=7_826 InlineTextBox "Sandalias de ecocuero camel con doble hebilla ajustable, "
+                      uid=7_827 InlineTextBox "plantilla ergonómica y suela antideslizante. Modernas y "
+                      uid=7_828 InlineTextBox "minimalistas, cómodas y durables, ideales para usar tanto "
+                      uid=7_829 InlineTextBox "en casa como en la calle."
+                  uid=7_830 ignored
+                    uid=7_831 ignored
+                      uid=7_832 paragraph
+                        uid=7_833 StaticText "Material"
+                          uid=7_834 InlineTextBox "Material"
+                      uid=7_835 paragraph
+                        uid=7_836 StaticText "Ecocuero"
+                          uid=7_837 InlineTextBox "Ecocuero"
+                    uid=7_838 ignored
+                      uid=7_839 paragraph
+                        uid=7_840 StaticText "Suela"
+                          uid=7_841 InlineTextBox "Suela"
+                      uid=7_842 paragraph
+                        uid=7_843 StaticText "Antideslizante"
+                          uid=7_844 InlineTextBox "Antideslizante"
+                    uid=7_845 ignored
+                      uid=7_846 paragraph
+                        uid=7_847 StaticText "Envío"
+                          uid=7_848 InlineTextBox "Envío"
+                      uid=7_849 paragraph
+                        uid=7_850 StaticText "GRATIS 🚚"
+                          uid=7_851 InlineTextBox "GRATIS 🚚"
+                  uid=7_852 ignored
+                    uid=7_853 ignored
+                      uid=7_854 ignored
+                        uid=7_855 paragraph
+                          uid=7_856 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_857 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_858 paragraph
+                          uid=7_859 StaticText "2 PARES POR"
+                            uid=7_860 InlineTextBox "2 PARES POR"
+                        uid=7_861 paragraph
+                          uid=7_862 StaticText "$95.000"
+                            uid=7_863 InlineTextBox "$95.000"
+                        uid=7_864 paragraph
+                          uid=7_865 StaticText "AHORRÁS $25.000"
+                            uid=7_866 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_867 ignored
+                        uid=7_868 paragraph
+                          uid=7_869 StaticText "Precio individual"
+                            uid=7_870 InlineTextBox "Precio individual"
+                        uid=7_871 paragraph
+                          uid=7_872 StaticText "$60.000"
+                            uid=7_873 InlineTextBox "$60.000"
+                      uid=7_874 paragraph
+                        uid=7_875 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_876 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_877 ignored
+                    uid=7_878 ignored
+                      uid=7_879 ignored
+                        uid=7_880 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_881 MenuListPopup
+                            uid=7_882 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_883 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_884 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_885 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_886 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_887 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_888 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_889 generic
+                    uid=7_890 button " Agregar al Carrito"
+                      uid=7_891 image
+                      uid=7_892 StaticText " Agregar al Carrito"
+                        uid=7_893 InlineTextBox " Agregar al Carrito"
+            uid=7_894 ignored
+              uid=7_895 ignored
+                uid=7_896 heading "Birk Blancas" level="2"
+                  uid=7_897 StaticText "Birk Blancas"
+                    uid=7_898 InlineTextBox "Birk Blancas"
+                uid=7_899 generic
+                  uid=7_900 generic
+                    uid=7_901 ignored
+                      uid=7_902 ignored
+                        uid=7_903 generic
+                          uid=7_904 image "Birk Blancas - Vista 1" url="http://localhost:8000/astrocline/birkblancas/1.webp"
+                      uid=7_905 ignored
+                        uid=7_906 generic
+                          uid=7_907 image "Birk Blancas - Vista 2" url="http://localhost:8000/astrocline/birkblancas/2.webp"
+                      uid=7_908 ignored
+                        uid=7_909 generic
+                          uid=7_910 image "Birk Blancas - Vista 3" url="http://localhost:8000/astrocline/birkblancas/3.webp"
+                      uid=7_911 ignored
+                        uid=7_912 generic
+                          uid=7_913 image "Birk Blancas - Vista 4" url="http://localhost:8000/astrocline/birkblancas/4.webp"
+                      uid=7_914 ignored
+                        uid=7_915 generic
+                          uid=7_916 image "Birk Blancas - Vista 5" url="http://localhost:8000/astrocline/birkblancas/5.webp"
+                      uid=7_917 ignored
+                        uid=7_918 generic
+                          uid=7_919 image "Birk Blancas - Vista 6" url="http://localhost:8000/astrocline/birkblancas/6.webp"
+                      uid=7_920 ignored
+                        uid=7_921 generic
+                          uid=7_922 image "Birk Blancas - Vista 7" url="http://localhost:8000/astrocline/birkblancas/7.webp"
+                      uid=7_923 ignored
+                        uid=7_924 generic
+                          uid=7_925 image "Birk Blancas - Vista 8" url="http://localhost:8000/astrocline/birkblancas/8.webp"
+                      uid=7_926 ignored
+                        uid=7_927 generic
+                          uid=7_928 image "Birk Blancas - Vista 9" url="http://localhost:8000/astrocline/birkblancas/9.webp"
+                      uid=7_929 ignored
+                        uid=7_930 generic
+                          uid=7_931 image "Birk Blancas - Vista 10" url="http://localhost:8000/astrocline/birkblancas/10.webp"
+                      uid=7_932 ignored
+                        uid=7_933 generic
+                          uid=7_934 image "Birk Blancas - Vista 11" url="http://localhost:8000/astrocline/birkblancas/11.webp"
+                      uid=7_935 ignored
+                        uid=7_936 generic
+                          uid=7_937 image "Birk Blancas - Vista 12" url="http://localhost:8000/astrocline/birkblancas/12.webp"
+                  uid=7_938 button "Anterior"
+                    uid=7_939 image
+                  uid=7_940 button "Siguiente"
+                    uid=7_941 image
+                  uid=7_942 generic
+                    uid=7_943 generic
+                      uid=7_944 ignored
+                        uid=7_945 button "Birk Blancas - Thumbnail 1"
+                          uid=7_946 image "Birk Blancas - Thumbnail 1" url="http://localhost:8000/astrocline/birkblancas/1.webp"
+                        uid=7_947 button "Birk Blancas - Thumbnail 2"
+                          uid=7_948 image "Birk Blancas - Thumbnail 2" url="http://localhost:8000/astrocline/birkblancas/2.webp"
+                        uid=7_949 button "Birk Blancas - Thumbnail 3"
+                          uid=7_950 image "Birk Blancas - Thumbnail 3" url="http://localhost:8000/astrocline/birkblancas/3.webp"
+                        uid=7_951 button "Birk Blancas - Thumbnail 4"
+                          uid=7_952 image "Birk Blancas - Thumbnail 4" url="http://localhost:8000/astrocline/birkblancas/4.webp"
+                        uid=7_953 button "Birk Blancas - Thumbnail 5"
+                          uid=7_954 image "Birk Blancas - Thumbnail 5" url="http://localhost:8000/astrocline/birkblancas/5.webp"
+                        uid=7_955 button "Birk Blancas - Thumbnail 6"
+                          uid=7_956 image "Birk Blancas - Thumbnail 6" url="http://localhost:8000/astrocline/birkblancas/6.webp"
+                        uid=7_957 button "Birk Blancas - Thumbnail 7"
+                          uid=7_958 image "Birk Blancas - Thumbnail 7" url="http://localhost:8000/astrocline/birkblancas/7.webp"
+                        uid=7_959 button "Birk Blancas - Thumbnail 8"
+                          uid=7_960 image "Birk Blancas - Thumbnail 8" url="http://localhost:8000/astrocline/birkblancas/8.webp"
+                        uid=7_961 button "Birk Blancas - Thumbnail 9"
+                          uid=7_962 image "Birk Blancas - Thumbnail 9" url="http://localhost:8000/astrocline/birkblancas/9.webp"
+                        uid=7_963 button "Birk Blancas - Thumbnail 10"
+                          uid=7_964 image "Birk Blancas - Thumbnail 10" url="http://localhost:8000/astrocline/birkblancas/10.webp"
+                        uid=7_965 button "Birk Blancas - Thumbnail 11"
+                          uid=7_966 image "Birk Blancas - Thumbnail 11" url="http://localhost:8000/astrocline/birkblancas/11.webp"
+                        uid=7_967 button "Birk Blancas - Thumbnail 12"
+                          uid=7_968 image "Birk Blancas - Thumbnail 12" url="http://localhost:8000/astrocline/birkblancas/12.webp"
+                uid=7_969 ignored
+                  uid=7_970 ignored
+                    uid=7_971 ignored
+                      uid=7_972 StaticText "NUEVA TEMPORADA"
+                        uid=7_973 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_974 ignored
+                      uid=7_975 StaticText "STOCK LIMITADO"
+                        uid=7_976 InlineTextBox "STOCK LIMITADO"
+                  uid=7_977 paragraph
+                    uid=7_978 StaticText "Sandalias de ecocuero blanco con doble hebilla ajustable, plantilla ergonómica y suela antideslizante. Modernas y minimalistas, cómodas y durables, ideales para usar tanto en casa como en la calle."
+                      uid=7_979 InlineTextBox "Sandalias de ecocuero blanco con doble hebilla ajustable, "
+                      uid=7_980 InlineTextBox "plantilla ergonómica y suela antideslizante. Modernas y "
+                      uid=7_981 InlineTextBox "minimalistas, cómodas y durables, ideales para usar tanto "
+                      uid=7_982 InlineTextBox "en casa como en la calle."
+                  uid=7_983 ignored
+                    uid=7_984 ignored
+                      uid=7_985 paragraph
+                        uid=7_986 StaticText "Material"
+                          uid=7_987 InlineTextBox "Material"
+                      uid=7_988 paragraph
+                        uid=7_989 StaticText "Ecocuero"
+                          uid=7_990 InlineTextBox "Ecocuero"
+                    uid=7_991 ignored
+                      uid=7_992 paragraph
+                        uid=7_993 StaticText "Suela"
+                          uid=7_994 InlineTextBox "Suela"
+                      uid=7_995 paragraph
+                        uid=7_996 StaticText "Antideslizante"
+                          uid=7_997 InlineTextBox "Antideslizante"
+                    uid=7_998 ignored
+                      uid=7_999 paragraph
+                        uid=7_1000 StaticText "Envío"
+                          uid=7_1001 InlineTextBox "Envío"
+                      uid=7_1002 paragraph
+                        uid=7_1003 StaticText "GRATIS 🚚"
+                          uid=7_1004 InlineTextBox "GRATIS 🚚"
+                  uid=7_1005 ignored
+                    uid=7_1006 ignored
+                      uid=7_1007 ignored
+                        uid=7_1008 paragraph
+                          uid=7_1009 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_1010 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_1011 paragraph
+                          uid=7_1012 StaticText "2 PARES POR"
+                            uid=7_1013 InlineTextBox "2 PARES POR"
+                        uid=7_1014 paragraph
+                          uid=7_1015 StaticText "$95.000"
+                            uid=7_1016 InlineTextBox "$95.000"
+                        uid=7_1017 paragraph
+                          uid=7_1018 StaticText "AHORRÁS $25.000"
+                            uid=7_1019 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_1020 ignored
+                        uid=7_1021 paragraph
+                          uid=7_1022 StaticText "Precio individual"
+                            uid=7_1023 InlineTextBox "Precio individual"
+                        uid=7_1024 paragraph
+                          uid=7_1025 StaticText "$60.000"
+                            uid=7_1026 InlineTextBox "$60.000"
+                      uid=7_1027 paragraph
+                        uid=7_1028 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_1029 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_1030 ignored
+                    uid=7_1031 ignored
+                      uid=7_1032 ignored
+                        uid=7_1033 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_1034 MenuListPopup
+                            uid=7_1035 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_1036 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_1037 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_1038 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_1039 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_1040 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_1041 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_1042 generic
+                    uid=7_1043 button " Agregar al Carrito"
+                      uid=7_1044 image
+                      uid=7_1045 StaticText " Agregar al Carrito"
+                        uid=7_1046 InlineTextBox " Agregar al Carrito"
+            uid=7_1047 ignored
+              uid=7_1048 ignored
+                uid=7_1049 heading "Argos" level="2"
+                  uid=7_1050 StaticText "Argos"
+                    uid=7_1051 InlineTextBox "Argos"
+                uid=7_1052 generic
+                  uid=7_1053 generic
+                    uid=7_1054 ignored
+                      uid=7_1055 ignored
+                        uid=7_1056 generic
+                          uid=7_1057 image "Argos - Vista 1" url="http://localhost:8000/astrocline/argos/1.webp"
+                      uid=7_1058 ignored
+                        uid=7_1059 generic
+                          uid=7_1060 image "Argos - Vista 2" url="http://localhost:8000/astrocline/argos/2.webp"
+                      uid=7_1061 ignored
+                        uid=7_1062 generic
+                          uid=7_1063 image "Argos - Vista 3" url="http://localhost:8000/astrocline/argos/3.webp"
+                      uid=7_1064 ignored
+                        uid=7_1065 generic
+                          uid=7_1066 image "Argos - Vista 4" url="http://localhost:8000/astrocline/argos/4.webp"
+                      uid=7_1067 ignored
+                        uid=7_1068 generic
+                          uid=7_1069 image "Argos - Vista 5" url="http://localhost:8000/astrocline/argos/5.webp"
+                      uid=7_1070 ignored
+                        uid=7_1071 generic
+                          uid=7_1072 image "Argos - Vista 6" url="http://localhost:8000/astrocline/argos/6.webp"
+                      uid=7_1073 ignored
+                        uid=7_1074 generic
+                          uid=7_1075 image "Argos - Vista 7" url="http://localhost:8000/astrocline/argos/7.webp"
+                      uid=7_1076 ignored
+                        uid=7_1077 generic
+                          uid=7_1078 image "Argos - Vista 8" url="http://localhost:8000/astrocline/argos/8.webp"
+                      uid=7_1079 ignored
+                        uid=7_1080 generic
+                          uid=7_1081 image "Argos - Vista 9" url="http://localhost:8000/astrocline/argos/9.webp"
+                      uid=7_1082 ignored
+                        uid=7_1083 generic
+                          uid=7_1084 image "Argos - Vista 10" url="http://localhost:8000/astrocline/argos/10.webp"
+                      uid=7_1085 ignored
+                        uid=7_1086 generic
+                          uid=7_1087 image "Argos - Vista 11" url="http://localhost:8000/astrocline/argos/11.webp"
+                      uid=7_1088 ignored
+                        uid=7_1089 generic
+                          uid=7_1090 image "Argos - Vista 12" url="http://localhost:8000/astrocline/argos/12.webp"
+                  uid=7_1091 button "Anterior"
+                    uid=7_1092 image
+                  uid=7_1093 button "Siguiente"
+                    uid=7_1094 image
+                  uid=7_1095 generic
+                    uid=7_1096 generic
+                      uid=7_1097 ignored
+                        uid=7_1098 button "Argos - Thumbnail 1"
+                          uid=7_1099 image "Argos - Thumbnail 1" url="http://localhost:8000/astrocline/argos/1.webp"
+                        uid=7_1100 button "Argos - Thumbnail 2"
+                          uid=7_1101 image "Argos - Thumbnail 2" url="http://localhost:8000/astrocline/argos/2.webp"
+                        uid=7_1102 button "Argos - Thumbnail 3"
+                          uid=7_1103 image "Argos - Thumbnail 3" url="http://localhost:8000/astrocline/argos/3.webp"
+                        uid=7_1104 button "Argos - Thumbnail 4"
+                          uid=7_1105 image "Argos - Thumbnail 4" url="http://localhost:8000/astrocline/argos/4.webp"
+                        uid=7_1106 button "Argos - Thumbnail 5"
+                          uid=7_1107 image "Argos - Thumbnail 5" url="http://localhost:8000/astrocline/argos/5.webp"
+                        uid=7_1108 button "Argos - Thumbnail 6"
+                          uid=7_1109 image "Argos - Thumbnail 6" url="http://localhost:8000/astrocline/argos/6.webp"
+                        uid=7_1110 button "Argos - Thumbnail 7"
+                          uid=7_1111 image "Argos - Thumbnail 7" url="http://localhost:8000/astrocline/argos/7.webp"
+                        uid=7_1112 button "Argos - Thumbnail 8"
+                          uid=7_1113 image "Argos - Thumbnail 8" url="http://localhost:8000/astrocline/argos/8.webp"
+                        uid=7_1114 button "Argos - Thumbnail 9"
+                          uid=7_1115 image "Argos - Thumbnail 9" url="http://localhost:8000/astrocline/argos/9.webp"
+                        uid=7_1116 button "Argos - Thumbnail 10"
+                          uid=7_1117 image "Argos - Thumbnail 10" url="http://localhost:8000/astrocline/argos/10.webp"
+                        uid=7_1118 button "Argos - Thumbnail 11"
+                          uid=7_1119 image "Argos - Thumbnail 11" url="http://localhost:8000/astrocline/argos/11.webp"
+                        uid=7_1120 button "Argos - Thumbnail 12"
+                          uid=7_1121 image "Argos - Thumbnail 12" url="http://localhost:8000/astrocline/argos/12.webp"
+                uid=7_1122 ignored
+                  uid=7_1123 ignored
+                    uid=7_1124 ignored
+                      uid=7_1125 StaticText "NUEVA TEMPORADA"
+                        uid=7_1126 InlineTextBox "NUEVA TEMPORADA"
+                    uid=7_1127 ignored
+                      uid=7_1128 StaticText "STOCK LIMITADO"
+                        uid=7_1129 InlineTextBox "STOCK LIMITADO"
+                  uid=7_1130 paragraph
+                    uid=7_1131 StaticText "Sandalias de cuero con diseño inspirado en la mitología griega. Correas entrelazadas que crean un patrón único y elegante, con ajuste perfecto mediante hebilla. Plantilla cómoda y suela resistente, ideales para uso diario."
+                      uid=7_1132 InlineTextBox "Sandalias de cuero con diseño inspirado en la mitología "
+                      uid=7_1133 InlineTextBox "griega. Correas entrelazadas que crean un patrón único y "
+                      uid=7_1134 InlineTextBox "elegante, con ajuste perfecto mediante hebilla. Plantilla "
+                      uid=7_1135 InlineTextBox "cómoda y suela resistente, ideales para uso diario."
+                  uid=7_1136 ignored
+                    uid=7_1137 ignored
+                      uid=7_1138 paragraph
+                        uid=7_1139 StaticText "Material"
+                          uid=7_1140 InlineTextBox "Material"
+                      uid=7_1141 paragraph
+                        uid=7_1142 StaticText "Ecocuero"
+                          uid=7_1143 InlineTextBox "Ecocuero"
+                    uid=7_1144 ignored
+                      uid=7_1145 paragraph
+                        uid=7_1146 StaticText "Suela"
+                          uid=7_1147 InlineTextBox "Suela"
+                      uid=7_1148 paragraph
+                        uid=7_1149 StaticText "Antideslizante"
+                          uid=7_1150 InlineTextBox "Antideslizante"
+                    uid=7_1151 ignored
+                      uid=7_1152 paragraph
+                        uid=7_1153 StaticText "Envío"
+                          uid=7_1154 InlineTextBox "Envío"
+                      uid=7_1155 paragraph
+                        uid=7_1156 StaticText "GRATIS 🚚"
+                          uid=7_1157 InlineTextBox "GRATIS 🚚"
+                  uid=7_1158 ignored
+                    uid=7_1159 ignored
+                      uid=7_1160 ignored
+                        uid=7_1161 paragraph
+                          uid=7_1162 StaticText "🎉 PROMO ESPECIAL"
+                            uid=7_1163 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=7_1164 paragraph
+                          uid=7_1165 StaticText "2 PARES POR"
+                            uid=7_1166 InlineTextBox "2 PARES POR"
+                        uid=7_1167 paragraph
+                          uid=7_1168 StaticText "$95.000"
+                            uid=7_1169 InlineTextBox "$95.000"
+                        uid=7_1170 paragraph
+                          uid=7_1171 StaticText "AHORRÁS $25.000"
+                            uid=7_1172 InlineTextBox "AHORRÁS $25.000"
+                      uid=7_1173 ignored
+                        uid=7_1174 paragraph
+                          uid=7_1175 StaticText "Precio individual"
+                            uid=7_1176 InlineTextBox "Precio individual"
+                        uid=7_1177 paragraph
+                          uid=7_1178 StaticText "$60.000"
+                            uid=7_1179 InlineTextBox "$60.000"
+                      uid=7_1180 paragraph
+                        uid=7_1181 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=7_1182 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=7_1183 ignored
+                    uid=7_1184 ignored
+                      uid=7_1185 ignored
+                        uid=7_1186 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=7_1187 MenuListPopup
+                            uid=7_1188 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=7_1189 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=7_1190 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=7_1191 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=7_1192 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=7_1193 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=7_1194 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=7_1195 generic
+                    uid=7_1196 button " Agregar al Carrito"
+                      uid=7_1197 image
+                      uid=7_1198 StaticText " Agregar al Carrito"
+                        uid=7_1199 InlineTextBox " Agregar al Carrito"
+        uid=7_1200 generic
+          uid=7_1201 ignored
+            uid=7_1202 heading "Lo que dicen nuestras clientas" level="2"
+              uid=7_1203 StaticText "Lo que dicen nuestras clientas"
+                uid=7_1204 InlineTextBox "Lo que dicen nuestras clientas"
+            uid=7_1205 paragraph
+              uid=7_1206 StaticText "Miles de clientas felices comparten su experiencia"
+                uid=7_1207 InlineTextBox "Miles de clientas felices comparten su experiencia"
+            uid=7_1208 generic
+              uid=7_1209 ignored
+                uid=7_1210 image "Captura de comentario positivo de clienta 1" url="http://localhost:8000/astrocline/comentarios/comentariorecibi1.webp"
+              uid=7_1211 ignored
+                uid=7_1212 image "Captura de comentario positivo de clienta 2" url="http://localhost:8000/astrocline/comentarios/comentariorecibi2.webp"
+              uid=7_1213 ignored
+                uid=7_1214 image "Captura de comentario positivo de clienta 3" url="http://localhost:8000/astrocline/comentarios/comentariorecibi4.webp"
+              uid=7_1215 ignored
+                uid=7_1216 image "Captura de comentario positivo de clienta 4" url="http://localhost:8000/astrocline/comentarios/comentariorecibi5.webp"
+              uid=7_1217 ignored
+                uid=7_1218 image "Captura de comentario positivo de clienta 5" url="http://localhost:8000/astrocline/comentarios/comentariorecibi6.webp"
+              uid=7_1219 ignored
+                uid=7_1220 image "Captura de comentario positivo de clienta 6" url="http://localhost:8000/astrocline/comentarios/comentariorecibi7.webp"
+            uid=7_1221 generic
+              uid=7_1222 button "Ver más comentarios..."
+                uid=7_1223 StaticText "Ver más comentarios..."
+                  uid=7_1224 InlineTextBox "Ver más comentarios..."
+        uid=7_1225 ignored
+        uid=7_1226 ignored
+        uid=7_1227 ignored
+          uid=7_1228 ignored
+        uid=7_1229 ignored
+        uid=7_1230 ignored
+        uid=7_1231 ignored
+          uid=7_1232 ignored
+          uid=7_1233 ignored
+            uid=7_1234 ignored
+        uid=7_1235 ignored
+        uid=7_1236 ignored
+        uid=7_1237 ignored
+          uid=7_1238 ignored
+          uid=7_1239 ignored
+            uid=7_1240 ignored
+        uid=7_1241 ignored
+        uid=7_1242 ignored
+        uid=7_1243 ignored
+          uid=7_1244 ignored
+          uid=7_1245 ignored
+            uid=7_1246 ignored
+        uid=7_1247 ignored
+        uid=7_1248 ignored
+        uid=7_1249 ignored
+          uid=7_1250 ignored
+        uid=7_1251 ignored
+        uid=7_1252 ignored
+        uid=7_1253 ignored
+          uid=7_1254 ignored
+        uid=7_1255 ignored
+        uid=7_1256 ignored
+        uid=7_1257 ignored
+          uid=7_1258 ignored
+        uid=7_1259 ignored
+        uid=7_1260 ignored
+        uid=7_1261 ignored
+          uid=7_1262 ignored
+        uid=7_1263 ignored
+          uid=7_1264 ignored
+          uid=7_1265 ignored
+          uid=7_1266 ignored
+          uid=7_1267 ignored
+          uid=7_1268 ignored
+          uid=7_1269 ignored
+          uid=7_1270 ignored
+          uid=7_1271 ignored
+          uid=7_1272 ignored
+          uid=7_1273 ignored
+          uid=7_1274 ignored
+          uid=7_1275 ignored
+          uid=7_1276 ignored
+          uid=7_1277 ignored
+          uid=7_1278 ignored
+          uid=7_1279 ignored
+          uid=7_1280 ignored
+          uid=7_1281 ignored
+          uid=7_1282 ignored
+          uid=7_1283 ignored
+          uid=7_1284 ignored
+          uid=7_1285 ignored
+          uid=7_1286 ignored
+        uid=7_1287 ignored
+          uid=7_1288 ignored
+        uid=7_1289 ignored
+        uid=7_1290 ignored
+        uid=7_1291 ignored
+          uid=7_1292 ignored
+        uid=7_1293 ignored
+          uid=7_1294 ignored
+          uid=7_1295 ignored
+            uid=7_1296 ignored
+        uid=7_1297 ignored
+          uid=7_1298 ignored
+          uid=7_1299 ignored
+          uid=7_1300 ignored
+          uid=7_1301 ignored
+        uid=7_1302 generic
+      uid=7_1303 ignored
+      uid=7_1304 ignored

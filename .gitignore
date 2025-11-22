@@ -1,0 +1,150 @@
+# Gitignore para el proyecto rositarococo.com
+# Optimizado para ignorar archivos fuente de astrocline y mantener solo producción
+
+# ===========================================
+# ARCHIVOS FUENTE DE ASTROCLINE (IGNORAR)
+# ===========================================
+astrocline/app/
+astrocline/src/
+
+# Archivos de configuración de Astro
+astrocline/astro.config.mjs
+astrocline/tailwind.config.mjs
+astrocline/components.json
+astrocline/package*.json
+
+# ===========================================
+# DOCUMENTACIÓN Y ARCHIVOS DE DESARROLLO (IGNORAR)
+# ===========================================
+# Archivos de documentación
+astrocline/*.md
+astroline/*.MD
+
+# Scripts y archivos temporales
+astrocline/*.bat
+astrocline/*.tmp
+astroline/*.temp
+
+# Workflows de investigación
+deep_researcher*.json
+
+# ===========================================
+# MANTENER ARCHIVOS DE PRODUCCIÓN (EXCEPCIONES)
+# ===========================================
+# Archivos estáticos necesarios para GitHub Pages
+!astrocline/index.html
+!astrocline/_astro/
+!astrocline/css/
+!astrocline/js/
+
+# Imágenes y recursos estáticos
+!astrocline/*.webp
+!astrocline/*.png
+!astrocline/*.svg
+!astrocline/favicon.svg
+!astrocline/rosita-form.webp
+!astrocline/paris2025-negras.webp
+!astrocline/enviarwsp.png
+
+# Carpetas de productos y contenido
+!astrocline/birk*/
+!astrocline/comentarios/
+!astrocline/guillerminafotos/
+!astrocline/images/
+
+# Páginas individuales del sitio
+!astrocline/gracias*/
+!astrocline/datos-bancarios/
+!astrocline/pago-exitoso/
+!astrocline/transferenciacbu*/
+
+# ===========================================
+# ===========================================
+# CARPETAS DE DESARROLLO (IGNORAR)
+# ===========================================
+# Nuevos proyectos en desarrollo que no deben ser procesados por Jekyll
+nuevosembudos/
+embudosoriginales/
+rosita2/
+
+# ===========================================
+# ARCHIVOS TEMPORALES Y DE SISTEMA (IGNORAR)
+# ===========================================
+# Archivos temporales
+*.tmp
+*.temp
+*.temp~
+
+# Logs
+*.log
+error.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================================
+# IDE Y EDITORES (IGNORAR)
+# ===========================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# Otros editores
+.idea/
+*.swp
+*.swo
+*~
+
+# ===========================================
+# DEPENDENCIAS Y NODE (IGNORAR)
+# ===========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Lock files (opcionales, según preferencia)
+# package-lock.json
+# yarn.lock
+
+# ===========================================
+# BUILD Y DIST (IGNORAR EN GENERAL)
+# ===========================================
+dist/
+build/
+.out/
+
+# ===========================================
+# VARIABLES DE ENTORNO (IGNORAR)
+# ===========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ===========================================
+# CONFIGURACIÓN MCP (IGNORAR - CONTIENE TOKENS)
+# ===========================================
+.mcp.json
+
+# ===========================================
+# BACKUPS Y ARCHIVOS VIEJOS (IGNORAR)
+# ===========================================
+*.bak
+*.backup
+*.old
+*.orig
+*_backup*
+
+# ===========================================
+# ARCHIVOS DE CACHE (IGNORAR)
+# ===========================================
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Node modules
+node_modules/

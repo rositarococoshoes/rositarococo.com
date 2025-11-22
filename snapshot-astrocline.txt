@@ -1,0 +1,918 @@
+uid=6_0 RootWebArea "Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025" url="https://rositarococo.com/astrocline/"
+  uid=6_1 ignored
+    uid=6_2 ignored
+      uid=6_3 main
+        uid=6_4 ignored
+          uid=6_5 ignored
+            uid=6_6 ignored
+              uid=6_7 ignored
+                uid=6_8 StaticText "💳"
+                  uid=6_9 InlineTextBox "💳"
+              uid=6_10 StaticText "3 CUOTAS SIN INTERÉS"
+                uid=6_11 InlineTextBox "3 CUOTAS SIN INTERÉS"
+            uid=6_12 ignored
+              uid=6_13 StaticText "|"
+                uid=6_14 InlineTextBox "|"
+            uid=6_15 ignored
+              uid=6_16 ignored
+                uid=6_17 StaticText "🚚"
+                  uid=6_18 InlineTextBox "🚚"
+              uid=6_19 StaticText "ENVÍO GRATIS A TODO EL PAÍS"
+                uid=6_20 InlineTextBox "ENVÍO GRATIS A TODO EL PAÍS"
+        uid=6_21 sectionheader
+          uid=6_22 ignored
+            uid=6_23 ignored
+              uid=6_24 image "Rosita Rococó Logo" url="https://rositarococo.com/astrocline/rosita-form.webp"
+        uid=6_25 generic
+          uid=6_26 ignored
+            uid=6_27 ignored
+              uid=6_28 StaticText "🛒"
+                uid=6_29 InlineTextBox "🛒"
+            uid=6_30 ignored
+              uid=6_31 StaticText "Tu Carrito"
+                uid=6_32 InlineTextBox "Tu Carrito"
+            uid=6_33 ignored
+              uid=6_34 StaticText "0"
+                uid=6_35 InlineTextBox "0"
+            uid=6_36 button "×"
+              uid=6_37 StaticText "×"
+                uid=6_38 InlineTextBox "×"
+          uid=6_39 ignored
+            uid=6_40 paragraph
+              uid=6_41 StaticText "Tu carrito está vacío"
+                uid=6_42 InlineTextBox "Tu carrito está vacío"
+            uid=6_43 ignored
+            uid=6_44 ignored
+              uid=6_45 ignored
+                uid=6_46 ignored
+                  uid=6_47 StaticText "1"
+                    uid=6_48 InlineTextBox "1"
+                uid=6_49 StaticText "Selecciona tus productos favoritos"
+                  uid=6_50 InlineTextBox "Selecciona tus productos favoritos"
+              uid=6_51 ignored
+                uid=6_52 ignored
+                  uid=6_53 StaticText "2"
+                    uid=6_54 InlineTextBox "2"
+                uid=6_55 StaticText "Revisa tu carrito"
+                  uid=6_56 InlineTextBox "Revisa tu carrito"
+              uid=6_57 ignored
+                uid=6_58 ignored
+                  uid=6_59 StaticText "3"
+                    uid=6_60 InlineTextBox "3"
+                uid=6_61 StaticText "Haz clic en "Finalizar Compra""
+                  uid=6_62 InlineTextBox "Haz clic en "Finalizar Compra""
+          uid=6_63 ignored
+            uid=6_64 generic
+              uid=6_65 StaticText "Total: "
+                uid=6_66 InlineTextBox "Total: "
+              uid=6_67 StaticText "$0"
+                uid=6_68 InlineTextBox "$0"
+            uid=6_69 button "Continuar al Envío →" disableable disabled
+              uid=6_70 StaticText "Continuar al Envío →"
+                uid=6_71 InlineTextBox "Continuar al Envío →"
+        uid=6_72 generic
+          uid=6_73 ignored
+            uid=6_74 StaticText "🛒"
+              uid=6_75 InlineTextBox "🛒"
+          uid=6_76 ignored
+            uid=6_77 StaticText "0"
+              uid=6_78 InlineTextBox "0"
+        uid=6_79 generic
+          uid=6_80 ignored
+            uid=6_81 ignored
+              uid=6_82 ignored
+                uid=6_83 StaticText "1"
+                  uid=6_84 InlineTextBox "1"
+              uid=6_85 StaticText "Productos"
+                uid=6_86 InlineTextBox "Productos"
+            uid=6_87 ignored
+            uid=6_88 ignored
+              uid=6_89 ignored
+                uid=6_90 StaticText "2"
+                  uid=6_91 InlineTextBox "2"
+              uid=6_92 StaticText "Envío"
+                uid=6_93 InlineTextBox "Envío"
+            uid=6_94 ignored
+            uid=6_95 ignored
+              uid=6_96 ignored
+                uid=6_97 StaticText "3"
+                  uid=6_98 InlineTextBox "3"
+              uid=6_99 StaticText "Pago"
+                uid=6_100 InlineTextBox "Pago"
+        uid=6_101 ignored
+          uid=6_102 ignored
+            uid=6_103 ignored
+              uid=6_104 ignored
+                uid=6_105 image
+                uid=6_106 ignored
+                  uid=6_107 StaticText "Aprovechá hoy 2 pares por $95.000"
+                    uid=6_108 InlineTextBox "Aprovechá hoy 2 pares por $95.000"
+              uid=6_109 ignored
+                uid=6_110 StaticText "|"
+                  uid=6_111 InlineTextBox "|"
+              uid=6_112 ignored
+                uid=6_113 ignored
+                  uid=6_114 StaticText "Podés combinar modelos"
+                    uid=6_115 InlineTextBox "Podés combinar modelos"
+                uid=6_116 ignored
+                  uid=6_117 StaticText "•"
+                    uid=6_118 InlineTextBox "•"
+                uid=6_119 ignored
+                  uid=6_120 StaticText "3 cuotas sin interés y envío gratis"
+                    uid=6_121 InlineTextBox "3 cuotas sin interés y envío gratis"
+          uid=6_122 ignored
+            uid=6_123 ignored
+              uid=6_124 ignored
+                uid=6_125 heading "Guillerminas Negras" level="2"
+                  uid=6_126 StaticText "Guillerminas Negras"
+                    uid=6_127 InlineTextBox "Guillerminas Negras"
+                uid=6_128 generic
+                  uid=6_129 generic
+                    uid=6_130 ignored
+                      uid=6_131 ignored
+                        uid=6_132 generic
+                          uid=6_133 image "Guillerminas Negras - Vista 1" url="https://rositarococo.com/guillerminafotos/1.webp"
+                      uid=6_134 ignored
+                        uid=6_135 generic
+                          uid=6_136 image "Guillerminas Negras - Vista 2" url="https://rositarococo.com/guillerminafotos/2.webp"
+                      uid=6_137 ignored
+                        uid=6_138 generic
+                          uid=6_139 image "Guillerminas Negras - Vista 3" url="https://rositarococo.com/guillerminafotos/3.webp"
+                      uid=6_140 ignored
+                        uid=6_141 generic
+                          uid=6_142 image "Guillerminas Negras - Vista 4" url="https://rositarococo.com/guillerminafotos/4.webp"
+                      uid=6_143 ignored
+                        uid=6_144 generic
+                          uid=6_145 image "Guillerminas Negras - Vista 5" url="https://rositarococo.com/guillerminafotos/5.webp"
+                      uid=6_146 ignored
+                        uid=6_147 generic
+                          uid=6_148 image "Guillerminas Negras - Vista 6" url="https://rositarococo.com/guillerminafotos/6.webp"
+                      uid=6_149 ignored
+                        uid=6_150 generic
+                          uid=6_151 image "Guillerminas Negras - Vista 7" url="https://rositarococo.com/guillerminafotos/7.webp"
+                      uid=6_152 ignored
+                        uid=6_153 generic
+                          uid=6_154 image "Guillerminas Negras - Vista 8" url="https://rositarococo.com/guillerminafotos/8.webp"
+                      uid=6_155 ignored
+                        uid=6_156 generic
+                          uid=6_157 image "Guillerminas Negras - Vista 9" url="https://rositarococo.com/guillerminafotos/9.webp"
+                      uid=6_158 ignored
+                        uid=6_159 generic
+                          uid=6_160 image "Guillerminas Negras - Vista 10" url="https://rositarococo.com/guillerminafotos/10.webp"
+                      uid=6_161 ignored
+                        uid=6_162 generic
+                          uid=6_163 image "Guillerminas Negras - Vista 11" url="https://rositarococo.com/guillerminafotos/11.webp"
+                      uid=6_164 ignored
+                        uid=6_165 generic
+                          uid=6_166 image "Guillerminas Negras - Vista 12" url="https://rositarococo.com/guillerminafotos/12.webp"
+                      uid=6_167 ignored
+                        uid=6_168 generic
+                          uid=6_169 image "Guillerminas Negras - Vista 13" url="https://rositarococo.com/guillerminafotos/13.webp"
+                      uid=6_170 ignored
+                        uid=6_171 generic
+                          uid=6_172 image "Guillerminas Negras - Vista 14" url="https://rositarococo.com/guillerminafotos/14.webp"
+                      uid=6_173 ignored
+                        uid=6_174 generic
+                          uid=6_175 image "Guillerminas Negras - Vista 15" url="https://rositarococo.com/guillerminafotos/15.webp"
+                      uid=6_176 ignored
+                        uid=6_177 generic
+                          uid=6_178 image "Guillerminas Negras - Vista 16" url="https://rositarococo.com/guillerminafotos/16.webp"
+                      uid=6_179 ignored
+                        uid=6_180 generic
+                          uid=6_181 image "Guillerminas Negras - Vista 17" url="https://rositarococo.com/guillerminafotos/17.webp"
+                      uid=6_182 ignored
+                        uid=6_183 generic
+                          uid=6_184 image "Guillerminas Negras - Vista 18" url="https://rositarococo.com/guillerminafotos/18.webp"
+                      uid=6_185 ignored
+                        uid=6_186 generic
+                          uid=6_187 image "Guillerminas Negras - Vista 19" url="https://rositarococo.com/guillerminafotos/19.webp"
+                      uid=6_188 ignored
+                        uid=6_189 generic
+                          uid=6_190 image "Guillerminas Negras - Vista 20" url="https://rositarococo.com/guillerminafotos/20.webp"
+                      uid=6_191 ignored
+                        uid=6_192 generic
+                          uid=6_193 image "Guillerminas Negras - Vista 21" url="https://rositarococo.com/guillerminafotos/21.webp"
+                      uid=6_194 ignored
+                        uid=6_195 generic
+                          uid=6_196 image "Guillerminas Negras - Vista 22" url="https://rositarococo.com/guillerminafotos/22.webp"
+                      uid=6_197 ignored
+                        uid=6_198 generic
+                          uid=6_199 image "Guillerminas Negras - Vista 23" url="https://rositarococo.com/guillerminafotos/23.webp"
+                      uid=6_200 ignored
+                        uid=6_201 generic
+                          uid=6_202 image "Guillerminas Negras - Vista 24" url="https://rositarococo.com/guillerminafotos/24.webp"
+                      uid=6_203 ignored
+                        uid=6_204 generic
+                          uid=6_205 image "Guillerminas Negras - Vista 25" url="https://rositarococo.com/guillerminafotos/25.webp"
+                      uid=6_206 ignored
+                        uid=6_207 generic
+                          uid=6_208 image "Guillerminas Negras - Vista 26" url="https://rositarococo.com/guillerminafotos/26.webp"
+                      uid=6_209 ignored
+                        uid=6_210 generic
+                          uid=6_211 image "Guillerminas Negras - Vista 27" url="https://rositarococo.com/guillerminafotos/27.webp"
+                      uid=6_212 ignored
+                        uid=6_213 generic
+                          uid=6_214 image "Guillerminas Negras - Vista 28" url="https://rositarococo.com/guillerminafotos/28.webp"
+                      uid=6_215 ignored
+                        uid=6_216 generic
+                          uid=6_217 image "Guillerminas Negras - Vista 29" url="https://rositarococo.com/guillerminafotos/29.webp"
+                      uid=6_218 ignored
+                        uid=6_219 generic
+                          uid=6_220 image "Guillerminas Negras - Vista 30" url="https://rositarococo.com/guillerminafotos/30.webp"
+                      uid=6_221 ignored
+                        uid=6_222 generic
+                          uid=6_223 image "Guillerminas Negras - Vista 31" url="https://rositarococo.com/guillerminafotos/31.webp"
+                      uid=6_224 ignored
+                        uid=6_225 generic
+                          uid=6_226 image "Guillerminas Negras - Vista 32" url="https://rositarococo.com/guillerminafotos/32.webp"
+                      uid=6_227 ignored
+                        uid=6_228 generic
+                          uid=6_229 image "Guillerminas Negras - Vista 33" url="https://rositarococo.com/guillerminafotos/33.webp"
+                      uid=6_230 ignored
+                        uid=6_231 generic
+                          uid=6_232 image "Guillerminas Negras - Vista 34" url="https://rositarococo.com/guillerminafotos/34.webp"
+                      uid=6_233 ignored
+                        uid=6_234 generic
+                          uid=6_235 image "Guillerminas Negras - Vista 35" url="https://rositarococo.com/guillerminafotos/35.webp"
+                      uid=6_236 ignored
+                        uid=6_237 generic
+                          uid=6_238 image "Guillerminas Negras - Vista 36" url="https://rositarococo.com/guillerminafotos/36.webp"
+                      uid=6_239 ignored
+                        uid=6_240 generic
+                          uid=6_241 image "Guillerminas Negras - Vista 37" url="https://rositarococo.com/guillerminafotos/37.webp"
+                      uid=6_242 ignored
+                        uid=6_243 generic
+                          uid=6_244 image "Guillerminas Negras - Vista 38" url="https://rositarococo.com/guillerminafotos/38.webp"
+                      uid=6_245 ignored
+                        uid=6_246 generic
+                          uid=6_247 image "Guillerminas Negras - Vista 39" url="https://rositarococo.com/guillerminafotos/39.webp"
+                      uid=6_248 ignored
+                        uid=6_249 generic
+                          uid=6_250 image "Guillerminas Negras - Vista 40" url="https://rositarococo.com/guillerminafotos/40.webp"
+                      uid=6_251 ignored
+                        uid=6_252 generic
+                          uid=6_253 image "Guillerminas Negras - Vista 41" url="https://rositarococo.com/guillerminafotos/41.webp"
+                      uid=6_254 ignored
+                        uid=6_255 generic
+                          uid=6_256 image "Guillerminas Negras - Vista 42" url="https://rositarococo.com/guillerminafotos/42.webp"
+                      uid=6_257 ignored
+                        uid=6_258 generic
+                          uid=6_259 image "Guillerminas Negras - Vista 43" url="https://rositarococo.com/guillerminafotos/43.webp"
+                  uid=6_260 button
+                    uid=6_261 image
+                  uid=6_262 button
+                    uid=6_263 image
+                  uid=6_264 ignored
+                    uid=6_265 generic
+                      uid=6_266 ignored
+                        uid=6_267 button "Guillerminas Negras - Vista 1"
+                          uid=6_268 image "Guillerminas Negras - Vista 1" url="https://rositarococo.com/guillerminafotos/1.webp"
+                        uid=6_269 button "Guillerminas Negras - Vista 2"
+                          uid=6_270 image "Guillerminas Negras - Vista 2" url="https://rositarococo.com/guillerminafotos/2.webp"
+                        uid=6_271 button "Guillerminas Negras - Vista 3"
+                          uid=6_272 image "Guillerminas Negras - Vista 3" url="https://rositarococo.com/guillerminafotos/3.webp"
+                        uid=6_273 button "Guillerminas Negras - Vista 4"
+                          uid=6_274 image "Guillerminas Negras - Vista 4" url="https://rositarococo.com/guillerminafotos/4.webp"
+                        uid=6_275 button "Guillerminas Negras - Vista 5"
+                          uid=6_276 image "Guillerminas Negras - Vista 5" url="https://rositarococo.com/guillerminafotos/5.webp"
+                        uid=6_277 button "Guillerminas Negras - Vista 6"
+                          uid=6_278 image "Guillerminas Negras - Vista 6" url="https://rositarococo.com/guillerminafotos/6.webp"
+                        uid=6_279 button "Guillerminas Negras - Vista 7"
+                          uid=6_280 image "Guillerminas Negras - Vista 7" url="https://rositarococo.com/guillerminafotos/7.webp"
+                        uid=6_281 button "Guillerminas Negras - Vista 8"
+                          uid=6_282 image "Guillerminas Negras - Vista 8" url="https://rositarococo.com/guillerminafotos/8.webp"
+                        uid=6_283 button "Guillerminas Negras - Vista 9"
+                          uid=6_284 image "Guillerminas Negras - Vista 9" url="https://rositarococo.com/guillerminafotos/9.webp"
+                        uid=6_285 button "Guillerminas Negras - Vista 10"
+                          uid=6_286 image "Guillerminas Negras - Vista 10" url="https://rositarococo.com/guillerminafotos/10.webp"
+                        uid=6_287 button "Guillerminas Negras - Vista 11"
+                          uid=6_288 image "Guillerminas Negras - Vista 11" url="https://rositarococo.com/guillerminafotos/11.webp"
+                        uid=6_289 button "Guillerminas Negras - Vista 12"
+                          uid=6_290 image "Guillerminas Negras - Vista 12" url="https://rositarococo.com/guillerminafotos/12.webp"
+                        uid=6_291 button "Guillerminas Negras - Vista 13"
+                          uid=6_292 image "Guillerminas Negras - Vista 13" url="https://rositarococo.com/guillerminafotos/13.webp"
+                        uid=6_293 button "Guillerminas Negras - Vista 14"
+                          uid=6_294 image "Guillerminas Negras - Vista 14" url="https://rositarococo.com/guillerminafotos/14.webp"
+                        uid=6_295 button "Guillerminas Negras - Vista 15"
+                          uid=6_296 image "Guillerminas Negras - Vista 15" url="https://rositarococo.com/guillerminafotos/15.webp"
+                        uid=6_297 button "Guillerminas Negras - Vista 16"
+                          uid=6_298 image "Guillerminas Negras - Vista 16" url="https://rositarococo.com/guillerminafotos/16.webp"
+                        uid=6_299 button "Guillerminas Negras - Vista 17"
+                          uid=6_300 image "Guillerminas Negras - Vista 17" url="https://rositarococo.com/guillerminafotos/17.webp"
+                        uid=6_301 button "Guillerminas Negras - Vista 18"
+                          uid=6_302 image "Guillerminas Negras - Vista 18" url="https://rositarococo.com/guillerminafotos/18.webp"
+                        uid=6_303 button "Guillerminas Negras - Vista 19"
+                          uid=6_304 image "Guillerminas Negras - Vista 19" url="https://rositarococo.com/guillerminafotos/19.webp"
+                        uid=6_305 button "Guillerminas Negras - Vista 20"
+                          uid=6_306 image "Guillerminas Negras - Vista 20" url="https://rositarococo.com/guillerminafotos/20.webp"
+                        uid=6_307 button "Guillerminas Negras - Vista 21"
+                          uid=6_308 image "Guillerminas Negras - Vista 21" url="https://rositarococo.com/guillerminafotos/21.webp"
+                        uid=6_309 button "Guillerminas Negras - Vista 22"
+                          uid=6_310 image "Guillerminas Negras - Vista 22" url="https://rositarococo.com/guillerminafotos/22.webp"
+                        uid=6_311 button "Guillerminas Negras - Vista 23"
+                          uid=6_312 image "Guillerminas Negras - Vista 23" url="https://rositarococo.com/guillerminafotos/23.webp"
+                        uid=6_313 button "Guillerminas Negras - Vista 24"
+                          uid=6_314 image "Guillerminas Negras - Vista 24" url="https://rositarococo.com/guillerminafotos/24.webp"
+                        uid=6_315 button "Guillerminas Negras - Vista 25"
+                          uid=6_316 image "Guillerminas Negras - Vista 25" url="https://rositarococo.com/guillerminafotos/25.webp"
+                        uid=6_317 button "Guillerminas Negras - Vista 26"
+                          uid=6_318 image "Guillerminas Negras - Vista 26" url="https://rositarococo.com/guillerminafotos/26.webp"
+                        uid=6_319 button "Guillerminas Negras - Vista 27"
+                          uid=6_320 image "Guillerminas Negras - Vista 27" url="https://rositarococo.com/guillerminafotos/27.webp"
+                        uid=6_321 button "Guillerminas Negras - Vista 28"
+                          uid=6_322 image "Guillerminas Negras - Vista 28" url="https://rositarococo.com/guillerminafotos/28.webp"
+                        uid=6_323 button "Guillerminas Negras - Vista 29"
+                          uid=6_324 image "Guillerminas Negras - Vista 29" url="https://rositarococo.com/guillerminafotos/29.webp"
+                        uid=6_325 button "Guillerminas Negras - Vista 30"
+                          uid=6_326 image "Guillerminas Negras - Vista 30" url="https://rositarococo.com/guillerminafotos/30.webp"
+                        uid=6_327 button "Guillerminas Negras - Vista 31"
+                          uid=6_328 image "Guillerminas Negras - Vista 31" url="https://rositarococo.com/guillerminafotos/31.webp"
+                        uid=6_329 button "Guillerminas Negras - Vista 32"
+                          uid=6_330 image "Guillerminas Negras - Vista 32" url="https://rositarococo.com/guillerminafotos/32.webp"
+                        uid=6_331 button "Guillerminas Negras - Vista 33"
+                          uid=6_332 image "Guillerminas Negras - Vista 33" url="https://rositarococo.com/guillerminafotos/33.webp"
+                        uid=6_333 button "Guillerminas Negras - Vista 34"
+                          uid=6_334 image "Guillerminas Negras - Vista 34" url="https://rositarococo.com/guillerminafotos/34.webp"
+                        uid=6_335 button "Guillerminas Negras - Vista 35"
+                          uid=6_336 image "Guillerminas Negras - Vista 35" url="https://rositarococo.com/guillerminafotos/35.webp"
+                        uid=6_337 button "Guillerminas Negras - Vista 36"
+                          uid=6_338 image "Guillerminas Negras - Vista 36" url="https://rositarococo.com/guillerminafotos/36.webp"
+                        uid=6_339 button "Guillerminas Negras - Vista 37"
+                          uid=6_340 image "Guillerminas Negras - Vista 37" url="https://rositarococo.com/guillerminafotos/37.webp"
+                        uid=6_341 button "Guillerminas Negras - Vista 38"
+                          uid=6_342 image "Guillerminas Negras - Vista 38" url="https://rositarococo.com/guillerminafotos/38.webp"
+                        uid=6_343 button "Guillerminas Negras - Vista 39"
+                          uid=6_344 image "Guillerminas Negras - Vista 39" url="https://rositarococo.com/guillerminafotos/39.webp"
+                        uid=6_345 button "Guillerminas Negras - Vista 40"
+                          uid=6_346 image "Guillerminas Negras - Vista 40" url="https://rositarococo.com/guillerminafotos/40.webp"
+                        uid=6_347 button "Guillerminas Negras - Vista 41"
+                          uid=6_348 image "Guillerminas Negras - Vista 41" url="https://rositarococo.com/guillerminafotos/41.webp"
+                        uid=6_349 button "Guillerminas Negras - Vista 42"
+                          uid=6_350 image "Guillerminas Negras - Vista 42" url="https://rositarococo.com/guillerminafotos/42.webp"
+                        uid=6_351 button "Guillerminas Negras - Vista 43"
+                          uid=6_352 image "Guillerminas Negras - Vista 43" url="https://rositarococo.com/guillerminafotos/43.webp"
+                uid=6_353 ignored
+                  uid=6_354 ignored
+                    uid=6_355 ignored
+                      uid=6_356 StaticText "NUEVA TEMPORADA"
+                        uid=6_357 InlineTextBox "NUEVA TEMPORADA"
+                    uid=6_358 ignored
+                      uid=6_359 StaticText "STOCK LIMITADO"
+                        uid=6_360 InlineTextBox "STOCK LIMITADO"
+                  uid=6_361 paragraph
+                    uid=6_362 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=6_363 InlineTextBox "¡Renovate para la nueva temporada Primavera-"
+                      uid=6_364 InlineTextBox "Verano 2025! Nuestras guillerminas negras son el "
+                      uid=6_365 InlineTextBox "complemento ideal para cualquier look. Su diseño "
+                      uid=6_366 InlineTextBox "versátil y ultra cómodo te va a encantar."
+                  uid=6_367 ignored
+                    uid=6_368 ignored
+                      uid=6_369 paragraph
+                        uid=6_370 StaticText "Material"
+                          uid=6_371 InlineTextBox "Material"
+                      uid=6_372 paragraph
+                        uid=6_373 StaticText "Tela reforzada super flexible"
+                          uid=6_374 InlineTextBox "Tela reforzada "
+                          uid=6_375 InlineTextBox "super flexible"
+                    uid=6_376 ignored
+                      uid=6_377 paragraph
+                        uid=6_378 StaticText "Suela"
+                          uid=6_379 InlineTextBox "Suela"
+                      uid=6_380 paragraph
+                        uid=6_381 StaticText "Expanso"
+                          uid=6_382 InlineTextBox "Expanso"
+                    uid=6_383 ignored
+                      uid=6_384 paragraph
+                        uid=6_385 StaticText "Envío"
+                          uid=6_386 InlineTextBox "Envío"
+                      uid=6_387 paragraph
+                        uid=6_388 StaticText "GRATIS 🚚"
+                          uid=6_389 InlineTextBox "GRATIS 🚚"
+                  uid=6_390 ignored
+                    uid=6_391 ignored
+                      uid=6_392 ignored
+                        uid=6_393 paragraph
+                          uid=6_394 StaticText "🎉 PROMO ESPECIAL"
+                            uid=6_395 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=6_396 paragraph
+                          uid=6_397 StaticText "2 PARES POR"
+                            uid=6_398 InlineTextBox "2 PARES POR"
+                        uid=6_399 paragraph
+                          uid=6_400 StaticText "$95.000"
+                            uid=6_401 InlineTextBox "$95.000"
+                        uid=6_402 paragraph
+                          uid=6_403 StaticText "AHORRÁS $25.000"
+                            uid=6_404 InlineTextBox "AHORRÁS $25.000"
+                      uid=6_405 ignored
+                        uid=6_406 paragraph
+                          uid=6_407 StaticText "Precio individual"
+                            uid=6_408 InlineTextBox "Precio individual"
+                        uid=6_409 paragraph
+                          uid=6_410 StaticText "$60.000"
+                            uid=6_411 InlineTextBox "$60.000"
+                      uid=6_412 paragraph
+                        uid=6_413 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=6_414 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=6_415 ignored
+                    uid=6_416 ignored
+                      uid=6_417 generic
+                        uid=6_418 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=6_419 MenuListPopup
+                            uid=6_420 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=6_421 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=6_422 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=6_423 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=6_424 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=6_425 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=6_426 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=6_427 generic
+                    uid=6_428 button " Agregar al Carrito"
+                      uid=6_429 image
+                      uid=6_430 StaticText " Agregar al Carrito"
+                        uid=6_431 InlineTextBox " Agregar al Carrito"
+            uid=6_432 ignored
+              uid=6_433 ignored
+                uid=6_434 heading "Guillerminas Camel" level="2"
+                  uid=6_435 StaticText "Guillerminas Camel"
+                    uid=6_436 InlineTextBox "Guillerminas Camel"
+                uid=6_437 generic
+                  uid=6_438 generic
+                    uid=6_439 ignored
+                      uid=6_440 ignored
+                        uid=6_441 generic
+                          uid=6_442 image "Guillerminas Camel - Vista 1" url="https://rositarococo.com/guillerminafotos/guillerminascamel/1.webp"
+                      uid=6_443 ignored
+                        uid=6_444 generic
+                          uid=6_445 image "Guillerminas Camel - Vista 2" url="https://rositarococo.com/guillerminafotos/guillerminascamel/2.webp"
+                      uid=6_446 ignored
+                        uid=6_447 generic
+                          uid=6_448 image "Guillerminas Camel - Vista 3" url="https://rositarococo.com/guillerminafotos/guillerminascamel/3.webp"
+                      uid=6_449 ignored
+                        uid=6_450 generic
+                          uid=6_451 image "Guillerminas Camel - Vista 4" url="https://rositarococo.com/guillerminafotos/guillerminascamel/4.webp"
+                      uid=6_452 ignored
+                        uid=6_453 generic
+                          uid=6_454 image "Guillerminas Camel - Vista 5" url="https://rositarococo.com/guillerminafotos/guillerminascamel/5.webp"
+                      uid=6_455 ignored
+                        uid=6_456 generic
+                          uid=6_457 image "Guillerminas Camel - Vista 6" url="https://rositarococo.com/guillerminafotos/guillerminascamel/6.webp"
+                      uid=6_458 ignored
+                        uid=6_459 generic
+                          uid=6_460 image "Guillerminas Camel - Vista 7" url="https://rositarococo.com/guillerminafotos/guillerminascamel/7.webp"
+                      uid=6_461 ignored
+                        uid=6_462 generic
+                          uid=6_463 image "Guillerminas Camel - Vista 8" url="https://rositarococo.com/guillerminafotos/guillerminascamel/8.webp"
+                      uid=6_464 ignored
+                        uid=6_465 generic
+                          uid=6_466 image "Guillerminas Camel - Vista 9" url="https://rositarococo.com/guillerminafotos/guillerminascamel/9.webp"
+                      uid=6_467 ignored
+                        uid=6_468 generic
+                          uid=6_469 image "Guillerminas Camel - Vista 10" url="https://rositarococo.com/guillerminafotos/guillerminascamel/10.webp"
+                      uid=6_470 ignored
+                        uid=6_471 generic
+                          uid=6_472 image "Guillerminas Camel - Vista 11" url="https://rositarococo.com/guillerminafotos/guillerminascamel/11.webp"
+                      uid=6_473 ignored
+                        uid=6_474 generic
+                          uid=6_475 image "Guillerminas Camel - Vista 12" url="https://rositarococo.com/guillerminafotos/guillerminascamel/12.webp"
+                      uid=6_476 ignored
+                        uid=6_477 generic
+                          uid=6_478 image "Guillerminas Camel - Vista 13" url="https://rositarococo.com/guillerminafotos/guillerminascamel/13.webp"
+                      uid=6_479 ignored
+                        uid=6_480 generic
+                          uid=6_481 image "Guillerminas Camel - Vista 14" url="https://rositarococo.com/guillerminafotos/guillerminascamel/14.webp"
+                      uid=6_482 ignored
+                        uid=6_483 generic
+                          uid=6_484 image "Guillerminas Camel - Vista 15" url="https://rositarococo.com/guillerminafotos/guillerminascamel/15.webp"
+                      uid=6_485 ignored
+                        uid=6_486 generic
+                          uid=6_487 image "Guillerminas Camel - Vista 16" url="https://rositarococo.com/guillerminafotos/guillerminascamel/16.webp"
+                      uid=6_488 ignored
+                        uid=6_489 generic
+                          uid=6_490 image "Guillerminas Camel - Vista 17" url="https://rositarococo.com/guillerminafotos/guillerminascamel/17.webp"
+                      uid=6_491 ignored
+                        uid=6_492 generic
+                          uid=6_493 image "Guillerminas Camel - Vista 18" url="https://rositarococo.com/guillerminafotos/guillerminascamel/18.webp"
+                  uid=6_494 button
+                    uid=6_495 image
+                  uid=6_496 button
+                    uid=6_497 image
+                  uid=6_498 ignored
+                    uid=6_499 generic
+                      uid=6_500 ignored
+                        uid=6_501 button "Guillerminas Camel - Vista 1"
+                          uid=6_502 image "Guillerminas Camel - Vista 1" url="https://rositarococo.com/guillerminafotos/guillerminascamel/1.webp"
+                        uid=6_503 button "Guillerminas Camel - Vista 2"
+                          uid=6_504 image "Guillerminas Camel - Vista 2" url="https://rositarococo.com/guillerminafotos/guillerminascamel/2.webp"
+                        uid=6_505 button "Guillerminas Camel - Vista 3"
+                          uid=6_506 image "Guillerminas Camel - Vista 3" url="https://rositarococo.com/guillerminafotos/guillerminascamel/3.webp"
+                        uid=6_507 button "Guillerminas Camel - Vista 4"
+                          uid=6_508 image "Guillerminas Camel - Vista 4" url="https://rositarococo.com/guillerminafotos/guillerminascamel/4.webp"
+                        uid=6_509 button "Guillerminas Camel - Vista 5"
+                          uid=6_510 image "Guillerminas Camel - Vista 5" url="https://rositarococo.com/guillerminafotos/guillerminascamel/5.webp"
+                        uid=6_511 button "Guillerminas Camel - Vista 6"
+                          uid=6_512 image "Guillerminas Camel - Vista 6" url="https://rositarococo.com/guillerminafotos/guillerminascamel/6.webp"
+                        uid=6_513 button "Guillerminas Camel - Vista 7"
+                          uid=6_514 image "Guillerminas Camel - Vista 7" url="https://rositarococo.com/guillerminafotos/guillerminascamel/7.webp"
+                        uid=6_515 button "Guillerminas Camel - Vista 8"
+                          uid=6_516 image "Guillerminas Camel - Vista 8" url="https://rositarococo.com/guillerminafotos/guillerminascamel/8.webp"
+                        uid=6_517 button "Guillerminas Camel - Vista 9"
+                          uid=6_518 image "Guillerminas Camel - Vista 9" url="https://rositarococo.com/guillerminafotos/guillerminascamel/9.webp"
+                        uid=6_519 button "Guillerminas Camel - Vista 10"
+                          uid=6_520 image "Guillerminas Camel - Vista 10" url="https://rositarococo.com/guillerminafotos/guillerminascamel/10.webp"
+                        uid=6_521 button "Guillerminas Camel - Vista 11"
+                          uid=6_522 image "Guillerminas Camel - Vista 11" url="https://rositarococo.com/guillerminafotos/guillerminascamel/11.webp"
+                        uid=6_523 button "Guillerminas Camel - Vista 12"
+                          uid=6_524 image "Guillerminas Camel - Vista 12" url="https://rositarococo.com/guillerminafotos/guillerminascamel/12.webp"
+                        uid=6_525 button "Guillerminas Camel - Vista 13"
+                          uid=6_526 image "Guillerminas Camel - Vista 13" url="https://rositarococo.com/guillerminafotos/guillerminascamel/13.webp"
+                        uid=6_527 button "Guillerminas Camel - Vista 14"
+                          uid=6_528 image "Guillerminas Camel - Vista 14" url="https://rositarococo.com/guillerminafotos/guillerminascamel/14.webp"
+                        uid=6_529 button "Guillerminas Camel - Vista 15"
+                          uid=6_530 image "Guillerminas Camel - Vista 15" url="https://rositarococo.com/guillerminafotos/guillerminascamel/15.webp"
+                        uid=6_531 button "Guillerminas Camel - Vista 16"
+                          uid=6_532 image "Guillerminas Camel - Vista 16" url="https://rositarococo.com/guillerminafotos/guillerminascamel/16.webp"
+                        uid=6_533 button "Guillerminas Camel - Vista 17"
+                          uid=6_534 image "Guillerminas Camel - Vista 17" url="https://rositarococo.com/guillerminafotos/guillerminascamel/17.webp"
+                        uid=6_535 button "Guillerminas Camel - Vista 18"
+                          uid=6_536 image "Guillerminas Camel - Vista 18" url="https://rositarococo.com/guillerminafotos/guillerminascamel/18.webp"
+                uid=6_537 ignored
+                  uid=6_538 ignored
+                    uid=6_539 ignored
+                      uid=6_540 StaticText "NUEVA TEMPORADA"
+                        uid=6_541 InlineTextBox "NUEVA TEMPORADA"
+                    uid=6_542 ignored
+                      uid=6_543 StaticText "STOCK LIMITADO"
+                        uid=6_544 InlineTextBox "STOCK LIMITADO"
+                  uid=6_545 paragraph
+                    uid=6_546 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=6_547 InlineTextBox "¡Renovate para la nueva temporada Primavera-"
+                      uid=6_548 InlineTextBox "Verano 2025! Nuestras guillerminas camel son el "
+                      uid=6_549 InlineTextBox "complemento ideal para cualquier look. Su diseño "
+                      uid=6_550 InlineTextBox "versátil y ultra cómodo te va a encantar."
+                  uid=6_551 ignored
+                    uid=6_552 ignored
+                      uid=6_553 paragraph
+                        uid=6_554 StaticText "Material"
+                          uid=6_555 InlineTextBox "Material"
+                      uid=6_556 paragraph
+                        uid=6_557 StaticText "Tela reforzada super flexible"
+                          uid=6_558 InlineTextBox "Tela reforzada "
+                          uid=6_559 InlineTextBox "super flexible"
+                    uid=6_560 ignored
+                      uid=6_561 paragraph
+                        uid=6_562 StaticText "Suela"
+                          uid=6_563 InlineTextBox "Suela"
+                      uid=6_564 paragraph
+                        uid=6_565 StaticText "Expanso"
+                          uid=6_566 InlineTextBox "Expanso"
+                    uid=6_567 ignored
+                      uid=6_568 paragraph
+                        uid=6_569 StaticText "Envío"
+                          uid=6_570 InlineTextBox "Envío"
+                      uid=6_571 paragraph
+                        uid=6_572 StaticText "GRATIS 🚚"
+                          uid=6_573 InlineTextBox "GRATIS 🚚"
+                  uid=6_574 ignored
+                    uid=6_575 ignored
+                      uid=6_576 ignored
+                        uid=6_577 paragraph
+                          uid=6_578 StaticText "🎉 PROMO ESPECIAL"
+                            uid=6_579 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=6_580 paragraph
+                          uid=6_581 StaticText "2 PARES POR"
+                            uid=6_582 InlineTextBox "2 PARES POR"
+                        uid=6_583 paragraph
+                          uid=6_584 StaticText "$95.000"
+                            uid=6_585 InlineTextBox "$95.000"
+                        uid=6_586 paragraph
+                          uid=6_587 StaticText "AHORRÁS $25.000"
+                            uid=6_588 InlineTextBox "AHORRÁS $25.000"
+                      uid=6_589 ignored
+                        uid=6_590 paragraph
+                          uid=6_591 StaticText "Precio individual"
+                            uid=6_592 InlineTextBox "Precio individual"
+                        uid=6_593 paragraph
+                          uid=6_594 StaticText "$60.000"
+                            uid=6_595 InlineTextBox "$60.000"
+                      uid=6_596 paragraph
+                        uid=6_597 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=6_598 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=6_599 ignored
+                    uid=6_600 ignored
+                      uid=6_601 generic
+                        uid=6_602 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=6_603 MenuListPopup
+                            uid=6_604 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=6_605 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=6_606 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=6_607 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=6_608 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=6_609 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=6_610 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=6_611 generic
+                    uid=6_612 button " Agregar al Carrito"
+                      uid=6_613 image
+                      uid=6_614 StaticText " Agregar al Carrito"
+                        uid=6_615 InlineTextBox " Agregar al Carrito"
+            uid=6_616 ignored
+              uid=6_617 ignored
+                uid=6_618 heading "Guillerminas Blancas" level="2"
+                  uid=6_619 StaticText "Guillerminas Blancas"
+                    uid=6_620 InlineTextBox "Guillerminas Blancas"
+                uid=6_621 generic
+                  uid=6_622 generic
+                    uid=6_623 ignored
+                      uid=6_624 ignored
+                        uid=6_625 generic
+                          uid=6_626 image "Guillerminas Blancas - Vista 1" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/1.webp"
+                      uid=6_627 ignored
+                        uid=6_628 generic
+                          uid=6_629 image "Guillerminas Blancas - Vista 2" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/2.webp"
+                      uid=6_630 ignored
+                        uid=6_631 generic
+                          uid=6_632 image "Guillerminas Blancas - Vista 3" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/3.webp"
+                      uid=6_633 ignored
+                        uid=6_634 generic
+                          uid=6_635 image "Guillerminas Blancas - Vista 4" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/4.webp"
+                      uid=6_636 ignored
+                        uid=6_637 generic
+                          uid=6_638 image "Guillerminas Blancas - Vista 5" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/5.webp"
+                      uid=6_639 ignored
+                        uid=6_640 generic
+                          uid=6_641 image "Guillerminas Blancas - Vista 6" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/6.webp"
+                      uid=6_642 ignored
+                        uid=6_643 generic
+                          uid=6_644 image "Guillerminas Blancas - Vista 7" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/7.webp"
+                      uid=6_645 ignored
+                        uid=6_646 generic
+                          uid=6_647 image "Guillerminas Blancas - Vista 8" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/8.webp"
+                      uid=6_648 ignored
+                        uid=6_649 generic
+                          uid=6_650 image "Guillerminas Blancas - Vista 9" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/9.webp"
+                      uid=6_651 ignored
+                        uid=6_652 generic
+                          uid=6_653 image "Guillerminas Blancas - Vista 10" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/10.webp"
+                      uid=6_654 ignored
+                        uid=6_655 generic
+                          uid=6_656 image "Guillerminas Blancas - Vista 11" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/11.webp"
+                      uid=6_657 ignored
+                        uid=6_658 generic
+                          uid=6_659 image "Guillerminas Blancas - Vista 12" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/12.webp"
+                      uid=6_660 ignored
+                        uid=6_661 generic
+                          uid=6_662 image "Guillerminas Blancas - Vista 13" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/13.webp"
+                      uid=6_663 ignored
+                        uid=6_664 generic
+                          uid=6_665 image "Guillerminas Blancas - Vista 14" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/14.webp"
+                      uid=6_666 ignored
+                        uid=6_667 generic
+                          uid=6_668 image "Guillerminas Blancas - Vista 15" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/15.webp"
+                      uid=6_669 ignored
+                        uid=6_670 generic
+                          uid=6_671 image "Guillerminas Blancas - Vista 16" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/16.webp"
+                  uid=6_672 button
+                    uid=6_673 image
+                  uid=6_674 button
+                    uid=6_675 image
+                  uid=6_676 ignored
+                    uid=6_677 generic
+                      uid=6_678 ignored
+                        uid=6_679 button "Guillerminas Blancas - Vista 1"
+                          uid=6_680 image "Guillerminas Blancas - Vista 1" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/1.webp"
+                        uid=6_681 button "Guillerminas Blancas - Vista 2"
+                          uid=6_682 image "Guillerminas Blancas - Vista 2" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/2.webp"
+                        uid=6_683 button "Guillerminas Blancas - Vista 3"
+                          uid=6_684 image "Guillerminas Blancas - Vista 3" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/3.webp"
+                        uid=6_685 button "Guillerminas Blancas - Vista 4"
+                          uid=6_686 image "Guillerminas Blancas - Vista 4" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/4.webp"
+                        uid=6_687 button "Guillerminas Blancas - Vista 5"
+                          uid=6_688 image "Guillerminas Blancas - Vista 5" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/5.webp"
+                        uid=6_689 button "Guillerminas Blancas - Vista 6"
+                          uid=6_690 image "Guillerminas Blancas - Vista 6" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/6.webp"
+                        uid=6_691 button "Guillerminas Blancas - Vista 7"
+                          uid=6_692 image "Guillerminas Blancas - Vista 7" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/7.webp"
+                        uid=6_693 button "Guillerminas Blancas - Vista 8"
+                          uid=6_694 image "Guillerminas Blancas - Vista 8" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/8.webp"
+                        uid=6_695 button "Guillerminas Blancas - Vista 9"
+                          uid=6_696 image "Guillerminas Blancas - Vista 9" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/9.webp"
+                        uid=6_697 button "Guillerminas Blancas - Vista 10"
+                          uid=6_698 image "Guillerminas Blancas - Vista 10" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/10.webp"
+                        uid=6_699 button "Guillerminas Blancas - Vista 11"
+                          uid=6_700 image "Guillerminas Blancas - Vista 11" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/11.webp"
+                        uid=6_701 button "Guillerminas Blancas - Vista 12"
+                          uid=6_702 image "Guillerminas Blancas - Vista 12" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/12.webp"
+                        uid=6_703 button "Guillerminas Blancas - Vista 13"
+                          uid=6_704 image "Guillerminas Blancas - Vista 13" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/13.webp"
+                        uid=6_705 button "Guillerminas Blancas - Vista 14"
+                          uid=6_706 image "Guillerminas Blancas - Vista 14" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/14.webp"
+                        uid=6_707 button "Guillerminas Blancas - Vista 15"
+                          uid=6_708 image "Guillerminas Blancas - Vista 15" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/15.webp"
+                        uid=6_709 button "Guillerminas Blancas - Vista 16"
+                          uid=6_710 image "Guillerminas Blancas - Vista 16" url="https://rositarococo.com/guillerminafotos/guillerminasblancas/16.webp"
+                uid=6_711 ignored
+                  uid=6_712 ignored
+                    uid=6_713 ignored
+                      uid=6_714 StaticText "NUEVA TEMPORADA"
+                        uid=6_715 InlineTextBox "NUEVA TEMPORADA"
+                    uid=6_716 ignored
+                      uid=6_717 StaticText "STOCK LIMITADO"
+                        uid=6_718 InlineTextBox "STOCK LIMITADO"
+                  uid=6_719 paragraph
+                    uid=6_720 StaticText "¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar."
+                      uid=6_721 InlineTextBox "¡Renovate para la nueva temporada Primavera-"
+                      uid=6_722 InlineTextBox "Verano 2025! Nuestras guillerminas blancas son el "
+                      uid=6_723 InlineTextBox "complemento ideal para cualquier look. Su diseño "
+                      uid=6_724 InlineTextBox "versátil y ultra cómodo te va a encantar."
+                  uid=6_725 ignored
+                    uid=6_726 ignored
+                      uid=6_727 paragraph
+                        uid=6_728 StaticText "Material"
+                          uid=6_729 InlineTextBox "Material"
+                      uid=6_730 paragraph
+                        uid=6_731 StaticText "Tela reforzada super flexible"
+                          uid=6_732 InlineTextBox "Tela reforzada "
+                          uid=6_733 InlineTextBox "super flexible"
+                    uid=6_734 ignored
+                      uid=6_735 paragraph
+                        uid=6_736 StaticText "Suela"
+                          uid=6_737 InlineTextBox "Suela"
+                      uid=6_738 paragraph
+                        uid=6_739 StaticText "Expanso"
+                          uid=6_740 InlineTextBox "Expanso"
+                    uid=6_741 ignored
+                      uid=6_742 paragraph
+                        uid=6_743 StaticText "Envío"
+                          uid=6_744 InlineTextBox "Envío"
+                      uid=6_745 paragraph
+                        uid=6_746 StaticText "GRATIS 🚚"
+                          uid=6_747 InlineTextBox "GRATIS 🚚"
+                  uid=6_748 ignored
+                    uid=6_749 ignored
+                      uid=6_750 ignored
+                        uid=6_751 paragraph
+                          uid=6_752 StaticText "🎉 PROMO ESPECIAL"
+                            uid=6_753 InlineTextBox "🎉 PROMO ESPECIAL"
+                        uid=6_754 paragraph
+                          uid=6_755 StaticText "2 PARES POR"
+                            uid=6_756 InlineTextBox "2 PARES POR"
+                        uid=6_757 paragraph
+                          uid=6_758 StaticText "$95.000"
+                            uid=6_759 InlineTextBox "$95.000"
+                        uid=6_760 paragraph
+                          uid=6_761 StaticText "AHORRÁS $25.000"
+                            uid=6_762 InlineTextBox "AHORRÁS $25.000"
+                      uid=6_763 ignored
+                        uid=6_764 paragraph
+                          uid=6_765 StaticText "Precio individual"
+                            uid=6_766 InlineTextBox "Precio individual"
+                        uid=6_767 paragraph
+                          uid=6_768 StaticText "$60.000"
+                            uid=6_769 InlineTextBox "$60.000"
+                      uid=6_770 paragraph
+                        uid=6_771 StaticText "* Podés combinar cualquier modelo y color"
+                          uid=6_772 InlineTextBox "* Podés combinar cualquier modelo y color"
+                  uid=6_773 ignored
+                    uid=6_774 ignored
+                      uid=6_775 generic
+                        uid=6_776 combobox haspopup="menu" invalid="true" value="-- Selecciona Talle --"
+                          uid=6_777 MenuListPopup
+                            uid=6_778 option "-- Selecciona Talle --" disableable disabled value="-- Selecciona Talle --"
+                            uid=6_779 option "35 (23 cm de largo de plantilla)" description="35 - 23 cm de largo de plantilla" value="35 (23 cm de largo de plantilla)"
+                            uid=6_780 option "36 (23,5 cm de largo de plantilla)" description="36 - 23,5 cm de largo de plantilla" value="36 (23,5 cm de largo de plantilla)"
+                            uid=6_781 option "37 (24 cm de largo de plantilla)" description="37 - 24 cm de largo de plantilla" value="37 (24 cm de largo de plantilla)"
+                            uid=6_782 option "38 (24,7 cm de largo de plantilla)" description="38 - 24,7 cm de largo de plantilla" value="38 (24,7 cm de largo de plantilla)"
+                            uid=6_783 option "39 (25,3 cm de largo de plantilla)" description="39 - 25,3 cm de largo de plantilla" value="39 (25,3 cm de largo de plantilla)"
+                            uid=6_784 option "40 (26 cm de largo de plantilla)" description="40 - 26 cm de largo de plantilla" value="40 (26 cm de largo de plantilla)"
+                  uid=6_785 generic
+                    uid=6_786 button " Agregar al Carrito"
+                      uid=6_787 image
+                      uid=6_788 StaticText " Agregar al Carrito"
+                        uid=6_789 InlineTextBox " Agregar al Carrito"
+          uid=6_790 ignored
+            uid=6_791 ignored
+              uid=6_792 paragraph
+                uid=6_793 StaticText "👍"
+                  uid=6_794 InlineTextBox "👍"
+                uid=6_795 StaticText " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+                  uid=6_796 InlineTextBox " ¡Selecciona tus productos favoritos y agrégalos al carrito!"
+          uid=6_797 generic
+            uid=6_798 ignored
+              uid=6_799 heading "Lo que dicen nuestras clientas" level="2"
+                uid=6_800 StaticText "Lo que dicen nuestras clientas"
+                  uid=6_801 InlineTextBox "Lo que dicen nuestras clientas"
+              uid=6_802 paragraph
+                uid=6_803 StaticText "Miles de clientas felices comparten su experiencia"
+                  uid=6_804 InlineTextBox "Miles de clientas felices comparten su experiencia"
+              uid=6_805 generic
+                uid=6_806 generic
+                  uid=6_807 image "Captura de comentario positivo de clienta 1" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi1.webp"
+                uid=6_808 generic
+                  uid=6_809 image "Captura de comentario positivo de clienta 2" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi2.webp"
+                uid=6_810 generic
+                  uid=6_811 image "Captura de comentario positivo de clienta 3" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi4.webp"
+                uid=6_812 generic
+                  uid=6_813 image "Captura de comentario positivo de clienta 4" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi5.webp"
+                uid=6_814 generic
+                  uid=6_815 image "Captura de comentario positivo de clienta 5" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi6.webp"
+                uid=6_816 generic
+                  uid=6_817 image "Captura de comentario positivo de clienta 6" url="https://rositarococo.com/astrocline/comentarios/comentariorecibi7.webp"
+              uid=6_818 generic
+                uid=6_819 button "Ver más comentarios..."
+                  uid=6_820 StaticText "Ver más comentarios..."
+                    uid=6_821 InlineTextBox "Ver más comentarios..."
+          uid=6_822 ignored
+          uid=6_823 ignored
+          uid=6_824 ignored
+            uid=6_825 ignored
+          uid=6_826 ignored
+          uid=6_827 ignored
+          uid=6_828 ignored
+            uid=6_829 ignored
+            uid=6_830 ignored
+              uid=6_831 ignored
+          uid=6_832 ignored
+          uid=6_833 ignored
+          uid=6_834 ignored
+            uid=6_835 ignored
+            uid=6_836 ignored
+              uid=6_837 ignored
+          uid=6_838 ignored
+          uid=6_839 ignored
+          uid=6_840 ignored
+            uid=6_841 ignored
+            uid=6_842 ignored
+              uid=6_843 ignored
+          uid=6_844 ignored
+          uid=6_845 ignored
+          uid=6_846 ignored
+            uid=6_847 ignored
+          uid=6_848 ignored
+          uid=6_849 ignored
+          uid=6_850 ignored
+            uid=6_851 ignored
+          uid=6_852 ignored
+          uid=6_853 ignored
+          uid=6_854 ignored
+            uid=6_855 ignored
+          uid=6_856 ignored
+          uid=6_857 ignored
+          uid=6_858 ignored
+            uid=6_859 ignored
+          uid=6_860 ignored
+            uid=6_861 ignored
+            uid=6_862 ignored
+            uid=6_863 ignored
+            uid=6_864 ignored
+            uid=6_865 ignored
+            uid=6_866 ignored
+            uid=6_867 ignored
+            uid=6_868 ignored
+            uid=6_869 ignored
+            uid=6_870 ignored
+            uid=6_871 ignored
+            uid=6_872 ignored
+            uid=6_873 ignored
+            uid=6_874 ignored
+            uid=6_875 ignored
+            uid=6_876 ignored
+            uid=6_877 ignored
+            uid=6_878 ignored
+            uid=6_879 ignored
+            uid=6_880 ignored
+            uid=6_881 ignored
+            uid=6_882 ignored
+            uid=6_883 ignored
+          uid=6_884 ignored
+            uid=6_885 ignored
+          uid=6_886 ignored
+          uid=6_887 ignored
+          uid=6_888 ignored
+            uid=6_889 ignored
+          uid=6_890 ignored
+            uid=6_891 ignored
+            uid=6_892 ignored
+              uid=6_893 ignored
+          uid=6_894 ignored
+            uid=6_895 ignored
+            uid=6_896 ignored
+            uid=6_897 ignored
+            uid=6_898 ignored
+          uid=6_899 ignored
+            uid=6_900 ignored
+            uid=6_901 ignored
+              uid=6_902 ignored
+          uid=6_903 ignored
+            uid=6_904 ignored
+            uid=6_905 ignored
+              uid=6_906 ignored
+          uid=6_907 ignored
+            uid=6_908 ignored
+            uid=6_909 ignored
+              uid=6_910 ignored
+        uid=6_911 generic
+        uid=6_912 ignored
+          uid=6_913 ignored
+          uid=6_914 ignored
+            uid=6_915 ignored
+        uid=6_916 ignored
+        uid=6_917 ignored
