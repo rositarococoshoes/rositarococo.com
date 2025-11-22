@@ -5,11 +5,6 @@ if (typeof window.cart === 'undefined') {
     window.isCartOpen = false;
 }
 
-// Usar referencias a las variables globales en lugar de redeclarar
-// const cart = window.cart;  // REMOVED - This causes redeclaration
-// const cartCount = window.cartCount;  // REMOVED - This causes redeclaration  
-// const isCartOpen = window.isCartOpen;  // REMOVED - This causes redeclaration
-
 // Productos disponibles
 const products = {
     'negras': {
@@ -18,7 +13,7 @@ const products = {
         image: '/guillerminafotos/1.webp'
     },
     'camel': {
-        name: 'Guillerminas Camel', 
+        name: 'Guillerminas Camel',
         price: 60000,
         image: '/guillerminafotos/guillerminascamel/1.webp'
     },
@@ -81,20 +76,20 @@ function addToCart(model, size) {
 
     window.cart.push(cartItem);
     window.cartCount++;
-    
+
     // Actualizar interfaz
     updateCartUI();
-    
+
     // Mostrar mensaje contextual según cantidad
     if (window.cartCount === 1) {
         showCartMessage('✅ ¡Producto agregado! Agregá un segundo par y ahorrá $25.000', 'success');
     } else if (window.cartCount === 2) {
         showCartMessage('🎉 ¡Promoción activada! 2 pares por $95.000 (ahorraste $25.000)', 'success');
     }
-    
+
     // Abrir carrito automáticamente
     openCart();
-    
+
     console.log('Producto agregado al carrito:', cartItem);
 }
 
@@ -103,7 +98,7 @@ function removeFromCart(itemId) {
     window.cart = window.cart.filter(item => item.id !== itemId);
     window.cartCount = window.cart.length;
     updateCartUI();
-    
+
     // Mostrar mensaje si el carrito queda vacío
     if (window.cartCount === 0) {
         showCartMessage('Carrito vacío', 'info');
@@ -112,7 +107,7 @@ function removeFromCart(itemId) {
     } else {
         showCartMessage('Promoción activada. 2 pares por $95.000', 'success');
     }
-    
+
     console.log('Producto eliminado del carrito. Items restantes:', window.cartCount);
 }
 
@@ -126,14 +121,14 @@ function calculateCartTotal() {
 // Función para calcular el total con descuento de transferencia
 function calculateCartTotalWithDiscount() {
     let baseTotal = calculateCartTotal();
-    
+
     // Obtener método de pago seleccionado
     const paymentMethod = document.getElementById('comoabona');
     if (paymentMethod && paymentMethod.value === 'cbu') {
         // Aplicar 10% de descuento adicional para transferencia
         baseTotal = Math.round(baseTotal * 0.9);
     }
-    
+
     return baseTotal;
 }
 
@@ -148,14 +143,14 @@ function updateCartUI() {
     // Actualizar items del carrito
     const cartItemsContainer = document.querySelector('.cart-items');
     const emptyMessage = document.querySelector('.empty-cart-message');
-    
+
     if (window.cartCount === 0) {
         cartItemsContainer.innerHTML = '';
         if (emptyMessage) emptyMessage.style.display = 'block';
     } else {
         if (emptyMessage) emptyMessage.style.display = 'none';
-        
-        // Generar HTML de los items - BOTÓN ELIMINAR A LA DERECHA DEL NOMBRE
+
+        // Generar HTML de los items
         cartItemsContainer.innerHTML = window.cart.map(item => `
             <div class="cart-item bg-gray-50 p-3 rounded-lg relative" data-item-id="${item.id}">
                 <div class="flex items-center justify-between">
@@ -166,7 +161,7 @@ function updateCartUI() {
                             <p class="text-xs text-gray-600">Talle: ${item.size}</p>
                         </div>
                     </div>
-                    <button class="remove-item text-red-500 hover:text-red-700 text-xl font-bold w-6 h-6 rounded-full bg-white shadow-md z-10 flex-shrink-0" 
+                    <button class="remove-item text-red-500 hover:text-red-700 text-xl font-bold w-6 h-6 rounded-full bg-white shadow-md z-10 flex-shrink-0"
                             onclick="removeFromCart(${item.id})" title="Eliminar producto">
                         ×
                     </button>
@@ -199,9 +194,8 @@ function updateCartUI() {
     if (checkoutSection) {
         if (window.cartCount > 0) {
             checkoutSection.classList.remove('hidden');
-            // Actualizar progreso del checkout
             updateCheckoutProgress(2);
-            
+
             // Mostrar notificación suave
             showCartMessage('🛒 ¡Carrito listo! Puedes continuar con tu compra.', 'info', 3000);
         } else {
@@ -217,11 +211,11 @@ function updateCartUI() {
 function updateOrderSummary() {
     const summaryElement = document.getElementById('286442883');
     const reviewElement = document.getElementById('review-modelostallesseleccionados');
-    
+
     if (window.cartCount > 0 && summaryElement) {
         const summaryText = window.cart.map(item => `${item.name} - Talle ${item.size}`).join(', ');
         summaryElement.value = summaryText;
-        
+
         if (reviewElement) {
             reviewElement.textContent = summaryText;
         }
@@ -229,7 +223,7 @@ function updateOrderSummary() {
         if (summaryElement) summaryElement.value = '';
         if (reviewElement) reviewElement.textContent = '-';
     }
-    
+
     // Actualizar precio total en el resumen con descuento si corresponde
     const totalElement = document.getElementById('preciototal');
     if (totalElement) {
@@ -237,7 +231,7 @@ function updateOrderSummary() {
         if (window.cartCount > 0) {
             const paymentMethod = document.getElementById('comoabona');
             const isTransfer = paymentMethod && paymentMethod.value === 'cbu';
-            
+
             if (isTransfer) {
                 totalElement.innerHTML = `<strong>Total: $${total.toLocaleString('es-AR')} <span class="text-green-600 text-sm">(10% OFF por transferencia)</span></strong>`;
             } else {
@@ -260,14 +254,14 @@ function showInlineMessage(message, type = 'info', duration = 5000) {
     modalOverlay.style.right = '0';
     modalOverlay.style.bottom = '0';
     modalOverlay.style.zIndex = '9999';
-    
+
     // Crear modal content
     const modalContent = document.createElement('div');
     modalContent.className = 'bg-white rounded-lg p-6 max-w-sm w-full shadow-2xl transform transition-all';
-    
+
     let bgColor = 'bg-blue-100 border-blue-400 text-blue-800';
     let icon = 'ℹ️';
-    
+
     switch(type) {
         case 'success':
             bgColor = 'bg-green-100 border-green-400 text-green-800';
@@ -282,22 +276,22 @@ function showInlineMessage(message, type = 'info', duration = 5000) {
             icon = '❌';
             break;
     }
-    
+
     modalContent.innerHTML = `
         <div class="${bgColor} border-l-4 p-4 rounded-lg">
             <div class="flex items-center">
                 <span class="text-2xl mr-3">${icon}</span>
                 <p class="flex-1 font-medium">${message}</p>
-                <button onclick="this.closest('.fixed').remove()" 
+                <button onclick="this.closest('.fixed').remove()"
                         class="ml-3 text-gray-500 hover:text-gray-700 text-xl font-bold">×
                 </button>
             </div>
         </div>
     `;
-    
+
     modalOverlay.appendChild(modalContent);
     document.body.appendChild(modalOverlay);
-    
+
     // Auto cerrar después del tiempo especificado
     if (duration > 0) {
         setTimeout(() => {
@@ -306,7 +300,7 @@ function showInlineMessage(message, type = 'info', duration = 5000) {
             }
         }, duration);
     }
-    
+
     // Cerrar al hacer clic fuera
     modalOverlay.addEventListener('click', function(e) {
         if (e.target === modalOverlay) {
@@ -324,9 +318,9 @@ function showCartMessage(message, type = 'info', duration = 5000) {
 function toggleCart() {
     const miniCart = document.getElementById('mini-cart');
     if (!miniCart) return;
-    
+
     window.isCartOpen = !window.isCartOpen;
-    
+
     if (window.isCartOpen) {
         miniCart.style.transform = 'translateX(0)';
         miniCart.style.opacity = '1';
@@ -364,22 +358,21 @@ function goToCheckoutForm() {
         showCartMessage('Debes agregar productos antes de continuar', 'warning');
         return;
     }
-    
+
     // Cerrar carrito
     closeCart();
-    
+
     // Mostrar formulario de checkout
     const checkoutSection = document.getElementById('restodelform');
     const productsSection = document.getElementById('todoslosmodelos');
-    
+
     if (checkoutSection && productsSection) {
         checkoutSection.classList.remove('hidden');
         checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Actualizar进度栏
+
         updateCheckoutProgress(2);
     }
-    
+
     console.log('Navegando al formulario de checkout');
 }
 
@@ -390,7 +383,7 @@ function updateCheckoutProgress(step) {
         const stepNumber = index + 1;
         const stepNumberEl = stepElement.querySelector('.step-number');
         const stepNameEl = stepElement.querySelector('.step-name');
-        
+
         if (stepNumber < step) {
             // Pasos completados
             stepElement.classList.add('completed');
@@ -414,12 +407,11 @@ function updateCheckoutProgress(step) {
 function backToProducts() {
     const checkoutSection = document.getElementById('restodelform');
     const productsSection = document.getElementById('todoslosmodelos');
-    
+
     if (checkoutSection && productsSection) {
         checkoutSection.classList.add('hidden');
         productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Actualizar进度栏
+
         updateCheckoutProgress(1);
     }
 }
@@ -431,13 +423,13 @@ function updateReviewFields() {
     const whatsappField = document.getElementById('53830725');
     const emailField = document.getElementById('1465946249');
     const dniField = document.getElementById('541001873');
-    
+
     // Actualizar campos de dirección
     const calleField = document.getElementById('951592426');
     const localidadField = document.getElementById('1743418466');
     const cpField = document.getElementById('1005165410');
     const provinciaField = document.getElementById('59648134');
-    
+
     // Actualizar elementos de revisión
     const nombreReview = document.getElementById('help-nombre');
     const whatsappReview = document.getElementById('help-wapp');
@@ -447,37 +439,37 @@ function updateReviewFields() {
     const localidadReview = document.getElementById('help-localidad');
     const cpReview = document.getElementById('help-cp');
     const provinciaReview = document.getElementById('help-provincia');
-    
+
     // Actualizar campos de contacto en tiempo real
     if (nombreField && nombreReview) {
         nombreReview.textContent = nombreField.value || '-';
     }
-    
+
     if (whatsappField && whatsappReview) {
         whatsappReview.textContent = whatsappField.value || '-';
     }
-    
+
     if (emailField && emailReview) {
         emailReview.textContent = emailField.value || '-';
     }
-    
+
     if (dniField && dniReview) {
         dniReview.textContent = dniField.value || '-';
     }
-    
+
     // Actualizar campos de dirección en tiempo real
     if (calleField && calleReview) {
         calleReview.textContent = calleField.value || '-';
     }
-    
+
     if (localidadField && localidadReview) {
         localidadReview.textContent = localidadField.value || '-';
     }
-    
+
     if (cpField && cpReview) {
         cpReview.textContent = cpField.value || '-';
     }
-    
+
     if (provinciaField && provinciaReview) {
         const selectedOption = provinciaField.options[provinciaField.selectedIndex];
         provinciaReview.textContent = selectedOption ? selectedOption.text : '-';
@@ -490,26 +482,26 @@ let isProcessingAddToCart = false;
 // Función global para manejar clics en botones de agregar al carrito
 function handleAddToCart(button) {
     console.log('🛒 handleAddToCart called', button);
-    
+
     // Prevenir múltiples clics simultáneos
     if (isProcessingAddToCart) {
         console.log('⚠️ Ya se está procesando un agregado al carrito');
         return;
     }
-    
+
     isProcessingAddToCart = true;
-    
+
     try {
         const model = button.getAttribute('data-model');
         console.log('📦 Model:', model);
-        
+
         const selectId = `talle-${model}`;
         console.log('🔍 Looking for select ID:', selectId);
-        
+
         // Buscar el select dentro del mismo product-card
         const productCard = button.closest('.product-card');
         let selectElement = null;
-        
+
         if (productCard) {
             selectElement = productCard.querySelector(`#${selectId}`);
             console.log('📋 Select found in product card:', !!selectElement);
@@ -518,11 +510,11 @@ function handleAddToCart(button) {
             selectElement = document.getElementById(selectId);
             console.log('📋 Select found globally:', !!selectElement);
         }
-        
+
         if (selectElement) {
             console.log('📊 Select value:', selectElement.value);
             console.log('📊 Select selectedIndex:', selectElement.selectedIndex);
-            
+
             // Resetear todos los otros selects para evitar confusiones
             const allSelects = document.querySelectorAll('select[id^="talle-"]');
             allSelects.forEach(select => {
@@ -531,13 +523,13 @@ function handleAddToCart(button) {
                     select.selectedIndex = 0;
                 }
             });
-            
+
             const selectedOption = selectElement.options[selectElement.selectedIndex];
             console.log('📝 Selected option:', selectedOption);
-            
+
             const sizeText = selectedOption ? selectedOption.textContent.split(' (')[0] : '';
             console.log('👟 Size extracted:', sizeText);
-            
+
             if (sizeText && sizeText !== '-- Selecciona Talle --') {
                 addToCart(model, sizeText);
             } else {
@@ -553,6 +545,172 @@ function handleAddToCart(button) {
         setTimeout(() => {
             isProcessingAddToCart = false;
         }, 500);
+    }
+}
+
+// Función para inicializar los carruseles Embla - Versión simplificada
+function initializeCarousels() {
+    console.log('🎠 Inicializando carruseles Embla...');
+
+    // Verificar que EmblaCarousel esté disponible
+    if (typeof EmblaCarousel === 'undefined') {
+        console.error('❌ EmblaCarousel no está cargado');
+        return;
+    }
+
+    // Esperar a que el DOM esté completamente cargado
+    setTimeout(() => {
+        // Encontrar todos los carruseles con clase .embla
+        const carouselNodes = document.querySelectorAll('.embla');
+
+        if (carouselNodes.length === 0) {
+            console.log('❌ No se encontraron carruseles con clase .embla');
+            return;
+        }
+
+        carouselNodes.forEach((node, index) => {
+            const viewport = node.querySelector('.embla__viewport');
+
+            if (!viewport) {
+                console.warn(`⚠️ Carrusel ${index}: No se encontró viewport`);
+                return;
+            }
+
+            try {
+                // Inicializar carrusel con configuración simple
+                const emblaNode = EmblaCarousel(viewport, {
+                    align: 'start',
+                    containScroll: 'keepSnaps',
+                    dragFree: true,
+                    loop: false,
+                    slidesToScroll: 1,
+                });
+
+                console.log(`✅ Carrusel ${index} inicializado correctamente`);
+
+                // Configurar botones de navegación
+                const prevBtn = node.querySelector('.embla__button--prev');
+                const nextBtn = node.querySelector('.embla__button--next');
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', () => emblaNode.scrollPrev(), false);
+                }
+
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', () => emblaNode.scrollNext(), false);
+                }
+
+                // Configurar thumbnails si existen
+                const thumbsViewport = node.parentElement?.querySelector('.embla-thumbs__viewport');
+                if (thumbsViewport) {
+                    const thumbsEmblaNode = EmblaCarousel(thumbsViewport, {
+                        containScroll: 'keepSnaps',
+                        dragFree: false,
+                    });
+
+                    // Configurar clics en thumbnails
+                    const thumbs = thumbsEmblaNode.slideNodes();
+                    thumbs.forEach((thumbNode, thumbIndex) => {
+                        thumbNode.addEventListener('click', () => {
+                            emblaNode.scrollTo(thumbIndex);
+                        });
+                    });
+
+                    // Sincronizar carrusel principal con thumbnails
+                    emblaNode.on('select', () => {
+                        const selected = emblaNode.selectedScrollSnap();
+                        thumbs.forEach((thumbNode, thumbIndex) => {
+                            if (thumbIndex === selected) {
+                                thumbNode.classList.add('embla-thumbs__slide--selected');
+                            } else {
+                                thumbNode.classList.remove('embla-thumbs__slide--selected');
+                            }
+                        });
+                    });
+                }
+
+            } catch (error) {
+                console.error(`❌ Error inicializando carrusel ${index}:`, error);
+            }
+        });
+
+        console.log(`✅ ${carouselNodes.length} carruseles procesados`);
+
+    }, 1000); // Esperar 1 segundo para asegurar que todo esté cargado
+}
+
+// Función para inicializar testimonios
+function initializeTestimonials() {
+    const testimonialsGrid = document.getElementById('testimonials-grid');
+    const loadMoreBtn = document.getElementById('load-more-testimonials');
+    const loadingIndicator = document.getElementById('testimonials-loading');
+
+    if (!testimonialsGrid) return;
+
+    // Lista de testimonios disponibles
+    const allTestimonials = [
+        { src: 'comentarios/comentariorecibi1.webp', alt: 'Captura de comentario positivo de clienta 1' },
+        { src: 'comentarios/comentariorecibi2.webp', alt: 'Captura de comentario positivo de clienta 2' },
+        { src: 'comentarios/comentariorecibi4.webp', alt: 'Captura de comentario positivo de clienta 3' },
+        { src: 'comentarios/comentariorecibi5.webp', alt: 'Captura de comentario positivo de clienta 4' },
+        { src: 'comentarios/comentariorecibi6.webp', alt: 'Captura de comentario positivo de clienta 5' },
+        { src: 'comentarios/comentariorecibi7.webp', alt: 'Captura de comentario positivo de clienta 6' },
+        { src: 'comentarios/comentariosig.webp', alt: 'Comentarios de Instagram' },
+        { src: 'comentarios/comentario1-min.webp', alt: 'Testimonio destacado 1' },
+        { src: 'comentarios/comentario2-min.webp', alt: 'Testimonio destacado 2' },
+        { src: 'comentarios/comentario3-min.webp', alt: 'Referencia de clienta satisfecha 1' },
+        { src: 'comentarios/comentario4-min.webp', alt: 'Referencia de clienta satisfecha 2' },
+        { src: 'comentarios/comentario5-min.webp', alt: 'Referencia de clienta satisfecha 3' }
+    ];
+
+    let currentIndex = 0;
+    const itemsPerLoad = 6;
+
+    function loadTestimonials() {
+        const endIndex = Math.min(currentIndex + itemsPerLoad, allTestimonials.length);
+
+        for (let i = currentIndex; i < endIndex; i++) {
+            const testimonial = allTestimonials[i];
+            const testimonialElement = document.createElement('div');
+            testimonialElement.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 mb-4';
+            testimonialElement.innerHTML = `
+                <img src="${testimonial.src}" alt="${testimonial.alt}"
+                     class="w-full h-auto object-cover"
+                     loading="lazy">
+            `;
+            testimonialsGrid.appendChild(testimonialElement);
+        }
+
+        currentIndex = endIndex;
+
+        // Ocultar botón de cargar más si no hay más testimonios
+        if (currentIndex >= allTestimonials.length && loadMoreBtn) {
+            loadMoreBtn.style.display = 'none';
+        }
+    }
+
+    // Cargar testimonios iniciales
+    loadTestimonials();
+
+    // Event listener para cargar más testimonios
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', function() {
+            if (loadingIndicator) {
+                loadingIndicator.style.display = 'block';
+                loadMoreBtn.style.display = 'none';
+            }
+
+            // Simular carga y mostrar más después de un momento
+            setTimeout(() => {
+                loadTestimonials();
+                if (loadingIndicator) {
+                    loadingIndicator.style.display = 'none';
+                }
+                if (currentIndex < allTestimonials.length) {
+                    loadMoreBtn.style.display = 'inline-block';
+                }
+            }, 800);
+        });
     }
 }
 
@@ -596,7 +754,7 @@ function initializeCart() {
         '1460904554', '53830725', '1465946249', '541001873', // Contacto
         '951592426', '1743418466', '1005165410', '59648134' // Dirección
     ];
-    
+
     formFields.forEach(fieldId => {
         const field = document.getElementById(fieldId);
         if (field) {
@@ -615,37 +773,24 @@ function initializeCart() {
 
     // Inicializar UI del carrito
     updateCartUI();
-    
+
     // Inicializar campos de revisión
     updateReviewFields();
 }
 
-// Función para inicializar los carruseles Embla
-function initializeSwipers() {
-    console.log('🎠 Inicializando carruseles Embla...');
-    
-    // Los carruseles ahora se inicializan automáticamente con Embla Carousel
-    // Esta función queda para compatibilidad pero los carruseles ya funcionan por sí solos
-    console.log('✅ Carruseles Embla ya inicializados automáticamente');
-}
-
-// Función global para inicialización (llamada desde Layout.astro)
-window.initCarousels = initializeSwipers;
-window.initializeSwipers = initializeSwipers;
-
 // Función para inicializar guías de talles
 function initializeSizeGuides() {
     const sizeGuideContainers = document.querySelectorAll('.size-guide-container');
-    
+
     sizeGuideContainers.forEach(container => {
         const toggle = container.querySelector('.size-guide-toggle');
         const content = container.querySelector('.size-guide-content');
         const icon = container.querySelector('.toggle-icon');
-        
+
         if (toggle && content && icon) {
             toggle.addEventListener('click', function() {
                 const isOpen = container.classList.contains('open');
-                
+
                 if (isOpen) {
                     container.classList.remove('open');
                     content.classList.add('hidden');
@@ -662,257 +807,27 @@ function initializeSizeGuides() {
     });
 }
 
-// Función para inicializar testimonios
-function initializeTestimonials() {
-    const testimonialsGrid = document.getElementById('testimonials-grid');
-    const loadMoreBtn = document.getElementById('load-more-testimonials');
-    const loadingIndicator = document.getElementById('testimonials-loading');
-    
-    if (!testimonialsGrid) return;
-
-    // Lista de testimonios disponibles
-    const allTestimonials = [
-        { src: 'comentarios/comentariorecibi1.webp', alt: 'Captura de comentario positivo de clienta 1' },
-        { src: 'comentarios/comentariorecibi2.webp', alt: 'Captura de comentario positivo de clienta 2' },
-        { src: 'comentarios/comentariorecibi4.webp', alt: 'Captura de comentario positivo de clienta 3' },
-        { src: 'comentarios/comentariorecibi5.webp', alt: 'Captura de comentario positivo de clienta 4' },
-        { src: 'comentarios/comentariorecibi6.webp', alt: 'Captura de comentario positivo de clienta 5' },
-        { src: 'comentarios/comentariorecibi7.webp', alt: 'Captura de comentario positivo de clienta 6' },
-        { src: 'comentarios/comentariorecibi8.webp', alt: 'Captura de comentario positivo de clienta 7' },
-        { src: 'comentarios/comentariosig.webp', alt: 'Comentarios de Instagram' },
-        { src: 'comentarios/comentario1-min.webp', alt: 'Testimonio destacado 1' },
-        { src: 'comentarios/comentario2-min.webp', alt: 'Testimonio destacado 2' },
-        { src: 'comentarios/comentario3-min.webp', alt: 'Referencia de clienta satisfecha 1' },
-        { src: 'comentarios/comentario4-min.webp', alt: 'Referencia de clienta satisfecha 2' },
-        { src: 'comentarios/comentario5-min.webp', alt: 'Referencia de clienta satisfecha 3' }
-    ];
-
-    let currentIndex = 0;
-    const itemsPerLoad = 6;
-
-    function loadTestimonials() {
-        const endIndex = Math.min(currentIndex + itemsPerLoad, allTestimonials.length);
-        
-        for (let i = currentIndex; i < endIndex; i++) {
-            const testimonial = allTestimonials[i];
-            const testimonialElement = document.createElement('div');
-            testimonialElement.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 mb-4';
-            testimonialElement.innerHTML = `
-                <img src="${testimonial.src}" alt="${testimonial.alt}" 
-                     class="w-full h-auto object-cover" 
-                     loading="lazy">
-            `;
-            testimonialsGrid.appendChild(testimonialElement);
-        }
-        
-        currentIndex = endIndex;
-        
-        // Ocultar botón de cargar más si no hay más testimonios
-        if (currentIndex >= allTestimonials.length && loadMoreBtn) {
-            loadMoreBtn.style.display = 'none';
-        }
-    }
-
-    // Cargar testimonios iniciales
-    loadTestimonials();
-
-    // Event listener para cargar más testimonios
-    if (loadMoreBtn) {
-        loadMoreBtn.addEventListener('click', function() {
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'block';
-                loadMoreBtn.style.display = 'none';
-            }
-            
-            // Simular carga y mostrar más después de un momento
-            setTimeout(() => {
-                loadTestimonials();
-                if (loadingIndicator) {
-                    loadingIndicator.style.display = 'none';
-                }
-                if (currentIndex < allTestimonials.length) {
-                    loadMoreBtn.style.display = 'inline-block';
-                }
-            }, 800);
-        });
-    }
-}
-
 // Inicialización cuando el DOM está listo
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 Inicializando aplicación...');
-    
+
     // Inicializar carrito
     initializeCart();
-    
+
     // Inicializar guías de talles
     initializeSizeGuides();
-    
+
     // Inicializar testimonios
     initializeTestimonials();
-    
-    // Inicializar Swiper con un pequeño delay para asegurar que todo esté cargado
-    setTimeout(initializeSwipers, 200);
-    
+
+    // Inicializar carruseles con delay para asegurar que los scripts externos se carguen
+    setTimeout(() => {
+        initializeCarousels();
+    }, 2000);
+
     console.log('✅ Aplicación inicializada correctamente');
 });
 
-// También inicializar cuando la ventana esté completamente cargada
-window.addEventListener('load', function() {
-    console.log('🔄 Re-inicializando Swiper después de load...');
-    setTimeout(initializeSwipers, 100);
-});
-
-// Función global para inicialización manual (para debugging)
-window.debugSwipers = function() {
-    console.log('🐛 Debug Swipers');
-    console.log('Swiper disponible:', typeof Swiper !== 'undefined');
-    
-    // Verificar si los elementos existen
-    ['guillermina-negras', 'guillermina-camel', 'guillermina-blancas'].forEach(product => {
-        const mainElement = document.getElementById(`swiper-${product}`);
-        const thumbElement = document.getElementById(`swiper-thumbnails-${product}`);
-        console.log(`Producto ${product}:`, {
-            main: !!mainElement,
-            thumb: !!thumbElement,
-            mainId: `swiper-${product}`,
-            thumbId: `swiper-thumbnails-${product}`
-        });
-    });
-    
-    // Intentar inicializar
-    initializeSwipers();
-};
-
-// Estilos CSS para mensajes del carrito (se agregan dinámicamente)
-const cartStyles = `
-    /* Mini Cart Responsive */
-    #mini-cart {
-        position: fixed;
-        right: 1rem;
-        top: 5rem;
-        background: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        padding: 1rem;
-        width: 24rem;
-        max-width: 90vw;
-        z-index: 50;
-        transform: translateX(100%);
-        opacity: 0;
-        pointer-events: none;
-        transition: all 0.3s ease;
-        max-height: 70vh;
-        overflow-y: auto;
-    }
-    
-    @media (max-width: 768px) {
-        #mini-cart {
-            position: fixed;
-            right: 0;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            max-width: 100vw;
-            max-height: 100vh;
-            border-radius: 0;
-            transform: translateX(100%);
-        }
-    }
-    
-    .cart-message {
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding: 12px 16px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        animation: slideInMessage 0.4s ease-out;
-    }
-    
-    .cart-message:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-    
-    .message-text {
-        flex-grow: 1;
-        font-weight: 500;
-        line-height: 1.4;
-    }
-    
-    .message-close {
-        background: transparent;
-        border: none;
-        font-size: 18px;
-        color: rgba(0, 0, 0, 0.4);
-        cursor: pointer;
-        padding: 4px;
-        border-radius: 50%;
-        transition: all 0.2s ease;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .message-close:hover {
-        background: rgba(0, 0, 0, 0.1);
-        color: rgba(0, 0, 0, 0.7);
-        transform: scale(1.1);
-    }
-    
-    @keyframes slideInMessage {
-        from {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    .testimonial-item {
-        opacity: 0;
-        transform: translateY(30px);
-        animation: fadeInUp 0.6s ease forwards;
-    }
-    
-    .testimonial-item:nth-child(n) {
-        animation-delay: calc(n * 0.1s);
-    }
-    
-    @keyframes fadeInUp {
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .cart-item {
-        transition: all 0.3s ease;
-    }
-    
-    .cart-item:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    
-    .remove-item {
-        transition: all 0.2s ease;
-    }
-    
-    .remove-item:hover {
-        background: rgba(239, 68, 68, 0.1);
-        transform: scale(1.1);
-    }
-`;
-
-// Agregar estilos al head
-const styleSheet = document.createElement('style');
-styleSheet.textContent = cartStyles;
-document.head.appendChild(styleSheet);
+// Exponer funciones globales para compatibilidad
+window.initCarousels = initializeCarousels;
+window.initializeCarousels = initializeCarousels;
