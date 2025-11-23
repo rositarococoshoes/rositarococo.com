@@ -177,21 +177,32 @@ function updateCartUI() {
         element.textContent = `$${total.toLocaleString('es-AR')}`;
     });
 
-    // Actualizar estado y texto del botón de checkout dinámicamente
+    // Actualizar estado y texto del botón de checkout simplificado
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
         if (window.cartCount === 0) {
             checkoutBtn.disabled = true;
             checkoutBtn.className = 'bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed';
             checkoutBtn.textContent = 'Continuar';
-        } else if (window.cartCount === 1) {
+        } else {
+            // Botón gris simplificado para 1+ productos
             checkoutBtn.disabled = false;
-            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
-            checkoutBtn.textContent = 'Continuar';
-        } else if (window.cartCount >= 2) {
-            checkoutBtn.disabled = false;
-            checkoutBtn.className = 'bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 cursor-pointer';
-            checkoutBtn.textContent = 'Finalizar →';
+            checkoutBtn.className = 'bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Finalizar pedido';
+        }
+    }
+
+    // Agregar mensaje contextual simple para incentivar segundo par
+    const cartOfferMessage = document.getElementById('cart-offer-message');
+    if (cartOfferMessage) {
+        if (window.cartCount === 1) {
+            cartOfferMessage.classList.remove('hidden');
+            const offerText = document.getElementById('offer-text');
+            if (offerText) {
+                offerText.textContent = '¡Agrega otro par para activar el descuento!';
+            }
+        } else {
+            cartOfferMessage.classList.add('hidden');
         }
     }
 
@@ -383,23 +394,15 @@ function closeCart() {
     }
 }
 
-// Función para ir al formulario de checkout con comportamiento dinámico
+// Función para ir al formulario de checkout - simplificada
 function goToCheckoutForm() {
     if (window.cartCount === 0) {
         showCartMessage('Debes agregar productos antes de continuar', 'warning');
         return;
     }
 
-    // Si hay 1 par: solo cerrar carrito para que puedan agregar otro
-    if (window.cartCount === 1) {
-        closeCart();
-        console.log('Cerrando carrito para permitir agregar otro par');
-        return;
-    }
-
-    // Si hay 2 pares: continuar al envío con smooth scrolling
-    if (window.cartCount === 2) {
-        closeCart();
+    // Continuar al envío con smooth scrolling para cualquier cantidad > 0
+    closeCart();
 
         // Esperar a que el carrito se cierre completamente
         setTimeout(() => {
