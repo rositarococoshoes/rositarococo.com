@@ -433,6 +433,7 @@ function goToCheckoutForm() {
         }
     }, 600); // Delay aumentado para mejor transición
 }
+
 // Función para hacer smooth scroll de manera más controlada
 function smoothScrollToElement(element) {
     if (!element) return;
