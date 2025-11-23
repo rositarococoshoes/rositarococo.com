@@ -82,9 +82,9 @@ function addToCart(model, size) {
 
     // Mostrar mensaje contextual según cantidad
     if (window.cartCount === 1) {
-        showCartMessage('✅ ¡Producto agregado! Agregá un segundo par y ahorrá $25.000', 'success');
+        showCartMessage('✅ ¡Agregá un segundo par!', 'success');
     } else if (window.cartCount === 2) {
-        showCartMessage('🎉 ¡Promoción activada! 2 pares por $95.000 (ahorraste $25.000)', 'success');
+        showCartMessage('✅ ¡Promoción activada!', 'success');
     }
 
     // Abrir carrito automáticamente
@@ -101,11 +101,11 @@ function removeFromCart(itemId) {
 
     // Mostrar mensaje si el carrito queda vacío
     if (window.cartCount === 0) {
-        showCartMessage('Carrito vacío', 'info');
+        showCartMessage('🛒 Carrito vacío', 'info');
     } else if (window.cartCount === 1) {
-        showCartMessage('Promoción desactivada. Agregá otro par para activar el descuento.', 'warning');
+        showCartMessage('✅ Agregá otro par para activar descuento', 'warning');
     } else {
-        showCartMessage('Promoción activada. 2 pares por $95.000', 'success');
+        showCartMessage('✅ Promoción activada', 'success');
     }
 
     console.log('Producto eliminado del carrito. Items restantes:', window.cartCount);
@@ -177,15 +177,21 @@ function updateCartUI() {
         element.textContent = `$${total.toLocaleString('es-AR')}`;
     });
 
-    // Actualizar estado del botón de checkout
+    // Actualizar estado y texto del botón de checkout dinámicamente
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
-        if (window.cartCount > 0) {
-            checkoutBtn.disabled = false;
-            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
-        } else {
+        if (window.cartCount === 0) {
             checkoutBtn.disabled = true;
             checkoutBtn.className = 'bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed';
+            checkoutBtn.textContent = 'Continuar';
+        } else if (window.cartCount === 1) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Continuar';
+        } else if (window.cartCount >= 2) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Finalizar →';
         }
     }
 
@@ -197,7 +203,7 @@ function updateCartUI() {
             updateCheckoutProgress(2);
 
             // Mostrar notificación suave
-            showCartMessage('🛒 ¡Carrito listo! Puedes continuar con tu compra.', 'info', 3000);
+            showCartMessage('🛒 ¡Carrito listo!', 'info', 3000);
         } else {
             checkoutSection.classList.add('hidden');
         }
@@ -245,6 +251,14 @@ function updateOrderSummary() {
 
 // Función para mostrar mensajes inline (modal dentro del contenido)
 function showInlineMessage(message, type = 'info', duration = 5000) {
+    // Eliminar notificaciones existentes para evitar duplicación
+    const existingNotifications = document.querySelectorAll('.fixed.inset-0');
+    existingNotifications.forEach(notification => {
+        if (notification.querySelector('.bg-white.rounded-lg')) {
+            notification.remove();
+        }
+    });
+
     // Crear modal overlay
     const modalOverlay = document.createElement('div');
     modalOverlay.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
@@ -260,28 +274,31 @@ function showInlineMessage(message, type = 'info', duration = 5000) {
     modalContent.className = 'bg-white rounded-lg p-6 max-w-sm w-full shadow-2xl transform transition-all';
 
     let bgColor = 'bg-blue-100 border-blue-400 text-blue-800';
-    let icon = 'ℹ️';
 
-    switch(type) {
-        case 'success':
-            bgColor = 'bg-green-100 border-green-400 text-green-800';
-            icon = '✅';
-            break;
-        case 'warning':
-            bgColor = 'bg-yellow-100 border-yellow-400 text-yellow-800';
-            icon = '⚠️';
-            break;
-        case 'error':
-            bgColor = 'bg-red-100 border-red-400 text-red-800';
-            icon = '❌';
-            break;
+    // Verificar si el mensaje ya contiene emoji para evitar duplicación
+    const hasEmoji = /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F700}-\u{1F77F}]|[\u{1F780}-\u{1F7FF}]|[\u{1F800}-\u{1F8FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(message);
+
+    let iconDisplay = '';
+    if (!hasEmoji) {
+        switch(type) {
+            case 'success':
+                iconDisplay = '✅ ';
+                break;
+            case 'warning':
+                iconDisplay = '⚠️ ';
+                break;
+            case 'error':
+                iconDisplay = '❌ ';
+                break;
+            default:
+                iconDisplay = 'ℹ️ ';
+        }
     }
 
     modalContent.innerHTML = `
         <div class="${bgColor} border-l-4 p-4 rounded-lg">
             <div class="flex items-center">
-                <span class="text-2xl mr-3">${icon}</span>
-                <p class="flex-1 font-medium">${message}</p>
+                <p class="flex-1 font-medium">${iconDisplay}${message}</p>
                 <button onclick="this.closest('.fixed').remove()"
                         class="ml-3 text-gray-500 hover:text-gray-700 text-xl font-bold">×
                 </button>
@@ -334,46 +351,116 @@ function toggleCart() {
 
 function openCart() {
     const miniCart = document.getElementById('mini-cart');
+    const backdrop = document.getElementById('cart-backdrop');
     if (miniCart && !window.isCartOpen) {
         window.isCartOpen = true;
         miniCart.style.transform = 'translateX(0)';
         miniCart.style.opacity = '1';
         miniCart.style.pointerEvents = 'auto';
+
+        // Mostrar backdrop
+        if (backdrop) {
+            backdrop.style.display = 'block';
+            backdrop.classList.remove('hidden');
+        }
     }
 }
 
 function closeCart() {
     const miniCart = document.getElementById('mini-cart');
+    const backdrop = document.getElementById('cart-backdrop');
     if (miniCart && window.isCartOpen) {
         window.isCartOpen = false;
         miniCart.style.transform = 'translateX(100%)';
         miniCart.style.opacity = '0';
         miniCart.style.pointerEvents = 'none';
+
+        // Ocultar backdrop
+        if (backdrop) {
+            backdrop.style.display = 'none';
+            backdrop.classList.add('hidden');
+        }
     }
 }
 
-// Función para ir al formulario de checkout
+// Función para ir al formulario de checkout con comportamiento dinámico
 function goToCheckoutForm() {
     if (window.cartCount === 0) {
         showCartMessage('Debes agregar productos antes de continuar', 'warning');
         return;
     }
 
-    // Cerrar carrito
-    closeCart();
-
-    // Mostrar formulario de checkout
-    const checkoutSection = document.getElementById('restodelform');
-    const productsSection = document.getElementById('todoslosmodelos');
-
-    if (checkoutSection && productsSection) {
-        checkoutSection.classList.remove('hidden');
-        checkoutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-        updateCheckoutProgress(2);
+    // Si hay 1 par: solo cerrar carrito para que puedan agregar otro
+    if (window.cartCount === 1) {
+        closeCart();
+        console.log('Cerrando carrito para permitir agregar otro par');
+        return;
     }
 
-    console.log('Navegando al formulario de checkout');
+    // Si hay 2 pares: continuar al envío con smooth scrolling
+    if (window.cartCount === 2) {
+        closeCart();
+
+        // Esperar a que el carrito se cierre completamente
+        setTimeout(() => {
+            // Mostrar formulario de checkout
+            const checkoutSection = document.getElementById('restodelform');
+
+            if (checkoutSection) {
+                checkoutSection.classList.remove('hidden');
+
+                // Esperar un frame más para asegurar que el DOM se actualizó
+                requestAnimationFrame(() => {
+                    // Smooth scrolling mejorado al inicio del formulario de envío
+                    const datosEnvioElement = document.getElementById('datos-envio');
+
+                    if (datosEnvioElement) {
+                        console.log('Haciendo smooth scroll a datos-envio');
+                        // Usar una técnica más robusta para smooth scroll
+                        smoothScrollToElement(datosEnvioElement);
+                    } else {
+                        console.log('Haciendo smooth scroll a checkoutSection');
+                        smoothScrollToElement(checkoutSection);
+                    }
+
+                    updateCheckoutProgress(2);
+                    showCartMessage('✅ ¡Listo para completar!', 'success');
+                });
+            } else {
+                console.error('No se encontró el elemento checkoutSection');
+            }
+        }, 600); // Delay aumentado para mejor transición
+    }
+}
+// Función para hacer smooth scroll de manera más controlada
+function smoothScrollToElement(element) {
+    if (!element) return;
+
+    const startPosition = window.pageYOffset;
+    const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - 100; // 100px de offset
+    const distance = targetPosition - startPosition;
+    const duration = 800; // Duración más larga para smoother scroll
+
+    let start = null;
+
+    function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+
+        // Función de easing para smooth scroll
+        const ease = progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+        window.scrollTo(0, startPosition + (distance * ease));
+
+        if (progress < 1) {
+            window.requestAnimationFrame(animation);
+        }
+    }
+
+    window.requestAnimationFrame(animation);
 }
 
 // Función para actualizar el progreso del checkout
@@ -735,6 +822,12 @@ function initializeCart() {
     const cartClose = document.querySelector('.cart-close');
     if (cartClose) {
         cartClose.addEventListener('click', closeCart);
+    }
+
+    // Event listener para el backdrop (clickear fuera para cerrar)
+    const backdrop = document.getElementById('cart-backdrop');
+    if (backdrop) {
+        backdrop.addEventListener('click', closeCart);
     }
 
     // Event listener para volver a productos
