@@ -177,17 +177,20 @@ function updateCartUI() {
         element.textContent = `$${total.toLocaleString('es-AR')}`;
     });
 
-    // Actualizar estado y texto del botón de checkout simplificado
+    // Actualizar estado y texto del botón de checkout dinámicamente
     const checkoutBtn = document.getElementById('checkout-btn');
     if (checkoutBtn) {
         if (window.cartCount === 0) {
             checkoutBtn.disabled = true;
             checkoutBtn.className = 'bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed';
             checkoutBtn.textContent = 'Continuar';
-        } else {
-            // Botón gris simplificado para 1+ productos
+        } else if (window.cartCount === 1) {
             checkoutBtn.disabled = false;
             checkoutBtn.className = 'bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-all duration-300 cursor-pointer';
+            checkoutBtn.textContent = 'Finalizar pedido';
+        } else if (window.cartCount >= 2) {
+            checkoutBtn.disabled = false;
+            checkoutBtn.className = 'bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 cursor-pointer';
             checkoutBtn.textContent = 'Finalizar pedido';
         }
     }
