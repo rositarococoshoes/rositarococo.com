@@ -404,36 +404,34 @@ function goToCheckoutForm() {
     // Continuar al envío con smooth scrolling para cualquier cantidad > 0
     closeCart();
 
-        // Esperar a que el carrito se cierre completamente
-        setTimeout(() => {
-            // Mostrar formulario de checkout
-            const checkoutSection = document.getElementById('restodelform');
+    // Esperar a que el carrito se cierre completamente
+    setTimeout(() => {
+        // Mostrar formulario de checkout
+        const checkoutSection = document.getElementById('restodelform');
 
-            if (checkoutSection) {
-                checkoutSection.classList.remove('hidden');
+        if (checkoutSection) {
+            checkoutSection.classList.remove('hidden');
 
-                // Esperar un frame más para asegurar que el DOM se actualizó
-                requestAnimationFrame(() => {
-                    // Smooth scrolling mejorado al inicio del formulario de envío
-                    const datosEnvioElement = document.getElementById('datos-envio');
+            // Esperar un frame más para asegurar que el DOM se actualizó
+            requestAnimationFrame(() => {
+                // Smooth scrolling mejorado al inicio del formulario de envío
+                const datosEnvioElement = document.getElementById('datos-envio');
 
-                    if (datosEnvioElement) {
-                        console.log('Haciendo smooth scroll a datos-envio');
-                        // Usar una técnica más robusta para smooth scroll
-                        smoothScrollToElement(datosEnvioElement);
-                    } else {
-                        console.log('Haciendo smooth scroll a checkoutSection');
-                        smoothScrollToElement(checkoutSection);
-                    }
+                if (datosEnvioElement) {
+                    console.log('Haciendo smooth scroll a datos-envio');
+                    smoothScrollToElement(datosEnvioElement);
+                } else {
+                    console.log('Haciendo smooth scroll a checkoutSection');
+                    smoothScrollToElement(checkoutSection);
+                }
 
-                    updateCheckoutProgress(2);
-                    showCartMessage('✅ ¡Listo para completar!', 'success');
-                });
-            } else {
-                console.error('No se encontró el elemento checkoutSection');
-            }
-        }, 600); // Delay aumentado para mejor transición
-    }
+                updateCheckoutProgress(2);
+                showCartMessage('✅ ¡Listo para completar!', 'success');
+            });
+        } else {
+            console.error('No se encontró el elemento checkoutSection');
+        }
+    }, 600); // Delay aumentado para mejor transición
 }
 // Función para hacer smooth scroll de manera más controlada
 function smoothScrollToElement(element) {
