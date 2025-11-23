@@ -8,11 +8,11 @@
 
 ## 🎯 **INFORMACIÓN CRÍTICA DE REFERENCIA**
 
-### **Commit Actual Estable:**
-- **Hash:** `ba8cea5`
-- **Mensaje:** "Fix Embla Carousel TypeError - restore sliding and thumbnail functionality"
-- **Fecha:** 22 de Noviembre de 2025
-- **Estado:** Todos los carouseles funcionando sin errores
+### **Commits de Referencia ESTABLES:**
+- **Hash Principal:** `ba8cea5` - "Fix Embla Carousel TypeError - restore sliding and thumbnail functionality" (22 Nov 2025)
+- **Hash Logo:** `67d7848` - "Fix logo path references - resolve 404 errors" (22 Nov 2025)
+- **Hash Documentación:** `1a9cfed` - "Add complete Astrocline documentation - state reference" (22 Nov 2025)
+- **Estado:** ✅ Todos los componentes funcionando sin errores
 
 ### **Último Deploy Exitoso:**
 - **GitHub Pages:** ✅ Activo y funcionando
