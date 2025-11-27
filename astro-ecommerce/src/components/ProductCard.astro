@@ -1,0 +1,114 @@
+---
+import ProductCarousel from './ProductCarousel.astro';
+
+export interface Props {
+  id: string;
+  name: string;
+  model: string;
+  images: string[];
+  description?: string;
+  badges?: string[];
+}
+
+const { id, name, model, images, description, badges = ['NUEVA TEMPORADA', 'STOCK LIMITADO'] } = Astro.props;
+
+const sizes = [
+  { value: '35', label: '35 (23 cm de largo de plantilla)' },
+  { value: '36', label: '36 (23,5 cm de largo de plantilla)' },
+  { value: '37', label: '37 (24 cm de largo de plantilla)' },
+  { value: '38', label: '38 (24,7 cm de largo de plantilla)' },
+  { value: '39', label: '39 (25,3 cm de largo de plantilla)' },
+  { value: '40', label: '40 (26 cm de largo de plantilla)' },
+];
+---
+
+<div class="product-card rounded-lg border bg-white shadow-sm overflow-hidden" data-product-id={id}>
+  <div class="p-3 sm:p-4">
+    <h2 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 mb-2 text-center">{name}</h2>
+    
+    <ProductCarousel productId={id} images={images} productName={name} />
+    
+    <div class="product-details mt-2 space-y-2 sm:space-y-3 p-2 sm:p-3">
+      <!-- Badges -->
+      <div class="flex flex-wrap gap-1.5 sm:gap-2 justify-center">
+        {badges.includes('NUEVA TEMPORADA') && (
+          <span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-purple-100 text-purple-800 border-purple-200">
+            NUEVA TEMPORADA
+          </span>
+        )}
+        {badges.includes('STOCK LIMITADO') && (
+          <span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] sm:text-xs font-semibold bg-red-100 text-red-800 border-red-200">
+            STOCK LIMITADO
+          </span>
+        )}
+      </div>
+      
+      <!-- Description -->
+      {description && (
+        <p class="text-gray-700 text-xs sm:text-sm leading-relaxed text-center line-clamp-3 sm:line-clamp-none">{description}</p>
+      )}
+      
+      <!-- Specifications -->
+      <div class="grid grid-cols-3 gap-1 sm:gap-2 text-[10px] sm:text-xs text-center">
+        <div class="bg-gray-50 p-1.5 sm:p-2 rounded border border-gray-200">
+          <p class="font-medium text-gray-600">Material</p>
+          <p class="text-gray-800 truncate">Tela reforzada</p>
+        </div>
+        <div class="bg-gray-50 p-1.5 sm:p-2 rounded border border-gray-200">
+          <p class="font-medium text-gray-600">Suela</p>
+          <p class="text-gray-800">Expanso</p>
+        </div>
+        <div class="bg-green-50 p-1.5 sm:p-2 rounded border border-green-200">
+          <p class="font-medium text-green-700">Envio</p>
+          <p class="text-green-800 font-bold">GRATIS</p>
+        </div>
+      </div>
+      
+      <!-- Pricing -->
+      <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-2 sm:p-3 rounded-lg border border-pink-200 shadow-sm">
+        <div class="text-center space-y-1.5 sm:space-y-2">
+          <div class="bg-pink-600 text-white p-2 rounded-md shadow-sm">
+            <p class="text-[10px] sm:text-xs font-bold mb-0.5">PROMO ESPECIAL</p>
+            <p class="text-xs sm:text-sm font-bold">2 PARES POR</p>
+            <p class="text-base sm:text-lg font-extrabold">$95.000</p>
+            <p class="text-[10px] sm:text-xs mt-1 bg-white text-pink-600 inline-block px-1.5 sm:px-2 py-0.5 rounded-full font-semibold">AHORRAS $25.000</p>
+          </div>
+          <div class="text-center">
+            <p class="text-[10px] sm:text-xs text-gray-500">Precio individual</p>
+            <p class="text-xs sm:text-sm font-medium text-gray-700">$60.000</p>
+          </div>
+          <p class="text-[10px] sm:text-xs text-gray-600 italic">* Podes combinar modelos y colores</p>
+        </div>
+      </div>
+      
+      <!-- Size Selector -->
+      <div class="mt-2 sm:mt-3">
+        <select 
+          id={`talle-${model}`}
+          name={`talle-${model}`}
+          class="w-full px-2 sm:px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500 text-xs sm:text-sm"
+          required
+        >
+          <option value="" selected disabled>-- Selecciona Talle --</option>
+          {sizes.map(size => (
+            <option value={size.value} title={size.label}>{size.label}</option>
+          ))}
+        </select>
+      </div>
+      
+      <!-- Add to Cart Button -->
+      <div class="mt-2 sm:mt-3">
+        <button 
+          class="add-to-cart-btn w-full bg-pink-600 hover:bg-pink-700 active:bg-pink-800 text-white py-2.5 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+          type="button"
+          data-model={model}
+        >
+          <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1.5 sm:mr-2 inline" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"></path>
+          </svg>
+          Agregar al Carrito
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

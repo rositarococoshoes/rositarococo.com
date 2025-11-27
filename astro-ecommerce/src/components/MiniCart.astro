@@ -1,0 +1,57 @@
+---
+
+---
+
+<div id="cart-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+<div id="mini-cart" class="fixed right-0 sm:right-2 md:right-4 top-0 sm:top-16 md:top-20 bg-white rounded-none sm:rounded-lg shadow-2xl p-3 sm:p-4 w-full sm:w-80 md:w-96 h-full sm:h-auto sm:max-h-[85vh] z-50 transform translate-x-full opacity-0 pointer-events-none transition-all duration-300 overflow-y-auto">
+  <div id="cart-messages" class="cart-messages-area mb-4"></div>
+  
+  <div class="mini-cart-header flex items-center justify-between mb-4">
+    <span class="cart-icon text-2xl mr-2">🛒</span>
+    <span class="cart-title text-lg font-semibold">Tu Carrito</span>
+    <span class="cart-count bg-pink-600 text-white px-2 py-1 rounded-full text-sm">0</span>
+    <button class="cart-close text-gray-500 hover:text-gray-700 text-2xl ml-2">&times;</button>
+  </div>
+  
+  <div class="mini-cart-body">
+    <div id="cart-offer-message" class="hidden mb-3 p-3 bg-pink-50 border border-pink-200 rounded-lg">
+      <p class="text-sm text-pink-800 font-medium">🎉 <span id="offer-text">¡Agrega un segundo par y ahorra $25.000!</span></p>
+      <p class="text-xs text-pink-700 mt-1">2 pares por $95.000 con envío gratis</p>
+    </div>
+    
+    <p class="empty-cart-message text-gray-500 text-center py-4">Tu carrito está vacío</p>
+    
+    <div class="cart-items space-y-3"></div>
+    
+    <div class="cart-instructions space-y-3 mt-4 p-4 bg-gray-50 rounded">
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">1</span>
+        Selecciona tus productos favoritos
+      </p>
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">2</span>
+        Revisa tu carrito
+      </p>
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">3</span>
+        Haz clic en "Finalizar pedido"
+      </p>
+    </div>
+  </div>
+  
+  <div class="mini-cart-footer flex justify-between items-center pt-4 border-t">
+    <div class="cart-total text-lg font-semibold">Total: <span>$0</span></div>
+    <button id="checkout-btn" class="bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed" disabled>
+      Continuar al Envío →
+    </button>
+  </div>
+</div>
+
+<style>
+  #mini-cart.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>

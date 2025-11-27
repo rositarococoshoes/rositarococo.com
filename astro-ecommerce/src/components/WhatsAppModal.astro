@@ -1,0 +1,406 @@
+---
+---
+
+<div id="whatsapp-modal" class="whatsapp-modal">
+  <div class="whatsapp-modal-overlay"></div>
+  <div class="whatsapp-modal-content">
+    <div class="whatsapp-modal-header">
+      <h3>Ingresa tu WhatsApp para continuar</h3>
+    </div>
+    <div class="whatsapp-modal-body">
+      <p class="whatsapp-modal-message">
+        Dejanos tu numero de WhatsApp para guardar tu carrito. Si agregas dos pares de cualquier modelo o talle, tenes descuento importante por par y envio gratis.
+      </p>
+      <div class="whatsapp-form-group">
+        <input 
+          type="tel" 
+          id="whatsapp-modal-input" 
+          class="whatsapp-input"
+          placeholder="Ej: 1156457057 (sin 0 ni 15)" 
+        />
+        <p class="whatsapp-help-text">El formato de WhatsApp debe ser sin 0 ni 15.</p>
+        <div id="whatsapp-error-message" class="whatsapp-error-message"></div>
+      </div>
+      <button id="whatsapp-modal-submit" class="whatsapp-modal-button" disabled>
+        Guardar y Continuar
+      </button>
+      <p class="whatsapp-modal-note">
+        Tu numero se usara para el seguimiento de tu pedido y guardar tu carrito.
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .whatsapp-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    font-family: 'Lato', sans-serif;
+  }
+  
+  .whatsapp-modal.active {
+    display: block;
+  }
+  
+  .whatsapp-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+  }
+  
+  .whatsapp-modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    max-width: 400px;
+    overflow: hidden;
+    animation: modal-appear 0.3s ease-out;
+  }
+  
+  @keyframes modal-appear {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  
+  .whatsapp-modal-header {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    color: white;
+  }
+  
+  .whatsapp-modal-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .whatsapp-modal-body {
+    padding: 24px;
+  }
+  
+  .whatsapp-modal-message {
+    margin: 0 0 20px 0;
+    color: #4b5563;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+  
+  .whatsapp-form-group {
+    margin-bottom: 20px;
+  }
+  
+  .whatsapp-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+  }
+  
+  .whatsapp-input:focus {
+    border-color: #ec4899;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.15);
+  }
+  
+  .whatsapp-input.error {
+    border-color: #ef4444;
+  }
+  
+  .whatsapp-input.success {
+    border-color: #22c55e;
+  }
+  
+  .whatsapp-help-text {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 8px 0 0 0;
+  }
+  
+  .whatsapp-error-message {
+    font-size: 0.85rem;
+    margin-top: 8px;
+    min-height: 20px;
+    color: #ef4444;
+  }
+  
+  .whatsapp-error-message.valid {
+    color: #22c55e;
+  }
+  
+  .whatsapp-error-message.verifying {
+    color: #f59e0b;
+  }
+  
+  .whatsapp-modal-button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .whatsapp-modal-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);
+  }
+  
+  .whatsapp-modal-button:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .whatsapp-modal-note {
+    margin: 16px 0 0 0;
+    color: #9ca3af;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    .whatsapp-modal-content {
+      width: 95%;
+      margin: 0 auto;
+    }
+    
+    .whatsapp-modal-header {
+      padding: 16px 20px;
+    }
+    
+    .whatsapp-modal-header h3 {
+      font-size: 1.1rem;
+    }
+    
+    .whatsapp-modal-body {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  const VALIDATE_WHATSAPP_ENDPOINT = "https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea";
+  const SAVE_WHATSAPP_ENDPOINT = "https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7";
+  
+  let isValidating = false;
+  
+  function formatWhatsappNumber(number: string): string {
+    if (!number) return '';
+    let formatted = number.replace(/[\s\-()]/g, '');
+    if (formatted.startsWith('+54')) formatted = formatted.substring(3);
+    if (formatted.startsWith('54')) formatted = formatted.substring(2);
+    if (formatted.startsWith('0')) formatted = formatted.substring(1);
+    if (formatted.startsWith('15') && formatted.length > 2) formatted = formatted.substring(2);
+    if (!/^\d+$/.test(formatted)) return '';
+    return '549' + formatted;
+  }
+  
+  function validateInputFormat(inputValue: string): boolean {
+    const formattedNumber = formatWhatsappNumber(inputValue);
+    return formattedNumber.length >= 12;
+  }
+  
+  function showMessage(message: string, type: 'error' | 'valid' | 'verifying' = 'error') {
+    const errorEl = document.getElementById('whatsapp-error-message');
+    if (!errorEl) return;
+    errorEl.textContent = message;
+    errorEl.className = 'whatsapp-error-message';
+    if (type !== 'error') {
+      errorEl.classList.add(type);
+    }
+  }
+  
+  function saveWhatsappToEndpoint(whatsappNumber: string) {
+    fetch(SAVE_WHATSAPP_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        whatsapp: whatsappNumber,
+        timestamp: new Date().toISOString(),
+        source: 'astro_modal_whatsapp',
+        url: window.location.href
+      })
+    }).catch(err => console.error('Error saving WhatsApp:', err));
+  }
+  
+  async function validateAndSave() {
+    const input = document.getElementById('whatsapp-modal-input') as HTMLInputElement;
+    const submitBtn = document.getElementById('whatsapp-modal-submit') as HTMLButtonElement;
+    
+    if (!input || !submitBtn || isValidating) return;
+    
+    const inputValue = input.value.trim();
+    
+    if (!validateInputFormat(inputValue)) {
+      showMessage('Formato de WhatsApp invalido. Ej: 1156457057');
+      input.classList.add('error');
+      input.classList.remove('success');
+      return;
+    }
+    
+    isValidating = true;
+    submitBtn.disabled = true;
+    showMessage('Verificando WhatsApp...', 'verifying');
+    
+    const whatsappNumber = formatWhatsappNumber(inputValue);
+    const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    try {
+      let isValid = false;
+      
+      if (isLocalhost) {
+        // Skip webhook validation in localhost
+        isValid = true;
+      } else {
+        const response = await fetch(VALIDATE_WHATSAPP_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ whatsapp_check: whatsappNumber })
+        });
+        
+        if (!response.ok) throw new Error('API error');
+        
+        const data = await response.json();
+        isValid = data.exists === true;
+      }
+      
+      if (isValid) {
+        showMessage('WhatsApp valido. Gracias!', 'valid');
+        input.classList.remove('error');
+        input.classList.add('success');
+        
+        if (!isLocalhost) {
+          saveWhatsappToEndpoint(whatsappNumber);
+        }
+        localStorage.setItem('savedWhatsapp', whatsappNumber);
+        localStorage.setItem('whatsappModalShown', 'true');
+        
+        const mainWhatsappInput = document.getElementById('53830725') as HTMLInputElement;
+        if (mainWhatsappInput) {
+          mainWhatsappInput.value = whatsappNumber;
+        }
+        
+        setTimeout(() => {
+          closeWhatsappModal();
+          if (window.pendingCartAdd) {
+            window.confirmAddToCart(window.pendingCartAdd.model, window.pendingCartAdd.size);
+            window.pendingCartAdd = null;
+          }
+        }, 800);
+      } else {
+        showMessage('WhatsApp invalido, por favor corrijalo.');
+        input.classList.add('error');
+        input.classList.remove('success');
+        isValidating = false;
+        submitBtn.disabled = false;
+      }
+    } catch (error) {
+      console.error('WhatsApp validation error:', error);
+      showMessage('Error de red. Intenta de nuevo.');
+      isValidating = false;
+      submitBtn.disabled = false;
+    }
+  }
+  
+  function closeWhatsappModal() {
+    const modal = document.getElementById('whatsapp-modal');
+    if (modal) {
+      modal.classList.remove('active');
+    }
+    isValidating = false;
+  }
+  
+  function showWhatsappModal() {
+    const modal = document.getElementById('whatsapp-modal');
+    const input = document.getElementById('whatsapp-modal-input') as HTMLInputElement;
+    const submitBtn = document.getElementById('whatsapp-modal-submit') as HTMLButtonElement;
+    
+    if (modal) {
+      modal.classList.add('active');
+      if (input) {
+        input.value = localStorage.getItem('savedWhatsapp') || '';
+        input.classList.remove('error', 'success');
+        if (submitBtn) {
+          submitBtn.disabled = !validateInputFormat(input.value);
+        }
+      }
+      showMessage('');
+    }
+  }
+  
+  declare global {
+    interface Window {
+      showWhatsappModal: typeof showWhatsappModal;
+      closeWhatsappModal: typeof closeWhatsappModal;
+      pendingCartAdd: { model: string; size: string } | null;
+      confirmAddToCart: (model: string, size: string) => void;
+    }
+  }
+  
+  window.showWhatsappModal = showWhatsappModal;
+  window.closeWhatsappModal = closeWhatsappModal;
+  window.pendingCartAdd = null;
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('whatsapp-modal-input');
+    const submitBtn = document.getElementById('whatsapp-modal-submit') as HTMLButtonElement;
+    const overlay = document.querySelector('.whatsapp-modal-overlay');
+    
+    if (input && submitBtn) {
+      input.addEventListener('input', (e) => {
+        const target = e.target as HTMLInputElement;
+        const isValid = validateInputFormat(target.value.trim());
+        submitBtn.disabled = !isValid;
+        
+        if (isValid) {
+          target.classList.remove('error');
+        }
+      });
+      
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !submitBtn.disabled) {
+          validateAndSave();
+        }
+      });
+    }
+    
+    document.getElementById('whatsapp-modal-submit')?.addEventListener('click', validateAndSave);
+    
+    overlay?.addEventListener('click', () => {
+      if (window.pendingCartAdd) {
+        window.pendingCartAdd = null;
+      }
+      closeWhatsappModal();
+    });
+  });
+</script>

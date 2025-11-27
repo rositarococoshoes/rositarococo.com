@@ -1,0 +1,238 @@
+---
+// Componente del carrito de compras
+---
+
+<!-- Backdrop -->
+<div id="cart-backdrop" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+
+<!-- Mini Cart -->
+<div id="mini-cart" class="fixed right-2 sm:right-4 top-16 sm:top-20 bg-white rounded-lg shadow-2xl p-4 w-80 sm:w-96 z-50 transform transition-all duration-300 max-h-[80vh] overflow-y-auto">
+  <!-- Cart Messages Area -->
+  <div id="cart-messages" class="cart-messages-area mb-4">
+    <!-- Messages will be dynamically inserted here -->
+  </div>
+  
+  <div class="mini-cart-header flex items-center justify-between mb-4">
+    <span class="cart-icon text-2xl mr-2">🛒</span>
+    <span class="cart-title text-lg font-semibold">Tu Carrito</span>
+    <span class="cart-count bg-pink-600 text-white px-2 py-1 rounded-full text-sm">0</span>
+    <button class="cart-close text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+  </div>
+  
+  <div class="mini-cart-body">
+    <!-- Contextual Offer Message -->
+    <div id="cart-offer-message" class="hidden mb-3 p-3 bg-pink-50 border border-pink-200 rounded-lg">
+      <p class="text-sm text-pink-800 font-medium">🎉 <span id="offer-text">¡Agrega un segundo par y ahorra $25.000!</span></p>
+      <p class="text-xs text-pink-700 mt-1">2 pares por $95.000 con envío gratis</p>
+    </div>
+    
+    <p class="empty-cart-message text-gray-500 text-center py-4">Tu carrito está vacío</p>
+    <div class="cart-items space-y-3"></div>
+    
+    <div class="cart-instructions space-y-3 mt-4 p-4 bg-gray-50 rounded">
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">1</span>
+        Selecciona tus productos favoritos
+      </p>
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">2</span>
+        Revisa tu carrito
+      </p>
+      <p class="instruction-step flex items-center">
+        <span class="step-number bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-2">3</span>
+        Haz clic en "Finalizar pedido"
+      </p>
+    </div>
+  </div>
+  
+  <div class="mini-cart-footer flex justify-between items-center pt-4 border-t">
+    <div class="cart-total text-lg font-semibold">Total: <span>$0</span></div>
+    <button id="checkout-btn" class="bg-gray-400 text-white px-4 py-2 rounded-lg cursor-not-allowed" onclick="goToCheckoutForm()">
+      Continuar al Envío → 
+    </button>
+  </div>
+</div>
+
+<!-- Cart Button -->
+<div id="cart-button" class="fixed bottom-4 right-4 bg-pink-600 text-white p-3 rounded-full shadow-lg z-40 flex items-center cursor-pointer transition-all duration-300 hover:bg-pink-700">
+  <span class="cart-button-icon text-xl mr-2">🛒</span>
+  <span class="cart-button-count bg-white text-pink-600 px-2 py-1 rounded-full text-sm font-bold">0</span>
+</div>
+
+<script>
+  import { cartStore, removeFromCart, updateQuantity, clearCart, closeCart, toggleCart } from '../stores/cart.js';
+  
+  let cartState = { items: [], isOpen: false, count: 0, total: 0 };
+  
+  // Escuchar cambios en el store
+  cartStore.subscribe((value) => {
+    cartState = value;
+    updateCartUI();
+    updateCartButton();
+  });
+  
+  // Inicializar eventos cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    setupCartEvents();
+    updateCartUI();
+    updateCartButton();
+  });
+  
+  function setupCartEvents() {
+    // Toggle cart con botón flotante
+    const cartButton = document.getElementById('cart-button');
+    if (cartButton) {
+      cartButton.addEventListener('click', () => {
+        toggleCart();
+      });
+    }
+    
+    // Cerrar carrito con backdrop
+    const backdrop = document.getElementById('cart-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', closeCart);
+    }
+    
+    // Cerrar carrito con botón X
+    const closeButton = document.querySelector('.cart-close');
+    if (closeButton) {
+      closeButton.addEventListener('click', closeCart);
+    }
+    
+    // Botón de checkout
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+      checkoutBtn.addEventListener('click', goToCheckoutForm);
+    }
+  }
+  
+  function updateCartUI() {
+    const miniCart = document.getElementById('mini-cart');
+    const backdrop = document.getElementById('cart-backdrop');
+    
+    if (!miniCart || !backdrop) return;
+    
+    // Actualizar visibilidad
+    if (cartState.isOpen) {
+      miniCart.style.transform = 'translateX(0)';
+      miniCart.style.opacity = '1';
+      miniCart.style.pointerEvents = 'auto';
+      backdrop.style.display = 'block';
+      backdrop.classList.remove('hidden');
+    } else {
+      miniCart.style.transform = 'translateX(100%)';
+      miniCart.style.opacity = '0';
+      miniCart.style.pointerEvents = 'none';
+      backdrop.style.display = 'none';
+      backdrop.classList.add('hidden');
+    }
+    
+    // Actualizar contenido del carrito
+    updateCartContent();
+  }
+  
+  function updateCartContent() {
+    const cartItems = document.querySelector('.cart-items');
+    const emptyMessage = document.querySelector('.empty-cart-message');
+    const countElement = document.querySelector('.cart-count');
+    const totalElement = document.querySelector('.cart-total span');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const offerMessage = document.getElementById('cart-offer-message');
+    const offerText = document.getElementById('offer-text');
+    
+    if (!cartItems || !emptyMessage || !countElement || !totalElement || !checkoutBtn) return;
+    
+    // Actualizar contador y total
+    countElement.textContent = cartState.count;
+    totalElement.textContent = `$${cartState.total.toLocaleString()}`;
+    
+    // Habilitar/deshabilitar botón de checkout
+    if (cartState.count > 0) {
+      checkoutBtn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+      checkoutBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+    } else {
+      checkoutBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+      checkoutBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+    }
+    
+    // Mostrar/ocultar mensaje de oferta
+    if (offerMessage && offerText) {
+      if (cartState.count === 1) {
+        offerMessage.classList.remove('hidden');
+        offerText.textContent = '¡Agrega un segundo par y ahorra $25.000!';
+      } else if (cartState.count >= 2) {
+        offerMessage.classList.remove('hidden');
+        offerText.textContent = '¡Excelente! Estás ahorrando $25.000 en tu compra';
+      } else {
+        offerMessage.classList.add('hidden');
+      }
+    }
+    
+    // Actualizar items del carrito
+    if (cartState.items.length === 0) {
+      emptyMessage.style.display = 'block';
+      cartItems.innerHTML = '';
+    } else {
+      emptyMessage.style.display = 'none';
+      cartItems.innerHTML = cartState.items.map(item => `
+        <div class="cart-item border-b pb-3">
+          <div class="flex items-start gap-3">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded">
+            <div class="flex-1">
+              <h4 class="font-semibold text-sm">${item.name}</h4>
+              <p class="text-xs text-gray-600">Talle: ${item.size}</p>
+              <p class="text-xs text-gray-600">Cantidad: ${item.quantity}</p>
+              <div class="flex items-center gap-2 mt-1">
+                <button onclick="updateItemQuantity('${item.id}', ${item.quantity - 1})" class="text-gray-500 hover:text-gray-700">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                  </svg>
+                </button>
+                <span class="text-sm">${item.quantity}</span>
+                <button onclick="updateItemQuantity('${item.id}', ${item.quantity + 1})" class="text-gray-500 hover:text-gray-700">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                  </svg>
+                </button>
+                <button onclick="removeFromCartById('${item.id}')" class="text-red-500 hover:text-red-700">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+  
+  function updateCartButton() {
+    const cartButton = document.getElementById('cart-button');
+    const buttonCount = cartButton?.querySelector('.cart-button-count');
+    
+    if (cartButton && buttonCount) {
+      buttonCount.textContent = cartState.count;
+      
+      // Animar botón cuando se agrega un item
+      if (cartState.count > 0) {
+        cartButton.classList.add('animate-pulse');
+        setTimeout(() => {
+          cartButton.classList.remove('animate-pulse');
+        }, 1000);
+      }
+    }
+  }
+  
+  // Funciones globales para los botones del carrito
+  window.removeFromCartById = removeFromCart;
+  window.updateItemQuantity = updateQuantity;
+  window.goToCheckoutForm = function() {
+    if (cartState.count > 0) {
+      // Aquí irá la lógica para ir al formulario de checkout
+      console.log('Ir al checkout con items:', cartState.items);
+      // Por ahora mostramos un mensaje
+      alert('Redirigiendo al formulario de checkout...');
+    }
+  };
+</script>

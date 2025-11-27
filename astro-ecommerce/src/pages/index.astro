@@ -1,0 +1,134 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Header from '../components/Header.astro';
+import CheckoutProgress from '../components/CheckoutProgress.astro';
+import ProductCard from '../components/ProductCard.astro';
+import MiniCart from '../components/MiniCart.astro';
+import CartButton from '../components/CartButton.astro';
+import CheckoutForm from '../components/CheckoutForm.astro';
+import Testimonials from '../components/Testimonials.astro';
+import WhatsAppModal from '../components/WhatsAppModal.astro';
+import '../styles/global.css';
+
+// Product data - base path for images
+const basePath = '/astro-ecommerce';
+
+const guillerminas = [
+  {
+    id: 'guillermina-negras',
+    name: 'Guillerminas Negras',
+    model: 'negras',
+    images: [1,3,5,7,9,12,15,18,21,24,27,30,33,36].map(n => `${basePath}/guillerminafotos/${n}.webp`),
+    description: '¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.'
+  },
+  {
+    id: 'guillermina-camel',
+    name: 'Guillerminas Camel',
+    model: 'camel',
+    images: Array.from({length: 18}, (_, i) => `${basePath}/guillerminafotos/guillerminascamel/${i + 1}.webp`),
+    description: '¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.'
+  },
+  {
+    id: 'guillermina-blancas',
+    name: 'Guillerminas Blancas',
+    model: 'blancas',
+    images: Array.from({length: 16}, (_, i) => `${basePath}/guillerminafotos/guillerminasblancas/${i + 1}.webp`),
+    description: '¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.'
+  }
+];
+
+const birks = [
+  {
+    id: 'birk-negras',
+    name: 'Birk Negras',
+    model: 'birk-negras',
+    images: Array.from({length: 7}, (_, i) => `${basePath}/birknegras/${i + 1}.webp`),
+    description: 'Las nuevas Birk Negras combinan comodidad y estilo. Perfectas para el día a día con su diseño moderno y materiales de primera calidad.'
+  },
+  {
+    id: 'birk-camel',
+    name: 'Birk Camel',
+    model: 'birk-camel',
+    images: Array.from({length: 12}, (_, i) => `${basePath}/birkcamel/${i + 1}.webp`),
+    description: 'Las nuevas Birk Camel combinan comodidad y estilo. Perfectas para el día a día con su diseño moderno y materiales de primera calidad.'
+  },
+  {
+    id: 'birk-blancas',
+    name: 'Birk Blancas',
+    model: 'birk-blancas',
+    images: Array.from({length: 12}, (_, i) => `${basePath}/birkblancas/${i + 1}.webp`),
+    description: 'Las nuevas Birk Blancas combinan comodidad y estilo. Perfectas para el día a día con su diseño moderno y materiales de primera calidad.'
+  }
+];
+
+const argos = {
+  id: 'argos',
+  name: 'Argos',
+  model: 'argos',
+  images: Array.from({length: 12}, (_, i) => `${basePath}/argos/${i + 1}.webp`),
+  description: 'El modelo Argos es nuestra nueva incorporación. Diseño único con la comodidad característica de Rosita Rococó.'
+};
+---
+
+<MainLayout title="Rosita Rococó - Guillerminas - Colección Primavera-Verano 2025">
+  <main>
+    <Header />
+    <CheckoutProgress />
+    
+    <!-- Cart Components -->
+    <MiniCart />
+    <CartButton />
+    
+    <!-- Products Section -->
+    <section id="todoslosmodelos" class="container max-w-7xl mx-auto px-2 sm:px-4 py-4 sm:py-6">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-4 sm:mb-6">
+        🌸 Colección Primavera-Verano 2025
+      </h2>
+      
+      <!-- Guillerminas -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Guillerminas</h3>
+      <div class="product-grid mb-12">
+        {guillerminas.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+      
+      <!-- Birk -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Birk</h3>
+      <div class="product-grid mb-12">
+        {birks.map(product => (
+          <ProductCard {...product} />
+        ))}
+      </div>
+      
+      <!-- Argos -->
+      <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Argos</h3>
+      <div class="product-grid justify-center">
+        <ProductCard {...argos} />
+      </div>
+    </section>
+    
+    <!-- Checkout Form -->
+    <CheckoutForm />
+    
+    <!-- Testimonials -->
+    <Testimonials />
+    
+    <!-- WhatsApp Modal -->
+    <WhatsAppModal />
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-6">
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <img src="/astro-ecommerce/rosita-form.webp" alt="Rosita Rococó" class="h-10 mx-auto mb-3 brightness-200" />
+        <p class="text-gray-400 text-sm">© 2025 Rosita Rococó. Todos los derechos reservados.</p>
+        <p class="text-gray-500 text-xs mt-1">Envío gratis a todo el país 🇦🇷</p>
+      </div>
+    </footer>
+  </main>
+  
+  <!-- Scripts -->
+  <script src="../scripts/cart.ts"></script>
+  <script src="../scripts/carousel.ts"></script>
+  <script src="../scripts/form-handler.ts"></script>
+</MainLayout>

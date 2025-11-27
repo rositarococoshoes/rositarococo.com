@@ -1,0 +1,81 @@
+---
+const basePath = '/astro-ecommerce';
+const testimonials = [
+  { src: `${basePath}/comentarios/comentariorecibi1.webp`, alt: 'Comentario de clienta satisfecha 1' },
+  { src: `${basePath}/comentarios/comentariorecibi2.webp`, alt: 'Comentario de clienta satisfecha 2' },
+  { src: `${basePath}/comentarios/comentariorecibi4.webp`, alt: 'Comentario de clienta satisfecha 3' },
+  { src: `${basePath}/comentarios/comentariorecibi5.webp`, alt: 'Comentario de clienta satisfecha 4' },
+  { src: `${basePath}/comentarios/comentariorecibi6.webp`, alt: 'Comentario de clienta satisfecha 5' },
+  { src: `${basePath}/comentarios/comentariosig.webp`, alt: 'Comentarios de Instagram' },
+];
+---
+
+<section class="py-12 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
+      💬 Lo que dicen nuestras clientas
+    </h2>
+    
+    <div id="testimonials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {testimonials.map(testimonial => (
+        <div class="testimonial-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+          <img 
+            src={testimonial.src} 
+            alt={testimonial.alt}
+            class="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+    
+    <div class="text-center mt-8">
+      <button 
+        id="load-more-testimonials"
+        class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200"
+      >
+        Ver más comentarios
+      </button>
+      <div id="testimonials-loading" class="hidden mt-4">
+        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-pink-600 mx-auto"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const basePath = '/astro-ecommerce';
+  const additionalTestimonials = [
+    { src: `${basePath}/comentarios/comentario1-min.webp`, alt: 'Testimonio destacado 1' },
+    { src: `${basePath}/comentarios/comentario2-min.webp`, alt: 'Testimonio destacado 2' },
+    { src: `${basePath}/comentarios/comentario3-min.webp`, alt: 'Referencia de clienta 1' },
+    { src: `${basePath}/comentarios/comentario4-min.webp`, alt: 'Referencia de clienta 2' },
+    { src: `${basePath}/comentarios/comentario5-min.webp`, alt: 'Referencia de clienta 3' },
+    { src: `${basePath}/comentarios/comentariorecibi7.webp`, alt: 'Comentario adicional' },
+  ];
+
+  let loaded = false;
+
+  document.getElementById('load-more-testimonials')?.addEventListener('click', function() {
+    if (loaded) return;
+    
+    const grid = document.getElementById('testimonials-grid');
+    const btn = this as HTMLButtonElement;
+    const loading = document.getElementById('testimonials-loading');
+    
+    btn.style.display = 'none';
+    if (loading) loading.classList.remove('hidden');
+    
+    setTimeout(() => {
+      additionalTestimonials.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'testimonial-item bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300';
+        div.innerHTML = `<img src="${t.src}" alt="${t.alt}" class="w-full h-auto object-cover" loading="lazy">`;
+        grid?.appendChild(div);
+      });
+      
+      if (loading) loading.classList.add('hidden');
+      loaded = true;
+    }, 800);
+  });
+</script>

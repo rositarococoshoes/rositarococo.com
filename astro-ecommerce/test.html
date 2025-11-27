@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rosita Rococó - Test Ecommerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        .embla__viewport {
+            overflow: hidden;
+        }
+        .embla__container {
+            display: flex;
+        }
+        .embla__slide {
+            flex: 0 0 100%;
+            min-width: 0;
+        }
+        .embla__slide__inner {
+            position: relative;
+            aspect-square: 1;
+        }
+        .embla__slide__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .embla__button {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .embla__button--prev {
+            left: 8px;
+        }
+        .embla__button--next {
+            right: 8px;
+        }
+        .embla-thumbs {
+            margin-top: 16px;
+        }
+        .embla-thumbs__viewport {
+            overflow: hidden;
+        }
+        .embla-thumbs__container {
+            display: flex;
+            gap: 8px;
+        }
+        .embla-thumbs__slide {
+            position: relative;
+            flex: 0 0 auto;
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .embla-thumbs__slide__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .embla-thumbs__slide.selected {
+            border-color: #EC4899;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="text-center">
+                <img src="/rosita-form.webp" alt="Rosita Rococó" class="mx-auto h-16">
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="sticky top-0 bg-white shadow-sm z-40 px-4 py-3">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center justify-center space-x-8">
+                <div class="flex flex-col items-center">
+                    <span class="bg-pink-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">1</span>
+                    <span class="text-sm font-medium">Productos</span>
+                </div>
+                <div class="w-16 h-1 bg-gray-300"></div>
+                <div class="flex flex-col items-center">
+                    <span class="bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">2</span>
+                    <span class="text-sm font-medium text-gray-600">Envío</span>
+                </div>
+                <div class="w-16 h-1 bg-gray-300"></div>
+                <div class="flex flex-col items-center">
+                    <span class="bg-gray-300 text-gray-600 w-8 h-8 rounded-full flex items-center justify-center text-sm mb-1">3</span>
+                    <span class="text-sm font-medium text-gray-600">Pago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <div class="max-w-7xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                
+                <!-- Product 1: Guillerminas Negras -->
+                <div class="rounded-lg border bg-white shadow-sm">
+                    <div>
+                        <h2 class="text-base md:text-lg font-bold text-gray-900 mb-2 text-center">
+                            Guillerminas Negras
+                        </h2>
+                        
+                        <!-- Simple Image for testing -->
+                        <div class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+                            <img src="/guillerminafotos/1.webp" alt="Guillerminas Negras" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4">
+                            <!-- Badges -->
+                            <div class="flex flex-wrap gap-2 justify-center mb-3">
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-purple-100 text-purple-800">
+                                    NUEVA TEMPORADA
+                                </span>
+                                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold bg-red-100 text-red-800">
+                                    STOCK LIMITADO
+                                </span>
+                            </div>
+                            
+                            <!-- Description -->
+                            <p class="text-gray-700 text-sm leading-relaxed text-center mb-4">
+                                ¡Renovate para la nueva temporada Primavera-Verano 2025! Nuestras guillerminas negras son el complemento ideal para cualquier look.
+                            </p>
+                            
+                            <!-- Specifications -->
+                            <div class="grid grid-cols-3 gap-2 text-xs text-center mb-4">
+                                <div class="bg-gray-50 p-2 rounded border border-gray-200">
+                                    <p class="font-medium text-gray-600">Material</p>
+                                    <p class="text-gray-800">Tela reforzada</p>
+                                </div>
+                                <div class="bg-gray-50 p-2 rounded border border-gray-200">
+                                    <p class="font-medium text-gray-600">Suela</p>
+                                    <p class="text-gray-800">Expanso</p>
+                                </div>
+                                <div class="bg-green-50 p-2 rounded border border-green-200">
+                                    <p class="font-medium text-green-700">Envío</p>
+                                    <p class="text-green-800 font-bold">GRATIS 🚚</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pricing -->
+                            <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-3 rounded-lg border border-pink-200 shadow-md mb-4">
+                                <div class="text-center space-y-2">
+                                    <div class="bg-pink-600 text-white p-2 rounded-md">
+                                        <p class="text-xs font-bold mb-1">🎉 PROMO ESPECIAL</p>
+                                        <p class="text-sm font-bold">2 PARES POR</p>
+                                        <p class="text-lg font-extrabold">$95.000</p>
+                                        <p class="text-xs mt-1 bg-white text-pink-600 inline-block px-2 py-1 rounded-full">
+                                            AHORRÁS $25.000
+                                        </p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-xs text-gray-500">Precio individual</p>
+                                        <p class="text-sm font-medium text-gray-700">$60.000</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Size Selector -->
+                            <div class="mb-4">
+                                <select id="talle-negras" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+                                    <option value="" selected disabled>-- Selecciona Talle --</option>
+                                    <option value="35">35 (23 cm de largo de plantilla)</option>
+                                    <option value="36">36 (23,5 cm de largo de plantilla)</option>
+                                    <option value="37">37 (24 cm de largo de plantilla)</option>
+                                    <option value="38">38 (24,7 cm de largo de plantilla)</option>
+                                    <option value="39">39 (25,3 cm de largo de plantilla)</option>
+                                    <option value="40">40 (26 cm de largo de plantilla)</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Add to Cart Button -->
+                            <button onclick="addToCartTest('negras')" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Guillerminas Camel -->
+                <div class="rounded-lg border bg-white shadow-sm">
+                    <div>
+                        <h2 class="text-base md:text-lg font-bold text-gray-900 mb-2 text-center">
+                            Guillerminas Camel
+                        </h2>
+                        
+                        <!-- Simple Image -->
+                        <div class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+                            <img src="/guillerminafotos/guillerminascamel/1.webp" alt="Guillerminas Camel" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4">
+                            <button onclick="addToCartTest('camel')" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Guillerminas Blancas -->
+                <div class="rounded-lg border bg-white shadow-sm">
+                    <div>
+                        <h2 class="text-base md:text-lg font-bold text-gray-900 mb-2 text-center">
+                            Guillerminas Blancas
+                        </h2>
+                        
+                        <!-- Simple Image -->
+                        <div class="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
+                            <img src="/guillerminafotos/guillerminasblancas/1.webp" alt="Guillerminas Blancas" class="w-full h-full object-cover">
+                        </div>
+                        
+                        <div class="p-4">
+                            <button onclick="addToCartTest('blancas')" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-lg font-semibold transition-colors">
+                                Agregar al Carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Simple Cart Script -->
+    <script>
+        let cart = [];
+        let cartCount = 0;
+
+        function addToCartTest(model) {
+            const products = {
+                'negras': { name: 'Guillerminas Negras', price: 60000 },
+                'camel': { name: 'Guillerminas Camel', price: 60000 },
+                'blancas': { name: 'Guillerminas Blancas', price: 60000 }
+            };
+
+            const product = products[model];
+            if (product) {
+                cart.push({
+                    id: Date.now(),
+                    model: model,
+                    name: product.name,
+                    price: product.price
+                });
+                cartCount++;
+                alert(`✅ ${product.name} agregado al carrito! (${cartCount} items)`);
+            }
+        }
+    </script>
+</body>
+</html>

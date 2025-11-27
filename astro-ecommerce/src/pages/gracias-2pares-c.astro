@@ -1,0 +1,57 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import '../styles/global.css';
+---
+
+<MainLayout title="¡Pedido Confirmado! - 2 Pares Contrareembolso">
+  <main class="min-h-screen bg-gray-50">
+    <div class="bg-gradient-to-r from-green-600 to-emerald-600 text-white py-2 px-4 text-center">
+      <p class="text-sm font-medium">✅ PAGO AL RECIBIR CONFIRMADO - ¡CON DESCUENTO!</p>
+    </div>
+    
+    <header class="bg-white shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-center">
+        <img src="/astro-ecommerce/rosita-form.webp" alt="Rosita Rococó" class="mx-auto h-16" />
+      </div>
+    </header>
+    
+    <div class="max-w-md mx-auto px-4 py-8">
+      <div class="bg-green-50 border-2 border-green-400 rounded-lg p-6 mb-6 text-center">
+        <div class="text-4xl mb-2">🎉</div>
+        <h1 class="text-2xl font-bold text-green-800 mb-2">¡Pedido Confirmado!</h1>
+        <p class="text-green-700">2 pares con promoción especial</p>
+        <p class="text-2xl font-bold text-green-800 mt-2">Pagarás $95.000 al recibir</p>
+        <p class="text-sm text-pink-600 font-medium">¡Ahorraste $25.000!</p>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">📦 Próximos Pasos</h2>
+        <div class="space-y-4">
+          <div class="flex items-start">
+            <span class="bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">1</span>
+            <p class="text-gray-700">Te contactaremos por WhatsApp para confirmar los datos de envío</p>
+          </div>
+          <div class="flex items-start">
+            <span class="bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">2</span>
+            <p class="text-gray-700">Recibirás tu pedido en 3-7 días hábiles</p>
+          </div>
+          <div class="flex items-start">
+            <span class="bg-pink-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-sm mr-3 flex-shrink-0">3</span>
+            <p class="text-gray-700">Pagarás $95.000 al momento de recibir</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-md p-6 text-center">
+        <h2 class="text-xl font-bold text-gray-900 mb-4">¿Tenés alguna duda?</h2>
+        <a 
+          href="https://wa.me/5491123456789"
+          target="_blank"
+          class="inline-flex items-center justify-center w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+        >
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </main>
+</MainLayout>

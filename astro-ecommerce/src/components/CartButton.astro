@@ -1,0 +1,19 @@
+---
+
+---
+
+<div id="cart-button" class="fixed bottom-4 right-4 bg-pink-600 text-white p-3 rounded-full shadow-lg z-40 flex items-center cursor-pointer transition-all duration-300 hover:bg-pink-700 hover:scale-110">
+  <span class="cart-button-icon text-xl mr-2">🛒</span>
+  <span class="cart-button-count bg-white text-pink-600 px-2 py-1 rounded-full text-sm font-bold">0</span>
+</div>
+
+<style>
+  #cart-button {
+    animation: pulse-subtle 2s infinite;
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+    50% { box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.3), 0 10px 10px -5px rgba(236, 72, 153, 0.04); }
+  }
+</style>

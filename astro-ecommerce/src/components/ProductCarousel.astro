@@ -1,0 +1,293 @@
+---
+export interface Props {
+  productId: string;
+  images: string[];
+  productName: string;
+}
+
+const { productId, images, productName } = Astro.props;
+---
+
+<div class="embla" data-product-id={productId}>
+  <div class="embla__viewport">
+    <div class="embla__container">
+      {images.map((image, index) => (
+        <div class="embla__slide">
+          <div class="embla__slide__inner">
+            <img 
+              class="embla__slide__img" 
+              src={image} 
+              alt={`${productName} - Vista ${index + 1}`}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <button class="embla__button embla__button--prev" type="button">
+    <svg class="embla__button__svg" viewBox="0 0 24 24">
+      <path d="M15 19l-7-7 7-7" fill="none" stroke="currentColor" stroke-width="2"></path>
+    </svg>
+  </button>
+  <button class="embla__button embla__button--next" type="button">
+    <svg class="embla__button__svg" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"></path>
+    </svg>
+  </button>
+  
+  <div class="embla-thumbs">
+    <div class="embla-thumbs__viewport">
+      <div class="embla-thumbs__container">
+        {images.map((image, index) => (
+          <button class="embla-thumbs__slide" type="button">
+            <img 
+              class="embla-thumbs__slide__img" 
+              src={image} 
+              alt={`${productName} - Miniatura ${index + 1}`}
+              loading="lazy"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .embla {
+    position: relative;
+    --slide-spacing: 0.125rem;
+    --slide-size: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    overflow: visible;
+  }
+
+  .embla__viewport {
+    overflow: hidden;
+    width: 100%;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, #fdf2f8 0%, #faf5ff 100%);
+  }
+
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .embla__slide {
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+    padding-left: var(--slide-spacing);
+    padding-right: var(--slide-spacing);
+  }
+
+  .embla__slide__inner {
+    position: relative;
+    border-radius: 0.375rem;
+    border: 1px solid #f3f4f6;
+    background: #fff;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+
+  .embla__slide__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .embla__button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  .embla__button:hover {
+    background: #ec4899;
+    transform: translateY(-50%) scale(1.05);
+  }
+
+  .embla__button:hover .embla__button__svg {
+    stroke: #fff;
+  }
+
+  .embla__button--prev { left: 0.5rem; }
+  .embla__button--next { right: 0.5rem; }
+
+  .embla__button__svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    stroke: #ec4899;
+    stroke-width: 2.5;
+  }
+
+  .embla-thumbs {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    border: 1px solid #f3f4f6;
+  }
+
+  .embla-thumbs__viewport {
+    overflow-x: auto;
+    padding: 4px 0.5rem;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .embla-thumbs__viewport::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .embla-thumbs__viewport::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+
+  .embla-thumbs__viewport::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 2px;
+  }
+
+  .embla-thumbs__container {
+    display: flex;
+    gap: 0.375rem;
+  }
+
+  .embla-thumbs__slide {
+    flex: 0 0 3rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 2px;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    border: 2px solid #e5e7eb;
+    transition: all 0.2s ease;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .embla-thumbs__slide:hover {
+    border-color: #ec4899;
+  }
+
+  .embla-thumbs__slide.embla-thumbs__slide--selected {
+    border-color: #ec4899;
+    box-shadow: 0 0 0 2px rgba(236, 72, 153, 0.25);
+  }
+
+  .embla-thumbs__slide__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+  }
+
+  /* Tablet - sm breakpoint (640px+) */
+  @media (min-width: 640px) {
+    .embla {
+      margin-bottom: 0.75rem;
+      border-radius: 0.75rem;
+    }
+    
+    .embla__viewport {
+      border-radius: 0.75rem;
+    }
+    
+    .embla__slide__inner {
+      border-radius: 0.5rem;
+    }
+    
+    .embla__button {
+      display: flex;
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+    
+    .embla-thumbs__slide {
+      flex: 0 0 3.5rem;
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+
+  /* Desktop - md breakpoint (768px+) */
+  @media (min-width: 768px) {
+    .embla {
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .embla__viewport {
+      border-radius: 0.75rem;
+    }
+    
+    .embla__slide__inner {
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+    
+    .embla__button {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+    
+    .embla__button--prev { left: 0.75rem; }
+    .embla__button--next { right: 0.75rem; }
+    
+    .embla__button__svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    
+    .embla-thumbs {
+      padding: 0.75rem;
+    }
+    
+    .embla-thumbs__viewport {
+      padding: 6px 0.75rem;
+    }
+    
+    .embla-thumbs__container {
+      gap: 0.5rem;
+    }
+    
+    .embla-thumbs__slide {
+      flex: 0 0 4rem;
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  /* Large desktop - lg breakpoint (1024px+) */
+  @media (min-width: 1024px) {
+    .embla__button {
+      width: 3rem;
+      height: 3rem;
+    }
+    
+    .embla__button--prev { left: 1rem; }
+    .embla__button--next { right: 1rem; }
+  }
+</style>

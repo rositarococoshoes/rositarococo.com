@@ -1,0 +1,89 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Gracias por tu compra - 2 pares">
+  <main class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-4xl mx-auto px-4">
+      <!-- Success Message -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-green-600 mb-4">
+          ¡Gracias por tu compra!
+        </h1>
+        <p class="text-xl text-gray-700">
+          Tu pedido de 2 pares ha sido procesado exitosamente
+        </p>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Resumen del Pedido</h2>
+        <div class="border-t pt-4">
+          <div class="flex justify-between mb-2">
+            <span>2 pares x $60.000:</span>
+            <span>$120.000</span>
+          </div>
+          <div class="flex justify-between mb-2 text-green-600 font-semibold">
+            <span>Descuento especial:</span>
+            <span>-$25.000</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span>Envío:</span>
+            <span class="text-green-600">GRATIS</span>
+          </div>
+          <div class="flex justify-between text-xl font-bold">
+            <span>Total:</span>
+            <span>$95.000</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Special Offer Banner -->
+      <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg p-6 mb-8">
+        <h3 class="text-2xl font-bold text-center mb-2">
+          🎉 ¡Excelente Elección!
+        </h3>
+        <p class="text-center text-lg">
+          Ahorraste $25.000 en tu compra
+        </p>
+        <p class="text-center mt-2">
+          Envío gratis a todo el país incluido
+        </p>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+        <h3 class="text-lg font-semibold mb-3">Próximos Pasos</h3>
+        <div class="space-y-2">
+          <div class="flex items-center">
+            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm mr-3">1</span>
+            <span>Recibirás un email de confirmación</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm mr-3">2</span>
+            <span>Tu pedido será procesado en 24-48hs</span>
+          </div>
+          <div class="flex items-center">
+            <span class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm mr-3">3</span>
+            <span>Recibirás tu pedido en 3-5 días hábiles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="text-center">
+        <p class="text-gray-600 mb-4">
+          ¿Necesitas ayuda? Contactanos:
+        </p>
+        <div class="space-y-2">
+          <p class="text-blue-600">
+            📧 Email: ventas@rositarococo.com
+          </p>
+          <p class="text-blue-600">
+            📱 WhatsApp: +54 9 XXXX XXXX
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</MainLayout>
