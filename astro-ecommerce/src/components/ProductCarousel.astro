@@ -19,6 +19,8 @@ const { productId, images, productName } = Astro.props;
               src={image} 
               alt={`${productName} - Vista ${index + 1}`}
               loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "low"}
+              decoding={index === 0 ? "sync" : "async"}
             />
           </div>
         </div>
