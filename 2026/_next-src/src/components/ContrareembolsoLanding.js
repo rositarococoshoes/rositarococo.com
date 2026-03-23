@@ -129,7 +129,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               <div>
                 <strong>2 pares <em>MEJOR OFERTA</em></strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{product.savingsLabel} - $42.500 por par</small>
+                <small>{`${product.savingsLabel} y pagas $42.500 por par`}</small>
               </div>
             </label>
           </div>
