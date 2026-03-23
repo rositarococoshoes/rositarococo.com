@@ -64,7 +64,7 @@ function ProductGallery({ product }) {
 
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [size, setSize] = useState('');
-  const specsInline = product.specs.map((spec) => spec.value).join(' · ');
+  const specsInline = product.specs.map((spec) => spec.value).join(' / ');
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -84,9 +84,8 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
         <p className="product-description-copy compact-description">{product.description}</p>
 
         <div className="price-card concise-price-card">
-          <div className="price-card-headline">
-            <strong>{product.unitPriceLabel} el par</strong>
-            <span>{product.bundlePriceLabel} los 2 pares con envio gratis</span>
+          <div className="price-card-headline compact-card-pricing">
+            <span>Elige como quieres pedir</span>
           </div>
           <div className="price-options static-prices compact-price-grid">
             <div className="price-option static-price">
@@ -214,6 +213,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
 
   const latestItem = cartEntries[cartEntries.length - 1];
   const latestThumb = latestItem.product?.images?.[0];
+  const peekItems = cartEntries.slice(-2);
   const helperCopy = cartPhase === 'bundle'
     ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
     : 'Te falta 1 par para activar la promo de 2 pares.';
@@ -231,13 +231,26 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
     <div className={`mobile-cart-drawer ${expanded ? 'is-open' : ''}`}>
       <button type="button" className="mobile-cart-toggle" onClick={() => setExpanded((value) => !value)} aria-expanded={expanded}>
         <div className="mobile-cart-peek">
-          <div className="mobile-cart-thumb-wrap">
-            {latestThumb ? <Image src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width={52} height={52} className="mobile-cart-thumb" /> : null}
+          <div className={`mobile-cart-thumb-wrap ${cartEntries.length > 1 ? 'is-stack' : ''}`}>
+            {cartEntries.length > 1 ? peekItems.map((item, index) => {
+              const thumb = item.product?.images?.[0];
+              if (!thumb) return null;
+              return (
+                <Image
+                  key={item.id}
+                  src={thumb}
+                  alt={item.product?.displayName || item.productId}
+                  width={52}
+                  height={52}
+                  className={`mobile-cart-thumb stacked-thumb stacked-thumb-${index}`}
+                />
+              );
+            }) : latestThumb ? <Image src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width={52} height={52} className="mobile-cart-thumb" /> : null}
             <span className="mobile-cart-count">{cartEntries.length}</span>
           </div>
           <div className="mobile-cart-copy">
             <strong>{toggleLabel}</strong>
-            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} · talle ${latestItem.size}` : `${cartEntries.length} pares en tu pedido`}</span>
+            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} - talle ${latestItem.size}` : `${cartEntries.length} pares listos para revisar`}</span>
           </div>
         </div>
         <div className="mobile-cart-summary">

@@ -1364,6 +1364,10 @@ label small,
   gap: 4px;
 }
 
+.compact-card-pricing {
+  gap: 0;
+}
+
 .price-card-headline strong {
   font-size: 16px;
 }
@@ -1474,12 +1478,31 @@ label small,
     height: 42px;
   }
 
+  .mobile-cart-thumb-wrap.is-stack {
+    width: 54px;
+  }
+
   .mobile-cart-thumb {
     width: 42px;
     height: 42px;
     object-fit: cover;
     border-radius: 10px;
     background: #fff;
+  }
+
+  .stacked-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 8px 16px rgba(53, 28, 18, 0.14);
+  }
+
+  .stacked-thumb-0 {
+    transform: translateX(10px);
+  }
+
+  .stacked-thumb-1 {
+    transform: translateX(0);
   }
 
   .mobile-cart-count {
