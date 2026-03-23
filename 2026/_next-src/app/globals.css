@@ -894,3 +894,215 @@ label small,
     line-height: 1.02;
   }
 }
+
+.price-option.featured-bundle {
+  position: relative;
+  border-color: rgba(111, 59, 40, 0.32);
+  background: linear-gradient(180deg, rgba(111, 59, 40, 0.08), rgba(216, 179, 151, 0.28));
+}
+.price-option.featured-bundle::before {
+  content: 'OFERTA DESTACADA';
+  position: absolute;
+  top: -11px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--brand-strong);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.size-table-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 252, 247, 0.9);
+  border: 1px solid rgba(143, 90, 69, 0.14);
+}
+.size-table-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.size-table-header strong {
+  font-size: 14px;
+}
+.size-table-header span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.size-table-grid {
+  display: grid;
+  gap: 8px;
+}
+.size-table-row {
+  display: grid;
+  grid-template-columns: minmax(0, 90px) 1fr;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(248, 236, 224, 0.7);
+  font-size: 13px;
+}
+.size-table-row span {
+  color: var(--muted);
+}
+
+.cart-header > div {
+  display: grid;
+  gap: 4px;
+}
+.cart-expand-button {
+  border: 0;
+  background: rgba(143, 90, 69, 0.1);
+  color: var(--brand-strong);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.cart-offer-banner {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(111, 59, 40, 0.09), rgba(216, 179, 151, 0.32));
+  border: 1px solid rgba(111, 59, 40, 0.16);
+}
+.cart-offer-banner span {
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  font-weight: 800;
+}
+.cart-offer-banner strong {
+  font-size: 28px;
+  line-height: 1;
+}
+.cart-offer-banner p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.detailed-cart-item {
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) auto;
+  align-items: center;
+}
+.cart-item-thumb {
+  border-radius: 16px;
+  object-fit: cover;
+  background: #fff;
+}
+.cart-item-copy {
+  display: grid;
+  gap: 4px;
+}
+.cart-item-copy p,
+.cart-item-copy small {
+  margin: 0;
+}
+.cart-item-actions {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+.qty-stepper {
+  display: inline-grid;
+  grid-template-columns: repeat(3, auto);
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(143, 90, 69, 0.08);
+}
+.qty-stepper button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: white;
+  color: var(--brand-strong);
+  font-weight: 800;
+  cursor: pointer;
+}
+.qty-stepper button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.qty-stepper span {
+  min-width: 18px;
+  text-align: center;
+  font-weight: 700;
+}
+.cart-remove-link {
+  border: 0;
+  background: transparent;
+  color: var(--brand);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.modal-eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--brand);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+.modal-help {
+  display: block;
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.modal-actions {
+  grid-template-columns: 1fr;
+  margin-top: 14px;
+}
+
+@media (max-width: 760px) {
+  .price-option.featured-bundle::before {
+    top: -10px;
+    right: 10px;
+    font-size: 9px;
+  }
+  .cart-header {
+    align-items: flex-start;
+  }
+  .cart-offer-banner strong {
+    font-size: 24px;
+  }
+  .detailed-cart-item {
+    grid-template-columns: 56px minmax(0, 1fr);
+    gap: 10px;
+  }
+  .cart-item-actions {
+    grid-column: 1 / -1;
+    justify-items: stretch;
+  }
+  .qty-stepper {
+    justify-content: center;
+  }
+  .size-table-card {
+    padding: 12px;
+    border-radius: 16px;
+  }
+  .size-table-header {
+    display: grid;
+    gap: 2px;
+  }
+  .size-table-row {
+    grid-template-columns: minmax(0, 78px) 1fr;
+    padding: 9px 10px;
+    font-size: 12px;
+  }
+}

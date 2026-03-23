@@ -24,6 +24,34 @@ import {
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
 
+const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
+
+function groupCartItems(cart, products) {
+  const grouped = new Map();
+
+  cart.forEach((item) => {
+    const key = `${item.productId}-${item.size}`;
+    const current = grouped.get(key);
+    if (current) {
+      current.quantity += 1;
+      current.ids.push(item.id);
+      return;
+    }
+
+    const product = products.find((entry) => entry.id === item.productId);
+    grouped.set(key, {
+      key,
+      productId: item.productId,
+      size: item.size,
+      quantity: 1,
+      ids: [item.id],
+      product,
+    });
+  });
+
+  return Array.from(grouped.values());
+}
+
 function ProductGallery({ product }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeImage = product.images[activeIndex];
@@ -93,14 +121,15 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               <div>
                 <strong>1 par</strong>
                 <span>{product.unitPriceLabel}</span>
+                <small>Precio final por un solo par</small>
               </div>
             </label>
-            <label className={`price-option ${pairCount === '2' ? 'selected' : ''}`}>
+            <label className={`price-option featured-bundle ${pairCount === '2' ? 'selected' : ''}`}>
               <input type="radio" name={`qty-${product.id}`} value="2" checked={pairCount === '2'} onChange={() => setPairCount('2')} />
               <div>
-                <strong>2 pares <em>OFERTA</em></strong>
+                <strong>2 pares <em>MEJOR OFERTA</em></strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{product.savingsLabel}</small>
+                <small>{product.savingsLabel} - $42.500 por par</small>
               </div>
             </label>
           </div>
@@ -137,9 +166,24 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
 
         <p className="selection-hint">
           {selectedSizes.length
-            ? `Seleccion actual: ${selectedSizes.map((size, index) => `Par ${index + 1} talle ${size}`).join(' · ')}`
+            ? `Seleccion actual: ${selectedSizes.map((size, index) => `Par ${index + 1} talle ${size}`).join(' - ')}`
             : 'Selecciona el talle para habilitar una compra mas rapida.'}
         </p>
+
+        <div className="size-table-card">
+          <div className="size-table-header">
+            <strong>Guia de talles</strong>
+            <span>Plantilla aproximada en cm</span>
+          </div>
+          <div className="size-table-grid" role="table" aria-label={`Guia de talles de ${product.displayName}`}>
+            {product.sizes.map((size) => (
+              <div key={size.value} className="size-table-row" role="row">
+                <span role="cell">Talle {size.value}</span>
+                <strong role="cell">{size.label.replace(`${size.value} `, '')}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <button
           type="button"
@@ -220,6 +264,7 @@ function ChatWidget() {
 
 export default function ContrareembolsoLanding() {
   const [cart, setCart] = useState([]);
+  const [cartExpanded, setCartExpanded] = useState(true);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [showWhatsappModal, setShowWhatsappModal] = useState(false);
@@ -246,6 +291,7 @@ export default function ContrareembolsoLanding() {
   const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
   const featuredDeliveryLabel = deliveryOptions[0] || 'Proxima ventana disponible';
   const total = calculateCartTotal(cart.length);
+  const groupedCart = useMemo(() => groupCartItems(cart, PRODUCTS), [cart]);
   const orderSummary = useMemo(() => buildOrderSummary(cart), [cart]);
   const orderDetails = useMemo(() => formatOrderDetails(cart, PRODUCTS), [cart]);
   const canCheckout = cart.length > 0;
@@ -286,6 +332,7 @@ export default function ContrareembolsoLanding() {
       return;
     }
     pushItems(items);
+    setCartExpanded(true);
     setNotification(cart.length === 0 ? 'Primer par agregado. Si quieres, suma uno mas para activar la promo.' : 'Promo de 2 pares activada. Completa tus datos para cerrar el pedido.');
   }
 
@@ -300,11 +347,28 @@ export default function ContrareembolsoLanding() {
     pushItems(pendingItems);
     setPendingItems([]);
     setShowWhatsappModal(false);
+    setCartExpanded(true);
     setNotification('WhatsApp guardado. Ya puedes seguir con tu pedido.');
   }
 
   function removeItem(itemId) {
     setCart((current) => current.filter((item) => item.id !== itemId));
+  }
+
+  function incrementGroupedItem(group) {
+    if (cart.length >= 2) {
+      setNotification('Ya alcanzaste el maximo de 2 pares para esta promo.');
+      return;
+    }
+    setCart((current) => [
+      ...current,
+      { productId: group.productId, size: group.size, id: `${group.productId}-${group.size}-${Date.now()}-${Math.random()}` },
+    ]);
+  }
+
+  function decrementGroupedItem(group) {
+    const lastId = group.ids[group.ids.length - 1];
+    if (lastId) removeItem(lastId);
   }
 
   async function submitOrder(event) {
@@ -426,22 +490,52 @@ export default function ContrareembolsoLanding() {
 
       <section className="checkout-layout editorial-layout">
         <aside className="cart-panel editorial-cart">
-          <div className="cart-header"><span>Resumen de tu pedido</span><strong>{cart.length} / 2 pares</strong></div>
-          <div className="cart-items">
-            {cart.length ? cart.map((item) => {
-              const product = PRODUCTS.find((entry) => entry.id === item.productId);
-              return (
-                <article key={item.id} className="cart-item">
-                  <div><strong>{product?.displayName || item.productId}</strong><p>Talle {item.size}</p></div>
-                  <button type="button" onClick={() => removeItem(item.id)}>Quitar</button>
-                </article>
-              );
-            }) : <p className="empty-copy">Agrega productos para ver aqui el detalle del pedido.</p>}
+          <div className="cart-header">
+            <div>
+              <span>Resumen de tu pedido</span>
+              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Agrega 2 pares para mejorar el precio'}</strong>
+            </div>
+            <button type="button" className="cart-expand-button" onClick={() => setCartExpanded((value) => !value)}>
+              {cartExpanded ? 'Ocultar' : 'Ver carrito'} ({cart.length}/2)
+            </button>
           </div>
+          <div className="cart-offer-banner">
+            <span>{cart.length >= 2 ? 'Mejor oferta aplicada' : 'Oferta destacada'}</span>
+            <strong>2 pares por $85.000</strong>
+            <p>{cart.length >= 2 ? 'Tu carrito ya tomo el precio promocional final.' : 'Combina cualquier modelo y pagas $42.500 por par.'}</p>
+          </div>
+          {cartExpanded ? (
+            <div className="cart-items">
+              {groupedCart.length ? groupedCart.map((group) => {
+                const product = group.product;
+                const thumb = product?.images?.[0];
+                return (
+                  <article key={group.key} className="cart-item detailed-cart-item">
+                    <div className="cart-item-media">
+                      {thumb ? <Image src={thumb} alt={product?.displayName || group.productId} width={68} height={68} className="cart-item-thumb" /> : null}
+                    </div>
+                    <div className="cart-item-copy">
+                      <strong>{product?.displayName || group.productId}</strong>
+                      <p>Talle {group.size}</p>
+                      <small>{group.quantity === 2 ? '2 pares de este modelo/talle' : '1 par agregado'}</small>
+                    </div>
+                    <div className="cart-item-actions">
+                      <div className="qty-stepper">
+                        <button type="button" aria-label="Quitar un par" onClick={() => decrementGroupedItem(group)}>-</button>
+                        <span>{group.quantity}</span>
+                        <button type="button" aria-label="Agregar un par" onClick={() => incrementGroupedItem(group)} disabled={cart.length >= 2}>+</button>
+                      </div>
+                      <button type="button" className="cart-remove-link" onClick={() => group.ids.forEach((id) => removeItem(id))}>Quitar</button>
+                    </div>
+                  </article>
+                );
+              }) : <p className="empty-copy">Agrega productos para ver aqui el detalle del pedido, con foto, talle y total actualizado.</p>}
+            </div>
+          ) : null}
           <div className="cart-total-box highlighted-box">
             <span>Total a pagar al recibir</span>
-            <strong>${total.toLocaleString('es-AR')}</strong>
-            <small>{PAGE_COPY.reviewCommitment}</small>
+            <strong>{formatCurrency(total)}</strong>
+            <small>{cart.length === 1 ? `1 par: ${formatCurrency(total)}` : cart.length === 2 ? `2 pares promo: ${formatCurrency(total)}` : 'Agrega un par para ver el total final.'}</small>
           </div>
           {canCheckout ? <a href="#checkout-form" className="floating-inline-link">Ir a completar datos</a> : null}
         </aside>
@@ -535,7 +629,7 @@ export default function ContrareembolsoLanding() {
               <p><strong>WhatsApp:</strong> {formState.whatsapp || '-'}</p>
               <p><strong>Direccion:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
               <p><strong>Dia y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
-              <p className="review-total">Total: ${total.toLocaleString('es-AR')}</p>
+              <p className="review-total">Total: {formatCurrency(total)}</p>
               <p className="review-warning">{PAGE_COPY.reviewCommitment}</p>
               <p className="review-help">Recibe en: <strong>{featuredDeliveryLabel}</strong>. Te contactaremos para confirmar.</p>
             </div>
@@ -554,13 +648,14 @@ export default function ContrareembolsoLanding() {
       {showWhatsappModal ? (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-card">
-            <h2>Antes de agregar el primer par</h2>
-            <p>Guardamos tu WhatsApp para que el checkout ya salga precargado y el equipo pueda confirmar el envio.</p>
+            <span className="modal-eyebrow">Paso rapido</span>
+            <h2>Guarda tu WhatsApp y sigue</h2>
+            <p>Lo usamos para dejar el checkout precargado y para confirmar el envio antes de despachar tu pedido.</p>
             <form onSubmit={confirmWhatsappAndContinue}>
               <input value={prefillWhatsapp} onChange={(event) => setPrefillWhatsapp(event.target.value)} placeholder="1156457057" />
+              <small className="modal-help">Escribelo sin 0 ni 15. Luego agregamos el par directo al carrito.</small>
               <div className="modal-actions">
-                <button type="button" className="ghost-button" onClick={() => setShowWhatsappModal(false)}>Cerrar</button>
-                <button type="submit" className="submit-button">Guardar y seguir</button>
+                <button type="submit" className="submit-button">Guardar WhatsApp y agregar</button>
               </div>
             </form>
           </div>
