@@ -29,9 +29,21 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: false
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p site
+          cp -R astrocline/. site/
+          mkdir -p site/2026
+          cp -R 2026/. site/2026/
+          rm -rf site/2026/_next-src
+          cp CNAME site/CNAME
+          cp .nojekyll site/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./astrocline
+          path: ./site

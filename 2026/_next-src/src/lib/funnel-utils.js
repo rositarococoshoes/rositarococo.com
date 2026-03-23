@@ -1,0 +1,108 @@
+const DELIVERY_DAY_NAMES = [
+  'Domingo',
+  'Lunes',
+  'Martes',
+  'Miercoles',
+  'Jueves',
+  'Viernes',
+  'Sabado',
+];
+
+const DELIVERY_MONTH_NAMES = [
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
+];
+
+export function formatWhatsappNumber(number) {
+  if (!number) return '';
+
+  let formatted = number.replace(/[\s\-()+]/g, '');
+
+  if (/^549\d+$/.test(formatted)) return formatted;
+
+  if (formatted.startsWith('54')) formatted = formatted.slice(2);
+  if (formatted.startsWith('0')) formatted = formatted.slice(1);
+
+  if (formatted.length > 2 && formatted.slice(2, 4) === '15') {
+    formatted = `${formatted.slice(0, 2)}${formatted.slice(4)}`;
+  } else if (formatted.startsWith('15')) {
+    formatted = formatted.slice(2);
+  }
+
+  if (!/^\d+$/.test(formatted)) return '';
+
+  return `549${formatted}`;
+}
+
+export function isValidWhatsappInput(number) {
+  return formatWhatsappNumber(number).length >= 12;
+}
+
+export function calculateCartTotal(itemCount) {
+  if (itemCount <= 0) return 0;
+  if (itemCount === 1) return 55000;
+  return 85000;
+}
+
+export function getThankYouRoute(itemCount) {
+  return itemCount === 1 ? '/gracias-1par-c' : '/gracias-2pares-c';
+}
+
+export function buildOrderSummary(cart) {
+  return cart.map((item) => `${item.size}-${item.productId}`).join(', ');
+}
+
+export function formatOrderDetails(cart, products) {
+  const productMap = new Map(products.map((product) => [product.id, product.displayName]));
+  return cart.map((item) => `Talle: ${item.size} Modelo: ${productMap.get(item.productId) || item.productId}`).join(' || ');
+}
+
+function addDays(date, days) {
+  const next = new Date(date);
+  next.setDate(next.getDate() + days);
+  return next;
+}
+
+function dateForIsoWeekday(date, targetIsoDay, weekOffset = 0) {
+  const base = new Date(date);
+  const currentIsoDay = ((base.getDay() + 6) % 7) + 1;
+  const diff = targetIsoDay - currentIsoDay + weekOffset * 7;
+  return addDays(base, diff);
+}
+
+function formatDeliveryDate(date) {
+  return `${DELIVERY_DAY_NAMES[date.getDay()]} ${date.getDate()} de ${DELIVERY_MONTH_NAMES[date.getMonth()]} de 15hs a 22hs`;
+}
+
+export function getDeliveryOptions(now = new Date()) {
+  const day = ((now.getDay() + 6) % 7) + 1;
+  let availableDates = [];
+
+  if (day === 1) {
+    availableDates = [addDays(now, 3), dateForIsoWeekday(now, 2, 1)];
+  } else if (day === 2) {
+    availableDates = [addDays(now, 2), dateForIsoWeekday(now, 2, 1)];
+  } else if (day >= 3 && day <= 6) {
+    availableDates = [dateForIsoWeekday(now, 2, 1), dateForIsoWeekday(now, 4, 1)];
+  } else {
+    const hour = now.getHours();
+    const minute = now.getMinutes();
+    const isBeforeCutoff = hour < 12 || (hour === 12 && minute === 0);
+
+    availableDates = isBeforeCutoff
+      ? [addDays(now, 2), addDays(now, 4)]
+      : [addDays(now, 4), dateForIsoWeekday(now, 2, 1)];
+  }
+
+  return availableDates.map(formatDeliveryDate);
+}
