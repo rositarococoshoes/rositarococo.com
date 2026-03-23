@@ -113,7 +113,6 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
         <p className="product-description-copy">{product.description}</p>
 
         <div className="price-card">
-          <div className="price-timer">Oferta valida por: <span>48:00:00</span></div>
           <p className="quantity-selector-label">Selecciona la cantidad:</p>
           <div className="price-options">
             <label className={`price-option ${pairCount === '1' ? 'selected' : ''}`}>
@@ -127,9 +126,9 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             <label className={`price-option featured-bundle ${pairCount === '2' ? 'selected' : ''}`}>
               <input type="radio" name={`qty-${product.id}`} value="2" checked={pairCount === '2'} onChange={() => setPairCount('2')} />
               <div>
-                <strong>2 pares <em>MEJOR OFERTA</em></strong>
+                <strong>2 pares</strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{`${product.savingsLabel} y pagas $55.000 por par con envio gratis`}</small>
+                <small>{`${product.savingsLabel} y envio gratis`}</small>
               </div>
             </label>
           </div>

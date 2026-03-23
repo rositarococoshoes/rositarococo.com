@@ -212,7 +212,7 @@ img { max-width: 100%; height: auto; }
   background: #fff;
 }
 .gallery-thumb.is-active { border-color: var(--brand); }
-.product-copy { display: grid; gap: 16px; }
+.product-copy { display: grid; gap: 14px; }
 .spec-row { display: flex; flex-wrap: wrap; gap: 8px; }
 .spec-pill {
   padding: 8px 10px;
@@ -256,22 +256,14 @@ img { max-width: 100%; height: auto; }
 .price-option input { display: none; }
 .price-option div { display: grid; gap: 4px; }
 .price-option strong { font-size: 16px; }
-.price-option strong em {
-  margin-left: 6px;
-  font-style: normal;
-  font-size: 11px;
-  color: white;
-  background: var(--brand);
-  padding: 3px 8px;
-  border-radius: 999px;
-}
 .price-option span { font-size: 24px; font-weight: 700; color: var(--brand-strong); }
+.price-option.featured-bundle strong { font-size: 18px; }
 .price-option small { color: var(--success); font-weight: 700; }
 .price-option.selected {
   border-color: var(--brand);
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247, 225, 208, 0.88));
 }
-.promo-explanation-box { display: grid; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+.promo-explanation-box { display: grid; gap: 6px; margin-top: 10px; font-size: 12px; color: var(--muted); }
 .promo-explanation-box p { margin: 0; }
 .promo-explanation-box span {
   display: inline-block;
@@ -293,7 +285,7 @@ img { max-width: 100%; height: auto; }
 .checkout-mini-steps { display: grid; gap: 14px; }
 .size-selector-block { grid-template-columns: repeat(2, 1fr); }
 .selection-hint {
-  margin: -2px 0 0;
+  margin: -6px 0 0;
   min-height: 22px;
   color: var(--brand-strong);
   font-size: 13px;
@@ -1140,5 +1132,23 @@ label small,
   .size-guide-disclosure summary {
     padding: 12px 14px;
     font-size: 13px;
+  }
+}
+.compact-promo-copy strong {
+  color: var(--brand-strong);
+}
+.compact-promo-copy span {
+  min-width: 72px;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .product-copy {
+    gap: 12px;
+  }
+  .price-card {
+    padding: 12px;
+  }
+  .compact-promo-copy {
+    font-size: 11px;
   }
 }
