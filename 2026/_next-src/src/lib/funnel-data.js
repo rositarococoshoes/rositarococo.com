@@ -20,7 +20,7 @@ export const WHATSAPP_BUTTON_SRC = asset('enviarwsp.png');
 export const PAGE_COPY = {
   season: 'Otono-Invierno 2025',
   paymentRibbon: 'Pagas al recibir en efectivo',
-  promoLine: 'Promo 2 pares: $85.000 ($42.500 por par) Podes combinar cualquier modelo.',
+  promoLine: 'Promo 2 pares: $110.000 con envio gratis. Podes combinar cualquier modelo.',
   shoppingInstruction: 'Selecciona tus productos favoritos y agregalos al carrito.',
   testimonialsTitle: 'Lo que dicen nuestras clientas',
   checkoutTitle: 'Casi listos. Completa tus datos',
@@ -50,9 +50,9 @@ export const PRODUCTS = [
       { label: 'Altura', value: 'Media' },
     ],
     description: 'Un clasico atemporal y versatil, perfecto para elevar cualquier look diario con comodidad y estilo.',
-    unitPriceLabel: '$55.000',
-    bundlePriceLabel: '$85.000',
-    savingsLabel: 'AHORRA $25.000',
+    unitPriceLabel: '$70.000',
+    bundlePriceLabel: '$110.000',
+    savingsLabel: 'AHORRA $30.000',
     images: [
       asset('roma-negras-1.webp'),
       asset('roma-negras-1a.webp'),
@@ -75,9 +75,9 @@ export const PRODUCTS = [
       { label: 'Altura', value: 'Media' },
     ],
     description: 'El tono calido ideal para complementar tus outfits de otono, aportando un toque natural y sofisticado.',
-    unitPriceLabel: '$55.000',
-    bundlePriceLabel: '$85.000',
-    savingsLabel: 'AHORRA $25.000',
+    unitPriceLabel: '$70.000',
+    bundlePriceLabel: '$110.000',
+    savingsLabel: 'AHORRA $30.000',
     images: [
       asset('roma-suela-1a.webp'),
       asset('roma-suela-2a.webp'),
@@ -97,9 +97,9 @@ export const PRODUCTS = [
       { label: 'Altura', value: 'Media' },
     ],
     description: 'Elegancia y comodidad en un diseno moderno. El modelo Venecia es perfecto para complementar tus looks mas sofisticados.',
-    unitPriceLabel: '$55.000',
-    bundlePriceLabel: '$85.000',
-    savingsLabel: 'AHORRA $25.000',
+    unitPriceLabel: '$70.000',
+    bundlePriceLabel: '$110.000',
+    savingsLabel: 'AHORRA $30.000',
     images: [
       asset('venecia-negras-1a.webp'),
       asset('venecia-negras-2a.webp'),
@@ -113,7 +113,7 @@ export const PRODUCTS = [
 export const TRUST_POINTS = [
   {
     title: 'Oferta valida por tiempo limitado',
-    body: 'La oferta de 2 pares por $85.000 aplica a cualquier combinacion de modelos del embudo activo.',
+    body: 'La oferta de 2 pares por $110.000 con envio gratis aplica a cualquier combinacion de modelos del embudo activo.',
   },
   {
     title: 'Envio gratis',

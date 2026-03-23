@@ -23,8 +23,8 @@ test('rejects invalid whatsapp values', () => {
 
 test('calculates contrareembolso totals for current funnel', () => {
   assert.equal(calculateCartTotal(0), 0);
-  assert.equal(calculateCartTotal(1), 55000);
-  assert.equal(calculateCartTotal(2), 85000);
+  assert.equal(calculateCartTotal(1), 70000);
+  assert.equal(calculateCartTotal(2), 110000);
 });
 
 test('resolves thank-you route from pair count', () => {

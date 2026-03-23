@@ -129,12 +129,12 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               <div>
                 <strong>2 pares <em>MEJOR OFERTA</em></strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{`${product.savingsLabel} y pagas $42.500 por par`}</small>
+                <small>{`${product.savingsLabel} y pagas $55.000 por par con envio gratis`}</small>
               </div>
             </label>
           </div>
           <div className="promo-explanation-box">
-            <p>* La oferta de 2 pares por $85.000 aplica a cualquier combinacion de modelos</p>
+            <p>* La oferta de 2 pares por $110.000 con envio gratis aplica a cualquier combinacion de modelos</p>
             <p><span>ENVIO GRATIS</span> Recibes tu pedido: <strong>{deliveryLabel}</strong></p>
             <p><span>PAGO</span> Contrareembolso en efectivo al recibir</p>
           </div>
@@ -493,7 +493,7 @@ export default function ContrareembolsoLanding() {
           <div className="cart-header">
             <div>
               <span>Resumen de tu pedido</span>
-              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Agrega 2 pares para mejorar el precio'}</strong>
+              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Agrega 2 pares y aprovecha el envio gratis'}</strong>
             </div>
             <button type="button" className="cart-expand-button" onClick={() => setCartExpanded((value) => !value)}>
               {cartExpanded ? 'Ocultar' : 'Ver carrito'} ({cart.length}/2)
@@ -501,8 +501,8 @@ export default function ContrareembolsoLanding() {
           </div>
           <div className="cart-offer-banner">
             <span>{cart.length >= 2 ? 'Mejor oferta aplicada' : 'Oferta destacada'}</span>
-            <strong>2 pares por $85.000</strong>
-            <p>{cart.length >= 2 ? 'Tu carrito ya tomo el precio promocional final.' : 'Combina cualquier modelo y pagas $42.500 por par.'}</p>
+            <strong>2 pares por $110.000</strong>
+            <p>{cart.length >= 2 ? 'Tu carrito ya tomo el precio promocional final con envio gratis.' : 'Combina cualquier modelo y pagas $55.000 por par con envio gratis.'}</p>
           </div>
           {cartExpanded ? (
             <div className="cart-items">

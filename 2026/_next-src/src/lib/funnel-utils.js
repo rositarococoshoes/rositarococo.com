@@ -50,8 +50,8 @@ export function isValidWhatsappInput(number) {
 
 export function calculateCartTotal(itemCount) {
   if (itemCount <= 0) return 0;
-  if (itemCount === 1) return 55000;
-  return 85000;
+  if (itemCount === 1) return 70000;
+  return 110000;
 }
 
 export function getThankYouRoute(itemCount) {
