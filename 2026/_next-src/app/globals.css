@@ -1165,6 +1165,44 @@ label small,
   background: transparent;
   padding-top: 8px;
 }
+
+.checkout-detail-note {
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(143, 90, 69, 0.12);
+}
+
+.checkout-detail-note summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--brand-strong);
+}
+
+.checkout-detail-note summary::-webkit-details-marker {
+  display: none;
+}
+
+.checkout-detail-note[open] summary {
+  padding-bottom: 0;
+}
+
+.checkout-detail-note .fieldset-copy,
+.checkout-detail-note .review-warning {
+  margin: 0;
+  padding: 10px 14px 14px;
+}
+
+.compact-legend-copy,
+.compact-reminder {
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.review-commitment-note .review-warning {
+  font-size: 12px;
+}
 .cart-offer-banner {
   gap: 4px;
   padding: 12px 14px;
@@ -1176,6 +1214,24 @@ label small,
   .size-guide-disclosure summary {
     padding: 12px 14px;
     font-size: 13px;
+  }
+
+  .checkout-detail-note summary {
+    padding: 11px 13px;
+    font-size: 12px;
+  }
+
+  .checkout-detail-note .fieldset-copy,
+  .checkout-detail-note .review-warning {
+    padding: 8px 13px 13px;
+    font-size: 12px;
+    line-height: 1.45;
+  }
+
+  .compact-legend-copy,
+  .compact-reminder {
+    font-size: 12px;
+    line-height: 1.4;
   }
 }
 .compact-promo-copy strong {

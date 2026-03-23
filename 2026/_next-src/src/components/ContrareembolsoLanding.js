@@ -632,7 +632,11 @@ export default function ContrareembolsoLanding() {
 
             <fieldset className="checkout-fieldset emphasis-fieldset">
               <legend>Contrareembolso</legend>
-              <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
+              <p className="fieldset-copy compact-legend-copy">Pagas solo en efectivo al recibir. Te confirmamos por WhatsApp antes del despacho.</p>
+              <details className="checkout-detail-note">
+                <summary>Ver condiciones del envio y pago</summary>
+                <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
+              </details>
               <label>
                 Dia y hora estimada para entregar
                 <select value={formState.deliverySlot} onChange={(event) => updateField('deliverySlot', event.target.value)} required>
@@ -650,11 +654,14 @@ export default function ContrareembolsoLanding() {
               <p><strong>Direccion:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
               <p><strong>Dia y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
               <p className="review-total">Total: {formatCurrency(total)}</p>
-              <p className="review-warning">{PAGE_COPY.reviewCommitment}</p>
+              <details className="checkout-detail-note review-commitment-note">
+                <summary>Importante antes de enviar</summary>
+                <p className="review-warning">{PAGE_COPY.reviewCommitment}</p>
+              </details>
               <p className="review-help">Recibe en: <strong>{featuredDeliveryLabel}</strong>. Te contactaremos para confirmar.</p>
             </div>
 
-            <p className="checkout-reminder">{PAGE_COPY.freeShippingReminder}</p>
+            <p className="checkout-reminder compact-reminder">{PAGE_COPY.freeShippingReminder}</p>
             <div className="submit-row aligned-row">
               <button type="submit" className="submit-button" disabled={!canCheckout || loading}>{loading ? 'Procesando...' : 'Comprar'}</button>
               <p>Vamos a confirmarte por WhatsApp antes del despacho.</p>
