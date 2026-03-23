@@ -64,7 +64,6 @@ function ProductGallery({ product }) {
 
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [size, setSize] = useState('');
-  const hasSelectedSize = Boolean(size);
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -85,16 +84,19 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             <span key={spec.label} className="spec-pill"><strong>{spec.label}:</strong> {spec.value}</span>
           ))}
         </div>
-        <p className="product-description-copy">{product.description}</p>
+        <p className="product-description-copy compact-description">{product.description}</p>
 
-        <div className="price-card">
-          <p className="quantity-selector-label">Precios del pedido</p>
-          <div className="price-options static-prices">
+        <div className="price-card concise-price-card">
+          <div className="price-card-headline">
+            <strong>{product.unitPriceLabel} el par</strong>
+            <span>{product.bundlePriceLabel} los 2 pares con envio gratis</span>
+          </div>
+          <div className="price-options static-prices compact-price-grid">
             <div className="price-option static-price">
               <div>
                 <strong>1 par</strong>
                 <span>{product.unitPriceLabel}</span>
-                <small>Compra directa por un solo par</small>
+                <small>Paga al recibir</small>
               </div>
             </div>
             <div className="price-option static-price featured-bundle">
@@ -105,11 +107,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               </div>
             </div>
           </div>
-          <div className="promo-explanation-box">
-            <p>Puedes combinar cualquier modelo dentro de la promo desde el carrito.</p>
-            <p><span>ENVIO GRATIS</span> Recibes tu pedido: <strong>{deliveryLabel}</strong></p>
-            <p><span>PAGO</span> Contrareembolso en efectivo al recibir</p>
-          </div>
+          <p className="promo-inline-copy">Agrega 1 par por vez. Puedes combinar modelo y talle desde tu pedido. Entrega estimada: <strong>{deliveryLabel}</strong>.</p>
         </div>
 
         <div className="size-selector-block single-size-selector">
@@ -124,9 +122,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           </label>
         </div>
 
-        <p className="selection-hint">
-          {hasSelectedSize ? `Talle elegido: ${size}. Este toque agrega 1 par al pedido.` : 'Selecciona tu talle para agregar 1 par al pedido.'}
-        </p>
+        <p className="selection-hint concise-hint">{size ? `Talle ${size} listo para agregar.` : 'Elige tu talle y agrega este par.'}</p>
 
         <details className="size-guide-disclosure"><summary>Ver guia de talles</summary><div className="size-table-card">
           <div className="size-table-header">
@@ -142,15 +138,15 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             ))}
           </div>
         </div>
-
         </details>
+
         <button
           type="button"
           className="add-button"
           disabled={cartLocked}
           onClick={() => onAdd(product, size)}
         >
-          {cartLocked ? 'Carrito completo' : 'Agregar al pedido'}
+          {cartLocked ? 'Pedido completo' : 'Agregar este par'}
         </button>
       </div>
     </article>
@@ -216,9 +212,83 @@ function ChatWidget() {
   );
 }
 
+function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded, setExpanded, onRemove, onGoProducts, onGoCheckout }) {
+  if (!cartEntries.length) return null;
+
+  const latestItem = cartEntries[cartEntries.length - 1];
+  const latestThumb = latestItem.product?.images?.[0];
+  const helperCopy = cartPhase === 'bundle'
+    ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
+    : 'Ya agregaste 1 par. Suma otro del mismo modelo o de otro y activa la promo.';
+  const toggleLabel = cartPhase === 'bundle' ? '2 pares listos' : '1 par agregado';
+
+  return (
+    <div className={`mobile-cart-drawer ${expanded ? 'is-open' : ''}`}>
+      <button type="button" className="mobile-cart-toggle" onClick={() => setExpanded((value) => !value)} aria-expanded={expanded}>
+        <div className="mobile-cart-peek">
+          <div className="mobile-cart-thumb-wrap">
+            {latestThumb ? <Image src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width={52} height={52} className="mobile-cart-thumb" /> : null}
+            <span className="mobile-cart-count">{cartEntries.length}</span>
+          </div>
+          <div className="mobile-cart-copy">
+            <strong>{toggleLabel}</strong>
+            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} · talle ${latestItem.size}` : `${cartEntries.length} pares en tu pedido`}</span>
+          </div>
+        </div>
+        <div className="mobile-cart-summary">
+          <strong>{formatCurrency(total)}</strong>
+          <span>{expanded ? 'Minimizar' : 'Ver pedido'}</span>
+        </div>
+      </button>
+
+      {expanded ? (
+        <div className="mobile-cart-sheet">
+          <div className="mobile-cart-handle" aria-hidden="true" />
+          <div className="mobile-cart-sheet-head">
+            <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
+            <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas la promo de 2 pares'}</strong>
+            <p>{helperCopy}</p>
+          </div>
+
+          <div className="mobile-cart-lines">
+            {cartEntries.map((item, index) => {
+              const thumb = item.product?.images?.[0];
+              return (
+                <article key={item.id} className="mobile-cart-line">
+                  {thumb ? <Image src={thumb} alt={item.product?.displayName || item.productId} width={48} height={48} className="mobile-cart-thumb" /> : null}
+                  <div className="mobile-cart-line-copy">
+                    <strong>{item.product?.displayName || item.productId}</strong>
+                    <span>Talle {item.size}</span>
+                    <small>Par {index + 1} agregado</small>
+                  </div>
+                  <button type="button" className="cart-remove-link mobile-remove" onClick={() => onRemove(item.id)}>Quitar</button>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mobile-cart-total-box">
+            <div>
+              <span>Total a pagar al recibir</span>
+              <strong>{formatCurrency(total)}</strong>
+            </div>
+            <small>{cartPhase === 'bundle' ? 'Ya tienes el mejor precio del embudo.' : 'Puedes finalizar con 1 par o sumar otro y ahorrar en el total.'}</small>
+          </div>
+
+          <div className="mobile-cart-actions">
+            {cartPhase === 'single' ? <button type="button" className="ghost-button mobile-cart-button" onClick={onGoProducts}>Sumar otro par</button> : null}
+            <button type="button" className="submit-button mobile-cart-button" onClick={onGoCheckout}>{cartPhase === 'bundle' ? 'Finalizar pedido' : 'Finalizar con 1 par'}</button>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export default function ContrareembolsoLanding() {
   const [cart, setCart] = useState([]);
   const [cartExpanded, setCartExpanded] = useState(true);
+  const [mobileCartOpen, setMobileCartOpen] = useState(false);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [prefillWhatsapp, setPrefillWhatsapp] = useState('');
@@ -236,7 +306,7 @@ export default function ContrareembolsoLanding() {
 
   useEffect(() => {
     if (!notification) return undefined;
-    const timeout = window.setTimeout(() => setNotification(''), 3200);
+    const timeout = window.setTimeout(() => setNotification(''), 2600);
     return () => window.clearTimeout(timeout);
   }, [notification]);
 
@@ -258,6 +328,12 @@ export default function ContrareembolsoLanding() {
     setFormState((current) => ({ ...current, [field]: value }));
   }
 
+  function jumpTo(selector) {
+    const element = document.querySelector(selector);
+    if (!element) return;
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function handleAdd(product, size) {
     if (!size) {
       setNotification('Selecciona tu talle antes de agregar el par al pedido.');
@@ -274,6 +350,7 @@ export default function ContrareembolsoLanding() {
       { productId: product.id, size, id: `${product.id}-${size}-${Date.now()}-${Math.random()}` },
     ]);
     setCartExpanded(true);
+    setMobileCartOpen(true);
     setNotification(getPostAddMessage(nextCount));
     if (!formState.whatsapp && prefillWhatsapp) {
       setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
@@ -416,12 +493,12 @@ export default function ContrareembolsoLanding() {
 
           <div className={`cart-offer-banner ${cartPhase}`}>
             <span>{cartPhase === 'bundle' ? 'Promo activada' : cartPhase === 'single' ? 'Te falta 1 par' : 'Activa la promo'}</span>
-            <strong>{cartPhase === 'single' ? 'Suma 1 par mas' : '2 pares por $110.000'}</strong>
+            <strong>{cartPhase === 'bundle' ? '2 pares por $110.000' : 'Suma otro par'}</strong>
             <p>
               {cartPhase === 'empty'
-                ? 'Agrega un par para empezar tu pedido. Con 2 pares activas el precio promo y envio gratis.'
+                ? 'Agrega un par para empezar tu pedido.'
                 : cartPhase === 'single'
-                  ? 'Ya agregaste 1 par. Puedes sumar el segundo del mismo modelo o de otro, con cualquier talle.'
+                  ? 'Puedes sumar el segundo del mismo modelo o de otro, con cualquier talle.'
                   : 'Tu pedido ya quedo con el precio promo final y envio gratis.'}
             </p>
           </div>
@@ -445,7 +522,7 @@ export default function ContrareembolsoLanding() {
                     </div>
                   </article>
                 );
-              }) : <p className="empty-copy">Todavia no agregaste pares. Elige un modelo, selecciona tu talle y agrega 1 par al pedido.</p>}
+              }) : <p className="empty-copy">Todavia no agregaste pares.</p>}
             </div>
           ) : null}
 
@@ -461,15 +538,9 @@ export default function ContrareembolsoLanding() {
             </small>
           </div>
 
-          <div className="cart-next-actions">
-            {cartPhase === 'empty' ? <a href="#productos" className="floating-inline-link secondary-link">Ver modelos</a> : null}
-            {cartPhase === 'single' ? (
-              <>
-                <a href="#productos" className="floating-inline-link secondary-link">Sumar otro par</a>
-                <a href="#checkout-form" className="floating-inline-link">Finalizar con 1 par</a>
-              </>
-            ) : null}
-            {cartPhase === 'bundle' ? <a href="#checkout-form" className="floating-inline-link">Finalizar pedido</a> : null}
+          <div className="cart-next-actions desktop-actions">
+            {cartPhase === 'single' ? <button type="button" className="ghost-button" onClick={() => jumpTo('#productos')}>Sumar otro par</button> : null}
+            {canCheckout ? <button type="button" className="submit-button" onClick={() => jumpTo('#checkout-form')}>{cartPhase === 'bundle' ? 'Finalizar pedido' : 'Finalizar compra'}</button> : null}
           </div>
         </aside>
 
@@ -576,16 +647,19 @@ export default function ContrareembolsoLanding() {
         </section>
       </section>
 
-      {notification ? <div className="notification-toast">{notification}</div> : null}
+      {notification ? <div className="notification-toast subtle-toast">{notification}</div> : null}
 
-      {canCheckout ? (
-        <a
-          href="#checkout-form"
-          className={`floating-checkout-cta ${cartPhase === 'single' ? 'is-compact' : ''}`}
-        >
-          {cartPhase === 'single' ? 'Ver pedido (1)' : `Finalizar pedido (${cart.length})`}
-        </a>
-      ) : null}
+      <MiniCartDrawer
+        cartEntries={cartEntries}
+        cartHeadline={cartHeadline}
+        cartPhase={cartPhase}
+        total={total}
+        expanded={mobileCartOpen}
+        setExpanded={setMobileCartOpen}
+        onRemove={removeItem}
+        onGoProducts={() => jumpTo('#productos')}
+        onGoCheckout={() => jumpTo('#checkout-form')}
+      />
       <ChatWidget />
     </main>
   );
