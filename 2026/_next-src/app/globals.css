@@ -1657,7 +1657,7 @@ label small,
   }
 
   .chat-shell.has-cart {
-    bottom: 88px;
+    bottom: 146px;
   }
 
   .chat-shell.cart-open {
@@ -1667,8 +1667,9 @@ label small,
 
   .chat-toggle {
     min-height: 38px;
-    padding: 0 12px;
+    padding: 0 11px;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: 11px;
+    box-shadow: 0 10px 20px rgba(53, 28, 18, 0.12);
   }
 }
