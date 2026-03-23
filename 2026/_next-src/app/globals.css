@@ -384,7 +384,10 @@ label small,
 .testimonial-grid-images { grid-template-columns: repeat(3, 1fr); }
 .testimonial-shot {
   margin: 0;
+  display: grid;
+  place-items: center;
   overflow: hidden;
+  padding: 6px;
   border-radius: 22px;
   background: rgba(255,255,255,0.82);
   border: 1px solid var(--line);
@@ -393,9 +396,9 @@ label small,
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 3 / 5;
-  object-fit: cover;
-  object-position: top;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center top;
 }
 
 .checkout-layout.editorial-layout {
@@ -599,7 +602,6 @@ label small,
   .benefits-strip span:not(:last-child)::after {
     margin-left: 6px;
   }
-  .progress-rail,
   .field-grid,
   .size-selector-block,
   .checkout-mini-steps,
@@ -624,6 +626,8 @@ label small,
     margin-right: 6px;
   }
   .progress-rail {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
     gap: 6px;
     margin: 8px 6px 10px;
   }
@@ -795,6 +799,8 @@ label small,
     padding-bottom: 2px;
   }
   .testimonial-shot {
+    min-height: 0;
+    padding: 4px;
     border-radius: 14px;
   }
   .checkout-layout.editorial-layout {
