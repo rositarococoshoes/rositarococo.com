@@ -1152,3 +1152,18 @@ label small,
     font-size: 11px;
   }
 }
+
+.build-version-marker {
+  margin: 28px auto 8px;
+  width: fit-content;
+  color: rgba(40, 23, 15, 0.48);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 760px) {
+  .build-version-marker {
+    margin-top: 22px;
+    font-size: 9px;
+  }
+}
