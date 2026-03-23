@@ -632,8 +632,11 @@ label small,
     margin: 8px 6px 10px;
   }
   .progress-node {
-    gap: 4px;
-    padding: 7px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 7px 6px;
     border-radius: 14px;
   }
   .progress-node span,
@@ -645,6 +648,7 @@ label small,
   .progress-node strong,
   .mini-step strong {
     font-size: 9px;
+    line-height: 1;
   }
   .hero-header-card {
     gap: 10px;
