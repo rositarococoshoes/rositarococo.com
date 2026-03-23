@@ -14,7 +14,6 @@ import {
   PROGRESS_STEPS,
   TESTIMONIAL_IMAGES,
   TRUST_POINTS,
-  BUILD_VERSION,
 } from '@/src/lib/funnel-data';
 import {
   buildOrderSummary,
@@ -276,7 +275,6 @@ export default function ContrareembolsoLanding() {
   });
 
   useEffect(() => {
-    console.info(`[Rosita 2026] build ${BUILD_VERSION}`);
     const savedWhatsapp = window.localStorage.getItem('rosita.whatsapp.prefill') || '';
     if (savedWhatsapp) {
       setPrefillWhatsapp(savedWhatsapp);
@@ -665,7 +663,6 @@ export default function ContrareembolsoLanding() {
       ) : null}
 
       {canCheckout ? <a href="#checkout-form" className="floating-checkout-cta">Completar pedido ({cart.length})</a> : null}
-      <div className="build-version-marker" aria-label="version">v{BUILD_VERSION}</div>
       <ChatWidget />
     </main>
   );
