@@ -376,7 +376,7 @@ export default function ContrareembolsoLanding() {
 
       <section className="hero-header-card">
         <div className="brand-lockup large">
-          <Image src={BRAND_LOGO_SRC} alt="Rosita Rococo" width={250} height={84} priority />
+          <Image src={BRAND_LOGO_SRC} alt="Rosita Rococo" width={320} height={108} priority className="brand-logo-image" />
         </div>
         <div className="hero-heading-copy">
           <h1>{PAGE_COPY.season} <span>{PAGE_COPY.paymentRibbon}</span></h1>

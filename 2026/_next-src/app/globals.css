@@ -116,6 +116,10 @@ img { max-width: 100%; height: auto; }
   padding: 24px;
 }
 .brand-lockup.large { min-height: 180px; }
+.brand-logo-image {
+  width: min(100%, 320px);
+  height: auto;
+}
 .hero-heading-copy h1,
 .section-heading h2,
 .product-card h2,
@@ -653,11 +657,16 @@ label small,
   .hero-header-card {
     gap: 10px;
     padding: 12px;
+    grid-template-columns: 1fr;
     background: linear-gradient(180deg, rgba(255,250,245,0.96), rgba(247,231,217,0.96));
   }
   .brand-lockup.large {
-    min-height: 76px;
-    padding: 8px;
+    min-height: 112px;
+    padding: 10px 12px;
+    justify-items: center;
+  }
+  .brand-logo-image {
+    width: min(100%, 260px);
   }
   .hero-heading-copy h1 {
     line-height: 1.02;
@@ -676,9 +685,7 @@ label small,
   }
   .trust-grid {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 72vw;
-    overflow-x: auto;
+    grid-template-columns: 1fr;
     margin-top: 8px;
     margin-bottom: 10px;
     gap: 8px;
@@ -689,7 +696,7 @@ label small,
     line-height: 1.05;
   }
   .trust-card {
-    padding: 12px 13px;
+    padding: 12px 14px;
     border-radius: 16px;
   }
   .trust-card p {
