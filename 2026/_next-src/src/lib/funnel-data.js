@@ -3,7 +3,7 @@ export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/8b70ed56-6ce4-4308-8d5b-0c21f9f7d751/chat';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
-export const BUILD_VERSION = '2026.03.23-v5';
+export const BUILD_VERSION = '2026.03.23-v6';
 const asset = (file) => `${BASE_PATH}/assets/contrareembolso/${file}`;
 
 const SIZES = [
