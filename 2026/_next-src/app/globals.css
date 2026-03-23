@@ -187,11 +187,11 @@ img { max-width: 100%; height: auto; }
   min-height: 440px;
   border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(180deg, #efe2d3, #fff6ee);
+  background: linear-gradient(180deg, #f6ede4, #fffaf5);
 }
 .gallery-image,
-.gallery-thumb-image,
-.testimonial-image { object-fit: cover; }
+.testimonial-image { object-fit: contain; }
+.gallery-thumb-image { object-fit: cover; }
 .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .gallery-thumb {
   position: relative;
@@ -539,7 +539,20 @@ label small,
 
 @media (max-width: 760px) {
   .landing-shell,
-  .thankyou-shell { width: min(100vw - 16px, 100%); }
+  .thankyou-shell {
+    width: min(100vw - 10px, 100%);
+    padding-bottom: 100px;
+  }
+  .benefits-strip {
+    gap: 8px;
+    padding: 12px 10px;
+    border-radius: 24px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .benefits-strip span:not(:last-child)::after {
+    margin-left: 8px;
+  }
   .progress-rail,
   .field-grid,
   .size-selector-block,
@@ -555,8 +568,206 @@ label small,
   .trust-card,
   .product-card,
   .thankyou-card { padding: 20px; border-radius: 24px; }
-  .gallery-frame { min-height: 320px; }
-  .product-card h2 { font-size: 28px; }
-  .hero-heading-copy h1 { line-height: 1.02; }
-  .floating-checkout-cta { width: calc(100vw - 24px); text-align: center; }
+  .progress-rail {
+    gap: 10px;
+    margin: 14px 0 18px;
+  }
+  .progress-node {
+    padding: 10px 8px;
+    border-radius: 18px;
+  }
+  .progress-node span,
+  .mini-step span {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  .progress-node strong,
+  .mini-step strong {
+    font-size: 11px;
+  }
+  .hero-header-card {
+    gap: 16px;
+    padding: 18px;
+    background: linear-gradient(180deg, rgba(255,250,245,0.96), rgba(247,231,217,0.96));
+  }
+  .brand-lockup.large {
+    min-height: 124px;
+    padding: 16px;
+  }
+  .hero-heading-copy h1 {
+    line-height: 1.02;
+    font-size: clamp(2rem, 10vw, 2.9rem);
+  }
+  .hero-heading-copy h1 span {
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+  .hero-promo-copy {
+    margin-top: 12px;
+    padding: 14px;
+    border-radius: 16px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  .trust-grid {
+    margin: 18px 0;
+    gap: 14px;
+  }
+  .trust-card.soft h2 {
+    font-size: 24px;
+  }
+  .products-section {
+    margin-left: -1px;
+    margin-right: -1px;
+  }
+  .products-grid.refined-grid {
+    gap: 16px;
+  }
+  .product-card {
+    padding: 14px;
+    gap: 14px;
+  }
+  .product-top {
+    gap: 8px;
+  }
+  .product-card h2 {
+    font-size: 26px;
+    line-height: 1.02;
+  }
+  .gallery-card {
+    gap: 8px;
+  }
+  .gallery-frame {
+    min-height: 70vw;
+    max-height: 520px;
+    border-radius: 18px;
+    margin-left: -4px;
+    margin-right: -4px;
+    padding: 8px;
+  }
+  .gallery-thumbs {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .gallery-thumb {
+    min-height: 18vw;
+    border-radius: 14px;
+  }
+  .spec-row {
+    gap: 6px;
+  }
+  .spec-pill {
+    padding: 7px 9px;
+    font-size: 11px;
+  }
+  .product-description-copy {
+    font-size: 14px;
+  }
+  .price-card,
+  .cart-total-box,
+  .review-box,
+  .thankyou-order-box,
+  .thankyou-payment-box {
+    padding: 14px;
+    border-radius: 18px;
+  }
+  .price-option {
+    padding: 12px;
+  }
+  .price-option span {
+    font-size: 21px;
+  }
+  .promo-explanation-box {
+    font-size: 12px;
+    gap: 6px;
+  }
+  .size-selector-block {
+    gap: 10px;
+  }
+  input,
+  select {
+    min-height: 50px;
+    border-radius: 14px;
+  }
+  .shopping-instructions-bar {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+  .testimonials-section-next {
+    padding: 18px 14px;
+  }
+  .testimonial-grid-images {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .testimonial-shot {
+    border-radius: 16px;
+  }
+  .checkout-layout.editorial-layout {
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .cart-panel,
+  .checkout-panel {
+    padding: 18px;
+  }
+  .checkout-mini-steps {
+    gap: 10px;
+  }
+  .checkout-fieldset {
+    padding: 14px;
+    gap: 12px;
+    border-radius: 18px;
+  }
+  .checkout-fieldset legend {
+    font-size: 22px;
+  }
+  .fieldset-copy,
+  .checkout-reminder,
+  .submit-row p,
+  .review-box p,
+  .thankyou-copy,
+  .thankyou-order-box p,
+  .thankyou-payment-box {
+    font-size: 14px;
+  }
+  .review-warning {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  .aligned-row {
+    gap: 10px;
+  }
+  .submit-button,
+  .add-button,
+  .floating-inline-link,
+  .floating-checkout-cta,
+  .chat-toggle,
+  .ghost-button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .floating-checkout-cta {
+    width: calc(100vw - 18px);
+    padding: 16px 18px;
+    bottom: 12px;
+  }
+  .chat-shell {
+    right: 10px;
+    left: 10px;
+    bottom: 78px;
+    justify-items: stretch;
+  }
+  .chat-panel {
+    width: 100%;
+  }
+  .thankyou-card {
+    padding: 22px 18px;
+  }
+  .thankyou-card h1 {
+    font-size: clamp(2.1rem, 9vw, 3rem);
+    line-height: 1.02;
+  }
 }
