@@ -112,8 +112,8 @@ export const PRODUCTS = [
 
 export const TRUST_POINTS = [
   {
-    title: 'Oferta valida por tiempo limitado',
-    body: 'La oferta de 2 pares por $110.000 con envio gratis aplica a cualquier combinacion de modelos del embudo activo.',
+    title: 'Compra simple',
+    body: 'Elige tus pares, agrega los talles y completa el pedido en pocos pasos.',
   },
   {
     title: 'Envio gratis',

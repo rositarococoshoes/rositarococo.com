@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
@@ -134,7 +134,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             </label>
           </div>
           <div className="promo-explanation-box">
-            <p>* La oferta de 2 pares por $110.000 con envio gratis aplica a cualquier combinacion de modelos</p>
+            <p>Puedes combinar cualquier modelo dentro de la promo.</p>
             <p><span>ENVIO GRATIS</span> Recibes tu pedido: <strong>{deliveryLabel}</strong></p>
             <p><span>PAGO</span> Contrareembolso en efectivo al recibir</p>
           </div>
@@ -170,7 +170,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             : 'Selecciona el talle para habilitar una compra mas rapida.'}
         </p>
 
-        <div className="size-table-card">
+        <details className="size-guide-disclosure"><summary>Ver guia de talles</summary><div className="size-table-card">
           <div className="size-table-header">
             <strong>Guia de talles</strong>
             <span>Plantilla aproximada en cm</span>
@@ -185,6 +185,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           </div>
         </div>
 
+        </details>
         <button
           type="button"
           className="add-button"
@@ -493,14 +494,14 @@ export default function ContrareembolsoLanding() {
           <div className="cart-header">
             <div>
               <span>Resumen de tu pedido</span>
-              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Agrega 2 pares y aprovecha el envio gratis'}</strong>
+              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Resumen rapido del pedido'}</strong>
             </div>
             <button type="button" className="cart-expand-button" onClick={() => setCartExpanded((value) => !value)}>
               {cartExpanded ? 'Ocultar' : 'Ver carrito'} ({cart.length}/2)
             </button>
           </div>
           <div className="cart-offer-banner">
-            <span>{cart.length >= 2 ? 'Mejor oferta aplicada' : 'Oferta destacada'}</span>
+            <span>{cart.length >= 2 ? 'Promo aplicada' : 'Total promo si llevas 2 pares'}</span>
             <strong>2 pares por $110.000</strong>
             <p>{cart.length >= 2 ? 'Tu carrito ya tomo el precio promocional final con envio gratis.' : 'Combina cualquier modelo y pagas $55.000 por par con envio gratis.'}</p>
           </div>

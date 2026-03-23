@@ -1108,3 +1108,37 @@ label small,
     font-size: 12px;
   }
 }
+.size-guide-disclosure {
+  border-radius: 18px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(143, 90, 69, 0.12);
+}
+.size-guide-disclosure summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-weight: 700;
+  color: var(--brand-strong);
+}
+.size-guide-disclosure summary::-webkit-details-marker { display: none; }
+.size-guide-disclosure[open] summary {
+  padding-bottom: 0;
+}
+.size-guide-disclosure .size-table-card {
+  border: 0;
+  background: transparent;
+  padding-top: 8px;
+}
+.cart-offer-banner {
+  gap: 4px;
+  padding: 12px 14px;
+}
+.cart-offer-banner strong {
+  font-size: 24px;
+}
+@media (max-width: 760px) {
+  .size-guide-disclosure summary {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
+}
