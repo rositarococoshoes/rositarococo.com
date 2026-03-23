@@ -708,43 +708,38 @@ label small,
     font-size: 0.88rem;
   }
   .hero-promo-copy {
-    margin-top: 8px;
-    padding: 11px 12px;
+    margin-top: 6px;
+    padding: 10px 11px;
     border-radius: 16px;
-    font-size: 12px;
-    line-height: 1.38;
+    font-size: 11px;
+    line-height: 1.34;
     background: rgba(255, 247, 239, 0.92);
   }
   .trust-grid,
   .trust-grid.refined {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 72vw;
-    grid-template-columns: none !important;
-    overflow-x: auto !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    overflow: visible !important;
     margin-top: 8px;
     margin-bottom: 10px;
-    gap: 8px;
-    padding-bottom: 2px;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+    gap: 7px;
+    padding-bottom: 0;
   }
   .trust-card.soft h2 {
-    font-size: 16px;
-    margin-bottom: 4px;
-    line-height: 1.05;
+    font-size: 12px;
+    margin-bottom: 3px;
+    line-height: 1.12;
   }
   .trust-card {
     width: 100%;
     min-width: 0;
-    padding: 12px 12px;
-    border-radius: 18px;
+    padding: 10px 8px;
+    border-radius: 16px;
     overflow-wrap: anywhere;
-    scroll-snap-align: start;
   }
   .trust-card p {
-    font-size: 12px;
-    line-height: 1.35;
+    font-size: 10px;
+    line-height: 1.28;
   }
   .products-section {
     margin-top: 0;
@@ -754,14 +749,14 @@ label small,
   }
   .product-card {
     padding: 12px;
-    gap: 12px;
+    gap: 10px;
     border-radius: 22px;
   }
   .product-top {
     gap: 6px;
   }
   .product-card h2 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1;
   }
   .gallery-card {
@@ -785,15 +780,12 @@ label small,
     min-height: 24vw;
     border-radius: 14px;
   }
-  .spec-row {
-    gap: 6px;
-  }
-  .spec-pill {
-    padding: 7px 9px;
+  .product-meta-line {
     font-size: 11px;
   }
   .product-description-copy {
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.45;
   }
   .price-card,
   .cart-total-box,
@@ -804,21 +796,22 @@ label small,
     border-radius: 18px;
   }
   .price-option {
-    padding: 12px 11px;
+    padding: 11px 10px;
   }
   .price-option span {
-    font-size: 22px;
+    font-size: 20px;
   }
   .promo-explanation-box {
     font-size: 12px;
     gap: 6px;
   }
   .size-selector-block {
-    gap: 10px;
+    gap: 8px;
   }
   .selection-hint {
     min-height: 0;
-    font-size: 12px;
+    margin-top: -2px;
+    font-size: 11px;
   }
   input,
   select {
@@ -828,12 +821,6 @@ label small,
   .add-button {
     min-height: 54px;
     font-size: 14px;
-  }
-  .shopping-instructions-bar {
-    margin-top: 10px;
-    padding: 10px 12px;
-    font-size: 12px;
-    border-radius: 18px;
   }
   .testimonials-section-next {
     margin-top: 16px;
@@ -967,19 +954,6 @@ label small,
   border-color: rgba(111, 59, 40, 0.32);
   background: linear-gradient(180deg, rgba(111, 59, 40, 0.14), rgba(216, 179, 151, 0.4));
   box-shadow: 0 18px 36px rgba(111, 59, 40, 0.14);
-}
-.price-option.featured-bundle::before {
-  content: 'OFERTA DESTACADA';
-  position: absolute;
-  top: -11px;
-  right: 12px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--brand-strong);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
 }
 
 .size-table-card {
@@ -1139,11 +1113,6 @@ label small,
 }
 
 @media (max-width: 760px) {
-  .price-option.featured-bundle::before {
-    top: -10px;
-    right: 10px;
-    font-size: 9px;
-  }
   .cart-header {
     align-items: flex-start;
   }
@@ -1325,6 +1294,15 @@ label small,
   line-height: 1.55;
 }
 
+.product-meta-line {
+  margin: 0;
+  color: var(--brand-strong);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
 .price-card-headline {
   display: grid;
   gap: 4px;
@@ -1383,7 +1361,7 @@ label small,
 
   .landing-shell,
   .thankyou-shell {
-    padding-bottom: 162px;
+    padding-bottom: 146px;
   }
 
   .price-card-headline strong {
@@ -1397,7 +1375,7 @@ label small,
   .subtle-toast {
     left: 10px;
     right: 10px;
-    bottom: 134px;
+    bottom: 112px;
     transform: none;
     max-width: none;
   }
@@ -1409,21 +1387,21 @@ label small,
     bottom: 10px;
     z-index: 78;
     display: grid;
-    gap: 8px;
+    gap: 6px;
   }
 
   .mobile-cart-toggle {
     width: 100%;
     border: 0;
-    border-radius: 22px;
-    padding: 10px 12px;
+    border-radius: 18px;
+    padding: 8px 10px;
     background: rgba(255, 252, 249, 0.96);
     border: 1px solid rgba(143, 90, 69, 0.14);
-    box-shadow: 0 14px 30px rgba(53, 28, 18, 0.14);
+    box-shadow: 0 12px 24px rgba(53, 28, 18, 0.14);
     backdrop-filter: blur(10px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
   }
 
@@ -1436,15 +1414,15 @@ label small,
 
   .mobile-cart-thumb-wrap {
     position: relative;
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
   }
 
   .mobile-cart-thumb {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 10px;
     background: #fff;
   }
 
@@ -1471,13 +1449,13 @@ label small,
   }
 
   .mobile-cart-copy strong {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.1;
   }
 
   .mobile-cart-copy span {
     color: var(--muted);
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.3;
   }
 
@@ -1489,24 +1467,26 @@ label small,
   }
 
   .mobile-cart-summary strong {
-    font-size: 15px;
+    font-size: 14px;
     color: var(--brand-strong);
   }
 
   .mobile-cart-summary span {
     color: var(--muted);
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 700;
   }
 
   .mobile-cart-sheet {
     background: rgba(255, 252, 249, 0.99);
     border: 1px solid rgba(143, 90, 69, 0.14);
-    border-radius: 24px;
-    padding: 13px;
+    border-radius: 22px;
+    padding: 12px;
     box-shadow: 0 20px 36px rgba(53, 28, 18, 0.16);
     display: grid;
-    gap: 10px;
+    gap: 9px;
+    max-height: min(58vh, 430px);
+    overflow: auto;
   }
 
   .mobile-cart-handle {
@@ -1538,15 +1518,15 @@ label small,
   }
 
   .mobile-cart-sheet-head strong {
-    font-size: 17px;
-    line-height: 1.1;
+    font-size: 15px;
+    line-height: 1.15;
   }
 
   .mobile-cart-sheet-head p {
     margin: 0;
     color: var(--muted);
-    font-size: 11px;
-    line-height: 1.4;
+    font-size: 10px;
+    line-height: 1.35;
   }
 
   .mobile-cart-close {
@@ -1564,17 +1544,17 @@ label small,
 
   .mobile-cart-lines {
     display: grid;
-    gap: 10px;
+    gap: 8px;
   }
 
   .mobile-cart-line {
     display: grid;
     grid-template-columns: 48px minmax(0, 1fr) auto;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
-    padding: 10px;
-    border-radius: 18px;
-    background: rgba(255, 246, 238, 0.88);
+    padding: 8px;
+    border-radius: 16px;
+    background: rgba(255, 246, 238, 0.72);
   }
 
   .mobile-cart-line-copy {
@@ -1583,19 +1563,28 @@ label small,
   }
 
   .mobile-cart-line-copy strong {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.15;
   }
 
   .mobile-cart-line-copy span,
   .mobile-cart-line-copy small {
     color: var(--muted);
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .mobile-remove {
-    white-space: nowrap;
-    font-size: 12px;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(143, 90, 69, 0.16);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--brand-strong);
+    font-size: 17px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
   }
 
   .mobile-cart-total-box {
@@ -1623,7 +1612,7 @@ label small,
   }
 
   .mobile-cart-total-box strong {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1;
     color: var(--brand-strong);
   }
@@ -1637,24 +1626,49 @@ label small,
   .mobile-cart-actions {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 6px;
   }
 
   .mobile-cart-button {
     min-height: 46px;
   }
 
+  .mobile-cart-secondary-copy {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+    text-align: center;
+  }
+
   .mini-link-button {
     border: 0;
     background: transparent;
     color: var(--brand-strong);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 2px 4px 0;
+    padding: 0;
     text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
   }
 
   .chat-shell {
-    bottom: 178px;
+    bottom: 84px;
+  }
+
+  .chat-shell.has-cart {
+    bottom: 88px;
+  }
+
+  .chat-shell.cart-open {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .chat-toggle {
+    min-height: 38px;
+    padding: 0 12px;
+    border-radius: 999px;
+    font-size: 12px;
   }
 }

@@ -64,6 +64,7 @@ function ProductGallery({ product }) {
 
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [size, setSize] = useState('');
+  const specsInline = product.specs.map((spec) => spec.value).join(' · ');
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -79,11 +80,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
       <ProductGallery product={product} />
 
       <div className="product-copy">
-        <div className="spec-row">
-          {product.specs.map((spec) => (
-            <span key={spec.label} className="spec-pill"><strong>{spec.label}:</strong> {spec.value}</span>
-          ))}
-        </div>
+        <p className="product-meta-line">{specsInline}</p>
         <p className="product-description-copy compact-description">{product.description}</p>
 
         <div className="price-card concise-price-card">
@@ -103,11 +100,11 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               <div>
                 <strong>2 pares</strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{`${product.savingsLabel} y envio gratis`}</small>
+                <small>{`${product.savingsLabel} con envio gratis`}</small>
               </div>
             </div>
           </div>
-          <p className="promo-inline-copy">Agrega 1 par por vez. Puedes combinar modelo y talle desde tu pedido. Entrega estimada: <strong>{deliveryLabel}</strong>.</p>
+          <p className="promo-inline-copy">Agrega 1 par por vez. Combina cualquier modelo o talle. <strong>{deliveryLabel}</strong>.</p>
         </div>
 
         <div className="size-selector-block single-size-selector">
@@ -122,9 +119,9 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           </label>
         </div>
 
-        <p className="selection-hint concise-hint">{size ? `Talle ${size} listo para agregar.` : 'Elige tu talle y agrega este par.'}</p>
+        {size ? <p className="selection-hint concise-hint">{`Talle ${size} listo para agregar.`}</p> : null}
 
-        <details className="size-guide-disclosure"><summary>Ver guia de talles</summary><div className="size-table-card">
+        <details className="size-guide-disclosure"><summary>Guia de talles</summary><div className="size-table-card">
           <div className="size-table-header">
             <strong>Guia de talles</strong>
             <span>Plantilla aproximada en cm</span>
@@ -153,7 +150,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   );
 }
 
-function ChatWidget() {
+function ChatWidget({ hasCart = false, cartOpen = false }) {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState([{ from: 'bot', text: 'Hola, soy Rosita. Si quieres, te ayudo con talles o con la promo de contrareembolso.' }]);
   const [draft, setDraft] = useState('');
@@ -192,7 +189,7 @@ function ChatWidget() {
   }
 
   return (
-    <div className={`chat-shell ${open ? 'is-open' : ''}`}>
+    <div className={`chat-shell ${open ? 'is-open' : ''} ${hasCart ? 'has-cart' : ''} ${cartOpen ? 'cart-open' : ''}`}>
       <button type="button" className={`chat-toggle ${open ? 'is-open' : ''}`} onClick={() => setOpen((value) => !value)}>
         <span className="chat-toggle-dot" aria-hidden="true" />
         {open ? 'Cerrar' : 'Ayuda'}
@@ -219,8 +216,8 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
   const latestThumb = latestItem.product?.images?.[0];
   const helperCopy = cartPhase === 'bundle'
     ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
-    : 'Ya agregaste 1 par. Suma otro del mismo modelo o de otro y activa la promo.';
-  const toggleLabel = cartPhase === 'bundle' ? '2 pares listos' : '1 par agregado';
+    : 'Te falta 1 par para activar la promo de 2 pares.';
+  const toggleLabel = cartPhase === 'bundle' ? '2 pares listos' : '1 de 2 pares';
   const handleGoProducts = () => {
     setExpanded(false);
     onGoProducts();
@@ -255,11 +252,11 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
           <div className="mobile-cart-sheet-headbar">
             <div className="mobile-cart-sheet-head">
               <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
-              <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas la promo de 2 pares'}</strong>
-              <p>{helperCopy}</p>
-            </div>
-            <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">×</button>
-          </div>
+            <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas 2 pares por $110.000'}</strong>
+          <p>{helperCopy}</p>
+        </div>
+        <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">×</button>
+      </div>
 
           <div className="mobile-cart-lines">
             {cartEntries.map((item, index) => {
@@ -270,9 +267,9 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
                   <div className="mobile-cart-line-copy">
                     <strong>{item.product?.displayName || item.productId}</strong>
                     <span>Talle {item.size}</span>
-                    <small>Par {index + 1} agregado</small>
+                    <small>{`Par ${index + 1} del pedido`}</small>
                   </div>
-                  <button type="button" className="cart-remove-link mobile-remove" onClick={() => onRemove(item.id)}>Quitar</button>
+                  <button type="button" className="cart-remove-link mobile-remove" onClick={() => onRemove(item.id)} aria-label={`Quitar ${item.product?.displayName || item.productId} talle ${item.size}`}>×</button>
                 </article>
               );
             })}
@@ -289,13 +286,13 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
           <div className="mobile-cart-actions">
             {cartPhase === 'single' ? (
               <>
-                <button type="button" className="submit-button mobile-cart-button" onClick={handleGoProducts}>Sumar 2do par y activar promo</button>
-                <button type="button" className="mini-link-button" onClick={handleGoCheckout}>Finalizar con 1 par</button>
+                <button type="button" className="submit-button mobile-cart-button" onClick={handleGoProducts}>Sumar otro par y activar promo</button>
+                <p className="mobile-cart-secondary-copy">o <button type="button" className="mini-link-button" onClick={handleGoCheckout}>finaliza con 1 par</button></p>
               </>
             ) : (
               <>
                 <button type="button" className="submit-button mobile-cart-button" onClick={handleGoCheckout}>Finalizar pedido</button>
-                <button type="button" className="mini-link-button" onClick={handleGoProducts}>Seguir viendo modelos</button>
+                <p className="mobile-cart-secondary-copy">o <button type="button" className="mini-link-button" onClick={handleGoProducts}>seguir viendo modelos</button></p>
               </>
             )}
           </div>
@@ -474,7 +471,6 @@ export default function ContrareembolsoLanding() {
             <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} deliveryLabel={featuredDeliveryLabel} />
           ))}
         </div>
-        <div className="shopping-instructions-bar"><p>{PAGE_COPY.shoppingInstruction}</p></div>
       </section>
 
       <section className="testimonials-section-next">
@@ -680,7 +676,7 @@ export default function ContrareembolsoLanding() {
         onGoProducts={() => jumpTo('#productos')}
         onGoCheckout={() => jumpTo('#checkout-form')}
       />
-      <ChatWidget />
+      <ChatWidget hasCart={cartEntries.length > 0} cartOpen={mobileCartOpen} />
     </main>
   );
 }
