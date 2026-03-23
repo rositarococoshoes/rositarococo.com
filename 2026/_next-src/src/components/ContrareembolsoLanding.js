@@ -6,10 +6,13 @@ import {
   BASE_PATH,
   BRAND_LOGO_SRC,
   CHAT_WEBHOOK_URL,
+  CHECKOUT_STEPS,
   HIGHLIGHTS,
   ORDER_SCRIPT_URL,
+  PAGE_COPY,
   PRODUCTS,
-  TESTIMONIALS,
+  PROGRESS_STEPS,
+  TESTIMONIAL_IMAGES,
   TRUST_POINTS,
 } from '@/src/lib/funnel-data';
 import {
@@ -39,7 +42,7 @@ function ProductGallery({ product }) {
             onClick={() => setActiveIndex(index)}
             aria-label={`Ver foto ${index + 1} de ${product.displayName}`}
           >
-            <Image src={image} alt="" fill sizes="84px" className="gallery-thumb-image" />
+            <Image src={image} alt="" fill sizes="72px" className="gallery-thumb-image" />
           </button>
         ))}
       </div>
@@ -47,47 +50,80 @@ function ProductGallery({ product }) {
   );
 }
 
-function ProductCard({ product, onAdd, cartLocked }) {
+function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [pairCount, setPairCount] = useState('1');
-  const [sizes, setSizes] = useState(['35', '35']);
+  const [sizes, setSizes] = useState(['', '']);
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
-      <ProductGallery product={product} />
-      <div className="product-copy">
-        <div className="product-badge">{product.heroLabel}</div>
+      <div className="product-top">
+        <div className="product-badges-row">
+          {product.badges.map((badge) => (
+            <span key={badge} className="badge-chip">{badge}</span>
+          ))}
+        </div>
         <h2>{product.displayName}</h2>
-        <p>{product.description}</p>
+      </div>
 
-        <div className="product-controls">
+      <ProductGallery product={product} />
+
+      <div className="product-copy">
+        <div className="spec-row">
+          {product.specs.map((spec) => (
+            <span key={spec.label} className="spec-pill"><strong>{spec.label}:</strong> {spec.value}</span>
+          ))}
+        </div>
+        <p className="product-description-copy">{product.description}</p>
+
+        <div className="price-card">
+          <div className="price-timer">Oferta valida por: <span>48:00:00</span></div>
+          <p className="quantity-selector-label">Selecciona la cantidad:</p>
+          <div className="price-options">
+            <label className={`price-option ${pairCount === '1' ? 'selected' : ''}`}>
+              <input type="radio" name={`qty-${product.id}`} value="1" checked={pairCount === '1'} onChange={() => setPairCount('1')} />
+              <div>
+                <strong>1 par</strong>
+                <span>{product.unitPriceLabel}</span>
+              </div>
+            </label>
+            <label className={`price-option ${pairCount === '2' ? 'selected' : ''}`}>
+              <input type="radio" name={`qty-${product.id}`} value="2" checked={pairCount === '2'} onChange={() => setPairCount('2')} />
+              <div>
+                <strong>2 pares <em>OFERTA</em></strong>
+                <span>{product.bundlePriceLabel}</span>
+                <small>{product.savingsLabel}</small>
+              </div>
+            </label>
+          </div>
+          <div className="promo-explanation-box">
+            <p>* La oferta de 2 pares por $85.000 aplica a cualquier combinacion de modelos</p>
+            <p><span>ENVIO GRATIS</span> Recibes tu pedido: <strong>{deliveryLabel}</strong></p>
+            <p><span>PAGO</span> Contrareembolso en efectivo al recibir</p>
+          </div>
+        </div>
+
+        <div className="size-selector-block">
           <label>
-            Cantidad de pares para este modelo
-            <select value={pairCount} onChange={(event) => setPairCount(event.target.value)}>
-              <option value="1">1 par</option>
-              <option value="2">2 pares</option>
+            Talle par 1
+            <select value={sizes[0]} onChange={(event) => setSizes([event.target.value, sizes[1]])}>
+              <option value="">-- Selecciona Talle Par 1 --</option>
+              {product.sizes.map((size) => (
+                <option key={size.value} value={size.value}>{size.label}</option>
+              ))}
             </select>
           </label>
 
-          <div className="size-grid">
+          {pairCount === '2' ? (
             <label>
-              Talle par 1
-              <select value={sizes[0]} onChange={(event) => setSizes([event.target.value, sizes[1]])}>
+              Talle par 2
+              <select value={sizes[1]} onChange={(event) => setSizes([sizes[0], event.target.value])}>
+                <option value="">-- Selecciona Talle Par 2 --</option>
                 {product.sizes.map((size) => (
                   <option key={size.value} value={size.value}>{size.label}</option>
                 ))}
               </select>
             </label>
-            {pairCount === '2' ? (
-              <label>
-                Talle par 2
-                <select value={sizes[1]} onChange={(event) => setSizes([sizes[0], event.target.value])}>
-                  {product.sizes.map((size) => (
-                    <option key={size.value} value={size.value}>{size.label}</option>
-                  ))}
-                </select>
-              </label>
-            ) : null}
-          </div>
+          ) : null}
         </div>
 
         <button
@@ -96,9 +132,9 @@ function ProductCard({ product, onAdd, cartLocked }) {
           disabled={cartLocked}
           onClick={() => {
             const nextItems = pairCount === '2'
-              ? [sizes[0], sizes[1]].map((size) => ({ productId: product.id, size }))
-              : [{ productId: product.id, size: sizes[0] }];
-            onAdd(nextItems);
+              ? [sizes[0], sizes[1]].filter(Boolean).map((size) => ({ productId: product.id, size }))
+              : sizes[0] ? [{ productId: product.id, size: sizes[0] }] : [];
+            onAdd(nextItems, pairCount === '2' ? 2 : 1);
           }}
         >
           {cartLocked ? 'Carrito completo' : 'Agregar al carrito'}
@@ -132,14 +168,12 @@ function ChatWidget() {
 
       const text = await response.text();
       let reply = 'Gracias, ya recibimos tu consulta. En unos instantes te respondemos por este chat.';
-
       try {
         const data = JSON.parse(text);
         reply = data.reply || data.message || data.output || reply;
       } catch {
         if (text.trim()) reply = text.trim();
       }
-
       setMessages((current) => [...current, { from: 'bot', text: reply }]);
     } catch {
       setMessages((current) => [...current, { from: 'bot', text: 'No pude conectar con el asistente ahora. Puedes continuar la compra y te confirmamos por WhatsApp.' }]);
@@ -150,15 +184,11 @@ function ChatWidget() {
 
   return (
     <div className={`chat-shell ${open ? 'is-open' : ''}`}>
-      <button type="button" className="chat-toggle" onClick={() => setOpen((value) => !value)}>
-        {open ? 'Cerrar ayuda' : 'Necesito ayuda'}
-      </button>
+      <button type="button" className="chat-toggle" onClick={() => setOpen((value) => !value)}>{open ? 'Cerrar ayuda' : 'Necesito ayuda'}</button>
       {open ? (
         <div className="chat-panel">
           <div className="chat-messages">
-            {messages.map((message, index) => (
-              <div key={`${message.from}-${index}`} className={`chat-message chat-${message.from}`}>{message.text}</div>
-            ))}
+            {messages.map((message, index) => <div key={`${message.from}-${index}`} className={`chat-message chat-${message.from}`}>{message.text}</div>)}
           </div>
           <form className="chat-form" onSubmit={sendMessage}>
             <input value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Escribe tu consulta..." />
@@ -166,14 +196,6 @@ function ChatWidget() {
           </form>
         </div>
       ) : null}
-    </div>
-  );
-}
-
-function ThankYouStrip() {
-  return (
-    <div className="benefits-strip compact">
-      {HIGHLIGHTS.map((item) => <span key={item}>{item}</span>)}
     </div>
   );
 }
@@ -186,14 +208,7 @@ export default function ContrareembolsoLanding() {
   const [pendingItems, setPendingItems] = useState([]);
   const [prefillWhatsapp, setPrefillWhatsapp] = useState('');
   const [formState, setFormState] = useState({
-    name: '',
-    whatsapp: '',
-    street: '',
-    betweenStreets: '',
-    postalCode: '',
-    locality: '',
-    province: 'Buenos Aires',
-    deliverySlot: '',
+    name: '', whatsapp: '', street: '', betweenStreets: '', postalCode: '', locality: '', province: 'Buenos Aires', deliverySlot: '',
   });
 
   useEffect(() => {
@@ -211,10 +226,12 @@ export default function ContrareembolsoLanding() {
   }, [notification]);
 
   const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
+  const featuredDeliveryLabel = deliveryOptions[0] || 'Proxima ventana disponible';
   const total = calculateCartTotal(cart.length);
   const orderSummary = useMemo(() => buildOrderSummary(cart), [cart]);
   const orderDetails = useMemo(() => formatOrderDetails(cart, PRODUCTS), [cart]);
   const canCheckout = cart.length > 0;
+  const activeCheckoutStep = cart.length ? 2 : 1;
 
   function updateField(field, value) {
     setFormState((current) => ({ ...current, [field]: value }));
@@ -231,24 +248,25 @@ export default function ContrareembolsoLanding() {
     });
   }
 
-  function handleAdd(items) {
+  function handleAdd(items, requestedCount) {
+    if (!items.length || items.length !== requestedCount) {
+      setNotification('Selecciona los talles antes de agregar el producto al carrito.');
+      return;
+    }
     if (cart.length >= 2) {
       setNotification('Ya tienes 2 pares en el carrito. Completa el pedido o elimina uno para cambiarlo.');
       return;
     }
-
     if (cart.length + items.length > 2) {
       setNotification('El embudo actual solo permite hasta 2 pares por pedido.');
       return;
     }
-
     const savedWhatsapp = formState.whatsapp || prefillWhatsapp;
     if (!savedWhatsapp) {
       setPendingItems(items);
       setShowWhatsappModal(true);
       return;
     }
-
     pushItems(items);
     setNotification(cart.length === 0 ? 'Primer par agregado. Si quieres, suma uno mas para activar la promo.' : 'Promo de 2 pares activada. Completa tus datos para cerrar el pedido.');
   }
@@ -259,7 +277,6 @@ export default function ContrareembolsoLanding() {
       setNotification('Ingresa un WhatsApp valido para continuar.');
       return;
     }
-
     window.localStorage.setItem('rosita.whatsapp.prefill', prefillWhatsapp);
     setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
     pushItems(pendingItems);
@@ -274,22 +291,18 @@ export default function ContrareembolsoLanding() {
 
   async function submitOrder(event) {
     event.preventDefault();
-
     if (!cart.length) {
       setNotification('Primero agrega al menos un par al carrito.');
       return;
     }
-
     if (!formState.name || !formState.street || !formState.betweenStreets || !formState.postalCode || !formState.locality || !formState.deliverySlot) {
       setNotification('Completa todos los datos obligatorios antes de comprar.');
       return;
     }
-
     if (!isValidWhatsappInput(formState.whatsapp)) {
       setNotification('Revisa el WhatsApp. Debe ir sin 0 ni 15.');
       return;
     }
-
     setLoading(true);
 
     const whatsappForForm = formState.whatsapp.replace(/\D/g, '');
@@ -309,23 +322,14 @@ export default function ContrareembolsoLanding() {
 
     try {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
-        window.fbq('track', 'InitiateCheckout', {
-          currency: 'ARS',
-          value: total,
-          num_items: cart.length,
-          content_type: 'product',
-        });
+        window.fbq('track', 'InitiateCheckout', { currency: 'ARS', value: total, num_items: cart.length, content_type: 'product' });
       }
-
       const response = await fetch(ORDER_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
         body: params.toString(),
       });
-
-      if (!response.ok) {
-        throw new Error('No se pudo guardar el pedido');
-      }
+      if (!response.ok) throw new Error('No se pudo guardar el pedido');
 
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);
@@ -341,43 +345,30 @@ export default function ContrareembolsoLanding() {
 
   return (
     <main className="landing-shell">
-      <ThankYouStrip />
-      <section className="hero-section">
-        <div className="hero-copy">
-          <span className="eyebrow">Embudo 2026 en Next.js</span>
-          <h1>Rosita Rococo contrareembolso, rehecho para exportacion estatica.</h1>
-          <p>
-            Tome el flujo actual de la raiz y lo rehice con una estructura moderna: carrito nativo, formulario integrado,
-            componentes reutilizables y salida lista para GitHub Pages dentro de <strong>/2026</strong>.
-          </p>
-          <div className="hero-pricing">
-            <div>
-              <strong>1 par</strong>
-              <span>$55.000</span>
-            </div>
-            <div>
-              <strong>2 pares</strong>
-              <span>$85.000</span>
-            </div>
+      <div className="benefits-strip">{HIGHLIGHTS.map((item) => <span key={item}>{item}</span>)}</div>
+
+      <div className="progress-rail">
+        {PROGRESS_STEPS.map((step, index) => (
+          <div key={step} className={`progress-node ${index === 0 ? 'active' : ''}`}>
+            <span>{index + 1}</span>
+            <strong>{step}</strong>
           </div>
-          <div className="hero-cta-row">
-            <a href="#productos" className="primary-link">Ver modelos</a>
-            <a href="#checkout" className="secondary-link">Ir al formulario</a>
-          </div>
+        ))}
+      </div>
+
+      <section className="hero-header-card">
+        <div className="brand-lockup large">
+          <Image src={BRAND_LOGO_SRC} alt="Rosita Rococo" width={250} height={84} priority />
         </div>
-        <div className="hero-panel">
-          <div className="brand-lockup">
-            <Image src={BRAND_LOGO_SRC} alt="Rosita Rococo" width={320} height={108} priority />
-          </div>
-          <ul className="hero-list">
-            {HIGHLIGHTS.map((item) => <li key={item}>{item}</li>)}
-          </ul>
+        <div className="hero-heading-copy">
+          <h1>{PAGE_COPY.season} <span>{PAGE_COPY.paymentRibbon}</span></h1>
+          <p className="hero-promo-copy">{PAGE_COPY.promoLine}</p>
         </div>
       </section>
 
-      <section className="trust-grid">
+      <section className="trust-grid refined">
         {TRUST_POINTS.map((point) => (
-          <article key={point.title} className="trust-card">
+          <article key={point.title} className="trust-card soft">
             <h2>{point.title}</h2>
             <p>{point.body}</p>
           </article>
@@ -385,121 +376,155 @@ export default function ContrareembolsoLanding() {
       </section>
 
       <section id="productos" className="products-section">
-        <div className="section-heading">
-          <span>Modelos activos del embudo</span>
-          <h2>Portados desde la raiz actual y estilizados con la base visual que ya habias empezado en Astro.</h2>
-        </div>
-        <div className="products-grid">
+        <div className="products-grid refined-grid">
           {PRODUCTS.map((product) => (
-            <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} />
+            <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} deliveryLabel={featuredDeliveryLabel} />
+          ))}
+        </div>
+        <div className="shopping-instructions-bar"><p>{PAGE_COPY.shoppingInstruction}</p></div>
+      </section>
+
+      <section className="testimonials-section-next">
+        <div className="section-heading left compact-heading">
+          <span>Prueba social</span>
+          <h2>{PAGE_COPY.testimonialsTitle}</h2>
+        </div>
+        <div className="testimonial-grid-images">
+          {TESTIMONIAL_IMAGES.map((item) => (
+            <figure key={item.src} className="testimonial-shot">
+              <Image src={item.src} alt={item.alt} width={420} height={720} sizes="(max-width: 768px) 50vw, 20vw" className="testimonial-image" />
+            </figure>
           ))}
         </div>
       </section>
 
-      <section className="checkout-layout">
-        <aside className="cart-panel">
-          <div className="cart-header">
-            <span>Tu pedido</span>
-            <strong>{cart.length} / 2 pares</strong>
-          </div>
+      <section className="checkout-layout editorial-layout">
+        <aside className="cart-panel editorial-cart">
+          <div className="cart-header"><span>Resumen de tu pedido</span><strong>{cart.length} / 2 pares</strong></div>
           <div className="cart-items">
             {cart.length ? cart.map((item) => {
               const product = PRODUCTS.find((entry) => entry.id === item.productId);
               return (
                 <article key={item.id} className="cart-item">
-                  <div>
-                    <strong>{product?.displayName || item.productId}</strong>
-                    <p>Talle {item.size}</p>
-                  </div>
+                  <div><strong>{product?.displayName || item.productId}</strong><p>Talle {item.size}</p></div>
                   <button type="button" onClick={() => removeItem(item.id)}>Quitar</button>
                 </article>
               );
-            }) : <p className="empty-copy">Aun no agregaste pares. Selecciona modelos y talles para ver el resumen.</p>}
+            }) : <p className="empty-copy">Agrega productos para ver aqui el detalle del pedido.</p>}
           </div>
-          <div className="cart-total-box">
-            <span>Total contrareembolso</span>
+          <div className="cart-total-box highlighted-box">
+            <span>Total a pagar al recibir</span>
             <strong>${total.toLocaleString('es-AR')}</strong>
-            <small>{cart.length === 1 ? 'Agrega otro par si quieres activar la promo de 2 por $85.000.' : 'El total final se abona en efectivo al recibir.'}</small>
+            <small>{PAGE_COPY.reviewCommitment}</small>
           </div>
+          {canCheckout ? <a href="#checkout-form" className="floating-inline-link">Ir a completar datos</a> : null}
         </aside>
 
-        <section id="checkout" className="checkout-panel">
-          <div className="section-heading left">
-            <span>Checkout activo</span>
-            <h2>El formulario conserva los mismos campos y nombres que el flujo original.</h2>
+        <section id="checkout-form" className={`checkout-panel editorial-checkout ${canCheckout ? 'ready' : 'locked'}`}>
+          <div className="section-heading left compact-heading">
+            <span>Checkout</span>
+            <h2>{PAGE_COPY.checkoutTitle}</h2>
           </div>
-          <form className="checkout-form" onSubmit={submitOrder}>
+
+          <div className="checkout-mini-steps">
+            {CHECKOUT_STEPS.map((step, index) => (
+              <div key={step} className={`mini-step ${index + 1 <= activeCheckoutStep ? 'active' : ''}`}>
+                <span>{index + 1}</span>
+                <strong>{step}</strong>
+              </div>
+            ))}
+          </div>
+
+          <form className="checkout-form refined-form" onSubmit={submitOrder}>
             <input type="hidden" name="entry.286442883" value={orderSummary} readOnly />
             <input type="hidden" name="entry.comoabona" value="contrareembolso" readOnly />
             <input type="hidden" name="entry.17650825" value="A DOMICILIO" readOnly />
-            <label>
-              Modelos y talles seleccionados
-              <input value={orderSummary} readOnly placeholder="Aqui veras tu seleccion" />
-            </label>
-            <div className="field-grid">
+
+            <fieldset className="checkout-fieldset">
+              <legend>Resumen de tu pedido</legend>
               <label>
-                Nombre y apellido
-                <input value={formState.name} onChange={(event) => updateField('name', event.target.value)} required />
+                Modelos y talles seleccionados
+                <input value={orderSummary} readOnly placeholder="Aqui veras tu seleccion" />
+              </label>
+            </fieldset>
+
+            <fieldset className="checkout-fieldset">
+              <legend>Informacion de contacto</legend>
+              <div className="field-grid">
+                <label>
+                  Nombre y apellido
+                  <input value={formState.name} onChange={(event) => updateField('name', event.target.value)} placeholder="Quien recibe el pedido" required />
+                </label>
+                <label>
+                  WhatsApp
+                  <input value={formState.whatsapp} onChange={(event) => updateField('whatsapp', event.target.value)} placeholder="Ej: 1156457057 (sin 0 ni 15)" required />
+                  <small>{isValidWhatsappInput(formState.whatsapp) || !formState.whatsapp ? 'Fundamental para coordinar el envio si es necesario.' : 'Formato invalido.'}</small>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset className="checkout-fieldset">
+              <legend>Direccion de envio</legend>
+              <p className="fieldset-copy">Asegurate que sea correcta para recibir tu paquete sin problemas.</p>
+              <label>
+                Calle y numero (Piso/Dpto)
+                <input value={formState.street} onChange={(event) => updateField('street', event.target.value)} placeholder="Ej: Av. Siempreviva 742, 3B" required />
               </label>
               <label>
-                WhatsApp
-                <input value={formState.whatsapp} onChange={(event) => updateField('whatsapp', event.target.value)} placeholder="1156457057" required />
-                <small>{isValidWhatsappInput(formState.whatsapp) || !formState.whatsapp ? 'Sin 0 ni 15. Lo usamos para confirmar el envio.' : 'Formato invalido.'}</small>
+                Entre calles
+                <input value={formState.betweenStreets} onChange={(event) => updateField('betweenStreets', event.target.value)} placeholder="Ej: Entre Av. Corrientes y Lavalle" required />
               </label>
-            </div>
-            <label>
-              Calle y numero (piso/depto)
-              <input value={formState.street} onChange={(event) => updateField('street', event.target.value)} required />
-            </label>
-            <label>
-              Entre calles
-              <input value={formState.betweenStreets} onChange={(event) => updateField('betweenStreets', event.target.value)} required />
-            </label>
-            <div className="field-grid triple">
+              <div className="field-grid triple">
+                <label>
+                  Codigo postal
+                  <input value={formState.postalCode} onChange={(event) => updateField('postalCode', event.target.value)} placeholder="Ej: 1425" required />
+                </label>
+                <label>
+                  Localidad
+                  <input value={formState.locality} onChange={(event) => updateField('locality', event.target.value)} placeholder="Ej: Palermo" required />
+                </label>
+                <label>
+                  Provincia
+                  <input value={formState.province} readOnly />
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset className="checkout-fieldset emphasis-fieldset">
+              <legend>Contrareembolso</legend>
+              <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
               <label>
-                Codigo postal
-                <input value={formState.postalCode} onChange={(event) => updateField('postalCode', event.target.value)} required />
+                Dia y hora estimada para entregar
+                <select value={formState.deliverySlot} onChange={(event) => updateField('deliverySlot', event.target.value)} required>
+                  <option value="">Selecciona una opcion</option>
+                  {deliveryOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </select>
               </label>
-              <label>
-                Localidad
-                <input value={formState.locality} onChange={(event) => updateField('locality', event.target.value)} required />
-              </label>
-              <label>
-                Provincia
-                <input value={formState.province} readOnly />
-              </label>
-            </div>
-            <label>
-              Dia y hora estimada de entrega
-              <select value={formState.deliverySlot} onChange={(event) => updateField('deliverySlot', event.target.value)} required>
-                <option value="">Selecciona una opcion</option>
-                {deliveryOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-              </select>
-            </label>
-            <div className="review-box">
-              <h3>Revision antes de confirmar</h3>
-              <p><strong>Pedido:</strong> {orderDetails || '-'}</p>
+            </fieldset>
+
+            <div className="review-box original-review-style">
+              <h3>Revisa tu pedido y datos</h3>
+              <p><strong>Seleccion:</strong> {orderDetails || '-'}</p>
               <p><strong>Nombre:</strong> {formState.name || '-'}</p>
               <p><strong>WhatsApp:</strong> {formState.whatsapp || '-'}</p>
               <p><strong>Direccion:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
-              <p><strong>Entrega:</strong> {formState.deliverySlot || '-'}</p>
-              <p className="review-total">Total a pagar al recibir: ${total.toLocaleString('es-AR')}</p>
+              <p><strong>Dia y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
+              <p className="review-total">Total: ${total.toLocaleString('es-AR')}</p>
+              <p className="review-warning">{PAGE_COPY.reviewCommitment}</p>
+              <p className="review-help">Recibe en: <strong>{featuredDeliveryLabel}</strong>. Te contactaremos para confirmar.</p>
             </div>
-            <div className="submit-row">
+
+            <p className="checkout-reminder">{PAGE_COPY.freeShippingReminder}</p>
+            <div className="submit-row aligned-row">
               <button type="submit" className="submit-button" disabled={!canCheckout || loading}>{loading ? 'Procesando...' : 'Comprar'}</button>
-              <p>Solo para CABA y GBA. El pedido se confirma por WhatsApp antes del despacho.</p>
+              <p>Vamos a confirmarte por WhatsApp antes del despacho.</p>
             </div>
           </form>
         </section>
       </section>
 
-      <section className="testimonials-strip">
-        {TESTIMONIALS.map((item) => (
-          <blockquote key={item}>{item}</blockquote>
-        ))}
-      </section>
-
       {notification ? <div className="notification-toast">{notification}</div> : null}
+
       {showWhatsappModal ? (
         <div className="modal-overlay" role="dialog" aria-modal="true">
           <div className="modal-card">
@@ -516,6 +541,7 @@ export default function ContrareembolsoLanding() {
         </div>
       ) : null}
 
+      {canCheckout ? <a href="#checkout-form" className="floating-checkout-cta">Completar pedido ({cart.length})</a> : null}
       <ChatWidget />
     </main>
   );
