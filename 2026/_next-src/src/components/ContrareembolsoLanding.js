@@ -53,6 +53,8 @@ function ProductGallery({ product }) {
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [pairCount, setPairCount] = useState('1');
   const [sizes, setSizes] = useState(['', '']);
+  const selectedCount = pairCount === '2' ? 2 : 1;
+  const selectedSizes = pairCount === '2' ? [sizes[0], sizes[1]].filter(Boolean) : [sizes[0]].filter(Boolean);
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -126,6 +128,12 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           ) : null}
         </div>
 
+        <p className="selection-hint">
+          {selectedSizes.length
+            ? `Seleccion actual: ${selectedSizes.map((size, index) => `Par ${index + 1} talle ${size}`).join(' · ')}`
+            : 'Selecciona el talle para habilitar una compra mas rapida.'}
+        </p>
+
         <button
           type="button"
           className="add-button"
@@ -134,10 +142,10 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             const nextItems = pairCount === '2'
               ? [sizes[0], sizes[1]].filter(Boolean).map((size) => ({ productId: product.id, size }))
               : sizes[0] ? [{ productId: product.id, size: sizes[0] }] : [];
-            onAdd(nextItems, pairCount === '2' ? 2 : 1);
+            onAdd(nextItems, selectedCount);
           }}
         >
-          {cartLocked ? 'Carrito completo' : 'Agregar al carrito'}
+          {cartLocked ? 'Carrito completo' : `Agregar ${selectedCount === 2 ? '2 pares' : '1 par'} al carrito`}
         </button>
       </div>
     </article>

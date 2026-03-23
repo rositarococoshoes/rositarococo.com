@@ -28,7 +28,7 @@ img { max-width: 100%; height: auto; }
 
 .landing-shell,
 .thankyou-shell {
-  width: min(1280px, calc(100vw - 28px));
+  width: min(1280px, calc(100vw - 20px));
   margin: 0 auto;
   padding-bottom: 88px;
 }
@@ -181,13 +181,20 @@ img { max-width: 100%; height: auto; }
   text-transform: uppercase;
 }
 .product-card h2 { font-size: 33px; }
+.product-card h2 {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
 .gallery-card { display: grid; gap: 10px; }
 .gallery-frame {
   position: relative;
-  min-height: 440px;
+  min-height: 460px;
   border-radius: 22px;
   overflow: hidden;
-  background: linear-gradient(180deg, #f6ede4, #fffaf5);
+  padding: 14px;
+  background: linear-gradient(180deg, #f8efe6, #fffdf9);
 }
 .gallery-image,
 .testimonial-image { object-fit: contain; }
@@ -282,6 +289,13 @@ img { max-width: 100%; height: auto; }
 .testimonial-grid-images,
 .checkout-mini-steps { display: grid; gap: 14px; }
 .size-selector-block { grid-template-columns: repeat(2, 1fr); }
+.selection-hint {
+  margin: -2px 0 0;
+  min-height: 22px;
+  color: var(--brand-strong);
+  font-size: 13px;
+  font-weight: 600;
+}
 label { display: grid; gap: 8px; font-weight: 700; }
 input,
 select {
@@ -321,6 +335,11 @@ label small,
 .floating-checkout-cta {
   color: white;
   background: linear-gradient(135deg, var(--brand) 0%, var(--brand-strong) 100%);
+}
+.add-button {
+  min-height: 56px;
+  font-size: 15px;
+  letter-spacing: 0.01em;
 }
 .add-button:hover,
 .submit-button:hover,
@@ -540,12 +559,13 @@ label small,
 @media (max-width: 760px) {
   .landing-shell,
   .thankyou-shell {
-    width: min(100vw - 10px, 100%);
+    width: 100%;
     padding-bottom: 100px;
   }
   .benefits-strip {
     gap: 8px;
-    padding: 12px 10px;
+    margin: 10px 6px 0;
+    padding: 10px 10px;
     border-radius: 24px;
     font-size: 10px;
     letter-spacing: 0.08em;
@@ -568,9 +588,18 @@ label small,
   .trust-card,
   .product-card,
   .thankyou-card { padding: 20px; border-radius: 24px; }
+  .hero-header-card,
+  .trust-grid,
+  .products-section,
+  .testimonials-section-next,
+  .checkout-layout.editorial-layout,
+  .thankyou-card {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
   .progress-rail {
     gap: 10px;
-    margin: 14px 0 18px;
+    margin: 14px 6px 18px;
   }
   .progress-node {
     padding: 10px 8px;
@@ -588,71 +617,84 @@ label small,
   }
   .hero-header-card {
     gap: 16px;
-    padding: 18px;
+    padding: 16px;
     background: linear-gradient(180deg, rgba(255,250,245,0.96), rgba(247,231,217,0.96));
   }
   .brand-lockup.large {
-    min-height: 124px;
-    padding: 16px;
+    min-height: 106px;
+    padding: 12px;
   }
   .hero-heading-copy h1 {
     line-height: 1.02;
-    font-size: clamp(2rem, 10vw, 2.9rem);
+    font-size: clamp(1.9rem, 9vw, 2.7rem);
   }
   .hero-heading-copy h1 span {
-    margin-top: 8px;
-    font-size: 1rem;
+    margin-top: 6px;
+    font-size: 0.96rem;
   }
   .hero-promo-copy {
-    margin-top: 12px;
-    padding: 14px;
+    margin-top: 10px;
+    padding: 12px 14px;
     border-radius: 16px;
-    font-size: 15px;
-    line-height: 1.45;
+    font-size: 14px;
+    line-height: 1.4;
   }
   .trust-grid {
-    margin: 18px 0;
-    gap: 14px;
+    margin-top: 14px;
+    margin-bottom: 18px;
+    gap: 10px;
   }
   .trust-card.soft h2 {
-    font-size: 24px;
+    font-size: 18px;
+    margin-bottom: 6px;
+    line-height: 1.05;
+  }
+  .trust-card {
+    padding: 14px 15px;
+    border-radius: 18px;
+  }
+  .trust-card p {
+    font-size: 13px;
+    line-height: 1.45;
   }
   .products-section {
-    margin-left: -1px;
-    margin-right: -1px;
+    margin-top: 0;
   }
   .products-grid.refined-grid {
-    gap: 16px;
+    gap: 12px;
   }
   .product-card {
-    padding: 14px;
-    gap: 14px;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 22px;
   }
   .product-top {
-    gap: 8px;
+    gap: 6px;
   }
   .product-card h2 {
-    font-size: 26px;
-    line-height: 1.02;
+    font-size: 24px;
+    line-height: 1;
   }
   .gallery-card {
-    gap: 8px;
+    gap: 7px;
   }
   .gallery-frame {
-    min-height: 70vw;
-    max-height: 520px;
+    min-height: 88vw;
+    max-height: none;
     border-radius: 18px;
-    margin-left: -4px;
-    margin-right: -4px;
-    padding: 8px;
+    margin-left: -6px;
+    margin-right: -6px;
+    padding: 4px;
   }
   .gallery-thumbs {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(72px, 1fr));
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
   }
   .gallery-thumb {
-    min-height: 18vw;
-    border-radius: 14px;
+    min-height: 22vw;
+    border-radius: 12px;
   }
   .spec-row {
     gap: 6px;
@@ -673,10 +715,10 @@ label small,
     border-radius: 18px;
   }
   .price-option {
-    padding: 12px;
+    padding: 12px 11px;
   }
   .price-option span {
-    font-size: 21px;
+    font-size: 22px;
   }
   .promo-explanation-box {
     font-size: 12px;
@@ -685,38 +727,52 @@ label small,
   .size-selector-block {
     gap: 10px;
   }
+  .selection-hint {
+    min-height: 0;
+    font-size: 12px;
+  }
   input,
   select {
     min-height: 50px;
     border-radius: 14px;
   }
+  .add-button {
+    min-height: 54px;
+    font-size: 14px;
+  }
   .shopping-instructions-bar {
-    padding: 14px 16px;
-    font-size: 15px;
+    margin-top: 14px;
+    padding: 12px 14px;
+    font-size: 14px;
   }
   .testimonials-section-next {
-    padding: 18px 14px;
+    padding: 16px 10px;
   }
   .testimonial-grid-images {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 74vw;
+    overflow-x: auto;
     gap: 10px;
+    padding-bottom: 2px;
   }
   .testimonial-shot {
     border-radius: 16px;
   }
   .checkout-layout.editorial-layout {
-    gap: 16px;
+    gap: 12px;
     margin-top: 20px;
   }
   .cart-panel,
   .checkout-panel {
-    padding: 18px;
+    padding: 16px 14px;
+    border-radius: 22px;
   }
   .checkout-mini-steps {
     gap: 10px;
   }
   .checkout-fieldset {
-    padding: 14px;
+    padding: 12px;
     gap: 12px;
     border-radius: 18px;
   }
@@ -750,13 +806,13 @@ label small,
     text-align: center;
   }
   .floating-checkout-cta {
-    width: calc(100vw - 18px);
+    width: calc(100vw - 12px);
     padding: 16px 18px;
-    bottom: 12px;
+    bottom: 10px;
   }
   .chat-shell {
-    right: 10px;
-    left: 10px;
+    right: 6px;
+    left: 6px;
     bottom: 78px;
     justify-items: stretch;
   }
