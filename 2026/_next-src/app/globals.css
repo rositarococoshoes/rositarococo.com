@@ -1478,10 +1478,6 @@ label small,
     height: 42px;
   }
 
-  .mobile-cart-thumb-wrap.is-stack {
-    width: 54px;
-  }
-
   .mobile-cart-thumb {
     width: 42px;
     height: 42px;
@@ -1490,19 +1486,20 @@ label small,
     background: #fff;
   }
 
-  .stacked-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .mobile-cart-thumb-wrap.is-pair {
+    width: 68px;
+    height: 42px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    align-items: center;
+  }
+
+  .paired-thumb {
+    width: 32px;
+    height: 40px;
+    border-radius: 11px;
     box-shadow: 0 8px 16px rgba(53, 28, 18, 0.14);
-  }
-
-  .stacked-thumb-0 {
-    transform: translateX(10px);
-  }
-
-  .stacked-thumb-1 {
-    transform: translateX(0);
   }
 
   .mobile-cart-count {

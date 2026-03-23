@@ -217,7 +217,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
   const helperCopy = cartPhase === 'bundle'
     ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
     : 'Te falta 1 par para activar la promo de 2 pares.';
-  const toggleLabel = cartPhase === 'bundle' ? '2 pares listos' : '1 de 2 pares';
+  const toggleLabel = cartPhase === 'bundle' ? 'Promo activada' : '1 de 2 pares';
   const handleGoProducts = () => {
     setExpanded(false);
     onGoProducts();
@@ -231,7 +231,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
     <div className={`mobile-cart-drawer ${expanded ? 'is-open' : ''}`}>
       <button type="button" className="mobile-cart-toggle" onClick={() => setExpanded((value) => !value)} aria-expanded={expanded}>
         <div className="mobile-cart-peek">
-          <div className={`mobile-cart-thumb-wrap ${cartEntries.length > 1 ? 'is-stack' : ''}`}>
+          <div className={`mobile-cart-thumb-wrap ${cartEntries.length > 1 ? 'is-pair' : ''}`}>
             {cartEntries.length > 1 ? peekItems.map((item, index) => {
               const thumb = item.product?.images?.[0];
               if (!thumb) return null;
@@ -240,17 +240,17 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
                   key={item.id}
                   src={thumb}
                   alt={item.product?.displayName || item.productId}
-                  width={52}
-                  height={52}
-                  className={`mobile-cart-thumb stacked-thumb stacked-thumb-${index}`}
+                  width={32}
+                  height={40}
+                  className={`mobile-cart-thumb paired-thumb paired-thumb-${index}`}
                 />
               );
             }) : latestThumb ? <Image src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width={52} height={52} className="mobile-cart-thumb" /> : null}
-            <span className="mobile-cart-count">{cartEntries.length}</span>
+            {cartEntries.length === 1 ? <span className="mobile-cart-count">{cartEntries.length}</span> : null}
           </div>
           <div className="mobile-cart-copy">
             <strong>{toggleLabel}</strong>
-            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} - talle ${latestItem.size}` : `${cartEntries.length} pares listos para revisar`}</span>
+            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} - talle ${latestItem.size}` : '2 pares en tu pedido'}</span>
           </div>
         </div>
         <div className="mobile-cart-summary">
