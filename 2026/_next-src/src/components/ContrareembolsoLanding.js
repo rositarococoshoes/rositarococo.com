@@ -500,7 +500,6 @@ export default function ContrareembolsoLanding() {
 
       <section className="testimonials-section-next">
         <div className="section-heading left compact-heading">
-          <span>Prueba social</span>
           <h2>{PAGE_COPY.testimonialsTitle}</h2>
         </div>
         <div className="testimonial-grid-images">
