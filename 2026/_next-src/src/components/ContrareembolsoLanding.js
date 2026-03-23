@@ -88,8 +88,9 @@ function ProductGallery({ product }) {
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
   const [pairCount, setPairCount] = useState('1');
   const [sizes, setSizes] = useState(['', '']);
-  const selectedCount = pairCount === '2' ? 2 : 1;
-  const selectedSizes = pairCount === '2' ? [sizes[0], sizes[1]].filter(Boolean) : [sizes[0]].filter(Boolean);
+  const bundleIntent = pairCount === '2';
+  const selectedCount = 1;
+  const selectedSizes = [sizes[0]].filter(Boolean);
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -149,24 +150,16 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
               ))}
             </select>
           </label>
-
-          {pairCount === '2' ? (
-            <label>
-              Talle par 2
-              <select value={sizes[1]} onChange={(event) => setSizes([sizes[0], event.target.value])}>
-                <option value="">-- Selecciona Talle Par 2 --</option>
-                {product.sizes.map((size) => (
-                  <option key={size.value} value={size.value}>{size.label}</option>
-                ))}
-              </select>
-            </label>
-          ) : null}
         </div>
 
         <p className="selection-hint">
-          {selectedSizes.length
-            ? `Seleccion actual: ${selectedSizes.map((size, index) => `Par ${index + 1} talle ${size}`).join(' - ')}`
-            : 'Selecciona el talle para habilitar una compra mas rapida.'}
+          {bundleIntent
+            ? selectedSizes.length
+              ? `Primer par listo: talle ${selectedSizes[0]}. Luego eliges el segundo en cualquier otro modelo.`
+              : 'Elige el talle de este primer par. El segundo lo sumas en cualquier otro modelo.'
+            : selectedSizes.length
+              ? `Seleccion actual: talle ${selectedSizes[0]}`
+              : 'Selecciona el talle para habilitar una compra mas rapida.'}
         </p>
 
         <details className="size-guide-disclosure"><summary>Ver guia de talles</summary><div className="size-table-card">
@@ -190,13 +183,11 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           className="add-button"
           disabled={cartLocked}
           onClick={() => {
-            const nextItems = pairCount === '2'
-              ? [sizes[0], sizes[1]].filter(Boolean).map((size) => ({ productId: product.id, size }))
-              : sizes[0] ? [{ productId: product.id, size: sizes[0] }] : [];
-            onAdd(nextItems, selectedCount);
+            const nextItems = sizes[0] ? [{ productId: product.id, size: sizes[0] }] : [];
+            onAdd(nextItems, selectedCount, bundleIntent);
           }}
         >
-          {cartLocked ? 'Carrito completo' : `Agregar ${selectedCount === 2 ? '2 pares' : '1 par'} al carrito`}
+          {cartLocked ? 'Carrito completo' : bundleIntent ? 'Agregar este par y elegir el segundo' : 'Agregar 1 par al carrito'}
         </button>
       </div>
     </article>
@@ -333,7 +324,13 @@ export default function ContrareembolsoLanding() {
     }
     pushItems(items);
     setCartExpanded(true);
-    setNotification(cart.length === 0 ? 'Primer par agregado. Si quieres, suma uno mas para activar la promo.' : 'Promo de 2 pares activada. Completa tus datos para cerrar el pedido.');
+    setNotification(
+      bundleIntent && cart.length === 0
+        ? 'Primer par agregado. Ahora elige el segundo en cualquier otro modelo para activar la promo de 2 pares.'
+        : cart.length === 0
+          ? 'Primer par agregado. Si quieres, suma uno mas para activar la promo.'
+          : 'Promo de 2 pares activada. Completa tus datos para cerrar el pedido.',
+    );
   }
 
   function confirmWhatsappAndContinue(event) {
