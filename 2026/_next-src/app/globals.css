@@ -507,6 +507,19 @@ label small,
   z-index: 65;
   box-shadow: var(--shadow);
 }
+.floating-checkout-cta.is-compact {
+  left: auto;
+  right: 16px;
+  bottom: 16px;
+  transform: none;
+  width: auto;
+  min-height: 0;
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1;
+  border-radius: 16px;
+  opacity: 0.96;
+}
 .chat-shell {
   position: fixed;
   right: 18px;
@@ -860,6 +873,15 @@ label small,
     width: calc(100vw - 12px);
     padding: 16px 18px;
     bottom: 10px;
+  }
+  .floating-checkout-cta.is-compact {
+    width: auto;
+    max-width: calc(100vw - 20px);
+    right: 10px;
+    left: auto;
+    bottom: 10px;
+    padding: 10px 12px;
+    font-size: 12px;
   }
   .chat-shell {
     right: 10px;

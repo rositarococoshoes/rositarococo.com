@@ -659,7 +659,14 @@ export default function ContrareembolsoLanding() {
         </div>
       ) : null}
 
-      {canCheckout ? <a href="#checkout-form" className="floating-checkout-cta">Completar pedido ({cart.length})</a> : null}
+      {canCheckout ? (
+        <a
+          href="#checkout-form"
+          className={`floating-checkout-cta ${cart.length === 1 ? 'is-compact' : ''}`}
+        >
+          {cart.length === 1 ? 'Ver pedido (1)' : `Completar pedido (${cart.length})`}
+        </a>
+      ) : null}
       <ChatWidget />
     </main>
   );
