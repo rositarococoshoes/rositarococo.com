@@ -393,7 +393,7 @@ export default function ContrareembolsoLanding() {
     ]);
     setCartExpanded(true);
     setMobileCartOpen(false);
-    setNotification(getPostAddMessage(nextCount));
+    setNotification(nextCount === 1 ? getPostAddMessage(nextCount) : '');
     if (!formState.whatsapp && prefillWhatsapp) {
       setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
     }
