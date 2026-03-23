@@ -367,7 +367,7 @@ label small,
 
 .testimonials-section-next {
   margin-top: 28px;
-  padding: 28px;
+  padding: 24px;
   border-radius: 30px;
   background: rgba(255, 251, 246, 0.82);
 }
@@ -390,7 +390,14 @@ label small,
   background: rgba(255,255,255,0.82);
   border: 1px solid var(--line);
 }
-.testimonial-image { width: 100%; height: auto; display: block; }
+.testimonial-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 3 / 5;
+  object-fit: cover;
+  object-position: top;
+}
 
 .checkout-layout.editorial-layout {
   grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
@@ -505,11 +512,31 @@ label small,
 .chat-shell {
   position: fixed;
   right: 18px;
-  bottom: 78px;
+  bottom: 86px;
   z-index: 70;
   display: grid;
   justify-items: end;
   gap: 10px;
+}
+.chat-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(53, 28, 18, 0.12);
+}
+.chat-toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--success);
+  box-shadow: 0 0 0 5px rgba(45, 111, 83, 0.14);
+}
+.chat-toggle.is-open .chat-toggle-dot {
+  background: var(--brand);
+  box-shadow: 0 0 0 5px rgba(143, 90, 69, 0.14);
 }
 .chat-panel {
   width: min(360px, calc(100vw - 32px));
@@ -642,20 +669,20 @@ label small,
   .trust-grid {
     margin-top: 14px;
     margin-bottom: 18px;
-    gap: 10px;
+    gap: 8px;
   }
   .trust-card.soft h2 {
-    font-size: 18px;
-    margin-bottom: 6px;
+    font-size: 16px;
+    margin-bottom: 4px;
     line-height: 1.05;
   }
   .trust-card {
-    padding: 14px 15px;
-    border-radius: 18px;
+    padding: 12px 13px;
+    border-radius: 16px;
   }
   .trust-card p {
-    font-size: 13px;
-    line-height: 1.45;
+    font-size: 12px;
+    line-height: 1.35;
   }
   .products-section {
     margin-top: 0;
@@ -746,18 +773,24 @@ label small,
     font-size: 14px;
   }
   .testimonials-section-next {
-    padding: 16px 10px;
+    padding: 14px 10px;
+  }
+  .compact-heading {
+    margin-bottom: 12px;
+  }
+  .section-heading h2 {
+    font-size: clamp(1.55rem, 7vw, 2rem);
   }
   .testimonial-grid-images {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 74vw;
+    grid-auto-columns: 58vw;
     overflow-x: auto;
-    gap: 10px;
+    gap: 8px;
     padding-bottom: 2px;
   }
   .testimonial-shot {
-    border-radius: 16px;
+    border-radius: 14px;
   }
   .checkout-layout.editorial-layout {
     gap: 12px;
@@ -799,7 +832,6 @@ label small,
   .add-button,
   .floating-inline-link,
   .floating-checkout-cta,
-  .chat-toggle,
   .ghost-button {
     width: 100%;
     justify-content: center;
@@ -811,13 +843,21 @@ label small,
     bottom: 10px;
   }
   .chat-shell {
-    right: 6px;
-    left: 6px;
-    bottom: 78px;
-    justify-items: stretch;
+    right: 10px;
+    left: auto;
+    bottom: 84px;
+    justify-items: end;
+  }
+  .chat-toggle {
+    width: auto;
+    min-height: 42px;
+    padding: 10px 12px;
+    font-size: 12px;
   }
   .chat-panel {
-    width: 100%;
+    width: min(320px, calc(100vw - 18px));
+    padding: 14px;
+    border-radius: 20px;
   }
   .thankyou-card {
     padding: 22px 18px;

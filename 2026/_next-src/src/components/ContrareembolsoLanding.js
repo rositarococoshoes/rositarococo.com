@@ -199,7 +199,10 @@ function ChatWidget() {
 
   return (
     <div className={`chat-shell ${open ? 'is-open' : ''}`}>
-      <button type="button" className="chat-toggle" onClick={() => setOpen((value) => !value)}>{open ? 'Cerrar ayuda' : 'Necesito ayuda'}</button>
+      <button type="button" className={`chat-toggle ${open ? 'is-open' : ''}`} onClick={() => setOpen((value) => !value)}>
+        <span className="chat-toggle-dot" aria-hidden="true" />
+        {open ? 'Cerrar' : 'Ayuda'}
+      </button>
       {open ? (
         <div className="chat-panel">
           <div className="chat-messages">
@@ -405,9 +408,17 @@ export default function ContrareembolsoLanding() {
           <h2>{PAGE_COPY.testimonialsTitle}</h2>
         </div>
         <div className="testimonial-grid-images">
-          {TESTIMONIAL_IMAGES.map((item) => (
+          {TESTIMONIAL_IMAGES.map((item, index) => (
             <figure key={item.src} className="testimonial-shot">
-              <Image src={item.src} alt={item.alt} width={420} height={720} sizes="(max-width: 768px) 50vw, 20vw" className="testimonial-image" />
+              <Image
+                src={item.src}
+                alt={item.alt}
+                width={420}
+                height={720}
+                priority={index < 2}
+                sizes="(max-width: 768px) 62vw, 20vw"
+                className="testimonial-image"
+              />
             </figure>
           ))}
         </div>
