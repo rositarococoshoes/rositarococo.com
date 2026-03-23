@@ -31,7 +31,14 @@ function ProductGallery({ product }) {
   return (
     <div className="gallery-card">
       <div className="gallery-frame">
-        <Image src={activeImage} alt={product.displayName} fill sizes="(max-width: 768px) 100vw, 33vw" className="gallery-image" />
+        <Image
+          src={activeImage}
+          alt={product.displayName}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="gallery-image"
+        />
       </div>
       <div className="gallery-thumbs">
         {product.images.map((image, index) => (
