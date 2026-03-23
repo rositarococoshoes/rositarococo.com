@@ -1517,6 +1517,13 @@ label small,
     background: rgba(53, 28, 18, 0.14);
   }
 
+  .mobile-cart-sheet-headbar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: start;
+  }
+
   .mobile-cart-sheet-head {
     display: grid;
     gap: 4px;
@@ -1540,6 +1547,19 @@ label small,
     color: var(--muted);
     font-size: 11px;
     line-height: 1.4;
+  }
+
+  .mobile-cart-close {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(143, 90, 69, 0.1);
+    color: var(--brand-strong);
+    font-size: 20px;
+    line-height: 1;
+    display: grid;
+    place-items: center;
   }
 
   .mobile-cart-lines {
@@ -1624,12 +1644,14 @@ label small,
     min-height: 46px;
   }
 
-  .mobile-cart-actions .ghost-button {
-    order: 2;
-  }
-
-  .mobile-cart-actions .submit-button {
-    order: 1;
+  .mini-link-button {
+    border: 0;
+    background: transparent;
+    color: var(--brand-strong);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 2px 4px 0;
+    text-align: center;
   }
 
   .chat-shell {

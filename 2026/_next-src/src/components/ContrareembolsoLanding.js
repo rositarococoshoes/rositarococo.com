@@ -221,6 +221,14 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
     ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
     : 'Ya agregaste 1 par. Suma otro del mismo modelo o de otro y activa la promo.';
   const toggleLabel = cartPhase === 'bundle' ? '2 pares listos' : '1 par agregado';
+  const handleGoProducts = () => {
+    setExpanded(false);
+    onGoProducts();
+  };
+  const handleGoCheckout = () => {
+    setExpanded(false);
+    onGoCheckout();
+  };
 
   return (
     <div className={`mobile-cart-drawer ${expanded ? 'is-open' : ''}`}>
@@ -244,10 +252,13 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
       {expanded ? (
         <div className="mobile-cart-sheet">
           <div className="mobile-cart-handle" aria-hidden="true" />
-          <div className="mobile-cart-sheet-head">
-            <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
-            <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas la promo de 2 pares'}</strong>
-            <p>{helperCopy}</p>
+          <div className="mobile-cart-sheet-headbar">
+            <div className="mobile-cart-sheet-head">
+              <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
+              <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas la promo de 2 pares'}</strong>
+              <p>{helperCopy}</p>
+            </div>
+            <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">×</button>
           </div>
 
           <div className="mobile-cart-lines">
@@ -276,8 +287,17 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
           </div>
 
           <div className="mobile-cart-actions">
-            {cartPhase === 'single' ? <button type="button" className="ghost-button mobile-cart-button" onClick={onGoProducts}>Sumar otro par</button> : null}
-            <button type="button" className="submit-button mobile-cart-button" onClick={onGoCheckout}>{cartPhase === 'bundle' ? 'Finalizar pedido' : 'Finalizar con 1 par'}</button>
+            {cartPhase === 'single' ? (
+              <>
+                <button type="button" className="submit-button mobile-cart-button" onClick={handleGoProducts}>Sumar 2do par y activar promo</button>
+                <button type="button" className="mini-link-button" onClick={handleGoCheckout}>Finalizar con 1 par</button>
+              </>
+            ) : (
+              <>
+                <button type="button" className="submit-button mobile-cart-button" onClick={handleGoCheckout}>Finalizar pedido</button>
+                <button type="button" className="mini-link-button" onClick={handleGoProducts}>Seguir viendo modelos</button>
+              </>
+            )}
           </div>
         </div>
       ) : null}
@@ -350,7 +370,7 @@ export default function ContrareembolsoLanding() {
       { productId: product.id, size, id: `${product.id}-${size}-${Date.now()}-${Math.random()}` },
     ]);
     setCartExpanded(true);
-    setMobileCartOpen(true);
+    setMobileCartOpen(false);
     setNotification(getPostAddMessage(nextCount));
     if (!formState.whatsapp && prefillWhatsapp) {
       setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
