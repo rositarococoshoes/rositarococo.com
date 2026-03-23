@@ -196,8 +196,7 @@ img { max-width: 100%; height: auto; }
   padding: 14px;
   background: linear-gradient(180deg, #f8efe6, #fffdf9);
 }
-.gallery-image,
-.testimonial-image { object-fit: contain; }
+.gallery-image { object-fit: contain; }
 .gallery-thumb-image { object-fit: cover; }
 .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .gallery-thumb {
@@ -590,15 +589,15 @@ label small,
     padding-bottom: 100px;
   }
   .benefits-strip {
-    gap: 8px;
-    margin: 10px 6px 0;
-    padding: 10px 10px;
-    border-radius: 24px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    gap: 6px;
+    margin: 6px 6px 0;
+    padding: 8px 10px;
+    border-radius: 18px;
+    font-size: 9px;
+    letter-spacing: 0.05em;
   }
   .benefits-strip span:not(:last-child)::after {
-    margin-left: 8px;
+    margin-left: 6px;
   }
   .progress-rail,
   .field-grid,
@@ -625,50 +624,55 @@ label small,
     margin-right: 6px;
   }
   .progress-rail {
-    gap: 10px;
-    margin: 14px 6px 18px;
+    gap: 6px;
+    margin: 8px 6px 10px;
   }
   .progress-node {
-    padding: 10px 8px;
-    border-radius: 18px;
+    gap: 4px;
+    padding: 7px 5px;
+    border-radius: 14px;
   }
   .progress-node span,
   .mini-step span {
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
   }
   .progress-node strong,
   .mini-step strong {
-    font-size: 11px;
+    font-size: 9px;
   }
   .hero-header-card {
-    gap: 16px;
-    padding: 16px;
+    gap: 10px;
+    padding: 12px;
     background: linear-gradient(180deg, rgba(255,250,245,0.96), rgba(247,231,217,0.96));
   }
   .brand-lockup.large {
-    min-height: 106px;
-    padding: 12px;
+    min-height: 76px;
+    padding: 8px;
   }
   .hero-heading-copy h1 {
     line-height: 1.02;
-    font-size: clamp(1.9rem, 9vw, 2.7rem);
+    font-size: clamp(1.45rem, 7vw, 2.05rem);
   }
   .hero-heading-copy h1 span {
-    margin-top: 6px;
-    font-size: 0.96rem;
+    margin-top: 4px;
+    font-size: 0.82rem;
   }
   .hero-promo-copy {
-    margin-top: 10px;
-    padding: 12px 14px;
-    border-radius: 16px;
-    font-size: 14px;
-    line-height: 1.4;
+    margin-top: 8px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-size: 12px;
+    line-height: 1.32;
   }
   .trust-grid {
-    margin-top: 14px;
-    margin-bottom: 18px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 72vw;
+    overflow-x: auto;
+    margin-top: 8px;
+    margin-bottom: 10px;
     gap: 8px;
   }
   .trust-card.soft h2 {
@@ -773,20 +777,21 @@ label small,
     font-size: 14px;
   }
   .testimonials-section-next {
-    padding: 14px 10px;
+    margin-top: 16px;
+    padding: 12px 10px;
   }
   .compact-heading {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
   }
   .section-heading h2 {
-    font-size: clamp(1.55rem, 7vw, 2rem);
+    font-size: clamp(1.3rem, 6vw, 1.75rem);
   }
   .testimonial-grid-images {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 58vw;
+    grid-auto-columns: 52vw;
     overflow-x: auto;
-    gap: 8px;
+    gap: 6px;
     padding-bottom: 2px;
   }
   .testimonial-shot {
