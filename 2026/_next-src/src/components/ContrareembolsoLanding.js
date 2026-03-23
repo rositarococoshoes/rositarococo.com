@@ -215,7 +215,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
   const latestThumb = latestItem.product?.images?.[0];
   const peekItems = cartEntries.slice(-2);
   const helperCopy = cartPhase === 'bundle'
-    ? 'Tu promo ya esta activa. Revisa tu pedido o finaliza.'
+    ? 'Revisa tu pedido o termina la compra cuando quieras.'
     : 'Te falta 1 par para activar la promo de 2 pares.';
   const toggleLabel = cartPhase === 'bundle' ? 'Promo activada' : '1 de 2 pares';
   const handleGoProducts = () => {
@@ -265,14 +265,14 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
           <div className="mobile-cart-sheet-headbar">
             <div className="mobile-cart-sheet-head">
               <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
-            <strong>{cartPhase === 'bundle' ? '2 pares por $110.000 con envio gratis' : 'Suma 1 par mas y activas 2 pares por $110.000'}</strong>
-          <p>{helperCopy}</p>
-        </div>
-        <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">×</button>
-      </div>
+              <strong>{cartPhase === 'bundle' ? 'Tus 2 pares ya tienen promo activa' : 'Suma 1 par mas y activas 2 pares por $110.000'}</strong>
+              <p>{helperCopy}</p>
+            </div>
+            <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">{'\u00D7'}</button>
+          </div>
 
           <div className="mobile-cart-lines">
-            {cartEntries.map((item, index) => {
+            {cartEntries.map((item) => {
               const thumb = item.product?.images?.[0];
               return (
                 <article key={item.id} className="mobile-cart-line">
@@ -280,9 +280,15 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
                   <div className="mobile-cart-line-copy">
                     <strong>{item.product?.displayName || item.productId}</strong>
                     <span>Talle {item.size}</span>
-                    <small>{`Par ${index + 1} del pedido`}</small>
+                    <button
+                      type="button"
+                      className="mobile-inline-remove"
+                      onClick={() => onRemove(item.id)}
+                      aria-label={`Quitar ${item.product?.displayName || item.productId} talle ${item.size}`}
+                    >
+                      Quitar
+                    </button>
                   </div>
-                  <button type="button" className="cart-remove-link mobile-remove" onClick={() => onRemove(item.id)} aria-label={`Quitar ${item.product?.displayName || item.productId} talle ${item.size}`}>×</button>
                 </article>
               );
             })}
@@ -293,7 +299,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
               <span>Total a pagar al recibir</span>
               <strong>{formatCurrency(total)}</strong>
             </div>
-            <small>{cartPhase === 'bundle' ? 'Ya tienes el mejor precio del embudo.' : 'Puedes finalizar con 1 par o sumar otro y ahorrar en el total.'}</small>
+            <small>{cartPhase === 'bundle' ? 'Envio gratis incluido. Pagas al recibir.' : 'Puedes finalizar con 1 par o sumar otro y ahorrar en el total.'}</small>
           </div>
 
           <div className="mobile-cart-actions">
@@ -339,6 +345,12 @@ export default function ContrareembolsoLanding() {
     const timeout = window.setTimeout(() => setNotification(''), 2600);
     return () => window.clearTimeout(timeout);
   }, [notification]);
+
+  useEffect(() => {
+    if (mobileCartOpen && notification) {
+      setNotification('');
+    }
+  }, [mobileCartOpen, notification]);
 
   const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
   const featuredDeliveryLabel = deliveryOptions[0] || 'Proxima ventana disponible';

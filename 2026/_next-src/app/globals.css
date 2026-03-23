@@ -1625,7 +1625,7 @@ label small,
 
   .mobile-cart-line {
     display: grid;
-    grid-template-columns: 48px minmax(0, 1fr) auto;
+    grid-template-columns: 48px minmax(0, 1fr);
     gap: 8px;
     align-items: center;
     padding: 8px;
@@ -1643,24 +1643,21 @@ label small,
     line-height: 1.15;
   }
 
-  .mobile-cart-line-copy span,
-  .mobile-cart-line-copy small {
+  .mobile-cart-line-copy span {
     color: var(--muted);
     font-size: 10px;
   }
 
-  .mobile-remove {
-    width: 28px;
-    height: 28px;
+  .mobile-inline-remove {
+    width: fit-content;
     padding: 0;
-    border-radius: 999px;
-    border: 1px solid rgba(143, 90, 69, 0.16);
-    background: rgba(255, 255, 255, 0.75);
+    border: 0;
+    background: transparent;
     color: var(--brand-strong);
-    font-size: 17px;
-    line-height: 1;
-    display: grid;
-    place-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
   }
 
   .mobile-cart-total-box {
