@@ -54,6 +54,23 @@ export function calculateCartTotal(itemCount) {
   return 110000;
 }
 
+export function getCartPhase(itemCount) {
+  if (itemCount <= 0) return 'empty';
+  if (itemCount === 1) return 'single';
+  return 'bundle';
+}
+
+export function getCartHeadline(itemCount) {
+  if (itemCount <= 0) return 'Todavia no agregaste pares';
+  if (itemCount === 1) return 'Tienes 1 de 2 pares';
+  return 'Promo activada';
+}
+
+export function getPostAddMessage(itemCount) {
+  if (itemCount <= 1) return 'Agregaste 1 par al pedido. Suma otro par y activa la promo de 2 pares por $110.000.';
+  return 'Promo activada. Tu pedido quedo en 2 pares por $110.000 con envio gratis.';
+}
+
 export function getThankYouRoute(itemCount) {
   return itemCount === 1 ? '/gracias-1par-c' : '/gracias-2pares-c';
 }

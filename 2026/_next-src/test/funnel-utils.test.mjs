@@ -4,7 +4,10 @@ import assert from 'node:assert/strict';
 import {
   calculateCartTotal,
   formatWhatsappNumber,
+  getCartHeadline,
+  getCartPhase,
   getDeliveryOptions,
+  getPostAddMessage,
   getThankYouRoute,
   isValidWhatsappInput,
 } from '../src/lib/funnel-utils.js';
@@ -25,6 +28,23 @@ test('calculates contrareembolso totals for current funnel', () => {
   assert.equal(calculateCartTotal(0), 0);
   assert.equal(calculateCartTotal(1), 70000);
   assert.equal(calculateCartTotal(2), 110000);
+});
+
+test('derives cart-first phase from item count', () => {
+  assert.equal(getCartPhase(0), 'empty');
+  assert.equal(getCartPhase(1), 'single');
+  assert.equal(getCartPhase(2), 'bundle');
+});
+
+test('builds cart headline copy for each phase', () => {
+  assert.equal(getCartHeadline(0), 'Todavia no agregaste pares');
+  assert.equal(getCartHeadline(1), 'Tienes 1 de 2 pares');
+  assert.equal(getCartHeadline(2), 'Promo activada');
+});
+
+test('builds post-add feedback for first and second pair', () => {
+  assert.equal(getPostAddMessage(1), 'Agregaste 1 par al pedido. Suma otro par y activa la promo de 2 pares por $110.000.');
+  assert.equal(getPostAddMessage(2), 'Promo activada. Tu pedido quedo en 2 pares por $110.000 con envio gratis.');
 });
 
 test('resolves thank-you route from pair count', () => {

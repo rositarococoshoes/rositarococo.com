@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
@@ -19,38 +19,15 @@ import {
   buildOrderSummary,
   calculateCartTotal,
   formatOrderDetails,
+  getCartHeadline,
+  getCartPhase,
   getDeliveryOptions,
+  getPostAddMessage,
   getThankYouRoute,
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
-
-function groupCartItems(cart, products) {
-  const grouped = new Map();
-
-  cart.forEach((item) => {
-    const key = `${item.productId}-${item.size}`;
-    const current = grouped.get(key);
-    if (current) {
-      current.quantity += 1;
-      current.ids.push(item.id);
-      return;
-    }
-
-    const product = products.find((entry) => entry.id === item.productId);
-    grouped.set(key, {
-      key,
-      productId: item.productId,
-      size: item.size,
-      quantity: 1,
-      ids: [item.id],
-      product,
-    });
-  });
-
-  return Array.from(grouped.values());
-}
 
 function ProductGallery({ product }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -86,11 +63,8 @@ function ProductGallery({ product }) {
 }
 
 function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
-  const [pairCount, setPairCount] = useState('1');
-  const [sizes, setSizes] = useState(['', '']);
-  const bundleIntent = pairCount === '2';
-  const selectedCount = 1;
-  const selectedSizes = [sizes[0]].filter(Boolean);
+  const [size, setSize] = useState('');
+  const hasSelectedSize = Boolean(size);
 
   return (
     <article className="product-card" id={`modelo-${product.id}`}>
@@ -114,52 +88,44 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
         <p className="product-description-copy">{product.description}</p>
 
         <div className="price-card">
-          <p className="quantity-selector-label">Selecciona la cantidad:</p>
-          <div className="price-options">
-            <label className={`price-option ${pairCount === '1' ? 'selected' : ''}`}>
-              <input type="radio" name={`qty-${product.id}`} value="1" checked={pairCount === '1'} onChange={() => setPairCount('1')} />
+          <p className="quantity-selector-label">Precios del pedido</p>
+          <div className="price-options static-prices">
+            <div className="price-option static-price">
               <div>
                 <strong>1 par</strong>
                 <span>{product.unitPriceLabel}</span>
-                <small>Precio final por un solo par</small>
+                <small>Compra directa por un solo par</small>
               </div>
-            </label>
-            <label className={`price-option featured-bundle ${pairCount === '2' ? 'selected' : ''}`}>
-              <input type="radio" name={`qty-${product.id}`} value="2" checked={pairCount === '2'} onChange={() => setPairCount('2')} />
+            </div>
+            <div className="price-option static-price featured-bundle">
               <div>
                 <strong>2 pares</strong>
                 <span>{product.bundlePriceLabel}</span>
                 <small>{`${product.savingsLabel} y envio gratis`}</small>
               </div>
-            </label>
+            </div>
           </div>
           <div className="promo-explanation-box">
-            <p>Puedes combinar cualquier modelo dentro de la promo.</p>
+            <p>Puedes combinar cualquier modelo dentro de la promo desde el carrito.</p>
             <p><span>ENVIO GRATIS</span> Recibes tu pedido: <strong>{deliveryLabel}</strong></p>
             <p><span>PAGO</span> Contrareembolso en efectivo al recibir</p>
           </div>
         </div>
 
-        <div className="size-selector-block">
+        <div className="size-selector-block single-size-selector">
           <label>
-            Talle par 1
-            <select value={sizes[0]} onChange={(event) => setSizes([event.target.value, sizes[1]])}>
-              <option value="">-- Selecciona Talle Par 1 --</option>
-              {product.sizes.map((size) => (
-                <option key={size.value} value={size.value}>{size.label}</option>
+            Selecciona tu talle
+            <select value={size} onChange={(event) => setSize(event.target.value)}>
+              <option value="">-- Selecciona tu talle --</option>
+              {product.sizes.map((entry) => (
+                <option key={entry.value} value={entry.value}>{entry.label}</option>
               ))}
             </select>
           </label>
         </div>
 
         <p className="selection-hint">
-          {bundleIntent
-            ? selectedSizes.length
-              ? `Primer par listo: talle ${selectedSizes[0]}. Luego eliges el segundo en cualquier otro modelo.`
-              : 'Elige el talle de este primer par. El segundo lo sumas en cualquier otro modelo.'
-            : selectedSizes.length
-              ? `Seleccion actual: talle ${selectedSizes[0]}`
-              : 'Selecciona el talle para habilitar una compra mas rapida.'}
+          {hasSelectedSize ? `Talle elegido: ${size}. Este toque agrega 1 par al pedido.` : 'Selecciona tu talle para agregar 1 par al pedido.'}
         </p>
 
         <details className="size-guide-disclosure"><summary>Ver guia de talles</summary><div className="size-table-card">
@@ -168,10 +134,10 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
             <span>Plantilla aproximada en cm</span>
           </div>
           <div className="size-table-grid" role="table" aria-label={`Guia de talles de ${product.displayName}`}>
-            {product.sizes.map((size) => (
-              <div key={size.value} className="size-table-row" role="row">
-                <span role="cell">Talle {size.value}</span>
-                <strong role="cell">{size.label.replace(`${size.value} `, '')}</strong>
+            {product.sizes.map((entry) => (
+              <div key={entry.value} className="size-table-row" role="row">
+                <span role="cell">Talle {entry.value}</span>
+                <strong role="cell">{entry.label.replace(`${entry.value} `, '')}</strong>
               </div>
             ))}
           </div>
@@ -182,12 +148,9 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
           type="button"
           className="add-button"
           disabled={cartLocked}
-          onClick={() => {
-            const nextItems = sizes[0] ? [{ productId: product.id, size: sizes[0] }] : [];
-            onAdd(nextItems, selectedCount, bundleIntent);
-          }}
+          onClick={() => onAdd(product, size)}
         >
-          {cartLocked ? 'Carrito completo' : bundleIntent ? 'Agregar este par y elegir el segundo' : 'Agregar 1 par al carrito'}
+          {cartLocked ? 'Carrito completo' : 'Agregar al pedido'}
         </button>
       </div>
     </article>
@@ -258,8 +221,6 @@ export default function ContrareembolsoLanding() {
   const [cartExpanded, setCartExpanded] = useState(true);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showWhatsappModal, setShowWhatsappModal] = useState(false);
-  const [pendingItems, setPendingItems] = useState([]);
   const [prefillWhatsapp, setPrefillWhatsapp] = useState('');
   const [formState, setFormState] = useState({
     name: '', whatsapp: '', street: '', betweenStreets: '', postalCode: '', locality: '', province: 'Buenos Aires', deliverySlot: '',
@@ -275,14 +236,19 @@ export default function ContrareembolsoLanding() {
 
   useEffect(() => {
     if (!notification) return undefined;
-    const timeout = window.setTimeout(() => setNotification(''), 2800);
+    const timeout = window.setTimeout(() => setNotification(''), 3200);
     return () => window.clearTimeout(timeout);
   }, [notification]);
 
   const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
   const featuredDeliveryLabel = deliveryOptions[0] || 'Proxima ventana disponible';
+  const cartPhase = getCartPhase(cart.length);
+  const cartHeadline = getCartHeadline(cart.length);
   const total = calculateCartTotal(cart.length);
-  const groupedCart = useMemo(() => groupCartItems(cart, PRODUCTS), [cart]);
+  const cartEntries = useMemo(
+    () => cart.map((item) => ({ ...item, product: PRODUCTS.find((entry) => entry.id === item.productId) })),
+    [cart],
+  );
   const orderSummary = useMemo(() => buildOrderSummary(cart), [cart]);
   const orderDetails = useMemo(() => formatOrderDetails(cart, PRODUCTS), [cart]);
   const canCheckout = cart.length > 0;
@@ -292,80 +258,30 @@ export default function ContrareembolsoLanding() {
     setFormState((current) => ({ ...current, [field]: value }));
   }
 
-  function pushItems(items) {
-    setCart((current) => {
-      const next = [...current];
-      for (const item of items) {
-        if (next.length >= 2) break;
-        next.push({ ...item, id: `${item.productId}-${item.size}-${Date.now()}-${Math.random()}` });
-      }
-      return next;
-    });
-  }
-
-  function handleAdd(items, requestedCount, bundleIntent = false) {
-    if (!items.length || items.length !== requestedCount) {
-      setNotification('Selecciona los talles antes de agregar el producto al carrito.');
+  function handleAdd(product, size) {
+    if (!size) {
+      setNotification('Selecciona tu talle antes de agregar el par al pedido.');
       return;
     }
     if (cart.length >= 2) {
-      setNotification('Ya tienes 2 pares en el carrito. Completa el pedido o elimina uno para cambiarlo.');
+      setNotification('Ya tienes 2 pares en el pedido. Elimina uno si quieres cambiarlo.');
       return;
     }
-    if (cart.length + items.length > 2) {
-      setNotification('El embudo actual solo permite hasta 2 pares por pedido.');
-      return;
-    }
-    const savedWhatsapp = formState.whatsapp || prefillWhatsapp;
-    if (!savedWhatsapp) {
-      setPendingItems(items);
-      setShowWhatsappModal(true);
-      return;
-    }
-    pushItems(items);
-    setCartExpanded(true);
-    setNotification(
-      bundleIntent && cart.length === 0
-        ? 'Primer par agregado. Ahora elige el segundo en cualquier otro modelo para activar la promo de 2 pares.'
-        : cart.length === 0
-          ? 'Primer par agregado. Si quieres, suma uno mas para activar la promo.'
-          : 'Promo de 2 pares activada. Completa tus datos para cerrar el pedido.',
-    );
-  }
 
-  function confirmWhatsappAndContinue(event) {
-    event.preventDefault();
-    if (!isValidWhatsappInput(prefillWhatsapp)) {
-      setNotification('Ingresa un WhatsApp valido para continuar.');
-      return;
-    }
-    window.localStorage.setItem('rosita.whatsapp.prefill', prefillWhatsapp);
-    setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
-    pushItems(pendingItems);
-    setPendingItems([]);
-    setShowWhatsappModal(false);
+    const nextCount = cart.length + 1;
+    setCart((current) => [
+      ...current,
+      { productId: product.id, size, id: `${product.id}-${size}-${Date.now()}-${Math.random()}` },
+    ]);
     setCartExpanded(true);
-    setNotification('WhatsApp guardado. Ya puedes seguir con tu pedido.');
+    setNotification(getPostAddMessage(nextCount));
+    if (!formState.whatsapp && prefillWhatsapp) {
+      setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
+    }
   }
 
   function removeItem(itemId) {
     setCart((current) => current.filter((item) => item.id !== itemId));
-  }
-
-  function incrementGroupedItem(group) {
-    if (cart.length >= 2) {
-      setNotification('Ya alcanzaste el maximo de 2 pares para esta promo.');
-      return;
-    }
-    setCart((current) => [
-      ...current,
-      { productId: group.productId, size: group.size, id: `${group.productId}-${group.size}-${Date.now()}-${Math.random()}` },
-    ]);
-  }
-
-  function decrementGroupedItem(group) {
-    const lastId = group.ids[group.ids.length - 1];
-    if (lastId) removeItem(lastId);
   }
 
   async function submitOrder(event) {
@@ -413,6 +329,7 @@ export default function ContrareembolsoLanding() {
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);
       window.localStorage.setItem('customerName', formState.name);
+      window.localStorage.setItem('rosita.whatsapp.prefill', formState.whatsapp);
 
       const route = getThankYouRoute(cart.length);
       window.location.assign(`${BASE_PATH}${route}.html?286442883=${encodeURIComponent(orderSummary)}`);
@@ -489,52 +406,71 @@ export default function ContrareembolsoLanding() {
         <aside className="cart-panel editorial-cart">
           <div className="cart-header">
             <div>
-              <span>Resumen de tu pedido</span>
-              <strong>{cart.length === 2 ? 'Promo 2 pares activa' : 'Resumen rapido del pedido'}</strong>
+              <span>Tu pedido</span>
+              <strong>{cartHeadline}</strong>
             </div>
             <button type="button" className="cart-expand-button" onClick={() => setCartExpanded((value) => !value)}>
-              {cartExpanded ? 'Ocultar' : 'Ver carrito'} ({cart.length}/2)
+              {cartExpanded ? 'Ocultar' : 'Ver pedido'} ({cart.length}/2)
             </button>
           </div>
-          <div className="cart-offer-banner">
-            <span>{cart.length >= 2 ? 'Promo aplicada' : 'Total promo si llevas 2 pares'}</span>
-            <strong>2 pares por $110.000</strong>
-            <p>{cart.length >= 2 ? 'Tu carrito ya tomo el precio promocional final con envio gratis.' : 'Combina cualquier modelo y pagas $55.000 por par con envio gratis.'}</p>
+
+          <div className={`cart-offer-banner ${cartPhase}`}>
+            <span>{cartPhase === 'bundle' ? 'Promo activada' : cartPhase === 'single' ? 'Te falta 1 par' : 'Activa la promo'}</span>
+            <strong>{cartPhase === 'single' ? 'Suma 1 par mas' : '2 pares por $110.000'}</strong>
+            <p>
+              {cartPhase === 'empty'
+                ? 'Agrega un par para empezar tu pedido. Con 2 pares activas el precio promo y envio gratis.'
+                : cartPhase === 'single'
+                  ? 'Ya agregaste 1 par. Puedes sumar el segundo del mismo modelo o de otro, con cualquier talle.'
+                  : 'Tu pedido ya quedo con el precio promo final y envio gratis.'}
+            </p>
           </div>
+
           {cartExpanded ? (
-            <div className="cart-items">
-              {groupedCart.length ? groupedCart.map((group) => {
-                const product = group.product;
-                const thumb = product?.images?.[0];
+            <div className="cart-items independent-lines">
+              {cartEntries.length ? cartEntries.map((item, index) => {
+                const thumb = item.product?.images?.[0];
                 return (
-                  <article key={group.key} className="cart-item detailed-cart-item">
+                  <article key={item.id} className="cart-item detailed-cart-item independent-item">
                     <div className="cart-item-media">
-                      {thumb ? <Image src={thumb} alt={product?.displayName || group.productId} width={68} height={68} className="cart-item-thumb" /> : null}
+                      {thumb ? <Image src={thumb} alt={item.product?.displayName || item.productId} width={68} height={68} className="cart-item-thumb" /> : null}
                     </div>
                     <div className="cart-item-copy">
-                      <strong>{product?.displayName || group.productId}</strong>
-                      <p>Talle {group.size}</p>
-                      <small>{group.quantity === 2 ? '2 pares de este modelo/talle' : '1 par agregado'}</small>
+                      <strong>{item.product?.displayName || item.productId}</strong>
+                      <p>Talle {item.size}</p>
+                      <small>Par {index + 1} del pedido</small>
                     </div>
-                    <div className="cart-item-actions">
-                      <div className="qty-stepper">
-                        <button type="button" aria-label="Quitar un par" onClick={() => decrementGroupedItem(group)}>-</button>
-                        <span>{group.quantity}</span>
-                        <button type="button" aria-label="Agregar un par" onClick={() => incrementGroupedItem(group)} disabled={cart.length >= 2}>+</button>
-                      </div>
-                      <button type="button" className="cart-remove-link" onClick={() => group.ids.forEach((id) => removeItem(id))}>Quitar</button>
+                    <div className="cart-item-actions compact-actions">
+                      <button type="button" className="cart-remove-link" onClick={() => removeItem(item.id)}>Quitar</button>
                     </div>
                   </article>
                 );
-              }) : <p className="empty-copy">Agrega productos para ver aqui el detalle del pedido, con foto, talle y total actualizado.</p>}
+              }) : <p className="empty-copy">Todavia no agregaste pares. Elige un modelo, selecciona tu talle y agrega 1 par al pedido.</p>}
             </div>
           ) : null}
+
           <div className="cart-total-box highlighted-box">
             <span>Total a pagar al recibir</span>
             <strong>{formatCurrency(total)}</strong>
-            <small>{cart.length === 1 ? `1 par: ${formatCurrency(total)}` : cart.length === 2 ? `2 pares promo: ${formatCurrency(total)}` : 'Agrega un par para ver el total final.'}</small>
+            <small>
+              {cartPhase === 'empty'
+                ? 'Agrega un par para ver el total final.'
+                : cartPhase === 'single'
+                  ? '1 par: $70.000. Suma otro y activas la promo de $110.000.'
+                  : '2 pares promo: $110.000 con envio gratis.'}
+            </small>
           </div>
-          {canCheckout ? <a href="#checkout-form" className="floating-inline-link">Ir a completar datos</a> : null}
+
+          <div className="cart-next-actions">
+            {cartPhase === 'empty' ? <a href="#productos" className="floating-inline-link secondary-link">Ver modelos</a> : null}
+            {cartPhase === 'single' ? (
+              <>
+                <a href="#productos" className="floating-inline-link secondary-link">Sumar otro par</a>
+                <a href="#checkout-form" className="floating-inline-link">Finalizar con 1 par</a>
+              </>
+            ) : null}
+            {cartPhase === 'bundle' ? <a href="#checkout-form" className="floating-inline-link">Finalizar pedido</a> : null}
+          </div>
         </aside>
 
         <section id="checkout-form" className={`checkout-panel editorial-checkout ${canCheckout ? 'ready' : 'locked'}`}>
@@ -561,7 +497,7 @@ export default function ContrareembolsoLanding() {
               <legend>Resumen de tu pedido</legend>
               <label>
                 Modelos y talles seleccionados
-                <input value={orderSummary} readOnly placeholder="Aqui veras tu seleccion" />
+                <input value={orderDetails} readOnly placeholder="Aqui veras tu seleccion" />
               </label>
             </fieldset>
 
@@ -642,29 +578,12 @@ export default function ContrareembolsoLanding() {
 
       {notification ? <div className="notification-toast">{notification}</div> : null}
 
-      {showWhatsappModal ? (
-        <div className="modal-overlay" role="dialog" aria-modal="true">
-          <div className="modal-card">
-            <span className="modal-eyebrow">Paso rapido</span>
-            <h2>Guarda tu WhatsApp y sigue</h2>
-            <p>Lo usamos para dejar el checkout precargado y para confirmar el envio antes de despachar tu pedido.</p>
-            <form onSubmit={confirmWhatsappAndContinue}>
-              <input value={prefillWhatsapp} onChange={(event) => setPrefillWhatsapp(event.target.value)} placeholder="1156457057" />
-              <small className="modal-help">Escribelo sin 0 ni 15. Luego agregamos el par directo al carrito.</small>
-              <div className="modal-actions">
-                <button type="submit" className="submit-button">Guardar WhatsApp y agregar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      ) : null}
-
       {canCheckout ? (
         <a
           href="#checkout-form"
-          className={`floating-checkout-cta ${cart.length === 1 ? 'is-compact' : ''}`}
+          className={`floating-checkout-cta ${cartPhase === 'single' ? 'is-compact' : ''}`}
         >
-          {cart.length === 1 ? 'Ver pedido (1)' : `Completar pedido (${cart.length})`}
+          {cartPhase === 'single' ? 'Ver pedido (1)' : `Finalizar pedido (${cart.length})`}
         </a>
       ) : null}
       <ChatWidget />
