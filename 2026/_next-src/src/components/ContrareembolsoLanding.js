@@ -312,7 +312,7 @@ export default function ContrareembolsoLanding() {
     });
   }
 
-  function handleAdd(items, requestedCount) {
+  function handleAdd(items, requestedCount, bundleIntent = false) {
     if (!items.length || items.length !== requestedCount) {
       setNotification('Selecciona los talles antes de agregar el producto al carrito.');
       return;
