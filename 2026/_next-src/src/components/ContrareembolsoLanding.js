@@ -204,16 +204,29 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = fal
   );
 }
 
+function CartGlyph() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M3.5 5.5h2l1.9 8.1a1.6 1.6 0 0 0 1.6 1.2h7.7a1.6 1.6 0 0 0 1.5-1.1l1.8-6.5H7.1"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="10" cy="19.5" r="1.5" fill="currentColor" />
+      <circle cx="17" cy="19.5" r="1.5" fill="currentColor" />
+    </svg>
+  );
+}
+
 function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded, setExpanded, onRemove, onGoProducts, onGoCheckout }) {
   if (!cartEntries.length) return null;
 
-  const latestItem = cartEntries[cartEntries.length - 1];
-  const latestThumb = latestItem.product?.images?.[0];
-  const peekItems = cartEntries.slice(-2);
   const helperCopy = cartPhase === 'bundle'
-    ? 'Revisa tu pedido o termina la compra cuando quieras.'
-    : 'Te falta 1 par para activar la promo de 2 pares.';
-  const toggleLabel = cartPhase === 'bundle' ? 'Promo activada' : '1 de 2 pares';
+    ? 'Tus 2 pares ya tienen envio gratis.'
+    : 'Suma otro par para activar 2 pares por $110.000.';
   const handleGoProducts = () => {
     setExpanded(false);
     onGoProducts();
@@ -225,35 +238,28 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
 
   return (
     <div className={`mobile-cart-drawer ${expanded ? 'is-open' : ''}`}>
-      <button type="button" className="mobile-cart-toggle" onClick={() => setExpanded((value) => !value)} aria-expanded={expanded}>
+      <button
+        type="button"
+        className="mobile-cart-toggle"
+        onClick={() => setExpanded((value) => !value)}
+        aria-expanded={expanded}
+        aria-label={`${expanded ? 'Ocultar' : 'Ver'} carrito con ${cartEntries.length} par${cartEntries.length > 1 ? 'es' : ''} y total ${formatCurrency(total)}`}
+      >
         <div className="mobile-cart-peek">
-          <div className={`mobile-cart-thumb-wrap ${cartEntries.length > 1 ? 'is-pair' : ''}`}>
-            {cartEntries.length > 1 ? peekItems.map((item, index) => {
-              const thumb = item.product?.images?.[0];
-              if (!thumb) return null;
-              return (
-                <img
-                  key={item.id}
-                  src={thumb}
-                  alt={item.product?.displayName || item.productId}
-                  width="32"
-                  height="40"
-                  loading="lazy"
-                  decoding="async"
-                  className={`mobile-cart-thumb paired-thumb paired-thumb-${index}`}
-                />
-              );
-            }) : latestThumb ? <img src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width="52" height="52" loading="lazy" decoding="async" className="mobile-cart-thumb" /> : null}
-            {cartEntries.length === 1 ? <span className="mobile-cart-count">{cartEntries.length}</span> : null}
+          <div className="mobile-cart-icon-shell" aria-hidden="true">
+            <span className="mobile-cart-icon">
+              <CartGlyph />
+            </span>
+            <span className="mobile-cart-count">{cartEntries.length}</span>
           </div>
           <div className="mobile-cart-copy">
-            <strong>{toggleLabel}</strong>
-            <span>{cartEntries.length === 1 ? `${latestItem.product?.displayName || latestItem.productId} - talle ${latestItem.size}` : '2 pares en tu pedido'}</span>
+            <strong>{cartHeadline}</strong>
+            <span>{helperCopy}</span>
           </div>
         </div>
         <div className="mobile-cart-summary">
           <strong>{formatCurrency(total)}</strong>
-          <span>{expanded ? 'Minimizar' : 'Ver pedido'}</span>
+          <span>{expanded ? 'Ocultar carrito' : 'Ver carrito'}</span>
         </div>
       </button>
 
