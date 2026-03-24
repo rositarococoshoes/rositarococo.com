@@ -32,40 +32,49 @@ const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
 function postOrderThroughHiddenForm(params) {
   if (typeof document === 'undefined') throw new Error('No document available for order submission');
 
-  const frameName = `rosita-order-${Date.now()}`;
-  const iframe = document.createElement('iframe');
-  iframe.name = frameName;
-  iframe.title = 'order-submit-frame';
-  iframe.hidden = true;
+  return new Promise((resolve) => {
+    const frameName = `rosita-order-${Date.now()}`;
+    const iframe = document.createElement('iframe');
+    const cleanup = () => {
+      form.remove();
+      iframe.remove();
+    };
+    const finalize = () => {
+      window.clearTimeout(timeoutId);
+      cleanup();
+      resolve();
+    };
 
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = ORDER_WEBHOOK_URL;
-  form.target = frameName;
-  form.hidden = true;
+    iframe.name = frameName;
+    iframe.title = 'order-submit-frame';
+    iframe.hidden = true;
+    iframe.addEventListener('load', finalize, { once: true });
 
-  const entries = new URLSearchParams(params.toString());
-  entries.set('entry.1885018612', params.get('entry.286442883') || '');
-  entries.set('fvv', '1');
-  entries.set('fbzx', '5661184097173102736');
-  entries.set('pageHistory', '0');
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = ORDER_WEBHOOK_URL;
+    form.target = frameName;
+    form.hidden = true;
 
-  entries.forEach((value, key) => {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    form.appendChild(input);
+    const entries = new URLSearchParams(params.toString());
+    entries.set('entry.1885018612', params.get('entry.286442883') || '');
+    entries.set('fvv', '1');
+    entries.set('fbzx', '5661184097173102736');
+    entries.set('pageHistory', '0');
+
+    entries.forEach((value, key) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      form.appendChild(input);
+    });
+
+    document.body.appendChild(iframe);
+    document.body.appendChild(form);
+    const timeoutId = window.setTimeout(finalize, 6000);
+    form.submit();
   });
-
-  document.body.appendChild(iframe);
-  document.body.appendChild(form);
-  form.submit();
-
-  window.setTimeout(() => {
-    form.remove();
-    iframe.remove();
-  }, 4000);
 }
 
 function ProductGallery({ product }) {
@@ -477,7 +486,7 @@ export default function ContrareembolsoLanding() {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
         window.fbq('track', 'InitiateCheckout', { currency: 'ARS', value: total, num_items: cart.length, content_type: 'product' });
       }
-      postOrderThroughHiddenForm(params);
+      await postOrderThroughHiddenForm(params);
 
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);
@@ -485,9 +494,7 @@ export default function ContrareembolsoLanding() {
       window.localStorage.setItem('rosita.whatsapp.prefill', formState.whatsapp);
 
       const route = getThankYouRoute(cart.length);
-      window.setTimeout(() => {
-        window.location.assign(`${BASE_PATH}${route}.html?286442883=${encodeURIComponent(orderSummary)}`);
-      }, 700);
+      window.location.assign(`${BASE_PATH}${route}.html?286442883=${encodeURIComponent(orderSummary)}`);
     } catch {
       setNotification('Hubo un problema al enviar el pedido. Intenta nuevamente.');
       setLoading(false);
@@ -747,6 +754,9 @@ export default function ContrareembolsoLanding() {
     </main>
   );
 }
+
+
+
 
 
 
