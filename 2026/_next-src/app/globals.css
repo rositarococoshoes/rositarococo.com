@@ -613,6 +613,12 @@ label small,
   background: rgba(255, 251, 245, 0.88);
 }
 .thankyou-card h1 { font-size: clamp(2.8rem, 5vw, 4.5rem); }
+.thankyou-logo {
+  display: block;
+  justify-self: center;
+  margin-inline: auto;
+  width: min(100%, 280px);
+}
 .whatsapp-confirm { justify-self: center; }
 .thankyou-order-box h2 { font-size: 30px; }
 .thankyou-order-box p,
@@ -957,6 +963,7 @@ label small,
   .thankyou-card {
     padding: 22px 18px;
   }
+  .thankyou-logo { width: min(100%, 220px); }
   .thankyou-card h1 {
     font-size: clamp(2.1rem, 9vw, 3rem);
     line-height: 1.02;

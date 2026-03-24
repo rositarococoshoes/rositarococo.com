@@ -140,7 +140,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = fal
 
         <div className="price-card concise-price-card">
           <div className="price-card-headline compact-card-pricing">
-            <span>Elige como quieres pedir</span>
+            <span>Tu oferta</span>
           </div>
           <div className="price-options static-prices compact-price-grid">
             <div className="price-option static-price">
