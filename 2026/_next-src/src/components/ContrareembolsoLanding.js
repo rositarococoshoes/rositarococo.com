@@ -85,7 +85,7 @@ function postOrderThroughHiddenForm(action, params) {
   });
 }
 
-function ProductGallery({ product }) {
+function ProductGallery({ product, priority = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeImage = product.images[activeIndex];
 
@@ -96,7 +96,7 @@ function ProductGallery({ product }) {
           src={activeImage}
           alt={product.displayName}
           fill
-          priority
+          priority={priority}
           sizes="(max-width: 768px) 100vw, 33vw"
           className="gallery-image"
         />
@@ -118,7 +118,7 @@ function ProductGallery({ product }) {
   );
 }
 
-function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
+function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = false }) {
   const [size, setSize] = useState('');
   const specsInline = product.specs.map((spec) => spec.value).join(' / ');
 
@@ -133,7 +133,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
         <h2>{product.displayName}</h2>
       </div>
 
-      <ProductGallery product={product} />
+      <ProductGallery product={product} priority={priority} />
 
       <div className="product-copy">
         <p className="product-meta-line">{specsInline}</p>
@@ -555,8 +555,8 @@ export default function ContrareembolsoLanding() {
 
       <section id="productos" className="products-section">
         <div className="products-grid refined-grid">
-          {PRODUCTS.map((product) => (
-            <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} deliveryLabel={featuredDeliveryLabel} />
+          {PRODUCTS.map((product, index) => (
+            <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} deliveryLabel={featuredDeliveryLabel} priority={index === 0} />
           ))}
         </div>
       </section>
@@ -573,7 +573,6 @@ export default function ContrareembolsoLanding() {
                 alt={item.alt}
                 width={420}
                 height={720}
-                priority={index < 2}
                 sizes="(max-width: 768px) 62vw, 20vw"
                 className="testimonial-image"
               />

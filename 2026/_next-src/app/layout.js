@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
           {`console.info('[Rosita 2026] build ${BUILD_VERSION}');`}
         </Script>
         <Script id="facebook-pixel" strategy="afterInteractive">
-          {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '${FACEBOOK_PIXEL_ID}');fbq('track', 'PageView');`}
+          {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];function l(){if(n.__externalLoaded)return;n.__externalLoaded=!0;t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}f.addEventListener('pointerdown',l,{once:!0,passive:!0});f.addEventListener('keydown',l,{once:!0});if('requestIdleCallback'in f){f.requestIdleCallback(l,{timeout:3500})}else{f.setTimeout(l,2500)}fbq('init','${FACEBOOK_PIXEL_ID}');fbq('track','PageView')}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');`}
         </Script>
         <noscript>
           <img alt="" height="1" width="1" style={{ display: 'none' }} src={`https://www.facebook.com/tr?id=${FACEBOOK_PIXEL_ID}&ev=PageView&noscript=1`} />
