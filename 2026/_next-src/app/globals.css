@@ -373,6 +373,9 @@ label small,
   border-radius: 30px;
   background: rgba(255, 251, 246, 0.82);
 }
+.testimonials-section-next .section-heading span {
+  display: none;
+}
 .section-heading span {
   display: inline-block;
   margin-bottom: 10px;
@@ -824,7 +827,7 @@ label small,
   }
   .testimonials-section-next {
     margin-top: 12px;
-    padding: 12px 4px 8px;
+    padding: 12px 2px 8px;
   }
   .compact-heading {
     margin-bottom: 8px;
@@ -836,9 +839,9 @@ label small,
   .testimonial-grid-images {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: 72vw;
+    grid-auto-columns: 84vw;
     overflow-x: auto;
-    gap: 10px;
+    gap: 12px;
     padding: 2px 6px 6px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
