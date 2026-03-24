@@ -1,7 +1,7 @@
 import { Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-import { BUILD_VERSION, FACEBOOK_PIXEL_ID } from '@/src/lib/funnel-data';
+import { BASE_PATH, BUILD_VERSION, FACEBOOK_PIXEL_ID } from '@/src/lib/funnel-data';
 
 const serif = Playfair_Display({
   subsets: ['latin'],
@@ -9,12 +9,57 @@ const serif = Playfair_Display({
   display: 'swap',
 });
 
+const SITE_URL = 'https://rositarococo.com';
+const SITE_TITLE = 'Rosita Rococo | Contrareembolso 2026';
+const SITE_DESCRIPTION = 'Botinetas Rosita Rococo en contrareembolso 2026. 1 par $70.000, 2 pares $110.000 con envio gratis. Pagas al recibir.';
+const CANONICAL_URL = `${SITE_URL}${BASE_PATH}/index-contrareembolso.html`;
+const SHARE_IMAGE_URL = `${BASE_PATH}/og-contrareembolso-2026.png`;
+
 export const metadata = {
-  title: 'Rosita Rococo 2026',
-  description: 'Embudo contrareembolso Rosita Rococo en Next.js con exportacion estatica.',
+  metadataBase: new URL(SITE_URL),
+  applicationName: 'Rosita Rococo',
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: CANONICAL_URL,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_AR',
+    url: CANONICAL_URL,
+    siteName: 'Rosita Rococo',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [
+      {
+        url: SHARE_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: 'Rosita Rococo contrareembolso 2026',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [SHARE_IMAGE_URL],
+  },
+  icons: {
+    icon: [
+      { url: `${BASE_PATH}/favicon-16x16.png`, type: 'image/png', sizes: '16x16' },
+      { url: `${BASE_PATH}/favicon-32x32.png`, type: 'image/png', sizes: '32x32' },
+    ],
+    apple: `${BASE_PATH}/apple-touch-icon.png`,
+  },
+  manifest: `${BASE_PATH}/site.webmanifest`,
   other: {
     'rosita-build': BUILD_VERSION,
   },
+};
+
+export const viewport = {
+  themeColor: '#f2e8dd',
 };
 
 export default function RootLayout({ children }) {

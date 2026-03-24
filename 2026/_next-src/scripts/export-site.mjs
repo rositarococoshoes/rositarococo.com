@@ -19,6 +19,10 @@ const generatedEntries = [
   'apple-touch-icon.png',
   'favicon-16x16.png',
   'favicon-32x32.png',
+  'favicon.ico',
+  'android-chrome-192x192.png',
+  'android-chrome-512x512.png',
+  'og-contrareembolso-2026.png',
   'site.webmanifest',
 ];
 
@@ -67,7 +71,16 @@ async function exportFromServerApp() {
   await copyRecursive(nextStaticDir, path.join(root2026, '_next', 'static'));
   await copyRecursive(path.join(publicDir, 'assets'), path.join(root2026, 'assets'));
 
-  const optionalPublic = ['apple-touch-icon.png', 'favicon-16x16.png', 'favicon-32x32.png', 'site.webmanifest'];
+  const optionalPublic = [
+    'apple-touch-icon.png',
+    'favicon-16x16.png',
+    'favicon-32x32.png',
+    'favicon.ico',
+    'android-chrome-192x192.png',
+    'android-chrome-512x512.png',
+    'og-contrareembolso-2026.png',
+    'site.webmanifest',
+  ];
   await Promise.all(optionalPublic.map(async (file) => {
     const source = path.join(publicDir, file);
     if (await exists(source)) {
