@@ -37,14 +37,14 @@ test('derives cart-first phase from item count', () => {
 });
 
 test('builds cart headline copy for each phase', () => {
-  assert.equal(getCartHeadline(0), 'Todavia no agregaste pares');
-  assert.equal(getCartHeadline(1), 'Tienes 1 de 2 pares');
+  assert.equal(getCartHeadline(0), 'Todavía no agregaste pares');
+  assert.equal(getCartHeadline(1), 'Tenés 1 de 2 pares');
   assert.equal(getCartHeadline(2), 'Promo activada');
 });
 
 test('builds post-add feedback for first and second pair', () => {
-  assert.equal(getPostAddMessage(1), 'Agregaste 1 par al pedido. Suma otro par y activa la promo de 2 pares por $110.000.');
-  assert.equal(getPostAddMessage(2), 'Promo activada. Tu pedido quedo en 2 pares por $110.000 con envio gratis.');
+  assert.equal(getPostAddMessage(1), 'Agregaste 1 par al pedido. Sumá otro par y activá la promo de 2 pares por $110.000.');
+  assert.equal(getPostAddMessage(2), 'Promo activada. Tu pedido quedó en 2 pares por $110.000 con envío gratis.');
 });
 
 test('resolves thank-you route from pair count', () => {

@@ -11,7 +11,7 @@ const serif = Playfair_Display({
 
 const SITE_URL = 'https://rositarococo.com';
 const SITE_TITLE = 'Rosita Rococo | Contrareembolso 2026';
-const SITE_DESCRIPTION = 'Botinetas Rosita Rococo en contrareembolso 2026. 1 par $70.000, 2 pares $110.000 con envio gratis. Pagas al recibir.';
+const SITE_DESCRIPTION = 'Botinetas Rosita Rococo en contrareembolso 2026. 1 par $70.000, 2 pares $110.000 con envío gratis. Pagás al recibir.';
 const CANONICAL_URL = `${SITE_URL}${BASE_PATH}/index-contrareembolso.html`;
 const SHARE_IMAGE_URL = `${BASE_PATH}/og-contrareembolso-2026.png`;
 

@@ -2,10 +2,10 @@ const DELIVERY_DAY_NAMES = [
   'Domingo',
   'Lunes',
   'Martes',
-  'Miercoles',
+  'Miércoles',
   'Jueves',
   'Viernes',
-  'Sabado',
+  'Sábado',
 ];
 
 const DELIVERY_MONTH_NAMES = [
@@ -61,14 +61,14 @@ export function getCartPhase(itemCount) {
 }
 
 export function getCartHeadline(itemCount) {
-  if (itemCount <= 0) return 'Todavia no agregaste pares';
-  if (itemCount === 1) return 'Tienes 1 de 2 pares';
+  if (itemCount <= 0) return 'Todavía no agregaste pares';
+  if (itemCount === 1) return 'Tenés 1 de 2 pares';
   return 'Promo activada';
 }
 
 export function getPostAddMessage(itemCount) {
-  if (itemCount <= 1) return 'Agregaste 1 par al pedido. Suma otro par y activa la promo de 2 pares por $110.000.';
-  return 'Promo activada. Tu pedido quedo en 2 pares por $110.000 con envio gratis.';
+  if (itemCount <= 1) return 'Agregaste 1 par al pedido. Sumá otro par y activá la promo de 2 pares por $110.000.';
+  return 'Promo activada. Tu pedido quedó en 2 pares por $110.000 con envío gratis.';
 }
 
 export function getThankYouRoute(itemCount) {

@@ -4,7 +4,7 @@ export const ORDER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGtF3O
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/8b70ed56-6ce4-4308-8d5b-0c21f9f7d751/chat';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
-export const BUILD_VERSION = '2026.03.24-v36';
+export const BUILD_VERSION = '2026.03.24-v37';
 const asset = (file) => `${BASE_PATH}/assets/contrareembolso/${file}`;
 
 const SIZES = [
@@ -20,38 +20,38 @@ export const BRAND_LOGO_SRC = asset('rosita-form.webp');
 export const WHATSAPP_BUTTON_SRC = asset('enviarwsp.png');
 
 export const PAGE_COPY = {
-  season: 'Otono-Invierno 2026',
-  paymentRibbon: 'Pagas al recibir en efectivo',
-  promoLine: 'Promo 2 pares: $110.000 con envio gratis. Podes combinar cualquier modelo.',
-  shoppingInstruction: 'Selecciona tus productos favoritos y agregalos al carrito.',
+  season: 'Otoño-Invierno 2026',
+  paymentRibbon: 'Pagás al recibir en efectivo',
+  promoLine: 'Promo 2 pares: $110.000 con envío gratis. Podés combinar cualquier modelo.',
+  shoppingInstruction: 'Seleccioná tus productos favoritos y agrégalos al carrito.',
   testimonialsTitle: 'Lo que dicen nuestras clientas',
-  checkoutTitle: 'Casi listos. Completa tus datos',
-  deliveryLegend: 'ENVIO: selecciona uno de los dias presentados en las opciones para recibir y asegurate que si vos no estas haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs. El pago es solo en efectivo y debes contar con todo el dinero. Vamos a contactarte por Whatsapp para confirmar el envio y debes respondernos para confirmarlo o no se envia.',
-  reviewCommitment: 'PAGAS SOLO EN EFECTIVO AL RECIBIR. SI NO DISPONES DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
-  freeShippingReminder: 'Recuerda: envio GRATIS a todo el pais. Pagas en efectivo al recibir.',
+  checkoutTitle: 'Casi listos. Completá tus datos',
+  deliveryLegend: 'ENVÍO: seleccioná uno de los días presentados en las opciones para recibir y asegurate de que, si vos no estás, haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs. El pago es solo en efectivo y debés contar con todo el dinero. Vamos a contactarte por WhatsApp para confirmar el envío y debés respondernos para confirmarlo o no se envía.',
+  reviewCommitment: 'PAGÁS SOLO EN EFECTIVO AL RECIBIR. SI NO DISPONÉS DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
+  freeShippingReminder: 'Recordá: envío GRATIS a todo el país. Pagás en efectivo al recibir.',
 };
 
 export const HIGHLIGHTS = [
-  'PAGAS AL RECIBIR EN EFECTIVO',
-  'ENVIO GRATIS',
+  'PAGÁS AL RECIBIR EN EFECTIVO',
+  'ENVÍO GRATIS',
   'COMPRA DIRECTA POR WHATSAPP',
 ];
 
-export const PROGRESS_STEPS = ['Productos', 'Envio', 'Contrareembolso'];
-export const CHECKOUT_STEPS = ['Informacion de Envio', 'Metodo de Pago', 'Revisar y Confirmar'];
+export const PROGRESS_STEPS = ['Productos', 'Envío', 'Contrareembolso'];
+export const CHECKOUT_STEPS = ['Información de envío', 'Método de pago', 'Revisar y confirmar'];
 
 export const PRODUCTS = [
   {
     id: 'roma-negras',
     shortModel: 'roma-negras',
     displayName: 'Botineta Roma negras',
-    badges: ['MAS VENDIDO', 'STOCK LIMITADO'],
+    badges: ['MÁS VENDIDO', 'STOCK LIMITADO'],
     specs: [
       { label: 'Material', value: 'Cuero' },
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'Un clasico atemporal y versatil, perfecto para elevar cualquier look diario con comodidad y estilo.',
+    description: 'Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -70,13 +70,13 @@ export const PRODUCTS = [
     id: 'roma-suela',
     shortModel: 'roma-suela',
     displayName: 'Botineta Roma suela',
-    badges: ['MAS VENDIDO'],
+    badges: ['MÁS VENDIDO'],
     specs: [
       { label: 'Material', value: 'Cuero' },
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'El tono calido ideal para complementar tus outfits de otono, aportando un toque natural y sofisticado.',
+    description: 'El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -98,7 +98,7 @@ export const PRODUCTS = [
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'Elegancia y comodidad en un diseno moderno. El modelo Venecia es perfecto para complementar tus looks mas sofisticados.',
+    description: 'Elegancia y comodidad en un diseño moderno. El modelo Venecia es perfecto para complementar tus looks más sofisticados.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -115,11 +115,11 @@ export const PRODUCTS = [
 export const TRUST_POINTS = [
   {
     title: 'Compra simple',
-    body: 'Elige tus pares, agrega los talles y completa el pedido en pocos pasos.',
+    body: 'Elegí tus pares, agregá los talles y completá el pedido en pocos pasos.',
   },
   {
-    title: 'Envio gratis',
-    body: 'El checkout mantiene envio gratis y confirmacion por WhatsApp antes de despachar.',
+    title: 'Envío gratis',
+    body: 'El checkout mantiene envío gratis y confirmación por WhatsApp antes de despachar.',
   },
   {
     title: 'Contrareembolso real',

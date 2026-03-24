@@ -147,25 +147,25 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = fal
               <div>
                 <strong>1 par</strong>
                 <span>{product.unitPriceLabel}</span>
-                <small>Paga al recibir</small>
+                <small>Pagá al recibir</small>
               </div>
             </div>
             <div className="price-option static-price featured-bundle">
               <div>
                 <strong>2 pares</strong>
                 <span>{product.bundlePriceLabel}</span>
-                <small>{`${product.savingsLabel} con envio gratis`}</small>
+                <small>{`${product.savingsLabel} con envío gratis`}</small>
               </div>
             </div>
           </div>
-          <p className="promo-inline-copy">Agrega 1 par por vez. Combina cualquier modelo o talle. <strong>{deliveryLabel}</strong>.</p>
+          <p className="promo-inline-copy">Agregá 1 par por vez. Combina cualquier modelo o talle. <strong>{deliveryLabel}</strong>.</p>
         </div>
 
         <div className="size-selector-block single-size-selector">
           <label>
-            Selecciona tu talle
+            Seleccioná tu talle
             <select value={size} onChange={(event) => setSize(event.target.value)}>
-              <option value="">-- Selecciona tu talle --</option>
+              <option value="">-- Seleccioná tu talle --</option>
               {product.sizes.map((entry) => (
                 <option key={entry.value} value={entry.value}>{entry.label}</option>
               ))}
@@ -175,12 +175,12 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = fal
 
         {size ? <p className="selection-hint concise-hint">{`Talle ${size} listo para agregar.`}</p> : null}
 
-        <details className="size-guide-disclosure"><summary>Guia de talles</summary><div className="size-table-card">
+        <details className="size-guide-disclosure"><summary>Guía de talles</summary><div className="size-table-card">
           <div className="size-table-header">
-            <strong>Guia de talles</strong>
+            <strong>Guía de talles</strong>
             <span>Plantilla aproximada en cm</span>
           </div>
-          <div className="size-table-grid" role="table" aria-label={`Guia de talles de ${product.displayName}`}>
+          <div className="size-table-grid" role="table" aria-label={`Guía de talles de ${product.displayName}`}>
             {product.sizes.map((entry) => (
               <div key={entry.value} className="size-table-row" role="row">
                 <span role="cell">Talle {entry.value}</span>
@@ -225,7 +225,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
   if (!cartEntries.length) return null;
 
   const helperCopy = cartPhase === 'bundle'
-    ? 'Tus 2 pares ya tienen envio gratis.'
+    ? 'Tus 2 pares ya tienen envío gratis.'
     : 'Suma otro par para activar 2 pares por $110.000.';
   const handleGoProducts = () => {
     setExpanded(false);
@@ -303,7 +303,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
               <span>Total a pagar al recibir</span>
               <strong>{formatCurrency(total)}</strong>
             </div>
-            <small>{cartPhase === 'bundle' ? 'Envio gratis incluido. Pagas al recibir.' : 'Puedes finalizar con 1 par o sumar otro y ahorrar en el total.'}</small>
+            <small>{cartPhase === 'bundle' ? 'Envío gratis incluido. Pagás al recibir.' : 'Podés finalizar con 1 par o sumar otro y ahorrar en el total.'}</small>
           </div>
 
           <div className="mobile-cart-actions">
@@ -383,7 +383,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
 
   function handleAdd(product, size) {
     if (!size) {
-      setNotification('Selecciona tu talle antes de agregar el par al pedido.');
+      setNotification('Seleccioná tu talle antes de agregar el par al pedido.');
       return;
     }
     if (cart.length >= 2) {
@@ -508,7 +508,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                 ? 'Agrega un par para empezar tu pedido.'
                 : cartPhase === 'single'
                   ? 'Puedes sumar el segundo del mismo modelo o de otro, con cualquier talle.'
-                  : 'Tu pedido ya quedo con el precio promo final y envio gratis.'}
+                  : 'Tu pedido ya quedó con el precio promo final y envío gratis.'}
             </p>
           </div>
 
@@ -531,7 +531,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                     </div>
                   </article>
                 );
-              }) : <p className="empty-copy">Todavia no agregaste pares.</p>}
+              }) : <p className="empty-copy">Todavía no agregaste pares.</p>}
             </div>
           ) : null}
 
@@ -543,7 +543,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                 ? 'Agrega un par para ver el total final.'
                 : cartPhase === 'single'
                   ? '1 par: $70.000. Suma otro y activas la promo de $110.000.'
-                  : '2 pares promo: $110.000 con envio gratis.'}
+                  : '2 pares promo: $110.000 con envío gratis.'}
             </small>
           </div>
 
@@ -577,30 +577,30 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
               <legend>Resumen de tu pedido</legend>
               <label>
                 Modelos y talles seleccionados
-                <input value={orderDetails} readOnly placeholder="Aqui veras tu seleccion" />
+                <input value={orderDetails} readOnly placeholder="Aquí verás tu selección" />
               </label>
             </fieldset>
 
             <fieldset className="checkout-fieldset">
-              <legend>Informacion de contacto</legend>
+              <legend>Información de contacto</legend>
               <div className="field-grid">
                 <label>
                   Nombre y apellido
-                  <input value={formState.name} onChange={(event) => updateField('name', event.target.value)} placeholder="Quien recibe el pedido" required />
+                  <input value={formState.name} onChange={(event) => updateField('name', event.target.value)} placeholder="Quién recibe el pedido" required />
                 </label>
                 <label>
                   WhatsApp
                   <input value={formState.whatsapp} onChange={(event) => updateField('whatsapp', event.target.value)} placeholder="Ej: 1156457057 (sin 0 ni 15)" required />
-                  <small>{isValidWhatsappInput(formState.whatsapp) || !formState.whatsapp ? 'Fundamental para coordinar el envio si es necesario.' : 'Formato invalido.'}</small>
+                  <small>{isValidWhatsappInput(formState.whatsapp) || !formState.whatsapp ? 'Fundamental para coordinar el envío si es necesario.' : 'Formato inválido.'}</small>
                 </label>
               </div>
             </fieldset>
 
             <fieldset className="checkout-fieldset">
-              <legend>Direccion de envio</legend>
-              <p className="fieldset-copy">Asegurate que sea correcta para recibir tu paquete sin problemas.</p>
+              <legend>Dirección de envío</legend>
+              <p className="fieldset-copy">Asegúrate de que sea correcta para recibir tu paquete sin problemas.</p>
               <label>
-                Calle y numero (Piso/Dpto)
+                Calle y número (Piso/Dpto)
                 <input value={formState.street} onChange={(event) => updateField('street', event.target.value)} placeholder="Ej: Av. Siempreviva 742, 3B" required />
               </label>
               <label>
@@ -625,15 +625,15 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
 
             <fieldset className="checkout-fieldset emphasis-fieldset">
               <legend>Contrareembolso</legend>
-              <p className="fieldset-copy compact-legend-copy">Pagas solo en efectivo al recibir. Te confirmamos por WhatsApp antes del despacho.</p>
+              <p className="fieldset-copy compact-legend-copy">Pagás solo en efectivo al recibir. Te confirmamos por WhatsApp antes del despacho.</p>
               <details className="checkout-detail-note">
-                <summary>Ver condiciones del envio y pago</summary>
+                <summary>Ver condiciones del envío y pago</summary>
                 <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
               </details>
               <label>
-                Dia y hora estimada para entregar
+                Día y hora estimada para entregar
                 <select value={formState.deliverySlot} onChange={(event) => updateField('deliverySlot', event.target.value)} required>
-                  <option value="">Selecciona una opcion</option>
+                  <option value="">Seleccioná una opción</option>
                   {deliveryOptions.map((option) => <option key={option} value={option}>{option}</option>)}
                 </select>
               </label>
@@ -644,7 +644,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
               <p><strong>Seleccion:</strong> {orderDetails || '-'}</p>
               <p><strong>Nombre:</strong> {formState.name || '-'}</p>
               <p><strong>WhatsApp:</strong> {formState.whatsapp || '-'}</p>
-              <p><strong>Direccion:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
+              <p><strong>Dirección:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
               <p><strong>Dia y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
               <p className="review-total">Total: {formatCurrency(total)}</p>
               <details className="checkout-detail-note review-commitment-note">
