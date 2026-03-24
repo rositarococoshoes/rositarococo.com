@@ -49,11 +49,22 @@ export default function ThankYouPage({ pairCount, total }) {
     }
   }, [pairCount, total]);
 
-  const fallbackDetails = useMemo(() => {
-    return parseProducts(rawProducts).map((item) => `Talle: ${item.size} Modelo: ${MODEL_NAMES[item.model] || item.model}`).join(' || ');
-  }, [rawProducts]);
+  const parsedProducts = useMemo(() => parseProducts(rawProducts), [rawProducts]);
+  const fallbackList = useMemo(() => parsedProducts.map((item) => ({
+    key: `${item.size}-${item.model}`,
+    text: `Talle ${item.size} - ${MODEL_NAMES[item.model] || item.model}`,
+  })), [parsedProducts]);
 
-  const finalDetails = orderDetails || fallbackDetails || 'Detalles del pedido no disponibles';
+  const storedList = useMemo(() => {
+    if (!orderDetails) return [];
+    return orderDetails.split('|').map((entry) => entry.trim()).filter(Boolean).map((entry, index) => ({
+      key: `${index}-${entry}`,
+      text: entry,
+    }));
+  }, [orderDetails]);
+
+  const finalList = storedList.length ? storedList : fallbackList;
+  const finalDetails = finalList.length ? finalList.map((item) => item.text).join(' | ') : 'Detalles del pedido no disponibles';
   const message = useMemo(() => {
     const base = customerName
       ? `Hola, soy ${customerName} y quiero confirmar mi pedido contrareembolso que recien hice.`
@@ -79,7 +90,13 @@ export default function ThankYouPage({ pairCount, total }) {
         </a>
         <div className="thankyou-order-box">
           <h2>Tu pedido</h2>
-          <p>{finalDetails}</p>
+          {finalList.length ? (
+            <ul className="thankyou-order-list">
+              {finalList.map((item) => <li key={item.key}>{item.text}</li>)}
+            </ul>
+          ) : (
+            <p>Detalles del pedido no disponibles</p>
+          )}
         </div>
         <div className="thankyou-payment-box">
           Ten listo <strong>${total.toLocaleString('es-AR')}</strong> en efectivo para la entrega. El horario sigue siendo entre 15hs y 22hs.

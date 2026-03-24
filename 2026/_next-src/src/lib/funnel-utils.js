@@ -81,7 +81,29 @@ export function buildOrderSummary(cart) {
 
 export function formatOrderDetails(cart, products) {
   const productMap = new Map(products.map((product) => [product.id, product.displayName]));
-  return cart.map((item) => `Talle: ${item.size} Modelo: ${productMap.get(item.productId) || item.productId}`).join(' || ');
+  return cart.map((item) => `Talle ${item.size} - ${productMap.get(item.productId) || item.productId}`).join(' | ');
+}
+
+export function buildLegacyOrderPayload(cart, products) {
+  const productMap = new Map(products.map((product) => [product.id, product]));
+
+  let pairCostTotal = 0;
+  const legacyDetails = cart.map((item) => {
+    const product = productMap.get(item.productId);
+    const [modelKey = item.productId, colorKey = ''] = item.productId.split('-');
+
+    let modelCode = item.productId;
+    let unitCost = 16000;
+
+    if (modelKey === 'roma') modelCode = '#4016';
+    if (modelKey === 'venecia') modelCode = '#4015';
+
+    pairCostTotal += unitCost;
+
+    return `Talle: ${item.size} Modelo: ${modelCode} Color: ${colorKey || product?.displayName || item.productId}`;
+  }).join(' || ');
+
+  return { legacyDetails, pairCostTotal };
 }
 
 function addDays(date, days) {

@@ -8,6 +8,7 @@ import {
   CHAT_WEBHOOK_URL,
   CHECKOUT_STEPS,
   HIGHLIGHTS,
+  ORDER_SCRIPT_URL,
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
   PRODUCTS,
@@ -16,6 +17,7 @@ import {
   TRUST_POINTS,
 } from '@/src/lib/funnel-data';
 import {
+  buildLegacyOrderPayload,
   buildOrderSummary,
   calculateCartTotal,
   formatOrderDetails,
@@ -29,17 +31,22 @@ import {
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
 
-function postOrderThroughHiddenForm(params) {
+function postOrderThroughHiddenForm(action, params) {
   if (typeof document === 'undefined') throw new Error('No document available for order submission');
 
   return new Promise((resolve) => {
-    const frameName = `rosita-order-${Date.now()}`;
+    const frameName = `rosita-order-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const iframe = document.createElement('iframe');
+    let settled = false;
+
     const cleanup = () => {
       form.remove();
       iframe.remove();
     };
+
     const finalize = () => {
+      if (settled) return;
+      settled = true;
       window.clearTimeout(timeoutId);
       cleanup();
       resolve();
@@ -52,16 +59,11 @@ function postOrderThroughHiddenForm(params) {
 
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = ORDER_WEBHOOK_URL;
+    form.action = action;
     form.target = frameName;
     form.hidden = true;
 
     const entries = new URLSearchParams(params.toString());
-    entries.set('entry.1885018612', params.get('entry.286442883') || '');
-    entries.set('fvv', '1');
-    entries.set('fbzx', '5661184097173102736');
-    entries.set('pageHistory', '0');
-
     entries.forEach((value, key) => {
       const input = document.createElement('input');
       input.type = 'hidden';
@@ -411,6 +413,7 @@ export default function ContrareembolsoLanding() {
   );
   const orderSummary = useMemo(() => buildOrderSummary(cart), [cart]);
   const orderDetails = useMemo(() => formatOrderDetails(cart, PRODUCTS), [cart]);
+  const legacyOrderPayload = useMemo(() => buildLegacyOrderPayload(cart, PRODUCTS), [cart]);
   const canCheckout = cart.length > 0;
   const activeCheckoutStep = cart.length ? 2 : 1;
 
@@ -468,25 +471,39 @@ export default function ContrareembolsoLanding() {
     setLoading(true);
 
     const whatsappForForm = formState.whatsapp.replace(/\D/g, '');
+    const addressLine = formState.betweenStreets.trim()
+      ? `${formState.street.trim()} - ${formState.betweenStreets.trim()}`
+      : formState.street.trim();
     const params = new URLSearchParams();
     params.set('entry.286442883', orderSummary);
     params.set('entry.1211347450', formState.name);
     params.set('entry.501094818', whatsappForForm);
-    params.set('entry.394819614', formState.street);
-    params.set('entry.entreCalles', formState.betweenStreets);
+    params.set('entry.394819614', addressLine);
     params.set('entry.183290493', formState.postalCode);
     params.set('entry.2081271241', formState.locality);
     params.set('entry.1440375758', formState.province);
     params.set('entry.17650825', 'A DOMICILIO');
     params.set('entry.comoabona', 'contrareembolso');
     params.set('entry.1756027935', formState.deliverySlot);
-    params.set('entry.1209868979', typeof window !== 'undefined' ? window.location.href : `${BASE_PATH}/index-contrareembolso.html`);
+    params.set('entry.1209868979', typeof window !== 'undefined' ? window.location.href : BASE_PATH + '/index-contrareembolso.html');
+    params.set('entry.1885018612', legacyOrderPayload.legacyDetails);
+    params.set('entry.1715320252', String(total));
+    params.set('entry.736134777', String(legacyOrderPayload.pairCostTotal));
+    params.set('entry.227154461', '');
+    params.set('entry.1620487876', 'Pendiente');
+    params.set('website', '');
+    params.set('fvv', '1');
+    params.set('fbzx', '5661184097173102736');
+    params.set('pageHistory', '0');
 
     try {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
         window.fbq('track', 'InitiateCheckout', { currency: 'ARS', value: total, num_items: cart.length, content_type: 'product' });
       }
-      await postOrderThroughHiddenForm(params);
+      await Promise.allSettled([
+        postOrderThroughHiddenForm(ORDER_SCRIPT_URL, params),
+        postOrderThroughHiddenForm(ORDER_WEBHOOK_URL, params),
+      ]);
 
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);
