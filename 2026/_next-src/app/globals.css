@@ -17,7 +17,7 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   color: var(--ink);
-  font-family: var(--font-sans), sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background:
     radial-gradient(circle at top left, rgba(216, 179, 151, 0.42), transparent 30%),
     linear-gradient(180deg, #f8eee6 0%, #f2e7dc 46%, #ead7c8 100%);
@@ -186,7 +186,7 @@ img { max-width: 100%; height: auto; }
 }
 .product-card h2 { font-size: 33px; }
 .product-card h2 {
-  font-family: var(--font-sans), sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-weight: 800;
   letter-spacing: -0.05em;
   line-height: 1;

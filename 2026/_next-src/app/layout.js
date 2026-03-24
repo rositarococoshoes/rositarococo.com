@@ -1,4 +1,4 @@
-import { Lato, Playfair_Display } from 'next/font/google';
+import { Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { BUILD_VERSION, FACEBOOK_PIXEL_ID } from '@/src/lib/funnel-data';
@@ -6,13 +6,6 @@ import { BUILD_VERSION, FACEBOOK_PIXEL_ID } from '@/src/lib/funnel-data';
 const serif = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
-  display: 'swap',
-});
-
-const sans = Lato({
-  subsets: ['latin'],
-  variable: '--font-sans',
-  weight: ['400', '700'],
   display: 'swap',
 });
 
@@ -26,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="es" className={serif.variable}>
       <body>
         <Script id="build-version" strategy="beforeInteractive">
           {`console.info('[Rosita 2026] build ${BUILD_VERSION}');`}
