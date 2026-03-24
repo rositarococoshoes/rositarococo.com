@@ -201,8 +201,18 @@ img { max-width: 100%; height: auto; }
   background: linear-gradient(180deg, #f8efe6, #fffdf9);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 30px rgba(53, 28, 18, 0.08);
 }
-.gallery-image { object-fit: contain; }
-.gallery-thumb-image { object-fit: cover; }
+.gallery-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.gallery-thumb-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .gallery-thumb {
   position: relative;

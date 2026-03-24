@@ -1,19 +1,12 @@
 'use client';
-
-import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import {
   BASE_PATH,
-  BRAND_LOGO_SRC,
   CHAT_WEBHOOK_URL,
   CHECKOUT_STEPS,
-  HIGHLIGHTS,
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
   PRODUCTS,
-  PROGRESS_STEPS,
-  TESTIMONIAL_IMAGES,
-  TRUST_POINTS,
 } from '@/src/lib/funnel-data';
 import {
   buildLegacyOrderPayload,
@@ -85,19 +78,19 @@ function postOrderThroughHiddenForm(action, params) {
   });
 }
 
-function ProductGallery({ product }) {
+function ProductGallery({ product, priority = false }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeImage = product.images[activeIndex];
 
   return (
     <div className="gallery-card">
       <div className="gallery-frame">
-        <Image
+        <img
           src={activeImage}
           alt={product.displayName}
-          fill
-          priority
-          sizes="(max-width: 768px) 100vw, 33vw"
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
+          decoding="async"
           className="gallery-image"
         />
       </div>
@@ -110,7 +103,7 @@ function ProductGallery({ product }) {
             onClick={() => setActiveIndex(index)}
             aria-label={`Ver foto ${index + 1} de ${product.displayName}`}
           >
-            <Image src={image} alt="" fill sizes="72px" className="gallery-thumb-image" />
+            <img src={image} alt="" loading="lazy" decoding="async" className="gallery-thumb-image" />
           </button>
         ))}
       </div>
@@ -118,7 +111,7 @@ function ProductGallery({ product }) {
   );
 }
 
-function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
+function ProductCard({ product, onAdd, cartLocked, deliveryLabel, priority = false }) {
   const [size, setSize] = useState('');
   const specsInline = product.specs.map((spec) => spec.value).join(' / ');
 
@@ -133,7 +126,7 @@ function ProductCard({ product, onAdd, cartLocked, deliveryLabel }) {
         <h2>{product.displayName}</h2>
       </div>
 
-      <ProductGallery product={product} />
+      <ProductGallery product={product} priority={priority} />
 
       <div className="product-copy">
         <p className="product-meta-line">{specsInline}</p>
@@ -292,16 +285,18 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
               const thumb = item.product?.images?.[0];
               if (!thumb) return null;
               return (
-                <Image
+                <img
                   key={item.id}
                   src={thumb}
                   alt={item.product?.displayName || item.productId}
-                  width={32}
-                  height={40}
+                  width="32"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
                   className={`mobile-cart-thumb paired-thumb paired-thumb-${index}`}
                 />
               );
-            }) : latestThumb ? <Image src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width={52} height={52} className="mobile-cart-thumb" /> : null}
+            }) : latestThumb ? <img src={latestThumb} alt={latestItem.product?.displayName || latestItem.productId} width="52" height="52" loading="lazy" decoding="async" className="mobile-cart-thumb" /> : null}
             {cartEntries.length === 1 ? <span className="mobile-cart-count">{cartEntries.length}</span> : null}
           </div>
           <div className="mobile-cart-copy">
@@ -332,7 +327,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
               const thumb = item.product?.images?.[0];
               return (
                 <article key={item.id} className="mobile-cart-line">
-                  {thumb ? <Image src={thumb} alt={item.product?.displayName || item.productId} width={48} height={48} className="mobile-cart-thumb" /> : null}
+                  {thumb ? <img src={thumb} alt={item.product?.displayName || item.productId} width="48" height="48" loading="lazy" decoding="async" className="mobile-cart-thumb" /> : null}
                   <div className="mobile-cart-line-copy">
                     <strong>{item.product?.displayName || item.productId}</strong>
                     <span>Talle {item.size}</span>
@@ -377,7 +372,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
   );
 }
 
-export default function ContrareembolsoLanding() {
+export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
   const [cart, setCart] = useState([]);
   const [cartExpanded, setCartExpanded] = useState(true);
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
@@ -522,65 +517,23 @@ export default function ContrareembolsoLanding() {
   }
 
   return (
-    <main className="landing-shell">
-      <div className="benefits-strip">{HIGHLIGHTS.map((item) => <span key={item}>{item}</span>)}</div>
-
-      <div className="progress-rail">
-        {PROGRESS_STEPS.map((step, index) => (
-          <div key={step} className={`progress-node ${index === 0 ? 'active' : ''}`}>
-            <span>{index + 1}</span>
-            <strong>{step}</strong>
-          </div>
-        ))}
-      </div>
-
-      <section className="hero-header-card">
-        <div className="brand-lockup large">
-          <Image src={BRAND_LOGO_SRC} alt="Rosita Rococo" width={320} height={108} priority className="brand-logo-image" />
-        </div>
-        <div className="hero-heading-copy">
-          <h1>{PAGE_COPY.season} <span>{PAGE_COPY.paymentRibbon}</span></h1>
-          <p className="hero-promo-copy">{PAGE_COPY.promoLine}</p>
-        </div>
-      </section>
-
-      <section className="trust-grid refined">
-        {TRUST_POINTS.map((point) => (
-          <article key={point.title} className="trust-card soft">
-            <h2>{point.title}</h2>
-            <p>{point.body}</p>
-          </article>
-        ))}
-      </section>
-
+    <>
       <section id="productos" className="products-section">
         <div className="products-grid refined-grid">
           {PRODUCTS.map((product) => (
-            <ProductCard key={product.id} product={product} onAdd={handleAdd} cartLocked={cart.length >= 2} deliveryLabel={featuredDeliveryLabel} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAdd={handleAdd}
+              cartLocked={cart.length >= 2}
+              deliveryLabel={featuredDeliveryLabel}
+              priority={product.id === PRODUCTS[0].id}
+            />
           ))}
         </div>
       </section>
 
-      <section className="testimonials-section-next">
-        <div className="section-heading left compact-heading">
-          <h2>{PAGE_COPY.testimonialsTitle}</h2>
-        </div>
-        <div className="testimonial-grid-images">
-          {TESTIMONIAL_IMAGES.map((item, index) => (
-            <figure key={item.src} className="testimonial-shot">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                width={420}
-                height={720}
-                priority={index < 2}
-                sizes="(max-width: 768px) 62vw, 20vw"
-                className="testimonial-image"
-              />
-            </figure>
-          ))}
-        </div>
-      </section>
+      {testimonialsSlot}
 
       <section className="checkout-layout editorial-layout">
         <aside className="cart-panel editorial-cart">
@@ -613,7 +566,7 @@ export default function ContrareembolsoLanding() {
                 return (
                   <article key={item.id} className="cart-item detailed-cart-item independent-item">
                     <div className="cart-item-media">
-                      {thumb ? <Image src={thumb} alt={item.product?.displayName || item.productId} width={68} height={68} className="cart-item-thumb" /> : null}
+                      {thumb ? <img src={thumb} alt={item.product?.displayName || item.productId} width="68" height="68" loading="lazy" decoding="async" className="cart-item-thumb" /> : null}
                     </div>
                     <div className="cart-item-copy">
                       <strong>{item.product?.displayName || item.productId}</strong>
@@ -771,7 +724,7 @@ export default function ContrareembolsoLanding() {
         onGoCheckout={() => jumpTo('#checkout-form')}
       />
       <ChatWidget hasCart={cartEntries.length > 0} cartOpen={mobileCartOpen} />
-    </main>
+    </>
   );
 }
 
