@@ -8,7 +8,6 @@ import {
   CHAT_WEBHOOK_URL,
   CHECKOUT_STEPS,
   HIGHLIGHTS,
-  ORDER_SCRIPT_URL,
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
   PRODUCTS,
@@ -37,17 +36,20 @@ function postOrderThroughHiddenForm(action, params) {
   return new Promise((resolve) => {
     const frameName = `rosita-order-${Date.now()}-${Math.random().toString(36).slice(2)}`;
     const iframe = document.createElement('iframe');
+    let form = null;
     let settled = false;
+    let submitted = false;
+    let timeoutId = null;
 
     const cleanup = () => {
-      form.remove();
-      iframe.remove();
+      if (form?.isConnected) form.remove();
+      if (iframe.isConnected) iframe.remove();
     };
 
     const finalize = () => {
       if (settled) return;
       settled = true;
-      window.clearTimeout(timeoutId);
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
       cleanup();
       resolve();
     };
@@ -55,9 +57,12 @@ function postOrderThroughHiddenForm(action, params) {
     iframe.name = frameName;
     iframe.title = 'order-submit-frame';
     iframe.hidden = true;
-    iframe.addEventListener('load', finalize, { once: true });
+    iframe.addEventListener('load', () => {
+      if (!submitted) return;
+      finalize();
+    });
 
-    const form = document.createElement('form');
+    form = document.createElement('form');
     form.method = 'POST';
     form.action = action;
     form.target = frameName;
@@ -74,7 +79,8 @@ function postOrderThroughHiddenForm(action, params) {
 
     document.body.appendChild(iframe);
     document.body.appendChild(form);
-    const timeoutId = window.setTimeout(finalize, 6000);
+    submitted = true;
+    timeoutId = window.setTimeout(finalize, 6000);
     form.submit();
   });
 }
@@ -500,10 +506,7 @@ export default function ContrareembolsoLanding() {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
         window.fbq('track', 'InitiateCheckout', { currency: 'ARS', value: total, num_items: cart.length, content_type: 'product' });
       }
-      await Promise.allSettled([
-        postOrderThroughHiddenForm(ORDER_SCRIPT_URL, params),
-        postOrderThroughHiddenForm(ORDER_WEBHOOK_URL, params),
-      ]);
+      await postOrderThroughHiddenForm(ORDER_WEBHOOK_URL, params);
 
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);

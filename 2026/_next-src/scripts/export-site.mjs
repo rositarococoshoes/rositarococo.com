@@ -78,14 +78,19 @@ async function exportFromServerApp() {
 
 async function main() {
   await removeGeneratedTargets();
+  if (await exists(serverAppDir) && await exists(nextStaticDir)) {
+    await exportFromServerApp();
+    console.log(`Export copiado desde ${serverAppDir} y ${nextStaticDir} hacia ${root2026}`);
+    return;
+  }
+
   if (await exists(outDir)) {
     await copyRecursive(outDir, root2026);
     console.log(`Export copiado desde ${outDir} hacia ${root2026}`);
     return;
   }
 
-  await exportFromServerApp();
-  console.log(`Export copiado desde ${serverAppDir} y ${nextStaticDir} hacia ${root2026}`);
+  throw new Error(`No encontre archivos exportables en ${serverAppDir} ni en ${outDir}`);
 }
 
 main().catch((error) => {
