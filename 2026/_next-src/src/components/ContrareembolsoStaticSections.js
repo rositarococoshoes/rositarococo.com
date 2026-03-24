@@ -29,7 +29,6 @@ export function ContrareembolsoIntro() {
             width="320"
             height="108"
             className="brand-logo-image"
-            fetchPriority="high"
             decoding="async"
           />
         </div>
