@@ -143,6 +143,16 @@ TRUST_POINTS[2] = {
   body: 'PagÃ¡s en efectivo cuando recibÃ­s tu pedido en casa.',
 };
 
+TRUST_POINTS[1] = {
+  title: 'Env\u00edo gratis',
+  body: 'Recib\u00ed tus pares con env\u00edo gratis y confirmaci\u00f3n por WhatsApp antes del despacho.',
+};
+
+TRUST_POINTS[2] = {
+  title: 'Pag\u00e1 al recibir',
+  body: 'Pag\u00e1s en efectivo cuando recib\u00eds tu pedido en casa.',
+};
+
 export const TESTIMONIAL_IMAGES = [
   { src: asset('comentariorecibi1.webp'), alt: 'Captura de comentario positivo de clienta 1' },
   { src: asset('comentariorecibi2.webp'), alt: 'Captura de comentario positivo de clienta 2' },

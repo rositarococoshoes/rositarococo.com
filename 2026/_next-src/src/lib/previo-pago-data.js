@@ -72,6 +72,14 @@ TRUST_POINTS[2] = {
   body: 'Recibís tus pares con envío gratis a todo el país y seguimiento claro de tu compra.',
 };
 
+PAGE_COPY.reviewCommitment = 'Verific\u00e1 que tus datos y modelos est\u00e9n correctos antes de continuar.';
+PAGE_COPY.whatsappModalMessage = 'Dejanos tu n\u00famero para guardar tu pedido y ayudarte si necesit\u00e1s soporte con el pago.';
+PAGE_COPY.whatsappModalNote = 'Lo usamos para confirmarte la compra y acompa\u00f1arte si hace falta.';
+TRUST_POINTS[2] = {
+  title: 'Env\u00edo gratis',
+  body: 'Recib\u00eds tus pares con env\u00edo gratis a todo el pa\u00eds y seguimiento claro de tu compra.',
+};
+
 export const PRODUCTS = CONTRAREEMBOLSO_PRODUCTS.map((product) => ({
   ...product,
   unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
