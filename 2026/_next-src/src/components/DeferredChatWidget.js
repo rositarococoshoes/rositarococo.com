@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import { buildLegacyChatPayload, getOrCreateLegacyChatSessionId, parseLegacyChatReply } from '@/src/lib/chat-utils';
 
 export default function DeferredChatWidget({
   hasCart = false,
@@ -24,20 +25,15 @@ export default function DeferredChatWidget({
     setSending(true);
 
     try {
+      const sessionId = getOrCreateLegacyChatSessionId();
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, source, page: typeof window !== 'undefined' ? window.location.href : '' }),
+        body: JSON.stringify(buildLegacyChatPayload({ sessionId, message: trimmed })),
       });
 
       const text = await response.text();
-      let reply = 'Gracias, ya recibimos tu consulta. En unos instantes te respondemos por este chat.';
-      try {
-        const data = JSON.parse(text);
-        reply = data.reply || data.message || data.output || reply;
-      } catch {
-        if (text.trim()) reply = text.trim();
-      }
+      const reply = parseLegacyChatReply(text);
       setMessages((current) => [...current, { from: 'bot', text: reply }]);
     } catch {
       setMessages((current) => [...current, { from: 'bot', text: 'No pude conectar con el asistente ahora. Puedes continuar la compra y te confirmamos por WhatsApp.' }]);
