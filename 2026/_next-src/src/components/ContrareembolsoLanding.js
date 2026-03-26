@@ -8,6 +8,9 @@ import {
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
   PRODUCTS,
+  WHATSAPP_MODAL_SOURCE,
+  WHATSAPP_SAVE_WEBHOOK_URL,
+  WHATSAPP_VALIDATE_WEBHOOK_URL,
 } from '@/src/lib/funnel-data';
 import {
   buildLegacyOrderPayload,
@@ -21,6 +24,8 @@ import {
   getThankYouRoute,
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
+import { shouldOpenWhatsappModal } from '@/src/lib/whatsapp-modal-utils';
+import LegacyWhatsappModal from '@/src/components/LegacyWhatsappModal';
 
 const DeferredChatWidget = dynamic(() => import('@/src/components/DeferredChatWidget'), {
   ssr: false,
@@ -329,6 +334,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
   const [cart, setCart] = useState([]);
   const [cartExpanded, setCartExpanded] = useState(true);
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
+  const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
   const [prefillWhatsapp, setPrefillWhatsapp] = useState('');
@@ -337,7 +343,9 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
   });
 
   useEffect(() => {
-    const savedWhatsapp = window.localStorage.getItem('rosita.whatsapp.prefill') || '';
+    const savedWhatsapp = window.localStorage.getItem('savedWhatsapp')
+      || window.localStorage.getItem('rosita.whatsapp.prefill')
+      || '';
     if (savedWhatsapp) {
       setPrefillWhatsapp(savedWhatsapp);
       setFormState((current) => ({ ...current, whatsapp: current.whatsapp || savedWhatsapp }));
@@ -355,6 +363,12 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
       setNotification('');
     }
   }, [mobileCartOpen, notification]);
+
+  useEffect(() => {
+    if (whatsappModalOpen && notification) {
+      setNotification('');
+    }
+  }, [notification, whatsappModalOpen]);
 
   const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
   const featuredDeliveryLabel = deliveryOptions[0] || 'Proxima ventana disponible';
@@ -392,13 +406,21 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
     }
 
     const nextCount = cart.length + 1;
+    const shouldPromptWhatsapp = typeof window !== 'undefined' && shouldOpenWhatsappModal({
+      cartCount: nextCount,
+      modalAlreadyShown: Boolean(window.localStorage.getItem('whatsappModalShown')),
+    });
+
     setCart((current) => [
       ...current,
       { productId: product.id, size, id: `${product.id}-${size}-${Date.now()}-${Math.random()}` },
     ]);
     setCartExpanded(true);
     setMobileCartOpen(false);
-    setNotification(nextCount === 1 ? getPostAddMessage(nextCount) : '');
+    setNotification(shouldPromptWhatsapp ? '' : (nextCount === 1 ? getPostAddMessage(nextCount) : ''));
+    if (shouldPromptWhatsapp) {
+      window.setTimeout(() => setWhatsappModalOpen(true), 500);
+    }
     if (!formState.whatsapp && prefillWhatsapp) {
       setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
     }
@@ -675,6 +697,22 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
         onRemove={removeItem}
         onGoProducts={() => jumpTo('#productos')}
         onGoCheckout={() => jumpTo('#checkout-form')}
+      />
+      <LegacyWhatsappModal
+        isOpen={whatsappModalOpen}
+        initialWhatsapp={prefillWhatsapp || formState.whatsapp}
+        title={PAGE_COPY.whatsappModalTitle}
+        message={PAGE_COPY.whatsappModalMessage}
+        note={PAGE_COPY.whatsappModalNote}
+        validateBeforeSave={false}
+        validateEndpoint={WHATSAPP_VALIDATE_WEBHOOK_URL}
+        saveEndpoint={WHATSAPP_SAVE_WEBHOOK_URL}
+        saveSource={WHATSAPP_MODAL_SOURCE}
+        onSaved={(whatsappNumber) => {
+          setWhatsappModalOpen(false);
+          setPrefillWhatsapp(whatsappNumber);
+          setFormState((current) => ({ ...current, whatsapp: whatsappNumber }));
+        }}
       />
       <DeferredChatWidget
         hasCart={cartEntries.length > 0}

@@ -3,8 +3,11 @@ export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec';
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/8b70ed56-6ce4-4308-8d5b-0c21f9f7d751/chat';
+export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea';
+export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
+export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_contrareembolso';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
-export const BUILD_VERSION = '2026.03.26-v43';
+export const BUILD_VERSION = '2026.03.26-v44';
 const asset = (file) => `${BASE_PATH}/assets/contrareembolso/${file}`;
 
 const SIZES = [
@@ -29,6 +32,9 @@ export const PAGE_COPY = {
   deliveryLegend: 'ENVÍO: seleccioná uno de los días presentados en las opciones para recibir y asegurate de que, si vos no estás, haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs. El pago es solo en efectivo y debés contar con todo el dinero. Vamos a contactarte por WhatsApp para confirmar el envío y debés respondernos para confirmarlo o no se envía.',
   reviewCommitment: 'PAGÁS SOLO EN EFECTIVO AL RECIBIR. SI NO DISPONÉS DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
   freeShippingReminder: 'Recordá: envío GRATIS a todo el país. Pagás en efectivo al recibir.',
+  whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
+  whatsappModalMessage: 'Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.',
+  whatsappModalNote: 'Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.',
 };
 
 export const HIGHLIGHTS = [

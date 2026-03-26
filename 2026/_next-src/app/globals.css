@@ -526,6 +526,57 @@ label small,
 }
 .modal-card h2 { margin-top: 0; font-family: var(--font-serif), serif; font-size: 36px; }
 .modal-actions { grid-template-columns: repeat(2, 1fr); }
+.whatsapp-capture-card {
+  display: grid;
+  gap: 14px;
+  width: min(440px, 100%);
+}
+.whatsapp-capture-message,
+.whatsapp-capture-note {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.whatsapp-capture-form {
+  display: grid;
+  gap: 10px;
+}
+.whatsapp-capture-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.whatsapp-capture-input {
+  width: 100%;
+  min-height: 52px;
+  border-radius: 18px;
+  border: 1px solid rgba(143, 90, 69, 0.18);
+  background: rgba(255,255,255,0.9);
+  padding: 0 16px;
+  font: inherit;
+  color: var(--ink);
+}
+.whatsapp-capture-input:focus {
+  outline: 2px solid rgba(143, 90, 69, 0.18);
+  border-color: rgba(143, 90, 69, 0.55);
+}
+.whatsapp-capture-feedback {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.whatsapp-capture-feedback.is-error {
+  color: #a62f2f;
+}
+.whatsapp-capture-feedback.is-valid {
+  color: var(--success);
+}
+.whatsapp-capture-feedback.is-verifying {
+  color: var(--brand);
+}
+.whatsapp-capture-submit {
+  width: 100%;
+}
 
 .notification-toast {
   position: fixed;
@@ -1166,6 +1217,14 @@ label small,
     grid-template-columns: minmax(0, 78px) 1fr;
     padding: 9px 10px;
     font-size: 12px;
+  }
+  .whatsapp-capture-card {
+    padding: 24px 20px;
+    border-radius: 24px;
+    gap: 12px;
+  }
+  .whatsapp-capture-card h2 {
+    font-size: 30px;
   }
 }
 .size-guide-disclosure {

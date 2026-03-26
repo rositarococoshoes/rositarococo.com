@@ -5,6 +5,9 @@ export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca';
 export const PAYMENT_LINK_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/0bf290e4-f5d5-4a22-94f5-a88cbbf9b347/chat';
+export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea';
+export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
+export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_validated';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
 
 const asset = (file) => `${BASE_PATH}/assets/previo-pago/${file}`;
@@ -32,6 +35,9 @@ export const PAGE_COPY = {
   paymentLegend: 'Eleg\u00ed c\u00f3mo quer\u00e9s pagar. Si seleccion\u00e1s tarjeta o saldo MercadoPago te redirigimos al link de pago seguro. Si eleg\u00eds transferencia, te mostramos los datos bancarios y el paso a paso para enviar el comprobante.',
   reviewCommitment: 'Verific\u00e1 que tus datos y modelos est\u00e9n correctos antes de continuar. Tu pedido quedar\u00e1 registrado con el medio de pago elegido.',
   freeShippingReminder: 'Record\u00e1: env\u00edo gratis a todo el pa\u00eds. Pod\u00e9s pagar online o por transferencia con descuento adicional.',
+  whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
+  whatsappModalMessage: 'Dejanos tu número de WhatsApp para guardar tu carrito. Si agregás dos pares de cualquier modelo o talle, tenés descuento importante por par y envío gratis.',
+  whatsappModalNote: 'Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.',
 };
 
 export const HIGHLIGHTS = [
