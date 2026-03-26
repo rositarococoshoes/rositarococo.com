@@ -1,4 +1,6 @@
-﻿export const BASE_PATH = '/2026';
+import { PRODUCTS as CONTRAREEMBOLSO_PRODUCTS } from '@/src/lib/funnel-data';
+
+export const BASE_PATH = '/2026';
 export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca';
 export const PAYMENT_LINK_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30';
@@ -7,34 +9,12 @@ export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
 
 const asset = (file) => `${BASE_PATH}/assets/previo-pago/${file}`;
 
-const STANDARD_SIZES = [
-  { value: '35', label: '35 (23 cm de plantilla)' },
-  { value: '36', label: '36 (23,5 cm de plantilla)' },
-  { value: '37', label: '37 (24 cm de plantilla)' },
-  { value: '38', label: '38 (24,7 cm de plantilla)' },
-  { value: '39', label: '39 (25,3 cm de plantilla)' },
-  { value: '40', label: '40 (26 cm de plantilla)' },
-];
-
-const PARIS_SIZES = [
-  { value: '35', label: '35 (22,8 cm de plantilla)' },
-  { value: '36', label: '36 (23,4 cm de plantilla)' },
-  { value: '37', label: '37 (24,3 cm de plantilla)' },
-  { value: '38', label: '38 (24,7 cm de plantilla)' },
-  { value: '39', label: '39 (25,2 cm de plantilla)' },
-  { value: '40', label: '40 (26 cm de plantilla)' },
-  { value: '41', label: '41 (27,5 cm de plantilla)' },
-  { value: '42', label: '42 (28,4 cm de plantilla)' },
-  { value: '43', label: '43 (29,2 cm de plantilla)' },
-  { value: '44', label: '44 (29,8 cm de plantilla)' },
-];
-
 export const PREVIO_PAGO_PRICING = {
   singlePrice: 87500,
   bundlePrice: 137500,
   singleLabel: '$87.500',
   bundleLabel: '$137.500',
-  savingsLabel: 'AHORRÁ $37.500',
+  savingsLabel: 'AHORR\u00c1 $37.500',
   cbuSingleLabel: '$78.750',
   cbuBundleLabel: '$123.750',
 };
@@ -45,153 +25,45 @@ export const WHATSAPP_BUTTON_SRC = asset('enviarwsp.png');
 export const PAGE_COPY = {
   season: 'Primavera-Verano 2026',
   paymentRibbon: 'Pago online o por transferencia',
-  promoLine: '1 par $87.500. 2 pares $137.500 con envío gratis. También podés pagar por transferencia con descuento adicional.',
-  shoppingInstruction: 'Elegí tus modelos favoritos y agrégalos al carrito, un par por vez.',
+  promoLine: '1 par $87.500. 2 pares $137.500 con env\u00edo gratis. Tambi\u00e9n pod\u00e9s pagar por transferencia con descuento adicional.',
+  shoppingInstruction: 'Eleg\u00ed tus modelos favoritos y agr\u00e9galos al carrito, un par por vez.',
   testimonialsTitle: 'Lo que dicen nuestras clientas',
-  checkoutTitle: 'Casi listas. Completá tus datos',
-  paymentLegend: 'Elegí cómo querés pagar. Si seleccionás tarjeta o saldo MercadoPago te redirigimos al link de pago seguro. Si elegís transferencia, te mostramos los datos bancarios y el paso a paso para enviar el comprobante.',
-  reviewCommitment: 'Verificá que tus datos y modelos estén correctos antes de continuar. Tu pedido quedará registrado con el medio de pago elegido.',
-  freeShippingReminder: 'Recordá: envío gratis a todo el país. Podés pagar online o por transferencia con descuento adicional.',
+  checkoutTitle: 'Casi listas. Complet\u00e1 tus datos',
+  paymentLegend: 'Eleg\u00ed c\u00f3mo quer\u00e9s pagar. Si seleccion\u00e1s tarjeta o saldo MercadoPago te redirigimos al link de pago seguro. Si eleg\u00eds transferencia, te mostramos los datos bancarios y el paso a paso para enviar el comprobante.',
+  reviewCommitment: 'Verific\u00e1 que tus datos y modelos est\u00e9n correctos antes de continuar. Tu pedido quedar\u00e1 registrado con el medio de pago elegido.',
+  freeShippingReminder: 'Record\u00e1: env\u00edo gratis a todo el pa\u00eds. Pod\u00e9s pagar online o por transferencia con descuento adicional.',
 };
 
 export const HIGHLIGHTS = [
-  'ENVÍO GRATIS A TODO EL PAÍS',
+  'ENV\u00cdO GRATIS A TODO EL PA\u00cdS',
   'PAGO ONLINE SEGURO',
   'TRANSFERENCIA CON DESCUENTO',
 ];
 
-export const PROGRESS_STEPS = ['Productos', 'Envío', 'Pago'];
-export const CHECKOUT_STEPS = ['Información de contacto', 'Método de pago', 'Revisar y confirmar'];
+export const PROGRESS_STEPS = ['Productos', 'Env\u00edo', 'Pago'];
+export const CHECKOUT_STEPS = ['Informaci\u00f3n de contacto', 'M\u00e9todo de pago', 'Revisar y confirmar'];
 
 export const TRUST_POINTS = [
   {
     title: 'Compra simple',
-    body: 'Elegí tus pares, sumá los talles y cerrá el pedido con la misma experiencia clara del funnel 2026.',
+    body: 'Eleg\u00ed tus pares, sum\u00e1 los talles y cerr\u00e1 el pedido con la misma experiencia clara del funnel 2026.',
   },
   {
     title: 'Pago flexible',
-    body: 'Podés pagar con tarjeta, con saldo MercadoPago o por transferencia bancaria con descuento adicional.',
+    body: 'Pod\u00e9s pagar con tarjeta, con saldo MercadoPago o por transferencia bancaria con descuento adicional.',
   },
   {
-    title: 'Envío gratis',
-    body: 'Mantenemos envío gratis a todo el país y confirmación clara del estado de tu pedido.',
+    title: 'Env\u00edo gratis',
+    body: 'Mantenemos env\u00edo gratis a todo el pa\u00eds y confirmaci\u00f3n clara del estado de tu pedido.',
   },
 ];
 
-export const PRODUCTS = [
-  {
-    id: 'guillermina-negras',
-    displayName: 'Guillerminas Negras',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Tela reforzada super flexible' },
-      { label: 'Suela', value: 'Expanso' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: '¡Renovate para la nueva temporada Primavera-Verano 2026! Nuestras guillerminas negras son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7, 8].map((index) => asset(`guillerminafotos/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'guillermina-camel',
-    displayName: 'Guillerminas Camel',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Tela reforzada super flexible' },
-      { label: 'Suela', value: 'Expanso' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: '¡Renovate para la nueva temporada Primavera-Verano 2026! Nuestras guillerminas camel son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7, 8].map((index) => asset(`guillerminafotos/guillerminascamel/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'guillermina-blancas',
-    displayName: 'Guillerminas Blancas',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Tela reforzada super flexible' },
-      { label: 'Suela', value: 'Expanso' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: '¡Renovate para la nueva temporada Primavera-Verano 2026! Nuestras guillerminas blancas son el complemento ideal para cualquier look. Su diseño versátil y ultra cómodo te va a encantar.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7, 8].map((index) => asset(`guillerminafotos/guillerminasblancas/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'birk-negras',
-    displayName: 'Birk Negras',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Ecocuero' },
-      { label: 'Suela', value: 'Antideslizante' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: 'Sandalias de ecocuero con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7].map((index) => asset(`birknegras/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'birk-camel',
-    displayName: 'Birk Camel',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Ecocuero' },
-      { label: 'Suela', value: 'Antideslizante' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: 'Sandalias de ecocuero camel con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7, 8].map((index) => asset(`birkcamel/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'birk-blancas',
-    displayName: 'Birk Blancas',
-    badges: ['NUEVA TEMPORADA', 'STOCK LIMITADO'],
-    specs: [
-      { label: 'Material', value: 'Ecocuero' },
-      { label: 'Suela', value: 'Antideslizante' },
-      { label: 'Envío', value: 'Gratis' },
-    ],
-    description: 'Sandalias de ecocuero blancas con doble hebilla metálica ajustable. Cuentan con una plantilla ergonómica y una suela antideslizante que brinda confort y estabilidad en cada paso.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [1, 2, 3, 4, 5, 6, 7, 8].map((index) => asset(`birkblancas/${index}.webp`)),
-    sizes: STANDARD_SIZES,
-  },
-  {
-    id: 'paris-negras',
-    displayName: 'Paris Negras',
-    badges: ['NUEVA TEMPORADA'],
-    specs: [
-      { label: 'Material', value: 'Tela elastizada' },
-      { label: 'Suela', value: 'Liviana' },
-      { label: 'Detalles', value: 'Bicolor' },
-    ],
-    description: '¡Elegancia urbana para la nueva temporada Primavera-Verano 2026! Nuestras Paris negras combinan comodidad y estilo con su diseño bicolor único. Perfectas para looks diarios con un toque sofisticado.',
-    unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
-    bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
-    savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
-    images: [asset('paris2025-negras.webp')],
-    sizes: PARIS_SIZES,
-  },
-];
+export const PRODUCTS = CONTRAREEMBOLSO_PRODUCTS.map((product) => ({
+  ...product,
+  unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
+  bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
+  savingsLabel: PREVIO_PAGO_PRICING.savingsLabel,
+}));
 
 export const TESTIMONIAL_IMAGES = [
   { src: asset('comentariorecibi1.webp'), alt: 'Captura de comentario positivo de clienta 1' },
@@ -209,11 +81,11 @@ export const PROVINCES = [
   'Buenos Aires',
   'Capital Federal',
   'Gran Buenos Aires',
-  'Córdoba',
-  'Santa Fé',
+  'C\u00f3rdoba',
+  'Santa F\u00e9',
   'Mendoza',
-  'Neuquén',
-  'Entre Ríos',
+  'Neuqu\u00e9n',
+  'Entre R\u00edos',
   'Catamarca',
   'Chubut',
   'Salta',
@@ -223,28 +95,28 @@ export const PROVINCES = [
   'Formosa',
   'La Pampa',
   'La Rioja',
-  'Río Negro',
+  'R\u00edo Negro',
   'San Juan',
   'San Luis',
   'Santiago del Estero',
-  'Tucumán',
+  'Tucum\u00e1n',
 ];
 
 export const PAYMENT_METHODS = [
   {
     value: 'tarjeta',
-    label: '💳 Tarjeta de Crédito/Débito (¡3 Cuotas sin interés!)',
+    label: '\ud83d\udcb3 Tarjeta de Cr\u00e9dito/D\u00e9bito (\u00a13 Cuotas sin inter\u00e9s!)',
     helper: 'Te redirigimos al link de pago seguro para abonar con tarjeta.',
   },
   {
     value: 'mercadopago',
-    label: '💲 Saldo en cuenta MercadoPago',
+    label: '\ud83d\udcb2 Saldo en cuenta MercadoPago',
     helper: 'Te llevamos al link de pago seguro para abonar con tu cuenta.',
   },
   {
     value: 'cbu',
-    label: '🏦 Transferencia Bancaria (¡Con 10% OFF adicional!)',
-    helper: 'Te mostramos el CBU y luego podés enviar el comprobante por WhatsApp.',
+    label: '\ud83c\udfe6 Transferencia Bancaria (\u00a1Con 10% OFF adicional!)',
+    helper: 'Te mostramos el CBU y luego pod\u00e9s enviar el comprobante por WhatsApp.',
   },
 ];
 
@@ -253,18 +125,9 @@ export const THANK_YOU_ROUTES = {
   bundle: '/gracias-2pares',
 };
 
-export const MERCADO_PAGO_LINKS = {
-  single: 'https://mpago.la/1FigNnC',
-  bundle: 'https://mpago.la/2gYRoZX',
-};
-
 export const BANK_DETAILS = {
   bank: 'Banco Santander',
   cbu: '0720570588000035387718',
   alias: 'RROCOCO.S',
   holder: 'Baustian Roxana',
 };
-
-
-
-
