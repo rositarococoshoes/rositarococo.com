@@ -10,9 +10,8 @@ const serif = Playfair_Display({
 });
 
 const SITE_URL = 'https://rositarococo.com';
-const SITE_TITLE = 'Rosita Rococo | Embudos 2026';
-const SITE_DESCRIPTION = 'Funnels 2026 de Rosita Rococo en Next.js: previo pago y contrarreembolso con experiencia mobile-first y export estático.';
-const CANONICAL_URL = `${SITE_URL}${BASE_PATH}/index.html`;
+const SITE_TITLE = 'Rosita Rococo | Oto\u00f1o-Invierno 2026';
+const SITE_DESCRIPTION = 'Descubr\u00ed la colecci\u00f3n Oto\u00f1o-Invierno 2026 de Rosita Rococo. Compr\u00e1 online, por transferencia o contrarreembolso con env\u00edo gratis a todo el pa\u00eds.';
 const SHARE_IMAGE_URL = `${BASE_PATH}/og-contrareembolso-2026.png`;
 
 export const metadata = {
@@ -20,13 +19,9 @@ export const metadata = {
   applicationName: 'Rosita Rococo',
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
-  alternates: {
-    canonical: CANONICAL_URL,
-  },
   openGraph: {
     type: 'website',
     locale: 'es_AR',
-    url: CANONICAL_URL,
     siteName: 'Rosita Rococo',
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -35,7 +30,7 @@ export const metadata = {
         url: SHARE_IMAGE_URL,
         width: 1200,
         height: 630,
-        alt: 'Rosita Rococo 2026',
+        alt: 'Rosita Rococo Oto\u00f1o-Invierno 2026',
       },
     ],
   },

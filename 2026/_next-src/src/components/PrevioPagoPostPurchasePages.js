@@ -1,4 +1,4 @@
-﻿import PrevioPagoOrderSummaryClient from '@/src/components/PrevioPagoOrderSummaryClient';
+import PrevioPagoOrderSummaryClient from '@/src/components/PrevioPagoOrderSummaryClient';
 import {
   BANK_DETAILS,
   BASE_PATH,
@@ -93,27 +93,27 @@ export function PrevioPagoLegacyOptionsPage({ pairCount, total }) {
   return (
     <main className="thankyou-shell">
       <div className="benefits-strip compact">
-        <span>Pago previo</span>
+        <span>Pedido reservado</span>
         <span>Envío gratis</span>
-        <span>Funnel 2026</span>
+        <span>Pago seguro</span>
       </div>
       <section className="thankyou-card payment-card-shell">
         <img src={BRAND_LOGO_SRC} alt="Rosita Rococo" width="280" height="92" className="brand-logo-image thankyou-logo" decoding="async" />
-        <span className="eyebrow">Paso de pago</span>
-        <h1>Tu pedido está listo para cerrar el pago.</h1>
-        <p className="thankyou-copy">Esta página quedó como compatibilidad del flujo histórico. Para generar un link de pago actualizado volvé al checkout 2026, o seguí por transferencia con descuento adicional.</p>
+        <span className="eyebrow">Elegí tu forma de pago</span>
+        <h1>Tu pedido ya está listo para pagarse.</h1>
+        <p className="thankyou-copy">Podés pagar online ahora mismo o seguir por transferencia con descuento adicional. Elegí la opción que te resulte más cómoda.</p>
 
-        <PrevioPagoOrderSummaryClient pairCount={pairCount} total={total} title="Tu pedido" />
+        <PrevioPagoOrderSummaryClient pairCount={pairCount} total={total} title="Resumen de tu pedido" />
 
         <div className="payment-option-grid">
           <article className="payment-option-card">
-            <span className="payment-option-label">Pago online</span>
+            <span className="payment-option-label">Pago online ahora</span>
             <strong>{pairCount === 2 ? PREVIO_PAGO_PRICING.bundleLabel : PREVIO_PAGO_PRICING.singleLabel}</strong>
-            <p>Volvé al funnel para generar el link de pago actualizado con tarjeta o saldo MercadoPago.</p>
-            <a className="submit-button option-button" href={`${BASE_PATH}/index.html#checkout-form`}>Volver al checkout</a>
+            <p>Volvé al checkout para generar tu link de pago seguro con tarjeta o saldo MercadoPago.</p>
+            <a className="submit-button option-button" href={`${BASE_PATH}/index.html#checkout-form`}>Ir al checkout</a>
           </article>
           <article className="payment-option-card bank-highlight-card">
-            <span className="payment-option-label">Transferencia</span>
+            <span className="payment-option-label">Transferencia con descuento</span>
             <strong>{pairCount === 2 ? PREVIO_PAGO_PRICING.cbuBundleLabel : PREVIO_PAGO_PRICING.cbuSingleLabel}</strong>
             <p>Seguí por transferencia bancaria con el descuento adicional ya aplicado.</p>
             <a className="ghost-button option-button" href={transferHref}>Ver datos bancarios</a>

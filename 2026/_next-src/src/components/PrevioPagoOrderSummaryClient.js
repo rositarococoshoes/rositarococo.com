@@ -1,17 +1,19 @@
-﻿'use client';
+'use client';
 
 import { useEffect, useState } from 'react';
-import { WHATSAPP_BUTTON_SRC, WHATSAPP_CONFIRM_PHONE } from '@/src/lib/previo-pago-data';
+import { PRODUCTS, WHATSAPP_BUTTON_SRC, WHATSAPP_CONFIRM_PHONE } from '@/src/lib/previo-pago-data';
 
-const MODEL_NAMES = {
-  'guillermina-negras': 'Guillerminas Negras',
-  'guillermina-camel': 'Guillerminas Camel',
-  'guillermina-blancas': 'Guillerminas Blancas',
-  'birk-negras': 'Birk Negras',
-  'birk-camel': 'Birk Camel',
-  'birk-blancas': 'Birk Blancas',
-  'paris-negras': 'Paris Negras',
-};
+const MODEL_NAMES = Object.fromEntries(
+  PRODUCTS.flatMap((product) => {
+    const aliases = [[product.id, product.displayName]];
+
+    if (product.shortModel) {
+      aliases.push([product.shortModel, product.displayName]);
+    }
+
+    return aliases;
+  }),
+);
 
 function parseProducts(raw) {
   if (!raw) return [];

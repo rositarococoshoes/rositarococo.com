@@ -23,7 +23,7 @@ export const BRAND_LOGO_SRC = asset('rosita-form.webp');
 export const WHATSAPP_BUTTON_SRC = asset('enviarwsp.png');
 
 export const PAGE_COPY = {
-  season: 'Primavera-Verano 2026',
+  season: 'Oto\u00f1o-Invierno 2026',
   paymentRibbon: 'Pago online o por transferencia',
   promoLine: '1 par $87.500. 2 pares $137.500 con env\u00edo gratis. Tambi\u00e9n pod\u00e9s pagar por transferencia con descuento adicional.',
   shoppingInstruction: 'Eleg\u00ed tus modelos favoritos y agr\u00e9galos al carrito, un par por vez.',
