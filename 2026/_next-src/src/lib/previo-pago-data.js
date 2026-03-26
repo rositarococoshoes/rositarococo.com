@@ -46,7 +46,7 @@ export const CHECKOUT_STEPS = ['Informaci\u00f3n de contacto', 'M\u00e9todo de p
 export const TRUST_POINTS = [
   {
     title: 'Compra simple',
-    body: 'Eleg\u00ed tus pares, sum\u00e1 los talles y cerr\u00e1 el pedido con la misma experiencia clara del funnel 2026.',
+    body: 'Eleg\u00ed tus pares, sum\u00e1 los talles y cerr\u00e1 el pedido con una experiencia clara, simple y segura.',
   },
   {
     title: 'Pago flexible',

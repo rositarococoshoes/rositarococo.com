@@ -91,9 +91,10 @@ export default function PrevioPagoOrderSummaryClient({
   }, [pairCount, total, trackPurchase]);
 
   const finalList = buildDetailList(rawProducts, orderDetails);
+  const emptySummaryCopy = 'Tu resumen aparecerá aquí después de completar la compra.';
   const finalDetails = finalList.length
     ? finalList.map((item) => item.text).join(' | ')
-    : 'Detalles del pedido no disponibles';
+    : 'Pedido sin detalle disponible en este enlace';
 
   const whatsappMessage = showWhatsapp
     ? buildWhatsappMessage(whatsappMode, customerName, finalDetails, total)
@@ -114,7 +115,7 @@ export default function PrevioPagoOrderSummaryClient({
             {finalList.map((item) => <li key={item.key}>{item.text}</li>)}
           </ul>
         ) : (
-          <p>Detalles del pedido no disponibles</p>
+          <p>{emptySummaryCopy}</p>
         )}
       </div>
     </>
