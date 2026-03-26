@@ -68,8 +68,8 @@ export default function ThankYouClient({ pairCount, total }) {
     : 'Detalles del pedido no disponibles';
 
   const message = customerName
-    ? `Hola, soy ${customerName} y quiero confirmar mi pedido contrareembolso que recién hice.`
-    : 'Hola, quiero confirmar mi pedido contrareembolso que recién hice.';
+    ? `Hola, soy ${customerName} y quiero confirmar mi pedido contrarreembolso que recién hice.`
+    : 'Hola, quiero confirmar mi pedido contrarreembolso que recién hice.';
 
   const whatsappMessage = `${message}\n\nDetalles del pedido: ${finalDetails}\nTotal a pagar: $${total.toLocaleString('es-AR')}`;
 

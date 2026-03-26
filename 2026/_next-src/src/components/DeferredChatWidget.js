@@ -7,7 +7,7 @@ export default function DeferredChatWidget({
   hasCart = false,
   cartOpen = false,
   webhookUrl,
-  initialMessage = 'Hola, soy Rosita. Si quieres, te ayudo con talles o con la promo de contrareembolso.',
+  initialMessage = 'Hola, soy Rosita. Si querés, te ayudo con talles o con la promo de contrarreembolso.',
   source = 'next-2026-contrareembolso',
 }) {
   const [open, setOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function DeferredChatWidget({
       const reply = parseLegacyChatReply(text);
       setMessages((current) => [...current, { from: 'bot', text: reply }]);
     } catch {
-      setMessages((current) => [...current, { from: 'bot', text: 'No pude conectar con el asistente ahora. Puedes continuar la compra y te confirmamos por WhatsApp.' }]);
+      setMessages((current) => [...current, { from: 'bot', text: 'No pude conectar con el asistente ahora. Podés continuar la compra y te confirmamos por WhatsApp.' }]);
     } finally {
       setSending(false);
     }

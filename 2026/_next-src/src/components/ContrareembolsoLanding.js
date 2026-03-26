@@ -274,7 +274,7 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
           <div className="mobile-cart-sheet-headbar">
             <div className="mobile-cart-sheet-head">
               <span>{cartPhase === 'bundle' ? 'Promo activada' : 'Tu pedido en curso'}</span>
-              <strong>{cartPhase === 'bundle' ? 'Tus 2 pares ya tienen promo activa' : 'Suma 1 par mas y activas 2 pares por $110.000'}</strong>
+              <strong>{cartPhase === 'bundle' ? 'Tus 2 pares ya tienen promo activa' : 'Suma 1 par más y activas 2 pares por $110.000'}</strong>
               <p>{helperCopy}</p>
             </div>
             <button type="button" className="mobile-cart-close" onClick={() => setExpanded(false)} aria-label="Cerrar pedido">{'\u00D7'}</button>
@@ -631,7 +631,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
               </label>
               <div className="field-grid triple">
                 <label>
-                  Codigo postal
+                  Código postal
                   <input value={formState.postalCode} onChange={(event) => updateField('postalCode', event.target.value)} placeholder="Ej: 1425" required />
                 </label>
                 <label>
@@ -646,7 +646,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
             </fieldset>
 
             <fieldset className="checkout-fieldset emphasis-fieldset">
-              <legend>Contrareembolso</legend>
+              <legend>Contrarreembolso</legend>
               <p className="fieldset-copy compact-legend-copy">Pagás solo en efectivo al recibir. Te confirmamos por WhatsApp antes del despacho.</p>
               <details className="checkout-detail-note">
                 <summary>Ver condiciones del envío y pago</summary>
@@ -663,11 +663,11 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
 
             <div className="review-box original-review-style">
               <h3>Revisa tu pedido y datos</h3>
-              <p><strong>Seleccion:</strong> {orderDetails || '-'}</p>
+              <p><strong>Selección:</strong> {orderDetails || '-'}</p>
               <p><strong>Nombre:</strong> {formState.name || '-'}</p>
               <p><strong>WhatsApp:</strong> {formState.whatsapp || '-'}</p>
               <p><strong>Dirección:</strong> {[formState.street, formState.locality, formState.postalCode].filter(Boolean).join(', ') || '-'}</p>
-              <p><strong>Dia y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
+              <p><strong>Día y hora de entrega:</strong> {formState.deliverySlot || '-'}</p>
               <p className="review-total">Total: {formatCurrency(total)}</p>
               <details className="checkout-detail-note review-commitment-note">
                 <summary>Importante antes de enviar</summary>

@@ -762,7 +762,7 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
         hasCart={cartEntries.length > 0}
         cartOpen={mobileCartOpen}
         webhookUrl={CHAT_WEBHOOK_URL}
-        initialMessage="Hola, soy Rosita. Si quieres, te ayudo con talles, medios de pago o con la promo de previo pago."
+        initialMessage="Hola, soy Rosita. Si querés, te ayudo con talles, medios de pago o con la promo de previo pago."
         source="next-2026-previo-pago"
       />
     </>

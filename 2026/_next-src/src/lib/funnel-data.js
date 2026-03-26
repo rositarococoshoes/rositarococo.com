@@ -7,7 +7,8 @@ export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/w
 export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
 export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_contrareembolso';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
-export const BUILD_VERSION = '2026.03.26-v45';
+export const BUILD_VERSION = '2026.03.26-v48';
+
 const asset = (file) => `${BASE_PATH}/assets/contrareembolso/${file}`;
 
 const SIZES = [
@@ -23,41 +24,41 @@ export const BRAND_LOGO_SRC = asset('rosita-form.webp');
 export const WHATSAPP_BUTTON_SRC = asset('enviarwsp.png');
 
 export const PAGE_COPY = {
-  season: 'Otoño-Invierno 2026',
-  paymentRibbon: 'Pagás al recibir en efectivo',
-  promoLine: 'Promo 2 pares: $110.000 con envío gratis. Podés combinar cualquier modelo.',
-  shoppingInstruction: 'Seleccioná tus productos favoritos y agrégalos al carrito.',
+  season: 'Oto\u00f1o-Invierno 2026',
+  paymentRibbon: 'Pag\u00e1s al recibir en efectivo',
+  promoLine: 'Promo 2 pares: $110.000 con env\u00edo gratis. Pod\u00e9s combinar cualquier modelo.',
+  shoppingInstruction: 'Seleccion\u00e1 tus productos favoritos y agr\u00e9galos al carrito.',
   testimonialsTitle: 'Lo que dicen nuestras clientas',
-  checkoutTitle: 'Casi listos. Completá tus datos',
-  deliveryLegend: 'ENVÍO: seleccioná uno de los días presentados en las opciones para recibir y asegurate de que, si vos no estás, haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs. El pago es solo en efectivo y debés contar con todo el dinero. Vamos a contactarte por WhatsApp para confirmar el envío y debés respondernos para confirmarlo o no se envía.',
-  reviewCommitment: 'PAGÁS SOLO EN EFECTIVO AL RECIBIR. SI NO DISPONÉS DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
-  freeShippingReminder: 'Recordá: envío GRATIS a todo el país. Pagás en efectivo al recibir.',
+  checkoutTitle: 'Casi listos. Complet\u00e1 tus datos',
+  deliveryLegend: 'ENV\u00cdO: seleccion\u00e1 uno de los d\u00edas presentados en las opciones para recibir y asegurate de que, si vos no est\u00e1s, haya alguien para recibir y abonar la compra en el horario de 15hs a 22hs. El pago es solo en efectivo y deb\u00e9s contar con todo el dinero. Vamos a contactarte por WhatsApp para confirmar el env\u00edo y deb\u00e9s respondernos para confirmarlo o no se env\u00eda.',
+  reviewCommitment: 'PAG\u00c1S SOLO EN EFECTIVO AL RECIBIR. SI NO DISPON\u00c9S DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
+  freeShippingReminder: 'Record\u00e1: env\u00edo GRATIS a todo el pa\u00eds. Pag\u00e1s en efectivo al recibir.',
   whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
-  whatsappModalMessage: 'Dejanos tu número para guardar tu pedido y poder contactarte si hace falta.',
-  whatsappModalNote: 'Lo usamos para confirmarte el envío y ayudarte con tu compra.',
+  whatsappModalMessage: 'Dejanos tu n\u00famero para guardar tu pedido y poder contactarte si hace falta.',
+  whatsappModalNote: 'Lo usamos para confirmarte el env\u00edo y ayudarte con tu compra.',
 };
 
 export const HIGHLIGHTS = [
-  'PAGÁS AL RECIBIR EN EFECTIVO',
-  'ENVÍO GRATIS',
+  'PAG\u00c1S AL RECIBIR EN EFECTIVO',
+  'ENV\u00cdO GRATIS',
   'COMPRA DIRECTA POR WHATSAPP',
 ];
 
-export const PROGRESS_STEPS = ['Productos', 'Envío', 'Contrareembolso'];
-export const CHECKOUT_STEPS = ['Información de envío', 'Método de pago', 'Revisar y confirmar'];
+export const PROGRESS_STEPS = ['Productos', 'Env\u00edo', 'Contrarreembolso'];
+export const CHECKOUT_STEPS = ['Informaci\u00f3n de env\u00edo', 'M\u00e9todo de pago', 'Revisar y confirmar'];
 
 export const PRODUCTS = [
   {
     id: 'roma-negras',
     shortModel: 'roma-negras',
     displayName: 'Botineta Roma negras',
-    badges: ['MÁS VENDIDO', 'STOCK LIMITADO'],
+    badges: ['M\u00c1S VENDIDO', 'STOCK LIMITADO'],
     specs: [
       { label: 'Material', value: 'Cuero' },
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'Un clásico atemporal y versátil, perfecto para elevar cualquier look diario con comodidad y estilo.',
+    description: 'Un cl\u00e1sico atemporal y vers\u00e1til, perfecto para elevar cualquier look diario con comodidad y estilo.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -76,13 +77,13 @@ export const PRODUCTS = [
     id: 'roma-suela',
     shortModel: 'roma-suela',
     displayName: 'Botineta Roma suela',
-    badges: ['MÁS VENDIDO'],
+    badges: ['M\u00c1S VENDIDO'],
     specs: [
       { label: 'Material', value: 'Cuero' },
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'El tono cálido ideal para complementar tus outfits de otoño, aportando un toque natural y sofisticado.',
+    description: 'El tono c\u00e1lido ideal para complementar tus outfits de oto\u00f1o, aportando un toque natural y sofisticado.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -104,7 +105,7 @@ export const PRODUCTS = [
       { label: 'Suela', value: 'Expanso' },
       { label: 'Altura', value: 'Media' },
     ],
-    description: 'Elegancia y comodidad en un diseño moderno. El modelo Venecia es perfecto para complementar tus looks más sofisticados.',
+    description: 'Elegancia y comodidad en un dise\u00f1o moderno. El modelo Venecia es perfecto para complementar tus looks m\u00e1s sofisticados.',
     unitPriceLabel: '$70.000',
     bundlePriceLabel: '$110.000',
     savingsLabel: 'AHORRA $30.000',
@@ -121,37 +122,17 @@ export const PRODUCTS = [
 export const TRUST_POINTS = [
   {
     title: 'Compra simple',
-    body: 'Elegí tus pares, agregá los talles y completá el pedido en pocos pasos.',
+    body: 'Eleg\u00ed tus pares, agreg\u00e1 los talles y complet\u00e1 el pedido en pocos pasos.',
   },
   {
-    title: 'Envío gratis',
-    body: 'El checkout mantiene envío gratis y confirmación por WhatsApp antes de despachar.',
+    title: 'Env\u00edo gratis',
+    body: 'Recib\u00ed tus pares con env\u00edo gratis y confirmaci\u00f3n por WhatsApp antes del despacho.',
   },
   {
-    title: 'Contrareembolso real',
-    body: 'El pago sigue siendo solo en efectivo al recibir, respetando el flujo original.',
+    title: 'Pag\u00e1 al recibir',
+    body: 'Pag\u00e1s en efectivo cuando recib\u00eds tu pedido en casa.',
   },
 ];
-
-TRUST_POINTS[1] = {
-  title: 'EnvÃ­o gratis',
-  body: 'RecibÃ­ tus pares con envÃ­o gratis y confirmaciÃ³n por WhatsApp antes del despacho.',
-};
-
-TRUST_POINTS[2] = {
-  title: 'PagÃ¡ al recibir',
-  body: 'PagÃ¡s en efectivo cuando recibÃ­s tu pedido en casa.',
-};
-
-TRUST_POINTS[1] = {
-  title: 'Env\u00edo gratis',
-  body: 'Recib\u00ed tus pares con env\u00edo gratis y confirmaci\u00f3n por WhatsApp antes del despacho.',
-};
-
-TRUST_POINTS[2] = {
-  title: 'Pag\u00e1 al recibir',
-  body: 'Pag\u00e1s en efectivo cuando recib\u00eds tu pedido en casa.',
-};
 
 export const TESTIMONIAL_IMAGES = [
   { src: asset('comentariorecibi1.webp'), alt: 'Captura de comentario positivo de clienta 1' },
@@ -164,17 +145,3 @@ export const TESTIMONIAL_IMAGES = [
   { src: asset('comentario4-min.webp'), alt: 'Referencia de clienta satisfecha 2' },
   { src: asset('comentario5-min.webp'), alt: 'Referencia de clienta satisfecha 3' },
 ];
-
-
-
-
-
-
-
-
-
-
-
-
-
-
