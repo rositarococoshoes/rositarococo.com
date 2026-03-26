@@ -7,7 +7,7 @@ export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/w
 export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
 export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_contrareembolso';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
-export const BUILD_VERSION = '2026.03.26-v44';
+export const BUILD_VERSION = '2026.03.26-v45';
 const asset = (file) => `${BASE_PATH}/assets/contrareembolso/${file}`;
 
 const SIZES = [
@@ -33,8 +33,8 @@ export const PAGE_COPY = {
   reviewCommitment: 'PAGÁS SOLO EN EFECTIVO AL RECIBIR. SI NO DISPONÉS DE LA TOTALIDAD DEL EFECTIVO NO HAGAS EL PEDIDO. TU PEDIDO ES UN COMPROMISO DE PAGO.',
   freeShippingReminder: 'Recordá: envío GRATIS a todo el país. Pagás en efectivo al recibir.',
   whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
-  whatsappModalMessage: 'Para poder continuar con tu pedido y guardar tu carrito, necesitamos tu número de WhatsApp.',
-  whatsappModalNote: 'Tu número se usará para el seguimiento de tu pedido y guardar tu carrito.',
+  whatsappModalMessage: 'Dejanos tu número para guardar tu pedido y poder contactarte si hace falta.',
+  whatsappModalNote: 'Lo usamos para confirmarte el envío y ayudarte con tu compra.',
 };
 
 export const HIGHLIGHTS = [
@@ -132,6 +132,16 @@ export const TRUST_POINTS = [
     body: 'El pago sigue siendo solo en efectivo al recibir, respetando el flujo original.',
   },
 ];
+
+TRUST_POINTS[1] = {
+  title: 'EnvÃ­o gratis',
+  body: 'RecibÃ­ tus pares con envÃ­o gratis y confirmaciÃ³n por WhatsApp antes del despacho.',
+};
+
+TRUST_POINTS[2] = {
+  title: 'PagÃ¡ al recibir',
+  body: 'PagÃ¡s en efectivo cuando recibÃ­s tu pedido en casa.',
+};
 
 export const TESTIMONIAL_IMAGES = [
   { src: asset('comentariorecibi1.webp'), alt: 'Captura de comentario positivo de clienta 1' },

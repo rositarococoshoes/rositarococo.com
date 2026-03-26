@@ -577,7 +577,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
 
         <section id="checkout-form" className={`checkout-panel editorial-checkout ${canCheckout ? 'ready' : 'locked'}`}>
           <div className="section-heading left compact-heading">
-            <span>Checkout</span>
+            <span>Tus datos</span>
             <h2>{PAGE_COPY.checkoutTitle}</h2>
           </div>
 
