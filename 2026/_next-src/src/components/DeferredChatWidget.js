@@ -1,10 +1,16 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 
-export default function DeferredChatWidget({ hasCart = false, cartOpen = false, webhookUrl }) {
+export default function DeferredChatWidget({
+  hasCart = false,
+  cartOpen = false,
+  webhookUrl,
+  initialMessage = 'Hola, soy Rosita. Si quieres, te ayudo con talles o con la promo de contrareembolso.',
+  source = 'next-2026-contrareembolso',
+}) {
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([{ from: 'bot', text: 'Hola, soy Rosita. Si quieres, te ayudo con talles o con la promo de contrareembolso.' }]);
+  const [messages, setMessages] = useState([{ from: 'bot', text: initialMessage }]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
 
@@ -21,7 +27,7 @@ export default function DeferredChatWidget({ hasCart = false, cartOpen = false, 
       const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: trimmed, source: 'next-2026-contrareembolso', page: typeof window !== 'undefined' ? window.location.href : '' }),
+        body: JSON.stringify({ message: trimmed, source, page: typeof window !== 'undefined' ? window.location.href : '' }),
       });
 
       const text = await response.text();

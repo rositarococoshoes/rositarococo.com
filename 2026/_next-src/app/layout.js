@@ -1,4 +1,4 @@
-import { Playfair_Display } from 'next/font/google';
+﻿import { Playfair_Display } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { BASE_PATH, BUILD_VERSION, FACEBOOK_PIXEL_ID } from '@/src/lib/funnel-data';
@@ -10,9 +10,9 @@ const serif = Playfair_Display({
 });
 
 const SITE_URL = 'https://rositarococo.com';
-const SITE_TITLE = 'Rosita Rococo | Contrareembolso 2026';
-const SITE_DESCRIPTION = 'Botinetas Rosita Rococo en contrareembolso 2026. 1 par $70.000, 2 pares $110.000 con envío gratis. Pagás al recibir.';
-const CANONICAL_URL = `${SITE_URL}${BASE_PATH}/index-contrareembolso.html`;
+const SITE_TITLE = 'Rosita Rococo | Embudos 2026';
+const SITE_DESCRIPTION = 'Funnels 2026 de Rosita Rococo en Next.js: previo pago y contrarreembolso con experiencia mobile-first y export estático.';
+const CANONICAL_URL = `${SITE_URL}${BASE_PATH}/index.html`;
 const SHARE_IMAGE_URL = `${BASE_PATH}/og-contrareembolso-2026.png`;
 
 export const metadata = {
@@ -35,7 +35,7 @@ export const metadata = {
         url: SHARE_IMAGE_URL,
         width: 1200,
         height: 630,
-        alt: 'Rosita Rococo contrareembolso 2026',
+        alt: 'Rosita Rococo 2026',
       },
     ],
   },

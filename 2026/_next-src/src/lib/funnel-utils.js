@@ -1,4 +1,4 @@
-const DELIVERY_DAY_NAMES = [
+﻿const DELIVERY_DAY_NAMES = [
   'Domingo',
   'Lunes',
   'Martes',
@@ -22,6 +22,25 @@ const DELIVERY_MONTH_NAMES = [
   'noviembre',
   'diciembre',
 ];
+
+const DEFAULT_CART_PRICING = {
+  singlePrice: 70000,
+  bundlePrice: 110000,
+  bundleLabel: '$110.000',
+};
+
+const DEFAULT_THANK_YOU_ROUTES = {
+  single: '/gracias-1par-c',
+  bundle: '/gracias-2pares-c',
+};
+
+function resolvePricing(pricing = {}) {
+  return {
+    singlePrice: pricing.singlePrice ?? DEFAULT_CART_PRICING.singlePrice,
+    bundlePrice: pricing.bundlePrice ?? DEFAULT_CART_PRICING.bundlePrice,
+    bundleLabel: pricing.bundleLabel ?? DEFAULT_CART_PRICING.bundleLabel,
+  };
+}
 
 export function formatWhatsappNumber(number) {
   if (!number) return '';
@@ -48,10 +67,11 @@ export function isValidWhatsappInput(number) {
   return formatWhatsappNumber(number).length >= 12;
 }
 
-export function calculateCartTotal(itemCount) {
+export function calculateCartTotal(itemCount, pricing = DEFAULT_CART_PRICING) {
+  const resolvedPricing = resolvePricing(pricing);
   if (itemCount <= 0) return 0;
-  if (itemCount === 1) return 70000;
-  return 110000;
+  if (itemCount === 1) return resolvedPricing.singlePrice;
+  return resolvedPricing.bundlePrice;
 }
 
 export function getCartPhase(itemCount) {
@@ -66,13 +86,16 @@ export function getCartHeadline(itemCount) {
   return 'Promo activada';
 }
 
-export function getPostAddMessage(itemCount) {
-  if (itemCount <= 1) return 'Agregaste 1 par al pedido. Sumá otro par y activá la promo de 2 pares por $110.000.';
-  return 'Promo activada. Tu pedido quedó en 2 pares por $110.000 con envío gratis.';
+export function getPostAddMessage(itemCount, pricing = DEFAULT_CART_PRICING) {
+  const resolvedPricing = resolvePricing(pricing);
+  if (itemCount <= 1) {
+    return `Agregaste 1 par al pedido. Sumá otro par y activá la promo de 2 pares por ${resolvedPricing.bundleLabel}.`;
+  }
+  return `Promo activada. Tu pedido quedó en 2 pares por ${resolvedPricing.bundleLabel} con envío gratis.`;
 }
 
-export function getThankYouRoute(itemCount) {
-  return itemCount === 1 ? '/gracias-1par-c' : '/gracias-2pares-c';
+export function getThankYouRoute(itemCount, routes = DEFAULT_THANK_YOU_ROUTES) {
+  return itemCount === 1 ? routes.single : routes.bundle;
 }
 
 export function buildOrderSummary(cart) {

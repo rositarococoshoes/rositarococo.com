@@ -1,4 +1,4 @@
-import fs from 'node:fs/promises';
+﻿import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const root2026 = path.resolve('..');
@@ -14,6 +14,13 @@ const generatedEntries = [
   'index-contrareembolso.html',
   'gracias-1par-c.html',
   'gracias-2pares-c.html',
+  'gracias-1par.html',
+  'gracias-2pares.html',
+  'gracias-pago.html',
+  'gracias-pago-2pares.html',
+  'gracias-pago-pendiente.html',
+  'transferenciacbu-1par.html',
+  'transferenciacbu-2pares.html',
   '_next',
   'assets',
   'apple-touch-icon.png',
@@ -63,6 +70,13 @@ async function exportFromServerApp() {
     ['index-contrareembolso.html', 'index-contrareembolso.html'],
     ['gracias-1par-c.html', 'gracias-1par-c.html'],
     ['gracias-2pares-c.html', 'gracias-2pares-c.html'],
+    ['gracias-1par.html', 'gracias-1par.html'],
+    ['gracias-2pares.html', 'gracias-2pares.html'],
+    ['gracias-pago.html', 'gracias-pago.html'],
+    ['gracias-pago-2pares.html', 'gracias-pago-2pares.html'],
+    ['gracias-pago-pendiente.html', 'gracias-pago-pendiente.html'],
+    ['transferenciacbu-1par.html', 'transferenciacbu-1par.html'],
+    ['transferenciacbu-2pares.html', 'transferenciacbu-2pares.html'],
     ['_not-found.html', '_not-found.html'],
     ['_not-found.html', '404.html'],
   ];
