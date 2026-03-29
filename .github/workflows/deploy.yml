@@ -36,8 +36,9 @@ jobs:
       - name: Prepare Pages artifact
         run: |
           mkdir -p site
-          cp -R 2026/. site/
-          rm -rf site/_next-src
+          mkdir -p site/2026
+          cp -R 2026/. site/2026/
+          rm -rf site/2026/_next-src
           cp index.html site/index.html
           cp index-contrareembolso.html site/index-contrareembolso.html
           cp gracias-1par.html site/gracias-1par.html
@@ -50,6 +51,7 @@ jobs:
           cp transferenciacbu-1par.html site/transferenciacbu-1par.html
           cp transferenciacbu-2pares.html site/transferenciacbu-2pares.html
           cp 404.html site/404.html
+          cp _not-found.html site/_not-found.html
           cp CNAME site/CNAME
           cp .nojekyll site/.nojekyll
 
