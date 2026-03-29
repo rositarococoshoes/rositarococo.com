@@ -37,6 +37,18 @@ jobs:
         run: |
           mkdir -p site
           cp -R astrocline/. site/
+          cp index.html site/index.html
+          cp index-contrareembolso.html site/index-contrareembolso.html
+          cp gracias-1par.html site/gracias-1par.html
+          cp gracias-1par-c.html site/gracias-1par-c.html
+          cp gracias-2pares.html site/gracias-2pares.html
+          cp gracias-2pares-c.html site/gracias-2pares-c.html
+          cp gracias-pago.html site/gracias-pago.html
+          cp gracias-pago-2pares.html site/gracias-pago-2pares.html
+          cp gracias-pago-pendiente.html site/gracias-pago-pendiente.html
+          cp transferenciacbu-1par.html site/transferenciacbu-1par.html
+          cp transferenciacbu-2pares.html site/transferenciacbu-2pares.html
+          cp 404.html site/404.html
           mkdir -p site/2026
           cp -R 2026/. site/2026/
           rm -rf site/2026/_next-src
