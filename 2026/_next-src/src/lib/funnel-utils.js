@@ -52,9 +52,14 @@ export function formatWhatsappNumber(number) {
   if (formatted.startsWith('54')) formatted = formatted.slice(2);
   if (formatted.startsWith('0')) formatted = formatted.slice(1);
 
-  if (formatted.length > 2 && formatted.slice(2, 4) === '15') {
-    formatted = `${formatted.slice(0, 2)}${formatted.slice(4)}`;
+  // Remove "15" mobile prefix after area code (2-4 digits) or at start
+  // Argentine mobile format: area_code (2-4 digits) + "15" + local_number
+  const mobileMatch = formatted.match(/^(\d{2,4})15(.*)$/);
+  if (mobileMatch) {
+    // "15" found after area code
+    formatted = mobileMatch[1] + mobileMatch[2];
   } else if (formatted.startsWith('15')) {
+    // "15" at the start (no area code)
     formatted = formatted.slice(2);
   }
 
