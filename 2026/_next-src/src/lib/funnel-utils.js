@@ -47,6 +47,7 @@ export function formatWhatsappNumber(number) {
 
   let formatted = number.replace(/[\s\-()+]/g, '');
 
+  // If already starts with 549, return as is
   if (/^549\d+$/.test(formatted)) return formatted;
 
   if (formatted.startsWith('54')) formatted = formatted.slice(2);
@@ -54,11 +55,6 @@ export function formatWhatsappNumber(number) {
   if (formatted.startsWith('15')) formatted = formatted.slice(2);
 
   if (!/^\d{10,}$/.test(formatted)) return '';
-
-  return `549${formatted}`;
-}
-
-  if (!/^\d+$/.test(formatted)) return '';
 
   return `549${formatted}`;
 }

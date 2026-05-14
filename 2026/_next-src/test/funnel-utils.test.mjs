@@ -22,6 +22,13 @@ test('formats argentina whatsapp numbers to 549 format', () => {
   assert.equal(formatWhatsappNumber('11 5645-7057'), '5491156457057');
   assert.equal(formatWhatsappNumber('5491156457057'), '5491156457057');
   assert.equal(formatWhatsappNumber('011-15-5645-7057'), '5491156457057');
+  // Area codes with 3 digits (e.g., 341 for Rosario)
+  assert.equal(formatWhatsappNumber('3415208671'), '5493415208671');
+  assert.equal(formatWhatsappNumber('03415208671'), '5493415208671');
+  assert.equal(formatWhatsappNumber('341 15 520-8671'), '5493415208671');
+  // Area codes with 4 digits (e.g., 379 for Puerto Iguazú)
+  assert.equal(formatWhatsappNumber('379154001234'), '549379154001234');
+  assert.equal(formatWhatsappNumber('0379154001234'), '549379154001234');
 });
 
 test('rejects invalid whatsapp values', () => {

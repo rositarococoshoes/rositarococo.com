@@ -34,59 +34,19 @@ const DeferredChatWidget = dynamic(() => import('@/src/components/DeferredChatWi
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
 
-function postOrderThroughHiddenForm(action, params) {
-  if (typeof document === 'undefined') throw new Error('No document available for order submission');
-
-  return new Promise((resolve) => {
-    const frameName = `rosita-order-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const iframe = document.createElement('iframe');
-    let form = null;
-    let settled = false;
-    let submitted = false;
-    let timeoutId = null;
-
-    const cleanup = () => {
-      if (form?.isConnected) form.remove();
-      if (iframe.isConnected) iframe.remove();
-    };
-
-    const finalize = () => {
-      if (settled) return;
-      settled = true;
-      if (timeoutId !== null) window.clearTimeout(timeoutId);
-      cleanup();
-      resolve();
-    };
-
-    iframe.name = frameName;
-    iframe.title = 'order-submit-frame';
-    iframe.hidden = true;
-    iframe.addEventListener('load', () => {
-      if (!submitted) return;
-      finalize();
-    });
-
-    form = document.createElement('form');
-    form.method = 'POST';
-    form.action = action;
-    form.target = frameName;
-    form.hidden = true;
-
-    const entries = new URLSearchParams(params.toString());
-    entries.forEach((value, key) => {
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = key;
-      input.value = value;
-      form.appendChild(input);
-    });
-
-    document.body.appendChild(iframe);
-    document.body.appendChild(form);
-    submitted = true;
-    timeoutId = window.setTimeout(finalize, 6000);
-    form.submit();
+async function postOrderToWebhook(webhookUrl, params) {
+  const response = await fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: params.toString(),
+    cache: 'no-store',
   });
+
+  if (!response.ok) {
+    throw new Error(`Webhook respondió con status ${response.status}`);
+  }
+
+  return response;
 }
 
 function ProductGallery({ product, priority = false }) {
@@ -476,7 +436,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
         window.fbq('track', 'InitiateCheckout', { currency: 'ARS', value: total, num_items: cart.length, content_type: 'product' });
       }
-      await postOrderThroughHiddenForm(ORDER_WEBHOOK_URL, params);
+      await postOrderToWebhook(ORDER_WEBHOOK_URL, params);
 
       window.localStorage.setItem('orderDetails', orderDetails);
       window.localStorage.setItem('rawProducts', orderSummary);
