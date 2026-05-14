@@ -1277,6 +1277,44 @@ label small,
   padding: 10px 14px 14px;
 }
 
+.delivery-label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.delivery-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.delivery-option-btn {
+  flex: 1 1 0;
+  min-width: 140px;
+  padding: 14px 12px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  text-align: center;
+}
+
+.delivery-option-btn:hover {
+  border-color: #9ca3af;
+}
+
+.delivery-option-btn.selected {
+  border-color: #111;
+  background: #f3f4f6;
+  font-weight: 700;
+}
+
 .compact-legend-copy,
 .compact-reminder {
   font-size: 13px;

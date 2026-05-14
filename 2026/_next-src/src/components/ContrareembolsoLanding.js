@@ -612,13 +612,19 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                 <summary>Ver condiciones del envío y pago</summary>
                 <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
               </details>
-              <label>
-                Día y hora estimada para entregar
-                <select value={formState.deliverySlot} onChange={(event) => updateField('deliverySlot', event.target.value)} required>
-                  <option value="">Seleccioná una opción</option>
-                  {deliveryOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </select>
-              </label>
+              <label className="delivery-label">Día y hora estimada para entregar</label>
+              <div className="delivery-options">
+                {deliveryOptions.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    className={`delivery-option-btn${formState.deliverySlot === option ? ' selected' : ''}`}
+                    onClick={() => updateField('deliverySlot', option)}
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
             </fieldset>
 
             <div className="review-box original-review-style">
