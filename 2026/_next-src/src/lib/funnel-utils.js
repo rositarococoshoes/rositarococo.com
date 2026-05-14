@@ -47,18 +47,14 @@ export function formatWhatsappNumber(number) {
 
   let formatted = number.replace(/[\s\-()+]/g, '');
 
+  // If already starts with 549, return as is
   if (/^549\d+$/.test(formatted)) return formatted;
 
-  if (formatted.startsWith('54')) formatted = formatted.slice(2);
-  if (formatted.startsWith('0')) formatted = formatted.slice(1);
+  // Remove leading 0 or 15 (common prefixes)
+  formatted = formatted.replace(/^0/, '').replace(/^15/, '');
 
-  if (formatted.length > 2 && formatted.slice(2, 4) === '15') {
-    formatted = `${formatted.slice(0, 2)}${formatted.slice(4)}`;
-  } else if (formatted.startsWith('15')) {
-    formatted = formatted.slice(2);
-  }
-
-  if (!/^\d+$/.test(formatted)) return '';
+  // Ensure we have at least 10 digits for a valid Argentine phone number
+  if (!/^\d{10,}$/.test(formatted)) return '';
 
   return `549${formatted}`;
 }
