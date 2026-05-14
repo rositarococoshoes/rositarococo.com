@@ -550,7 +550,15 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
             ))}
           </div>
 
-          <form className="checkout-form refined-form" onSubmit={submitOrder}>
+          {!canCheckout ? (
+            <div className="checkout-placeholder">
+              <div className="checkout-placeholder-icon">🛒</div>
+              <h3>Elegí tu par para continuar</h3>
+              <p>Una vez que agregues un par, vas a poder completar tus datos y hacer el pedido.</p>
+            </div>
+          ) : null}
+
+          <form className={`checkout-form refined-form${canCheckout ? ' checkout-visible' : ' checkout-hidden'}`} onSubmit={submitOrder}>
             <input type="hidden" name="entry.286442883" value={orderSummary} readOnly />
             <input type="hidden" name="entry.comoabona" value="contrareembolso" readOnly />
             <input type="hidden" name="entry.17650825" value="A DOMICILIO" readOnly />
@@ -612,7 +620,8 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                 <summary>Ver condiciones del envío y pago</summary>
                 <p className="fieldset-copy">{PAGE_COPY.deliveryLegend}</p>
               </details>
-              <label className="delivery-label">Día y hora estimada para entregar</label>
+              <label className="delivery-label">Elegí cuándo recibir</label>
+              <p className="delivery-hint">Tocá una opción para seleccionarla</p>
               <div className="delivery-options">
                 {deliveryOptions.map((option) => (
                   <button
@@ -621,7 +630,9 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                     className={`delivery-option-btn${formState.deliverySlot === option ? ' selected' : ''}`}
                     onClick={() => updateField('deliverySlot', option)}
                   >
-                    {option}
+                    <span className="delivery-option-icon">📅</span>
+                    <span className="delivery-option-text">{option}</span>
+                    {formState.deliverySlot === option && <span className="delivery-check">✓</span>}
                   </button>
                 ))}
               </div>
