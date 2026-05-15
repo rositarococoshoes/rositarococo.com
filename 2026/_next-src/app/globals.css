@@ -1377,11 +1377,12 @@ label small,
   line-height: 1.5;
 }
 
-.checkout-hidden {
+.checkout-form.checkout-hidden {
   display: none;
 }
 
-.checkout-visible {
+.checkout-form.checkout-visible {
+  display: grid;
   animation: fadeSlideIn 0.4s ease-out;
 }
 
