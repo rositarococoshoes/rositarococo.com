@@ -82,11 +82,14 @@ async function submitPrevioPagoOrder(formData) {
   const response = await fetch(ORDER_WEBHOOK_URL, {
     method: 'POST',
     body: formData,
+    keepalive: true,
   });
 
   if (!response.ok) {
     throw new Error(`Order submission failed: ${response.status}`);
   }
+
+  await response.text();
 }
 
 function ProductGallery({ product, priority = false }) {
