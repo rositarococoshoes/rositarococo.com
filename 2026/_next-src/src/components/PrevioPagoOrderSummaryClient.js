@@ -65,7 +65,6 @@ export default function PrevioPagoOrderSummaryClient({
   title = 'Tu pedido',
   whatsappMode = null,
   showWhatsapp = false,
-  trackPurchase = false,
 }) {
   const [customerName, setCustomerName] = useState('');
   const [rawProducts, setRawProducts] = useState('');
@@ -81,14 +80,7 @@ export default function PrevioPagoOrderSummaryClient({
     setOrderDetails(details);
     setCustomerName(name);
 
-    if (trackPurchase && typeof window.fbq === 'function') {
-      window.fbq('track', 'Purchase', {
-        currency: 'ARS',
-        value: total,
-        num_items: pairCount,
-      });
-    }
-  }, [pairCount, total, trackPurchase]);
+  }, [pairCount, total]);
 
   const finalList = buildDetailList(rawProducts, orderDetails);
   const emptySummaryCopy = 'Tu resumen aparecerá aquí después de completar la compra.';

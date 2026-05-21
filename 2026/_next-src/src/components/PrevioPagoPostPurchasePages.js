@@ -74,7 +74,6 @@ export function PrevioPagoPaymentSuccessPage({ pairCount, total, pending = false
           title="Detalle del pedido"
           showWhatsapp={pending}
           whatsappMode="support"
-          trackPurchase={!pending}
         />
 
         <div className="thankyou-payment-box">
