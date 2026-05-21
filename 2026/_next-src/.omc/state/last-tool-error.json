@@ -1,0 +1,7 @@
+{
+  "tool_name": "Read",
+  "tool_input_preview": "{\"file_path\":\"\\\\tmp\\\\build-output.txt\"}",
+  "error": "File does not exist. Note: your current working directory is C:\\rosita\\rositarococo.com\\2026\\_next-src.",
+  "timestamp": "2026-05-21T00:56:43.146Z",
+  "retry_count": 1
+}
