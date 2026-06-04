@@ -3,9 +3,6 @@ export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzGtF3OryfbupUz-8IlK1K4Ew0P0H1QSjabGnsHcswkbDzldXLWPDEdF26tLUkSjz6MSQ/exec';
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1e214d4e-5481-4ded-8936-c63ff9ce7743';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/8b70ed56-6ce4-4308-8d5b-0c21f9f7d751/chat';
-export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea';
-export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
-export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_contrareembolso';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
 export const BUILD_VERSION = '2026.03.26-v48';
 

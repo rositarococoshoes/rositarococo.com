@@ -13,9 +13,6 @@ import {
   PREVIO_PAGO_PRICING,
   PRODUCTS,
   PROVINCES,
-  WHATSAPP_MODAL_SOURCE,
-  WHATSAPP_SAVE_WEBHOOK_URL,
-  WHATSAPP_VALIDATE_WEBHOOK_URL,
 } from '@/src/lib/previo-pago-data';
 import {
   buildOrderSummary,
@@ -26,8 +23,6 @@ import {
   getPostAddMessage,
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
-import { shouldOpenWhatsappModal } from '@/src/lib/whatsapp-modal-utils';
-import LegacyWhatsappModal from '@/src/components/LegacyWhatsappModal';
 
 const DeferredChatWidget = dynamic(() => import('@/src/components/DeferredChatWidget'), {
   ssr: false,
@@ -341,10 +336,8 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
   const [cart, setCart] = useState([]);
   const [cartExpanded, setCartExpanded] = useState(true);
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
-  const [whatsappModalOpen, setWhatsappModalOpen] = useState(false);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
-  const [prefillWhatsapp, setPrefillWhatsapp] = useState('');
   const [formState, setFormState] = useState({
     email: '',
     name: '',
@@ -358,12 +351,12 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
   });
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const savedWhatsapp = window.localStorage.getItem('savedWhatsapp')
       || window.localStorage.getItem('rosita.whatsapp.prefill')
       || '';
     if (savedWhatsapp) {
-      setPrefillWhatsapp(savedWhatsapp);
-      setFormState((current) => ({ ...current, whatsapp: current.whatsapp || savedWhatsapp }));
+      setFormState((current) => (current.whatsapp ? current : { ...current, whatsapp: savedWhatsapp }));
     }
   }, []);
 
@@ -378,12 +371,6 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
       setNotification('');
     }
   }, [mobileCartOpen, notification]);
-
-  useEffect(() => {
-    if (whatsappModalOpen && notification) {
-      setNotification('');
-    }
-  }, [notification, whatsappModalOpen]);
 
   const cartPhase = getCartPhase(cart.length);
   const cartHeadline = getCartHeadline(cart.length);
@@ -420,10 +407,6 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     }
 
     const nextCount = cart.length + 1;
-    const shouldPromptWhatsapp = typeof window !== 'undefined' && shouldOpenWhatsappModal({
-      cartCount: nextCount,
-      modalAlreadyShown: Boolean(window.localStorage.getItem('whatsappModalShown')),
-    });
 
     setCart((current) => [
       ...current,
@@ -431,13 +414,7 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     ]);
     setCartExpanded(true);
     setMobileCartOpen(false);
-    setNotification(shouldPromptWhatsapp ? '' : (nextCount === 1 ? getPostAddMessage(nextCount, PREVIO_PAGO_PRICING) : ''));
-    if (shouldPromptWhatsapp) {
-      window.setTimeout(() => setWhatsappModalOpen(true), 500);
-    }
-    if (!formState.whatsapp && prefillWhatsapp) {
-      setFormState((current) => ({ ...current, whatsapp: current.whatsapp || prefillWhatsapp }));
-    }
+    setNotification(nextCount === 1 ? getPostAddMessage(nextCount, PREVIO_PAGO_PRICING) : '');
   }
 
   function removeItem(itemId) {
@@ -743,23 +720,6 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
         onRemove={removeItem}
         onGoProducts={() => jumpTo('#productos')}
         onGoCheckout={() => jumpTo('#checkout-form')}
-      />
-      <LegacyWhatsappModal
-        isOpen={whatsappModalOpen}
-        initialWhatsapp={prefillWhatsapp || formState.whatsapp}
-        title={PAGE_COPY.whatsappModalTitle}
-        message={PAGE_COPY.whatsappModalMessage}
-        note={PAGE_COPY.whatsappModalNote}
-        validateBeforeSave
-        validateEndpoint={WHATSAPP_VALIDATE_WEBHOOK_URL}
-        saveEndpoint={WHATSAPP_SAVE_WEBHOOK_URL}
-        saveSource={WHATSAPP_MODAL_SOURCE}
-        closeDelayMs={1000}
-        onSaved={(whatsappNumber) => {
-          setWhatsappModalOpen(false);
-          setPrefillWhatsapp(whatsappNumber);
-          setFormState((current) => ({ ...current, whatsapp: whatsappNumber }));
-        }}
       />
       <DeferredChatWidget
         hasCart={cartEntries.length > 0}

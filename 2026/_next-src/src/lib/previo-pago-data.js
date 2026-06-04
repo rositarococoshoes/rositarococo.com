@@ -5,9 +5,6 @@ export const FACEBOOK_PIXEL_ID = '1052677351596434';
 export const ORDER_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca';
 export const PAYMENT_LINK_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30';
 export const CHAT_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/0bf290e4-f5d5-4a22-94f5-a88cbbf9b347/chat';
-export const WHATSAPP_VALIDATE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/02eb0643-1b9d-4866-87a7-f892d6a945ea';
-export const WHATSAPP_SAVE_WEBHOOK_URL = 'https://sswebhookss.odontolab.co/webhook/1d018fb5-b798-4218-9c57-b48e3a71c6a7';
-export const WHATSAPP_MODAL_SOURCE = 'modal_whatsapp_validated';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
 
 const asset = (file) => `${BASE_PATH}/assets/previo-pago/${file}`;
