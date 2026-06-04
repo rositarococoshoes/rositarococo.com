@@ -85,6 +85,10 @@ async function exportFromServerApp() {
   await copyRecursive(nextStaticDir, path.join(root2026, '_next', 'static'));
   await copyRecursive(path.join(publicDir, 'assets'), path.join(root2026, 'assets'));
 
+  const repoRoot = path.resolve(root2026, '..');
+  const rootHtmlEntries = htmlEntries.filter(([, targetName]) => targetName !== '_not-found.html' && targetName !== '404.html');
+  await Promise.all(rootHtmlEntries.map(([sourceName, targetName]) => copyRecursive(path.join(serverAppDir, sourceName), path.join(repoRoot, targetName))));
+
   const optionalPublic = [
     'apple-touch-icon.png',
     'favicon-16x16.png',
