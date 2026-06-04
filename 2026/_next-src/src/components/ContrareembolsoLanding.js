@@ -219,7 +219,12 @@ function MiniCartDrawer({ cartEntries, cartHeadline, cartPhase, total, expanded,
         </div>
         <div className="mobile-cart-summary">
           <strong>{formatCurrency(total)}</strong>
-          <span>{expanded ? 'Ocultar carrito' : 'Ver carrito'}</span>
+          <span className="mobile-cart-toggle-cta">
+            {expanded ? 'Ocultar carrito' : 'Ver carrito'}
+            <svg className="mobile-cart-chevron" viewBox="0 0 12 8" width="11" height="7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M1 6.5 L6 1.5 L11 6.5" />
+            </svg>
+          </span>
         </div>
       </button>
 

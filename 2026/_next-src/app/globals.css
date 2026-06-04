@@ -1702,8 +1702,24 @@ label small,
 
   .mobile-cart-copy span {
     color: var(--muted);
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1.28;
+  }
+
+  .mobile-cart-summary .mobile-cart-toggle-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .mobile-cart-chevron {
+    transition: transform 200ms ease;
+    flex-shrink: 0;
+    margin-bottom: 1px;
+  }
+
+  .mobile-cart-toggle[aria-expanded="true"] .mobile-cart-chevron {
+    transform: rotate(180deg);
   }
 
   .mobile-cart-summary {

@@ -78,8 +78,8 @@ export function getCartPhase(itemCount) {
 
 export function getCartHeadline(itemCount) {
   if (itemCount <= 0) return 'Todavía no agregaste pares';
-  if (itemCount === 1) return 'Tenés 1 de 2 pares';
-  return 'Promo activada';
+  if (itemCount === 1) return '1 par agregado';
+  return '2 pares agregados';
 }
 
 export function getPostAddMessage(itemCount, pricing = DEFAULT_CART_PRICING) {
