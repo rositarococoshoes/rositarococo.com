@@ -30,6 +30,7 @@ const generatedEntries = [
   'android-chrome-192x192.png',
   'android-chrome-512x512.png',
   'og-contrareembolso-2026.png',
+  'og-previo-pago-2026.png',
   'site.webmanifest',
 ];
 
@@ -97,6 +98,7 @@ async function exportFromServerApp() {
     'android-chrome-192x192.png',
     'android-chrome-512x512.png',
     'og-contrareembolso-2026.png',
+    'og-previo-pago-2026.png',
     'site.webmanifest',
   ];
   await Promise.all(optionalPublic.map(async (file) => {
