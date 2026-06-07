@@ -159,7 +159,7 @@ export function getDeliveryOptions(now = new Date()) {
 
     availableDates = isBeforeCutoff
       ? [addDays(now, 2), addDays(now, 4)]
-      : [addDays(now, 4), dateForIsoWeekday(now, 2, 1)];
+      : [dateForIsoWeekday(now, 2, 1), addDays(now, 4)];
   }
 
   return availableDates.map(formatDeliveryDate);

@@ -91,6 +91,6 @@ test('builds sunday delivery options before cutoff', () => {
 test('builds sunday delivery options after cutoff', () => {
   const options = getDeliveryOptions(new Date('2026-03-22T12:30:00-03:00'));
   assert.equal(options.length, 2);
-  assert.match(options[0], /^Jueves /);
-  assert.match(options[1], /^Martes /);
+  assert.match(options[0], /^Martes /);
+  assert.match(options[1], /^Jueves /);
 });
