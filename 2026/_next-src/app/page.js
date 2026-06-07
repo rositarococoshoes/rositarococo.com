@@ -5,7 +5,7 @@ export const metadata = {
   title: 'Rosita Rococo | Colecci\u00f3n Oto\u00f1o-Invierno 2026',
   description: 'Descubr\u00ed la colecci\u00f3n Oto\u00f1o-Invierno 2026 de Rosita Rococo. 1 par $87.500, 2 pares $137.500 con env\u00edo gratis y pago online o transferencia.',
   alternates: {
-    canonical: 'https://rositarococo.com/2026/index.html',
+    canonical: 'https://rositarococo.com/',
   },
   openGraph: {
     type: 'website',
@@ -13,10 +13,10 @@ export const metadata = {
     siteName: 'Rosita Rococo',
     title: 'Rosita Rococo | Colecci\u00f3n Oto\u00f1o-Invierno 2026',
     description: 'Descubr\u00ed la colecci\u00f3n Oto\u00f1o-Invierno 2026 de Rosita Rococo. 1 par $87.500, 2 pares $137.500 con env\u00edo gratis y pago online o transferencia.',
-    url: 'https://rositarococo.com/2026/index.html',
+    url: 'https://rositarococo.com/',
     images: [
       {
-        url: 'https://rositarococo.com/2026/og-contrareembolso-2026.png',
+        url: 'https://rositarococo.com/2026/og-previo-pago-2026.png',
         width: 1200,
         height: 630,
         alt: 'Rosita Rococo Oto\u00f1o-Invierno 2026',
@@ -27,7 +27,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Rosita Rococo | Colecci\u00f3n Oto\u00f1o-Invierno 2026',
     description: 'Descubr\u00ed la colecci\u00f3n Oto\u00f1o-Invierno 2026 de Rosita Rococo. 1 par $87.500, 2 pares $137.500 con env\u00edo gratis y pago online o transferencia.',
-    images: ['https://rositarococo.com/2026/og-contrareembolso-2026.png'],
+    images: ['https://rositarococo.com/2026/og-previo-pago-2026.png'],
   },
 };
 
