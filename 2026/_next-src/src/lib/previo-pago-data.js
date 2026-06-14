@@ -1,4 +1,4 @@
-import { PRODUCTS as CONTRAREEMBOLSO_PRODUCTS } from '@/src/lib/funnel-data';
+import { PRODUCTS as CONTRAREEMBOLSO_PRODUCTS, SIZES } from '@/src/lib/funnel-data';
 
 export const BASE_PATH = '/2026';
 export const FACEBOOK_PIXEL_ID = '1052677351596434';
@@ -77,7 +77,90 @@ TRUST_POINTS[2] = {
   body: 'Recib\u00eds tus pares con env\u00edo gratis a todo el pa\u00eds y seguimiento claro de tu compra.',
 };
 
-export const PRODUCTS = CONTRAREEMBOLSO_PRODUCTS.map((product) => ({
+const PREVIO_PAGO_EXCLUSIVE_PRODUCTS = [
+  {
+    id: 'zuecos-turin-negros',
+    shortModel: 'zuecos-turin-negros',
+    displayName: 'Zuecos Turín negros',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Expanso' },
+      { label: 'Altura', value: 'Baja' },
+    ],
+    description: 'Cómodos por naturaleza, versátiles por diseño. Ideales para combinar con tus looks diarios con un toque de otoño.',
+    images: [
+      asset('zuecos-turin-negros-1.webp'),
+      asset('zuecos-turin-negros-2.webp'),
+      asset('zuecos-turin-negros-3.webp'),
+      asset('zuecos-turin-negros-4.webp'),
+      asset('zuecos-turin-negros-5.webp'),
+      asset('zuecos-turin-negros-6.webp'),
+    ],
+    sizes: SIZES,
+  },
+  {
+    id: 'zuecos-turin-marron',
+    shortModel: 'zuecos-turin-marron',
+    displayName: 'Zuecos Turín marrón',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Expanso' },
+      { label: 'Altura', value: 'Baja' },
+    ],
+    description: 'El tono cálido que eleva tus looks de entretiempo. Un básico cómodo y con presencia para el día a día.',
+    images: [
+      asset('zuecos-turin-marron-1.webp'),
+      asset('zuecos-turin-marron-2.webp'),
+      asset('zuecos-turin-marron-3.webp'),
+      asset('zuecos-turin-marron-4.webp'),
+      asset('zuecos-turin-marron-5.webp'),
+    ],
+    sizes: SIZES,
+  },
+  {
+    id: 'botitas-milan-nude',
+    shortModel: 'botitas-milan-nude',
+    displayName: 'Botitas Milán nude',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Goma Eva reforzada' },
+      { label: 'Altura', value: 'Baja' },
+    ],
+    description: 'Estilo y confort en un diseño cuidado. Acompañan tus outfits de entretiempo sin resignar calidez.',
+    images: [
+      asset('botitas-milan-nude-1.webp'),
+      asset('botitas-milan-nude-2.webp'),
+      asset('botitas-milan-nude-3.webp'),
+      asset('botitas-milan-nude-4.webp'),
+      asset('botitas-milan-nude-5.webp'),
+    ],
+    sizes: SIZES,
+  },
+  {
+    id: 'botitas-milan-chocolate',
+    shortModel: 'botitas-milan-chocolate',
+    displayName: 'Botitas Milán chocolate',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Goma Eva reforzada' },
+      { label: 'Altura', value: 'Baja' },
+    ],
+    description: 'El chocolate es el neutro cálido por excelencia. Combina con todo y le da profundidad a tu look de estación.',
+    images: [
+      asset('botitas-milan-chocolate-1.webp'),
+      asset('botitas-milan-chocolate-2.webp'),
+      asset('botitas-milan-chocolate-3.webp'),
+      asset('botitas-milan-chocolate-4.webp'),
+    ],
+    sizes: SIZES,
+  },
+];
+
+export const PRODUCTS = [...CONTRAREEMBOLSO_PRODUCTS, ...PREVIO_PAGO_EXCLUSIVE_PRODUCTS].map((product) => ({
   ...product,
   unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
   bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
