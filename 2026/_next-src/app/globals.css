@@ -811,23 +811,29 @@ label small,
     gap: 7px;
   }
   .gallery-frame {
-    min-height: 92vw;
+    min-height: 95vw;
     max-height: none;
-    border-radius: 20px;
-    margin-left: -6px;
-    margin-right: -6px;
-    padding: 8px;
+    border-radius: 18px;
+    margin-left: -14px;
+    margin-right: -14px;
+    padding: 4px;
+  }
+  .gallery-image {
+    object-fit: cover;
   }
   .gallery-thumbs {
-    grid-template-columns: repeat(4, minmax(76px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(72px, 1fr));
+    gap: 6px;
     overflow-x: auto;
     padding: 2px 1px 4px;
   }
   .gallery-thumb {
     aspect-ratio: 1 / 1;
     min-height: 0;
-    border-radius: 14px;
+    border-radius: 12px;
+  }
+  .gallery-thumb-image {
+    object-fit: cover;
   }
   .product-meta-line {
     font-size: 11px;
