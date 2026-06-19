@@ -2044,7 +2044,7 @@ label small,
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
-  padding: 10px 6px 100px;
+  padding: 6px 6px 100px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -2055,10 +2055,10 @@ label small,
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  padding: 14px 14px 12px;
+  gap: 5px;
+  padding: 8px 12px 8px;
   background: var(--v2-surface);
-  border-radius: 16px;
+  border-radius: 14px;
   box-shadow: 0 6px 18px rgba(53, 28, 18, 0.06);
   border: 1px solid var(--v2-line);
   text-align: center;
@@ -2748,7 +2748,8 @@ label small,
 
 /* --- Mobile tweaks --- */
 @media (max-width: 380px) {
-  .v2-shell { padding: 10px 4px 100px; }
+  .v2-shell { padding: 4px 4px 100px; }
+  .v2-header { padding: 6px 10px 6px; gap: 4px; border-radius: 12px; }
   .v2-form-grid.triple { grid-template-columns: 1fr 1fr; }
   .v2-form-grid.triple .v2-field:nth-child(3) { grid-column: 1 / -1; }
   .v2-cart-context { font-size: 10px; gap: 3px; }
