@@ -12,6 +12,7 @@ const generatedEntries = [
   '404.html',
   '_not-found.html',
   'index-contrareembolso.html',
+  'index-contrareembolso2.html',
   'gracias-1par-c.html',
   'gracias-2pares-c.html',
   'gracias-1par.html',
@@ -47,7 +48,11 @@ async function removeGeneratedTargets() {
   await Promise.all(
     generatedEntries.map(async (entry) => {
       const target = path.join(root2026, entry);
-      await fs.rm(target, { recursive: true, force: true });
+      try {
+        await fs.rm(target, { recursive: true, force: true });
+      } catch (error) {
+        console.warn(`(skip) no se pudo eliminar ${target}: ${error.message}`);
+      }
     }),
   );
 }
@@ -68,7 +73,8 @@ async function copyRecursive(source, destination) {
 async function exportFromServerApp() {
   const htmlEntries = [
     ['index.html', 'index.html'],
-    ['index-contrareembolso.html', 'index-contrareembolso.html'],
+    ['index-contrareembolso.html', 'index-contrareembolso2.html'],
+    ['index-contrareembolso-v2.html', 'index-contrareembolso.html'],
     ['gracias-1par-c.html', 'gracias-1par-c.html'],
     ['gracias-2pares-c.html', 'gracias-2pares-c.html'],
     ['gracias-1par.html', 'gracias-1par.html'],

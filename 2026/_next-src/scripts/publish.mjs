@@ -9,6 +9,7 @@ const repoRoot = path.resolve(nextSrcDir, '..', '..');
 const rootHtmlFiles = [
   'index.html',
   'index-contrareembolso.html',
+  'index-contrareembolso2.html',
   'gracias-1par.html',
   'gracias-1par-c.html',
   'gracias-2pares.html',

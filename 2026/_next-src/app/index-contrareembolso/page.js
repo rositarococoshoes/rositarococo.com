@@ -1,32 +1,32 @@
-﻿import ContrareembolsoLanding from '@/src/components/ContrareembolsoLanding';
+import ContrareembolsoLanding from '@/src/components/ContrareembolsoLanding';
 import { ContrareembolsoIntro, ContrareembolsoTestimonials } from '@/src/components/ContrareembolsoStaticSections';
 
 export const metadata = {
-  title: 'Rosita Rococo | Contrarreembolso con env\u00edo gratis',
-  description: 'Eleg\u00ed tus pares de Rosita Rococo y pag\u00e1 al recibir. 1 par $70.000 o 2 pares $110.000 con env\u00edo gratis a todo el pa\u00eds.',
+  title: 'Rosita Rococo | Contrarreembolso (anterior)',
+  description: 'Elegí tus pares de Rosita Rococo y pagá al recibir. 1 par $70.000 o 2 pares $110.000 con envío gratis a todo el país.',
   alternates: {
-    canonical: 'https://rositarococo.com/2026/index-contrareembolso.html',
+    canonical: 'https://rositarococo.com/2026/index-contrareembolso2.html',
   },
   openGraph: {
     type: 'website',
     locale: 'es_AR',
     siteName: 'Rosita Rococo',
-    title: 'Rosita Rococo | Contrarreembolso con env\u00edo gratis',
-    description: 'Eleg\u00ed tus pares de Rosita Rococo y pag\u00e1 al recibir. 1 par $70.000 o 2 pares $110.000 con env\u00edo gratis a todo el pa\u00eds.',
-    url: 'https://rositarococo.com/2026/index-contrareembolso.html',
+    title: 'Rosita Rococo | Contrarreembolso (anterior)',
+    description: 'Elegí tus pares de Rosita Rococo y pagá al recibir. 1 par $70.000 o 2 pares $110.000 con envío gratis a todo el país.',
+    url: 'https://rositarococo.com/2026/index-contrareembolso2.html',
     images: [
       {
         url: 'https://rositarococo.com/2026/og-contrareembolso-2026.png',
         width: 1200,
         height: 630,
-        alt: 'Rosita Rococo Oto\u00f1o-Invierno 2026',
+        alt: 'Rosita Rococo Otoño-Invierno 2026',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Rosita Rococo | Contrarreembolso con env\u00edo gratis',
-    description: 'Eleg\u00ed tus pares de Rosita Rococo y pag\u00e1 al recibir. 1 par $70.000 o 2 pares $110.000 con env\u00edo gratis a todo el pa\u00eds.',
+    title: 'Rosita Rococo | Contrarreembolso (anterior)',
+    description: 'Elegí tus pares de Rosita Rococo y pagá al recibir. 1 par $70.000 o 2 pares $110.000 con envío gratis.',
     images: ['https://rositarococo.com/2026/og-contrareembolso-2026.png'],
   },
 };
