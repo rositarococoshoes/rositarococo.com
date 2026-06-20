@@ -385,6 +385,7 @@ function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, del
         </label>
         <label className="v2-field">
           <span>Localidad</span>
+          <p className="v2-field-restriction">Sólo Capital Federal y Gran Buenos Aires</p>
           <input
             value={formState.locality}
             onChange={(event) => updateField('locality', event.target.value)}

@@ -2670,6 +2670,17 @@ label small,
 }
 .v2-field input:focus { outline: none; border-color: var(--v2-accent); }
 .v2-field small { color: var(--v2-muted); font-size: 10px; }
+.v2-field-restriction {
+  margin: -1px 0 2px;
+  padding: 4px 8px;
+  background: var(--v2-accent-soft);
+  color: var(--v2-accent);
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
 .v2-hint-error { color: #c54040 !important; }
 
 .v2-delivery-block { display: flex; flex-direction: column; gap: 6px; }
