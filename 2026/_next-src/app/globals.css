@@ -2250,14 +2250,18 @@ label small,
 /* --- Sticky bottom cart panel --- */
 .v2-cart-panel {
   position: fixed;
-  left: 0;
-  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: calc(0px + env(safe-area-inset-bottom));
+  width: calc(100% - 12px);
+  max-width: 640px;
   background: var(--v2-surface);
-  border-top: 1px solid var(--v2-line);
-  box-shadow: 0 -4px 18px rgba(53, 28, 18, 0.14);
+  border-radius: 16px;
+  border: 1px solid var(--v2-line);
+  box-shadow: 0 -2px 10px rgba(53, 28, 18, 0.06), 0 12px 28px rgba(53, 28, 18, 0.16);
   z-index: 50;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .v2-cart-toggle {
   width: 100%;
