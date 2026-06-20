@@ -2658,8 +2658,8 @@ label small,
 .v2-checkout-summary strong { font-size: 10px; text-transform: uppercase; color: var(--v2-muted); letter-spacing: 0.05em; }
 .v2-checkout-summary span { color: var(--v2-ink); }
 
-.v2-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.v2-form-grid.triple { grid-template-columns: 1fr 1fr 1fr; }
+.v2-form-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.v2-form-grid.triple { grid-template-columns: 1fr; }
 
 .v2-field { display: flex; flex-direction: column; gap: 3px; font-size: 11px; }
 .v2-field span { font-weight: 600; color: var(--v2-ink); }
@@ -2765,8 +2765,6 @@ label small,
 @media (max-width: 380px) {
   .v2-shell { padding: 4px 4px 100px; }
   .v2-header { padding: 6px 10px 6px; gap: 4px; border-radius: 12px; }
-  .v2-form-grid.triple { grid-template-columns: 1fr 1fr; }
-  .v2-form-grid.triple .v2-field:nth-child(3) { grid-column: 1 / -1; }
   .v2-cart-context { font-size: 10px; gap: 3px; }
   .v2-cart-tag { font-size: 9px; padding: 3px 6px; }
   .v2-cart-context-text { font-size: 10px; }
