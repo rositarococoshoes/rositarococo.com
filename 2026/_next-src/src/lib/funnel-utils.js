@@ -142,6 +142,23 @@ function formatDeliveryDate(date) {
   return `${DELIVERY_DAY_NAMES[date.getDay()]} ${date.getDate()} de ${DELIVERY_MONTH_NAMES[date.getMonth()]} de 15hs a 22hs`;
 }
 
+const HOLIDAY_OVERRIDES = {
+  // 9 de julio (Día de la Independencia Argentina, feriado) → sábado 11
+  '7-9': { month: 6, day: 11 },
+};
+
+function adjustForHolidays(date) {
+  const key = `${date.getMonth() + 1}-${date.getDate()}`;
+  const override = HOLIDAY_OVERRIDES[key];
+  if (override) {
+    const adjusted = new Date(date);
+    adjusted.setMonth(override.month);
+    adjusted.setDate(override.day);
+    return adjusted;
+  }
+  return date;
+}
+
 export function getDeliveryOptions(now = new Date()) {
   const day = ((now.getDay() + 6) % 7) + 1;
   let availableDates = [];
@@ -162,5 +179,5 @@ export function getDeliveryOptions(now = new Date()) {
       : [dateForIsoWeekday(now, 2, 1), addDays(now, 4)];
   }
 
-  return availableDates.map(formatDeliveryDate);
+  return availableDates.map((date) => formatDeliveryDate(adjustForHolidays(date)));
 }

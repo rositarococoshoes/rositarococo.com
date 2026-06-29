@@ -94,3 +94,21 @@ test('builds sunday delivery options after cutoff', () => {
   assert.match(options[0], /^Martes /);
   assert.match(options[1], /^Jueves /);
 });
+
+test('replaces jueves 9 de julio with sábado 11 de julio (independence day holiday)', () => {
+  // On Wednesday July 1, the second option would normally be Thursday July 9
+  // but gets overridden to Saturday July 11
+  const options = getDeliveryOptions(new Date('2026-07-01T10:00:00-03:00'));
+  assert.equal(options.length, 2);
+  assert.match(options[0], /^Martes 7 de julio/);
+  assert.equal(options[1], 'Sábado 11 de julio de 15hs a 22hs');
+});
+
+test('does not affect dates after the holiday passes', () => {
+  // On Wednesday July 8, delivery options are Tuesday July 14 and Thursday July 16
+  const options = getDeliveryOptions(new Date('2026-07-08T10:00:00-03:00'));
+  assert.equal(options.length, 2);
+  assert.match(options[0], /^Martes /);
+  assert.match(options[1], /^Jueves /);
+  assert.ok(!options[1].includes('Sábado'));
+});
