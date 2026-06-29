@@ -635,6 +635,23 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
               <p className="review-help">Recibe en: <strong>{featuredDeliveryLabel}</strong>. Te contactaremos para confirmar.</p>
             </div>
 
+            {cartEntries.length > 0 ? (
+              <div className="order-recap-card">
+                <h4>Resumen de tu pedido</h4>
+                {cartEntries.map((item, index) => (
+                  <div key={item.id} className="order-recap-line" data-testid="recap-line">
+                    <span className="order-recap-index">Par {index + 1}</span>
+                    <span className="order-recap-product">{item.product?.displayName || item.productId}</span>
+                    <span className="order-recap-size">Talle {item.size}</span>
+                  </div>
+                ))}
+                <div className="order-recap-total">
+                  <span>Total a pagar al recibir</span>
+                  <strong>{formatCurrency(total)}</strong>
+                </div>
+              </div>
+            ) : null}
+
             <p className="checkout-reminder compact-reminder">{PAGE_COPY.freeShippingReminder}</p>
             <div className="submit-row aligned-row">
               <button type="submit" className="submit-button" disabled={!canCheckout || loading}>{loading ? 'Procesando...' : 'Comprar'}</button>
@@ -645,6 +662,16 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
       </section>
 
       {notification ? <div className="notification-toast subtle-toast">{notification}</div> : null}
+
+      {cartEntries.length > 0 && !mobileCartOpen ? (
+        <button
+          type="button"
+          className="floating-checkout-cta"
+          onClick={() => jumpTo('#checkout-form')}
+        >
+          {cartPhase === 'bundle' ? 'Finalizar pedido →' : `Ver pedido (${cartEntries.length} par${cartEntries.length > 1 ? 'es' : ''}) →`}
+        </button>
+      ) : null}
 
       <MiniCartDrawer
         cartEntries={cartEntries}

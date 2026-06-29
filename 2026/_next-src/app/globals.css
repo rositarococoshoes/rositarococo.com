@@ -507,6 +507,53 @@ label small,
   border-radius: 16px;
   background: rgba(255,255,255,0.58);
 }
+.order-recap-card {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px 18px;
+  background: var(--surface);
+  display: grid;
+  gap: 10px;
+}
+.order-recap-card h4 {
+  margin: 0;
+  font-size: 15px;
+  color: var(--ink);
+}
+.order-recap-line {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+.order-recap-index {
+  color: var(--muted);
+  font-weight: 400;
+}
+.order-recap-product {
+  font-weight: 600;
+}
+.order-recap-size {
+  color: var(--brand-strong);
+  font-weight: 700;
+}
+.order-recap-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+.order-recap-total span {
+  color: var(--muted);
+  font-size: 14px;
+}
+.order-recap-total strong {
+  font-size: 20px;
+  color: var(--brand-strong);
+}
 
 .modal-overlay {
   position: fixed;
