@@ -308,7 +308,7 @@ function V2CartPanel({
   );
 }
 
-function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, deliveryLabel, orderDetails, total, loading, onSubmit, isValidWhatsappInput }) {
+function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, deliveryLabel, orderDetails, total, loading, onSubmit, isValidWhatsappInput, cartEntries }) {
   if (!visible) return null;
 
   function updateField(field, value) {
@@ -413,6 +413,21 @@ function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, del
               {formState.deliverySlot === option ? <span aria-hidden="true">✓</span> : null}
             </button>
           ))}
+        </div>
+      </div>
+
+      <div className="v2-order-recap">
+        <h4>Resumen de tu pedido</h4>
+        {cartEntries?.map((item, index) => (
+          <div key={item.id} className="v2-order-line">
+            <span className="v2-order-line-index">Par {index + 1}</span>
+            <span className="v2-order-line-product">{item.product?.displayName || item.productId}</span>
+            <span className="v2-order-line-size">Talle {item.size}</span>
+          </div>
+        ))}
+        <div className="v2-order-line-total">
+          <span>Total al recibir</span>
+          <strong>{formatCurrency(total)}</strong>
         </div>
       </div>
 
@@ -603,6 +618,7 @@ export default function ContrareembolsoLandingV2() {
             loading={loading}
             onSubmit={submitOrder}
             isValidWhatsappInput={isValidWhatsappInput}
+            cartEntries={cartEntries}
           />
         </section>
       </main>
@@ -629,6 +645,19 @@ export default function ContrareembolsoLandingV2() {
       />
 
       {notification ? <div className="v2-toast">{notification}</div> : null}
+
+      {cartEntries.length > 0 && !cartExpanded && !checkoutOpen ? (
+        <button
+          type="button"
+          className="floating-checkout-cta"
+          onClick={() => {
+            setCartExpanded(true);
+            setTimeout(() => jumpTo('#v2-cart-anchor'), 80);
+          }}
+        >
+          {cartPhase === 'bundle' ? 'Finalizar pedido →' : `Ver pedido (${cartEntries.length} par${cartEntries.length > 1 ? 'es' : ''}) →`}
+        </button>
+      ) : null}
     </div>
   );
 }

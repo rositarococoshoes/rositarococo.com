@@ -2818,3 +2818,52 @@ label small,
   .v2-cart-price strong { font-size: 12px; }
   .v2-cart-total { font-size: 9px; }
 }
+
+/* --- V2 Order Recap --- */
+.v2-order-recap {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 14px 16px;
+  background: var(--surface);
+  display: grid;
+  gap: 8px;
+}
+.v2-order-recap h4 {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink);
+}
+.v2-order-line {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+.v2-order-line-index {
+  color: var(--muted);
+  font-weight: 400;
+}
+.v2-order-line-product {
+  font-weight: 600;
+}
+.v2-order-line-size {
+  color: var(--brand-strong);
+  font-weight: 700;
+}
+.v2-order-line-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  margin-top: 2px;
+}
+.v2-order-line-total span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.v2-order-line-total strong {
+  font-size: 18px;
+  color: var(--brand-strong);
+}
