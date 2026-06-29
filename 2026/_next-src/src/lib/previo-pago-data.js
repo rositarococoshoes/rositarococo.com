@@ -160,7 +160,7 @@ const PREVIO_PAGO_EXCLUSIVE_PRODUCTS = [
   },
 ];
 
-export const PRODUCTS = [...CONTRAREEMBOLSO_PRODUCTS, ...PREVIO_PAGO_EXCLUSIVE_PRODUCTS].map((product) => ({
+export const PRODUCTS = [...CONTRAREEMBOLSO_PRODUCTS, ...PREVIO_PAGO_EXCLUSIVE_PRODUCTS.filter((p) => !p.id.startsWith('zuecos-'))].map((product) => ({
   ...product,
   unitPriceLabel: PREVIO_PAGO_PRICING.singleLabel,
   bundlePriceLabel: PREVIO_PAGO_PRICING.bundleLabel,
