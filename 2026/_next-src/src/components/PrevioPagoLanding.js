@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import {
   BASE_PATH,
@@ -355,6 +355,8 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     paymentMethod: '',
   });
 
+  const scriptCargado = useRef(false);
+
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const savedWhatsapp = window.localStorage.getItem('savedWhatsapp')
@@ -420,6 +422,14 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     setCartExpanded(true);
     setMobileCartOpen(false);
     setNotification(nextCount === 1 ? getPostAddMessage(nextCount, PREVIO_PAGO_PRICING) : '');
+
+    if (!scriptCargado.current) {
+      const s = document.createElement('script');
+      s.src = 'https://www.mercadopago.com/v2/security.js';
+      s.setAttribute('view', 'checkout');
+      document.head.appendChild(s);
+      scriptCargado.current = true;
+    }
   }
 
   function removeItem(itemId) {
