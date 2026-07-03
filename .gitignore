@@ -128,7 +128,19 @@ build/
 # ===========================================
 # CONFIGURACIÓN MCP (IGNORAR - CONTIENE TOKENS)
 # ===========================================
+# Ubicación estándar (raíz del proyecto)
 .mcp.json
+# Variantes con sufijo
+.mcp.local.json
+.mcp.*.json
+# Variantes dentro de .claude/
+.claude/.mcp.json
+.claude/.mcp.local.json
+.claude/.mcp.*.json
+# Cualquier archivo *.mcp.json en cualquier subdir
+**/.mcp.json
+**/.mcp.local.json
+**/*.mcp.json
 
 # ===========================================
 # BACKUPS Y ARCHIVOS VIEJOS (IGNORAR)
