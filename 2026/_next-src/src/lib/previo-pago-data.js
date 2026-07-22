@@ -158,6 +158,32 @@ const PREVIO_PAGO_EXCLUSIVE_PRODUCTS = [
     ],
     sizes: SIZES,
   },
+  {
+    id: 'botitas-milan-negras',
+    shortModel: 'botitas-milan-negras',
+    displayName: 'Botitas Milán negras',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Goma Eva reforzada' },
+      { label: 'Altura', value: 'Baja' },
+    ],
+    description: 'Negras, clásicas y versátiles. El color que va con todo y no pasa de moda. Ideales para acompañar cualquier look de otoño-invierno.',
+    images: [
+      asset('botitas-milan-negras-1.webp'),
+      asset('botitas-milan-negras-2.webp'),
+      asset('botitas-milan-negras-3.webp'),
+      asset('botitas-milan-negras-4.webp'),
+      asset('botitas-milan-negras-5.webp'),
+      asset('botitas-milan-negras-6.webp'),
+      asset('botitas-milan-negras-7.webp'),
+      asset('botitas-milan-negras-8.webp'),
+      asset('botitas-milan-negras-9.webp'),
+      asset('botitas-milan-negras-10.webp'),
+      asset('botitas-milan-negras-11.webp'),
+    ],
+    sizes: SIZES,
+  },
 ];
 
 export const PRODUCTS = [...CONTRAREEMBOLSO_PRODUCTS, ...PREVIO_PAGO_EXCLUSIVE_PRODUCTS.filter((p) => !p.id.startsWith('zuecos-'))].map((product) => ({
