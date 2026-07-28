@@ -14,6 +14,7 @@ import {
   PRODUCTS,
   PROVINCES,
 } from '@/src/lib/previo-pago-data';
+import { generateFBC, generateFBP, getCookie } from '@/src/lib/facebook-tracking';
 import {
   buildOrderSummary,
   calculateCartTotal,
@@ -30,14 +31,6 @@ const DeferredChatWidget = dynamic(() => import('@/src/components/DeferredChatWi
 });
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
-
-function getCookie(name) {
-  if (typeof document === 'undefined') return '';
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-  return '';
-}
 
 async function getClientIP() {
   try {
@@ -56,11 +49,12 @@ async function getClientIP() {
 }
 
 async function requestMercadoPagoLink({ buyerName, total }) {
-  const fbp = getCookie('_fbp') || window.localStorage.getItem('facebook_fbp') || '';
+  const fbp = generateFBP();
+  const fbc = generateFBC();
   const response = await fetch(PAYMENT_LINK_WEBHOOK_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ comprador: buyerName, monto: total, fbp }),
+    body: JSON.stringify({ comprador: buyerName, monto: total, fbp, fbc }),
   });
 
   if (!response.ok) {
@@ -365,6 +359,8 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     if (savedWhatsapp) {
       setFormState((current) => (current.whatsapp ? current : { ...current, whatsapp: savedWhatsapp }));
     }
+    generateFBC();
+    generateFBP();
   }, []);
 
   useEffect(() => {
@@ -459,7 +455,8 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     const currentUrl = typeof window !== 'undefined' ? window.location.href : `${BASE_PATH}/index.html`;
     const clientIp = await getClientIP();
     const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : '';
-    const fbp = getCookie('_fbp') || window.localStorage.getItem('facebook_fbp') || '';
+    const fbc = generateFBC();
+    const fbp = generateFBP();
 
     formData.set('entry.286442883', orderSummary);
     formData.set('entry.1465946249', formState.email.trim());
@@ -481,6 +478,7 @@ export default function PrevioPagoLanding({ testimonialsSlot = null }) {
     if (clientIp) formData.set('client_ip_address', clientIp);
     if (userAgent) formData.set('client_user_agent', userAgent);
     if (fbp) formData.set('_fbp', fbp);
+    if (fbc) formData.set('_fbc', fbc);
 
     try {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {

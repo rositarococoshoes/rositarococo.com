@@ -8,6 +8,7 @@ import {
   PAGE_COPY,
   PRODUCTS,
 } from '@/src/lib/funnel-data';
+import { generateFBC, generateFBP } from '@/src/lib/facebook-tracking';
 import {
   buildLegacyOrderPayload,
   buildOrderSummary,
@@ -472,6 +473,8 @@ export default function ContrareembolsoLandingV2() {
     if (saved) {
       setFormState((current) => (current.whatsapp ? current : { ...current, whatsapp: saved }));
     }
+    generateFBC();
+    generateFBP();
   }, []);
 
   useEffect(() => {
@@ -539,6 +542,8 @@ export default function ContrareembolsoLandingV2() {
     }
     setLoading(true);
 
+    const fbc = generateFBC();
+    const fbp = generateFBP();
     const whatsappForForm = formState.whatsapp.replace(/\D/g, '');
     const addressLine = formState.betweenStreets.trim()
       ? `${formState.street.trim()} - ${formState.betweenStreets.trim()}`
@@ -564,6 +569,8 @@ export default function ContrareembolsoLandingV2() {
     params.set('fvv', '1');
     params.set('fbzx', '5661184097173102736');
     params.set('pageHistory', '0');
+    if (fbc) params.set('_fbc', fbc);
+    if (fbp) params.set('_fbp', fbp);
 
     try {
       if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
