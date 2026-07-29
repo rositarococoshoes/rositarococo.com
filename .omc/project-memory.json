@@ -1,0 +1,575 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1779242815759,
+  "projectRoot": "C:\\rosita\\rositarococo.com",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "express",
+        "version": "5.1.0",
+        "category": "backend"
+      }
+    ],
+    "packageManager": "npm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": "npm test",
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "2026": {
+      "path": "2026",
+      "purpose": null,
+      "fileCount": 31,
+      "lastAccessed": 1779242815686,
+      "keyFiles": [
+        "404.html",
+        "android-chrome-192x192.png",
+        "android-chrome-512x512.png",
+        "apple-touch-icon.png",
+        "favicon-16x16.png"
+      ]
+    },
+    "astro-ecommerce": {
+      "path": "astro-ecommerce",
+      "purpose": null,
+      "fileCount": 28,
+      "lastAccessed": 1779242815688,
+      "keyFiles": [
+        "astro.config.mjs",
+        "astro.config.simple.mjs",
+        "astro.simple.config.mjs",
+        "enviarwsp.png",
+        "favicon.svg"
+      ]
+    },
+    "astrocline": {
+      "path": "astrocline",
+      "purpose": null,
+      "fileCount": 21,
+      "lastAccessed": 1779242815705,
+      "keyFiles": [
+        "argos-minified.html",
+        "argos-product-correcto.html",
+        "argos-product-template.html",
+        "ASTROCLINE_COMPLETE_DOCUMENTATION.md",
+        "ASTROCLINE_COMPONENTS_DETAILED.md"
+      ]
+    },
+    "birkblancas": {
+      "path": "birkblancas",
+      "purpose": null,
+      "fileCount": 12,
+      "lastAccessed": 1779242815708,
+      "keyFiles": [
+        "1.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "2.webp"
+      ]
+    },
+    "birkcamel": {
+      "path": "birkcamel",
+      "purpose": null,
+      "fileCount": 12,
+      "lastAccessed": 1779242815709,
+      "keyFiles": [
+        "1.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "2.webp"
+      ]
+    },
+    "birknegras": {
+      "path": "birknegras",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1779242815710,
+      "keyFiles": [
+        "1.webp",
+        "2.webp",
+        "3.webp",
+        "4.webp",
+        "5.webp"
+      ]
+    },
+    "comentarios": {
+      "path": "comentarios",
+      "purpose": null,
+      "fileCount": 33,
+      "lastAccessed": 1779242815711,
+      "keyFiles": [
+        "1000781400.webp",
+        "1000782704.webp",
+        "1000783152.webp",
+        "1000783153.webp",
+        "1000783154.webp"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 4,
+      "lastAccessed": 1779242815713,
+      "keyFiles": [
+        "PrePagoForm-Componente.md",
+        "PrePagoForm-Vanilla-Implementacion.md",
+        "PrePagoForm.md",
+        "Testimonials-Componente-Implementacion.md"
+      ]
+    },
+    "evidence": {
+      "path": "evidence",
+      "purpose": null,
+      "fileCount": 21,
+      "lastAccessed": 1779242815714,
+      "keyFiles": [
+        "capture-screenshots.ps1",
+        "current-astro-render.html",
+        "desktop-fullpage.png",
+        "desktop-viewport.png",
+        "detailed-analysis.json"
+      ]
+    },
+    "fbanuncios": {
+      "path": "fbanuncios",
+      "purpose": null,
+      "fileCount": 211,
+      "lastAccessed": 1779242815716,
+      "keyFiles": [
+        "atenas-negras-1.jpg",
+        "atenas-negras-2.jpg",
+        "atenas-suela-1.jpg",
+        "atenas-suela-2.jpg",
+        "bahamas-blancas-1.jpg"
+      ]
+    },
+    "guillerminafotos": {
+      "path": "guillerminafotos",
+      "purpose": null,
+      "fileCount": 42,
+      "lastAccessed": 1779242815718,
+      "keyFiles": [
+        "1.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "13.webp"
+      ]
+    },
+    "instantforms": {
+      "path": "instantforms",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1779242815719,
+      "keyFiles": [
+        "romanegras1.jpg",
+        "romasuela1.jpg",
+        "testimonio1.jpg",
+        "testimonio2.jpg",
+        "testimonio3.jpg"
+      ]
+    },
+    "MALENABSAS": {
+      "path": "MALENABSAS",
+      "purpose": null,
+      "fileCount": 8,
+      "lastAccessed": 1779242815721,
+      "keyFiles": [
+        "bruselas-fb.jpg",
+        "bruselas.jpg",
+        "moscu-fb.jpg",
+        "moscu.jpg",
+        "sofia-fb.jpg"
+      ]
+    },
+    "nuevosmodeloscontra": {
+      "path": "nuevosmodeloscontra",
+      "purpose": null,
+      "fileCount": 31,
+      "lastAccessed": 1779242815724,
+      "keyFiles": [
+        "1.webp",
+        "10.webp",
+        "11.webp",
+        "12.webp",
+        "13.webp"
+      ]
+    },
+    "prompts": {
+      "path": "prompts",
+      "purpose": null,
+      "fileCount": 19,
+      "lastAccessed": 1779242815725,
+      "keyFiles": [
+        "001-fix-astrocline-form-margins.md",
+        "001-funnel-migration-comprehensive-analysis.md",
+        "001-improve-checkout-ui-ux.md",
+        "001-transform-whatsapp-modal.md",
+        "002-fix-product-names-and-order-formatting.md"
+      ]
+    },
+    "pruebastreamgemini": {
+      "path": "pruebastreamgemini",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1779242815726,
+      "keyFiles": [
+        "index.html",
+        "indexviejo.html",
+        "metadata.json"
+      ]
+    },
+    "reports": {
+      "path": "reports",
+      "purpose": null,
+      "fileCount": 5,
+      "lastAccessed": 1779242815728,
+      "keyFiles": [
+        "bank-transfer-redirection-fix.md",
+        "lighthouse-v25-mobile.json",
+        "lighthouse-v26-mobile.json",
+        "lighthouse-v27-mobile-repeat.json",
+        "lighthouse-v27-mobile.json"
+      ]
+    },
+    "test-results": {
+      "path": "test-results",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1779242815729,
+      "keyFiles": []
+    },
+    "validation-results": {
+      "path": "validation-results",
+      "purpose": null,
+      "fileCount": 9,
+      "lastAccessed": 1779242815730,
+      "keyFiles": [
+        "desktop-1762885794374.png",
+        "desktop-1762885975878.png",
+        "desktop-1762886137864.png",
+        "mobile-1762885795985.png",
+        "mobile-1762885977506.png"
+      ]
+    },
+    "webp": {
+      "path": "webp",
+      "purpose": null,
+      "fileCount": 20,
+      "lastAccessed": 1779242815732,
+      "keyFiles": [
+        "ahora12.jpg",
+        "comentario1-min.jpg",
+        "comentario2-min.jpg",
+        "comentario3-min.jpg",
+        "comentario4-min.jpg"
+      ]
+    },
+    "2026\\assets": {
+      "path": "2026\\assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1779242815733,
+      "keyFiles": []
+    },
+    "astrocline\\assets": {
+      "path": "astrocline\\assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1779242815734,
+      "keyFiles": []
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "2026\\_next-src\\app\\globals.css",
+      "accessCount": 28,
+      "lastAccessed": 1779339739422,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src",
+      "accessCount": 24,
+      "lastAccessed": 1779324123819,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\ContrareembolsoLanding.js",
+      "accessCount": 19,
+      "lastAccessed": 1779243916645,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src",
+      "accessCount": 18,
+      "lastAccessed": 1779324082052,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\lib\\funnel-utils.js",
+      "accessCount": 9,
+      "lastAccessed": 1779324005956,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\PrevioPagoLanding.js",
+      "accessCount": 9,
+      "lastAccessed": 1779334302708,
+      "type": "file"
+    },
+    {
+      "path": "2026",
+      "accessCount": 6,
+      "lastAccessed": 1779243906716,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\PrevioPagoOrderSummaryClient.js",
+      "accessCount": 6,
+      "lastAccessed": 1779324370589,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\PrevioPagoPostPurchasePages.js",
+      "accessCount": 5,
+      "lastAccessed": 1779324370653,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\lib\\previo-pago-data.js",
+      "accessCount": 5,
+      "lastAccessed": 1779334302784,
+      "type": "file"
+    },
+    {
+      "path": "2026/_next-src/src/components/ContrareembolsoLanding.js",
+      "accessCount": 4,
+      "lastAccessed": 1778554365894,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\ThankYouClient.js",
+      "accessCount": 4,
+      "lastAccessed": 1779323993156,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\lib\\funnel-data.js",
+      "accessCount": 4,
+      "lastAccessed": 1779324083520,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\lib\\whatsapp-modal-utils.js",
+      "accessCount": 3,
+      "lastAccessed": 1779324022120,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\PrevioPagoStaticSections.js",
+      "accessCount": 3,
+      "lastAccessed": 1779334302583,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next\\static\\chunks\\app\\index-contrareembolso\\page-59f05aecd0ee57e0.js",
+      "accessCount": 2,
+      "lastAccessed": 1778796614588,
+      "type": "directory"
+    },
+    {
+      "path": "",
+      "accessCount": 2,
+      "lastAccessed": 1779243891126,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\ThankYouPage.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324083369,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-2pares\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324109766,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-1par\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324110263,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-pago\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324110383,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324110550,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\transferenciacbu-2pares\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324110876,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-2pares-c\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324110978,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-pago-pendiente\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324111288,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\transferenciacbu-1par\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324111391,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-1par-c\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324111754,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\gracias-pago-2pares\\page.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324111834,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app\\layout.js",
+      "accessCount": 2,
+      "lastAccessed": 1779324124910,
+      "type": "file"
+    },
+    {
+      "path": "index-contrareembolso.html",
+      "accessCount": 1,
+      "lastAccessed": 1778552764062,
+      "type": "file"
+    },
+    {
+      "path": "2026/_next-src/src/lib/previo-pago-data.js",
+      "accessCount": 1,
+      "lastAccessed": 1778552782472,
+      "type": "file"
+    },
+    {
+      "path": "2026/_next-src/src/lib/funnel-data.js",
+      "accessCount": 1,
+      "lastAccessed": 1778552782536,
+      "type": "file"
+    },
+    {
+      "path": "2026/_next-src/app/index-contrareembolso/page.js",
+      "accessCount": 1,
+      "lastAccessed": 1778554348359,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\lib\\chat-utils.js",
+      "accessCount": 1,
+      "lastAccessed": 1778788254585,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\DeferredChatWidget.js",
+      "accessCount": 1,
+      "lastAccessed": 1778788270792,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\package.json",
+      "accessCount": 1,
+      "lastAccessed": 1778788359849,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\scripts\\export-site.mjs",
+      "accessCount": 1,
+      "lastAccessed": 1778788371767,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next\\static\\chunks\\app",
+      "accessCount": 1,
+      "lastAccessed": 1778796614690,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\index-contrareembolso.html",
+      "accessCount": 1,
+      "lastAccessed": 1778796615067,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components",
+      "accessCount": 1,
+      "lastAccessed": 1778803858422,
+      "type": "directory"
+    },
+    {
+      "path": "2026\\_next-src\\src\\components\\LegacyWhatsappModal.js",
+      "accessCount": 1,
+      "lastAccessed": 1778803870916,
+      "type": "file"
+    },
+    {
+      "path": "2026\\_next-src\\app",
+      "accessCount": 1,
+      "lastAccessed": 1779334319790,
+      "type": "directory"
+    }
+  ],
+  "userDirectives": []
+}

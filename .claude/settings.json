@@ -1,0 +1,8 @@
+{  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1",
+     "ANTHROPIC_BASE_URL": "https://opencode.ai/zen",
+    "ANTHROPIC_MODEL": "minimax-m2.5-free",
+    "ANTHROPIC_API_KEY": "sk-moYVh7Lb4RXvSDIGEBueJN68fN7LamiHoSkSLfjrfk2la0ddzo1TWom9kmGOFxYo",
+    "ENABLE_TOOL_SEARCH": "true"
+  }
+}

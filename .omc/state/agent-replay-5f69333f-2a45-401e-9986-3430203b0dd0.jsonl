@@ -1,0 +1,16 @@
+{"t":0,"agent":"a16aa1c","agent_type":"Explore","event":"agent_start","parent_mode":"none"}
+{"t":0,"agent":"ac532b4","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"a16aa1c","agent_type":"Explore","event":"agent_stop","success":true,"duration_ms":67414}
+{"t":0,"agent":"a7fdb71","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"addbcd3","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"a7d944a","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"aefb6cc","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"adbc6f7","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"a1cf39f","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"system","event":"keyword_detected","keyword":"autopilot"}
+{"t":0,"agent":"system","event":"mode_change","mode_from":"none","mode_to":"autopilot"}
+{"t":0,"agent":"a4ec7ff","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"ab359b2","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"system","event":"skill_invoked","skill_name":"oh-my-claudecode:cancel"}
+{"t":0,"agent":"a5a503e","agent_type":"unknown","event":"agent_stop","success":true}
+{"t":0,"agent":"a5a30af","agent_type":"unknown","event":"agent_stop","success":true}

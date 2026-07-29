@@ -1,0 +1,7 @@
+{
+  "tool_name": "Bash",
+  "tool_input_preview": "{\"command\":\"cd \\\"C:\\\\rosita\\\\rositarococo.com\\\\2026\\\\_next-src\\\" && npm run build 2>&1\",\"timeout\":120000,\"description\":\"Build Next.js site\"}",
+  "error": "Exit code 1",
+  "timestamp": "2026-05-21T00:55:59.260Z",
+  "retry_count": 1
+}

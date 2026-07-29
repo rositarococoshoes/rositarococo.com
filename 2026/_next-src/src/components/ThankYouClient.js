@@ -53,13 +53,6 @@ export default function ThankYouClient({ pairCount, total }) {
     setOrderDetails(details);
     setCustomerName(name);
 
-    if (typeof window.fbq === 'function') {
-      window.fbq('track', 'Purchase', {
-        currency: 'ARS',
-        value: total,
-        num_items: pairCount,
-      });
-    }
   }, [pairCount, total]);
 
   const finalList = buildDetailList(rawProducts, orderDetails);
