@@ -9,6 +9,7 @@ import {
   getDeliveryOptions,
   getPostAddMessage,
   getThankYouRoute,
+  isBlockedWhatsappNumber,
   isValidWhatsappInput,
 } from '../src/lib/funnel-utils.js';
 
@@ -35,6 +36,17 @@ test('rejects invalid whatsapp values', () => {
   assert.equal(formatWhatsappNumber('abc'), '');
   assert.equal(isValidWhatsappInput('abc'), false);
   assert.equal(isValidWhatsappInput('11 5645 7057'), true);
+});
+
+test('detects blocked whatsapp number in any digit-only variant', () => {
+  assert.equal(isBlockedWhatsappNumber('1141902122'), true);
+  assert.equal(isBlockedWhatsappNumber('01141902122'), true);
+  assert.equal(isBlockedWhatsappNumber('011 4190-2122'), true);
+  assert.equal(isBlockedWhatsappNumber('5491141902122'), true);
+  assert.equal(isBlockedWhatsappNumber('1156457057'), false);
+  assert.equal(isBlockedWhatsappNumber(''), false);
+  assert.equal(isBlockedWhatsappNumber(null), false);
+  assert.equal(isBlockedWhatsappNumber(undefined), false);
 });
 
 test('calculates contrareembolso totals for current funnel', () => {

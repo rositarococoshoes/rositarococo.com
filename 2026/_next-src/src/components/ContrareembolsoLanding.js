@@ -20,6 +20,7 @@ import {
   getDeliveryOptions,
   getPostAddMessage,
   getThankYouRoute,
+  isBlockedWhatsappNumber,
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
 
@@ -297,6 +298,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
   const [mobileCartOpen, setMobileCartOpen] = useState(false);
   const [notification, setNotification] = useState('');
   const [loading, setLoading] = useState(false);
+  const [blocked, setBlocked] = useState(false);
   const [formState, setFormState] = useState({
     name: '', whatsapp: '', street: '', betweenStreets: '', postalCode: '', locality: '', province: 'Buenos Aires', deliverySlot: '',
   });
@@ -387,6 +389,10 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
     }
     if (!isValidWhatsappInput(formState.whatsapp)) {
       setNotification('Revisa el WhatsApp. Debe ir sin 0 ni 15.');
+      return;
+    }
+    if (isBlockedWhatsappNumber(formState.whatsapp)) {
+      setBlocked(true);
       return;
     }
     setLoading(true);
@@ -569,7 +575,7 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
                 </label>
                 <label>
                   WhatsApp
-                  <input value={formState.whatsapp} onChange={(event) => updateField('whatsapp', event.target.value)} placeholder="Ej: 1156457057 (sin 0 ni 15)" required />
+                  <input value={formState.whatsapp} onChange={(event) => updateField('whatsapp', event.target.value)} onBlur={() => { if (isBlockedWhatsappNumber(formState.whatsapp)) setBlocked(true); }} placeholder="Ej: 1156457057 (sin 0 ni 15)" required />
                   <small>{isValidWhatsappInput(formState.whatsapp) || !formState.whatsapp ? 'Fundamental para coordinar el envío si es necesario.' : 'Formato inválido.'}</small>
                 </label>
               </div>
@@ -696,6 +702,18 @@ export default function ContrareembolsoLanding({ testimonialsSlot = null }) {
         cartOpen={mobileCartOpen}
         webhookUrl={CHAT_WEBHOOK_URL}
       />
+
+      {blocked ? (
+        <div className="v2-blocked-overlay" role="alert">
+          <div className="v2-blocked-card">
+            <h2>No podemos continuar con tu pedido</h2>
+            <p>
+              Estamos teniendo un problema técnico y por ahora no podemos tomar pedidos.
+              Disculpá las molestias, probá más tarde.
+            </p>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

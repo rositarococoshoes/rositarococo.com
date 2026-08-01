@@ -19,6 +19,7 @@ import {
   getDeliveryOptions,
   getPostAddMessage,
   getThankYouRoute,
+  isBlockedWhatsappNumber,
   isValidWhatsappInput,
 } from '@/src/lib/funnel-utils';
 
@@ -309,7 +310,7 @@ function V2CartPanel({
   );
 }
 
-function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, deliveryLabel, orderDetails, total, loading, onSubmit, isValidWhatsappInput, cartEntries }) {
+function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, deliveryLabel, orderDetails, total, loading, onSubmit, isValidWhatsappInput, cartEntries, onBlock }) {
   if (!visible) return null;
 
   function updateField(field, value) {
@@ -343,6 +344,9 @@ function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, del
           <input
             value={formState.whatsapp}
             onChange={(event) => updateField('whatsapp', event.target.value)}
+            onBlur={() => {
+              if (isBlockedWhatsappNumber(formState.whatsapp)) onBlock();
+            }}
             placeholder="Ej: 1156457057"
             required
             inputMode="numeric"
@@ -453,6 +457,7 @@ export default function ContrareembolsoLandingV2() {
   const [cartExpanded, setCartExpanded] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [blocked, setBlocked] = useState(false);
   const [notification, setNotification] = useState('');
   const [formState, setFormState] = useState({
     name: '',
@@ -538,6 +543,10 @@ export default function ContrareembolsoLandingV2() {
     }
     if (!isValidWhatsappInput(formState.whatsapp)) {
       setNotification('Revisá el WhatsApp (sin 0 ni 15).');
+      return;
+    }
+    if (isBlockedWhatsappNumber(formState.whatsapp)) {
+      setBlocked(true);
       return;
     }
     setLoading(true);
@@ -626,6 +635,7 @@ export default function ContrareembolsoLandingV2() {
             onSubmit={submitOrder}
             isValidWhatsappInput={isValidWhatsappInput}
             cartEntries={cartEntries}
+            onBlock={() => setBlocked(true)}
           />
         </section>
       </main>
@@ -652,6 +662,18 @@ export default function ContrareembolsoLandingV2() {
       />
 
       {notification ? <div className="v2-toast">{notification}</div> : null}
+
+      {blocked ? (
+        <div className="v2-blocked-overlay" role="alert">
+          <div className="v2-blocked-card">
+            <h2>No podemos continuar con tu pedido</h2>
+            <p>
+              Estamos teniendo un problema técnico y por ahora no podemos tomar pedidos.
+              Disculpá las molestias, probá más tarde.
+            </p>
+          </div>
+        </div>
+      ) : null}
 
       {cartEntries.length > 0 && !cartExpanded && !checkoutOpen ? (
         <button

@@ -63,6 +63,14 @@ export function isValidWhatsappInput(number) {
   return formatWhatsappNumber(number).length >= 12;
 }
 
+const BLOCKED_WHATSAPP_NUMBERS = ['1141902122'];
+
+export function isBlockedWhatsappNumber(rawNumber) {
+  if (!rawNumber) return false;
+  const digits = String(rawNumber).replace(/\D/g, '');
+  return BLOCKED_WHATSAPP_NUMBERS.some((blocked) => digits.includes(blocked));
+}
+
 export function calculateCartTotal(itemCount, pricing = DEFAULT_CART_PRICING) {
   const resolvedPricing = resolvePricing(pricing);
   if (itemCount <= 0) return 0;

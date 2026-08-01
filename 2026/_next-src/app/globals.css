@@ -2800,6 +2800,42 @@ label small,
   text-align: center;
 }
 
+.v2-blocked-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(43, 27, 19, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.v2-blocked-card {
+  background: var(--v2-surface);
+  color: var(--v2-ink);
+  max-width: 420px;
+  width: 100%;
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.v2-blocked-card h2 {
+  margin: 0 0 12px;
+  font-family: var(--font-serif), serif;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.v2-blocked-card p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--v2-muted);
+}
+
 /* --- Desktop polish (V2 sigue mobile-first, esto solo lo centra) --- */
 @media (min-width: 720px) {
   .v2-shell { padding: 14px 20px 110px; gap: 12px; }
