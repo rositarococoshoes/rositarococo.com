@@ -184,6 +184,59 @@ const PREVIO_PAGO_EXCLUSIVE_PRODUCTS = [
     ],
     sizes: SIZES,
   },
+  {
+    id: 'siena-marron',
+    shortModel: 'siena-marron',
+    displayName: 'Siena marrón',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Expanso' },
+      { label: 'Altura', value: 'Media' },
+    ],
+    description: 'El tono cálido que eleva tus looks de temporada. Cómodas, livianas y fáciles de combinar con todo tu guardarropa.',
+    images: [
+      asset('siena-marron-1.webp'),
+      asset('siena-marron-2.webp'),
+      asset('siena-marron-3.webp'),
+    ],
+    sizes: SIZES,
+  },
+  {
+    id: 'siena-negras',
+    shortModel: 'siena-negras',
+    displayName: 'Siena negras',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Expanso' },
+      { label: 'Altura', value: 'Media' },
+    ],
+    description: 'Negras, clásicas y versátiles. El modelo Siena en su versión más combinable, ideal para el día a día con estilo.',
+    images: [
+      asset('siena-negras-1.webp'),
+      asset('siena-negras-2.webp'),
+    ],
+    sizes: SIZES,
+  },
+  {
+    id: 'siena-nude',
+    shortModel: 'siena-nude',
+    displayName: 'Siena nude',
+    badges: ['NUEVO'],
+    specs: [
+      { label: 'Material', value: 'Cuero' },
+      { label: 'Suela', value: 'Expanso' },
+      { label: 'Altura', value: 'Media' },
+    ],
+    description: 'El nude que alarga y combina con todo. Un básico luminoso y elegante para tus looks de primavera-verano.',
+    images: [
+      asset('siena-nude-1.webp'),
+      asset('siena-nude-2.webp'),
+      asset('siena-nude-3.webp'),
+    ],
+    sizes: SIZES,
+  },
 ];
 
 export const PRODUCTS = [...CONTRAREEMBOLSO_PRODUCTS, ...PREVIO_PAGO_EXCLUSIVE_PRODUCTS.filter((p) => !p.id.startsWith('zuecos-'))].map((product) => ({
