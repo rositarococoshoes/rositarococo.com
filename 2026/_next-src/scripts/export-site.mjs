@@ -22,6 +22,10 @@ const generatedEntries = [
   'gracias-pago-pendiente.html',
   'transferenciacbu-1par.html',
   'transferenciacbu-2pares.html',
+  'perfumes.html',
+  'gracias-perfumes-1.html',
+  'gracias-perfumes-2.html',
+  'gracias-perfumes-3.html',
   '_next',
   'assets',
   'apple-touch-icon.png',
@@ -32,6 +36,7 @@ const generatedEntries = [
   'android-chrome-512x512.png',
   'og-contrareembolso-2026.png',
   'og-previo-pago-2026.png',
+  'og-perfumes-2026.png',
   'site.webmanifest',
 ];
 
@@ -84,6 +89,10 @@ async function exportFromServerApp() {
     ['gracias-pago-pendiente.html', 'gracias-pago-pendiente.html'],
     ['transferenciacbu-1par.html', 'transferenciacbu-1par.html'],
     ['transferenciacbu-2pares.html', 'transferenciacbu-2pares.html'],
+    ['perfumes.html', 'perfumes.html'],
+    ['gracias-perfumes-1.html', 'gracias-perfumes-1.html'],
+    ['gracias-perfumes-2.html', 'gracias-perfumes-2.html'],
+    ['gracias-perfumes-3.html', 'gracias-perfumes-3.html'],
     ['_not-found.html', '_not-found.html'],
     ['_not-found.html', '404.html'],
   ];
@@ -105,6 +114,7 @@ async function exportFromServerApp() {
     'android-chrome-512x512.png',
     'og-contrareembolso-2026.png',
     'og-previo-pago-2026.png',
+    'og-perfumes-2026.png',
     'site.webmanifest',
   ];
   await Promise.all(optionalPublic.map(async (file) => {

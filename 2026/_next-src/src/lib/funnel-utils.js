@@ -1,4 +1,7 @@
-﻿const DELIVERY_DAY_NAMES = [
+﻿// Import relativo (y no alias @/) para que `node --test` lo pueda cargar.
+import { AR_AREA_CODES } from './ar-area-codes.js';
+
+const DELIVERY_DAY_NAMES = [
   'Domingo',
   'Lunes',
   'Martes',
@@ -42,21 +45,68 @@ function resolvePricing(pricing = {}) {
   };
 }
 
+/**
+ * Parte un número nacional en código de área y suscriptor, y saca el "15" de
+ * celular que va justo después del código.
+ *
+ * Busca primero el código más largo (4, luego 3, luego 2) porque es la única
+ * forma de resolver el caso ambiguo: "379154001234" es 3791 + 54001234
+ * (Puerto Iguazú, sin 15), no 379 + 15 + 4001234.
+ *
+ * Devuelve `null` si el código de área no está en la lista. El llamador decide
+ * qué hacer; no se toca el número para no deformar uno que antes funcionaba.
+ */
+function splitNationalNumber(digits) {
+  for (const length of [4, 3, 2]) {
+    if (digits.length <= length) continue;
+
+    const areaCode = digits.slice(0, length);
+    if (!AR_AREA_CODES.has(areaCode)) continue;
+
+    let subscriber = digits.slice(length);
+    // el 15 es móvil solo si todavía queda un abonado razonable detrás
+    if (subscriber.startsWith('15') && subscriber.length - 2 >= 6) {
+      subscriber = subscriber.slice(2);
+    }
+
+    return { areaCode, subscriber };
+  }
+
+  return null;
+}
+
 export function formatWhatsappNumber(number) {
   if (!number) return '';
 
-  let formatted = number.replace(/[\s\-()+]/g, '');
+  // solo dígitos: la gente escribe espacios, guiones, paréntesis y el "+"
+  let digits = String(number).replace(/\D/g, '');
+  if (!digits) return '';
 
-  // If already starts with 549, return as is
-  if (/^549\d+$/.test(formatted)) return formatted;
+  // trunksis: 011, 0341, 03791... (varios ceros por si wrote 0011)
+  digits = digits.replace(/^0+/, '');
+  if (!digits) return '';
 
-  if (formatted.startsWith('54')) formatted = formatted.slice(2);
-  if (formatted.startsWith('0')) formatted = formatted.slice(1);
-  if (formatted.startsWith('15')) formatted = formatted.slice(2);
+  // ya viene en formato internacional
+  if (digits.startsWith('549') && digits.length >= 12) return digits;
 
-  if (!/^\d{10,}$/.test(formatted)) return '';
+  // código de país sin el 9 de móvil
+  if (digits.startsWith('54') && digits.length >= 11) digits = digits.slice(2);
 
-  return `549${formatted}`;
+  const split = splitNationalNumber(digits);
+
+  let national;
+  if (split) {
+    national = split.areaCode + split.subscriber;
+  } else {
+    // Código de área desconocido: no se toca el 15 (comportamiento previo).
+    // Solo se quita si viniera al principio, que es el caso de quien escribe
+    // "15 5645-7057" sin el código de área.
+    national = digits.startsWith('15') ? digits.slice(2) : digits;
+  }
+
+  if (national.length < 10) return '';
+
+  return `549${national}`;
 }
 
 export function isValidWhatsappInput(number) {

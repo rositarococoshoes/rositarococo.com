@@ -163,3 +163,11 @@ node_modules/
 claude-code/
 rositaastro/
 rositaastro2/
+
+# ===========================================
+# PERFUMES (IGNORAR)
+# ===========================================
+# Fotos crudas descomprimidas de los ZIP de perfumes/_extracted.
+# Son el insumo de 2026/_next-src/scripts/build-perfume-images.mjs, que
+# regenera los WebP de public/assets/perfumes/. No van al repo: son ~46 MB.
+perfumes/_extracted/

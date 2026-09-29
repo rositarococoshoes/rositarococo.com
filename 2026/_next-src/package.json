@@ -7,6 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "test": "node --test",
+    "assets:perfumes": "node scripts/build-perfume-images.mjs",
+    "og:perfumes": "node scripts/generate-og-perfumes.mjs",
     "export:site": "node scripts/export-site.mjs",
     "publish:site": "node scripts/publish.mjs"
   },

@@ -27,9 +27,69 @@ test('formats argentina whatsapp numbers to 549 format', () => {
   assert.equal(formatWhatsappNumber('3415208671'), '5493415208671');
   assert.equal(formatWhatsappNumber('03415208671'), '5493415208671');
   assert.equal(formatWhatsappNumber('341 15 520-8671'), '5493415208671');
-  // Area codes with 4 digits (e.g., 379 for Puerto Iguazú)
+  // Area codes with 4 digits (e.g., 3791 for Puerto Iguazú)
   assert.equal(formatWhatsappNumber('379154001234'), '549379154001234');
   assert.equal(formatWhatsappNumber('0379154001234'), '549379154001234');
+});
+
+test('strips the mobile 15 prefix after a 2-digit area code', () => {
+  assert.equal(formatWhatsappNumber('11-15-5645-7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('011 15 5645 7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('0221-15-1234567'), '5492211234567');
+  assert.equal(formatWhatsappNumber('0299 15 1234567'), '5492991234567');
+});
+
+test('strips the mobile 15 prefix after a 3-digit area code', () => {
+  assert.equal(formatWhatsappNumber('341155208671'), '5493415208671');
+  assert.equal(formatWhatsappNumber('0341-15-520-8671'), '5493415208671');
+  assert.equal(formatWhatsappNumber('351-15-1234567'), '5493511234567');
+});
+
+test('strips the mobile 15 prefix after a 4-digit area code', () => {
+  // 2241 = Junín, provincia de Buenos Aires
+  assert.equal(formatWhatsappNumber('02241-15-1234567'), '54922411234567');
+  assert.equal(formatWhatsappNumber('2241151234567'), '54922411234567');
+});
+
+test('keeps digits that are part of a 4-digit area code, not a mobile 15', () => {
+  // 3791 es Puerto Iguazú: el "15" pertenece al código de área, no es prefijo
+  assert.equal(formatWhatsappNumber('379154001234'), '549379154001234');
+  assert.equal(formatWhatsappNumber('03791-15-4001234'), '54937914001234');
+});
+
+test('handles the international and trunk prefixes people actually type', () => {
+  assert.equal(formatWhatsappNumber('+54 9 11 5645-7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('+54 11 5645-7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('00549 11 5645 7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('0011-15-5645-7057'), '5491156457057');
+  assert.equal(formatWhatsappNumber('(011) 15 5645 7057'), '5491156457057');
+});
+
+test('every valid input yields a well-formed international number', () => {
+  for (const input of ['11-15-5645-7057', '341-15-5208671', '2241-15-1234567']) {
+    const formatted = formatWhatsappNumber(input);
+    assert.ok(formatted.startsWith('549'), input);
+    assert.ok(formatted.length >= 12, `${input} -> ${formatted}`);
+    assert.equal(formatted.slice(3).length, formatted.length - 3);
+  }
+});
+
+test('rejects numbers with no area code at all', () => {
+  // "15 5645 7057" sin código de área no es un número argentino válido
+  assert.equal(formatWhatsappNumber('15-5645-7057'), '');
+  assert.equal(isValidWhatsappInput('15-5645-7057'), false);
+  assert.equal(formatWhatsappNumber('56457057'), '');
+  assert.equal(formatWhatsappNumber('123'), '');
+  assert.equal(formatWhatsappNumber(''), '');
+  assert.equal(formatWhatsappNumber(null), '');
+});
+
+test('unknown area codes keep their digits instead of losing the 15', () => {
+  // Si el código no está en la lista no se toca nada: es preferible devolver
+  // un número raro antes que deformar uno que antes funcionaba.
+  const formatted = formatWhatsappNumber('9995151234567');
+  assert.ok(formatted.startsWith('549'), formatted);
+  assert.equal(formatted, '5499995151234567');
 });
 
 test('rejects invalid whatsapp values', () => {
