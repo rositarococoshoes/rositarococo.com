@@ -105,6 +105,14 @@ async function exportFromServerApp() {
   const rootHtmlEntries = htmlEntries.filter(([, targetName]) => targetName !== '_not-found.html' && targetName !== '404.html');
   await Promise.all(rootHtmlEntries.map(([sourceName, targetName]) => copyRecursive(path.join(serverAppDir, sourceName), path.join(repoRoot, targetName))));
 
+  // La imagen OG también a la raíz: el workflow arma site/ con `cp -R 2026/.`,
+  // así que la de /2026/ ya sale sola, pero WhatsApp y Facebook piden la
+  // preview antes de que exista la URL canónica y resuelven mejor en la raíz.
+  const ogImage = 'og-perfumes-2026.png';
+  if (await exists(path.join(publicDir, ogImage))) {
+    await copyRecursive(path.join(publicDir, ogImage), path.join(repoRoot, ogImage));
+  }
+
   const optionalPublic = [
     'apple-touch-icon.png',
     'favicon-16x16.png',
