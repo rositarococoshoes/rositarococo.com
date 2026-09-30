@@ -172,6 +172,10 @@ test('el precio por unidad de cada escalón no promete un ahorro inexistente', (
       `el ahorro de ${tier.count} no puede ser mayor al real`,
     );
     assert.equal(tier.unitLabel, `$${tier.unit.toLocaleString('es-AR')}`);
+    // el total es el número que la persona compara con el efectivo que tiene
+    assert.equal(tier.totalLabel, `$${tier.total.toLocaleString('es-AR')}`);
+    // y tiene que ser el precio por unidad de ESE total, no de otro escalón
+    assert.equal(tier.unit, Math.ceil(tier.totalLabel.replace(/\D/g, '') / tier.count));
   }
 });
 
@@ -186,6 +190,25 @@ test('sumar perfumes baja efectivamente el precio por unidad', () => {
   // el de 1 no tiene ahorro: es el precio de referencia
   assert.equal(UNIT_PRICE_TIERS[0].unit, PRICING.single);
   assert.equal(UNIT_PRICE_TIERS[0].savingPerUnit, 0);
+});
+
+test('el total y el precio por unidad de cada escalón son coherentes entre sí', () => {
+  // Es lo que muestra la tarjeta: "2 perfumes  $65.000  $32.500 c/u". Si el c/u no
+  // saliera de dividir ese mismo total por la cantidad, el cartel mentiría.
+  for (const tier of UNIT_PRICE_TIERS) {
+    const total = Number(tier.totalLabel.replace(/[^\d]/g, ''));
+    const unit = Number(tier.unitLabel.replace(/[^\d]/g, ''));
+
+    assert.equal(total, tier.total, `total de ${tier.count}`);
+    assert.equal(unit, tier.unit, `unidad de ${tier.count}`);
+    assert.equal(
+      unit,
+      Math.ceil(total / tier.count),
+      `el c/u de ${tier.count} no es el total dividido por la cantidad`,
+    );
+    // y el total tiene que ser lo que se cobra de verdad por esa cantidad
+    assert.equal(total, calculatePerfumeTotal(tier.count));
+  }
 });
 
 test('los tres escalones de precio están ordenados y growing', () => {

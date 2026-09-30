@@ -3265,11 +3265,21 @@ label small,
   gap: 8px;
 }
 .pf-card-price-label {
+  display: grid;
+  gap: 0;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--pf-muted);
+}
+.pf-card-price-hint {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--pf-muted);
+  opacity: 0.8;
 }
 .pf-card-price {
   font-family: var(--font-serif), serif;
@@ -3280,34 +3290,56 @@ label small,
 .pf-card-combos {
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 5px 0 0;
   display: grid;
-  gap: 3px;
+  gap: 5px;
   border-top: 1px dashed var(--pf-line);
-  padding-top: 5px;
 }
 .pf-card-combo {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 8px;
-  align-items: baseline;
-  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 6px 8px;
+  background: var(--pf-accent-soft);
+  border-radius: 9px;
 }
 .pf-card-combo-qty {
-  font-weight: 700;
-  color: var(--pf-accent);
+  display: grid;
+  gap: 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--pf-accent-deep);
+}
+.pf-card-combo-hint {
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--pf-muted);
+}
+.pf-card-combo-values {
+  display: grid;
+  gap: 0;
+  text-align: right;
+  justify-items: end;
   white-space: nowrap;
 }
-.pf-card-combo-unit {
-  font-weight: 600;
+.pf-card-combo-total {
+  font-family: var(--font-serif), serif;
+  font-size: 16px;
+  line-height: 1.15;
   color: var(--pf-ink);
 }
-.pf-card-combo-save {
+.pf-card-combo-unit {
+  font-size: 10px;
   font-weight: 800;
-  color: var(--pf-ok);
-  white-space: nowrap;
+  color: var(--pf-accent);
 }
-.pf-card-combo.is-best .pf-card-combo-qty { color: var(--pf-accent-deep); }
+.pf-card-combo-foot {
+  margin: 1px 0 0;
+  font-size: 10px;
+  line-height: 1.35;
+  color: var(--pf-muted);
+}
 .pf-add-button {
   flex: 1;
   max-width: 62%;

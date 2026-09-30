@@ -68,16 +68,17 @@ export const PAGE_COPY = {
 export const SHIPPING_BADGE = 'Envío gratis';
 
 /**
- * Precio por unidad de un perfume en cada escalón, con lo que se abarata por
- * frasco respecto del precio suelto.
+ * Cada escalón de la promo con el total a pagar y lo que sale cada perfume.
  *
- * La promo es plana y todos los perfumes valen lo mismo, así que alcanza con el
- * precio por unidad: es lo que se muestra en cada tarjeta para que quede claro
- * que un perfume NO baja de precio por ser más caro, sino por cuántos llevás.
+ * Se muestra en la tarjeta como "2 perfumes = $65.000 · $32.500 c/u": el total
+ * es lo que la persona va a poner en efectivo, y el precio por unidad deja
+ * claro que el descuento viene de la cantidad y no de que el perfume sea
+ * distinto. Como la promo es plana y todos valen lo mismo, el bloque se calcula
+ * una vez y se repite en las 23 tarjetas.
  *
  * `unit` redondea hacia arriba (Math.ceil) para no prometer una cifra que nadie
- * puede pagar: 80.000/3 son 26.666,67. `saving` redondea hacia abajo por lo
- * mismo, así que el ahorro que se anuncia nunca es mayor al real.
+ * puede pagar: 80.000/3 son 26.666,67. `savingPerUnit` redondea hacia abajo por
+ * lo mismo, así que el ahorro anunciado nunca es mayor al real.
  */
 export const UNIT_PRICE_TIERS = PRICING_TIERS.map((tier) => {
   const exactUnit = tier.price / tier.count;
@@ -87,6 +88,7 @@ export const UNIT_PRICE_TIERS = PRICING_TIERS.map((tier) => {
     unit: Math.ceil(exactUnit),
     unitLabel: `$${Math.ceil(exactUnit).toLocaleString('es-AR')}`,
     savingPerUnit: Math.floor(PRICING.single - exactUnit),
+    totalLabel: `$${tier.price.toLocaleString('es-AR')}`,
   };
 });
 

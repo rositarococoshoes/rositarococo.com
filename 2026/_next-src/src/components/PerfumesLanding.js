@@ -162,23 +162,37 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
 
         <p className="pf-card-notes">{product.description}</p>
 
-        {/* Precio real del frasco arriba, y abajo cuánto sale este mismo perfume
-            si lo combinás con 1 o 2 más. */}
+        {/* Total a pagar por cada combo, con lo que sale cada perfume. El total
+            va primero porque es el número que la persona compara con el efectivo
+            que tiene; el c/u de al lado muestra que el descuento viene de la
+            cantidad y no de que el perfume sea otro. */}
         <div className="pf-card-pricing">
-          <div className="pf-card-price-row">
-            <span className="pf-card-price-label">1 perfume</span>
-            <strong className="pf-card-price">{formatCurrency(PRICING.single)}</strong>
+          <div className="pf-card-price-row is-single">
+            <span className="pf-card-price-label">
+              1 perfume
+              <small className="pf-card-price-hint">sin promo</small>
+            </span>
+            <strong className="pf-card-price">{PRICING_TIERS[0].totalLabel}</strong>
           </div>
 
           <ul className="pf-card-combos">
             {COMBO_TIERS.map((tier) => (
               <li key={tier.count} className="pf-card-combo">
-                <span className="pf-card-combo-qty">+ {tier.count - 1} más</span>
-                <span className="pf-card-combo-unit">{tier.unitLabel} c/u</span>
-                <span className="pf-card-combo-save">−{formatCurrency(tier.savingPerUnit)}</span>
+                <span className="pf-card-combo-qty">
+                  {tier.count} perfumes
+                  <small className="pf-card-combo-hint">sumando {tier.count - 1} más</small>
+                </span>
+                <span className="pf-card-combo-values">
+                  <strong className="pf-card-combo-total">{tier.totalLabel}</strong>
+                  <small className="pf-card-combo-unit">{tier.unitLabel} c/u</small>
+                </span>
               </li>
             ))}
           </ul>
+
+          <p className="pf-card-combo-foot">
+            El precio por unidad baja al sumar. Podés combinar los que quieras.
+          </p>
         </div>
 
         <div className="pf-card-actions">
