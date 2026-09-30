@@ -8,9 +8,9 @@ import {
   FAMILY_LABEL,
   GENDER_LABEL,
   GENDERS,
-  BEST_UNIT_PRICE,
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
+  UNIT_PRICE_TIERS,
   PRICING,
   PRICING_TIERS,
   SHIPPING_BADGE,
@@ -40,6 +40,9 @@ import {
 import { generateFBC, generateFBP } from '@/src/lib/facebook-tracking';
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
+
+/** Escalones de 2 y 3 que se muestran bajo el precio en cada tarjeta. */
+const COMBO_TIERS = UNIT_PRICE_TIERS.filter((tier) => tier.count > 1);
 
 const EMPTY_FORM = {
   name: '',
@@ -159,15 +162,26 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
 
         <p className="pf-card-notes">{product.description}</p>
 
+        {/* Precio real del frasco arriba, y abajo cuánto sale este mismo perfume
+            si lo combinás con 1 o 2 más. */}
+        <div className="pf-card-pricing">
+          <div className="pf-card-price-row">
+            <span className="pf-card-price-label">1 perfume</span>
+            <strong className="pf-card-price">{formatCurrency(PRICING.single)}</strong>
+          </div>
+
+          <ul className="pf-card-combos">
+            {COMBO_TIERS.map((tier) => (
+              <li key={tier.count} className="pf-card-combo">
+                <span className="pf-card-combo-qty">+ {tier.count - 1} más</span>
+                <span className="pf-card-combo-unit">{tier.unitLabel} c/u</span>
+                <span className="pf-card-combo-save">−{formatCurrency(tier.savingPerUnit)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div className="pf-card-actions">
-          {/* Precio por unidad del escalón de 3, no el de 1: muestra el mejor
-              precio posible y el ahorro, que es lo que mueve a comprar más. */}
-          <span className="pf-card-price-block">
-            <strong className="pf-card-price">{BEST_UNIT_PRICE.label}</strong>
-            <small className="pf-card-price-caption">
-              {BEST_UNIT_PRICE.caption} · ahorrás {formatCurrency(BEST_UNIT_PRICE.saving)}
-            </small>
-          </span>
           <button
             type="button"
             className="pf-add-button"

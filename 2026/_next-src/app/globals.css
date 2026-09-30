@@ -3248,20 +3248,66 @@ label small,
   gap: 10px;
   margin-top: 2px;
 }
-.pf-card-price-block { display: grid; gap: 0; min-width: 0; }
+/* --- Precio en la tarjeta: el real arriba, y abajo cuánto baja ese mismo
+       perfume al combinarlo con 1 o 2 más. --- */
+.pf-card-pricing {
+  display: grid;
+  gap: 5px;
+  padding: 9px 10px;
+  background: #faf6f1;
+  border: 1px solid var(--pf-line);
+  border-radius: 12px;
+}
+.pf-card-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.pf-card-price-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pf-muted);
+}
 .pf-card-price {
   font-family: var(--font-serif), serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.15;
+  font-size: 21px;
+  line-height: 1.1;
   color: var(--pf-ink);
 }
-.pf-card-price-caption {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--pf-ok);
+.pf-card-combos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+  border-top: 1px dashed var(--pf-line);
+  padding-top: 5px;
 }
+.pf-card-combo {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 11px;
+}
+.pf-card-combo-qty {
+  font-weight: 700;
+  color: var(--pf-accent);
+  white-space: nowrap;
+}
+.pf-card-combo-unit {
+  font-weight: 600;
+  color: var(--pf-ink);
+}
+.pf-card-combo-save {
+  font-weight: 800;
+  color: var(--pf-ok);
+  white-space: nowrap;
+}
+.pf-card-combo.is-best .pf-card-combo-qty { color: var(--pf-accent-deep); }
 .pf-add-button {
   flex: 1;
   max-width: 62%;

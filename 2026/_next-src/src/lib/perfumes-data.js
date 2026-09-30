@@ -59,7 +59,7 @@ export const AROMA_FAMILIES = [
 export const PAGE_COPY = {
   title: 'Perfumes por contrarreembolso',
   paymentRibbon: 'Pagás al recibir en efectivo',
-  promoLine: 'Combiná los que quieras. Cuantos más sumes, mejor el precio por unidad.',
+  promoLine: 'Combiná los que quieras: el precio por unidad baja cada vez que sumás otro.',
   shippingNote: 'Solo CABA y GBA',
   checkoutTitle: 'Casi listos. Completá tus datos',
   whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
@@ -68,20 +68,27 @@ export const PAGE_COPY = {
 export const SHIPPING_BADGE = 'Envío gratis';
 
 /**
- * Precio por unidad de un perfume si llevás 3, con el ahorro frente al precio
- * suelto. Se muestra en cada tarjeta en lugar del precio de 1, porque el precio
- * por unidad es lo que la gente realmente decide: nadie quiere pagar $40.000
- * por un frasco si por $80.000 se lleva tres.
+ * Precio por unidad de un perfume en cada escalón, con lo que se abarata por
+ * frasco respecto del precio suelto.
+ *
+ * La promo es plana y todos los perfumes valen lo mismo, así que alcanza con el
+ * precio por unidad: es lo que se muestra en cada tarjeta para que quede claro
+ * que un perfume NO baja de precio por ser más caro, sino por cuántos llevás.
+ *
+ * `unit` redondea hacia arriba (Math.ceil) para no prometer una cifra que nadie
+ * puede pagar: 80.000/3 son 26.666,67. `saving` redondea hacia abajo por lo
+ * mismo, así que el ahorro que se anuncia nunca es mayor al real.
  */
-export const BEST_UNIT_PRICE = {
-  total: PRICING.trio,
-  // Math.ceil y no Math.round: 80.000/3 son 26.666,67 y redondear hacia abajo
-  // prometería un precio por unidad que nadie puede pagar.
-  unit: Math.ceil(PRICING.trio / 3),
-  label: `$${Math.ceil(PRICING.trio / 3).toLocaleString('es-AR')} c/u`,
-  caption: 'llevando 3',
-  saving: PRICING.single * 3 - PRICING.trio,
-};
+export const UNIT_PRICE_TIERS = PRICING_TIERS.map((tier) => {
+  const exactUnit = tier.price / tier.count;
+  return {
+    count: tier.count,
+    total: tier.price,
+    unit: Math.ceil(exactUnit),
+    unitLabel: `$${Math.ceil(exactUnit).toLocaleString('es-AR')}`,
+    savingPerUnit: Math.floor(PRICING.single - exactUnit),
+  };
+});
 
 export const TRUST_POINTS = [
   {

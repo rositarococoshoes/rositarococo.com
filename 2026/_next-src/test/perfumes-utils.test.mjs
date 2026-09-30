@@ -14,13 +14,13 @@ import {
   getPerfumeUpsell,
 } from '../src/lib/perfumes-utils.js';
 import {
-  BEST_UNIT_PRICE,
   PAGE_COPY,
   PRICING,
   PRICING_TIERS,
   PRODUCTS,
   SHIPPING_BADGE,
   TRUST_POINTS,
+  UNIT_PRICE_TIERS,
   formatPerfumeLine,
 } from '../src/lib/perfumes-data.js';
 
@@ -147,30 +147,45 @@ test('formatPerfumeLine arma "Nombre (Marca) - Genero"', () => {
   );
 });
 
-test('el precio por unidad del escalón de 3 no promete un ahorro inexistente', () => {
-  // Es lo que muestra cada tarjeta: si cambia la promo, el bloque tiene que
-  // seguir cuadrando con lo que se cobra de verdad.
-  assert.equal(BEST_UNIT_PRICE.total, calculatePerfumeTotal(3));
-  assert.equal(BEST_UNIT_PRICE.unit, Math.ceil(PRICING.trio / 3));
-  assert.equal(BEST_UNIT_PRICE.saving, 3 * PRICING.single - PRICING.trio);
-  assert.ok(BEST_UNIT_PRICE.saving > 0, 'debería haber ahorro frente al precio suelto');
-  // y tiene que ser el escalón realmente más barato por unidad
-  const unitAt = (n) => calculatePerfumeTotal(n) / n;
-  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(1));
-  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(2));
-  assert.equal(BEST_UNIT_PRICE.unit, Math.ceil(PRICING.trio / 3));
-  // 80.000/3 no da entero. El precio por unidad se redondea hacia arriba para no
-  // prometer una cifra que nadie puede pagar, así que queda 1 centavo por encima
-  // del exacto: la diferencia tiene que ser menor a un peso, nunca un peso entero.
-  const exact = unitAt(3);
-  assert.ok(exact < BEST_UNIT_PRICE.unit, 'el redondeo no debe recortar el precio');
-  assert.ok(
-    BEST_UNIT_PRICE.unit - exact < 1,
-    `redondeo excesivo: ${BEST_UNIT_PRICE.unit - exact}`,
-  );
-  // y el precio mostrado por unidad tiene que seguir siendo de los más baratos
-  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(1) + 1);
-  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(2) + 1);
+test('el precio por unidad de cada escalón no promete un ahorro inexistente', () => {
+  // Es lo que muestra cada tarjeta bajo el precio. Si cambia la promo, el bloque
+  // tiene que seguir cuadrando con lo que se cobra de verdad.
+  assert.equal(UNIT_PRICE_TIERS.length, 3);
+
+  for (const tier of UNIT_PRICE_TIERS) {
+    const exactUnit = calculatePerfumeTotal(tier.count) / tier.count;
+
+    assert.equal(tier.total, calculatePerfumeTotal(tier.count), `total de ${tier.count}`);
+    // Math.ceil: redondear hacia abajo prometería un precio que nadie puede pagar
+    assert.equal(tier.unit, Math.ceil(exactUnit), `unidad de ${tier.count}`);
+    // nunca por debajo del exacto, y nunca desviado más de un peso
+    assert.ok(tier.unit >= exactUnit, `el redondeo recortaría el precio en ${tier.count}`);
+    assert.ok(tier.unit - exactUnit < 1, `redondeo excesivo en ${tier.count}`);
+    // Math.floor en el ahorro: nunca prometer más ahorro del real
+    assert.equal(
+      tier.savingPerUnit,
+      Math.floor(PRICING.single - exactUnit),
+      `ahorro de ${tier.count}`,
+    );
+    assert.ok(
+      tier.savingPerUnit <= PRICING.single - exactUnit,
+      `el ahorro de ${tier.count} no puede ser mayor al real`,
+    );
+    assert.equal(tier.unitLabel, `$${tier.unit.toLocaleString('es-AR')}`);
+  }
+});
+
+test('sumar perfumes baja efectivamente el precio por unidad', () => {
+  const units = UNIT_PRICE_TIERS.map((t) => t.unit);
+  for (let i = 1; i < units.length; i++) {
+    assert.ok(
+      units[i] < units[i - 1],
+      `el escalón de ${UNIT_PRICE_TIERS[i].count} no es más barato por unidad`,
+    );
+  }
+  // el de 1 no tiene ahorro: es el precio de referencia
+  assert.equal(UNIT_PRICE_TIERS[0].unit, PRICING.single);
+  assert.equal(UNIT_PRICE_TIERS[0].savingPerUnit, 0);
 });
 
 test('los tres escalones de precio están ordenados y growing', () => {
