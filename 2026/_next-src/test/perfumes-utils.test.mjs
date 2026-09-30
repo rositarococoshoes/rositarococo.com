@@ -13,7 +13,16 @@ import {
   getPerfumeThankYouRoute,
   getPerfumeUpsell,
 } from '../src/lib/perfumes-utils.js';
-import { PRODUCTS, PRICING, formatPerfumeLine } from '../src/lib/perfumes-data.js';
+import {
+  BEST_UNIT_PRICE,
+  PAGE_COPY,
+  PRICING,
+  PRICING_TIERS,
+  PRODUCTS,
+  SHIPPING_BADGE,
+  TRUST_POINTS,
+  formatPerfumeLine,
+} from '../src/lib/perfumes-data.js';
 
 const cart = (count) =>
   Array.from({ length: count }, (_, index) => ({
@@ -136,4 +145,68 @@ test('formatPerfumeLine arma "Nombre (Marca) - Genero"', () => {
     formatPerfumeLine(PRODUCTS[0]),
     'Arabians Tonka (Montale) - Unisex',
   );
+});
+
+test('el precio por unidad del escalón de 3 no promete un ahorro inexistente', () => {
+  // Es lo que muestra cada tarjeta: si cambia la promo, el bloque tiene que
+  // seguir cuadrando con lo que se cobra de verdad.
+  assert.equal(BEST_UNIT_PRICE.total, calculatePerfumeTotal(3));
+  assert.equal(BEST_UNIT_PRICE.unit, Math.ceil(PRICING.trio / 3));
+  assert.equal(BEST_UNIT_PRICE.saving, 3 * PRICING.single - PRICING.trio);
+  assert.ok(BEST_UNIT_PRICE.saving > 0, 'debería haber ahorro frente al precio suelto');
+  // y tiene que ser el escalón realmente más barato por unidad
+  const unitAt = (n) => calculatePerfumeTotal(n) / n;
+  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(1));
+  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(2));
+  assert.equal(BEST_UNIT_PRICE.unit, Math.ceil(PRICING.trio / 3));
+  // 80.000/3 no da entero. El precio por unidad se redondea hacia arriba para no
+  // prometer una cifra que nadie puede pagar, así que queda 1 centavo por encima
+  // del exacto: la diferencia tiene que ser menor a un peso, nunca un peso entero.
+  const exact = unitAt(3);
+  assert.ok(exact < BEST_UNIT_PRICE.unit, 'el redondeo no debe recortar el precio');
+  assert.ok(
+    BEST_UNIT_PRICE.unit - exact < 1,
+    `redondeo excesivo: ${BEST_UNIT_PRICE.unit - exact}`,
+  );
+  // y el precio mostrado por unidad tiene que seguir siendo de los más baratos
+  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(1) + 1);
+  assert.ok(BEST_UNIT_PRICE.unit <= unitAt(2) + 1);
+});
+
+test('los tres escalones de precio están ordenados y growing', () => {
+  assert.equal(PRICING_TIERS.length, 3);
+  for (let i = 1; i < PRICING_TIERS.length; i++) {
+    assert.ok(
+      PRICING_TIERS[i].price > PRICING_TIERS[i - 1].price,
+      'sumar unidades debe costar más en total',
+    );
+  }
+  assert.equal(PRICING_TIERS[2].featured, true, 'solo el último escalón va destacado');
+  assert.equal(PRICING_TIERS.filter((t) => t.featured).length, 1);
+});
+
+test('la copia al cliente esta en español y sin typos', () => {
+  const joined = [
+    PAGE_COPY.title,
+    PAGE_COPY.paymentRibbon,
+    PAGE_COPY.promoLine,
+    PAGE_COPY.shippingNote,
+    SHIPPING_BADGE,
+    ...TRUST_POINTS.flatMap((point) => [point.title, point.body]),
+    ...PRODUCTS.map((p) => `${p.name} ${p.brand} ${p.description}`),
+  ].join(' ');
+
+  // se colaron palabras en inglés y un espacio faltante ("perfumesinspired")
+  assert.equal(joined.includes('perfumesinspired'), false, 'falta el espacio en "perfumes inspirados"');
+  assert.equal(joined.includes('inspiraded'), false);
+  assert.equal(joined.includes(' perfumess'), false);
+  assert.match(joined, /23 perfumes inspirados/);
+  // ninguna palabra inglesa del copy
+  for (const word of ['inspired', 'shipping', 'free', 'order', 'checkout', 'cart', 'shop', 'buy']) {
+    assert.equal(
+      new RegExp(`\\b${word}\\b`).test(joined),
+      false,
+      `"${word}" esta en ingles en el copy`,
+    );
+  }
 });

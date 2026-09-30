@@ -59,17 +59,34 @@ export const AROMA_FAMILIES = [
 export const PAGE_COPY = {
   title: 'Perfumes por contrarreembolso',
   paymentRibbon: 'Pagás al recibir en efectivo',
-  promoLine:
-    '3 perfumes por $80.000 · 2 por $65.000 · 1 por $40.000. Podés combinar los que quieras.',
+  promoLine: 'Combiná los que quieras. Cuantos más sumes, mejor el precio por unidad.',
   shippingNote: 'Solo CABA y GBA',
   checkoutTitle: 'Casi listos. Completá tus datos',
   whatsappModalTitle: 'Ingresa tu WhatsApp para continuar',
 };
 
+export const SHIPPING_BADGE = 'Envío gratis';
+
+/**
+ * Precio por unidad de un perfume si llevás 3, con el ahorro frente al precio
+ * suelto. Se muestra en cada tarjeta en lugar del precio de 1, porque el precio
+ * por unidad es lo que la gente realmente decide: nadie quiere pagar $40.000
+ * por un frasco si por $80.000 se lleva tres.
+ */
+export const BEST_UNIT_PRICE = {
+  total: PRICING.trio,
+  // Math.ceil y no Math.round: 80.000/3 son 26.666,67 y redondear hacia abajo
+  // prometería un precio por unidad que nadie puede pagar.
+  unit: Math.ceil(PRICING.trio / 3),
+  label: `$${Math.ceil(PRICING.trio / 3).toLocaleString('es-AR')} c/u`,
+  caption: 'llevando 3',
+  saving: PRICING.single * 3 - PRICING.trio,
+};
+
 export const TRUST_POINTS = [
   {
     title: 'Elegís vos',
-    body: '23 perfumesinspired en marcas que ya conocés, filtrados por aroma y género.',
+    body: '23 perfumes inspirados en marcas que ya conocés, filtrados por aroma y género.',
   },
   {
     title: 'Pagás al recibir',

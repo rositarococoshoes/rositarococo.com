@@ -8,10 +8,12 @@ import {
   FAMILY_LABEL,
   GENDER_LABEL,
   GENDERS,
+  BEST_UNIT_PRICE,
   ORDER_WEBHOOK_URL,
   PAGE_COPY,
   PRICING,
   PRICING_TIERS,
+  SHIPPING_BADGE,
   PRODUCT_KIND,
   PRODUCT_KIND_FIELD,
   PRODUCTS,
@@ -158,7 +160,14 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
         <p className="pf-card-notes">{product.description}</p>
 
         <div className="pf-card-actions">
-          <span className="pf-card-price">{formatCurrency(PRICING.single)}</span>
+          {/* Precio por unidad del escalón de 3, no el de 1: muestra el mejor
+              precio posible y el ahorro, que es lo que mueve a comprar más. */}
+          <span className="pf-card-price-block">
+            <strong className="pf-card-price">{BEST_UNIT_PRICE.label}</strong>
+            <small className="pf-card-price-caption">
+              {BEST_UNIT_PRICE.caption} · ahorrás {formatCurrency(BEST_UNIT_PRICE.saving)}
+            </small>
+          </span>
           <button
             type="button"
             className="pf-add-button"
@@ -648,8 +657,40 @@ export default function PerfumesLanding() {
         <p className="pf-ribbon">
           {PAGE_COPY.paymentRibbon} · {PAGE_COPY.shippingNote}
         </p>
-        <p className="pf-promo">{PAGE_COPY.promoLine}</p>
       </header>
+
+      {/* Envío gratis y precio escalonado arriba de todo: es el argumento que
+          hace agregar más unidades, así que va antes que el catálogo. */}
+      <section className="pf-promo-panel" aria-label="Promociones y envío">
+        <p className="pf-shipping">
+          <span className="pf-shipping-icon" aria-hidden="true">✓</span>
+          {SHIPPING_BADGE}
+        </p>
+
+        <div className="pf-promo-tiers">
+          {PRICING_TIERS.map((tier) => (
+            <div
+              key={tier.count}
+              className={`pf-promo-tier${tier.featured ? ' is-featured' : ''}`}
+            >
+              <span className="pf-promo-tier-qty">
+                {tier.count} {tier.count === 1 ? 'perfume' : 'perfumes'}
+              </span>
+              <strong className="pf-promo-tier-price">{tier.label}</strong>
+              <span className="pf-promo-tier-unit">
+                {formatCurrency(Math.ceil(tier.price / tier.count))} c/u
+              </span>
+              {tier.featured ? (
+                <span className="pf-promo-tier-flag">Mejor precio</span>
+              ) : (
+                <span className="pf-promo-tier-flag is-hidden" aria-hidden="true">·</span>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p className="pf-promo-note">{PAGE_COPY.promoLine}</p>
+      </section>
 
       <section className="pf-trust">
         {TRUST_POINTS.map((point) => (
