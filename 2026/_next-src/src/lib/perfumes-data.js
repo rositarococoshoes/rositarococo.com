@@ -109,7 +109,7 @@ export const TRUST_POINTS = [
 
 export const DELIVERY_LEGEND =
   'ENVÍO: elegí uno de los días disponibles para recibir. Si no estás, dejá a alguien con el efectivo. ' +
-  'Te contactamos por WhatsApp para confirmar el envío y necesitás que nos respondas para despachar. ' +
+  'Te escribimos por WhatsApp y necesitás respondernos para que podamos confirmar el pedido y despachar. ' +
   'El pago es solo en efectivo y tenés que contar con el total.';
 
 export const REVIEW_COMMITMENT =

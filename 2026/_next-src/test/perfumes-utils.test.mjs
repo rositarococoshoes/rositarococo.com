@@ -14,6 +14,7 @@ import {
   getPerfumeUpsell,
 } from '../src/lib/perfumes-utils.js';
 import {
+  DELIVERY_LEGEND,
   PAGE_COPY,
   PRICING,
   PRICING_TIERS,
@@ -231,6 +232,22 @@ test('cada escalón tiene todos los campos que la tarjeta dibuja', () => {
   assert.equal(UNIT_PRICE_TIERS[0].count, 1);
   assert.equal(UNIT_PRICE_TIERS[0].totalLabel, '$40.000');
   assert.equal(UNIT_PRICE_TIERS.filter((t) => t.count > 1).length, 2);
+});
+
+test('el aviso de envío explica qué tiene que hacer la persona', () => {
+  // El texto va en un <p> chico, abajo del formulario: si queda ambiguo la
+  // gente no responde el WhatsApp y el pedido no sale.
+  assert.match(DELIVERY_LEGEND, /elegí uno de los días disponibles/);
+  assert.match(DELIVERY_LEGEND, /dejá a alguien con el efectivo/);
+  assert.match(DELIVERY_LEGEND, /escribimos por WhatsApp/);
+  assert.match(DELIVERY_LEGEND, /respondernos/);
+  // tiene que decir para qué: confirmar el pedido y despachar
+  assert.match(DELIVERY_LEGEND, /confirmar el pedido y despachar/);
+  // "necesitás que nos respondas" sonaba a un pedido de la empresa, no a una
+  // acción de la persona
+  assert.equal(DELIVERY_LEGEND.includes('necesitás que nos respondas'), false);
+  assert.match(DELIVERY_LEGEND, /solo en efectivo/);
+  assert.match(DELIVERY_LEGEND, /contar con el total/);
 });
 
 test('los tres escalones de precio están ordenados y growing', () => {
