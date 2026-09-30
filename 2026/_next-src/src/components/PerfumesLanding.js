@@ -41,7 +41,15 @@ import { generateFBC, generateFBP } from '@/src/lib/facebook-tracking';
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
 
-/** Escalones de 2 y 3 que se muestran bajo el precio en cada tarjeta. */
+/**
+ * Escalones que se muestran en la tarjeta de cada perfume: el de 1 como precio
+ * de referencia, y el de 2 y 3 como combos.
+ *
+ * Salen de UNIT_PRICE_TIERS y no de PRICING_TIERS porque este último no trae
+ * `totalLabel`. Mezclarlos dejaba el precio de 1 en blanco en producción: el
+ * campo era `undefined` y React no dibujaba nada, sin error ni warning.
+ */
+const SINGLE_TIER = UNIT_PRICE_TIERS[0];
 const COMBO_TIERS = UNIT_PRICE_TIERS.filter((tier) => tier.count > 1);
 
 const EMPTY_FORM = {
@@ -172,7 +180,7 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
               1 perfume
               <small className="pf-card-price-hint">sin promo</small>
             </span>
-            <strong className="pf-card-price">{PRICING_TIERS[0].totalLabel}</strong>
+            <strong className="pf-card-price">{SINGLE_TIER.totalLabel}</strong>
           </div>
 
           <ul className="pf-card-combos">

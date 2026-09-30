@@ -211,6 +211,28 @@ test('el total y el precio por unidad de cada escalón son coherentes entre sí'
   }
 });
 
+test('cada escalón tiene todos los campos que la tarjeta dibuja', () => {
+  // Se agregó el precio de 1 con `PRICING_TIERS[0].totalLabel`, pero ese campo
+  // vive solo en UNIT_PRICE_TIERS. Resultado: `undefined` y el precio de un
+  // perfume no se dibujaba, sin error ni warning. Esto lo frena.
+  for (const tier of UNIT_PRICE_TIERS) {
+    for (const field of ['totalLabel', 'unitLabel', 'unit', 'total', 'savingPerUnit']) {
+      assert.notEqual(
+        tier[field],
+        undefined,
+        `el escalón de ${tier.count} no tiene ${field}`,
+      );
+    }
+    assert.match(tier.totalLabel, /^\$\d/);
+    assert.match(tier.unitLabel, /^\$\d/);
+  }
+
+  // los dos que la tarjeta usa tienen que ser los mismos objetos
+  assert.equal(UNIT_PRICE_TIERS[0].count, 1);
+  assert.equal(UNIT_PRICE_TIERS[0].totalLabel, '$40.000');
+  assert.equal(UNIT_PRICE_TIERS.filter((t) => t.count > 1).length, 2);
+});
+
 test('los tres escalones de precio están ordenados y growing', () => {
   assert.equal(PRICING_TIERS.length, 3);
   for (let i = 1; i < PRICING_TIERS.length; i++) {
