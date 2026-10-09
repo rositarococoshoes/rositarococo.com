@@ -23,6 +23,13 @@ const rootHtmlFiles = [
   'gracias-perfumes-1.html',
   'gracias-perfumes-2.html',
   'gracias-perfumes-3.html',
+  'perfumes-previopago.html',
+  'gracias-perfumes-pp-1.html',
+  'gracias-perfumes-pp-2.html',
+  'gracias-perfumes-pp-3.html',
+  'transferenciacbu-perfumes-pp-1.html',
+  'transferenciacbu-perfumes-pp-2.html',
+  'transferenciacbu-perfumes-pp-3.html',
 ];
 
 function run(command, cwd) {

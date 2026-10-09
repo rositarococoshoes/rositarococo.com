@@ -26,6 +26,13 @@ const generatedEntries = [
   'gracias-perfumes-1.html',
   'gracias-perfumes-2.html',
   'gracias-perfumes-3.html',
+  'perfumes-previopago.html',
+  'gracias-perfumes-pp-1.html',
+  'gracias-perfumes-pp-2.html',
+  'gracias-perfumes-pp-3.html',
+  'transferenciacbu-perfumes-pp-1.html',
+  'transferenciacbu-perfumes-pp-2.html',
+  'transferenciacbu-perfumes-pp-3.html',
   '_next',
   'assets',
   'apple-touch-icon.png',
@@ -37,6 +44,7 @@ const generatedEntries = [
   'og-contrareembolso-2026.png',
   'og-previo-pago-2026.png',
   'og-perfumes-2026.png',
+  'og-perfumes-pp-2026.png',
   'site.webmanifest',
 ];
 
@@ -93,6 +101,13 @@ async function exportFromServerApp() {
     ['gracias-perfumes-1.html', 'gracias-perfumes-1.html'],
     ['gracias-perfumes-2.html', 'gracias-perfumes-2.html'],
     ['gracias-perfumes-3.html', 'gracias-perfumes-3.html'],
+    ['perfumes-previopago.html', 'perfumes-previopago.html'],
+    ['gracias-perfumes-pp-1.html', 'gracias-perfumes-pp-1.html'],
+    ['gracias-perfumes-pp-2.html', 'gracias-perfumes-pp-2.html'],
+    ['gracias-perfumes-pp-3.html', 'gracias-perfumes-pp-3.html'],
+    ['transferenciacbu-perfumes-pp-1.html', 'transferenciacbu-perfumes-pp-1.html'],
+    ['transferenciacbu-perfumes-pp-2.html', 'transferenciacbu-perfumes-pp-2.html'],
+    ['transferenciacbu-perfumes-pp-3.html', 'transferenciacbu-perfumes-pp-3.html'],
     ['_not-found.html', '_not-found.html'],
     ['_not-found.html', '404.html'],
   ];
@@ -108,9 +123,13 @@ async function exportFromServerApp() {
   // La imagen OG también a la raíz: el workflow arma site/ con `cp -R 2026/.`,
   // así que la de /2026/ ya sale sola, pero WhatsApp y Facebook piden la
   // preview antes de que exista la URL canónica y resuelven mejor en la raíz.
-  const ogImage = 'og-perfumes-2026.png';
-  if (await exists(path.join(publicDir, ogImage))) {
-    await copyRecursive(path.join(publicDir, ogImage), path.join(repoRoot, ogImage));
+  // Las imágenes OG también a la raíz: el workflow arma site/ con `cp -R 2026/.`,
+  // así que la de /2026/ ya sale sola, pero WhatsApp y Facebook piden la preview
+  // antes de que exista la URL canónica y resuelven mejor en la raíz.
+  for (const ogImage of ['og-perfumes-2026.png', 'og-perfumes-pp-2026.png']) {
+    if (await exists(path.join(publicDir, ogImage))) {
+      await copyRecursive(path.join(publicDir, ogImage), path.join(repoRoot, ogImage));
+    }
   }
 
   const optionalPublic = [
@@ -123,6 +142,7 @@ async function exportFromServerApp() {
     'og-contrareembolso-2026.png',
     'og-previo-pago-2026.png',
     'og-perfumes-2026.png',
+    'og-perfumes-pp-2026.png',
     'site.webmanifest',
   ];
   await Promise.all(optionalPublic.map(async (file) => {
