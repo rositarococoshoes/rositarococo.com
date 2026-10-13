@@ -23,9 +23,10 @@ const OUT = path.resolve(__dirname, '..', '..', 'perfumes', 'costos-perfumes.jso
 /**
  * id del producto -> { costo, pdf: línea del PDF de la que sale }
  *
- * Marcados como `confirmado: false` los dos que se resolvieron por
- * recomendación y pueden cambiar: son los únicos que hay que tocar si
- * el costo real es otro.
+ * Los 61 costos están confirmados por Roxana (2026-10-13), que es quien lleva
+ * el catálogo: los precios de Originales.pdf son de COMPRA, no de venta, y los
+ * dos que el PDF no dejaba desambiguar son Now Black ($35.000) y Asad Negro
+ * ($40.000).
  */
 export const COSTOS = {
   // ------------------------------------------------------------ Armaf
@@ -104,16 +105,15 @@ export const COSTOS = {
   'bharara--king': { costo: 90000, pdf: 'Bharara King 100ml' },
   'lattafa-pride--pisa': { costo: 65000, pdf: 'Pisa 100ml' },
 
-  // ------------------------------------------------------------ SIN CONFIRMAR
-  // El PDF tiene dos "Now" y ninguno aclara la marca. Se tomó el Black porque
-  // el catálogo lo tiene como Masculino. Si el Now de RAVE es otro, es este
-  // número el que hay que cambiar.
-  'rave-lattafa--now': { costo: 35000, pdf: 'Now Black 100ml', confirmado: false },
+  // ------------------------------------------------------------ confirmados por Roxana
+  // El PDF tiene dos "Now" y ninguno aclara la marca. Confirmado que el
+  // nuestro es el Black.
+  'rave-lattafa--now': { costo: 35000, pdf: 'Now Black 100ml' },
 
   // El PDF tiene cuatro Asad y tres los usan otros productos del catálogo.
-  // El único nombre libre es "Asad Negro", que es como Lattafa renombró el
-  // Asad original. Si el Asad del catálogo es otro, es este número.
-  'lattafa--asad': { costo: 40000, pdf: 'Asad Negro 100ml', confirmado: false },
+  // Confirmado que nuestro "Asad" es el Negro, que es como Lattafa renombró
+  // el Asad original.
+  'lattafa--asad': { costo: 40000, pdf: 'Asad Negro 100ml' },
 };
 
 /** El ratio de venta sale del ejemplo del usuario: costo 55.000 -> venta 124.900. */
@@ -127,16 +127,17 @@ export const cbu = (precio) => round100(precio * CBU_DISCOUNT);
 const salida = {
   _nota:
     'Generado por scripts/build-costos-pp.mjs. Los costos salen de Originales.pdf ' +
-    '(columna "Precio x Uni. Perfume Arabe"). El precio de venta se calcula con el ' +
-    'ratio del ejemplo: costo 55.000 -> 124.900, redondeado a los $100. El CBU es ' +
-    'el 10% menos, también redondeado a los $100. Editar este archivo NO es necesario: ' +
-    'para cambiar algo se edita COSTOS en el script y se corre de nuevo.',
+    '(columna "Precio x Uni. Perfume Arabe"), que segun Roxana son de COMPRA. ' +
+    'Todos los 61 fueron confirmados el 2026-10-13. El precio de venta se calcula ' +
+    'con el ratio del ejemplo: costo 55.000 -> 124.900, redondeado a los $100. El ' +
+    'CBU es el 10% menos, tambien redondeado a los $100. Editar este archivo NO es ' +
+    'necesario: para cambiar algo se edita COSTOS en el script y se corre de nuevo.',
   ratio: RATIO,
   cbuDiscount: CBU_DISCOUNT,
   costos: Object.fromEntries(
     Object.entries(COSTOS).map(([id, v]) => [
       id,
-      { costo: v.costo, venta: venta(v.costo), cbu: cbu(venta(v.costo)), pdf: v.pdf, ...(v.confirmado === false ? { confirmado: false } : {}) },
+      { costo: v.costo, venta: venta(v.costo), cbu: cbu(venta(v.costo)), pdf: v.pdf },
     ]),
   ),
 };
@@ -144,11 +145,9 @@ const salida = {
 fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(salida, null, 2) + '\n', 'utf8');
 
-const sinConfirmar = Object.keys(COSTOS).filter((id) => COSTOS[id].confirmado === false);
 const costos = Object.values(COSTOS).map((c) => c.costo);
 console.log('escrito', OUT);
 console.log('productos con costo:', Object.keys(COSTOS).length);
-console.log('sin confirmar:', sinConfirmar.length ? sinConfirmar.join(', ') : 'ninguno');
 console.log(
   `costo ${Math.min(...costos).toLocaleString('es-AR')} - ${Math.max(...costos).toLocaleString('es-AR')}` +
     `  ->  venta ${venta(Math.min(...costos)).toLocaleString('es-AR')} - ${venta(Math.max(...costos)).toLocaleString('es-AR')}`,

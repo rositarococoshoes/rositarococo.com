@@ -222,11 +222,24 @@ test('el genero y la familia cubren todo el catálogo', () => {
   }
 });
 
-test('solo Now y Asad tienen el precio sin confirmar', () => {
-  // son los dos que se resolvieron por recomendacion; si se corrigen en
-  // scripts/build-costos-pp.mjs, este test hay que actualizar
-  const sinConfirmar = PRODUCTS.filter((p) => !p.priceConfirmed).map((p) => p.id).sort();
-  assert.deepEqual(sinConfirmar, ['lattafa--asad', 'rave-lattafa--now']);
+test('Now y Asad tienen el costo que confirmó Roxana', () => {
+  // El PDF no dejaba desambiguar estos dos. Confirmado el 2026-10-13: el Now
+  // es el Black y el Asad es el Negro. Si alguna vez se corrigen, este test
+  // hay que actualizar junto con scripts/build-costos-pp.mjs.
+  const now = PRODUCTS.find((p) => p.id === 'rave-lattafa--now');
+  const asad = PRODUCTS.find((p) => p.id === 'lattafa--asad');
+  assert.equal(now.cost, 35000);
+  assert.equal(asad.cost, 40000);
+});
+
+test('ningún perfume queda con precio sin definir', () => {
+  for (const p of PRODUCTS) {
+    assert.ok(Number.isInteger(p.cost) && p.cost > 0, `${p.id} sin costo`);
+    assert.ok(Number.isInteger(p.price) && p.price > 0, `${p.id} sin precio de venta`);
+    assert.ok(Number.isInteger(p.cbuPrice) && p.cbuPrice > 0, `${p.id} sin precio de transferencia`);
+    assert.equal(p.price % 100, 0, `${p.id}: el precio tiene que ser múltiplo de 100`);
+    assert.equal(p.cbuPrice % 100, 0, `${p.id}: el CBU tiene que ser múltiplo de 100`);
+  }
 });
 
 // ------------------------------------------------------- medios de pago

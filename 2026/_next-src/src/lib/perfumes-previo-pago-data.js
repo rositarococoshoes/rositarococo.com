@@ -164,14 +164,12 @@ export const PRODUCTS = [
     familyLabel: 'Chipre floral / cítrica amaderada',
     similar: 'Creed Silver Mountain Water',
     presentation: 'EDP 105 ml (+ body spray 125 ml)',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 55000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 124900,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 112400,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Bergamota, grosellas negras, limón, lima, hojas de violeta, jengibre · Rosa, iris, jazmín · Ambroxan, almizcle, sándalo, cedro Inspirado en Creed Silver Mountain Water.',
     images: [
@@ -188,14 +186,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral oriental frutal',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Limón, pimienta rosa, jengibre, flores blancas · Mango, haba tonka, maderas secas · Madera de guayaco, ámbar, vainilla, notas de nuez, almizcle',
     images: [
@@ -212,14 +208,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada frutal / fougère',
     similar: 'Xerjoff Erba Pura (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 90000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 204400,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 184000,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Naranja, bergamota, limón · Frutas (tutti frutti) · Almizcle blanco, ámbar, vainilla Inspirado en Xerjoff Erba Pura (según reseñas).',
     images: [
@@ -235,14 +229,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal',
     similar: 'Armani My Way (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Hoja de manzana, mandarina, osmanto · Magnolia, almizcle · Iris blanco Inspirado en Armani My Way (según reseñas).',
     images: [
@@ -259,14 +251,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada vainilla frutal',
     similar: 'Xerjoff Erba Pura',
     presentation: 'EDP 120 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Bergamota, notas verdes · Melón, piña, notas dulces (gourmand), ámbar · Vainilla, almizcle, maderas Inspirado en Xerjoff Erba Pura.',
     images: [
@@ -282,14 +272,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental gourmand / tabaco',
     similar: 'Tom Ford Tobacco Vanille',
     presentation: 'EDP 80 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Hoja de tabaco, especias · Vainilla, cacao, haba tonka, flor de tabaco · Frutas secas, maderas Inspirado en Tom Ford Tobacco Vanille.',
     images: [
@@ -305,14 +293,12 @@ export const PRODUCTS = [
     familyLabel: 'Especiada fresca amaderada',
     similar: 'JPG Ultra Male',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Canela, pimienta, limón · Lavanda, salvia esclarea, pachulí · Vainilla, ámbar, cedro Inspirado en JPG Ultra Male.',
     images: [
@@ -328,14 +314,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Champagne, frutilla, mandarina, naranja sanguina, rosa · Gardenia, jazmín, orquídea de vainilla · Ámbar, sándalo, castaña',
     images: [
@@ -351,14 +335,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada aromática azul ("blue")',
     similar: 'Bleu de Chanel (según reseñas)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pomelo, limón, menta, pimienta rosa, cilantro · Jengibre, nuez moscada, jazmín, melón · Incienso, ámbar, cedro, sándalo, pachulí, labdanum Inspirado en Bleu de Chanel (según reseñas).',
     images: [
@@ -374,14 +356,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral oriental gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 55000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 124900,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 112400,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Canela, acordes místicos · Jazmín, tuberosa, incienso, mahonial · Vainilla, almizcle, haba tonka',
     images: [
@@ -397,14 +377,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada especiada (azafrán y almendra)',
     similar: 'MFK Baccarat Rouge 540 Extrait',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Azafrán, almendra · Maderas, cedro, jazmín egipcio · Maderas, ámbar gris, almizcle Inspirado en MFK Baccarat Rouge 540 Extrait.',
     images: [
@@ -420,14 +398,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal gourmand',
     similar: 'Lancôme La Vie Est Belle Intensément',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Grosella negra, pera · Jazmín, azahar · Praliné, vainilla, pachulí, haba tonka Inspirado en Lancôme La Vie Est Belle Intensément.',
     images: [
@@ -443,14 +419,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral empolvado amaderado',
     similar: 'Celine Black Tie',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 55000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 124900,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 112400,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Canela, lavanda, mandarina · Iris, benjuí, ciprés, mahonial · Vainilla, haba tonka, incienso, ámbar, cedro, pachulí Inspirado en Celine Black Tie.',
     images: [
@@ -466,14 +440,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada fougère fresca',
     similar: 'Armani Stronger With You / Invictus Aqua (reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 45000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 102200,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 92000,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pimienta rosa, pomelo, yuzu · Hoja de violeta, notas marinas · Ámbar, amberwood, madera de guayaco Inspirado en Armani Stronger With You / Invictus Aqua (reseñas).',
     images: [
@@ -489,14 +461,12 @@ export const PRODUCTS = [
     familyLabel: 'Cítrica amaderada fresca',
     similar: 'Bvlgari Tygar',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Mandarina, limón, bergamota · Cedro · Sándalo, ámbar Inspirado en Bvlgari Tygar.',
     images: [
@@ -513,14 +483,12 @@ export const PRODUCTS = [
     familyLabel: 'Frutal amaderada (estilo chypre)',
     similar: 'estilo Creed Aventus (piña)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: false,
     description:
       'Grosella negra, bergamota, manzana, piña · Rosa, abedul seco, jazmín marroquí, pachulí · Musgo de roble, almizcle, ámbar gris, vainilla Inspirado en estilo Creed Aventus (piña).',
     images: [
@@ -536,14 +504,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada dulce especiada',
     similar: 'JPG Scandal Pour Homme',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Salvia, mandarina, naranja, azafrán · Caramelo, haba tonka, tagetes (marigold) · Vetiver, cedro, ambroxan Inspirado en JPG Scandal Pour Homme.',
     images: [
@@ -559,14 +525,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal gourmand',
     similar: 'Burberry Her (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 45000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 102200,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 92000,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Frutilla, frambuesa, geranio, durazno, bergamota · Caramelo, jazmín, maracuyá · Pachulí, almizcle, ámbar Inspirado en Burberry Her (según reseñas).',
     images: [
@@ -582,14 +546,12 @@ export const PRODUCTS = [
     familyLabel: 'Frutal acuática',
     similar: 'Le Sel d\'Issey (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Melón cantalupo, melón, algas, sal, manzana Granny Smith, pera, ciruela · Notas acuáticas, nenúfar, musgo de roble, incienso · Almizcle, azúcar, ámbar, cedro Inspirado en Le Sel d\'Issey (según reseñas).',
     images: [
@@ -605,14 +567,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal gourmand',
     similar: 'D&G Devotion (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pie de limón (lemon meringue) · Neroli · Vainilla Inspirado en D&G Devotion (según reseñas).',
     images: [
@@ -628,14 +588,12 @@ export const PRODUCTS = [
     familyLabel: 'Cítrica aromática verde',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 75000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 170300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 153300,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lima, manzana verde · Romero · Pachulí, ámbar',
     images: [
@@ -651,14 +609,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática verde amaderada',
     similar: 'JPG Le Beau Paradise Garden',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Hoja de higo, agua de coco, jengibre · Coco, higo, menta · Haba tonka, almizcle, sándalo Inspirado en JPG Le Beau Paradise Garden.',
     images: [
@@ -674,14 +630,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Neroli egipcio, canela, nuez moscada · Azahar, tuberosa, malvavisco dorado · Algodón de azúcar, vainilla, haba tonka',
     images: [
@@ -697,14 +651,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada aromática fresca',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Naranja, pomelo, artemisa · Menta, lavanda · Ambroxan, pachulí, ciprés',
     images: [
@@ -720,14 +672,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental amaderada',
     similar: 'Louis Vuitton Imagination (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Jengibre, bergamota, mandarina · Té verde, canela, neroli · Almizcle, notas amaderadas, ámbar Inspirado en Louis Vuitton Imagination (según reseñas).',
     images: [
@@ -743,14 +693,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática frutal',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 70000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 159000,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 143100,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Manzana, limón italiano, bergamota siciliana, anís estrellado · Ciruela, azahar, cardamomo · Almizcle, ámbar, madera a la deriva, musgo',
     images: [
@@ -766,14 +714,12 @@ export const PRODUCTS = [
     familyLabel: 'Acuática aromática',
     similar: 'Invictus Aqua (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Manzana, bergamota, limón, canela · Notas acuáticas, ciruela, azahar, cardamomo · Ámbar gris, almizcle, madera a la deriva, pachulí Inspirado en Invictus Aqua (según reseñas).',
     images: [
@@ -789,14 +735,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática frutal',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 85000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 193000,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 173700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Piña, naranja, pomelo · Raíz de iris (orris), lavanda, ámbar · Haba tonka, almizcle, pachulí, madera de cachemira',
     images: [
@@ -812,14 +756,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática acuática',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Salvia esclarea · Notas marinas, jazmín egipcio · Ámbar, notas minerales, ámbar gris',
     images: [
@@ -835,14 +777,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental vainilla / gourmand',
     similar: 'JPG Le Male Elixir (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Menta, bergamota, artemisa · Chocolate negro, lavanda, benjuí · Vainilla, haba tonka, almizcle blanco Inspirado en JPG Le Male Elixir (según reseñas).',
     images: [
@@ -858,14 +798,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral oriental frutal',
     similar: 'Parfums de Marly Delina La Rosée',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lichi, bergamota, pera, pistacho · Rosa, incienso · Vainilla, ámbar, almizcle, notas amaderadas Inspirado en Parfums de Marly Delina La Rosée.',
     images: [
@@ -881,14 +819,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral oriental',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Frutos rojos, ruibarbo, lichi · Incienso (olíbano), rosa, cedro · Vainilla, ámbar gris, almizcle',
     images: [
@@ -904,14 +840,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal amaderada',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 45000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 102200,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 92000,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Manzana, pomelo, granada · Jazmín sambac, iris, cítricos · Pachulí, vetiver, praliné',
     images: [
@@ -927,14 +861,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal',
     similar: 'Ex Nihilo Blue Talisman (según reseñas)',
     presentation: 'EDP 90 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pera, pomelo rosa, mandarina, bergamota · Azahar, manzana, cedro · Almizcle, ámbar, vainilla Inspirado en Ex Nihilo Blue Talisman (según reseñas).',
     images: [
@@ -950,14 +882,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática acuática',
     similar: null,
     presentation: 'EDP 90 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Bergamota, mandarina · Ámbar, notas amaderadas · Almizcle, pachulí, especias frescas',
     images: [
@@ -973,14 +903,12 @@ export const PRODUCTS = [
     familyLabel: 'Frutal amaderada gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Mandarina, piña, manzana Granny Smith · Cedro, musgo de roble, vainilla · Caramelo, maderas secas, ámbar gris, almizcle',
     images: [
@@ -996,14 +924,12 @@ export const PRODUCTS = [
     familyLabel: 'Aromática frutal',
     similar: 'Nishane Hacivat (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Piña, pomelo, bergamota · Pachulí, cedro, jazmín · Musgo de roble, notas amaderadas, ámbar Inspirado en Nishane Hacivat (según reseñas).',
     images: [
@@ -1019,14 +945,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental especiada',
     similar: null,
     presentation: 'Parfum Intense 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Cardamomo, nuez moscada, elemi · Pimiento, cuero, lavanda · Vainilla, pachulí, labdanum, jara (rock rose)',
     images: [
@@ -1042,14 +966,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental vainilla',
     similar: 'JPG Ultra Male (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 55000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 124900,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 112400,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Manzana, canela, lavanda silvestre, bergamota · Azahar, lirio de los valles · Vainilla, haba tonka, ámbar, pachulí Inspirado en JPG Ultra Male (según reseñas).',
     images: [
@@ -1065,14 +987,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada floral',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 55000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 124900,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 112400,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Frambuesa, manzana, violeta, naranja · Rosa, peonía, iris, jazmín · Cedro, ciprés, pino, ámbar',
     images: [
@@ -1088,14 +1008,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental especiada',
     similar: null,
     presentation: 'Extrait de Parfum 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 90000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 204400,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 184000,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pitahaya (fruta del dragón), lavanda, coñac, manzana, bergamota · Toffee, cardamomo, gamuza, cedro, mahonial · Haba tonka, Ambrofix, pachulí, akigalawood',
     images: [
@@ -1111,14 +1029,12 @@ export const PRODUCTS = [
     familyLabel: 'Cítrica especiada',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Limón, mandarina, pimienta rosa, cardamomo · Manzana verde, lavanda, azahar, rosa · Almizcle, musgo, pachulí, cedro',
     images: [
@@ -1135,14 +1051,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal tropical',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Mango, coco, maracuyá · Jazmín, azahar, heliotropo · Vainilla, almizcle, cachemirán',
     images: [
@@ -1158,14 +1072,12 @@ export const PRODUCTS = [
     familyLabel: 'Ámbar floral gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Jazmín, durazno · Caramelo, ámbar · Pachulí, sándalo',
     images: [
@@ -1181,14 +1093,12 @@ export const PRODUCTS = [
     familyLabel: 'Ámbar vainilla',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Mandarina, heliotropo, orquídea · Frutas tropicales, acorde gourmand · Vainilla, almizcle, sándalo',
     images: [
@@ -1204,14 +1114,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental tropical',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 35000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 79500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 71600,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lavanda, pimienta negra · Agua de coco, iris, sal · Vainilla, incienso',
     images: [
@@ -1227,14 +1135,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental amaderada',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Pimienta rosa, azafrán, pomelo · Tabaco, vainilla, cedro · Ámbar claro, olíbano, pachulí, cachemirán',
     images: [
@@ -1250,14 +1156,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Mandarina verde, grosella negra · Caramelo de frutilla efervescente, gardenia · Sándalo, jarabe de vainilla, almizcle, ámbar',
     images: [
@@ -1273,14 +1177,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental especiada',
     similar: 'Dior Sauvage Elixir (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 40000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 90800,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 81700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: false,
     description:
       'Pimienta negra, tabaco, piña · Pachulí, café, iris · Vainilla, ámbar, maderas secas, benjuí, labdanum Inspirado en Dior Sauvage Elixir (según reseñas).',
     images: [
@@ -1296,14 +1198,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal chipre',
     similar: 'Chanel Coco Mademoiselle (inspiración)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Naranja, bergamota, pomelo, durazno · Rosa, jazmín, geranio, lichi · Pachulí, almizcle, vainilla, vetiver Inspirado en Chanel Coco Mademoiselle (inspiración).',
     images: [
@@ -1319,14 +1219,12 @@ export const PRODUCTS = [
     familyLabel: 'Ambarada aromática',
     similar: 'Aventus + Sauvage (según reseñas)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 70000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 159000,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 143100,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Bergamota, pimienta rosa, azahar, jazmín · Lavanda, elemi, geranio, vetiver, azafrán, marigold · Ambroxan, ámbar, cedro, pachulí, labdanum Inspirado en Aventus + Sauvage (según reseñas).',
     images: [
@@ -1342,14 +1240,12 @@ export const PRODUCTS = [
     familyLabel: 'Ámbar amaderada',
     similar: 'MFK Baccarat Rouge 540 (según reseñas)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Azafrán, jazmín · Amberwood, ámbar gris · Resina de abeto, cedro Inspirado en MFK Baccarat Rouge 540 (según reseñas).',
     images: [
@@ -1365,14 +1261,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental especiada gourmand',
     similar: null,
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lavanda, ciruela mirabel, pimienta rosa · Cacao, nuez moscada, davana · Vainilla de bourbon, ámbar, vetiver',
     images: [
@@ -1388,14 +1282,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada oriental',
     similar: 'Aventus Absolu (según reseñas)',
     presentation: 'Extrait de Parfum 55 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Piña, limón, bergamota, caramelo, pimienta rosa, pera, pimienta negra · Musgo de roble, maderas blancas, jazmín, lirio de los valles, anís · Ambroxan, almizcle blanco, cedro, pachulí, cuero, ámbar, vainilla Inspirado en Aventus Absolu (según reseñas).',
     images: [
@@ -1411,14 +1303,12 @@ export const PRODUCTS = [
     familyLabel: 'Frutal dulce amaderada',
     similar: null,
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 80000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 181700,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 163500,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Durazno, pera, maracuyá, piña, ciruela, bergamota · Jazmín, madera de cachemira, fresia, hojas de violeta · Almizcle, ámbar cristal, vainilla, oud de Camboya',
     images: [
@@ -1434,14 +1324,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada floral almizclada',
     similar: null,
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Notas marinas, frutos rojos, bergamota · Violeta, maderas blancas, sándalo · Almizcle, ambroxan, vetiver',
     images: [
@@ -1457,14 +1345,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental vainilla',
     similar: 'Burberry Goddess (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lavanda, vainilla · Cacao, jengibre · Vainilla absoluta Inspirado en Burberry Goddess (según reseñas).',
     images: [
@@ -1480,14 +1366,12 @@ export const PRODUCTS = [
     familyLabel: 'Oriental fougère',
     similar: 'JPG Le Male Elixir (según reseñas)',
     presentation: 'EDP 100 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 70000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 159000,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 143100,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lavanda, menta · Benjuí, vainilla · Miel, haba tonka, tabaco Inspirado en JPG Le Male Elixir (según reseñas).',
     images: [
@@ -1503,14 +1387,12 @@ export const PRODUCTS = [
     familyLabel: 'Chipre floral especiada',
     similar: 'Tom Ford Noir de Noir (según reseñas)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 50000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 113500,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 102200,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Rosa, azafrán, geranio · Nuez moscada, pimienta, violeta, alcaravea · Pachulí, vainilla, oud, ámbar Inspirado en Tom Ford Noir de Noir (según reseñas).',
     images: [
@@ -1526,14 +1408,12 @@ export const PRODUCTS = [
     familyLabel: 'Amaderada especiada frutal',
     similar: 'Creed Aventus (según reseñas)',
     presentation: 'EDT 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 60000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 136300,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 122700,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Limón, piña, grosella negra, bergamota, manzana · Abedul, jazmín, rosa · Almizcle, ámbar gris, pachulí, vainilla Inspirado en Creed Aventus (según reseñas).',
     images: [
@@ -1549,14 +1429,12 @@ export const PRODUCTS = [
     familyLabel: 'Floral frutal empolvada',
     similar: 'Creed Queen of Silk (según reseñas)',
     presentation: 'EDP 105 ml',
-    /** Costo de reposición. No se muestra al cliente. */
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
     cost: 65000,
     /** Precio de venta con tarjeta o saldo MercadoPago. */
     price: 147600,
-    /** Preciofinal por transferencia bancaria (10% menos). */
+    /** Precio final por transferencia bancaria (10% menos). */
     cbuPrice: 132800,
-    /** El costo todavía no fue confirmado por el usuario. */
-    priceConfirmed: true,
     description:
       'Lichi, bergamota, pimienta rosa · Orris (raíz de lirio) · Praliné, sándalo, ambroxan Inspirado en Creed Queen of Silk (según reseñas).',
     images: [

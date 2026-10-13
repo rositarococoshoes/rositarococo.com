@@ -1,5 +1,5 @@
 {
-  "_nota": "Generado por scripts/build-costos-pp.mjs. Los costos salen de Originales.pdf (columna \"Precio x Uni. Perfume Arabe\"). El precio de venta se calcula con el ratio del ejemplo: costo 55.000 -> 124.900, redondeado a los $100. El CBU es el 10% menos, también redondeado a los $100. Editar este archivo NO es necesario: para cambiar algo se edita COSTOS en el script y se corre de nuevo.",
+  "_nota": "Generado por scripts/build-costos-pp.mjs. Los costos salen de Originales.pdf (columna \"Precio x Uni. Perfume Arabe\"), que segun Roxana son de COMPRA. Todos los 61 fueron confirmados el 2026-10-13. El precio de venta se calcula con el ratio del ejemplo: costo 55.000 -> 124.900, redondeado a los $100. El CBU es el 10% menos, tambien redondeado a los $100. Editar este archivo NO es necesario: para cambiar algo se edita COSTOS en el script y se corre de nuevo.",
   "ratio": 2.270909090909091,
   "cbuDiscount": 0.9,
   "costos": {
@@ -361,15 +361,13 @@
       "costo": 35000,
       "venta": 79500,
       "cbu": 71600,
-      "pdf": "Now Black 100ml",
-      "confirmado": false
+      "pdf": "Now Black 100ml"
     },
     "lattafa--asad": {
       "costo": 40000,
       "venta": 90800,
       "cbu": 81700,
-      "pdf": "Asad Negro 100ml",
-      "confirmado": false
+      "pdf": "Asad Negro 100ml"
     }
   }
 }
