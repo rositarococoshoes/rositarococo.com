@@ -71,18 +71,10 @@ jobs:
           cp gracias-perfumes-3.html site/2026/gracias-perfumes-3.html
           cp perfumes-previopago.html site/perfumes-previopago.html
           cp perfumes-previopago.html site/2026/perfumes-previopago.html
-          cp gracias-perfumes-pp-1.html site/gracias-perfumes-pp-1.html
-          cp gracias-perfumes-pp-1.html site/2026/gracias-perfumes-pp-1.html
-          cp gracias-perfumes-pp-2.html site/gracias-perfumes-pp-2.html
-          cp gracias-perfumes-pp-2.html site/2026/gracias-perfumes-pp-2.html
-          cp gracias-perfumes-pp-3.html site/gracias-perfumes-pp-3.html
-          cp gracias-perfumes-pp-3.html site/2026/gracias-perfumes-pp-3.html
-          cp transferenciacbu-perfumes-pp-1.html site/transferenciacbu-perfumes-pp-1.html
-          cp transferenciacbu-perfumes-pp-1.html site/2026/transferenciacbu-perfumes-pp-1.html
-          cp transferenciacbu-perfumes-pp-2.html site/transferenciacbu-perfumes-pp-2.html
-          cp transferenciacbu-perfumes-pp-2.html site/2026/transferenciacbu-perfumes-pp-2.html
-          cp transferenciacbu-perfumes-pp-3.html site/transferenciacbu-perfumes-pp-3.html
-          cp transferenciacbu-perfumes-pp-3.html site/2026/transferenciacbu-perfumes-pp-3.html
+          cp gracias-perfumes-pp.html site/gracias-perfumes-pp.html
+          cp gracias-perfumes-pp.html site/2026/gracias-perfumes-pp.html
+          cp transferenciacbu-perfumes-pp.html site/transferenciacbu-perfumes-pp.html
+          cp transferenciacbu-perfumes-pp.html site/2026/transferenciacbu-perfumes-pp.html
           # og:image para el preview de WhatsApp/Facebook (tambien sale en site/2026/)
           cp og-perfumes-2026.png site/og-perfumes-2026.png
           cp og-perfumes-pp-2026.png site/og-perfumes-pp-2026.png
