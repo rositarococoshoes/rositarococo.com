@@ -38,6 +38,23 @@ export function calculateTotal(cart, paymentMethod = 'tarjeta') {
   return Math.max(0, subtotal - discountFor(cart.length));
 }
 
+/**
+ * Cuánto se ahorra pagar por transferencia en vez de con tarjeta.
+ *
+ * Existe porque el 10% se aplica en el precio de cada perfume y no en el
+ * total: si solo se mostrara el total ya descontado, no se vería que el
+ * descuento se aplicó (se quejó Roxana el 13/10/2026). Con esta función el
+ * checkout puede mostrar el precio con tarjeta y la diferencia como una
+ * línea propia.
+ *
+ * Da 0 cuando el medio de pago no es transferencia, para que la línea se
+ * pueda ocultar sin cambiar el markup.
+ */
+export function cbuSavingsFor(cart, paymentMethod = 'tarjeta') {
+  if (paymentMethod !== 'cbu') return 0;
+  return Math.max(0, calculateSubtotal(cart, 'tarjeta') - calculateSubtotal(cart, 'cbu'));
+}
+
 export function getPhase(count) {
   if (count <= 0) return 'empty';
   if (count === 1) return 'single';

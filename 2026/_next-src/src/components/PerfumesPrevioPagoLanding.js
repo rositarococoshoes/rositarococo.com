@@ -24,6 +24,7 @@ import {
   buildOrderSummary,
   calculateSubtotal,
   calculateTotal,
+  cbuSavingsFor,
   describeCart,
   formatOrderDetails,
   getCbuRoute,
@@ -32,7 +33,7 @@ import {
   getPostAddMessage,
   getUpsell,
 } from '@/src/lib/perfumes-previo-pago-utils';
-import { getDeliveryOptions, isBlockedWhatsappNumber, isValidWhatsappInput } from '@/src/lib/funnel-utils';
+import { isBlockedWhatsappNumber, isValidWhatsappInput } from '@/src/lib/funnel-utils';
 import { generateFBC, generateFBP } from '@/src/lib/facebook-tracking';
 
 const formatCurrency = (value) => `$${value.toLocaleString('es-AR')}`;
@@ -47,14 +48,7 @@ const EMPTY_FORM = {
   locality: '',
   province: '',
   paymentMethod: '',
-  deliverySlot: '',
 };
-
-function splitDeliveryOption(option) {
-  const match = option.match(/^(.+?)\s+de\s+(\d+)hs\s+a\s+(\d+)hs$/);
-  if (!match) return { date: option, time: '' };
-  return { date: match[1].trim(), time: `${match[2]} a ${match[3]} hs` };
-}
 
 /* ------------------------------------------------------------------- filtros */
 
@@ -297,6 +291,7 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
 function CartPanel({
   cartEntries,
   subtotal,
+  cbuSavings,
   discount,
   total,
   upsell,
@@ -306,9 +301,6 @@ function CartPanel({
   onRemove,
   onGoCheckout,
   onContinue,
-  deliveryOptions,
-  selectedSlot,
-  onSelectSlot,
 }) {
   const cbu = paymentMethod === 'cbu';
 
@@ -362,29 +354,6 @@ function CartPanel({
             </button>
           </div>
 
-          {deliveryOptions.length ? (
-            <div className="pp-slots" role="group" aria-label="Elegí cuándo recibir">
-              <span className="pp-slots-label">¿Cuándo querés recibir?</span>
-              <div className="pp-slot-options">
-                {deliveryOptions.map((option) => {
-                  const { date, time } = splitDeliveryOption(option);
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      className={`pp-slot${selectedSlot === option ? ' is-selected' : ''}`}
-                      onClick={() => onSelectSlot(option)}
-                      aria-pressed={selectedSlot === option}
-                    >
-                      <span className="pp-slot-day">{date}</span>
-                      {time ? <span className="pp-slot-time">{time}</span> : null}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ) : null}
-
           {cartEntries.length ? (
             <ul className="pp-cart-list">
               {cartEntries.map((item) => (
@@ -416,9 +385,15 @@ function CartPanel({
           {cartEntries.length ? (
             <div className="pp-cart-total">
               <div className="pp-cart-total-line is-sub">
-                <span>Subtotal</span>
-                <strong>{formatCurrency(subtotal)}</strong>
+                <span>{cbuSavings > 0 ? 'Subtotal si pagás con tarjeta' : 'Subtotal'}</span>
+                <strong>{formatCurrency(subtotal + cbuSavings)}</strong>
               </div>
+              {cbuSavings > 0 ? (
+                <div className="pp-cart-total-line is-discount">
+                  <span>10% OFF por transferencia</span>
+                  <strong>−{formatCurrency(cbuSavings)}</strong>
+                </div>
+              ) : null}
               {discount ? (
                 <div className="pp-cart-total-line is-discount">
                   <span>
@@ -429,7 +404,7 @@ function CartPanel({
                 </div>
               ) : null}
               <div className="pp-cart-total-line is-final">
-                <span>Total a pagar</span>
+                <span>{cbuSavings > 0 ? 'Total por transferencia' : 'Total a pagar'}</span>
                 <strong>{formatCurrency(total)}</strong>
               </div>
             </div>
@@ -459,8 +434,8 @@ function CartPanel({
 function CheckoutForm({
   formState,
   setFormState,
-  deliveryOptions,
   subtotal,
+  cbuSavings,
   discount,
   total,
   cartEntries,
@@ -566,25 +541,8 @@ function CheckoutForm({
         </select>
       </div>
 
-      <div className="pp-slots pp-slots-block">
-        <span className="pp-slots-label">¿Cuándo querés recibir?</span>
-        <div className="pp-slot-options is-block">
-          {deliveryOptions.map((option) => (
-            <button
-              key={option}
-              type="button"
-              className={`pp-slot${formState.deliverySlot === option ? ' is-selected' : ''}`}
-              onClick={() => update('deliverySlot', option)}
-              aria-pressed={formState.deliverySlot === option}
-            >
-              {option}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="pp-methods">
-        <span className="pp-slots-label">¿Cómo querés pagar?</span>
+        <span className="pp-section-label">¿Cómo querés pagar?</span>
         {PAYMENT_METHODS.map((entry) => (
           <label key={entry.value} className={`pp-method${formState.paymentMethod === entry.value ? ' is-selected' : ''}`}>
             <input
@@ -625,10 +583,29 @@ function CheckoutForm({
 
       <div className="pp-checkout-foot">
         <div className="pp-checkout-totals">
-          <div className="pp-checkout-total is-sub">
-            <span>Subtotal</span>
-            <strong>{formatCurrency(subtotal)}</strong>
-          </div>
+          {/*
+            Con transferencia el subtotal de cada perfume ya viene con el 10%
+            menos. Para que no parezca que el descuento no se aplicó, se
+            muestra el precio sin descuento y la diferencia como una línea
+            propia, en vez de cambiar el número en silencio.
+          */}
+          {cbuSavings > 0 ? (
+            <div className="pp-checkout-total is-sub">
+              <span>Subtotal si pagás con tarjeta</span>
+              <strong>{formatCurrency(subtotal + cbuSavings)}</strong>
+            </div>
+          ) : (
+            <div className="pp-checkout-total is-sub">
+              <span>Subtotal</span>
+              <strong>{formatCurrency(subtotal)}</strong>
+            </div>
+          )}
+          {cbuSavings > 0 ? (
+            <div className="pp-checkout-total is-discount">
+              <span>10% OFF por transferencia bancaria</span>
+              <strong>−{formatCurrency(cbuSavings)}</strong>
+            </div>
+          ) : null}
           {discount ? (
             <div className="pp-checkout-total is-discount">
               <span>Descuento por {cartEntries.length} perfumes</span>
@@ -636,7 +613,7 @@ function CheckoutForm({
             </div>
           ) : null}
           <div className="pp-checkout-total is-final">
-            <span>Total a pagar</span>
+            <span>{cbuSavings > 0 ? 'Total a pagar por transferencia' : 'Total a pagar'}</span>
             <strong>{formatCurrency(total)}</strong>
           </div>
         </div>
@@ -687,8 +664,6 @@ export default function PerfumesPrevioPagoLanding() {
     return () => window.clearTimeout(timeout);
   }, [toast]);
 
-  const deliveryOptions = useMemo(() => getDeliveryOptions(new Date()), []);
-
   const visibleProducts = useMemo(
     () =>
       PRODUCTS.filter(
@@ -706,6 +681,7 @@ export default function PerfumesPrevioPagoLanding() {
   // cada perfume) y el total, además, del descuento fijo por cantidad.
   const method = formState.paymentMethod || 'tarjeta';
   const subtotal = calculateSubtotal(cart, method);
+  const cbuSavings = cbuSavingsFor(cart, method);
   const discount = discountFor(cart.length);
   const total = calculateTotal(cart, method);
   const upsell = getUpsell(cart.length);
@@ -780,10 +756,6 @@ export default function PerfumesPrevioPagoLanding() {
       setBlocked(true);
       return;
     }
-    if (!formState.deliverySlot) {
-      setToast('Elegí un día de entrega.');
-      return;
-    }
 
     setLoading(true);
 
@@ -825,7 +797,6 @@ export default function PerfumesPrevioPagoLanding() {
     formData.set('entry.1885018612', legacyPayload.legacyDetails);
     formData.set('entry.1715320252', String(total));
     formData.set('entry.736134777', String(legacyPayload.costTotal));
-    formData.set('entry.1756027935', formState.deliverySlot);
     formData.set('comoabona', formState.paymentMethod);
     // Ruteo en n8n: separa perfumes-previopago de calzados y de perfumes
     // contrarreembolsto.
@@ -970,8 +941,8 @@ export default function PerfumesPrevioPagoLanding() {
             <CheckoutForm
               formState={formState}
               setFormState={setFormState}
-              deliveryOptions={deliveryOptions}
               subtotal={subtotal}
+              cbuSavings={cbuSavings}
               discount={discount}
               total={total}
               cartEntries={cartEntries}
@@ -986,6 +957,7 @@ export default function PerfumesPrevioPagoLanding() {
       <CartPanel
         cartEntries={cartEntries}
         subtotal={subtotal}
+        cbuSavings={cbuSavings}
         discount={discount}
         total={total}
         upsell={upsell}
@@ -1002,9 +974,6 @@ export default function PerfumesPrevioPagoLanding() {
           setCheckoutOpen(true);
           setTimeout(() => jumpTo('#pp-checkout'), 80);
         }}
-        deliveryOptions={deliveryOptions}
-        selectedSlot={formState.deliverySlot}
-        onSelectSlot={(slot) => setFormState((current) => ({ ...current, deliverySlot: slot }))}
       />
 
       {toast ? <div className="pp-toast">{toast}</div> : null}

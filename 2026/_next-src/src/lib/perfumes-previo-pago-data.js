@@ -79,9 +79,12 @@ export const PAGE_COPY = {
   reviewCommitment:
     'Verificá que tus datos y perfumes estén correctos antes de continuar. Tu pedido queda registrado con el medio de pago elegido.',
   freeShippingReminder: 'Recordá: envío gratis a todo el país. Transferencia bancaria con 10% OFF.',
+  // En previo pago no se elige día: el pago ya está hecho, así que la fecha se
+  // coordina por WhatsApp con el cliente. Por eso este funnel no pide día, que
+  // era lo que tenía antes.
   deliveryLegend:
-    'ENVÍO: elegí uno de los días disponibles para recibir. Te escribimos por WhatsApp y necesitás ' +
-    'respondernos para que podamos confirmar el pedido y despachar.',
+    'ENVÍO: apenas confirmemos tu pedido te escribimos por WhatsApp para coordinar día y horario ' +
+    'de entrega. El envío es gratis a todo el país.',
 };
 
 export const TRUST_POINTS = [

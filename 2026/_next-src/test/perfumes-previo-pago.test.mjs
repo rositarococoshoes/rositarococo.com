@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import {
   CBU_ROUTE,
@@ -7,6 +8,7 @@ import {
   FAMILY_LABEL,
   GENDERS,
   GENDER_LABEL,
+  PAGE_COPY,
   PAYMENT_METHODS,
   PRICING,
   PRODUCTS,
@@ -19,6 +21,7 @@ import {
   buildLegacyPayload,
   buildOrderSummary,
   calculateSubtotal,
+  cbuSavingsFor,
   calculateTotal,
   describeCart,
   formatOrderDetails,
@@ -33,6 +36,9 @@ const cartOf = (...ids) => ids.map((productId) => ({ productId, id: productId })
 const CHEAP = 'maison-alhambra--eternal-touch'; // $79.500
 const MID = 'armaf--club-de-nuit-sillage'; // $124.900
 const EXPENSIVE = 'rasasi--hawas-for-him-malibu'; // $193.000
+// Los dos que aparecen en la captura de Roxana: mismo precio, $147.600
+const ODYSSEY_MANGO = 'armaf--odyssey-go-mango';
+const CLUB_ICONIC = 'armaf--club-de-nuit-iconic';
 
 // ------------------------------------------------------------------ precios
 
@@ -140,6 +146,61 @@ test('la etiqueta del descuento muestra el monto', () => {
   assert.equal(getDiscountLabel(1), '');
   assert.equal(getDiscountLabel(2), '−$10.000');
   assert.equal(getDiscountLabel(3), '−$18.000');
+});
+
+// Roxana, 13/10/2026: "no me queda claro si realiza el descuento final por
+// transferencia porque no me deja verlo". El descuento se aplicaba, pero los
+// precios de cada perfume bajaban en silencio y no se veía ninguna línea que
+// lo dijera. Ahora la diferencia entre pagar con tarjeta y por transferencia
+// tiene que ser una línea propia.
+test('el descuento por transferencia se muestra como una linea explicita', () => {
+  const source = readFileSync(
+    new URL('../src/components/PerfumesPrevioPagoLanding.js', import.meta.url),
+    'utf8',
+  );
+
+  assert.match(source, /cbuSavingsFor/, 'tiene que usar el ahorro calculado en las utils');
+  assert.match(
+    source,
+    /10% OFF por transferencia/,
+    'tiene que haber una linea que diga el 10% de la transferencia',
+  );
+  assert.match(
+    source,
+    /Subtotal si pagás con tarjeta/,
+    'el subtotal tiene que mostrar el precio sin el descuento de la transferencia',
+  );
+  // los labels del desglose dependen del medio de pago: con tarjeta no puede
+  // decir "Total a pagar por transferencia"
+  assert.match(
+    source,
+    /cbuSavings > 0 \? 'Total a pagar por transferencia' : 'Total a pagar'/,
+    'el label del total tiene que cambiar segun el medio de pago',
+  );
+});
+
+test('el ahorro por transferencia se puede calcular y es el 10%', () => {
+  const cart = cartOf(MID, EXPENSIVE);
+  const conTarjeta = calculateSubtotal(cart, 'tarjeta');
+  const porTransferencia = calculateSubtotal(cart, 'cbu');
+
+  assert.equal(conTarjeta, 124900 + 193000);
+  assert.equal(porTransferencia, 112400 + 173700);
+  assert.equal(cbuSavingsFor(cart, 'cbu'), conTarjeta - porTransferencia);
+  assert.equal(cbuSavingsFor(cart, 'cbu'), 31800);
+  assert.ok(cbuSavingsFor(cart, 'cbu') > 0, 'el ahorro tiene que ser positivo');
+});
+
+// El caso exacto del screenshot de Roxana: dos perfumes del mismo precio.
+test('cbuSavingsFor da 0 si el medio de pago no es transferencia', () => {
+  const cart = cartOf(ODYSSEY_MANGO, CLUB_ICONIC);
+  assert.equal(cbuSavingsFor(cart, 'tarjeta'), 0, 'con tarjeta no hay ahorro que mostrar');
+  assert.equal(cbuSavingsFor(cart, 'mercadopago'), 0, 'con MercadoPago tampoco');
+  assert.equal(cbuSavingsFor(cart, ''), 0, 'sin medio elegido tampoco');
+  assert.equal(cbuSavingsFor(cart, 'cbu'), 29600, '147.600 x 2 = 295.200 vs 132.800 x 2 = 265.600');
+  // nunca negativo: una vez invertido el orden de la resta dio -29.600 y la
+  // linea del descuento desaparecia sin que nadie entendiera por que
+  assert.ok(cbuSavingsFor(cart, 'cbu') > 0);
 });
 
 test('las paginas finales ya no dependen de la cantidad', () => {
@@ -257,6 +318,39 @@ test('el envio es a todo el pais, no solo a CABA y GBA', () => {
   for (const p of ['Córdoba', 'Mendoza', 'Buenos Aires', 'Capital Federal']) {
     assert.ok(PROVINCES.includes(p), `falta ${p}`);
   }
+});
+
+// Roxana, 13/10/2026: "le ofrecés día para la entrega como si fuese contra
+// reembolso". Tenia razón: en previo pago el pago ya está hecho, así que la
+// fecha se coordina por WhatsApp. El funnel de calzados previo pago tampoco
+// pide día, y es el modelo correcto.
+test('este funnel NO pide dia de entrega, porque es previo pago', () => {
+  const source = readFileSync(
+    new URL('../src/components/PerfumesPrevioPagoLanding.js', import.meta.url),
+    'utf8',
+  );
+
+  for (const rastro of [
+    'deliverySlot',
+    'deliveryOptions',
+    'getDeliveryOptions',
+    '1756027935',
+    'pp-slot',
+    '¿Cuándo querés recibir?',
+    'Elegí un día',
+  ]) {
+    assert.equal(source.includes(rastro), false, `quedó "${rastro}" en el funnel de previo pago`);
+  }
+});
+
+test('el aviso de envío explica que la fecha se coordina por WhatsApp', () => {
+  const legend = PAGE_COPY.deliveryLegend;
+  assert.match(legend, /WhatsApp/, 'el aviso tiene que decir que coordinamos por WhatsApp');
+  assert.equal(
+    /elegí un[ao] d[ií]a/i.test(legend),
+    false,
+    'el aviso no puede pedir elegir día, ya no se elige',
+  );
 });
 
 test('el copy esta en español y sin anglicismos', () => {
