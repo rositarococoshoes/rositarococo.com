@@ -1,0 +1,375 @@
+{
+  "_nota": "Generado por scripts/build-costos-pp.mjs. Los costos salen de Originales.pdf (columna \"Precio x Uni. Perfume Arabe\"). El precio de venta se calcula con el ratio del ejemplo: costo 55.000 -> 124.900, redondeado a los $100. El CBU es el 10% menos, también redondeado a los $100. Editar este archivo NO es necesario: para cambiar algo se edita COSTOS en el script y se corre de nuevo.",
+  "ratio": 2.270909090909091,
+  "cbuDiscount": 0.9,
+  "costos": {
+    "armaf--club-de-nuit-sillage": {
+      "costo": 55000,
+      "venta": 124900,
+      "cbu": 112400,
+      "pdf": "Club de Nuit Sillage 105ml"
+    },
+    "armaf--club-de-nuit-iconic": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Club de Nuit Iconic 105ml"
+    },
+    "armaf--club-de-nuit-woman": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Club de Nuit Woman 105ml"
+    },
+    "armaf--club-de-nuit-untold": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Club de Nuit Untold 105ml"
+    },
+    "armaf--club-de-nuit-oud": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Club de Nuit Oud 105ml"
+    },
+    "armaf--club-de-nuit-milestone": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Club de Nuit Milestone 105ml"
+    },
+    "armaf--club-de-nuit-urban-man-elixir": {
+      "costo": 70000,
+      "venta": 159000,
+      "cbu": 143100,
+      "pdf": "Club de Nuit Urban Elixir 105ml"
+    },
+    "armaf--club-de-nuit-lionheart-woman": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Club De Nuit Lionheart Woman 100ml"
+    },
+    "armaf--club-de-nuit-lionheart-man": {
+      "costo": 70000,
+      "venta": 159000,
+      "cbu": 143100,
+      "pdf": "Club De Nuit Lionheart Man 100ml"
+    },
+    "armaf--club-de-nuit-intense-woman": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Club de Nuit Intense Woman 105"
+    },
+    "armaf--club-de-nuit-intense-man-edt": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Club de Nuit Intense Man 105ml"
+    },
+    "armaf--club-de-nuit-maleka": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Club de Nuit Maleka 105ml"
+    },
+    "armaf--club-de-nuit-precieux-i": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Club de Nuit Precioux 55ml"
+    },
+    "armaf--odyssey-go-mango": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Odyssey Go Mango 100ml"
+    },
+    "armaf--odyssey-mandarin-sky": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Odyssey Mandarin Sky 100ml"
+    },
+    "armaf--odyssey-candee": {
+      "costo": 45000,
+      "venta": 102200,
+      "cbu": 92000,
+      "pdf": "Odyssey Candee 100ml"
+    },
+    "armaf--odyssey-ba-ha-mas-bahamas": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Odyssey BA HA MAS 100ml"
+    },
+    "armaf--odyssey-homme-white-edition": {
+      "costo": 45000,
+      "venta": 102200,
+      "cbu": 92000,
+      "pdf": "Odyssey Homme White Edition 100ml"
+    },
+    "armaf--odyssey-aqua": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Odyssey Aqua Edition 100ml"
+    },
+    "al-haramain--amber-oud-gold-edition": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Amber Oud Gold Edition 120ml."
+    },
+    "maison-alhambra--eternal-touch": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "Eternal Touch 80ml"
+    },
+    "maison-alhambra--glacier-ultra": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "Glacier Ultra 100ml"
+    },
+    "maison-alhambra--la-rouge-baroque-extreme": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "La Rouge Baroque Extreme 100ml"
+    },
+    "maison-alhambra--la-vivacite-intensa": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "La Vivacite Intensa 100ml"
+    },
+    "afnan--9am": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "9am 100ml"
+    },
+    "afnan--9am-pour-femme": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "9am Pour Femme 100ml"
+    },
+    "afnan--9pm": {
+      "costo": 55000,
+      "venta": 124900,
+      "cbu": 112400,
+      "pdf": "9pm 100ml"
+    },
+    "afnan--9pm-pour-femme": {
+      "costo": 55000,
+      "venta": 124900,
+      "cbu": 112400,
+      "pdf": "9pm Pour Femme 100ml"
+    },
+    "afnan--9pm-rebel": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "9pm Rebel 100ml"
+    },
+    "afnan--9pm-elixir": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "9pm Elixir 100ml"
+    },
+    "afnan--9pm-night-out": {
+      "costo": 90000,
+      "venta": 204400,
+      "cbu": 184000,
+      "pdf": "9pm Night Out 100ml"
+    },
+    "afnan--turathi-electric": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Turathi Electric 100ml"
+    },
+    "afnan--turathi-blue": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Turathi Blue 90ml"
+    },
+    "rasasi--hawas-for-him-original": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Hawas for Him 100ml"
+    },
+    "rasasi--hawas-for-her-original": {
+      "costo": 45000,
+      "venta": 102200,
+      "cbu": 92000,
+      "pdf": "Hawas for Her 100ml"
+    },
+    "rasasi--hawas-for-him-kobra": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Hawas Kobra 100ml"
+    },
+    "rasasi--hawas-for-him-malibu": {
+      "costo": 85000,
+      "venta": 193000,
+      "cbu": 173700,
+      "pdf": "Hawas Malibu 100ml"
+    },
+    "rasasi--hawas-for-him-fire": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Hawas Fire 100ml"
+    },
+    "rasasi--hawas-black-for-him": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Hawas Black 100ml"
+    },
+    "rasasi--hawas-ice-for-him": {
+      "costo": 70000,
+      "venta": 159000,
+      "cbu": 143100,
+      "pdf": "Hawas ICE 100ml"
+    },
+    "rasasi--hawas-verde": {
+      "costo": 75000,
+      "venta": 170300,
+      "cbu": 153300,
+      "pdf": "Hawas Verde 100ml"
+    },
+    "rasasi--hawas-tropical": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Hawas Tropical 100ml"
+    },
+    "rasasi--hawas-elixir": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Hawas Elixir 100ml"
+    },
+    "rasasi--hawas-for-her-eclat": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Hawas for Her Éclat 100ml"
+    },
+    "rasasi--hawas-for-her-diva": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Hawas Diva 100ml"
+    },
+    "rasasi--hawas-pink-for-her": {
+      "costo": 80000,
+      "venta": 181700,
+      "cbu": 163500,
+      "pdf": "Hawas Pink 100ml"
+    },
+    "lattafa--haya": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Haya 100ml"
+    },
+    "lattafa--victoria": {
+      "costo": 50000,
+      "venta": 113500,
+      "cbu": 102200,
+      "pdf": "Victoria 100ml"
+    },
+    "lattafa--her-confession": {
+      "costo": 55000,
+      "venta": 124900,
+      "cbu": 112400,
+      "pdf": "Her Confession 100ml"
+    },
+    "lattafa--his-confession": {
+      "costo": 55000,
+      "venta": 124900,
+      "cbu": 112400,
+      "pdf": "His Confession 100ml"
+    },
+    "lattafa--yara-pink": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Yara 100ml"
+    },
+    "lattafa--yara-tous": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Yara Tous 100ml"
+    },
+    "lattafa--yara-moi": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Yara Moi 100ml"
+    },
+    "lattafa--yara-candy": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Yara Candy 100ml"
+    },
+    "lattafa--asad-elixir": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Asad Elixir 100ml"
+    },
+    "lattafa--asad-bourbon": {
+      "costo": 60000,
+      "venta": 136300,
+      "cbu": 122700,
+      "pdf": "Asad Bourbon 100ml"
+    },
+    "lattafa--asad-zanzibar": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "Asad Zanzibar 100ml"
+    },
+    "bharara--king": {
+      "costo": 90000,
+      "venta": 204400,
+      "cbu": 184000,
+      "pdf": "Bharara King 100ml"
+    },
+    "lattafa-pride--pisa": {
+      "costo": 65000,
+      "venta": 147600,
+      "cbu": 132800,
+      "pdf": "Pisa 100ml"
+    },
+    "rave-lattafa--now": {
+      "costo": 35000,
+      "venta": 79500,
+      "cbu": 71600,
+      "pdf": "Now Black 100ml",
+      "confirmado": false
+    },
+    "lattafa--asad": {
+      "costo": 40000,
+      "venta": 90800,
+      "cbu": 81700,
+      "pdf": "Asad Negro 100ml",
+      "confirmado": false
+    }
+  }
+}

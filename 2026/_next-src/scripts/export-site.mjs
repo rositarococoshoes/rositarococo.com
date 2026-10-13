@@ -1,4 +1,4 @@
-﻿import fs from 'node:fs/promises';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const root2026 = path.resolve('..');
@@ -27,12 +27,8 @@ const generatedEntries = [
   'gracias-perfumes-2.html',
   'gracias-perfumes-3.html',
   'perfumes-previopago.html',
-  'gracias-perfumes-pp-1.html',
-  'gracias-perfumes-pp-2.html',
-  'gracias-perfumes-pp-3.html',
-  'transferenciacbu-perfumes-pp-1.html',
-  'transferenciacbu-perfumes-pp-2.html',
-  'transferenciacbu-perfumes-pp-3.html',
+  'gracias-perfumes-pp.html',
+  'transferenciacbu-perfumes-pp.html',
   '_next',
   'assets',
   'apple-touch-icon.png',
@@ -102,12 +98,8 @@ async function exportFromServerApp() {
     ['gracias-perfumes-2.html', 'gracias-perfumes-2.html'],
     ['gracias-perfumes-3.html', 'gracias-perfumes-3.html'],
     ['perfumes-previopago.html', 'perfumes-previopago.html'],
-    ['gracias-perfumes-pp-1.html', 'gracias-perfumes-pp-1.html'],
-    ['gracias-perfumes-pp-2.html', 'gracias-perfumes-pp-2.html'],
-    ['gracias-perfumes-pp-3.html', 'gracias-perfumes-pp-3.html'],
-    ['transferenciacbu-perfumes-pp-1.html', 'transferenciacbu-perfumes-pp-1.html'],
-    ['transferenciacbu-perfumes-pp-2.html', 'transferenciacbu-perfumes-pp-2.html'],
-    ['transferenciacbu-perfumes-pp-3.html', 'transferenciacbu-perfumes-pp-3.html'],
+    ['gracias-perfumes-pp.html', 'gracias-perfumes-pp.html'],
+    ['transferenciacbu-perfumes-pp.html', 'transferenciacbu-perfumes-pp.html'],
     ['_not-found.html', '_not-found.html'],
     ['_not-found.html', '404.html'],
   ];

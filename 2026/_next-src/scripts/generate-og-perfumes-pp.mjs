@@ -1,7 +1,7 @@
 import sharp from 'sharp';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { PRICING } from '../src/lib/perfumes-previo-pago-data.js';
+import { PRODUCTS, PRICING, discountFor } from '../src/lib/perfumes-previo-pago-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = resolve(__dirname, '..', 'public', 'og-perfumes-pp-2026.png');
@@ -11,9 +11,14 @@ const H = 630;
 
 const money = (value) => `$${value.toLocaleString('es-AR')}`;
 
-const tierCards = PRICING.tiers
-  .map((tier, index) => {
-    const featured = index === PRICING.tiers.length - 1;
+const DESDE = Math.min(...PRODUCTS.map((p) => p.price));
+
+// Escalones de descuento. No hay un precio por cantidad porque cada perfume
+// tiene el suyo: lo que se anuncia es el descuento fijo que se activa.
+const tierCards = [1, 2, 3]
+  .map((count, index) => {
+    const featured = count === PRICING.maxItems;
+    const off = discountFor(count);
     const x = 80 + index * 260;
     const bg = featured ? '#2b3350' : '#ffffff';
     const title = featured ? '#c3cbe2' : '#6b5b51';
@@ -28,14 +33,14 @@ const tierCards = PRICING.tiers
         featured ? '' : 'opacity="0.85"'
       }/>
       <text x="${x + 20}" y="406" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" fill="${title}">${
-        tier.count
-      } ${tier.count === 1 ? 'PERFUME' : 'PERFUMES'}</text>
-      <text x="${x + 20}" y="452" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="${price}">${money(
-        tier.price,
-      )}</text>
-      <text x="${x + 20}" y="474" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${unit}">${money(
-        Math.ceil(tier.price / tier.count),
-      )} c/u</text>
+        count
+      } ${count === 1 ? 'PERFUME' : 'PERFUMES'}</text>
+      <text x="${x + 20}" y="452" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="${price}">${
+        off ? `−${money(off)}` : 'PLENO'
+      }</text>
+      <text x="${x + 20}" y="474" font-family="Arial, Helvetica, sans-serif" font-size="13" fill="${unit}">${
+        off ? 'de descuento' : 'sin descuento'
+      }</text>
       ${flag}`;
   })
   .join('\n');
@@ -81,7 +86,9 @@ const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.or
   <rect x="80" y="242" width="430" height="42" rx="21" fill="#2f6b52"/>
   <text x="295" y="269" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">ENVÍO GRATIS A TODO EL PAÍS</text>
 
-  <text x="80" y="322" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#6b5b51">61 perfumes · pagá con tarjeta, MercadoPago o transferencia</text>
+  <text x="80" y="322" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#6b5b51">61 perfumes desde ${money(
+    DESDE,
+  )} · pagá con tarjeta, MercadoPago o transferencia</text>
 
   ${tierCards}
 

@@ -4607,3 +4607,77 @@ label small,
     border-radius: 18px 18px 0 0;
   }
 }
+
+/* --- precios por perfume: nota de descuento y desglose del carrito --- */
+.pp-card-discount-note {
+  margin: 2px 0 0;
+  font-size: 10px;
+  line-height: 1.4;
+  color: var(--pp-muted);
+  font-weight: 600;
+}
+.pp-tag-off { color: #fff; background: var(--pp-cbu); }
+
+.pp-cart-total { display: grid; gap: 4px; }
+.pp-cart-total-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.pp-cart-total-line.is-sub { opacity: 0.8; }
+.pp-cart-total-line.is-sub strong { font-size: 16px; font-weight: 700; }
+.pp-cart-total-line.is-discount { color: var(--pp-cbu); }
+.pp-cart-total-line.is-discount span,
+.pp-cart-total-line.is-discount strong { font-size: 12px; font-weight: 700; }
+.pp-cart-total-line.is-final {
+  margin-top: 3px;
+  padding-top: 7px;
+  border-top: 1px solid rgba(63, 74, 107, 0.22);
+}
+.pp-cart-total-line.is-final span { font-size: 12px; font-weight: 700; color: var(--pp-muted); }
+.pp-cart-total-line.is-final strong { font-family: var(--font-serif), serif; font-size: 24px; color: var(--pp-ink); }
+
+/* el rail del carrito ahora muestra el descuento por cantidad, no un precio */
+.pp-tier strong { font-size: 13px; }
+
+/* --- resumen del checkout: precio por perfume --- */
+.pp-recap { grid-template-columns: 1fr; }
+.pp-recap-line { grid-template-columns: 20px 1fr auto auto; }
+.pp-recap-price { font-weight: 700; color: var(--pp-ink); white-space: nowrap; }
+
+.pp-checkout-totals {
+  display: grid;
+  gap: 3px;
+  padding: 11px 12px;
+  background: #f8f6f4;
+  border: 1px solid var(--pp-line);
+  border-radius: 12px;
+}
+.pp-checkout-total { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.pp-checkout-total.is-sub { opacity: 0.8; }
+.pp-checkout-total.is-sub strong { font-size: 16px; font-weight: 700; }
+.pp-checkout-total.is-discount { color: var(--pp-cbu); }
+.pp-checkout-total.is-discount span,
+.pp-checkout-total.is-discount strong { font-size: 12px; font-weight: 700; }
+.pp-checkout-total.is-final { margin-top: 3px; padding-top: 7px; border-top: 1px solid var(--pp-line); }
+.pp-checkout-total.is-final span { font-size: 13px; font-weight: 700; color: var(--pp-muted); }
+.pp-checkout-total.is-final strong { font-family: var(--font-serif), serif; font-size: 26px; color: var(--pp-ink); }
+.pp-checkout-total strong { font-family: var(--font-serif), serif; font-size: 20px; color: var(--pp-ink); }
+
+/* --- paginas finales: desglose del pedido --- */
+.thankyou-order-line { display: grid; gap: 1px; }
+.thankyou-order-line small { font-size: 12px; color: #6b5b51; font-weight: 400; }
+.thankyou-order-lines {
+  display: grid;
+  gap: 2px;
+  margin: 8px 0;
+  padding: 8px 10px;
+  background: #faf8f6;
+  border-radius: 10px;
+}
+.thankyou-order-lines p { margin: 0; display: flex; justify-content: space-between; gap: 10px; font-size: 12px; }
+.thankyou-order-lines .is-discount { color: #2f6b52; font-weight: 700; }
+.thankyou-order-total { display: grid; gap: 2px; }
+.thankyou-order-savings { font-size: 12px; font-weight: 700; color: #2f6b52; }
+.thankyou-greeting { margin: 0; font-size: 15px; color: #241a15; }

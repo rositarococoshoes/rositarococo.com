@@ -29,21 +29,28 @@ const OUT_DATA = resolve(__dirname, '..', 'src', 'lib', 'perfumes-previo-pago-da
 const MAX_EDGE = 800;
 const QUALITY = 80;
 
-/** Precios: ver scripts/calc-previo-pago-precios.mjs para el porqué. */
+/**
+ * Descuentos del carrito. Cada perfume tiene su propio precio (sale del costo
+ * con el ratio de scripts/build-costos-pp.mjs), así que el total del pedido es
+ * la suma menos un descuento FIJO por cantidad:
+ *
+ *   1 perfume  ->  sin descuento
+ *   2 perfumes ->  $10.000 OFF
+ *   3 perfumes ->  $18.000 OFF
+ *
+ * Ojo: al ser fijo y no porcentual, el descuento real varía según qué perfumes
+ * se compren (sobre los más caros queda ~2,6%, sobre los más baratos ~7,5%).
+ */
 const PRICING = {
   maxItems: 3,
-  unitCost: 9000,
-  /** Precio de un perfume suelto: referencia para calcular el ahorro de los combos. */
-  unitPrice: 50000,
-  tiers: [
-    { count: 1, price: 50000, cbu: 45000 },
-    { count: 2, price: 80000, cbu: 72000 },
-    { count: 3, price: 100000, cbu: 90000 },
-  ],
+  /** Descuento fijo sobre el subtotal, por cantidad de perfumes. */
+  cartDiscounts: { 2: 10000, 3: 18000 },
 };
 
-/** Igual que en el funnel de calzados: CBU con 10% OFF. */
-const CBU_FACTOR = 0.9;
+/** El costo de cada perfume sale de ../../perfumes/costos-perfumes.json. */
+const COSTOS = JSON.parse(
+  fs.readFileSync(resolve(__dirname, '..', '..', 'perfumes', 'costos-perfumes.json'), 'utf8'),
+).costos;
 
 // ---------------------------------------------------------------- xlsx reader
 
@@ -293,6 +300,8 @@ async function main() {
     .map((p) => {
       const images = p.imageFiles.map((f) => `    asset('${f}'),`).join('\n');
       const similar = p.similar && !p.similar.startsWith('—') ? p.similar.replace(/^≈\s*/, '') : null;
+      const costo = COSTOS[p.key];
+      if (!costo) throw new Error(`Sin costo cargado para ${p.key}`);
       return [
         '  {',
         `    id: '${p.key}',`,
@@ -303,6 +312,14 @@ async function main() {
         `    familyLabel: '${p.familiaTexto.replace(/'/g, "\\'")}',`,
         `    similar: ${similar ? `'${similar.replace(/'/g, "\\'")}'` : 'null'},`,
         `    presentation: '${p.presentacion.replace(/'/g, "\\'")}',`,
+        `    /** Costo de reposición. No se muestra al cliente. */`,
+        `    cost: ${costo.costo},`,
+        `    /** Precio de venta con tarjeta o saldo MercadoPago. */`,
+        `    price: ${costo.venta},`,
+        `    /** Preciofinal por transferencia bancaria (10% menos). */`,
+        `    cbuPrice: ${costo.cbu},`,
+        `    /** El costo todavía no fue confirmado por el usuario. */`,
+        `    priceConfirmed: ${costo.confirmado === false ? 'false' : 'true'},`,
         `    description:`,
         `      '${p.descripcion.replace(/'/g, "\\'")}',`,
         `    images: [`,
@@ -377,7 +394,9 @@ export const FAMILY_LABEL = {
 export const PAGE_COPY = {
   title: 'Perfumes con pago online',
   paymentRibbon: 'Tarjeta, MercadoPago o transferencia',
-  promoLine: '1 perfume $50.000 · 2 por $80.000 · 3 por $100.000. Transferencia con 10% OFF.',
+  promoLine:
+    'Cada perfume con su precio. Llevás 2 y te descontamos $10.000, llevás 3 y te descontamos $18.000. ' +
+    'Transferencia con 10% OFF.',
   shippingNote: 'Envío gratis a todo el país',
   checkoutTitle: 'Casi listos. Completá tus datos',
   paymentLegend:
@@ -457,29 +476,33 @@ export const BANK_DETAILS = {
   holder: 'Baustian Roxana',
 };
 
-export const THANK_YOU_ROUTES = {
-  single: '/gracias-perfumes-pp-1',
-  pair: '/gracias-perfumes-pp-2',
-  trio: '/gracias-perfumes-pp-3',
-};
+/** Rutas de las páginas finales. Una sola por tipo: el total ya no es fijo. */
+export const THANK_YOU_ROUTE = '/gracias-perfumes-pp';
+export const CBU_ROUTE = '/transferenciacbu-perfumes-pp';
 
 export const PRODUCTS = [
 ${productsLiteral}
 ];
 
-/** Escalón vigente para una cantidad de unidades del carrito. */
-export function tierFor(count) {
-  if (count <= 0) return PRICING.tiers[0];
-  const index = Math.min(count, PRICING.tiers.length) - 1;
-  return PRICING.tiers[index];
+export const PRODUCT_BY_ID = new Map(PRODUCTS.map((p) => [p.id, p]));
+
+/**
+ * Descuento fijo del carrito para una cantidad dada.
+ * 1 perfume no lleva descuento; 2 lleva $10.000 y 3 lleva $18.000.
+ */
+export function discountFor(count) {
+  if (count <= 1) return 0;
+  const capped = Math.min(count, PRICING.maxItems);
+  return PRICING.cartDiscounts[capped] || 0;
 }
 
-/** Precio final según medio de pago (la transferencia lleva 10% OFF). */
-export function priceFor(count, paymentMethod) {
-  const tier = tierFor(count);
-  return paymentMethod === 'cbu'
-    ? Math.round((tier.price * ${CBU_FACTOR}) / 50) * 50
-    : tier.price;
+/**
+ * Precio de un perfume suelto según el medio de pago.
+ * La transferencia lleva el 10% menos, ya redondeado en los datos.
+ */
+export function priceOf(product, paymentMethod) {
+  if (!product) return 0;
+  return paymentMethod === 'cbu' ? product.cbuPrice : product.price;
 }
 
 export function formatPerfumeLine(product) {

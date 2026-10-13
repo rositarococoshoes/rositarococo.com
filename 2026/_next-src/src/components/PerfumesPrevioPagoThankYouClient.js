@@ -1,60 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { PRODUCTS, WHATSAPP_BUTTON_SRC, WHATSAPP_CONFIRM_PHONE, formatPerfumeLine } from '@/src/lib/perfumes-previo-pago-data';
+import { WHATSAPP_BUTTON_SRC, WHATSAPP_CONFIRM_PHONE } from '@/src/lib/perfumes-previo-pago-data';
+import { PAYMENT_METHOD_LABEL, buildWhatsappMessage, useLastOrder } from '@/src/lib/use-last-order';
 
-const PRODUCT_BY_ID = new Map(PRODUCTS.map((p) => [p.id, p]));
-
-function buildDetailList(rawProducts, orderDetails) {
-  const stored = (orderDetails || '')
-    .split('|')
-    .map((e) => e.trim())
-    .filter(Boolean);
-  if (stored.length) return stored.map((text, i) => ({ key: `${i}-${text}`, text }));
-
-  return (rawProducts || '')
-    .split(',')
-    .map((e) => e.trim())
-    .filter(Boolean)
-    .map((id, i) => ({ key: `${i}-${id}`, text: PRODUCT_BY_ID.has(id) ? formatPerfumeLine(PRODUCT_BY_ID.get(id)) : id }));
-}
-
-const METHOD_LABEL = {
-  tarjeta: 'Tarjeta de crédito o débito',
-  mercadopago: 'Saldo MercadoPago',
-  cbu: 'Transferencia bancaria',
-};
-
-export default function PerfumesPrevioPagoThankYouClient({ count, total }) {
-  const [name, setName] = useState('');
-  const [list, setList] = useState([]);
-  const [method, setMethod] = useState('');
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const raw = window.localStorage.getItem('rawProducts') || params.get('286442883') || '';
-    const details = window.localStorage.getItem('orderDetails') || '';
-    setList(buildDetailList(raw, details));
-    setName(window.localStorage.getItem('customerName') || '');
-    setMethod(window.localStorage.getItem('paymentMethod') || '');
-  }, []);
-
-  const detailsText = list.length ? list.map((i) => i.text).join(' | ') : 'Detalles del pedido no disponibles';
-
-  const greeting = name
-    ? `Hola, soy ${name} y quiero confirmar mi pedido de perfumes que recién hice.`
-    : 'Hola, quiero confirmar mi pedido de perfumes que recién hice.';
-
-  const methodText = method ? `\nMedio de pago: ${METHOD_LABEL[method] || method}` : '';
-  const message = `${greeting}\n\nDetalles del pedido: ${detailsText}\nTotal a pagar: $${total.toLocaleString(
-    'es-AR',
-  )}${methodText}`;
+/**
+ * Confirmación del pedido para quien pagó con tarjeta o saldo MercadoPago:
+ * el link de pago ya lo llevó MercadoPago, así que acá solo se pide el
+ * comprobante por WhatsApp.
+ */
+export default function PerfumesPrevioPagoThankYouClient() {
+  const order = useLastOrder();
+  const message = buildWhatsappMessage(order, 'Adjunto el comprobante de pago.');
 
   return (
     <>
-      {name ? (
+      {order?.customerName ? (
         <p className="thankyou-greeting">
-          Gracias por tu compra, <strong>{name}</strong>.
+          Gracias por tu compra, <strong>{order.customerName}</strong>.
         </p>
       ) : null}
 
@@ -65,24 +27,62 @@ export default function PerfumesPrevioPagoThankYouClient({ count, total }) {
         <img src={WHATSAPP_BUTTON_SRC} alt="Confirmar por WhatsApp" width="240" height="72" loading="eager" decoding="async" />
       </a>
 
-      <div className="thankyou-order-box">
-        <h2>Tu pedido</h2>
-        {list.length ? (
+      {order ? (
+        <div className="thankyou-order-box">
+          <h2>Tu pedido</h2>
           <ul className="thankyou-order-list">
-            {list.map((item) => (
-              <li key={item.key}>{item.text}</li>
+            {order.lines.map((line) => (
+              <li key={line.id}>
+                <span className="thankyou-order-line">
+                  {line.name}
+                  <small>
+                    {line.brand} · {formatMoney(line.price)}
+                  </small>
+                </span>
+              </li>
             ))}
           </ul>
-        ) : (
-          <p>Detalles del pedido no disponibles</p>
-        )}
-        <p className="thankyou-order-total">
-          {count} {count === 1 ? 'perfume' : 'perfumes'} · ${total.toLocaleString('es-AR')}
-        </p>
-        {method ? (
-          <p className="thankyou-order-method">Pagaste con {METHOD_LABEL[method] || method}</p>
-        ) : null}
-      </div>
+
+          {order.subtotal !== order.total ? (
+            <div className="thankyou-order-lines">
+              <p>
+                <span>Subtotal</span>
+                <strong>{formatMoney(order.subtotal)}</strong>
+              </p>
+              {order.discount ? (
+                <p className="is-discount">
+                  <span>Descuento por {order.count} perfumes</span>
+                  <strong>−{formatMoney(order.discount)}</strong>
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+
+          <p className="thankyou-order-total">
+            Total {formatMoney(order.total)}
+            {order.discount ? (
+              <small className="thankyou-order-savings">
+                {formatMoney(order.discount)} de descuento aplicado
+              </small>
+            ) : null}
+          </p>
+
+          {order.paymentMethod ? (
+            <p className="thankyou-order-method">
+              Pagaste con {PAYMENT_METHOD_LABEL[order.paymentMethod] || order.paymentMethod}
+            </p>
+          ) : null}
+        </div>
+      ) : (
+        <div className="thankyou-order-box">
+          <h2>Tu pedido</h2>
+          <p>No pudimos recuperar el detalle del pedido. Mandanos un mensaje y lo verificamos.</p>
+        </div>
+      )}
     </>
   );
+}
+
+function formatMoney(value) {
+  return `$${(value || 0).toLocaleString('es-AR')}`;
 }

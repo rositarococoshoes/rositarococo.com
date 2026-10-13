@@ -1,60 +1,56 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import {
-  PRODUCTS,
-  WHATSAPP_BUTTON_SRC,
-  WHATSAPP_CONFIRM_PHONE,
-  formatPerfumeLine,
-} from '@/src/lib/perfumes-previo-pago-data';
-
-const PRODUCT_BY_ID = new Map(PRODUCTS.map((p) => [p.id, p]));
-
-function buildDetailList(rawProducts, orderDetails) {
-  const stored = (orderDetails || '').split('|').map((e) => e.trim()).filter(Boolean);
-  if (stored.length) return stored.map((text, i) => ({ key: `${i}-${text}`, text }));
-  return (rawProducts || '').split(',').map((e) => e.trim()).filter(Boolean)
-    .map((id, i) => ({ key: `${i}-${id}`, text: PRODUCT_BY_ID.has(id) ? formatPerfumeLine(PRODUCT_BY_ID.get(id)) : id }));
-}
+import { WHATSAPP_BUTTON_SRC, WHATSAPP_CONFIRM_PHONE } from '@/src/lib/perfumes-previo-pago-data';
+import { buildWhatsappMessage, useLastOrder } from '@/src/lib/use-last-order';
 
 /**
- * Resumen del pedido en la página de transferencia. Se lee del localStorage que
- * dejó el submit, no de la URL, porque el id del pedido viaja en la sesión.
+ * Resumen del pedido en la página de transferencia: muestra el importe
+ * exacto a transferir y pide el comprobante por WhatsApp.
  */
-export default function PerfumesPrevioPagoOrderSummaryClient({ count, total }) {
-  const [list, setList] = useState([]);
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const raw = window.localStorage.getItem('rawProducts') || params.get('286442883') || '';
-    const details = window.localStorage.getItem('orderDetails') || '';
-    setList(buildDetailList(raw, details));
-    setName(window.localStorage.getItem('customerName') || '');
-  }, []);
-
-  const message = [
-    name ? `Hola, soy ${name}.` : 'Hola.',
-    `Transferí $${total.toLocaleString('es-AR')} por mi pedido de ${count} ${count === 1 ? 'perfume' : 'perfumes'}.`,
-    `Detalle: ${list.length ? list.map((i) => i.text).join(' | ') : 'ver pedido en la web'}.`,
-    'Adjunto el comprobante.',
-  ].join('\n');
+export default function PerfumesPrevioPagoOrderSummaryClient() {
+  const order = useLastOrder();
+  const message = buildWhatsappMessage(order, 'Ya transferí. Adjunto el comprobante.');
 
   return (
     <div className="thankyou-order-box">
       <h2>Resumen de tu pedido</h2>
-      {list.length ? (
-        <ul className="thankyou-order-list">
-          {list.map((item) => (
-            <li key={item.key}>{item.text}</li>
-          ))}
-        </ul>
+
+      {order ? (
+        <>
+          <ul className="thankyou-order-list">
+            {order.lines.map((line) => (
+              <li key={line.id}>
+                <span className="thankyou-order-line">
+                  {line.name}
+                  <small>
+                    {line.brand} · {formatMoney(line.price)}
+                  </small>
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {order.subtotal !== order.total ? (
+            <div className="thankyou-order-lines">
+              <p>
+                <span>Subtotal</span>
+                <strong>{formatMoney(order.subtotal)}</strong>
+              </p>
+              {order.discount ? (
+                <p className="is-discount">
+                  <span>Descuento por {order.count} perfumes</span>
+                  <strong>−{formatMoney(order.discount)}</strong>
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+
+          <p className="thankyou-order-total">Total a transferir {formatMoney(order.total)}</p>
+        </>
       ) : (
         <p>Tu pedido quedó registrado. Mandanos el comprobante por WhatsApp.</p>
       )}
-      <p className="thankyou-order-total">
-        {count} {count === 1 ? 'perfume' : 'perfumes'} · ${total.toLocaleString('es-AR')}
-      </p>
+
       <a
         className="whatsapp-confirm"
         href={`https://api.whatsapp.com/send?phone=${WHATSAPP_CONFIRM_PHONE}&text=${encodeURIComponent(message)}`}
@@ -63,4 +59,8 @@ export default function PerfumesPrevioPagoOrderSummaryClient({ count, total }) {
       </a>
     </div>
   );
+}
+
+function formatMoney(value) {
+  return `$${(value || 0).toLocaleString('es-AR')}`;
 }

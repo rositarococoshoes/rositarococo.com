@@ -1,11 +1,38 @@
+'use client';
+
 import { BANK_DETAILS, BRAND_LOGO_SRC } from '@/src/lib/perfumes-previo-pago-data';
 import PerfumesPrevioPagoOrderSummaryClient from '@/src/components/PerfumesPrevioPagoOrderSummaryClient';
+import { useLastOrder } from '@/src/lib/use-last-order';
+
+function TransferAmount() {
+  const order = useLastOrder();
+  if (!order) return <strong>Consultá el importe con tu pedido</strong>;
+  return (
+    <>
+      <strong>{`$${order.total.toLocaleString('es-AR')}`}</strong>
+      <p>
+        {order.count} {order.count === 1 ? 'perfume' : 'perfumes'}, con el 10% de descuento por
+        transferencia
+        {order.discount
+          ? ` y ${`$${order.discount.toLocaleString('es-AR')}`} de descuento por cantidad`
+          : ''}
+        .
+      </p>
+      <small>Sin el comprobante de transferencia no podremos procesar el despacho.</small>
+    </>
+  );
+}
 
 /**
- * Página a la que cae quien eligió transferencia: no hay redirección a un pasarela,
- * así que muestra el CBU y el importe a pagar, y pide el comprobante por WhatsApp.
+ * Página a la que cae quien eligió transferencia: no hay redirección a una
+ * pasarela, así que muestra el CBU y el importe exacto a pagar, y pide el
+ * comprobante por WhatsApp.
+ *
+ * Es un componente cliente porque el importe sale del localStorage del pedido:
+ * con precio por perfume el total depende de cuáles perfumes eligió el
+ * cliente, así que no puede ser una constante de la página.
  */
-export default function PerfumesPrevioPagoTransferPage({ count, total }) {
+export default function PerfumesPrevioPagoTransferPage() {
   return (
     <main className="thankyou-shell">
       <div className="benefits-strip compact">
@@ -26,11 +53,11 @@ export default function PerfumesPrevioPagoTransferPage({ count, total }) {
         <span className="eyebrow">Transferencia</span>
         <h1>Transferí y mandanos el comprobante para despachar tu pedido.</h1>
         <p className="thankyou-copy">
-          Tu pedido ya quedó registrado con el 10% de descuento aplicado. Transferí el monto informado
-          y después envianos el comprobante por WhatsApp.
+          Tu pedido ya quedó registrado con el 10% de descuento por transferencia aplicado. Transferí
+          el monto informado y después envianos el comprobante por WhatsApp.
         </p>
 
-        <PerfumesPrevioPagoOrderSummaryClient count={count} total={total} />
+        <PerfumesPrevioPagoOrderSummaryClient />
 
         <div className="payment-option-grid single-column">
           <article className="payment-option-card bank-highlight-card">
@@ -49,12 +76,7 @@ export default function PerfumesPrevioPagoTransferPage({ count, total }) {
 
           <article className="payment-option-card info-option-card">
             <span className="payment-option-label">Importe a transferir</span>
-            <strong>{`$${total.toLocaleString('es-AR')}`}</strong>
-            <p>
-              Precio final por {count} {count === 1 ? 'perfume' : 'perfumes'} con el 10% de descuento
-              por pago por transferencia.
-            </p>
-            <small>Sin el comprobante de transferencia no podremos procesar el despacho.</small>
+            <TransferAmount />
           </article>
         </div>
       </section>

@@ -1,18 +1,9 @@
-import { BRAND_LOGO_SRC, PRICING } from '@/src/lib/perfumes-previo-pago-data';
+import { BRAND_LOGO_SRC } from '@/src/lib/perfumes-previo-pago-data';
 import PerfumesPrevioPagoThankYouClient from '@/src/components/PerfumesPrevioPagoThankYouClient';
 
-export default function PerfumesPrevioPagoThankYouPage({ count, total, method }) {
-  const totalLabel = total.toLocaleString('es-AR');
-  const units = count === 1 ? 'perfume' : 'perfumes';
-
-  const METHOD_LABEL = {
-    tarjeta: 'tarjeta',
-    mercadopago: 'saldo MercadoPago',
-    cbu: 'transferencia bancaria',
-  };
-
-  const savings = PRICING.unitPrice * count - total;
-
+// La metadata vive en app/gracias-perfumes-pp/page.js, que la genera
+// scripts/gen-pp-pages.mjs.
+export default function PerfumesPrevioPagoThankYouPage() {
   return (
     <main className="thankyou-shell">
       <div className="benefits-strip compact">
@@ -33,16 +24,14 @@ export default function PerfumesPrevioPagoThankYouPage({ count, total, method })
         <span className="eyebrow">Último paso</span>
         <h1>Confirmá tu pedido por WhatsApp para que podamos despacharlo.</h1>
         <p className="thankyou-copy">
-          Tu pedido quedó registrado. Mandanos el comprobante por WhatsApp y te enviamos el número de
-          seguimiento apenas salga.
+          Tu pedido quedó registrado y el pago ya fue aprobado. Mandanos el comprobante por WhatsApp y
+          te enviamos el número de seguimiento apenas salga.
         </p>
 
-        <PerfumesPrevioPagoThankYouClient count={count} total={total} />
+        <PerfumesPrevioPagoThankYouClient />
 
         <div className="thankyou-payment-box">
-          {method ? <>Abonaste con {METHOD_LABEL[method] || method}. </> : null}
-          Ten listo ${totalLabel} en total. El envío es gratis a todo el país.
-          {savings > 0 ? ` Hiciste un ahorro de $${savings.toLocaleString('es-AR')} con la promo.` : ''}
+          Te enviamos el seguimiento por WhatsApp. El envío es gratis a todo el país.
         </div>
       </section>
     </main>

@@ -16,17 +16,20 @@ import {
   PRICING,
   PRODUCTS,
   PROVINCES,
-  priceFor,
+  discountFor,
+  priceOf,
 } from '@/src/lib/perfumes-previo-pago-data';
 import {
   buildLegacyPayload,
   buildOrderSummary,
+  calculateSubtotal,
   calculateTotal,
+  describeCart,
   formatOrderDetails,
   getCbuRoute,
+  getDiscountLabel,
   getHeadline,
   getPostAddMessage,
-  getSavingsLabel,
   getUpsell,
 } from '@/src/lib/perfumes-previo-pago-utils';
 import { getDeliveryOptions, isBlockedWhatsappNumber, isValidWhatsappInput } from '@/src/lib/funnel-utils';
@@ -235,37 +238,43 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
         <div className="pp-card-pricing">
           <div className="pp-card-price-row">
             <span className="pp-card-price-label">
-              1 perfume
-              <small className="pp-card-price-hint">pago online</small>
+              Precio
+              <small className="pp-card-price-hint">3 cuotas sin interés</small>
             </span>
             <span className="pp-card-price-values">
-              <strong className="pp-card-price">
-                {formatCurrency(priceFor(1, 'tarjeta'))}
-              </strong>
+              <strong className="pp-card-price">{formatCurrency(product.price)}</strong>
               <small className="pp-card-price-cbu">
-                {formatCurrency(priceFor(1, 'cbu'))} por transferencia
+                {formatCurrency(product.cbuPrice)} por transferencia
               </small>
             </span>
           </div>
 
           <ul className="pp-card-combos">
-            {PRICING.tiers
-              .filter((tier) => tier.count > 1)
-              .map((tier) => (
-                <li key={tier.count} className="pp-card-combo">
+            {[2, 3].map((count) => {
+              const off = discountFor(count);
+              return (
+                <li key={count} className="pp-card-combo">
                   <span className="pp-card-combo-qty">
-                    {tier.count} perfumes
-                    <small className="pp-card-combo-hint">sumando {tier.count - 1} más</small>
+                    {count} perfumes
+                    <small className="pp-card-combo-hint">sumando {count - 1} más</small>
                   </span>
                   <span className="pp-card-combo-values">
-                    <strong className="pp-card-combo-total">{formatCurrency(tier.price)}</strong>
+                    <strong className="pp-card-combo-total">
+                      {formatCurrency(count * product.price - off)}
+                    </strong>
                     <small className="pp-card-combo-unit">
-                      {formatCurrency(Math.ceil(tier.price / tier.count))} c/u
+                      {formatCurrency(Math.round((count * product.price - off) / count))} c/u
                     </small>
                   </span>
                 </li>
-              ))}
+              );
+            })}
           </ul>
+
+          <p className="pp-card-discount-note">
+            Descuento fijo sobre el total: {formatCurrency(PRICING.cartDiscounts[2])} con 2 perfumes,{' '}
+            {formatCurrency(PRICING.cartDiscounts[3])} con 3.
+          </p>
         </div>
 
         <div className="pp-card-actions">
@@ -287,8 +296,9 @@ function PerfumeCard({ product, onAdd, cartLocked, priority }) {
 
 function CartPanel({
   cartEntries,
+  subtotal,
+  discount,
   total,
-  savings,
   upsell,
   paymentMethod,
   expanded,
@@ -315,6 +325,7 @@ function CartPanel({
             <span className="pp-tag pp-tag-primary">Pago online</span>
             <span className="pp-tag pp-tag-accent">Envío gratis</span>
             {cbu ? <span className="pp-tag pp-tag-cbu">−10% CBU</span> : null}
+            {discount ? <span className="pp-tag pp-tag-off">{getDiscountLabel(cartEntries.length)}</span> : null}
           </div>
           <span className="pp-cart-arrow" aria-hidden="true">
             {expanded ? '▾' : '▴'}
@@ -323,12 +334,13 @@ function CartPanel({
 
         <div className="pp-cart-bottom">
           <div className="pp-tier-rail">
-            {PRICING.tiers.map((tier) => {
-              const active = cartEntries.length === tier.count;
+            {[1, 2, 3].map((count) => {
+              const active = cartEntries.length === count;
+              const off = discountFor(count);
               return (
-                <span key={tier.count} className={`pp-tier${active ? ' is-active' : ''}`}>
-                  <small>{tier.count === 1 ? '1 perfume' : `${tier.count} perfumes`}</small>
-                  <strong>{formatCurrency(tier.price)}</strong>
+                <span key={count} className={`pp-tier${active ? ' is-active' : ''}`}>
+                  <small>{count === 1 ? '1 perfume' : `${count} perfumes`}</small>
+                  <strong>{off ? `−${formatCurrency(off)}` : 'Sin dto.'}</strong>
                 </span>
               );
             })}
@@ -403,11 +415,23 @@ function CartPanel({
 
           {cartEntries.length ? (
             <div className="pp-cart-total">
-              <div className="pp-cart-total-line">
+              <div className="pp-cart-total-line is-sub">
+                <span>Subtotal</span>
+                <strong>{formatCurrency(subtotal)}</strong>
+              </div>
+              {discount ? (
+                <div className="pp-cart-total-line is-discount">
+                  <span>
+                    Descuento por {cartEntries.length}{' '}
+                    {cartEntries.length === 1 ? 'perfume' : 'perfumes'}
+                  </span>
+                  <strong>−{formatCurrency(discount)}</strong>
+                </div>
+              ) : null}
+              <div className="pp-cart-total-line is-final">
                 <span>Total a pagar</span>
                 <strong>{formatCurrency(total)}</strong>
               </div>
-              {savings ? <div className="pp-cart-savings">{savings}</div> : null}
             </div>
           ) : null}
 
@@ -436,6 +460,8 @@ function CheckoutForm({
   formState,
   setFormState,
   deliveryOptions,
+  subtotal,
+  discount,
   total,
   cartEntries,
   loading,
@@ -460,6 +486,9 @@ function CheckoutForm({
               <span className="pp-recap-index">{index + 1}</span>
               <span className="pp-recap-name">{item.product?.name || item.productId}</span>
               <span className="pp-recap-brand">{item.product?.brand}</span>
+              <span className="pp-recap-price">
+                {item.product ? formatCurrency(priceOf(item.product, formState.paymentMethod || 'tarjeta')) : '—'}
+              </span>
             </div>
           ))}
         </div>
@@ -595,9 +624,21 @@ function CheckoutForm({
       <p className="pp-commitment">{PAGE_COPY.reviewCommitment}</p>
 
       <div className="pp-checkout-foot">
-        <div className="pp-checkout-total">
-          <span>Total a pagar</span>
-          <strong>{formatCurrency(total)}</strong>
+        <div className="pp-checkout-totals">
+          <div className="pp-checkout-total is-sub">
+            <span>Subtotal</span>
+            <strong>{formatCurrency(subtotal)}</strong>
+          </div>
+          {discount ? (
+            <div className="pp-checkout-total is-discount">
+              <span>Descuento por {cartEntries.length} perfumes</span>
+              <strong>−{formatCurrency(discount)}</strong>
+            </div>
+          ) : null}
+          <div className="pp-checkout-total is-final">
+            <span>Total a pagar</span>
+            <strong>{formatCurrency(total)}</strong>
+          </div>
         </div>
         <p className="pp-checkout-method">
           {method ? method.label : 'Elegí un medio de pago'}
@@ -661,13 +702,17 @@ export default function PerfumesPrevioPagoLanding() {
     [cart],
   );
 
-  // El total depende del medio de pago: la transferencia tiene 10% OFF.
-  const total = calculateTotal(cart.length, formState.paymentMethod || 'tarjeta');
-  const savings = getSavingsLabel(cart.length);
+  // El subtotal depende del medio de pago (la transferencia tiene 10% OFF en
+  // cada perfume) y el total, además, del descuento fijo por cantidad.
+  const method = formState.paymentMethod || 'tarjeta';
+  const subtotal = calculateSubtotal(cart, method);
+  const discount = discountFor(cart.length);
+  const total = calculateTotal(cart, method);
   const upsell = getUpsell(cart.length);
   const orderSummary = useMemo(() => buildOrderSummary(cart), [cart]);
-  const orderDetails = useMemo(() => formatOrderDetails(cart, PRODUCTS), [cart]);
-  const legacyPayload = useMemo(() => buildLegacyPayload(cart, PRODUCTS), [cart]);
+  const orderDetails = useMemo(() => formatOrderDetails(cart), [cart]);
+  const legacyPayload = useMemo(() => buildLegacyPayload(cart), [cart]);
+  const cartSummary = useMemo(() => describeCart(cart, method), [cart, method]);
 
   function jumpTo(selector) {
     const element = document.querySelector(selector);
@@ -771,9 +816,15 @@ export default function PerfumesPrevioPagoLanding() {
     formData.set('entry.17650825', 'A DOMICILIO');
     formData.set('entry.1209868979', window.location.href);
     formData.set('entry.978809450', mercadoPagoUrl);
+    // Con precio por perfume el desglose ya no es un total fijo: se mandan el
+    // subtotal, el descuento de la cantidad y el costo de reposición, para que
+    // el backend pueda ver el margen sin tener que recalcularlo.
+    formData.set('entry.subtotal', String(subtotal));
+    formData.set('entry.descuento', String(discount));
+    formData.set('entry.cantidad', String(cart.length));
     formData.set('entry.1885018612', legacyPayload.legacyDetails);
     formData.set('entry.1715320252', String(total));
-    formData.set('entry.736134777', String(legacyPayload.pairCostTotal));
+    formData.set('entry.736134777', String(legacyPayload.costTotal));
     formData.set('entry.1756027935', formState.deliverySlot);
     formData.set('comoabona', formState.paymentMethod);
     // Ruteo en n8n: separa perfumes-previopago de calzados y de perfumes
@@ -806,11 +857,19 @@ export default function PerfumesPrevioPagoLanding() {
       window.localStorage.setItem('customerName', formState.name);
       window.localStorage.setItem('paymentMethod', formState.paymentMethod);
       window.localStorage.setItem('rosita.whatsapp.prefill', formState.whatsapp);
+      // Con precio por perfume el total ya no es un valor fijo por cantidad,
+      // así que las páginas finales lo leen de acá. El precio de cada perfume
+      // viaja en el carrito para que el resumen muestre lo que se cobró.
+      window.localStorage.setItem('ppOrderTotal', String(total));
+      window.localStorage.setItem('ppOrderSubtotal', String(subtotal));
+      window.localStorage.setItem('ppOrderDiscount', String(discount));
+      window.localStorage.setItem('ppOrderCount', String(cart.length));
+      window.localStorage.setItem('ppOrderCart', JSON.stringify(cartSummary));
 
       if (formState.paymentMethod === 'cbu') {
         // La transferencia no tiene redirección: va a la página con los datos
         // bancarios y el comprobante se manda por WhatsApp.
-        window.location.assign(`/2026${getCbuRoute(cart.length)}.html`);
+        window.location.assign(`/2026${getCbuRoute()}.html`);
         return;
       }
 
@@ -838,20 +897,26 @@ export default function PerfumesPrevioPagoLanding() {
         </p>
 
         <div className="pp-promo-tiers">
-          {PRICING.tiers.map((tier) => (
-            <div key={tier.count} className={`pp-promo-tier${tier.count === PRICING.tiers.length ? ' is-featured' : ''}`}>
-              <span className="pp-promo-tier-qty">
-                {tier.count} {tier.count === 1 ? 'perfume' : 'perfumes'}
-              </span>
-              <strong className="pp-promo-tier-price">{formatCurrency(tier.price)}</strong>
-              <span className="pp-promo-tier-unit">
-                {formatCurrency(Math.ceil(tier.price / tier.count))} c/u
-              </span>
-              <span className={`pp-promo-tier-flag${tier.count === PRICING.tiers.length ? '' : ' is-hidden'}`} aria-hidden="true">
-                {tier.count === PRICING.tiers.length ? 'Mejor precio' : '·'}
-              </span>
-            </div>
-          ))}
+          {[1, 2, 3].map((count) => {
+            const off = discountFor(count);
+            const last = count === PRICING.maxItems;
+            return (
+              <div key={count} className={`pp-promo-tier${last ? ' is-featured' : ''}`}>
+                <span className="pp-promo-tier-qty">
+                  {count} {count === 1 ? 'perfume' : 'perfumes'}
+                </span>
+                <strong className="pp-promo-tier-price">
+                  {off ? `−${formatCurrency(off)}` : 'Precio pleno'}
+                </strong>
+                <span className="pp-promo-tier-unit">
+                  {off ? 'de descuento' : 'sin descuento'}
+                </span>
+                <span className={`pp-promo-tier-flag${last ? '' : ' is-hidden'}`} aria-hidden="true">
+                  {last ? 'Mejor precio' : '·'}
+                </span>
+              </div>
+            );
+          })}
         </div>
 
         <p className="pp-cbu-note">Transferencia bancaria con 10% OFF adicional</p>
@@ -906,6 +971,8 @@ export default function PerfumesPrevioPagoLanding() {
               formState={formState}
               setFormState={setFormState}
               deliveryOptions={deliveryOptions}
+              subtotal={subtotal}
+              discount={discount}
               total={total}
               cartEntries={cartEntries}
               loading={loading}
@@ -918,8 +985,9 @@ export default function PerfumesPrevioPagoLanding() {
 
       <CartPanel
         cartEntries={cartEntries}
+        subtotal={subtotal}
+        discount={discount}
         total={total}
-        savings={savings}
         upsell={upsell}
         paymentMethod={formState.paymentMethod}
         expanded={cartOpen}
