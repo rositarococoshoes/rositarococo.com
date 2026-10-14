@@ -90,6 +90,8 @@ export const COSTOS = {
 
   // ------------------------------------------------------------ Lattafa
   'lattafa--haya': { costo: 40000, pdf: 'Haya 100ml' },
+  // No esta en el Excel de 61, entra por perfumes/perfumes-extra.json
+  'lattafa--khamrah-qahwa': { costo: 45000, pdf: 'Khamrah Qahwa 100ml' },
   'lattafa--victoria': { costo: 50000, pdf: 'Victoria 100ml' },
   'lattafa--her-confession': { costo: 55000, pdf: 'Her Confession 100ml' },
   'lattafa--his-confession': { costo: 55000, pdf: 'His Confession 100ml' },

@@ -1,0 +1,32 @@
+{
+  "_nota": [
+    "Perfumes que se venden pero NO estan en catalogo-perfumes-completo.xlsx.",
+    "El Excel es la fuente del catalogo, pero Roxana va agregando productos y no",
+    "siempre actualiza el Excel. Los que entran por acá se mergean al generar",
+    "src/lib/perfumes-previo-pago-data.js.",
+    "",
+    "El costo sale de Originales.pdf y va en scripts/build-costos-pp.mjs.",
+    "El 'id' tiene que ser el mismo slug que genera el script:",
+    "  slug(marca) + '--' + slug(perfume)",
+    "sin acentos, todo en minusculas y con guiones.",
+    "",
+    "fotos: van en la carpeta de fotos crudas junto a las otras. El nombre del",
+    "archivo va en 'photos'. Si el archivo no esta, el generador avisa y sigue,",
+    "pero el test 'todo perfume tiene lo que la tarjeta dibuja' falla: mejor eso",
+    "que publicar una tarjeta sin imagen."
+  ],
+  "productos": [
+    {
+      "name": "Khamrah Qahwa",
+      "brand": "Lattafa",
+      "gender": "unisex",
+      "familyText": "oriental dulce y gourmand, con toque de café",
+      "top": "Cardamomo, canela y jengibre",
+      "heart": "Praliné, frutas confitadas y flores blancas",
+      "base": "Café, vainilla, haba tonka, benzoin y almizcle",
+      "similar": "Kilian Angels' Share",
+      "presentation": "EDP 100 ml",
+      "photos": ["63-lattafa-khamrah-qahwa.jpg"]
+    }
+  ]
+}

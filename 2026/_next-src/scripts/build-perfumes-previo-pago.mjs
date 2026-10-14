@@ -265,6 +265,38 @@ async function main() {
   }
 
   const products = [...byProduct.values()];
+
+  // --- productos que no estan en el Excel (ver perfumes/perfumes-extra.json)
+  const extrasPath = resolve(__dirname, '..', '..', 'perfumes', 'perfumes-extra.json');
+  if (fs.existsSync(extrasPath)) {
+    const extras = JSON.parse(fs.readFileSync(extrasPath, 'utf8')).productos || [];
+    for (const x of extras) {
+      const key = `${slug(x.brand)}--${slug(x.name)}`;
+      if (byProduct.has(key)) {
+        throw new Error(`${key} ya está en el Excel, no va en perfumes-extra.json`);
+      }
+      products.push({
+        key,
+        marca: clean(x.brand),
+        perfume: clean(x.name),
+        genero: GENDER_ID[clean(x.gender)] || 'unisex',
+        familia: familyOf(x.familyText),
+        familiaTexto: clean(x.familyText),
+        descripcion: descriptionOf({
+          top: x.top,
+          heart: x.heart,
+          base: x.base,
+          similar: x.similar,
+        }),
+        presentacion: clean(x.presentation),
+        similar: clean(x.similar),
+        fotos: (x.photos || []).map(clean),
+        vieneDelExtra: true,
+      });
+      console.log(`+ ${key} (del extra, no está en el Excel)`);
+    }
+  }
+
   console.log(`productos únicos: ${products.length}`);
   console.log(`fotos referenciadas: ${products.reduce((s, p) => s + p.fotos.length, 0)}`);
 
@@ -272,11 +304,20 @@ async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   let bytesIn = 0;
   let bytesOut = 0;
+  const faltantes = [];
 
   for (const product of products) {
     for (const [index, foto] of product.fotos.entries()) {
       const source = path.join(PHOTOS, foto);
-      if (!fs.existsSync(source)) throw new Error(`Falta la foto ${foto} de ${product.key}`);
+
+      // Falta la foto: se avisa y se sigue en vez de romper el build. El
+      // producto queda sin imagen y el test 'todo perfume tiene lo que la
+      // tarjeta dibuja' lo frena antes de publicar. Romper acá cortaba la
+      // cadena entera por una foto que todavía no|ARGado el usuario.
+      if (!fs.existsSync(source)) {
+        faltantes.push(`${product.key} -> ${foto}`);
+        continue;
+      }
 
       const outName = `${product.key}-${index + 1}.webp`;
       const info = await sharp(source)
@@ -289,6 +330,13 @@ async function main() {
       bytesIn += fs.statSync(source).size;
       bytesOut += info.size;
     }
+    product.imageFiles = product.imageFiles || [];
+  }
+
+  if (faltantes.length) {
+    console.log(`\nFALTAN ${faltantes.length} FOTOS (en ${PHOTOS}):`);
+    for (const f of faltantes) console.log(`  - ${f}`);
+    console.log('El producto queda sin imagen. Los tests frenan el deploy.\n');
   }
 
   console.log(`fotos: ${(bytesIn / 1048576).toFixed(1)} MB -> ${(bytesOut / 1048576).toFixed(2)} MB`);
@@ -411,21 +459,6 @@ export const PAGE_COPY = {
     'de entrega. El envío es gratis a todo el país.',
 };
 
-export const TRUST_POINTS = [
-  {
-    title: '61 perfumes',
-    body: 'Armaf, Afnan, Lattafa, Rasasi y más, con sus notas de salida, corazón y fondo.',
-  },
-  {
-    title: 'Pagá como quieras',
-    body: 'Tarjeta en 3 cuotas, saldo MercadoPago o transferencia con 10% OFF.',
-  },
-  {
-    title: 'Envío gratis',
-    body: 'A todo el país, con confirmación por WhatsApp antes de despachar.',
-  },
-];
-
 export const PAYMENT_METHODS = [
   {
     value: 'tarjeta',
@@ -486,6 +519,22 @@ ${productsLiteral}
 ];
 
 export const PRODUCT_BY_ID = new Map(PRODUCTS.map((p) => [p.id, p]));
+
+/** Va después de PRODUCTS porque el título lleva la cantidad real. */
+export const TRUST_POINTS = [
+  {
+    title: \`\${PRODUCTS.length} perfumes\`,
+    body: 'Armaf, Afnan, Lattafa, Rasasi y más, con sus notas de salida, corazón y fondo.',
+  },
+  {
+    title: 'Pagá como quieras',
+    body: 'Tarjeta en 3 cuotas, saldo MercadoPago o transferencia con 10% OFF.',
+  },
+  {
+    title: 'Envío gratis',
+    body: 'A todo el país, con confirmación por WhatsApp antes de despachar.',
+  },
+];
 
 /**
  * Descuento fijo del carrito para una cantidad dada.

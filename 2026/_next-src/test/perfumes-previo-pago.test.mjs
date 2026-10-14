@@ -14,6 +14,7 @@ import {
   PRODUCTS,
   PROVINCES,
   THANK_YOU_ROUTE,
+  TRUST_POINTS,
   discountFor,
   priceOf,
 } from '../src/lib/perfumes-previo-pago-data.js';
@@ -241,9 +242,33 @@ test('el resumen y el detalle texto son legibles', () => {
 
 // --------------------------------------------------------------- catalogo
 
-test('el catálogo tiene los 61 perfumes del Excel', () => {
-  assert.equal(PRODUCTS.length, 61);
-  assert.equal(new Set(PRODUCTS.map((p) => p.id)).size, 61, 'hay ids repetidos');
+test('el catálogo tiene los 62 perfumes', () => {
+  // 61 salen del Excel de catálogo + Khamrah Qahwa, que Roxana lo tiene en el
+  // PDF de precios pero no en el Excel y entra por perfumes/perfumes-extra.json.
+  // Si Roxana actualiza el Excel y saca el extra, este número baja a 61.
+  assert.equal(PRODUCTS.length, 62);
+  assert.equal(new Set(PRODUCTS.map((p) => p.id)).size, 62, 'hay ids repetidos');
+});
+
+test('Khamrah Qahwa entra bien y con el costo del PDF', () => {
+  const k = PRODUCTS.find((p) => p.id === 'lattafa--khamrah-qahwa');
+  assert.ok(k, 'no está en el catálogo');
+  assert.equal(k.name, 'Khamrah Qahwa');
+  assert.equal(k.brand, 'Lattafa');
+  assert.equal(k.gender, 'unisex');
+  // café y praliné: la familia del filtro que corresponde es la de dulces
+  assert.equal(k.family, 'dulces');
+  assert.equal(k.cost, 45000);
+  assert.equal(k.price, 102200);
+  assert.equal(k.cbuPrice, 92000);
+  assert.match(k.description, /Café/);
+  assert.match(k.description, /Praliné/);
+});
+
+test('el titulo de "N perfumes" del bloque de confianza sale del catálogo', () => {
+  // estaba hardcodeado en 61 y el catálogo ya tiene 62: si vuelve a quedar
+  // fijo, la landing miente sobre cuántos perfumes hay
+  assert.equal(TRUST_POINTS[0].title, `${PRODUCTS.length} perfumes`);
 });
 
 test('todo perfume tiene lo que la tarjeta y el carrito dibujan', () => {
@@ -254,7 +279,13 @@ test('todo perfume tiene lo que la tarjeta y el carrito dibujan', () => {
     assert.ok(FAMILY_LABEL[p.family], `${p.id} con familia invalida: ${p.family}`);
     assert.ok(p.description?.length > 20, `${p.id} sin notas`);
     assert.ok(p.presentation?.length > 3, `${p.id} sin presentacion`);
-    assert.ok(Array.isArray(p.images) && p.images.length >= 1, `${p.id} sin fotos`);
+    // El generador deja el producto sin imagen si falta el archivo crudo, y
+    // este test es lo que frena el deploy. El mensaje dice dónde(droppear el
+    // archivo) porque si no hay que ir a buscarlo a los logs.
+    assert.ok(
+      Array.isArray(p.images) && p.images.length >= 1,
+      `${p.id} sin fotos — falta guardarla en fotos_catalogo con el nombre que dice perfumes-extra.json`,
+    );
     for (const img of p.images) {
       assert.match(img, /^\/2026\/assets\/perfumes-previo-pago\//, `${p.id} con foto fuera de la carpeta`);
     }

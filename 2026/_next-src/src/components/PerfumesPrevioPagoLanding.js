@@ -16,6 +16,7 @@ import {
   PRICING,
   PRODUCTS,
   PROVINCES,
+  TRUST_POINTS,
   discountFor,
   priceOf,
 } from '@/src/lib/perfumes-previo-pago-data';
@@ -895,11 +896,7 @@ export default function PerfumesPrevioPagoLanding() {
       </section>
 
       <section className="pp-trust">
-        {[
-          { title: '61 perfumes', body: 'Armaf, Afnan, Lattafa, Rasasi y más, con sus notas de salida, corazón y fondo.' },
-          { title: 'Pagá como quieras', body: 'Tarjeta en 3 cuotas, saldo MercadoPago o transferencia con 10% OFF.' },
-          { title: 'Envío gratis', body: 'A todo el país, con confirmación por WhatsApp antes de despachar.' },
-        ].map((point) => (
+        {TRUST_POINTS.map((point) => (
           <div key={point.title} className="pp-trust-item">
             <strong>{point.title}</strong>
             <span>{point.body}</span>

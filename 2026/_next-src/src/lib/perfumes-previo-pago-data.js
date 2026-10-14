@@ -87,21 +87,6 @@ export const PAGE_COPY = {
     'de entrega. El envío es gratis a todo el país.',
 };
 
-export const TRUST_POINTS = [
-  {
-    title: '61 perfumes',
-    body: 'Armaf, Afnan, Lattafa, Rasasi y más, con sus notas de salida, corazón y fondo.',
-  },
-  {
-    title: 'Pagá como quieras',
-    body: 'Tarjeta en 3 cuotas, saldo MercadoPago o transferencia con 10% OFF.',
-  },
-  {
-    title: 'Envío gratis',
-    body: 'A todo el país, con confirmación por WhatsApp antes de despachar.',
-  },
-];
-
 export const PAYMENT_METHODS = [
   {
     value: 'tarjeta',
@@ -1444,9 +1429,46 @@ export const PRODUCTS = [
     asset('armaf--club-de-nuit-maleka-1.webp'),
     ],
   },
+  {
+    id: 'lattafa--khamrah-qahwa',
+    name: 'Khamrah Qahwa',
+    brand: 'Lattafa',
+    gender: 'unisex',
+    family: 'dulces',
+    familyLabel: 'oriental dulce y gourmand, con toque de café',
+    similar: 'Kilian Angels\' Share',
+    presentation: 'EDP 100 ml',
+    /** Costo de compra, confirmado por Roxana. No se muestra al cliente. */
+    cost: 45000,
+    /** Precio de venta con tarjeta o saldo MercadoPago. */
+    price: 102200,
+    /** Precio final por transferencia bancaria (10% menos). */
+    cbuPrice: 92000,
+    description:
+      'Cardamomo, canela y jengibre · Praliné, frutas confitadas y flores blancas · Café, vainilla, haba tonka, benzoin y almizcle Inspirado en Kilian Angels\' Share.',
+    images: [
+    asset('lattafa--khamrah-qahwa-1.webp'),
+    ],
+  },
 ];
 
 export const PRODUCT_BY_ID = new Map(PRODUCTS.map((p) => [p.id, p]));
+
+/** Va después de PRODUCTS porque el título lleva la cantidad real. */
+export const TRUST_POINTS = [
+  {
+    title: `${PRODUCTS.length} perfumes`,
+    body: 'Armaf, Afnan, Lattafa, Rasasi y más, con sus notas de salida, corazón y fondo.',
+  },
+  {
+    title: 'Pagá como quieras',
+    body: 'Tarjeta en 3 cuotas, saldo MercadoPago o transferencia con 10% OFF.',
+  },
+  {
+    title: 'Envío gratis',
+    body: 'A todo el país, con confirmación por WhatsApp antes de despachar.',
+  },
+];
 
 /**
  * Descuento fijo del carrito para una cantidad dada.

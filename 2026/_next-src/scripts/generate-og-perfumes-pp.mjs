@@ -86,7 +86,7 @@ const svg = Buffer.from(`<svg width="${W}" height="${H}" xmlns="http://www.w3.or
   <rect x="80" y="242" width="430" height="42" rx="21" fill="#2f6b52"/>
   <text x="295" y="269" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" fill="#fff" text-anchor="middle">ENVÍO GRATIS A TODO EL PAÍS</text>
 
-  <text x="80" y="322" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#6b5b51">61 perfumes desde ${money(
+  <text x="80" y="322" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#6b5b51">${PRODUCTS.length} perfumes desde ${money(
     DESDE,
   )} · pagá con tarjeta, MercadoPago o transferencia</text>
 
