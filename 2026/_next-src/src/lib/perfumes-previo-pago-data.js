@@ -19,7 +19,7 @@ export const BRAND_LOGO_SRC = `${BASE_PATH}/assets/contrareembolso/rosita-form.w
 export const WHATSAPP_BUTTON_SRC = `${BASE_PATH}/assets/contrareembolso/enviarwsp.png`;
 
 export const ORDER_WEBHOOK_URL =
-  'https://sswebhookss.odontolab.co/webhook/a5dcd3c9-48a3-46a1-a781-475737a634ca';
+  'https://sswebhookss.odontolab.co/webhook/c3250966-f88a-4734-828d-2f867e5714f0';
 export const PAYMENT_LINK_WEBHOOK_URL =
   'https://sswebhookss.odontolab.co/webhook/addaa0c8-96b1-4d63-b2c0-991d6be3de30';
 export const WHATSAPP_CONFIRM_PHONE = '5491127595502';
