@@ -729,7 +729,14 @@ export default function PerfumesPrevioPagoLanding() {
     const response = await fetch(PAYMENT_LINK_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ comprador: buyerName, monto: amount, fbp: generateFBP(), fbc: generateFBC() }),
+      body: JSON.stringify({
+        comprador: buyerName,
+        monto: amount,
+        fbp: generateFBP(),
+        fbc: generateFBC(),
+        // Ruteo en n8n: deja identificar que el link es de perfumes y no de calzados.
+        landing: 'perfume',
+      }),
     });
     if (!response.ok) throw new Error(`MercadoPago link request failed: ${response.status}`);
     const payload = await response.json();
