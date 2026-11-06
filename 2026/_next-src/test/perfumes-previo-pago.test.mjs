@@ -395,3 +395,24 @@ test('el copy esta en español y sin anglicismos', () => {
     assert.equal(new RegExp(`\\b${word}\\b`).test(texto), false, `"${word}" esta en ingles`);
   }
 });
+
+// El link de pago se generaba con `calculateTotal(cart.length, ...)`: calculateTotal
+// espera el carrito y hace cart.reduce, así que tiraba TypeError antes del fetch.
+// El catch mostraba "No pudimos generar el link de pago" y n8n nunca recibía nada.
+test('el link de pago se pide con el carrito completo y no con la cantidad', () => {
+  const source = readFileSync(
+    new URL('../src/components/PerfumesPrevioPagoLanding.js', import.meta.url),
+    'utf8',
+  );
+
+  assert.equal(
+    source.includes('calculateTotal(cart.length'),
+    false,
+    'calculateTotal espera el array del carrito, no cart.length',
+  );
+  assert.match(
+    source,
+    /total:\s*calculateTotal\(cart,/,
+    'requestMercadoPagoLink tiene que recibir calculateTotal(cart, ...)',
+  );
+});

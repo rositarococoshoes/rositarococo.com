@@ -691,9 +691,11 @@ export default function PerfumesPrevioPagoLanding() {
   const legacyPayload = useMemo(() => buildLegacyPayload(cart), [cart]);
   const cartSummary = useMemo(() => describeCart(cart, method), [cart, method]);
 
-  function jumpTo(selector) {
+  function jumpTo(selector, offset = 0) {
     const element = document.querySelector(selector);
-    if (element) element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (!element) return;
+    const top = element.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
 
   function handleAdd(product) {
@@ -774,9 +776,10 @@ export default function PerfumesPrevioPagoLanding() {
       try {
         mercadoPagoUrl = await requestMercadoPagoLink({
           buyerName: formState.name.trim(),
-          total: calculateTotal(cart.length, formState.paymentMethod),
+          total: calculateTotal(cart, formState.paymentMethod),
         });
-      } catch {
+      } catch (error) {
+        console.error('No pudimos generar el link de pago', error);
         setToast('No pudimos generar el link de pago. Probá de nuevo en un momento.');
         setLoading(false);
         return;
@@ -976,7 +979,14 @@ export default function PerfumesPrevioPagoLanding() {
         onGoCheckout={() => {
           setCartOpen(false);
           setCheckoutOpen(true);
-          setTimeout(() => jumpTo('#pp-checkout'), 80);
+          // Los filtros quedan sticky arriba (178px en celular): sin descontar
+          // esa altura, el título y el campo de nombre arrancan tapados y el
+          // primer casillero visible es el email. Se ancla el scroll al título.
+          setTimeout(() => {
+            const filters = document.querySelector('.pp-filters');
+            const offset = (filters ? filters.getBoundingClientRect().height : 0) + 12;
+            jumpTo('.pp-checkout-title', offset);
+          }, 120);
         }}
       />
 
