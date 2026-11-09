@@ -311,6 +311,17 @@ function V2CartPanel({
 }
 
 function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, deliveryLabel, orderDetails, total, loading, onSubmit, isValidWhatsappInput, cartEntries, onBlock }) {
+  const nameInputRef = useRef(null);
+
+  useEffect(() => {
+    if (!visible) return;
+    const input = nameInputRef.current;
+    if (!input) return;
+    // En celular el campo quedaba fuera de pantalla al abrir el checkout.
+    input.focus({ preventScroll: true });
+    input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, [visible]);
+
   if (!visible) return null;
 
   function updateField(field, value) {
@@ -332,6 +343,7 @@ function V2CheckoutForm({ visible, formState, setFormState, deliveryOptions, del
         <label className="v2-field">
           <span>Nombre y apellido</span>
           <input
+            ref={nameInputRef}
             value={formState.name}
             onChange={(event) => updateField('name', event.target.value)}
             placeholder="Quién recibe"
@@ -654,7 +666,6 @@ export default function ContrareembolsoLandingV2() {
         onGoCheckout={() => {
           setCartExpanded(false);
           setCheckoutOpen(true);
-          setTimeout(() => jumpTo('#checkout-form'), 80);
         }}
         deliveryOptions={deliveryOptions}
         selectedSlot={formState.deliverySlot}
